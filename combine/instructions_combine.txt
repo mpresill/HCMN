@@ -1,4 +1,4 @@
-SHAPE ANALYSIS INSTRUCTIONS
+COMBINE INSTRUCTION FOR SHAPE-BASED ANALYSIS
 
 >For installing Combine follow procedures in:
 https://cms-hcomb.gitbook.io/combine/setting-up-the-analysis
