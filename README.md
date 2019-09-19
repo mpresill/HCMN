@@ -8,4 +8,4 @@ Documentation in GitLab: https://gitlab.cern.ch/tdr/notes/AN-18-111 .
 - [ ] plot MeeJ 2016 histogram production to validate Valentina’s results on number of events of bkgs 
 - [ ] test limit extraction with counting experiment 
 - [ ] add systematics on limit bands
-- [ ] add systematics on limit bands
+- [ ] check limits independence on Lambda
