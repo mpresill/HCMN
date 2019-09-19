@@ -3,7 +3,7 @@ SHAPE ANALYSIS INSTRUCTIONS
 >For installing Combine follow procedures in:
 https://cms-hcomb.gitbook.io/combine/setting-up-the-analysis
 >after the first installation you can instead just do:
-cd CMSSW_8_1_0/src/HiggsAnalysis/CombinedLimit
+cd CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit
 cmsenv
 
 
