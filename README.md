@@ -6,7 +6,6 @@ Available samples in: https://docs.google.com/spreadsheets/d/1cjLUHCRwQxU6aovdtx
 
 
 ## To-do list:
-- [ ] test limit extraction as counting experiment (cut on M(llJ)) (MATTEO)
 - [ ] add systematics on limit bands with Combine (MATTEO)
 - [ ] check limits independence on Lambda (MATTEO)
 - [ ] plot M(llJ) histogram for bkg + signal (to validate Valentina number of events) (MATTEO O VALE?)
