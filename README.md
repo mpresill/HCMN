@@ -3,6 +3,10 @@ Documentation in GitLab: https://gitlab.cern.ch/tdr/notes/AN-18-111 .
 
 Available samples in: https://docs.google.com/spreadsheets/d/1cjLUHCRwQxU6aovdtx6UJmBafhGXKXulmOkGTMoa9Ro/edit#gid=0
 
+Framework available here:
+- https://github.com/vmariani/BSMFramework/tree/HN16 (for 2016)
+- https://github.com/vmariani/BSMFramework/tree/HN17 (for 2017)
+- https://github.com/vmariani/BSMFramework/tree/HN18 (for 2018)
 
 
 ## To-do list:
