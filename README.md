@@ -12,10 +12,19 @@ Framework available here:
 Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL24RRUsnkTPn5hZyoxKP2og/edit#slide=id.g59567419ba_0_0
 
 ## To-do list:
-- [ ] add systematics on limit bands with Combine (MATTEO)
-- [ ] check limits independence on Lambda (MATTEO)
-- [ ] plot M(llJ) histogram for bkg + signal (to validate Valentina number of events) (MATTEO O VALE?)
-- [ ] TTtW bkg estimate MC based (with cross section)
-- [ ] add fakes study 
-- [ ] SF study for DY bkg 
-- [ ] can we find other models for reinterpreting the results? (MATTEO, VALE)
+- [ ] subgroup Jet+X update on nov 11th with:
+   1.  make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016-2017-2018
+   1. Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
+   1. Limit extrapolation on cross section * BR (stat only, per year)
+   1. 2D Limits plot (stat only with unitarity constraint)
+
+- [ ] What is needed from Roberto:
+
+
+
+- [ ] (add systematics on limit bands with Combine (MATTEO))
+- [ ] (check limits independence on Lambda (MATTEO))
+- [ ] (TTtW bkg estimate MC based (with cross section))
+- [ ] (add fakes study) 
+- [ ] (SF study for DY bkg) 
+- [ ] (can we find other models for reinterpreting the results?)
