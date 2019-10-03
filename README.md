@@ -8,6 +8,8 @@ Framework available here:
 - https://github.com/vmariani/BSMFramework/tree/HN17 (for 2017)
 - https://github.com/vmariani/BSMFramework/tree/HN18 (for 2018)
 
+#Talks:
+Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL24RRUsnkTPn5hZyoxKP2og/edit#slide=id.g59567419ba_0_0
 
 ## To-do list:
 - [ ] add systematics on limit bands with Combine (MATTEO)
