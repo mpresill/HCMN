@@ -12,16 +12,18 @@ Framework available here:
 Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL24RRUsnkTPn5hZyoxKP2og/edit#slide=id.g59567419ba_0_0
 
 ## To-do list:
-- [ ] subgroup Jet+X update on nov 11th with:
+Targeting subgroup Jet+X update on nov 11th with:
    1.  make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016-2017-2018
    1. Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
    1. Limit extrapolation on cross section * BR (stat only, per year)
    1. 2D Limits plot (stat only with unitarity constraint)
 
-- [ ] What is needed from Roberto:
+What is needed from Roberto: 
+   1. Macros for QCD/Other bkgs estimation
+   1. Macros for signal systematics 
+   1. Q: why do we have produced all these samples considering the Lambda independence on limit extraction?
 
-
-
+- [ ] JER/JEC corrections have to applied to data only? (default option on the present version of the framework)
 - [ ] (add systematics on limit bands with Combine (MATTEO))
 - [ ] (check limits independence on Lambda (MATTEO))
 - [ ] (TTtW bkg estimate MC based (with cross section))
