@@ -30,3 +30,7 @@ What is needed from Roberto:
 - [ ] (add fakes study) 
 - [ ] (SF study for DY bkg) 
 - [ ] (can we find other models for reinterpreting the results?)
+
+## Recipies:
+ - Muon efficiencies https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/tree/master/EfficienciesStudies
+ - Electron efficiencies https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgammaIDRecipesRun2
