@@ -24,7 +24,7 @@ The output is the limit on the signal strenght r=(\sigma*BR)_obs / (\sigma*BR)_t
 
 In case you are running without observed data the procedure is described in the HN: https://hypernews.cern.ch/HyperNews/CMS/get/higgs-combination/914/1/1.html so you need a dummy histogram with whatever bin content you want and call it "data_obs" and put it in the file. Then you should use "--run blind", like in the following example:
 
-<combine -M AsymptoticLimits -S 0 L5_M5000.txt  --run blind>
+combine -M AsymptoticLimits -S 0 L5_M5000.txt  --run blind
 
 
 
