@@ -23,6 +23,9 @@ What is needed from Roberto:
    1. Macros for signal systematics 
    1. Q: why do we have produced all these samples considering the Lambda independence on limit extraction?
 
+- [ ] check FJ scale factors in the rootplizer https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging why are we not using them??
+
+
 - [ ] JER/JEC corrections have to applied to data only? (default option on the present version of the framework)
 - [ ] (add systematics on limit bands with Combine (MATTEO))
 - [ ] (check limits independence on Lambda (MATTEO))
