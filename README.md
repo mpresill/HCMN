@@ -14,6 +14,7 @@ Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL2
 ## To-do list:
 Targeting subgroup Jet+X update on nov 11th with:
    1. add SFs for FatJets
+   1. add table with all corrections used in the framework 
    1.  make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016-2017-2018
    1. Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
    1. Limit extrapolation on cross section * BR (stat only, per year)
