@@ -15,14 +15,14 @@ Targeting subgroup Jet+X update on nov 11th with:
 - [x] make ntuple 2016
 - [ ] make ntuple 2017
 - [x] make ntuple 2018
-- [ ] make ntuple 2016make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
-- [ ] make ntuple 2016 make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
-- [ ] make ntuple 2016 make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
-- [ ] make ntuple 2016 Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
-- [ ] make ntuple 2016 Limit extrapolation on cross section * BR (stat only, per year)
-- [ ] make ntuple 2016 2D Limits plot (stat only with unitarity constraint)
-- [ ] make ntuple 2016 add table with all corrections used in the framework 
-- [ ] make ntuple 2016 add SFs for FatJets (low priority - maybe after 11th)
+- [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
+- [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
+- [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
+- [ ] Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
+- [ ] Limit extrapolation on cross section * BR (stat only, per year)
+- [ ] 2D Limits plot (stat only with unitarity constraint)
+- [ ] table with all corrections used in the framework 
+- [ ] add SFs for FatJets https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging (low priority - maybe after 11th)
 
 What is needed from Roberto: 
    1. Macros for QCD/Other bkgs estimation
@@ -30,10 +30,7 @@ What is needed from Roberto:
    1. Q: why do we have produced all these samples considering the Lambda independence on limit extraction?
       R: for now we don't really need to analyse all the samples (the request was made just to be sure on the Lambda independence on limit extraction) (=> check efficiency independence on Lambda at some point!)
 
-- [ ] check FJ scale factors in the rootplizer https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging why are we not using them??
 
-
-- [ ] JER/JEC corrections have to applied to data only? (default option on the present version of the framework)
 - [ ] (add systematics on limit bands with Combine (MATTEO))
 - [ ] (check limits independence on Lambda (MATTEO))
 - [ ] (TTtW bkg estimate MC based (with cross section))
