@@ -44,7 +44,7 @@ What is needed from Roberto:
  - Electron efficiencies https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgammaIDRecipesRun2
 
  - Muon scale factors:
-   -  trigger 2016 (), 2017 (), 2018 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json)
+   -  trigger 2016 (), 2017 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2017_trigger/theJSONfile_RunBtoF_Nov17Nov2017.json), 2018 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json)
    - ID 2016 (), 2017 (), 2018 ()
    - isolation 2016 (), 2017 (), 2018 ()
 
