@@ -12,9 +12,9 @@ Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL2
 ## To-do list:
 Targeting subgroup Jet+X update on nov 11th with:
 
-- [ ] make ntuple 2016
+- [x] make ntuple 2016
 - [ ] make ntuple 2017
-- [ ] make ntuple 2018
+- [x] make ntuple 2018
 - [ ] make ntuple 2016make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
 - [ ] make ntuple 2016 make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
 - [ ] make ntuple 2016 make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
