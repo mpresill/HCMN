@@ -12,17 +12,17 @@ Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL2
 ## To-do list:
 Targeting subgroup Jet+X update on nov 11th with:
 
-- [x] make ntuple 2016
+- [ ] make ntuple 2016
 - [ ] make ntuple 2017
-- [x] make ntuple 2018
-- [ ] make ntuple 2016make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
-- [ ] make ntuple 2016 make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
-- [ ] make ntuple 2016 make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
-- [ ] make ntuple 2016 Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
-- [ ] make ntuple 2016 Limit extrapolation on cross section * BR (stat only, per year)
-- [ ] make ntuple 2016 2D Limits plot (stat only with unitarity constraint)
-- [ ] make ntuple 2016 add table with all corrections used in the framework 
-- [ ] make ntuple 2016 add SFs for FatJets (low priority - maybe after 11th)
+- [ ] make ntuple 2018
+- [ ] make ntuple 2016make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
+- [ ] make ntuple 2016 make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
+- [ ] make ntuple 2016 make ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
+- [ ] make ntuple 2016 Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
+- [ ] make ntuple 2016 Limit extrapolation on cross section * BR (stat only, per year)
+- [ ] make ntuple 2016 2D Limits plot (stat only with unitarity constraint)
+- [ ] make ntuple 2016 add table with all corrections used in the framework 
+- [ ] make ntuple 2016 add SFs for FatJets (low priority - maybe after 11th)
 
 What is needed from Roberto: 
    1. Macros for QCD/Other bkgs estimation
