@@ -11,6 +11,7 @@ Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL2
 
 ## To-do list:
 Targeting subgroup Jet+X update on nov 11th with:
+
 - [x] make ntuple 2016
 - [ ] make ntuple 2017
 - [x] make ntuple 2018
