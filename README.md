@@ -14,8 +14,9 @@ Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL2
 Targeting subgroup Jet+X update on nov 11th with:
 
 - [x] make ntuple 2016
-- [ ] make ntuple 2017
+- [x] make ntuple 2017
 - [x] make ntuple 2018
+- [ ] fix PUweighting Roberto su Rootplizer 
 - [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
 - [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
 - [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
