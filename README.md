@@ -56,4 +56,5 @@ What is needed from Roberto:
 # How to run Rootplizer:
    1. make list of all ntuples to be converted into root files with "makelist_*.sh"
    1. export voms certificate: voms-proxy-init --voms cms --valid 192:00 --out ~/proxy
-   1. run "macro.sh" to submit jobs to condor (check job status with condor_q)
+   1. run "submission_macro.sh" to submit jobs to condor (specify eos path etc etc) (check job status with condor_q)
+   1. to resubmit failed jobs: ./submission_macro.sh resubmit
