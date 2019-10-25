@@ -49,7 +49,11 @@ What is needed from Roberto:
    -  trigger 2016 (), 2017 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2017_trigger/theJSONfile_RunBtoF_Nov17Nov2017.json), 2018 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json)
    - ID 2016 (), 2017 (), 2018 ()
    - isolation 2016 (), 2017 (), 2018 ()
-   - N.B. Since there are two different scale factor scenarios within 2016 data taking depending on the era (B-F) or (G-H) muon SFs for 2016 are computed by averageing the SF by the relative luminosity of each period and then apply a single weight to the MC: lumi(B-F)_Mu50=19.25 fb^-1, lumi(B-F)_TkMu50=16.64 fb^-1; lumi(G-H)_Mu50=16.29 fb^-1, lumi(G-H)_TkMu50=16.29 fb^-1 (Info from BrilCalc)
+   - N.B. Since there are two different scale factor scenarios within 2016 data taking depending on the era (B-F) or (G-H) muon SFs for 2016 are computed by averageing the SF by the relative luminosity of each period and then apply a single weight to the MC: lumi(B-F)_Mu50=19.25 fb^-1, lumi(B-F)_TkMu50=16.64 fb^-1; lumi(G-H)_Mu50=16.29 fb^-1, lumi(G-H)_TkMu50=16.29 fb^-1 (Info from BrilCalc)   
 
 ## Utils
 - How to find storage sites path: https://cmsweb.cern.ch/sitedb/prod/sites/
+# How to run Rootplizer:
+   1. make list of all ntuples to be converted into root files with "makelist_*.sh"
+   1. export voms certificate: voms-proxy-init --voms cms --valid 192:00 --out ~/proxy
+   1. run "macro.sh" to submit jobs to condor (check job status with condor_q)
