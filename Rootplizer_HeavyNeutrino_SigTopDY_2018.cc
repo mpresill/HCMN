@@ -1278,7 +1278,7 @@ double CalculatePileupWeight(int trueInteractions){
 
 double elesf(double eta, double pt){
  double elesf=0;
- if (pt >= 10 && pt < 20){
+/* if (pt >= 10 && pt < 20){
   if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=0.974953;
   if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=0.971215;
   if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=1.0307; 
@@ -1317,20 +1317,12 @@ double elesf(double eta, double pt){
   if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=1.03668;
   if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=0.997967;
   if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=0.983673;
- }
+ }*/
+ if(fabs(eta) < 1.4442) elesf = 0.989; // stat 0.001 // syst 0.014
+ if(fabs(eta) >= 1.566 && fabs(eta) < 2.5)elesf = 0.982; // stat 0.001 syst 0.014
+
  return elesf;
  
-//stat err 0.001 for both EB and EE
-//syst err:
-//  - barrel:
-//      1% for pT < 90 GeV
-//      1-3% linearly increasing for 90 GeV < pT < 1 TeV
-//      3% for pT > 1 TeV
-//  - endcap:
-//      2% for pT < 90 GeV
-//      2-5% linearly increasing for 90 GeV < pT < 300 GeV
-//      5% for pT > 300 GeV 
-
 }
 double musf_trigger(double eta, double pt){
  double musf=0;
