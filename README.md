@@ -51,3 +51,5 @@ What is needed from Roberto:
    - isolation 2016 (), 2017 (), 2018 ()
    - N.B. Since there are two different scale factor scenarios within 2016 data taking depending on the era (B-F) or (G-H) muon SFs for 2016 are computed by averageing the SF by the relative luminosity of each period and then apply a single weight to the MC: lumi(B-F)_Mu50=19.25 fb^-1, lumi(B-F)_TkMu50=16.64 fb^-1; lumi(G-H)_Mu50=16.29 fb^-1, lumi(G-H)_TkMu50=16.29 fb^-1 (Info from BrilCalc)
 
+## Utils
+- How to find storage sites path: https://cmsweb.cern.ch/sitedb/prod/sites/
