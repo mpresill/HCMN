@@ -16,19 +16,20 @@ Targeting subgroup Jet+X update on nov 11th with:
 - [x] make ntuple 2016
 - [x] make ntuple 2017
 - [x] make ntuple 2018
-- [ ] fix PUweighting Roberto su Rootplizer 
-- [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
+- [ ] how to do properly PUweighting 
+- [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
 - [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
 - [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
 - [ ] Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
+- [ ] make script rootple->histograms inputs combine 
 - [ ] Limit extrapolation on cross section * BR (stat only, per year)
 - [ ] 2D Limits plot (stat only with unitarity constraint)
 - [ ] table with all corrections used in the framework 
 - [ ] add SFs for FatJets https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging (low priority - maybe after 11th)
 
 What is needed from Roberto: 
-   1. Macros for QCD/Other bkgs estimation
-   1. Macros for signal systematics 
+   1. Macros for QCD/Other bkgs estimation (OK)
+   1. Macros for signal systematics (not yet)
    1. Q: why do we have produced all these samples considering the Lambda independence on limit extraction?
       R: for now we don't really need to analyse all the samples (the request was made just to be sure on the Lambda independence on limit extraction) (=> check efficiency independence on Lambda at some point!)
 
@@ -40,7 +41,8 @@ What is needed from Roberto:
 - [ ] (SF study for DY bkg) 
 - [ ] (can we find other models for reinterpreting the results?)
 
-## Recipies for objects definition:
+## Recipies for objects definition and weights:
+ - pileup rewighting: using the scripts in https://github.com/mpresill/BSMFramework/tree/HN17/BSM3G_TNT_Maker/data/PUReweight
  - Muon efficiencies https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/tree/master/EfficienciesStudies
  - Muon reference for Run 2 https://twiki.cern.ch/twiki/bin/view/CMS/MuonReferenceEffsRun2
  - Electron efficiencies https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgammaIDRecipesRun2
