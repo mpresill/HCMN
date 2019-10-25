@@ -1,5 +1,4 @@
-# Heavy composite Majorana neutrino reload 
-# of the EXO-16-026 analysis
+# Heavy composite Majorana neutrino reload of the EXO-16-026 analysis
 Documentation in GitLab: https://gitlab.cern.ch/tdr/notes/AN-18-111 .
 
 Available samples in: https://docs.google.com/spreadsheets/d/1cjLUHCRwQxU6aovdtx6UJmBafhGXKXulmOkGTMoa9Ro/edit#gid=0
