@@ -61,6 +61,7 @@ What is needed from Roberto:
 ## Utils
 - How to find storage sites path: https://cmsweb.cern.ch/sitedb/prod/sites/
 - To plot rootples: use "analisi_ele.cc"
+- before plotting the root files can be merged with the script "hadd.sh"
 ### How to run Rootplizer:
    1. make list of all ntuples to be converted into root files with "makelist*.sh"
    1. export voms certificate: voms-proxy-init --voms cms --valid 192:00 --out ~/proxy
