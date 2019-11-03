@@ -5,7 +5,7 @@ Available samples in: https://docs.google.com/spreadsheets/d/1cjLUHCRwQxU6aovdtx
 
 Framework available here:
 - https://github.com/vmariani/BSMFramework/tree/CMSSW_10_2_16 (for 2016-2018) 
-- https://github.com/mpresill/BSMFramework (2017)
+- https://github.com/mpresill/BSMFramework (2017, branch "HN17")
 
 ## Talks:
 Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL24RRUsnkTPn5hZyoxKP2og/edit#slide=id.g59567419ba_0_0
