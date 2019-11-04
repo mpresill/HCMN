@@ -51,7 +51,6 @@ sed -i -e "s/\//\\\\\//g" listWW.txt
 
 #WJets
 #100200
-
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJetsHT100To200/191023_100211/0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
@@ -64,15 +63,15 @@ for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 #600800
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 #8001200
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 #incl
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 for i in `xrdfs  root://ss-03.recas.ba.infn.it:8080 ls /store/user/vmariani/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/Summer16V3_WJets_2/191018_092559/0000`;
@@ -103,42 +102,42 @@ sed -i -e "s/\//\\\\\//g" listTT.txt
 
 #Signals
 #eejj_L13_M500
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M500.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M500.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M500.txt
 
 #eejj_L13_M1000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M1000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M1000.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M1000.txt
 
 #eejj_L13_M2000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M2000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M2000.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M2000.txt
 
 #eejj_L13_M5000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M5000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M5000.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M5000.txt
 
 #eejj_L13_M8000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M8000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M8000.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M8000.txt
 
 #mumujj_L13_M500
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M500.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M500.txt
@@ -152,21 +151,21 @@ sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M1000.txt
 sed -i -e "s/\//\\\\\//g" list_mumujjL13M1000.txt
 
 #mumujj_L13_M2000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M2000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M2000.txt
 sed -i -e "s/\//\\\\\//g" list_mumujjL13M2000.txt
 
 #mumujj_L13_M5000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M5000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M5000.txt
 sed -i -e "s/\//\\\\\//g" list_mumujjL13M5000.txt
 
 #mumujj_L13_M8000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M8000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M8000.txt
