@@ -32,18 +32,22 @@ for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/ZZ_Tun
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listZZ.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" listZZ.txt
+sed -i -e "s/\//\\\\\//g" listZZ.txt
 
 #WZ
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WZ_TuneCP5_13TeV-pythia8/Fall17V2_WZ/191023_095721/0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWZ.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" listWZ.txt
+sed -i -e "s/\//\\\\\//g" listWZ.txt
 
 #WW
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WW_TuneCP5_13TeV-pythia8/Fall17V2_WW/191029_135515/0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWW.txt; done
 
+sed -i -e "s/\"/\\\\\"/g" listWW.txt
 sed -i -e "s/\//\\\\\//g" listWW.txt
+ 
 
 #WJets
 #100200
@@ -59,23 +63,16 @@ do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
-
 #600800
-for i in `xrdfs  root://ss-03.recas.ba.infn.it:8080 ls /store/user/vmariani/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/Summer16V3_WJetsHT600To800_1/191018_074527/0000`;
-do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
-
-for i in `xrdfs  root://ss-03.recas.ba.infn.it:8080 ls /store/user/vmariani/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/Summer16V3_WJetsHT600To800_2/191018_074752/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 #8001200
-for i in `xrdfs  root://ss-03.recas.ba.infn.it:8080 ls /store/user/vmariani/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/Summer16V3_WJetsHT800To1200_1/191018_075020/0000`;
-do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
-
-for i in `xrdfs  root://ss-03.recas.ba.infn.it:8080 ls /store/user/vmariani/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/Summer16V3_WJetsHT800To1200_2/191018_075245/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 #incl
-for i in `xrdfs  root://ss-03.recas.ba.infn.it:8080 ls /store/user/vmariani/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/Summer16V3_WJets_1/191018_092355/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 for i in `xrdfs  root://ss-03.recas.ba.infn.it:8080 ls /store/user/vmariani/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/Summer16V3_WJets_2/191018_092559/0000`;
@@ -87,7 +84,9 @@ sed -i -e "s/\//\\\\\//g" listWJets.txt
 #DY
 
 sed -i -e "s/\"/\\\\\"/g" listDY.txt
+sed -i -e "s/\//\\\\\//g" listDY.txt
 
 #TT
 
 sed -i -e "s/\"/\\\\\"/g" listTT.txt
+sed -i -e "s/\//\\\\\//g" listTT.txt
