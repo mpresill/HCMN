@@ -1300,7 +1300,8 @@ double elesf(double eta, double pt){
 
 double musf_trigger(double eta, double pt){
  double musf=0;
- // Mu50_OR_OldMu100_OR_TkMu100_PtEtaBins
+ // http://kplee.web.cern.ch/kplee/TagProbe/94X/v20180202_MergingHighPtBins/theJSONfile_RunBtoF_Nov17Nov2017.json
+ // Mu50_PtEtaBins
  if {fabs(eta) >= 0.0 && fabs(eta)<0.9}{
   if(pt > 52. && pt <= 56) musf = 0.9385219812393188; //stat 0.0002566604294316861 
   if(pt > 56. && pt <= 60) musf = 0.938785195350647; // stat 0.0003512045613493856
@@ -1333,14 +1334,14 @@ double musf_trigger(double eta, double pt){
   if(pt > 200 && pt <= 300) musf = 0.8325985074043274; // stat 0.023364071376511055
   if(pt > 300) musf = 0.8184008598327637; // stat 0.0307142641727703
  }
-}
- //https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json
- 
+} 
  return musf;
 }
+
 double musf_ID(double eta, double pt){
  double musf=0;
- 
+ // https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ID.json
+ // NUM_HighPtID_DEN_genTracks
  if(fabs(eta)>0.0 && fabs(eta)<=0.9){
   if(pt>20 && pt<=25) musf=0.992114065208379; //stat 0.0009548339162957359 syst 0.003162399267958033
   if(pt>25 && pt<=30) musf=0.9924247027728448; //stat 0.0005721135461542568 syst 0.0010782479163609626
@@ -1374,11 +1375,12 @@ double musf_ID(double eta, double pt){
   if(pt>60)musf=0.9739992676455306; //stat 0.0028517427863376157 syst 0.004570509391366933
  }
  return musf;
-//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018/jsonfiles/RunABCD_SF_ID.json
-//NUM_HighPtID_DEN_TrackerMuons
 }
+
 double musf_iso(double eta, double pt){
  double musf=0;
+  // https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ISO.json
+  // NUM_LooseRelIso_DEN_LooseID
  if(fabs(eta)>0.0 && fabs(eta)<=0.9){
   if(pt>20 && pt<=25) musf=0.9919099304633023; // stat 0.001982360612184662 syst 0.0007768385116509315  
   if(pt>25 && pt<=30) musf=0.995306030345587; // stat 0.00091282105303195 syst 0.0005437735321288286 
@@ -1411,9 +1413,6 @@ double musf_iso(double eta, double pt){
   f(pt>50 && pt<=60) musf=1.0009981450462042; // stat 0.0005033796400527971 syst 0.00011776242980718527 
   if(pt>60 )musf=1.001493044021551; // stat 0.0009083825758175378 syst 0.0009244158331428465
  }
-//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018/jsonfiles/RunABCD_SF_ISO.json
-//NUM_LooseRelIso_DEN_LooseID
-
  return musf;
 }
 
