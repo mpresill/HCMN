@@ -1,11 +1,11 @@
 
-TASK="ZZ_" #name of the output directory and the files
-INPUT_DATASET=(`cat listZZ.txt`) 
+TASK="ZZ_" #EDIT: name of the output directory and the files
+INPUT_DATASET=(`cat listZZ.txt`) #EDIT: name of the list 
 
 i=0
 JOB_FOLDER=jobs_test #folder for jobs
 
-OUTPUT_FOLDER=/eos/user/v/vmariani/NTuples/HN_2016/$TASK
+OUTPUT_FOLDER=/eos/user/v/vmariani/NTuples/HN_2016/$TASK #EDIT: name of the folder where to save rootples
 echo "$OUTPUT_FOLDER"
 
 RESUBMIT=$1 
