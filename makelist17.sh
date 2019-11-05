@@ -1,3 +1,5 @@
+# to find sample path in Legnaro:
+# xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill
 rm listST.txt;
 rm listZZ.txt;
 rm listWZ.txt;
@@ -15,7 +17,8 @@ rm list_mumujjL13M1000.txt;
 rm list_mumujjL13M2000.txt;
 rm list_mumujjL13M5000.txt;
 rm list_mumujjL13M8000.txt;
-
+rm list_single_ele.txt;
+rm list_single_mu.txt
 
 #ST
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/Fall17V2_SaT/191023_095224/0000`;        
@@ -59,7 +62,7 @@ for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsT
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 #400600
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJetsHT400To600/191104_104208/0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 #600800
@@ -179,3 +182,52 @@ do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M8000.
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M8000.txt
 sed -i -e "s/\//\\\\\//g" list_mumujjL13M8000.txt
 
+################################################################################################
+#DATA
+#single ele 
+#B
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleElectron/crab_Legacy17V2_SEleBlockB/191101_155742/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele.txt; done
+
+#C
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele.txt; done
+
+#D
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele.txt; done
+
+#E
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele.txt; done
+
+#F
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele.txt; done
+
+sed -i -e "s/\"/\\\\\"/g" list_single_ele.txt
+sed -i -e "s/\//\\\\\//g" list_single_ele.txt
+
+#single muon 
+#B
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu.txt; done
+
+#C
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu.txt; done
+
+#D
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu.txt; done
+
+#E
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu.txt; done
+
+#F
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu.txt; done
+
+sed -i -e "s/\"/\\\\\"/g" list_single_mu.txt
+sed -i -e "s/\//\\\\\//g" list_single_mu.txt
