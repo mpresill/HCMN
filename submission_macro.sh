@@ -31,7 +31,7 @@ if [ ! -e $OUTPUT_FOLDER/${TASK}${i}.root ]; then
 
 # Preparing job code
 #name of your macro
-cp Rootplizer_HeavyNeutrino_SigTopDY_2016.cc $JOB_FOLDER/${TASK}${i}.cc
+cp Rootplizer_HeavyNeutrino_SigTopDY_2016.cc $JOB_FOLDER/${TASK}${i}.cc     #EDIT change name of the rootplizer
 
 #this substitute inputfile and outpute file in your macro with the proper path
 #echo "\"s/inputFile/${file}/\" $JOB_FOLDER/${TASK}${i}.cc" 
