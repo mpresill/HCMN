@@ -1275,52 +1275,15 @@ double CalculatePileupWeight(int trueInteractions){
 }
 
 // TO CHECK
-
 double elesf(double eta, double pt){
- double elesf=0;
- if (pt >= 10 && pt < 20){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=0.974953;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=0.971215;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=1.0307; 
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=1.25678;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=0.983351;
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=1.01998;    
- }
- if (pt >= 20 && pt < 45){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=0.98968;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=0.99177;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=0.987525;   
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=0.986095;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=0.986639;  
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=0.986556;
- }
- if (pt >= 45 && pt < 75){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=0.989754;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=0.989775;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=0.989691;
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=0.9867672;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=0.988764;
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=0.98768;
- }
- if (pt >= 75 && pt < 100){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=1.00305;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=1.00815;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=1.00818;
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=1.04381;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=1.01837;
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=1.00206;
- }
- if (pt >= 100){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=1.00304;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=1.0061;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=1.00718;
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=1.03668;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=0.997967;
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=0.983673;
- }
+//Electorn Sf for HEEPv7.0 taken from https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgammaRunIIRecommendations
+  double elesf=0;
+  //Barrel (EB)
+ if(fabs(eta) < 1.4442) elesf = 0.967; // stat 0.001
+  //Endcap (EE)
+ if(fabs(eta) >= 1.566 && fabs(eta) < 2.5)elesf = 0.973; // stat 0.002
  return elesf;
  
-//stat err 0.001 for both EB and EE
 //syst err:
 //  - barrel:
 //      1% for pT < 90 GeV
@@ -1330,8 +1293,11 @@ double elesf(double eta, double pt){
 //      2% for pT < 90 GeV
 //      2-5% linearly increasing for 90 GeV < pT < 300 GeV
 //      5% for pT > 300 GeV 
-
+//uncertainty: EB ET < 90 GeV: 1% else min(1+(ET-90)*0.0022)%,3%)
+//uncertainty: EE ET < 90 GeV: 1% else min(1+(ET-90)*0.0143)%,4%)
+     
 }
+
 double musf_trigger(double eta, double pt){
  double musf=0;
  // Mu50_OR_OldMu100_OR_TkMu100_PtEtaBins
