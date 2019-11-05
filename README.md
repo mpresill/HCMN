@@ -45,8 +45,9 @@ What is needed from Roberto:
  - pileup rewighting: using the scripts in https://github.com/mpresill/BSMFramework/tree/HN17/BSM3G_TNT_Maker/data/PUReweight
  - Muon efficiencies https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/tree/master/EfficienciesStudies
  - Muon reference for Run 2 https://twiki.cern.ch/twiki/bin/view/CMS/MuonReferenceEffsRun2
- - Electron efficiencies https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgammaIDRecipesRun2
-
+ - Electron scale factors for HHEPv70 ID:
+ https://twiki.cern.ch/twiki/bin/view/CMS/EgammaRunIIRecommendations
+ 
  - Muon scale factors:
    -  trigger 2016 (), 2017 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2017_trigger/theJSONfile_RunBtoF_Nov17Nov2017.json), 2018 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json)
    - ID 2016 (), 2017 (), 2018 ()
