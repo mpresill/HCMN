@@ -5,7 +5,7 @@ INPUT_DATASET=(`cat listZZ.txt`) #EDIT: name of the list
 i=0
 JOB_FOLDER=jobs_test #folder for jobs
 
-OUTPUT_FOLDER=/eos/user/v/vmariani/NTuples/HN_2016/$TASK #EDIT: name of the folder where to save rootples
+OUTPUT_FOLDER=/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/$TASK #EDIT: name of the folder where to save rootples
 echo "$OUTPUT_FOLDER"
 
 RESUBMIT=$1 
@@ -31,7 +31,7 @@ if [ ! -e $OUTPUT_FOLDER/${TASK}${i}.root ]; then
 
 # Preparing job code
 #name of your macro
-cp Rootplizer_HeavyNeutrino_SigTopDY_2016.cc $JOB_FOLDER/${TASK}${i}.cc     #EDIT change name of the rootplizer
+cp Rootplizer_HeavyNeutrino_SigTopDY_2017.cc $JOB_FOLDER/${TASK}${i}.cc     #EDIT change name of the rootplizer
 
 #this substitute inputfile and outpute file in your macro with the proper path
 #echo "\"s/inputFile/${file}/\" $JOB_FOLDER/${TASK}${i}.cc" 
