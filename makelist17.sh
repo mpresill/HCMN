@@ -1,9 +1,9 @@
 # to find sample path in Legnaro:
 # xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill
-rm listST.txt;
-rm listZZ.txt;
-rm listWZ.txt;
-rm listWW.txt;
+#rm listST.txt;
+#rm listZZ.txt;
+#rm listWZ.txt;
+#rm listWW.txt;
 rm listWJets.txt;
 rm listDY.txt;
 rm listTT.txt;
@@ -31,37 +31,6 @@ rm list_single_mu_D.txt
 rm list_single_mu_E.txt
 rm list_single_mu_F.txt
 
-
-#ST
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/Fall17V2_SaT/191023_095224/0000`;        
-do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listST.txt; done
-
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8/Fall17V2_ST/191023_094957/0000`;
-do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listST.txt; done
-
-sed -i -e "s/\"/\\\\\"/g" listST.txt
-sed -i -e "s/\//\\\\\//g" listST.txt
-
-#ZZ
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/ZZ_TuneCP5_13TeV-pythia8/Fall17V2_ZZ/191023_095447/0000`;
-do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listZZ.txt; done
-
-sed -i -e "s/\"/\\\\\"/g" listZZ.txt
-sed -i -e "s/\//\\\\\//g" listZZ.txt
-
-#WZ
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WZ_TuneCP5_13TeV-pythia8/Fall17V2_WZ/191023_095721/0000`;
-do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWZ.txt; done
-
-sed -i -e "s/\"/\\\\\"/g" listWZ.txt
-sed -i -e "s/\//\\\\\//g" listWZ.txt
-
-#WW
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WW_TuneCP5_13TeV-pythia8/Fall17V2_WW/191029_135515/0000`;
-do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWW.txt; done
-
-sed -i -e "s/\"/\\\\\"/g" listWW.txt
-sed -i -e "s/\//\\\\\//g" listWW.txt
 
 #DY
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_DY1/191023_102411/0000`;
