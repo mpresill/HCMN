@@ -42,8 +42,8 @@ sed -i -e "s/filename_/${TASK}${i}/" $JOB_FOLDER/${TASK}${i}.cc
 echo "#!/bin/bash 
 cd $PWD 
 
-export X509_USER_PROXY=/afs/cern.ch/user/v/vmariani/proxy
-
+export X509_USER_PROXY=/afs/cern.ch/user/m/mpresill/proxy 
+ 
 cd -
 
 root -b ${TASK}${i}.cc
