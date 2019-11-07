@@ -34,10 +34,10 @@ rm list_single_mu_F.txt;
 
 #DY
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_DY1/191023_102411/0000`;
-do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listDY.txt done
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listDY.txt; done
 
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_DY2/191023_102649/0000`;
-do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listDY.txt done
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listDY.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" listDY.txt
 sed -i -e "s/\//\\\\\//g" listDY.txt
