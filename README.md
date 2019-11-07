@@ -18,8 +18,8 @@ Targeting subgroup Jet+X update on nov 11th with:
 - [x] make ntuple 2018
 - [ ] how to do properly PUweighting 
 - [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
-- [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
-- [ ] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
+- [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
+- [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
 - [ ] Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
 - [ ] make script rootple->histograms inputs combine 
 - [ ] Limit extrapolation on cross section * BR (stat only, per year)
@@ -49,9 +49,17 @@ What is needed from Roberto:
  https://twiki.cern.ch/twiki/bin/view/CMS/EgammaRunIIRecommendations
  
  - Muon scale factors:
-   -  trigger 2016 (), 2017 (http://kplee.web.cern.ch/kplee/TagProbe/94X/v20180202_MergingHighPtBins/theJSONfile_RunBtoF_Nov17Nov2017.json), 2018 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json)
-   - ID 2016 (), 2017 (https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ID.json), 2018 ()
-   - isolation 2016 (), 2017 (https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ISO.json), 2018 ()
+   -  trigger 2016 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_trigger/EfficienciesAndSF_RunGtoH.json, 
+https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_trigger/EfficienciesAndSF_RunBtoF.json
+, Mu50_OR_TkMu50_PtEtaBins), 2017 (http://kplee.web.cern.ch/kplee/TagProbe/94X/v20180202_MergingHighPtBins/theJSONfile_RunBtoF_Nov17Nov2017.json), 2018 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json, Mu50_OR_OldMu100_OR_TkMu100_PtEtaBins)
+   
+   - ID 2016 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunBCDEF_SF_ID.json
+, https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunGH_SF_ID.json
+, NUM_HighPtID_DEN_genTracks), 2017 (https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ID.json), 2018 ()
+   
+   - isolation 2016 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunBCDEF_SF_ISO.json, https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunGH_SF_ISO.json
+, NUM_LooseRelIso_DEN_LooseID), 2017 (https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ISO.json), 2018 (https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018/jsonfiles/RunABCD_SF_ID.json, NUM_HighPtID_DEN_TrackerMuons)
+   
    - N.B. Since there are two different scale factor scenarios within 2016 data taking depending on the era (B-F) or (G-H) muon SFs for 2016 are computed by averageing the SF by the relative luminosity of each period and then apply a single weight to the MC: lumi(B-F)_Mu50=19.25 fb^-1, lumi(B-F)_TkMu50=16.64 fb^-1; lumi(G-H)_Mu50=16.29 fb^-1, lumi(G-H)_TkMu50=16.29 fb^-1 (Info from BrilCalc)   
 
 ## Notes on bkg estimation:
