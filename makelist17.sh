@@ -26,11 +26,11 @@ rm list_single_ele_D.txt;
 rm list_single_ele_E.txt;
 rm list_single_ele_F.txt;
 
-rm list_single_mu_B.txt
-rm list_single_mu_C.txt
-rm list_single_mu_D.txt
-rm list_single_mu_E.txt
-rm list_single_mu_F.txt
+rm list_single_mu_B.txt;
+rm list_single_mu_C.txt;
+rm list_single_mu_D.txt;
+rm list_single_mu_E.txt;
+rm list_single_mu_F.txt;
 
 #DY
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_DY1/191023_102411/0000`;
