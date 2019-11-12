@@ -151,8 +151,8 @@ sed -i -e "s/\//\\\\\//g" list_eejjL13M2000.txt
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HeavyCompositeMajoranaNeutrino_L13000_M5000_eejj_CalcHep/eejj_17_L13_M5000/191106_104122/0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M5000.txt; done
 
-#sed -i -e "s/\"/\\\\\"/g" list_eejjL13M5000.txt
-#sed -i -e "s/\//\\\\\//g" list_eejjL13M5000.txt
+sed -i -e "s/\"/\\\\\"/g" list_eejjL13M5000.txt
+sed -i -e "s/\//\\\\\//g" list_eejjL13M5000.txt
 
 #eejj_L13_M8000
 for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HavyCompositeMajoranaNeutrino_L13000_M8000_eejj_CalcHep/eejj_17_L13_M8000/191023_103909/0000`;
@@ -199,8 +199,11 @@ sed -i -e "s/\//\\\\\//g" list_mumujjL13M8000.txt
 #DATA
 #single ele 
 #B
-#for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
-#do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele_B.txt; done
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleElectron/crab_Legacy17V2_SEleBlockB/191101_155742/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele_B.txt; done
+
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleElectron/crab_Legacy17V2_SEleBlockB/191109_161458/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele_B.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_single_ele_B.txt
 sed -i -e "s/\//\\\\\//g" list_single_ele_B.txt
@@ -213,8 +216,11 @@ sed -i -e "s/\"/\\\\\"/g" list_single_ele_C.txt
 sed -i -e "s/\//\\\\\//g" list_single_ele_C.txt
 
 #D
-#for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
-#do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele_D.txt; done
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleElectron/crab_Legacy17V2_SEleBlockD/191101_160240/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele_D.txt; done
+
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleElectron/crab_Legacy17V2_SEleBlockD/191109_161932/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele_D.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_single_ele_D.txt
 sed -i -e "s/\//\\\\\//g" list_single_ele_D.txt
@@ -242,11 +248,17 @@ sed -i -e "s/\"/\\\\\"/g" list_single_mu_B.txt
 sed -i -e "s/\//\\\\\//g" list_single_mu_B.txt
 
 #C
-#for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
-#do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_C.txt; done
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleMuon/crab_Legacy17V2_SMuBlockC/191101_161322/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_C.txt; done
 
-#for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
-#do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_C.txt; done
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleMuon/crab_Legacy17V2_SMuBlockC/191101_161322/0001`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_C.txt; done
+
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleMuon/crab_Legacy17V2_SMuBlockC/191109_162827/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_C.txt; done
+
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleMuon/crab_Legacy17V2_SMuBlockC/191109_162827/0001`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_C.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_single_mu_C.txt
 sed -i -e "s/\//\\\\\//g" list_single_mu_C.txt
