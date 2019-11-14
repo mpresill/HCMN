@@ -33,7 +33,7 @@ void Analisi_CR_MC(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/ST_2016.root");
+a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/TT_2017.root");
 //inputFile
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
@@ -176,7 +176,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  }
 }
 
-TFile *f = new TFile("plot/CR_ST_2016_HLTEle.root", "RECREATE");
+TFile *f = new TFile("plot/CR_TT_2017_HLTEle.root", "RECREATE");
 
 Ele_pt->Write();
 Mu_pt->Write();
