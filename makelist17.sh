@@ -199,7 +199,7 @@ sed -i -e "s/\//\\\\\//g" list_mumujjL13M8000.txt
 #DATA
 #single ele 
 #B OK: 807 root files on 807 jobs
-for i in `/store/user/mpresill/SingleElectron/crab_Legacy17V2_SEleBlockB/191115_101301/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleElectron/crab_Legacy17V2_SEleBlockB/191115_101301/0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele_B.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_single_ele_B.txt
@@ -213,7 +213,7 @@ sed -i -e "s/\"/\\\\\"/g" list_single_ele_C.txt
 sed -i -e "s/\//\\\\\//g" list_single_ele_C.txt
 
 #D OK: 902 root files on 902 jobs
-for i in `/store/user/mpresill/SingleElectron/crab_Legacy17V2_SEleBlockD/191113_100931/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleElectron/crab_Legacy17V2_SEleBlockD/191113_100931/0000`;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_ele_D.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_single_ele_D.txt
@@ -263,8 +263,7 @@ do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_D.txt
 
 sed -i -e "s/\"/\\\\\"/g" list_single_mu_D.txt
 sed -i -e "s/\//\\\\\//g" list_single_mu_D.txt
-
-
+ 
 #E
 #for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 #do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_E.txt; done
