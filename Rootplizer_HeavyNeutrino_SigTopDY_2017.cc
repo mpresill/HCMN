@@ -688,7 +688,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     if(rtrueInteractions > 0) trueInteractions = (double)rtrueInteractions;
     nBestVtx = rnBestVtx;
     PileupWeight = CalculatePileupWeight(trueInteractions);
-    lumi_wgt = get_wgtlumi(Output);
+    lumi_wgt = get_wgtlumi(Input);
    
    
 
