@@ -264,9 +264,12 @@ do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_D.txt
 sed -i -e "s/\"/\\\\\"/g" list_single_mu_D.txt
 sed -i -e "s/\//\\\\\//g" list_single_mu_D.txt
  
-#E
-#for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
-#do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_E.txt; done
+#E OK: 1428 root files on 1428 jobs
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleMuon/crab_Legacy17V2_SMuBlockE/191113_101933/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_E.txt; done
+
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/SingleMuon/crab_Legacy17V2_SMuBlockE/191113_101933/0001`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_single_mu_E.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_single_mu_E.txt
 sed -i -e "s/\//\\\\\//g" list_single_mu_E.txt
