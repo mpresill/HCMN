@@ -7,8 +7,18 @@ Framework available here:
 - https://github.com/vmariani/BSMFramework/tree/CMSSW_10_2_16 (for 2016-2018) 
 - https://github.com/mpresill/BSMFramework (2017, branch "HN17")
 
+Rootple path:
+ - 2016: /eos/user/v/vmariani/NTuples/HN_2016/
+ - 2017: /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/
+ - 2018: /eos/user/v/vmariani/NTuples/HN_2018/
+
+EXO pre-approval checklist: https://twiki.cern.ch/twiki/bin/viewauth/CMS/ExoPreapprovalChecklist
+
 ## Talks:
-Update talk draft https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL24RRUsnkTPn5hZyoxKP2og/edit#slide=id.g59567419ba_0_0
+- First update talk by Roberto (to be added)
+- Update talk (25 Nov 2019)  https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL24RRUsnkTPn5hZyoxKP2og/edit#slide=id.g59567419ba_0_0
+(https://indico.cern.ch/event/865103/)
+
 
 ## To-do list:
 Targeting subgroup Jet+X update on nov 11th with:
@@ -26,8 +36,10 @@ Targeting subgroup Jet+X update on nov 11th with:
 - [ ] 2D Limits plot (stat only with unitarity constraint)
 - [ ] table with all corrections used in the framework 
 - [ ] add SFs for FatJets https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging (low priority - maybe after 11th)
+- [ ] Optimization: check new SR definition with the estimator suggested by Niki (http://pdg.lbl.gov/2015/reviews/rpp2015-rev-statistics.pdf) for low background scenario
 
-What is needed from Roberto: 
+
+What is still needed from Roberto: 
    1. Macros for QCD/Other bkgs estimation (OK)
    1. Macros for signal systematics (not yet)
    1. Q: why do we have produced all these samples considering the Lambda independence on limit extraction?
@@ -37,7 +49,6 @@ What is needed from Roberto:
 - [ ] (add systematics on limit bands with Combine (MATTEO))
 - [ ] (check limits independence on Lambda (MATTEO))
 - [ ] (TTtW bkg estimate MC based (with cross section))
-- [ ] (add fakes study) 
 - [ ] (SF study for DY bkg) 
 - [ ] (can we find other models for reinterpreting the results?)
 
@@ -64,8 +75,8 @@ https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/Efficie
 
 ## Notes on bkg estimation:
 - QCD: use "Rootplizer_HeavyNeutrino_QCD.cc" for the estimation method used in the previous version of the analysis
-- TTtW: from cross section '
-- DY: still unknown...
+- TTtW: with Low-mass we still have few bkgs -> try old method 
+- DY: with Low-mass we still have few bkgs -> try old method
 
 ## Utils
 - How to find storage sites path: https://cmsweb.cern.ch/sitedb/prod/sites/
