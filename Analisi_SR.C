@@ -29,11 +29,11 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_CR_MC(){
+void Analisi_SR(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("ST_2017.root");
+a_->Add("~/cernbox/HN_2016/Other_2016.root");
 //inputFile
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
@@ -122,20 +122,32 @@ a_numOfLooseMu->SetAddress(&numOfLooseMu);
 a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
-TH1D *Ele_pt = new TH1D ("Ele_pt", "Ele_pt", 200, 0, 5000);
-TH1D *Mu_pt = new TH1D ("Mu_pt", "Mu_pt", 200, 0, 5000);
-TH1D *Ele_phi = new TH1D ("Ele_phi", "Ele_phi", 200, -3, 3);
-TH1D *Mu_phi = new TH1D ("Mu_phi", "Mu_phi", 200, -3, 3);
-TH1D *Ele_eta = new TH1D ("Ele_eta", "Ele_eta", 200, -4, 4);
-TH1D *Mu_eta = new TH1D ("Mu_eta", "Mu_eta", 200, -4, 4);
+TH1D *El1_pt = new TH1D ("El1_pt", "El1_pt", 200, 0, 5000);
+TH1D *Mu1_pt = new TH1D ("Mu1_pt", "Mu1_pt", 200, 0, 5000);
+TH1D *El1_phi = new TH1D ("El1_phi", "El1_phi", 200, -3, 3);
+TH1D *Mu1_phi = new TH1D ("Mu1_phi", "Mu1_phi", 200, -3, 3);
+TH1D *El1_eta = new TH1D ("El1_eta", "El1_eta", 200, -4, 4);
+TH1D *Mu1_eta = new TH1D ("Mu1_eta", "Mu1_eta", 200, -4, 4);
+
+TH1D *El2_pt = new TH1D ("El2_pt", "El2_pt", 200, 0, 5000);
+TH1D *Mu2_pt = new TH1D ("Mu2_pt", "Mu2_pt", 200, 0, 5000);
+TH1D *El2_phi = new TH1D ("El2_phi", "El2_phi", 200, -3, 3);
+TH1D *Mu2_phi = new TH1D ("Mu2_phi", "Mu2_phi", 200, -3, 3);
+TH1D *El2_eta = new TH1D ("El2_eta", "El2_eta", 200, -4, 4);
+TH1D *Mu2_eta = new TH1D ("Mu2_eta", "Mu2_eta", 200, -4, 4);
+
 TH1D *M_ll = new TH1D ("M_ll", "M_ll", 500, 0, 8000);
 TH1D *M_llBoostJ = new TH1D ("M_llBoostJ", "M_llBoostJ", 500, 0, 8000);
 TH1D *Jet_pt = new TH1D ("Jet_pt", "Jet_pt", 200, 0, 5000);
 TH1D *Jet_phi = new TH1D ("Jet_phi", "Jet_phi", 200, -3, 3);
 TH1D *Jet_eta = new TH1D ("Jet_eta", "Jet_eta", 200, -4, 4);
 
-TLorentzVector Muon;
-TLorentzVector Electron;
+TLorentzVector Muon1;
+TLorentzVector Muon2;
+
+TLorentzVector Electron1;
+TLorentzVector Electron2;
+
 TLorentzVector BoostJet;
 
 
@@ -144,31 +156,31 @@ int tot=0, muejj = 0;
 double wg = 0;
 int lumi = 35542;//2018: 58873 //2017: 41529 //2016: 35542
 
+
 for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
  tot = a_->GetEntries();
  if (i%100000 == 0) cout << i << " eventi analizzati su " << tot << endl;
+///////////////////////////////////////
+//muon channel analysis: New Selection
 
- if (HLT_Mu50==1) HLT_Mu = 1;
- if (emujj_l == 1 || muejj_l == 1) muejj = 1; 
-
- if (Muon_pt->size() > 0 && patElectron_pt->size() > 0 && BoostedJet_pt->size() > 0){ 
-  if (HLT_Ele==1 && patElectron_pt->at(0) > 140 && Muon_pt->at(0) > 105 && fabs(patElectron_eta->at(0))<2.4 && fabs(Muon_eta->at(0))<2.4 && numOfHighptEle==1 && numOfHighptMu==1
+if (Muon_pt->size() > 1 && BoostedJet_pt->size() > 0){
+  if (HLT_Mu50==1 && Muon_pt->at(0) > 53 && Muon_pt->at(1) > 35 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && numOfHighptMu==2 
    && M_leplep>300 && BoostedJet_pt->at(0) > 190 && numOfBoostedJets>=1){
 
-   Muon.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0)); 
-   Electron.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0)); 
+   Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1)); 
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0)); 
    wg = lumi*lumi_wgt*lepsf_evt;
 
-   Ele_pt->Fill(patElectron_pt->at(0),wg);
-   Ele_eta->Fill(patElectron_eta->at(0),wg);
-   Ele_phi->Fill(patElectron_phi->at(0),wg);
-   Mu_pt->Fill(Muon_pt->at(0),wg);
-   Mu_eta->Fill(Muon_eta->at(0),wg);
-   Mu_phi->Fill(Muon_phi->at(0),wg);
-   M_ll->Fill((Muon+Electron).M(),wg);
-   M_llBoostJ->Fill((Muon+Electron+BoostJet).M(),wg);
+   Mu1_pt->Fill(Muon_pt->at(0),wg);
+   Mu1_eta->Fill(Muon_eta->at(0),wg);
+   Mu1_phi->Fill(Muon_phi->at(0),wg);
+   Mu2_pt->Fill(Muon_pt->at(1),wg);
+   Mu2_eta->Fill(Muon_eta->at(1),wg);
+   Mu2_phi->Fill(Muon_phi->at(1),wg);
+   M_ll->Fill((Muon1+Muon2).M(),wg);
+   M_llBoostJ->Fill((Muon1+Muon2+BoostJet).M(),wg);
    Jet_pt->Fill(BoostedJet_pt->at(0),wg);
    Jet_eta->Fill(BoostedJet_eta->at(0),wg);
    Jet_phi->Fill(BoostedJet_phi->at(0),wg);
@@ -176,22 +188,82 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  }
 }
 
-TFile *f = new TFile("test_plots/CR_TT_2017_HLTEle.root", "RECREATE");
+TFile *f = new TFile("test_plots/SR_Other_2016_HLTMu50-OLD-SIGNAL-REGION.root", "RECREATE");
 
-Ele_pt->Write();
-Mu_pt->Write();
-Ele_eta->Write();
-Mu_eta->Write();
-Ele_phi->Write();
-Mu_phi->Write();
+Mu1_pt->Write();
+Mu2_pt->Write();
+Mu1_eta->Write();
+Mu2_eta->Write();
+Mu1_phi->Write();
+Mu2_phi->Write();
 M_ll->Write();
 M_llBoostJ->Write();
 Jet_pt->Write();
 Jet_eta->Write();
 Jet_phi->Write();
 
+std::cout << "Total number of events is " << tot <<std::endl;
+std::cout << "Number of selected events: the integral of M_llBoostJ is " << (M_llBoostJ->Integral())/wg <<std::endl;
+std::cout << "(electron channel) efficiency is  " << ((M_llBoostJ->Integral())/wg)/tot  <<std::endl;
+
+
 f->Write();
 f->Close();
+
+
+/////////////////////////
+////////electron channel analysis
+/*
+for (Int_t i=0;i<a_->GetEntries();i++) {
+ a_->GetEntry(i);
+ tot = a_->GetEntries();
+if (i%100000 == 0) cout << i << " eventi analizzati su " << tot << endl;
+if (patElectron_pt->size() > 1 && BoostedJet_pt->size() > 0){
+  if ( HLT_Ele == 1 && patElectron_pt->at(0) > 250 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(0))<2.4 && fabs(patElectron_eta->at(1))<2.4 && numOfHighptEle==2 
+   && M_leplep>500 && BoostedJet_pt->at(0) > 190 && numOfBoostedJets>=1){
+
+   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0)); 
+   wg = lumi*lumi_wgt*lepsf_evt;
+
+   El1_pt->Fill(patElectron_pt->at(0),wg);
+   El1_eta->Fill(patElectron_eta->at(0),wg);
+   El1_phi->Fill(patElectron_phi->at(0),wg);
+   El2_pt->Fill(patElectron_pt->at(1),wg);
+   El2_eta->Fill(patElectron_eta->at(1),wg);
+   El2_phi->Fill(patElectron_phi->at(1),wg);
+   M_ll->Fill((Electron1+Electron2).M(),wg);
+   M_llBoostJ->Fill((Electron1+Electron2+BoostJet).M(),wg);
+   Jet_pt->Fill(BoostedJet_pt->at(0),wg);
+   Jet_eta->Fill(BoostedJet_eta->at(0),wg);
+   Jet_phi->Fill(BoostedJet_phi->at(0),wg);
+  }
+ }
+}
+
+TFile *f2 = new TFile("test_plots/SR_eejjL13M8000_2016_HLT_Ele.root", "RECREATE");
+
+El1_pt->Write();
+El2_pt->Write();
+El1_eta->Write();
+El2_eta->Write();
+El1_phi->Write();
+El2_phi->Write();
+M_ll->Write();
+M_llBoostJ->Write();
+Jet_pt->Write();
+Jet_eta->Write();
+Jet_phi->Write();
+
+std::cout << "Total number of events is " << tot <<std::endl;
+std::cout << "Number of selected events: the integral of M_llBoostJ is " << (M_llBoostJ->Integral())/wg <<std::endl;
+std::cout << "(muon channel) efficiency is  " << ((M_llBoostJ->Integral())/wg)/tot  <<std::endl;
+
+
+f2->Write();
+f2->Close();
+*/
 
 }
  
