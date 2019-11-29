@@ -11,6 +11,10 @@ Rootple path:
  - 2016: /eos/user/v/vmariani/NTuples/HN_2016/
  - 2017: /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/
  - 2018: /eos/user/v/vmariani/NTuples/HN_2018/
+ 
+Plots path:
+ - Vale: http://test-valentina-mariani.web.cern.ch/test-valentina-mariani/HN/
+ - Matteo: /eos/user/m/mpresill/CMS/HN_Reload/plots
 
 EXO pre-approval checklist: https://twiki.cern.ch/twiki/bin/viewauth/CMS/ExoPreapprovalChecklist
 
