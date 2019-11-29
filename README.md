@@ -30,7 +30,8 @@ Targeting subgroup Jet+X update on nov 11th with:
 - [x] make ntuple 2016
 - [x] make ntuple 2017
 - [x] make ntuple 2018
-- [ ] how to do properly PUweighting 
+- [ ] how to do properly PUweighting:
+##which branch gives correct PU reweighting? PUWeight or PileupWeight????
 - [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
 - [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
 - [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
