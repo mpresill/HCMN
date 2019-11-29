@@ -31,12 +31,10 @@ Need to specify
 /////
 //Path - samples 
 const string path     = "/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
-const char *samples[] = {"TT_2017","tW_2017","Other_2017","DY_2017",
-                         //"TTtW_2017"
-                         //"data_ele_2017"
-                         //"data_mu_2017"
-                         //"mumujj_L13000_M500_2017","mumujj_L13000_M1000_2017","mumujj_L13000_M2000_2017","mumujj_L13000_M5000_2017"
-                         //"mumujj_L13000_M8000_2017"
+const char *samples[] = {"TT_2017","tW_2017","Other_2017","DY_2017","TTtW_2017",
+                         //"data_ele_2017",
+                         "data_mu_2017",
+                         "mumujj_L13000_M500_2017","mumujj_L13000_M1000_2017","mumujj_L13000_M2000_2017","mumujj_L13000_M5000_2017","mumujj_L13000_M8000_2017"
                         };
 const string specsel  = "";
 //Selection
