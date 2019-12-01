@@ -130,7 +130,7 @@ void setTDRStyle();
 /////
 //   Main function
 /////
-void StackPlots3_Pele(){
+void StackPlots(){
  setTDRStyle();
  //Loop over all variables
  vector<string> var(variables, variables + sizeof(variables)/sizeof(variables[0]));
