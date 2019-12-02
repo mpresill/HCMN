@@ -44,13 +44,13 @@ const string suffisso   =
                           //"DYRmu";
                           //"DYRmuPlot";
                           //"DYRmuTest";
-                          //"TRmu";
+                          //"TRmu";   //CR region TTtW estimation: the second leading lepton has opposite flavor
                           ////////ele/////////////////
                           //"SRe";
                           //"DYRe";
                           //"DYRePlot";
                           //"DYReTest";
-                          //"TRe";
+                          //"TRe"; //CR region TTtW estimation: the second leading lepton has opposite flavor
                      
 const string selection  =
 ////////////////////////muon/////////////////////////////
