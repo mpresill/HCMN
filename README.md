@@ -86,8 +86,9 @@ https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/Efficie
 
 ## Utils
 - How to find storage sites path: https://cmsweb.cern.ch/sitedb/prod/sites/
-- To plot rootples: use "analisi_ele.cc"
+- To plot rootples: use "analisi_ele.cc"-> "StackPlots.cc"
 - before plotting the root files can be merged with the script "hadd.sh"
+- summary table of cross section of all samples https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns
 ### How to run Rootplizer:
    1. make list of all ntuples to be converted into root files with "makelist*.sh"
    1. to export Muon SFs from JSON files use "SF_maker.py"
