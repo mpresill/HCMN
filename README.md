@@ -89,6 +89,10 @@ https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/Efficie
 - To plot rootples: use "analisi_ele.cc"-> "StackPlots.cc"
 - before plotting the root files can be merged with the script "hadd.sh"
 - summary table of cross section of all samples https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns
+- For computing luminisity corresponding to some data selected with a particular JSON go on https://cms-service-lumi.web.cern.ch/cms-service-lumi/brilwsdoc.html
+and install Brilcalc. Then type:
+export PATH=$HOME/.local/bin:/cvmfs/cms-bril.cern.ch/brilconda/bin:$PATH
+brilcalc lumi --hltpath HLT_OldMu100* -u /fb -i /afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions16/13TeV/ReReco/Final/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt
 ### How to run Rootplizer:
    1. make list of all ntuples to be converted into root files with "makelist*.sh"
    1. to export Muon SFs from JSON files use "SF_maker.py"
