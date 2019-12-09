@@ -51,7 +51,7 @@ const string selection  = "_SRmu"; //_SingleEle, _SingleMu
 const bool nodata       = true;  //You must always comment data in "samples" if you don't want it
 const bool show_ratio   = false;
 //Weights
-const double Luminosity = 41529; //pb^-1
+const double Luminosity = 41529; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool   LumiNorm   = false; //default true  
 const bool   PUcorr     = false; //default true
 const bool   SF         = false; //default true
