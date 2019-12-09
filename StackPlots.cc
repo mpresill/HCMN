@@ -297,8 +297,8 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  //Get errors, normalise
  if(normalised){
   if(datatype==0) hist->Scale(1/normdata);
-  if(datatype==1 && rootplas=="L13000_M2000" ) hist->Scale(1/normsig1);
-  if(datatype==1 && rootplas=="L13000_M1000") hist->Scale(1/normsig2);
+  if(datatype==1 && rootplas=="mumujj_L13000_M2000" ) hist->Scale(1/normsig1);
+  if(datatype==1 && rootplas=="mumujj_L13000_M1000") hist->Scale(1/normsig2);
   if(datatype==2) hist->Scale(1/normbkg);
  }
  if(datatype==2){
@@ -472,7 +472,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
  }
  h_data_var->GetYaxis()->SetTitle("#scale[0.8]{Events/bin}");
- //if(show_title)  h_data_var->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 2.32 fb^{-1}}");
+ //if(show_title)  h_data_var->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L =  XXX fb^{-1}}");
  if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
  h_data_var->SetBinErrorOption(TH1::kPoisson);
  h_data_var2->SetBinErrorOption(TH1::kPoisson);
@@ -484,7 +484,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
 // }
  h_data_var->Draw("P");
  //hstack->Draw("textsame");
- hstack->Draw("same");
+ hstack->Draw("histsame");
  h_data_var2->SetMarkerStyle(1);
  if(!normalised) h_data_var2->Draw("E0same");
  else            h_data_var2->Draw("Esame");
@@ -493,18 +493,18 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
  gPad->RedrawAxis();
  h_sig->SetLineWidth(2);
  h_sig->SetLineColor(kGreen+4);
- if(h_sig->Integral()!=0) h_sig->Draw("same");
+ if(h_sig->Integral()!=0) h_sig->Draw("histsame");
  h_sig2->SetLineWidth(2);
  h_sig2->SetLineColor(kYellow+2);
- if(h_sig2->Integral()!=0) h_sig2->Draw("same");
+ if(h_sig2->Integral()!=0) h_sig2->Draw("histsame");
  char sig_entries_c[1000]; float sig_entries_f = h_sig->Integral();
  sprintf(sig_entries_c,"%.1f",sig_entries_f);
  //string sig_leg = "#scale[0.75]{#Lambda 5, M 2.5 [TeV] ("+(string)sig_entries_c+")}";
- string sig_leg = "#scale[0.75]{#Lambda 5, M 2.5 [TeV]}";
+ string sig_leg = "#scale[0.75]{#Lambda 13, M 2 [TeV]}";
  char sig2_entries_c[1000]; float sig2_entries_f = h_sig2->Integral();
  sprintf(sig2_entries_c,"%.1f",sig2_entries_f);
 // string sig2_leg = "#scale[0.75]{#Lambda 5, M 3.5 [TeV] ("+(string)sig2_entries_c+")}";
- string sig2_leg = "#scale[0.75]{#Lambda 5, M 3.5 [TeV]}";
+ string sig2_leg = "#scale[0.75]{#Lambda 13, M 1 [TeV]}";
  char data_entries_c[1000]; int data_entries_f = h_data_var->Integral();
  sprintf(data_entries_c,"%.1i",data_entries_f);
  //string data_leg = "#scale[0.75]{data ("+(string)data_entries_c+")}";
@@ -541,7 +541,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
  leg->AddEntry(all_bkg_statErr,"#scale[0.75]{Bkg stat. uncert.}","F");
  leg->Draw();
 
- CMS_lumi( c1, 0, 11 );
+ //CMS_lumi( c1, 0, 11 ); uncomment for writing "CMS" on top left of inner box
 
 }
 void draw_lines(double x1, double y1, double x2, double y2){
@@ -552,15 +552,15 @@ void draw_lines(double x1, double y1, double x2, double y2){
 }
 int get_col(string name){
  int col;
- if(name=="Other_2017")    col = -10;  //Non main bkg need a different color type
+ if(name=="Other")    col = -10;  //Non main bkg need a different color type
  //if(name=="WW")   col = -10;
  //if(name=="WZ") col = -9;   //Possibly with soft intensity
  //if(name=="WJets")    col = -8;
  //if(name=="ZZ")    col = -7;
  //if(name=="QCD")   col = -6;
- if(name=="DY_2017") col = -6; //For main bkg uses same color type with different numbers
- if(name=="TTtW_2017") col = -8;  //darker for lower bkg (that should come first) 
- if(name=="tW_2017")  col = -6;  //softer for higher bkg (that should come after)
+ if(name=="DY") col = -5; //For main bkg uses same color type with different numbers
+ if(name=="TTtW") col = -8;  //darker for lower bkg (that should come first) 
+ if(name=="tW")  col = -6;  //softer for higher bkg (that should come after)
  return col;
 }
 double get_highestbinval(TH1F* h_data_var, TH1F* h_sig, TH1F* h_sig2, THStack* hstack, int v){
@@ -603,7 +603,7 @@ TH1F* get_datath1f(string var, string title, int v){
  //else                          titleYaxis = "Events/"+(string) bin_size_c;
  //datath1f->GetYaxis()->SetTitle(titleYaxis.c_str());
  //TGaxis::SetMaxDigits(4);
- if(show_title) datath1f->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = XX fb^{-1}}");
+ if(show_title) datath1f->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 35.5 fb^{-1}}");
  return datath1f;
 }
 /////
