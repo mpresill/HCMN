@@ -45,16 +45,17 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples - selection
-const string path       = "/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
-const char *samples[]   = {"TTtW_2017","DY_2017","Other_2017"/*,"data_ele"*/};
-const string selection  = "_SRmu"; //_SingleEle, _SingleMu
+const string path       = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/";
+//"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
+const char *samples[]   = {"TTtW","DY","Other", "mumujj_L13000_M1000", "mumujj_L13000_M2000"/*, "data_mu_2016" ,"data_ele"*/};
+const string selection  = "_2016_SRmu"; //_SingleEle, _SingleMu
 const bool nodata       = true;  //You must always comment data in "samples" if you don't want it
 const bool show_ratio   = false;
 //Weights
-const double Luminosity = 41529; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
-const bool   LumiNorm   = false; //default true  
-const bool   PUcorr     = false; //default true
-const bool   SF         = false; //default true
+const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
+const bool   LumiNorm   = true; //default true  
+const bool   PUcorr     = true; //default true
+const bool   SF         = true; //default true
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
 //Normalisation of plots (it requires to run one time for get bkg normalisation)
 const bool normalised   = false;
@@ -98,7 +99,8 @@ const char *variables[]         = {
 "M_leplepBjet"
 };
 const char *titleXaxis[]        = {
-"#scale[1]{#font[12]{m}_{eeJ}} #scale[0.8]{(GeV)}"
+"#scale[1]{#font[12]{M}_{#mu #mu J}} #scale[0.8]{(GeV)}"
+//"#scale[1]{#font[12]{M}_{eeJ}} #scale[0.8]{(GeV)}"
 };
 const int    bin[numVar]        = {
 9
@@ -160,7 +162,7 @@ void StackPlots(){
   for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
   for(uint i=0; i<rootplas_size; i++){
    int datatype = 0; //for data
-   if(rootplas[i]=="L13000_M2000" || rootplas[i]=="L13000_M1000"){                                                 datatype = 1; //for signal
+   if(rootplas[i]=="mumujj_L13000_M2000" || rootplas[i]=="mumujj_L13000_M1000"){                                                 datatype = 1; //for signal
    }else if(rootplas[i]!="data_ele" && rootplas[i]!="data_mu" && rootplas[i]!="SLep"){ datatype = 2; //for other mc samples
    }
    //Declare histograms for variables
@@ -168,8 +170,8 @@ void StackPlots(){
    //Choose type of variables
    if(datatype==2){       h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
    }else if(datatype==1){
-     if(rootplas[i]=="L13000_M2000"){h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
-     if(rootplas[i]=="L13000_M1000"){h_sig2  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
+     if(rootplas[i]=="mumujj_L13000_M2000"){h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
+     if(rootplas[i]=="mumujj_L13000_M1000"){h_sig2  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
    }else{   h_data_var = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
             h_data_var2 = double_h_var2(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
 }
@@ -356,8 +358,8 @@ TH1F* double_h_var2(unsigned int v, string var, string varT, uint i, string root
  }
  if(normalised){
   if(datatype==0) hist->Scale(1/normdata);
-  if(datatype==1 && rootplas=="L13000_M2000" ) hist->Scale(1/normsig1);
-  if(datatype==1 && rootplas=="L13000_M1000") hist->Scale(1/normsig2);
+  if(datatype==1 && rootplas=="mumujj_L13000_M2000" ) hist->Scale(1/normsig1);
+  if(datatype==1 && rootplas=="mumujj_L13000_M1000") hist->Scale(1/normsig2);
   if(datatype==2) hist->Scale(1/normbkg);
  }
  if(datatype==2){
@@ -601,7 +603,7 @@ TH1F* get_datath1f(string var, string title, int v){
  //else                          titleYaxis = "Events/"+(string) bin_size_c;
  //datath1f->GetYaxis()->SetTitle(titleYaxis.c_str());
  //TGaxis::SetMaxDigits(4);
- if(show_title) datath1f->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 41.5 fb^{-1}}");
+ if(show_title) datath1f->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = XX fb^{-1}}");
  return datath1f;
 }
 /////
