@@ -30,12 +30,12 @@ Need to specify
 //   Declare constants
 /////
 //Path - samples 
-const string path     = "/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
+const string path     = "/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; ///eos/user/v/vmariani/NTuples/HN_2016/ //  /eos/user/v/vmariani/NTuples/HN_2018/
 const char *samples[] = {"TT_2017","tW_2017","Other_2017","DY_2017","TTtW_2017",
                          //"data_ele_2017",
                          "data_mu_2017",
                          "mumujj_L13000_M500_2017","mumujj_L13000_M1000_2017","mumujj_L13000_M2000_2017","mumujj_L13000_M5000_2017","mumujj_L13000_M8000_2017"
-                        };
+			/*,"eejj_L13000_M500_2017","eejj_L13000_M1000_2017","eejj_L13000_M2000_2017","eejj_L13000_M5000_2017","eejj_L13000_M8000_2017"*/                                         };
 const string specsel  = "";
 //Selection
 const string suffisso   = 
@@ -54,17 +54,17 @@ const string suffisso   =
                      
 const string selection  =
 ////////////////////////muon/////////////////////////////
-"HLT_Mu50==1 && numOfHighptMu==2 && Muon_pt[0]>250 && Muon_pt[1]>100 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>500";
-//"HLT_Mu50==1 && numOfHighptMu==2 && Muon_pt[0]>250 && Muon_pt[1]>150 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>80 && M_leplep<100";
-//"HLT_Mu50==1 && numOfHighptMu==2 && Muon_pt[0]>250 && Muon_pt[1]>150 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>50 && M_leplep<130";
-//"HLT_Mu50==1 && numOfHighptMu==2 && Muon_pt[0]>250 && Muon_pt[1]>150 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>80 && M_leplep<300";
-//"HLT_Mu50==1 && numOfHighptMu==1 &&  Muon_pt[0]>250 && numOfHighptEle==1 && patElectron_pt[0]>150 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>700";
+"HLT_Mu50==1 && numOfHighptMu==2 && Muon_pt[0]>250 && Muon_pt[1]>120 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>500";
+//"HLT_Mu50==1 && numOfHighptMu==2 && Muon_pt[0]>250 && Muon_pt[1]>120 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<100";
+//"HLT_Mu50==1 && numOfHighptMu==2 && Muon_pt[0]>250 && Muon_pt[1]>120 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>50 && M_leplep<130";
+//"HLT_Mu50==1 && numOfHighptMu==2 && Muon_pt[0]>250 && Muon_pt[1]>120 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<500";
+//"HLT_Mu50==1 && numOfHighptMu==1 &&  Muon_pt[0]>250 && numOfHighptEle==1 && patElectron_pt[0]>120 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>500";
 ////////////////////ele////////////////////////////////////
-//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>250 && patElectron_pt[1]>150 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>700";
-//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>250 && patElectron_pt[1]>150 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>80 && M_leplep<100";
-//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>250 && patElectron_pt[1]>150 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>50 && M_leplep<130";
-//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>250 && patElectron_pt[1]>150 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>80 && M_leplep<300";
-//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt[0]>250 && numOfHighptMu==1 &&  Muon_pt[0]>150 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>700";
+//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>250 && patElectron_pt[1]>120 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>300 && M_leplep>500";
+//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>250 && patElectron_pt[1]>120 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<100";
+//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>250 && patElectron_pt[1]>120 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>50 && M_leplep<530";
+//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>250 && patElectron_pt[1]>120 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<500";
+//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt[0]>250 && numOfHighptMu==1 &&  Muon_pt[0]>120 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>500";
 const string dotroot    = ".root"; 
 /////
 //   Declare functions 
