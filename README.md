@@ -103,12 +103,18 @@ brilcalc lumi --hltpath HLT_OldMu100* -u /fb -i /afs/cern.ch/cms/CAF/CMSCOMM/COM
 ### Some tables from the new SR (10-12-2019):   
    
    | Year    | 2018 |
+   |---|---|
    | channel | electron|
    |---|---|
    | Process | N. events (with PU, sf,  |
    |---|---|
-   | TTtW |  ---|
-   | DY | ---|
-   | Other | ---|
-   | L13 M0.5 | ---|
-   | L13 M1 | ---|
+   | TTtW |  X|
+   |---|---|
+   | DY | X|
+   |---|---|
+   | Other | X|
+   |---|---|
+   | L13 M0.5 | X |
+   |---|---|   
+   | L13 M1 | X |
+   |---|---|
