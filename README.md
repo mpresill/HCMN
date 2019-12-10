@@ -99,3 +99,11 @@ brilcalc lumi --hltpath HLT_OldMu100* -u /fb -i /afs/cern.ch/cms/CAF/CMSCOMM/COM
    1. export voms certificate: voms-proxy-init --voms cms --valid 192:00 --out ~/proxy
    1. run "submission_macro.sh" to submit jobs to condor (specify eos path etc etc) (check job status with condor_q)
    1. to resubmit failed jobs: ./submission_macro.sh resubmit
+   
+### Some tables from the new SR (10-12-2019):   
+   
+   | Year    | 2018 |
+   |---|---|
+   | Process | N. events (with PU, sf,  |
+   |---|---|
+   
