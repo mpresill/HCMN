@@ -107,8 +107,8 @@ brilcalc lumi --hltpath HLT_OldMu100* -u /fb -i /afs/cern.ch/cms/CAF/CMSCOMM/COM
    |---|---|
    | Process | N. events (with PU, sf,  |
    |---|---|
-   | TTtW |  |
-   | DY | |
-   | Other | |
-   | L13 M0.5 | |
-   | L13 M1 | |
+   | TTtW |  ---|
+   | DY | ---|
+   | Other | ---|
+   | L13 M0.5 | ---|
+   | L13 M1 | ---|
