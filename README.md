@@ -105,16 +105,9 @@ brilcalc lumi --hltpath HLT_OldMu100* -u /fb -i /afs/cern.ch/cms/CAF/CMSCOMM/COM
    | Year    | 2018 |
    |---|---|
    | channel | electron|
-   |---|---|
    | Process | N. events (with PU, sf,  |
-   |---|---|
    | TTtW |  X|
-   |---|---|
    | DY | X|
-   |---|---|
    | Other | X|
-   |---|---|
    | L13 M0.5 | X |
-   |---|---|   
    | L13 M1 | X |
-   |---|---|
