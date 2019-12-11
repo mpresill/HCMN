@@ -1439,19 +1439,19 @@ double get_wgtlumi(string FileName){
  
  //muons
  
- if((FileName.find("mumujj_L13000_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("mumujj_L13000_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("mumujj_L13000_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("mumujj_L13000_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
- if((FileName.find("mumujj_L13000_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
+ if((FileName.find("mumujj_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("mumujj_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("mumujj_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("mumujj_L13_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
+ if((FileName.find("mumujj_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
 
  //electrons
  
- if((FileName.find("eejj_L13000_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("eejj_L13000_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("eejj_L13000_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("eejj_L13000_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
- if((FileName.find("eejj_L13000_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
+ if((FileName.find("eejj_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("eejj_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("eejj_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("eejj_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
+ if((FileName.find("eejj_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
  return wgt;
  }
