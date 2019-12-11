@@ -127,70 +127,70 @@ sed -i -e "s/\//\\\\\//g" listWJets.txt
 
 #Signals
 #eejj_L13_M500
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HavyCompositeMajoranaNeutrino_L13000_M500_mumujj_CalcHep/mumujj_17_L13_M500/191023_104143/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M500.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M500.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M500.txt
 
 #eejj_L13_M1000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HavyCompositeMajoranaNeutrino_L13000_M1000_eejj_CalcHep/eejj_17_L13_M1000/191023_103145/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M1000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M1000.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M1000.txt
 
 #eejj_L13_M2000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HeavyCompositeMajoranaNeutrino_L13000_M2000_eejj_CalcHep/eejj_17_L13_M2000/191106_103507/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M2000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M2000.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M2000.txt
 
 #eejj_L13_M5000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HeavyCompositeMajoranaNeutrino_L13000_M5000_eejj_CalcHep/eejj_17_L13_M5000/191106_104122/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M5000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M5000.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M5000.txt
 
 #eejj_L13_M8000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HavyCompositeMajoranaNeutrino_L13000_M8000_eejj_CalcHep/eejj_17_L13_M8000/191023_103909/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_eejjL13M8000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_eejjL13M8000.txt
 sed -i -e "s/\//\\\\\//g" list_eejjL13M8000.txt
 
 #mumujj_L13_M500
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HavyCompositeMajoranaNeutrino_L13000_M500_mumujj_CalcHep/mumujj_17_L13_M500/191023_104143/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M500.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M500.txt
 sed -i -e "s/\//\\\\\//g" list_mumujjL13M500.txt
 
 #mumujj_L13_M1000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HavyCompositeMajoranaNeutrino_L13000_M1000_mumujj_CalcHep/mumujj_17_L13_M1000/191023_104415/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M1000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M1000.txt
 sed -i -e "s/\//\\\\\//g" list_mumujjL13M1000.txt
 
 #mumujj_L13_M2000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HavyCompositeMajoranaNeutrino_L13000_M2000_mumujj_CalcHep/mumujj_17_L13_M2000/191023_104644/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M2000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M2000.txt
 sed -i -e "s/\//\\\\\//g" list_mumujjL13M2000.txt
 
 #mumujj_L13_M5000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HavyCompositeMajoranaNeutrino_L13000_M5000_mumujj_CalcHep/mumujj_17_L13_M5000/191023_104909/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M5000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M5000.txt
 sed -i -e "s/\//\\\\\//g" list_mumujjL13M5000.txt
 
 #mumujj_L13_M8000
-for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep/mumujj_17_L13_M8000/191023_105135/0000`;
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls `;
 do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> list_mumujjL13M8000.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" list_mumujjL13M8000.txt
