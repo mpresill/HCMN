@@ -688,7 +688,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     if(rtrueInteractions > 0) trueInteractions = (double)rtrueInteractions;
     nBestVtx = rnBestVtx;
     PileupWeight = CalculatePileupWeight(trueInteractions);
-    lumi_wgt = get_wgtlumi(Output);
+    lumi_wgt = get_wgtlumi(Input);
    
    
 
@@ -1735,7 +1735,6 @@ double get_wgtlumi(string FileName){
  //xsec in pb
 
  // checked, OK!
- 
  if(FileName.find("TT") != std::string::npos) wgt=730.6/76915549;  
  if(FileName.find("DY") != std::string::npos) wgt=6225.42/146280395;
  if(FileName.find("_ST_") != std::string::npos)  wgt=38.09/6952830; 
@@ -1749,25 +1748,25 @@ double get_wgtlumi(string FileName){
  if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=48.8/7759701; 
  if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=12.07/18687480; 
  if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=5.497/7830536; 
- if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.329/6872441;
- if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.03209/2637821;
+ if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.329/6806162;
+ if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.03209/1398006;
  if(FileName.find("WJets_") != std::string::npos) wgt=50260.0/86916455;
  
  //muons
  
- if((FileName.find("mumujj_L13000_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("mumujj_L13000_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("mumujj_L13000_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("mumujj_L13000_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
- if((FileName.find("mumujj_L13000_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
+ if((FileName.find("mumujj_16_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("mumujj_16_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("mumujj_16_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("mumujj_16_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
+ if((FileName.find("mumujj_16_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
 
  //electrons
  
- if((FileName.find("eejj_L13000_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("eejj_L13000_M1000") != std::string::npos)) wgt=2.8140e-03/96800;
- if((FileName.find("eejj_L13000_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("eejj_L13000_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
- if((FileName.find("eejj_L13000_M8000") != std::string::npos)) wgt=0.000091350e-03/91273;
+ if((FileName.find("eejj_16_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("eejj_16_L13_M1000") != std::string::npos)) wgt=2.8140e-03/96800;
+ if((FileName.find("eejj_16_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("eejj_16_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
+ if((FileName.find("eejj_16_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91273;
  
  return wgt;
  }

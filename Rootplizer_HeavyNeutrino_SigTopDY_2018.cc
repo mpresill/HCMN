@@ -688,7 +688,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     if(rtrueInteractions > 0) trueInteractions = (double)rtrueInteractions;
     nBestVtx = rnBestVtx;
     PileupWeight = CalculatePileupWeight(trueInteractions);
-    lumi_wgt = get_wgtlumi(Output);
+    lumi_wgt = get_wgtlumi(Input);
    
    
 
@@ -1327,7 +1327,7 @@ double elesf(double eta, double pt){
 double musf_trigger(double eta, double pt){
  double musf=0;
  // Mu50_OR_OldMu100_OR_TkMu100_PtEtaBins
- if {fabs(eta) >= 0.0 && fabs(eta)<0.9}{
+ if (fabs(eta) >= 0.0 && fabs(eta)<0.9){
   if(pt > 52. && pt <= 56) musf = 0.9385219812393188; //stat 0.0002566604294316861 
   if(pt > 56. && pt <= 60) musf = 0.938785195350647; // stat 0.0003512045613493856
   if(pt > 60. && pt <= 120) musf = 0.9373190402984619; // stat 0.00031808216113278883
@@ -1335,7 +1335,7 @@ double musf_trigger(double eta, double pt){
   if(pt > 200 && pt <= 300) musf = 0.9162033796310425; // stat 0.0028656970513730017
   if(pt > 300) musf = 0.8930183053016663; // stat 0.007617952889111469
  }
- if {fabs(eta) >= 0.9 && fabs(eta)<1.2}{
+ if (fabs(eta) >= 0.9 && fabs(eta)<1.2){
   if(pt > 52. && pt <= 56) musf = 0.9429171681404114; //stat 0.0004323455043906205 
   if(pt > 56. && pt <= 60) musf = 0.944566011428833; // stat 0.0006453209717745792
   if(pt > 60. && pt <= 120) musf = 0.9416107535362244; // stat 0.0004590463319092091
@@ -1343,7 +1343,7 @@ double musf_trigger(double eta, double pt){
   if(pt > 200 && pt <= 300) musf = 0.9116483330726624; // stat 0.004974297248567905
   if(pt > 300) musf = 0.8819695115089417; // stat 0.01840147234943961
  }
- if {fabs(eta) >= 1.2 && fabs(eta)<2.1}{
+ if (fabs(eta) >= 1.2 && fabs(eta)<2.1){
   if(pt > 52. && pt <= 56) musf = 0.9153958559036255; //stat 0.0003371717180362242  
   if(pt > 56. && pt <= 60) musf = 0.9197514057159424; // stat 0.0004579121798908698
   if(pt > 60. && pt <= 120) musf = 0.9216225147247314; // stat 0.000365347265978311
@@ -1351,7 +1351,7 @@ double musf_trigger(double eta, double pt){
   if(pt > 200 && pt <= 300) musf = 0.9137247204780579; // stat 0.003394166872715402
   if(pt > 300) musf = 0.9049304127693176; // stat 0.00863011621547623
  }
- if {fabs(eta) >= 2.1 && fabs(eta)<2.4}{
+ if (fabs(eta) >= 2.1 && fabs(eta)<2.4){
   if(pt > 52. && pt <= 56) musf = 0.801039457321167; //stat 0.0010483845705795774   
   if(pt > 56. && pt <= 60) musf = 0.8250287771224976; // stat 0.0014525323104812836
   if(pt > 60. && pt <= 120) musf = 0.8385295867919922; // stat 0.00112496967288113
@@ -1359,7 +1359,6 @@ double musf_trigger(double eta, double pt){
   if(pt > 200 && pt <= 300) musf = 0.8325985074043274; // stat 0.023364071376511055
   if(pt > 300) musf = 0.8184008598327637; // stat 0.0307142641727703
  }
-}
  //https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json
  
  return musf;
@@ -1434,7 +1433,7 @@ double musf_iso(double eta, double pt){
   if(pt>25 && pt<=30) musf=1.0143379791477725; // stat 0.0012908918832984988 && 0.0008195965444879856 
   if(pt>30 && pt<=40) musf=1.0054419865929765; // stat 0.00040019495324649626 syst 0.0007217335869673098 
   if(pt>40 && pt<=50) musf=1.0016460223436592; // stat 0.00019826487775344374 syst 4.880342247065058e-05 
-  f(pt>50 && pt<=60) musf=1.0009981450462042; // stat 0.0005033796400527971 syst 0.00011776242980718527 
+  if(pt>50 && pt<=60) musf=1.0009981450462042; // stat 0.0005033796400527971 syst 0.00011776242980718527 
   if(pt>60 )musf=1.001493044021551; // stat 0.0009083825758175378 syst 0.0009244158331428465
  }
 //https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018/jsonfiles/RunABCD_SF_ISO.json
@@ -1469,19 +1468,18 @@ double get_wgtlumi(string FileName){
  
  //muons
  
- if((FileName.find("mumujj_L13000_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("mumujj_L13000_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("mumujj_L13000_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("mumujj_L13000_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
- if((FileName.find("mumujj_L13000_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
+ if((FileName.find("mumujj_18_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("mumujj_18_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("mumujj_18_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("mumujj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
+ if((FileName.find("mumujj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
 
  //electrons
- 
- if((FileName.find("eejj_L13000_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("eejj_L13000_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("eejj_L13000_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("eejj_L13000_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
- if((FileName.find("eejj_L13000_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
+ if((FileName.find("eejj_18_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("eejj_18_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("eejj_18_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("eejj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
+ if((FileName.find("eejj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
  return wgt;
  }
