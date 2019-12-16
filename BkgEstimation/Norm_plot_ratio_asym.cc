@@ -37,12 +37,12 @@ using namespace std;
 //   Declare constants
 /////
 //Path - channel - samples - selection
-const string path       = "/eos/user/r/roleonar/rootple/bkp/";
-const char *samples[]   = {"TTtW_TRe","TTtW_SRe"};
+const string path       = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/";
+const char *samples[]   = {"TTtW_2018_TRe","TTtW_2018_SRe"}; //first sample TR, second SR
 const string specsel    = "";
 const string channel    = "";
 const string selection  = "";
-const double Luminosity = 35900;//2165;//pb^-1
+const double Luminosity = 58873; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool noLumiNorm   = false; //true means NO luminosity normalization done
 const bool noPUcorr     = false; //true means NO PU corr done 
 const bool noSFlepcorr  = false; //true means NO SFlep corr done
@@ -135,14 +135,17 @@ void Norm_plot_ratio_asym(){
    TBranch *b_curr_var = 0;
    tree->SetBranchAddress(var[v].c_str(),&curr_var,&b_curr_var);
    double PU_weight;
+   double PUWeight;
    //double PileupWeight;
    double sf_obj;
    double lumi_wgt;
-   TBranch *b_PU_weight = 0;
+  // TBranch *b_PU_weight = 0;
    //TBranch *b_PileupWeight = 0;
    TBranch *b_sf_obj = 0;
    TBranch *b_lumi_wgt = 0;
-   tree->SetBranchAddress(PUw.c_str(),&PU_weight,&b_PU_weight);
+   TBranch *b_PUWeight = 0;
+   tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);  
+   //tree->SetBranchAddress(PUw.c_str(),&PU_weight,&b_PU_weight);
    //tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
    tree->SetBranchAddress(objsf.c_str(),&sf_obj,&b_sf_obj);
    tree->SetBranchAddress("lumi_wgt",&lumi_wgt,&b_lumi_wgt);
@@ -151,7 +154,8 @@ void Norm_plot_ratio_asym(){
     //tree->GetEntry(j);
     Long64_t tentry = tree->LoadTree(j);
     b_curr_var->GetEntry(tentry);
-    b_PU_weight->GetEntry(tentry);
+    b_PUWeight->GetEntry(tentry);
+    //b_PU_weight->GetEntry(tentry);
     //b_PileupWeight->GetEntry(tentry);
     b_sf_obj->GetEntry(tentry);
     b_lumi_wgt->GetEntry(tentry);
@@ -162,9 +166,9 @@ void Norm_plot_ratio_asym(){
     weight = lumi_wgt*Luminosity;
     if(noLumiNorm) weight=1.;
     //if(noPUcorr) PileupWeight=1.;
-    if(noPUcorr)   PU_weight=1;
+    if(noPUcorr)   PUWeight=1;
     if(noSFlepcorr) sf_obj=1.;
-    double gw = weight*PU_weight*sf_obj;
+    double gw = weight*PUWeight*sf_obj;
     if(i==0) h1_var->Fill(curr_var,gw);
     if(i==1) h2_var->Fill(curr_var,gw);
     if(i==2) h3_var->Fill(curr_var,gw);
@@ -228,8 +232,14 @@ void Norm_plot_ratio_asym(){
     h2_ratio_y[j]    = num2/den;
     h2_ratio_yerr[j] = sqrt(pow(num2_err/den,2) + pow((num2*den_err)/(den*den),2));
    }else{
-    h2_ratio_y[j]    = -1000000;
-    h2_ratio_yerr[j] = 0;
+    if(num2==0){	
+     h2_ratio_y[j]    = 0;
+     h2_ratio_yerr[j] = 0;
+    }
+    else{
+     h2_ratio_y[j]    = -1000000;
+     h2_ratio_yerr[j] = 0;
+    }
    }
    if(den!=0 && num3!=0){
     h3_ratio_y[j]    = num3/den;
@@ -238,7 +248,7 @@ void Norm_plot_ratio_asym(){
     h3_ratio_y[j]    = -1000000;
     h3_ratio_yerr[j] = 0;
    }
-   cout<<"x "<<h2_ratio_x[j]<<" y "<<h2_ratio_y[j]<<"$\pm$"<<h2_ratio_yerr[j]<<endl;
+   cout<<"center of bin (x)=  "<<h2_ratio_x[j]<<"; Numb. events (y) = "<<h2_ratio_y[j]<<"  +-  "<<h2_ratio_yerr[j]<<endl;
   }
   TGraphErrors *h2_ratio = new TGraphErrors(bin[v], h2_ratio_x, h2_ratio_y, h2_ratio_xerr, h2_ratio_yerr);
   h2_ratio->SetTitle(0);
