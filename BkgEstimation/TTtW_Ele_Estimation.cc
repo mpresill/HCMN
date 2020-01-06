@@ -30,7 +30,7 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples 
-const string path         = "/eos/user/r/roleonar/rootple/bkp/";
+const string path         = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/skimmed_root_files/";
 //It is important you respect the orther: bkg, data_obs, sig
 //For the moment: all bkg are taken from MC; data_obs = sum of all bkg; 
 //const char *samples[]   = {"DY", "DYHT100to200", "DYHT200to400", "DYHT400to600", "DYHT100to200", "DYHT600toInf", "TT", "ST", "SaT", "WJets", "WW", "WZ", "ZZ", "sig"};
@@ -38,13 +38,13 @@ const string path         = "/eos/user/r/roleonar/rootple/bkp/";
                             // "L15000_M500", "L15000_M1500", "L15000_M2500", "L15000_M3500", "L15000_M4500"       
                            // };
 const char *samples[]     = {"DY","Other","data_ele"};
-const string selection    = "_TRe";  
+const string selection    = "_2016_TRe";  
 //Plots option
 const string varplot    = "M_leplepBjet";
 const double fixcut     = 0; //Save only events for which varplot>fixcut
-const string objsf      = "lepsf_evtmuup";//"lepsf_evt";
+const string objsf      = "lepsf_evt";//"lepsf_evt";
 const string PUw        = "PUWeight";//"PileupWeight";
-const double Luminosity = 35900; //35900; 2255
+const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool noLumiNorm   = false;
 const bool noPUcorr     = false;
 const bool noobjsf      = false;  
@@ -57,8 +57,8 @@ const bool   asymbin         = true;
 const double asymbins[bin+1] = {0,200,400,600,800,1000,1400,2000,3500,10000};
 
 
-const double TTtWSF[bin]     = {1,1,1,1,1,0,0.53,0.46,1};//For e-channel with summed TT and tW
-const double SFerr[bin]      = {0,0,0,0,0,0,0.36,0.32,0};//For e-channel with summed TT and tW
+const double TTtWSF[bin]     = {0,0,0,1.62785,0.296588,0.732169,0.547758,0.495361,0};//For e-channel with summed TT and tW
+const double SFerr[bin]      = {0,0,0,2.00639,0.137307,0.202031,0.178748,0.246144,0};//For e-channel with summed TT and tW
 
 /////
 //   Declare functions 
@@ -170,7 +170,7 @@ void TTtW_Ele_Estimation(){
   //Create new file
   string norm;
   if(normalize) norm = "_norm";
-  string newfilename = "eejj_TTtW"+norm+".root";
+  string newfilename = "eejj_TTtW_2016"+norm+"_data_driven.root";
   TFile *newfile = new TFile(newfilename.c_str(),"recreate");
   data_sub->Write();  delete data_sub;
   //DY->Write();    delete DY;
@@ -229,9 +229,9 @@ TH1F* get_treehist(string rootpla, int idx){
  //double PileupWeight;
  //TBranch *b_PileupWeight = 0;
  //tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
- double PU_weight;
- TBranch *b_PU_weight = 0;
- tree->SetBranchAddress(PUw.c_str(),&PU_weight,&b_PU_weight);
+ double PUWeight;
+ TBranch *b_PUWeight = 0;
+ tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight); 
  double lumi_wgt;
  TBranch *b_lumi_wgt = 0;
  tree->SetBranchAddress("lumi_wgt",&lumi_wgt,&b_lumi_wgt);
@@ -244,7 +244,7 @@ TH1F* get_treehist(string rootpla, int idx){
   Long64_t tentry = tree->LoadTree(j);
   b_curr_var->GetEntry(tentry);
   //b_PileupWeight->GetEntry(tentry);
-  b_PU_weight->GetEntry(tentry);
+  b_PUWeight->GetEntry(tentry);
   b_lumi_wgt->GetEntry(tentry);
   //b_sf_obj->GetEntry(tentry);
   double w = 1.;
@@ -255,7 +255,7 @@ TH1F* get_treehist(string rootpla, int idx){
  b_sf_obj->GetEntry(tentry);
    if(!noLumiNorm) w = w*lumi_wgt*Luminosity;
    //if(!noPUcorr)   w = w*PileupWeight;
-   if(!noPUcorr)   w = w*PU_weight;
+   if(!noPUcorr)   w = w*PUWeight;
    if(!noobjsf)    w = w*sf_obj;
   }
   if(curr_var>fixcut){

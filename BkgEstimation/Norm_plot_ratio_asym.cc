@@ -37,12 +37,12 @@ using namespace std;
 //   Declare constants
 /////
 //Path - channel - samples - selection
-const string path       = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/";
-const char *samples[]   = {"TTtW_2018_TRe","TTtW_2018_SRe"}; //first sample TR, second SR
+const string path       = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/skimmed_root_files/";
+const char *samples[]   = {"TTtW_2016_TRe","TTtW_2016_SRe"}; //first sample TR, second SR
 const string specsel    = "";
 const string channel    = "";
 const string selection  = "";
-const double Luminosity = 58873; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
+const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool noLumiNorm   = false; //true means NO luminosity normalization done
 const bool noPUcorr     = false; //true means NO PU corr done 
 const bool noSFlepcorr  = false; //true means NO SFlep corr done
@@ -70,8 +70,8 @@ const unsigned int double_var = 1; //From int_var to double_var, variables are d
 //After double_var, variables are array  
 const bool most_energetic = false; //true: plot all jet values; false: plot the most energetic jet values
 const char *variables[]   = {"M_leplepBjet"};
-//const char *titleXaxis[]  = {"M(e, l' , J) [GeV]"}; 
-const char *titleXaxis[]  = {"M(#mu, l', J) [GeV]"};
+const char *titleXaxis[]  = {"M(e, l' , J) [GeV]"}; 
+//const char *titleXaxis[]  = {"M(#mu, l', J) [GeV]"};
 //For Plots
 const int    numVar            = 1;
 const int    bin[numVar]       = {9};//330};
@@ -304,7 +304,7 @@ void Norm_plot_ratio_asym(){
   c1_2->SetRightMargin(0.01);
   c1_2->SetLeftMargin(0.125);
   h1_var->SetMinimum(0);
-  h1_var->SetMaximum(4.5); ///////////////////
+  h1_var->SetMaximum(20); ///////////////////
   h1_var->Draw("PE1");
   h2_var->Draw("PE1same");
   if(!twosamples) h3_var->Draw("PE1same");
@@ -530,4 +530,3 @@ const double endRange[numVar]  = {50};
    line1->Draw("same");
   }
   */
-
