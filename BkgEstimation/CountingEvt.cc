@@ -107,9 +107,9 @@ void CountingEvt(){
   //double PileupWeight;
   //TBranch *b_PileupWeight = 0;
   //tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
-  double PU_weight;
-  TBranch *b_PU_weight = 0;
-  tree->SetBranchAddress(PUw.c_str(),&PU_weight,&b_PU_weight);
+  double PUWeight;
+  TBranch *b_PUWeight = 0;
+  tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
   //Lumi 
   double lumi_wgt;
   TBranch *b_lumi_wgt = 0;
@@ -133,7 +133,7 @@ void CountingEvt(){
    b_nBestVtx->GetEntry(tentry);
    b_sf_obj->GetEntry(tentry);
    //b_PileupWeight->GetEntry(tentry);
-   b_PU_weight->GetEntry(tentry);
+   b_PUWeight->GetEntry(tentry);
    b_lumi_wgt->GetEntry(tentry);
    //b_QCD_wgt_evt->GetEntry(tentry);
    evt_wgt=1.;
@@ -147,7 +147,7 @@ void CountingEvt(){
      }
      if(PUcorr){
      //evt_wgt = evt_wgt*PileupWeight;
-     evt_wgt = evt_wgt*PU_weight;
+     evt_wgt = evt_wgt*PUWeight;
      }
      if(GenWgtcorr){
      double evt_genwg = 1.;
