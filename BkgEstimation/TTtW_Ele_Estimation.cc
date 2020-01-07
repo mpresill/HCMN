@@ -57,8 +57,8 @@ const bool   asymbin         = true;
 const double asymbins[bin+1] = {0,200,400,600,800,1000,1400,2000,3500,10000};
 
 
-const double TTtWSF[bin]     = {0,0,0,1.62785,0.296588,0.732169,0.547758,0.495361,0};//For e-channel with summed TT and tW
-const double SFerr[bin]      = {0,0,0,2.00639,0.137307,0.202031,0.178748,0.246144,0};//For e-channel with summed TT and tW
+const double TTtWSF[bin]     = {0,0,0,0.852636,0.617453,0.771462,0.658377,0.512382,0};//For e-channel with summed TT and tW
+const double SFerr[bin]      = {0,0,0,0.403036,0.162502,0.151364,0.17105,0.223449,0};//For e-channel with summed TT and tW
 
 /////
 //   Declare functions 
