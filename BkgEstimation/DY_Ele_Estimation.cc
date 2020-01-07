@@ -38,7 +38,7 @@ const string path         = "/afs/cern.ch/work/r/roleonar/Analisi_2016/rootple/"
                             // "L15000_M500", "L15000_M1500", "L15000_M2500", "L15000_M3500", "L15000_M4500"       
                            // };
 const char *samples[]     = {"DY"};
-const string selection    = "_SRe";  
+const string selection    = "_2016_SRe";  
 //Plots option
 const string varplot    = "M_leplepBjet";
 const double fixcut     = 0; //Save only events for which varplot>fixcut
