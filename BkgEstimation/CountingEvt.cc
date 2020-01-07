@@ -37,7 +37,7 @@ const char *samples[]       = {
                               "data_mu"
                               //"TTtW_TRmu","TTtW_SRmu" 
 };
-const string selection      = "_DYRmu";//"_SignalRegion";//aggiungere _selection 
+const string selection      = "_2016_DYRmu";//"_SignalRegion";//aggiungere _selection 
                              
 const string channel        = "";
 //Selections
