@@ -37,7 +37,7 @@ using namespace std;
 //   Declare constants
 /////
 //Path - channel - samples - selection
-const string path       = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/skimmed_root_files/";
+const string path       = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/";
 const char *samples[]   = {"TTtW_2016_TRe","TTtW_2016_SRe"}; //first sample TR, second SR
 const string specsel    = "";
 const string channel    = "";
@@ -117,7 +117,8 @@ void Norm_plot_ratio_asym(){
   h2_var->SetMarkerStyle(21);
   h2_var->SetLineColor(2);
   h2_var->SetMarkerColor(2);
-  TH1F *h3_var = new TH1F("h3_var","h3_var",bin[v],asymbins);//inRange[v],endRange[v]); h3_var->Sumw2();
+  TH1F *h3_var = new TH1F("h3_var","h3_var",bin[v],asymbins);//inRange[v],endRange[v]); 
+  h3_var->Sumw2();
   h3_var->SetMarkerStyle(22);
   h3_var->SetLineColor(3);
   h3_var->SetMarkerColor(3);
@@ -168,8 +169,8 @@ void Norm_plot_ratio_asym(){
     //if(noPUcorr) PileupWeight=1.;
     if(noPUcorr)   PUWeight=1;
     if(noSFlepcorr) sf_obj=1.;
-    double gw = weight*PUWeight*sf_obj;
-    if(i==0) h1_var->Fill(curr_var,gw);
+    double gw = weight*PUWeight*sf_obj;  //cout<<"gw="<<gw<<", lumi_wgt="<<lumi_wgt<<", Luminosity="<<Luminosity<<", sf_obj="<<sf_obj<<", PUWeight="<<PUWeight<<"\n";
+    if(i==0) h1_var->Fill(curr_var,gw); 
     if(i==1) h2_var->Fill(curr_var,gw);
     if(i==2) h3_var->Fill(curr_var,gw);
    }
@@ -222,12 +223,12 @@ void Norm_plot_ratio_asym(){
    h3_ratio_x[j] = 0; h3_ratio_y[j] = 0; h3_ratio_xerr[j] = 0; h3_ratio_yerr[j] = 0;
    h2_ratio_x[j] = h2_var->GetBinCenter(j+1);  h2_ratio_xerr[j] = 0;
    h3_ratio_x[j] = h3_var->GetBinCenter(j+1);  h3_ratio_xerr[j] = 0;
-   double num2     = h2_var->GetBinContent(j+1);
-   double num2_err = h2_var->GetBinError(j+1);
+   double num2     = h2_var->GetBinContent(j+1); cout <<"bin Nun="<<num2;
+   double num2_err = h2_var->GetBinError(j+1); cout<<", bin error Num="<<num2_err;
    double num3     = h3_var->GetBinContent(j+1);
    double num3_err = h3_var->GetBinError(j+1);
-   double den      = h1_var->GetBinContent(j+1);
-   double den_err  = h1_var->GetBinError(j+1);
+   double den      = h1_var->GetBinContent(j+1);  cout <<", bin Den="<<den;
+   double den_err  = h1_var->GetBinError(j+1); cout<<", bin error Den="<<den_err<<"\n";
    if(den!=0 && num2!=0){
     h2_ratio_y[j]    = num2/den;
     h2_ratio_yerr[j] = sqrt(pow(num2_err/den,2) + pow((num2*den_err)/(den*den),2));

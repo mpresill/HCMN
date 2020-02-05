@@ -47,8 +47,8 @@ using namespace std;
 //Path - samples - selection
 const string path       = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/";
 //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
-const char *samples[]   = {"TTtW","DY","Other", "mumujj_L13000_M1000", "mumujj_L13000_M2000"/*, "data_mu_2016" ,"data_ele"*/};
-const string selection  = "_2016_SRmu"; //_SingleEle, _SingleMu
+const char *samples[]   = {"TTtW","DY","Other", "eejj_L13000_M1000", "eejj_L13000_M2000"/*, "data_mu_2016" ,"data_ele"*/};
+const string selection  = "_2016_SRe"; //_SingleEle, _SingleMu
 const bool nodata       = true;  //You must always comment data in "samples" if you don't want it
 const bool show_ratio   = false;
 //Weights
@@ -162,7 +162,7 @@ void StackPlots(){
   for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
   for(uint i=0; i<rootplas_size; i++){
    int datatype = 0; //for data
-   if(rootplas[i]=="mumujj_L13000_M2000" || rootplas[i]=="mumujj_L13000_M1000"){                                                 datatype = 1; //for signal
+   if(rootplas[i]=="eejj_L13000_M2000" || rootplas[i]=="eejj_L13000_M1000"){                                                 datatype = 1; //for signal
    }else if(rootplas[i]!="data_ele" && rootplas[i]!="data_mu" && rootplas[i]!="SLep"){ datatype = 2; //for other mc samples
    }
    //Declare histograms for variables
@@ -170,8 +170,8 @@ void StackPlots(){
    //Choose type of variables
    if(datatype==2){       h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
    }else if(datatype==1){
-     if(rootplas[i]=="mumujj_L13000_M2000"){h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
-     if(rootplas[i]=="mumujj_L13000_M1000"){h_sig2  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
+     if(rootplas[i]=="eejj_L13000_M2000"){h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
+     if(rootplas[i]=="eejj_L13000_M1000"){h_sig2  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
    }else{   h_data_var = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
             h_data_var2 = double_h_var2(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
 }
@@ -297,8 +297,8 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  //Get errors, normalise
  if(normalised){
   if(datatype==0) hist->Scale(1/normdata);
-  if(datatype==1 && rootplas=="mumujj_L13000_M2000" ) hist->Scale(1/normsig1);
-  if(datatype==1 && rootplas=="mumujj_L13000_M1000") hist->Scale(1/normsig2);
+  if(datatype==1 && rootplas=="eejj_L13000_M2000" ) hist->Scale(1/normsig1);
+  if(datatype==1 && rootplas=="eejj_L13000_M1000") hist->Scale(1/normsig2);
   if(datatype==2) hist->Scale(1/normbkg);
  }
  if(datatype==2){
@@ -358,8 +358,8 @@ TH1F* double_h_var2(unsigned int v, string var, string varT, uint i, string root
  }
  if(normalised){
   if(datatype==0) hist->Scale(1/normdata);
-  if(datatype==1 && rootplas=="mumujj_L13000_M2000" ) hist->Scale(1/normsig1);
-  if(datatype==1 && rootplas=="mumujj_L13000_M1000") hist->Scale(1/normsig2);
+  if(datatype==1 && rootplas=="eejj_L13000_M2000" ) hist->Scale(1/normsig1);
+  if(datatype==1 && rootplas=="eejj_L13000_M1000") hist->Scale(1/normsig2);
   if(datatype==2) hist->Scale(1/normbkg);
  }
  if(datatype==2){
