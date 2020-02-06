@@ -37,11 +37,11 @@ Targeting subgroup Jet+X update on nov 11th with:
 - [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
 - [x] Invariant mass plots for reference signal samples (L=13 TeV, M=0.5, 2, 5 TeV)
 - [ ] make script rootple->histograms inputs combine 
-- [ ] Limit extrapolation on cross section * BR (stat only, per year)
-- [ ] 2D Limits plot (stat only with unitarity constraint)
+- [x] Limit extrapolation on cross section * BR (stat only, per year)
+- [x] 2D Limits plot (stat only with unitarity constraint)
 - [x] table with all corrections used in the framework 
 - [ ] add SFs for FatJets https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging (low priority - maybe after 11th)
-- [ ] Optimization: check new SR definition with the estimator suggested by Niki (http://pdg.lbl.gov/2015/reviews/rpp2015-rev-statistics.pdf) for low background scenario
+- [x] Optimization: check new SR definition with the estimator suggested by Niki (http://pdg.lbl.gov/2015/reviews/rpp2015-rev-statistics.pdf) for low background scenario
 - [ ] Combine: run Combine Harvester for checking/validate the datacard (https://indico.cern.ch/event/859454/contributions/3655497/attachments/1954231/3245539/ValidationTools.pdf)
 - [ ] Combine: check all recent statistical committee racomandations (https://indico.cern.ch/event/859454/contributions/3653898/attachments/1954579/3246225/SCrec2019.pdf)
 
