@@ -1421,21 +1421,21 @@ double get_wgtlumi(string FileName){
  // CHECKED OK!! 
  
  if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
- if(FileName.find("DY") != std::string::npos) wgt=6225.42/100194597;
- if(FileName.find("_ST_") != std::string::npos)  wgt=34.91/9598000; 
- if(FileName.find("_SaT_") != std::string::npos) wgt=34.97/7623000; 
- if(FileName.find("WW") != std::string::npos) wgt=75.7/7850000; 
- if(FileName.find("WZ") != std::string::npos) wgt=27.6/3885000; 
- if(FileName.find("ZZ") != std::string::npos) wgt=12.14/1979000;
- if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1292.0/28084244;
- if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1346.0/29521158;
- if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=407.9/25468933;
- if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=57.48/5932701; 
- if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=12.87/19771294; 
- if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=5.366/8402687; 
- if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.074/7633949;
- if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.008001/3273980;
- if(FileName.find("WJets_") != std::string::npos) wgt=52940.0/71026861;
+ if(FileName.find("DY") != std::string::npos) wgt=6077/100194597;
+ if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
+ if(FileName.find("_SaT_") != std::string::npos) wgt=32.70/7623000; 
+ if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
+ if(FileName.find("WZ") != std::string::npos) wgt=47.13/3885000; 
+ if(FileName.find("ZZ") != std::string::npos) wgt=16.532/1979000;
+ if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/28084244;
+ if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1687.95/29521158;
+ if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=493.559/25468933;
+ if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.55/5932701; 
+ if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.57/19771294; 
+ if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49/8402687; 
+ if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.30/7633949;
+ if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968/3273980;
+ if(FileName.find("WJets_") != std::string::npos) wgt=64057.4/71026861;
  
  //muons
  
