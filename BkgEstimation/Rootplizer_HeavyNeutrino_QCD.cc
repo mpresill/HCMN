@@ -1227,64 +1227,46 @@ double musf_iso(double eta, double pt){
 
 double get_wgtlumi(string FileName){
  double wgt=1;
- if(FileName.find("TT") != std::string::npos) wgt=831.76/77867738;
- if(FileName.find("DY") != std::string::npos) wgt=5765.4/96658943;
- if(FileName.find("ST") != std::string::npos) wgt=35.6/6952830;
- if(FileName.find("SaT") != std::string::npos) wgt=35.6/6933094;
- if(FileName.find("WW") != std::string::npos) wgt=113.826/6987124;
- if(FileName.find("WZ") != std::string::npos) wgt=47.13/2995828;
- if(FileName.find("ZZ") != std::string::npos) wgt=16.523/998034;
- if(FileName.find("WJets") != std::string::npos) wgt=61526.7/24120319;
- if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1353.0/10094300;
- if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1346.0/39617787;
- if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=360.1/19914590;
- if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=48.8/5796237;
- if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=12.07/14908339;
- if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=5.497/6200954;
- if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.329/6627909;
- if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.03209/2384260;
 
- if((FileName.find("eejj_L9000_M500") != std::string::npos)) wgt=26.040e-03/35770;
- if((FileName.find("eejj_L9000_M1000") != std::string::npos)) wgt=14.550e-03/30295;
- if((FileName.find("eejj_L9000_M2000") != std::string::npos)) wgt=4.7540e-03/85025;
- if((FileName.find("eejj_L9000_M4000") != std::string::npos)) wgt=0.24000e-03/27740;
- if((FileName.find("eejj_L9000_M6000") != std::string::npos)) wgt=0.014620e-03/17885;
- if((FileName.find("eejj_L9000_M9000") != std::string::npos)) wgt=0.000035980e-03/8235;
+  
+   //xsec in pb
 
- if((FileName.find("mumujj_L9000_M500") != std::string::npos)) wgt=26.040e-03/33205;
- if((FileName.find("mumujj_L9000_M1000") != std::string::npos)) wgt=14.550e-03/46345;
- if((FileName.find("mumujj_L9000_M2000") != std::string::npos)) wgt=4.7540e-03/77005;
- if((FileName.find("mumujj_L9000_M4000") != std::string::npos)) wgt=0.24000e-03/59485;
- if((FileName.find("mumujj_L9000_M6000") != std::string::npos)) wgt=0.014620e-03/78840;
- if((FileName.find("mumujj_L9000_M9000") != std::string::npos)) wgt=0.000035980e-03/33787;
+ // CHECKED for 2017 OK!! 
+ 
+ if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
+ if(FileName.find("DY") != std::string::npos) wgt=6077/100194597;
+ if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
+ if(FileName.find("_SaT_") != std::string::npos) wgt=32.70/7623000; 
+ if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
+ if(FileName.find("WZ") != std::string::npos) wgt=47.13/3885000; 
+ if(FileName.find("ZZ") != std::string::npos) wgt=16.532/1979000;
+ if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/28084244;
+ if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1687.95/29521158;
+ if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=493.559/25468933;
+ if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.55/5932701; 
+ if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.57/19771294; 
+ if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49/8402687; 
+ if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.30/7633949;
+ if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968/3273980;
+ if(FileName.find("WJets_") != std::string::npos) wgt=64057.4/71026861;
+ 
+ //muons
+ 
+ if((FileName.find("mumujj_17_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("mumujj_17_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("mumujj_17_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("mumujj_17_L13_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
+ if((FileName.find("mumujj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
 
- if((FileName.find("eejj_L5000_M500") != std::string::npos)) wgt=331.7e-03/72990;
- if((FileName.find("eejj_L5000_M1000") != std::string::npos)) wgt=257.5e-03/62050;
- if((FileName.find("eejj_L5000_M2000") != std::string::npos)) wgt=49.85e-03/79195;
- if((FileName.find("eejj_L5000_M3000") != std::string::npos)) wgt=10.39e-03/30295;
-// gives error, commented on 7/02/18 Alessando
- // if((FileName.find("eejj_L5000_M4000") != std::string::npos)) wgt=2.518e-03/;
- if((FileName.find("eejj_L5000_M4000") != std::string::npos)) wgt=2.518e-03;
- if((FileName.find("eejj_L5000_M5000") != std::string::npos)) wgt=0.6511e-03/37595;
-
- if((FileName.find("mumujj_L5000_M500") != std::string::npos)) wgt=331.7e-03/21170;
- if((FileName.find("mumujj_L5000_M1000") != std::string::npos)) wgt=257.5e-03/98905;
- if((FileName.find("mumujj_L5000_M2000") != std::string::npos)) wgt=49.85e-03/66430;
- if((FileName.find("mumujj_L5000_M3000") != std::string::npos)) wgt=10.39e-03/49640;
- if((FileName.find("mumujj_L5000_M4000") != std::string::npos)) wgt=2.518e-03/87590;
- if((FileName.find("mumujj_L5000_M5000") != std::string::npos)) wgt=0.6511e-03/54740;
-
- if((FileName.find("eejj_L13000_M500") != std::string::npos)) wgt=5.7090e-03/42705;
- if((FileName.find("eejj_L13000_M1000") != std::string::npos)) wgt=2.8140e-03/3542;
- if((FileName.find("eejj_L13000_M2000") != std::string::npos)) wgt=0.82140e-03/26280;
- if((FileName.find("eejj_L13000_M5000") != std::string::npos)) wgt=0.014250e-03/28835;
- if((FileName.find("eejj_L13000_M8000") != std::string::npos)) wgt=0.000091350e-03/16425;
-
- if((FileName.find("mumujj_L13000_M500") != std::string::npos)) wgt=5.7090e-03/33945;
- if((FileName.find("mumujj_L13000_M1000") != std::string::npos)) wgt=2.8140e-03/13140;
- if((FileName.find("mumujj_L13000_M2000") != std::string::npos)) wgt=0.82140e-03/69340;
- if((FileName.find("mumujj_L13000_M5000") != std::string::npos)) wgt=0.014250e-03/81020;
- if((FileName.find("mumujj_L13000_M8000") != std::string::npos)) wgt=0.000091350e-03/20440;
+ //electrons
+ 
+ if((FileName.find("eejj_17_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("eejj_17_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("eejj_17_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("eejj_17_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
+ if((FileName.find("eejj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
+ 
+  
 
  return wgt;
  }
