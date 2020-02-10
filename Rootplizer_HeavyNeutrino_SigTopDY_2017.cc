@@ -1,7 +1,6 @@
 /**
 This Macro
 1. Prepares the rootplas to be used in the analysis, reading as input the nutplas 
-
 Need to specify
 0. See Declare constants
 1. The branches you want to handle. According to the analysis needs, one may want to handle 3 types of branches for reading and/or saving the variables
@@ -468,7 +467,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
     b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
     b_rHLT_Mu50->GetEntry(en);
-    
+    b_rHLT_TkMu50->GetEntry(en);
+    b_rHLT_OldMu100->GetEntry(en);
+    b_rHLT_TkMu100->GetEntry(en);   
+ 
     //PU:
     b_rPUWeight->GetEntry(en);
     b_rnBestVtx->GetEntry(en);
@@ -1213,10 +1215,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
    if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1 && M_leplep>300) SRe=1;
    if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt->at(0)>130 && numOfHighptMu==1 &&  Muon_pt->at(0)>35 && numOfBoostedJets>=1 && M_leplep>300) TRe=1;
-   if(HLT_Mu50==1 && HLT_OldMu100==1 && HLT_TkMu50==1 && HLT_TkMu100==1 && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
-   if(HLT_Mu50==1 && HLT_OldMu100==1 && HLT_TkMu50==1 && HLT_TkMu100==1 && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
    if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1) DYRe=1;
-   if(HLT_Mu50==1 && HLT_OldMu100==1 && HLT_TkMu50==1 && HLT_TkMu100==1 && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
 
 
    newtree->Fill();    

@@ -468,7 +468,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
     b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
     b_rHLT_Mu50->GetEntry(en);
-    
+    b_rHLT_TkMu50->GetEntry(en);
+    b_rHLT_OldMu100->GetEntry(en); 
+    b_rHLT_TkMu100->GetEntry(en);
     //PU:
     b_rPUWeight->GetEntry(en);
     b_rnBestVtx->GetEntry(en);
@@ -1213,10 +1215,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
    if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1 && M_leplep>300) SRe=1;
    if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt->at(0)>130 && numOfHighptMu==1 &&  Muon_pt->at(0)>35 && numOfBoostedJets>=1 && M_leplep>300) TRe=1;
-   if(HLT_Mu50==1 && HLT_OldMu100==1 && HLT_TkMu50==1 && HLT_TkMu100==1 && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
-   if(HLT_Mu50==1 && HLT_OldMu100==1 && HLT_TkMu50==1 && HLT_TkMu100==1 && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
    if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1) DYRe=1;
-   if(HLT_Mu50==1 && HLT_OldMu100==1 && HLT_TkMu50==1 && HLT_TkMu100==1 && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
 
 
    newtree->Fill();    
@@ -1736,21 +1738,21 @@ double get_wgtlumi(string FileName){
 
  // checked, OK!
  if(FileName.find("TT") != std::string::npos) wgt=730.6/76915549;  
- if(FileName.find("DY") != std::string::npos) wgt=6225.42/146280395;
- if(FileName.find("_ST_") != std::string::npos)  wgt=38.09/6952830; 
- if(FileName.find("_SaT_") != std::string::npos) wgt=38.06/6933094; 
- if(FileName.find("WW") != std::string::npos) wgt=64.4/7982180; 
- if(FileName.find("WZ") != std::string::npos) wgt=23.43/3997571; 
- if(FileName.find("ZZ") != std::string::npos) wgt=10.16/1988098;
- if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1352.0/10020533;
- if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1346.0/78043017;
- if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=360.1/38984322;
- if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=48.8/7759701; 
- if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=12.07/18687480; 
- if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=5.497/7830536; 
- if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.329/6806162;
- if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.03209/1398006;
- if(FileName.find("WJets_") != std::string::npos) wgt=50260.0/86916455;
+ if(FileName.find("DY") != std::string::npos) wgt=6077./146280395;
+ if(FileName.find("_ST_") != std::string::npos)  wgt=35.61/6952830; 
+ if(FileName.find("_SaT_") != std::string::npos) wgt=35.59/6933094; 
+ if(FileName.find("WW") != std::string::npos) wgt=118.7/7982180; 
+ if(FileName.find("WZ") != std::string::npos) wgt=47.13/3997571; 
+ if(FileName.find("ZZ") != std::string::npos) wgt=16.523/1988098;
+ if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/10020533;
+ if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1628.66/78043017;
+ if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=435.721/38984322;
+ if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=59.048/7759701; 
+ if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.6047/18687480; 
+ if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.65137/7830536; 
+ if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.60809/6806162;
+ if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.0388389/1398006;
+ if(FileName.find("WJets_") != std::string::npos) wgt=60814.6/86916455;
  
  //muons
  

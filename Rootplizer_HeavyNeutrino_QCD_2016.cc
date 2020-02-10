@@ -1,7 +1,6 @@
 /**
 This Macro
 1. Prepares the rootplas to be used in the analysis, reading as input the nutplas 
-
 Need to specify
 0. See Declare constants
 1. The branches you want to handle. According to the analysis needs, one may want to handle 3 types of branches for reading and/or saving the variables
@@ -101,6 +100,9 @@ double invMass4(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
 //   Main function
 /////
 void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output =""){
+
+  Input = "inputFile";
+  Output = "outputFile";
   TFile *oldfile = TFile::Open(Input);
   TTree *readingtree = new TTree("readingtree","readingtree"); readingtree = (TTree*) oldfile->Get("TNT/BOOM");
   /////
@@ -111,6 +113,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
   //int rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL; rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL = 0; TBranch* b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL = 0; readingtree->SetBranchAddress("HLT_DoubleEle33_CaloIdL_GsfTrkIdVL",&rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL,&b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL);
   int rHLT_Ele115_CaloIdVT_GsfTrkIdT; rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; TBranch* b_rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; readingtree->SetBranchAddress("HLT_Ele115_CaloIdVT_GsfTrkIdT",&rHLT_Ele115_CaloIdVT_GsfTrkIdT,&b_rHLT_Ele115_CaloIdVT_GsfTrkIdT);
   int rHLT_Mu50; rHLT_Mu50 = 0; TBranch* b_rHLT_Mu50 = 0; readingtree->SetBranchAddress("HLT_Mu50",&rHLT_Mu50,&b_rHLT_Mu50);
+  int rHLT_OldMu100; rHLT_OldMu100 = 0; TBranch* b_rHLT_OldMu100 = 0; readingtree->SetBranchAddress("HLT_OldMu100",&rHLT_OldMu100,&b_rHLT_OldMu100);
+  int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
+  int rHLT_TkMu50; rHLT_TkMu50 = 0; TBranch* b_rHLT_TkMu50 = 0; readingtree->SetBranchAddress("HLT_TkMu50",&rHLT_TkMu50,&b_rHLT_TkMu50);
 
   //PU
   double rPUWeight; rPUWeight = 0; TBranch* b_rPUWeight = 0; readingtree->SetBranchAddress("PUWeight",&rPUWeight,&b_rPUWeight);
@@ -289,6 +294,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
   //int HLT_DoubleEle33_CaloIdL_GsfTrkIdVL; newtree->Branch("HLT_DoubleEle33_CaloIdL_GsfTrkIdVL",&HLT_DoubleEle33_CaloIdL_GsfTrkIdVL);
   int HLT_Ele115_CaloIdVT_GsfTrkIdT; newtree->Branch("HLT_Ele115_CaloIdVT_GsfTrkIdT",&HLT_Ele115_CaloIdVT_GsfTrkIdT);
    int HLT_Mu50; newtree->Branch("HLT_Mu50",&HLT_Mu50);
+   int HLT_TkMu50; newtree->Branch("HLT_TkMu50",&HLT_TkMu50);
+   int HLT_OldMu100; newtree->Branch("HLT_OldMu100",&HLT_OldMu100);
+   int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
 
    //Muons:
    vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
@@ -561,6 +569,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
     //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
     b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
     b_rHLT_Mu50->GetEntry(en);
+    b_rHLT_TkMu50->GetEntry(en);
+    b_rHLT_OldMu100->GetEntry(en);
+    b_rHLT_TkMu100->GetEntry(en);
     
     //PU:
     b_rPUWeight->GetEntry(en);
@@ -795,7 +806,10 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
     HLT_Ele27_eta2p1_WPLoose_Gsf = -999;
     //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = -999;
     HLT_Ele115_CaloIdVT_GsfTrkIdT = -999;
+    HLT_TkMu50 = -999;
     HLT_Mu50 = -999;
+    HLT_TkMu100 = -999;
+    HLT_OldMu100 = -999;
 
     PUWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999;
     Met_type1PF_pt = -999; Met_type1PF_phi = -999; Met_type1PF_px = -999; Met_type1PF_py = -999;
@@ -845,7 +859,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
    //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL;
    HLT_Ele115_CaloIdVT_GsfTrkIdT = rHLT_Ele115_CaloIdVT_GsfTrkIdT;
    HLT_Mu50 = rHLT_Mu50;
- 
+   HLT_TkMu50 = rHLT_TkMu50;
+   HLT_OldMu100 = rHLT_OldMu100;
+   HLT_TkMu100 = rHLT_TkMu100; 
 
     PUWeight = rPUWeight;
     trueInteractions = rtrueInteractions;
@@ -977,7 +993,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
       QCD_wgt_evt = (QCD_wgt_ele1/(1-QCD_wgt_ele1))*(QCD_wgt_ele2/(1-QCD_wgt_ele2));
      }
   
-     if(HLT_Mu50==1 && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfBoostedJets>=1){
+     if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfBoostedJets>=1){
       QCDmu=1;
       Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
       Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1), Muon_energy->at(1));
@@ -1004,7 +1020,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
       QCD_wgt_evt = (QCD_wgt_ele1/(1-QCD_wgt_ele1))*(QCD_wgt_mu1/(1-QCD_wgt_mu1));
      }
 
-     if(HLT_Mu50==1 && numOfFakeMu==1 && Muon_pt->at(0)>53 && numOfFakeEle==1 && patElectron_pt->at(0)>35 && numOfBoostedJets>=1){
+     if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfFakeMu==1 && Muon_pt->at(0)>53 && numOfFakeEle==1 && patElectron_pt->at(0)>35 && numOfBoostedJets>=1){
       QCDmue=1;
       Ele1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0), patElectron_energy->at(0));
       Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
@@ -1160,112 +1176,350 @@ double Wgt_QCDmu(double eta, double pt){
 
 double elesf(double eta){
  double elesf=0;
- if(fabs(eta)<1.5) elesf=0.990;
- else elesf=0.988;
+ if(fabs(eta) < 1.4442) elesf = 0.971; // stat 0.001
+ if(fabs(eta) >= 1.566 && fabs(eta) < 2.5)elesf = 0.983; // stat 0.001
  return elesf;
 }
 double musf_trigger(double eta, double pt){
  double musf=0;
- if(pt<60){
-  if(fabs(eta)>=0.0 && fabs(eta)<0.9) musf=0.965465784072876;//0.9636659622192383;
-  if(fabs(eta)>=0.9 && fabs(eta)<1.2) musf=0.9533324837684631;//1.0442723035812378;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9568167924880981;//0.9711147546768188;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.8902276754379272;//1.0089114904403687;
- }
- if(pt>=60){
-  if(fabs(eta)>=0.0 && fabs(eta)<0.9) musf=0.9708314538002014;//0.9502088427543640;
-  if(fabs(eta)>=0.9 && fabs(eta)<1.2) musf=0.9528126120567322;//0.9564832448959351;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9712236523628235;//0.9529600739479065;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9417219758033752;//1.0511752367019653;
- }
+
+ if(pt>80.0 && pt<=120.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) musf=0.979348945351; // error 0.00208323098593 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) musf=0.991559553185; // error 0.00344762753897 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) musf=0.945687243525; // error 0.00977794862985 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) musf=0.953858663675; // error 0.00322632096278 
+}
+if(pt>120.0 && pt<=200.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) musf=0.971963141223; // error 0.00358312775975 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) musf=0.997236642678; // error 0.00757222553809 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) musf=0.964864307448; // error 0.0272241772852 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) musf=0.940906087621; // error 0.00953153348564 
+}
+if(pt>400.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) musf=0.965216120987; // error 0.048615649158 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) musf=0.90780463359; // error 0.19017744532 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) musf=0.720766933187; // error 0.996638370691 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) musf=0.975444916201; // error 0.0780233151001 
+}
+if(pt>55.0 && pt<=60.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) musf=0.982172313956; // error 0.000915076135818 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) musf=0.993104561456; // error 0.00157310792511 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) musf=0.935460280411; // error 0.00407745125853 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) musf=0.958748861806; // error 0.00137440243945 
+}
+if(pt>52.0 && pt<=55.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) musf=0.97765533033; // error 0.000873373899488 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) musf=0.987151898728; // error 0.00147147782448 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) musf=0.918599081349; // error 0.00402102545385 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) musf=0.953752562062; // error 0.00105817396096 
+}
+if(pt>60.0 && pt<=80.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) musf=0.981439045142; // error 0.000853646677067 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) musf=0.994310399764; // error 0.00145425246559 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) musf=0.940574201481; // error 0.00387588865056 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) musf=0.958232578952; // error 0.00124132468391 
+}
+if(pt>200.0 && pt<=300.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) musf=0.977938102104; // error 0.00965485757377 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) musf=0.957358230391; // error 0.0221928341518 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) musf=0.825968477035; // error 0.168574059327 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) musf=0.944979742807; // error 0.0242208031033 
+}
+if(pt>300.0 && pt<=400.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) musf=1.00528291728; // error 0.0240421197081 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) musf=1.12126658491; // error 0.152571268391 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) musf=0.785026453282; // error 0.0705578748306 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) musf=0.944298028685; // error 0.0537756662753 
+} 
  return musf;
 }
 double musf_ID(double eta, double pt){
  double musf=0;
- if(pt<80){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.985720157623291;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9935390949249268;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9843316674232483;
- }
- if(pt>=80 && pt<140){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.990919828414917;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=1.001926302909851;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9332278370857239;
- }
- if(pt>=140){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9570706486701965;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9942596554756165;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.0;
- }
+ if(pt>20.00 && pt<=25.00){
+    if(eta > 0.50 && eta <= 0.80) musf=1.00211123155; // stat 0.00830284954361 syst 0.00348297801398 
+    if(eta > -1.60 && eta <= -1.50) musf=1.00017596119; // stat 0.0126609943153 syst 0.00204450362149 
+    if(eta > 2.00 && eta <= 2.10) musf=0.983123138639; // stat 0.0114688705796 syst 0.0026291414228 
+    if(eta > -0.20 && eta <= 0.00) musf=0.971543094276; // stat 0.0113411399666 syst 0.0111128156037 
+    if(eta > -1.20 && eta <= -0.80) musf=0.987239460735; // stat 0.00522917995849 syst 0.00276415212077 
+    if(eta > -1.70 && eta <= -1.60) musf=0.996946306362; // stat 0.00866572457671 syst 0.000938615931322 
+    if(eta > 1.40 && eta <= 1.50) musf=1.00577129019; // stat 0.0106160550206 syst 0.00654039495036 
+    if(eta > -2.10 && eta <= -2.00) musf=0.985070797329; // stat 0.00963624173484 syst 0.00219558134089 
+    if(eta > 2.10 && eta <= 2.20) musf=0.982612531854; // stat 0.00818488702493 syst 0.00337510160654 
+    if(eta > -2.40 && eta <= -2.30) musf=0.991455095023; // stat 0.0118547031637 syst 0.00639466183446 
+    if(eta > 2.20 && eta <= 2.30) musf=0.996163796457; // stat 0.0138260876819 syst 0.00353036327137 
+    if(eta > -1.40 && eta <= -1.20) musf=1.00558218584; // stat 0.00759290967337 syst 0.00352813548527 
+    if(eta > 1.70 && eta <= 2.00) musf=0.984930856296; // stat 0.00597635827006 syst 0.00231582361227 
+    if(eta > 0.80 && eta <= 1.20) musf=0.987865920447; // stat 0.00616314924911 syst 0.00300656865775 
+    if(eta > 0.20 && eta <= 0.30) musf=0.961931450658; // stat 0.0176837016129 syst 0.010166495744 
+    if(eta > -2.30 && eta <= -2.20) musf=0.990074021836; // stat 0.00962727873015 syst 0.00510567238519 
+    if(eta > 1.60 && eta <= 1.70) musf=0.999509845929; // stat 0.00887735262956 syst 0.00532286752516 
+    if(eta > -0.50 && eta <= -0.30) musf=1.01030208447; // stat 0.0105670688229 syst 0.0120938580629 
+    if(eta > -2.20 && eta <= -2.10) musf=0.965039975584; // stat 0.00932478149592 syst 0.00537958604232 
+    if(eta > 1.50 && eta <= 1.60) musf=1.00404959599; // stat 0.00887268219707 syst 0.00409114540157 
+    if(eta > -2.00 && eta <= -1.70) musf=0.978548864125; // stat 0.00540209949607 syst 0.000943299235691 
+    if(eta > -1.50 && eta <= -1.40) musf=1.00225789031; // stat 0.00855228415939 syst 0.00167462362513 
+    if(eta > -0.80 && eta <= -0.50) musf=1.0021762764; // stat 0.00395472329121 syst 0.00248275133166 
+    if(eta > 0.00 && eta <= 0.20) musf=0.995791165678; // stat 0.011667690184 syst 0.0113575691324 
+    if(eta > 2.30 && eta <= 2.40) musf=0.999834182426; // stat 0.0132650401568 syst 0.00457248218944 
+    if(eta > -0.30 && eta <= -0.20) musf=0.981066679517; // stat 0.0148713007157 syst 0.0124395670076 
+    if(eta > 0.30 && eta <= 0.50) musf=1.00493346708; // stat 0.0119029114745 syst 0.0107548427105 
+    if(eta > 1.20 && eta <= 1.40) musf=1.00244577072; // stat 0.0102548084783 syst 0.00652591466925 
+}
+if(pt>30.00 && pt<=40.00){
+    if(eta > 0.50 && eta <= 0.80) musf=0.993171553226; // stat 0.00266684387344 syst 0.0011286298307 
+    if(eta > -1.60 && eta <= -1.50) musf=0.995571077074; // stat 0.00227542174604 syst 0.000238352952193 
+    if(eta > 2.00 && eta <= 2.10) musf=0.98716846182; // stat 0.00304091930457 syst 0.000877477563587 
+    if(eta > -0.20 && eta <= 0.00) musf=0.994802753112; // stat 0.00261517452126 syst 0.00182994090936 
+    if(eta > -1.20 && eta <= -0.80) musf=0.982798420661; // stat 0.0010728980739 syst 0.000774117469812 
+    if(eta > -1.70 && eta <= -1.60) musf=0.993748868003; // stat 0.00160187658724 syst 0.000262651546589 
+    if(eta > 1.40 && eta <= 1.50) musf=1.00046296334; // stat 0.00195907813084 syst 0.00204649354669 
+    if(eta > -2.10 && eta <= -2.00) musf=0.98277405036; // stat 0.00190976611475 syst 0.000807778979007 
+    if(eta > 2.10 && eta <= 2.20) musf=0.966209375263; // stat 0.00390772125997 syst 0.000883297265298 
+    if(eta > -2.40 && eta <= -2.30) musf=0.989650272339; // stat 0.0061688828126 syst 0.00534075044988 
+    if(eta > 2.20 && eta <= 2.30) musf=0.994147694607; // stat 0.00194149347414 syst 0.00443702653473 
+    if(eta > -1.40 && eta <= -1.20) musf=0.996633483094; // stat 0.00109991275945 syst 0.00068773082376 
+    if(eta > 1.70 && eta <= 2.00) musf=0.988421675521; // stat 0.00139685996796 syst 0.000485000596524 
+    if(eta > 0.80 && eta <= 1.20) musf=0.98282412137; // stat 0.00109790641197 syst 0.00105669245848 
+    if(eta > 0.20 && eta <= 0.30) musf=0.962215450793; // stat 0.00672756153923 syst 0.00180907024836 
+    if(eta > -2.30 && eta <= -2.20) musf=0.987352265035; // stat 0.00337914648321 syst 0.00171153746004 
+    if(eta > 1.60 && eta <= 1.70) musf=0.998094089468; // stat 0.00204600476472 syst 0.00163017805459 
+    if(eta > -0.50 && eta <= -0.30) musf=0.993242728016; // stat 0.00217565920252 syst 0.000537924609794 
+    if(eta > -2.20 && eta <= -2.10) musf=0.958949104838; // stat 0.00393373482596 syst 0.0010224158968 
+    if(eta > 1.50 && eta <= 1.60) musf=1.00407209998; // stat 0.00238198727537 syst 0.0016749114201 
+    if(eta > -2.00 && eta <= -1.70) musf=0.982639631735; // stat 0.00105789881122 syst 0.000569999780488 
+    if(eta > -1.50 && eta <= -1.40) musf=0.996259901845; // stat 0.00175746152958 syst 0.000845050687089 
+    if(eta > -0.80 && eta <= -0.50) musf=0.9926232517; // stat 0.00275132331772 syst 0.000986642668793 
+    if(eta > 0.00 && eta <= 0.20) musf=0.991192011359; // stat 0.00168611403211 syst 0.00182644784469 
+    if(eta > 2.30 && eta <= 2.40) musf=0.982082795263; // stat 0.00341685202333 syst 0.00353032080754 
+    if(eta > -0.30 && eta <= -0.20) musf=0.970430309159; // stat 0.00551045925545 syst 0.0019951282859 
+    if(eta > 0.30 && eta <= 0.50) musf=0.990286054256; // stat 0.00503893135807 syst 0.000581707742312 
+    if(eta > 1.20 && eta <= 1.40) musf=0.998381592494; // stat 0.00551928091035 syst 0.00162854942844 
+}
+if(pt>40.00 && pt<=50.00){
+    if(eta > 0.50 && eta <= 0.80) musf=0.994052501394; // stat 0.000845446236027 syst 0.00182256638749 
+    if(eta > -1.60 && eta <= -1.50) musf=0.996668440524; // stat 0.00103070886239 syst 0.00203443995658 
+    if(eta > 2.00 && eta <= 2.10) musf=0.988827732118; // stat 0.0015747590692 syst 0.00234776881844 
+    if(eta > -0.20 && eta <= 0.00) musf=0.994566936222; // stat 0.00110757146232 syst 0.00155491791831 
+    if(eta > -1.20 && eta <= -0.80) musf=0.98343516845; // stat 0.000828576430766 syst 0.00131618566771 
+    if(eta > -1.70 && eta <= -1.60) musf=0.993012926187; // stat 0.00117529629557 syst 0.00120092232152 
+    if(eta > 1.40 && eta <= 1.50) musf=1.00222026273; // stat 0.00161545411451 syst 0.00427648360746 
+    if(eta > -2.10 && eta <= -2.00) musf=0.983202189391; // stat 0.00241434791767 syst 0.000977751613715 
+    if(eta > 2.10 && eta <= 2.20) musf=0.971087717152; // stat 0.00295377758809 syst 0.00214569430442 
+    if(eta > -2.40 && eta <= -2.30) musf=0.99080486154; // stat 0.00360368315291 syst 0.00401874399814 
+    if(eta > 2.20 && eta <= 2.30) musf=0.989350035065; // stat 0.00391278881166 syst 0.00256780908525 
+    if(eta > -1.40 && eta <= -1.20) musf=0.99585293099; // stat 0.000765385142332 syst 0.00172542857948 
+    if(eta > 1.70 && eta <= 2.00) musf=0.989202360522; // stat 0.00109332077741 syst 0.00145561705958 
+    if(eta > 0.80 && eta <= 1.20) musf=0.982754144322; // stat 0.000836991991224 syst 0.00152638823592 
+    if(eta > 0.20 && eta <= 0.30) musf=0.965186543065; // stat 0.00302810532006 syst 0.00199145772932 
+    if(eta > -2.30 && eta <= -2.20) musf=0.987046149703; // stat 0.00244806297139 syst 0.00277627911192 
+    if(eta > 1.60 && eta <= 1.70) musf=1.00180348757; // stat 0.00148242671912 syst 0.00386947083161 
+    if(eta > -0.50 && eta <= -0.30) musf=0.994814850892; // stat 0.0009307001236 syst 0.00229631412858 
+    if(eta > -2.20 && eta <= -2.10) musf=0.959912235473; // stat 0.00583835731045 syst 0.00287675659175 
+    if(eta > 1.50 && eta <= 1.60) musf=1.00357309057; // stat 0.00161894238983 syst 0.00464909944842 
+    if(eta > -2.00 && eta <= -1.70) musf=0.983643009919; // stat 0.00208103007564 syst 0.00100766147124 
+    if(eta > -1.50 && eta <= -1.40) musf=0.996327381878; // stat 0.00293018260985 syst 0.00221604906181 
+    if(eta > -0.80 && eta <= -0.50) musf=0.993898054283; // stat 0.000716649141077 syst 0.00153728609062 
+    if(eta > 0.00 && eta <= 0.20) musf=0.99350655446; // stat 0.00111445325998 syst 0.00199596060582 
+    if(eta > 2.30 && eta <= 2.40) musf=0.990675090438; // stat 0.00335131549548 syst 0.00389278616069 
+    if(eta > -0.30 && eta <= -0.20) musf=0.972499498227; // stat 0.00305094010906 syst 0.0019054985423 
+    if(eta > 0.30 && eta <= 0.50) musf=0.991374746795; // stat 0.000963717958799 syst 0.00183713004591 
+    if(eta > 1.20 && eta <= 1.40) musf=1.00024939714; // stat 0.00101687747329 syst 0.00307320005186 
+}
+if(pt>50.00 && pt<=60.00){
+    if(eta > 0.50 && eta <= 0.80) musf=0.987370778403; // stat 0.00262950953653 syst 0.000439368506131 
+    if(eta > -1.60 && eta <= -1.50) musf=0.993719346923; // stat 0.00400821175729 syst 0.00108337515294 
+    if(eta > 2.00 && eta <= 2.10) musf=0.985959152461; // stat 0.00523369755783 syst 0.00139521644201 
+    if(eta > -0.20 && eta <= 0.00) musf=0.989657897264; // stat 0.00327338390254 syst 0.000979606308056 
+    if(eta > -1.20 && eta <= -0.80) musf=0.977721488229; // stat 0.00247377866891 syst 0.00106674483457 
+    if(eta > -1.70 && eta <= -1.60) musf=0.993178839424; // stat 0.00365620288687 syst 0.00144305927383 
+    if(eta > 1.40 && eta <= 1.50) musf=0.983802728963; // stat 0.00648610481443 syst 0.00348333890136 
+    if(eta > -2.10 && eta <= -2.00) musf=0.982640111998; // stat 0.00625841335207 syst 0.0014068021952 
+    if(eta > 2.10 && eta <= 2.20) musf=0.964939703756; // stat 0.00720695515806 syst 0.0015919195844 
+    if(eta > -2.40 && eta <= -2.30) musf=0.978655008479; // stat 0.0132822139935 syst 0.00398190426169 
+    if(eta > 2.20 && eta <= 2.30) musf=0.980775804059; // stat 0.00723238660201 syst 0.00209242292996 
+    if(eta > -1.40 && eta <= -1.20) musf=0.992303149594; // stat 0.00301446247338 syst 0.00127314374548 
+    if(eta > 1.70 && eta <= 2.00) musf=0.986224415426; // stat 0.00270124815857 syst 0.00100223607406 
+    if(eta > 0.80 && eta <= 1.20) musf=0.978314445771; // stat 0.00255729946982 syst 0.00111458915976 
+    if(eta > 0.20 && eta <= 0.30) musf=0.965063565844; // stat 0.00792026091768 syst 0.00101027852931 
+    if(eta > -2.30 && eta <= -2.20) musf=0.978259303368; // stat 0.00804403224101 syst 0.00317260204026 
+    if(eta > 1.60 && eta <= 1.70) musf=0.989545489316; // stat 0.00586176459615 syst 0.00221417727823 
+    if(eta > -0.50 && eta <= -0.30) musf=0.991481630101; // stat 0.00307185986751 syst 0.00115752855052 
+    if(eta > -2.20 && eta <= -2.10) musf=0.958070271818; // stat 0.00754802897175 syst 0.00227814666569 
+    if(eta > 1.50 && eta <= 1.60) musf=0.993731313714; // stat 0.0069464952503 syst 0.00186627406646 
+    if(eta > -2.00 && eta <= -1.70) musf=0.985087445306; // stat 0.00237803562302 syst 0.0004580924085 
+    if(eta > -1.50 && eta <= -1.40) musf=0.99551622415; // stat 0.00416993670418 syst 0.00116742561558 
+    if(eta > -0.80 && eta <= -0.50) musf=0.99057180175; // stat 0.00239351913095 syst 0.000671386199989 
+    if(eta > 0.00 && eta <= 0.20) musf=0.989428312639; // stat 0.00324349097471 syst 0.00127336751368 
+    if(eta > 2.30 && eta <= 2.40) musf=0.986055565116; // stat 0.0110005828986 syst 0.00395403908032 
+    if(eta > -0.30 && eta <= -0.20) musf=0.971249095128; // stat 0.00811659112715 syst 0.00254373191416 
+    if(eta > 0.30 && eta <= 0.50) musf=0.990328746205; // stat 0.00301067936018 syst 0.00112394763244 
+    if(eta > 1.20 && eta <= 1.40) musf=0.988123770719; // stat 0.00434150751146 syst 0.0021135946514 
+}
  return musf;
 }
 double musf_iso(double eta, double pt){
  double musf=0;
- if(pt<40){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9995902180671692;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=1.0008221864700317;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9995952844619751;
- }
- if(pt>=40 && pt<50){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9993510842323303;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9998430609703064;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.0003995895385742;
- }
- if(pt>=50 && pt<60){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9998735785484314;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9997379779815674;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.001578450202942;
- }
-
- if(pt>=60){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9995099306106567;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=1.0010874271392822;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.0011582374572754;
- }
+f(pt>25.00 && pt<=30.00){
+    if(eta > 0.50 && eta <= 0.80) musf=1.00042869732; // stat 0.00293326266133 syst 0.00111093871739 
+    if(eta > -1.60 && eta <= -1.50) musf=0.998600901958; // stat 0.00375521315405 syst 0.000772649471568 
+    if(eta > 2.00 && eta <= 2.10) musf=1.00165297112; // stat 0.00352691135049 syst 0.00117896999811 
+    if(eta > -0.20 && eta <= 0.00) musf=0.994870290388; // stat 0.00338312930997 syst 0.00150867115793 
+    if(eta > -1.20 && eta <= -0.80) musf=0.998930908627; // stat 0.00243691043495 syst 0.000607763691465 
+    if(eta > -1.70 && eta <= -1.60) musf=0.998346359565; // stat 0.00392182978198 syst 0.000450598617482 
+    if(eta > 1.40 && eta <= 1.50) musf=0.996409489631; // stat 0.0042484559976 syst 0.00156376011046 
+    if(eta > -2.10 && eta <= -2.00) musf=1.00057996091; // stat 0.00427701937432 syst 0.00129305055672 
+    if(eta > 2.10 && eta <= 2.20) musf=1.00058148533; // stat 0.00462947809382 syst 0.00129125794408 
+    if(eta > -2.40 && eta <= -2.30) musf=0.998279345445; // stat 0.00435513888716 syst 0.000420431367031 
+    if(eta > 2.20 && eta <= 2.30) musf=1.00496365526; // stat 0.00371975049353 syst 0.00116627373552 
+    if(eta > -1.40 && eta <= -1.20) musf=0.999072921106; // stat 0.00326487848564 syst 0.000524785602731 
+    if(eta > 1.70 && eta <= 2.00) musf=1.00038307456; // stat 0.00205397289254 syst 0.00104560403513 
+    if(eta > 0.80 && eta <= 1.20) musf=1.00105050708; // stat 0.00247933735478 syst 0.00117850574006 
+    if(eta > 0.20 && eta <= 0.30) musf=0.99561804042; // stat 0.00479529486751 syst 0.000603155920393 
+    if(eta > -2.30 && eta <= -2.20) musf=1.00409071847; // stat 0.00374087734061 syst 0.00104899045546 
+    if(eta > 1.60 && eta <= 1.70) musf=0.998097292295; // stat 0.00381193321665 syst 0.000913936570191 
+    if(eta > -0.50 && eta <= -0.30) musf=0.996796804192; // stat 0.00349630278293 syst 0.000824558869524 
+    if(eta > -2.20 && eta <= -2.10) musf=0.996225911969; // stat 0.00351053520469 syst 0.000592348169096 
+    if(eta > 1.50 && eta <= 1.60) musf=1.00064955287; // stat 0.0039206519255 syst 0.000643055183411 
+    if(eta > -2.00 && eta <= -1.70) musf=0.999316635772; // stat 0.00196629272969 syst 0.000838264809059 
+    if(eta > -1.50 && eta <= -1.40) musf=0.998441347882; // stat 0.00405796638346 syst 0.000537493593643 
+    if(eta > -0.80 && eta <= -0.50) musf=0.999725822904; // stat 0.002838015173 syst 0.000933595766724 
+    if(eta > 0.00 && eta <= 0.20) musf=1.00075914875; // stat 0.0032756248339 syst 0.000530807057721 
+    if(eta > 2.30 && eta <= 2.40) musf=0.994827534928; // stat 0.00423797788148 syst 0.00122514192544 
+    if(eta > -0.30 && eta <= -0.20) musf=0.998452762532; // stat 0.00472875988854 syst 0.00117672231612
+if(eta > 1.20 && eta <= 1.40) musf=1.00031922743; // stat 0.00305710868093 syst 0.000888247070644 
+}
+if(pt>60.00){
+ if(eta > 0.50 && eta <= 0.80) musf=0.999986938605; // stat 0.000853297826851 syst 0.000193600155811 
+    if(eta > -1.60 && eta <= -1.50) musf=0.998943545176; // stat 0.00173796329505 syst 0.00153319552437 
+    if(eta > 2.00 && eta <= 2.10) musf=0.998048845223; // stat 0.00164708252282 syst 0.000409748653144 
+    if(eta > -0.20 && eta <= 0.00) musf=1.00018681808; // stat 0.00121065489098 syst 0.00078558402182 
+    if(eta > -1.20 && eta <= -0.80) musf=1.00023774097; // stat 0.000837789100354 syst 0.00112403480987 
+    if(eta > -1.70 && eta <= -1.60) musf=1.00030294672; // stat 0.0018346728727 syst 0.000914054311744 
+    if(eta > 1.40 && eta <= 1.50) musf=1.00031030809; // stat 0.00144557708226 syst 0.00040315554877 
+    if(eta > -2.10 && eta <= -2.00) musf=0.998368799868; // stat 0.00166855677013 syst 0.000694878079314 
+    if(eta > 2.10 && eta <= 2.20) musf=1.00203720943; // stat 0.00223989277088 syst 0.0003377952664 
+    if(eta > -2.40 && eta <= -2.30) musf=0.9972888727; // stat 0.00254582456203 syst 0.000718666752819 
+    if(eta > 2.20 && eta <= 2.30) musf=1.00104479845; // stat 0.00256289512284 syst 0.000789714187735 
+    if(eta > -1.40 && eta <= -1.20) musf=0.999024737385; // stat 0.00116098744824 syst 0.000790103580629 
+    if(eta > 1.70 && eta <= 2.00) musf=0.999301093145; // stat 0.000980566253979 syst 0.000250790849345 
+    if(eta > 0.80 && eta <= 1.20) musf=1.00045734967; // stat 0.000790540200579 syst 0.000404991998699 
+    if(eta > 0.20 && eta <= 0.30) musf=0.999419619355; // stat 0.00166092019482 syst 0.000226757477126 
+    if(eta > -2.30 && eta <= -2.20) musf=0.997963351448; // stat 0.00180358926235 syst 0.00101552911879 
+    if(eta > 1.60 && eta <= 1.70) musf=0.998460107423; // stat 0.00128613432676 syst 0.000399591790068 
+    if(eta > -0.50 && eta <= -0.30) musf=1.0002937232; // stat 0.0011878807448 syst 0.000343321745377 
+    if(eta > -2.20 && eta <= -2.10) musf=1.00207101998; // stat 0.00216857178369 syst 0.00040270093046 
+    if(eta > 1.50 && eta <= 1.60) musf=0.999069462541; // stat 0.00124291906128 syst 0.000303523510282 
+    if(eta > -2.00 && eta <= -1.70) musf=0.999391472024; // stat 0.00112291620412 syst 0.000352316836736 
+    if(eta > -1.50 && eta <= -1.40) musf=0.99959447897; // stat 0.00133660114879 syst 0.000278428261424 
+    if(eta > -0.80 && eta <= -0.50) musf=0.999289929311; // stat 0.000900391114911 syst 0.000525217402934 
+    if(eta > 0.00 && eta <= 0.20) musf=0.999279132377; // stat 0.00111406557951 syst 0.000274517716606 
+    if(eta > 2.30 && eta <= 2.40) musf=1.00068372541; // stat 0.00304035691132 syst 0.00154578719728 
+    if(eta > -0.30 && eta <= -0.20) musf=0.999574057956; // stat 0.00167479539394 syst 0.000577703245835 
+    if(eta > 0.30 && eta <= 0.50) musf=1.00057278263; // stat 0.00115864435269 syst 0.000347096718432 
+    if(eta > 1.20 && eta <= 1.40) musf=1.00116008947; // stat 0.00130743801763 syst 0.000193349494425
+}
+if(pt>30.00 && pt<=40.00){
+    if(eta > 0.50 && eta <= 0.80) musf=1.00026685759; // stat 0.000801364314054 syst 0.000195255920476 
+    if(eta > -1.60 && eta <= -1.50) musf=1.00282366237; // stat 0.00131911910748 syst 0.000864492434752 
+    if(eta > 2.00 && eta <= 2.10) musf=0.999553137985; // stat 0.0013027917555 syst 0.000360301857773 
+    if(eta > -0.20 && eta <= 0.00) musf=0.998020768034; // stat 0.00101253932179 syst 0.00012945717508 
+    if(eta > -1.20 && eta <= -0.80) musf=0.998843579556; // stat 0.000724864646397 syst 0.000219453649933 
+    if(eta > -1.70 && eta <= -1.60) musf=1.00192983554; // stat 0.00135809200639 syst 0.00299445478487 
+    if(eta > 1.40 && eta <= 1.50) musf=0.999690195097; // stat 0.00137891330705 syst 0.000616140056654 
+    if(eta > -2.10 && eta <= -2.00) musf=0.999757355218; // stat 0.00122782564532 syst 0.000337064140863 
+    if(eta > 2.10 && eta <= 2.20) musf=1.00009890494; // stat 0.00120166400453 syst 0.000484837499545 
+    if(eta > -2.40 && eta <= -2.30) musf=1.00088506045; // stat 0.00159445210354 syst 0.000494404924116 
+    if(eta > 2.20 && eta <= 2.30) musf=0.998145040104; // stat 0.00131021007037 syst 0.00026136472458 
+    if(eta > -1.40 && eta <= -1.20) musf=0.997999687069; // stat 0.000983492206267 syst 0.000130588485506 
+    if(eta > 1.70 && eta <= 2.00) musf=1.00049159862; // stat 0.000756409691695 syst 0.000280617575804 
+    if(eta > 0.80 && eta <= 1.20) musf=0.999972905153; // stat 0.000748866902298 syst 0.000216635149475 
+    if(eta > 0.20 && eta <= 0.30) musf=0.99846176596; // stat 0.00143225572428 syst 0.000456948046605 
+    if(eta > -2.30 && eta <= -2.20) musf=0.999975940898; // stat 0.00130710129575 syst 0.000285201460441 
+    if(eta > 1.60 && eta <= 1.70) musf=0.999435598044; // stat 0.0013851746488 syst 0.000318138221974 
+    if(eta > -0.50 && eta <= -0.30) musf=0.998328399003; // stat 0.00100325846177 syst 0.000352040804161 
+    if(eta > -2.20 && eta <= -2.10) musf=0.999704239815; // stat 0.0012811845104 syst 0.000143827492652 
+    if(eta > 1.50 && eta <= 1.60) musf=1.00032575236; // stat 0.0012865635122 syst 0.000567701643864 
+    if(eta > -2.00 && eta <= -1.70) musf=1.00126299161; // stat 0.000807917784617 syst 0.000582039544737 
+    if(eta > -1.50 && eta <= -1.40) musf=1.00074450843; // stat 0.00151893796108 syst 0.000395950897878 
+    if(eta > -0.80 && eta <= -0.50) musf=0.99958644003; // stat 0.000831067362169 syst 0.00024288069715 
+    if(eta > 0.00 && eta <= 0.20) musf=0.998422849562; // stat 0.000984502395816 syst 0.000269280535558 
+    if(eta > 2.30 && eta <= 2.40) musf=1.00055383834; // stat 0.00162186993463 syst 0.000587568369442 
+    if(eta > -0.30 && eta <= -0.20) musf=0.998577573844; // stat 0.00146233371206 syst 0.000177568438931 
+    if(eta > 0.30 && eta <= 0.50) musf=0.999662808211; // stat 0.000991096259802 syst 0.000227539389567 
+ if(eta > 1.20 && eta <= 1.40) musf=0.998497831054; // stat 0.000953815127991 syst 0.000499265290381 
+}
+if(pt>40.00 && pt<=50.00){
+if(eta > 0.50 && eta <= 0.80) musf=0.999382296975; // stat 0.000200572274358 syst 9.65608600305e-05 
+    if(eta > -1.60 && eta <= -1.50) musf=1.00010598225; // stat 2.20142818301e-05 syst 8.70168983816e-05 
+    if(eta > 2.00 && eta <= 2.10) musf=0.999105492016; // stat 0.000391529168981 syst 0.000193367065619 
+    if(eta > -0.20 && eta <= 0.00) musf=0.999023744877; // stat 0.00046198762297 syst 7.19821521897e-05 
+    if(eta > -1.20 && eta <= -0.80) musf=0.999071249316; // stat 0.00028100792984 syst 3.45177889127e-05 
+    if(eta > -1.70 && eta <= -1.60) musf=0.999898564845; // stat 0.000555538409339 syst 0.000249774223601 
+    if(eta > 1.40 && eta <= 1.50) musf=0.999383505195; // stat 0.00357867780894 syst 6.50075023433e-05 
+    if(eta > -2.10 && eta <= -2.00) musf=0.999904190174; // stat 0.000632479767266 syst 0.000174113579429 
+    if(eta > 2.10 && eta <= 2.20) musf=0.999785993346; // stat 0.000390160547153 syst 7.78810523662e-05 
+    if(eta > -2.40 && eta <= -2.30) musf=0.999660495892; // stat 0.000933619095287 syst 0.000235742210448 
+    if(eta > 2.20 && eta <= 2.30) musf=0.999774100637; // stat 0.000648939620493 syst 0.000473939853184 
+    if(eta > -1.40 && eta <= -1.20) musf=0.998897327957; // stat 0.000252500110638 syst 7.62533319306e-05 
+    if(eta > 1.70 && eta <= 2.00) musf=0.999560115365; // stat 0.000297449762202 syst 7.05007384378e-05 
+    if(eta > 0.80 && eta <= 1.20) musf=0.999632494093; // stat 0.000310735122778 syst 5.23444356675e-05 
+    if(eta > 0.20 && eta <= 0.30) musf=0.999730230781; // stat 0.000613059526766 syst 0.000118365702112 
+    if(eta > -2.30 && eta <= -2.20) musf=1.00063079528; // stat 0.000783662345555 syst 0.000215053621706 
+    if(eta > 1.60 && eta <= 1.70) musf=0.999474654102; // stat 0.000350466505993 syst 0.000298451684094 
+    if(eta > -0.50 && eta <= -0.30) musf=0.998951006001; // stat 0.000441879454498 syst 5.61428810521e-05 
+    if(eta > -2.20 && eta <= -2.10) musf=0.999517510267; // stat 0.000230927749078 syst 0.000166130581584 
+    if(eta > 1.50 && eta <= 1.60) musf=0.999665735474; // stat 0.000544607941736 syst 0.000130602086721 
+    if(eta > -2.00 && eta <= -1.70) musf=0.999395044471; // stat 0.000101895688792 syst 5.22232610816e-05 
+    if(eta > -1.50 && eta <= -1.40) musf=0.999662830647; // stat 0.00213208877173 syst 0.000221930611921 
+    if(eta > -0.80 && eta <= -0.50) musf=0.999300696472; // stat 0.00577445236875 syst 5.31658909187e-05 
+    if(eta > 0.00 && eta <= 0.20) musf=0.998783821716; // stat 0.000460692681013 syst 7.2079468231e-05 
+    if(eta > 2.30 && eta <= 2.40) musf=1.00048933347; // stat 0.000949125560429 syst 0.00012604243703 
+    if(eta > -0.30 && eta <= -0.20) musf=0.999330851985; // stat 0.00433974259204 syst 0.000169259372258 
+    if(eta > 0.30 && eta <= 0.50) musf=0.999387818578; // stat 0.000396011106921 syst 7.41814465367e-05 
+    if(eta > 1.20 && eta <= 1.40) musf=0.998969905219; // stat 0.000251184282033 syst 7.276866673e-05 
+}
  return musf;
 }
 
 double get_wgtlumi(string FileName){
  double wgt=1;
-
-  
+ 
+ 
    //xsec in pb
 
  // CHECKED for 2017 OK!! 
  
- if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
- if(FileName.find("DY") != std::string::npos) wgt=6077/100194597;
- if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
- if(FileName.find("_SaT_") != std::string::npos) wgt=32.70/7623000; 
- if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
- if(FileName.find("WZ") != std::string::npos) wgt=47.13/3885000; 
- if(FileName.find("ZZ") != std::string::npos) wgt=16.532/1979000;
- if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/28084244;
- if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1687.95/29521158;
- if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=493.559/25468933;
- if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.55/5932701; 
- if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.57/19771294; 
- if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49/8402687; 
- if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.30/7633949;
- if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968/3273980;
- if(FileName.find("WJets_") != std::string::npos) wgt=64057.4/71026861;
- 
+  if(FileName.find("TT") != std::string::npos) wgt=730.6/76915549;
+ if(FileName.find("DY") != std::string::npos) wgt=6077./146280395;
+ if(FileName.find("_ST_") != std::string::npos)  wgt=35.61/6952830;
+ if(FileName.find("_SaT_") != std::string::npos) wgt=35.59/6933094;
+ if(FileName.find("WW") != std::string::npos) wgt=118.7/7982180;
+ if(FileName.find("WZ") != std::string::npos) wgt=47.13/3997571;
+ if(FileName.find("ZZ") != std::string::npos) wgt=16.523/1988098;
+ if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/10020533;
+ if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1628.66/78043017;
+ if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=435.721/38984322;
+ if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=59.048/7759701;
+ if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.6047/18687480;
+ if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.65137/7830536;
+ if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.60809/6806162;
+ if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.0388389/1398006;
+ if(FileName.find("WJets_") != std::string::npos) wgt=60814.6/86916455;
  //muons
  
- if((FileName.find("mumujj_17_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("mumujj_17_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("mumujj_17_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("mumujj_17_L13_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
- if((FileName.find("mumujj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
-
+ if((FileName.find("mumujj_16_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("mumujj_16_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("mumujj_16_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("mumujj_16_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
+ if((FileName.find("mumujj_16_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
  //electrons
  
- if((FileName.find("eejj_17_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("eejj_17_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("eejj_17_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("eejj_17_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
- if((FileName.find("eejj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
- 
+  if((FileName.find("eejj_16_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("eejj_16_L13_M1000") != std::string::npos)) wgt=2.8140e-03/96800;
+ if((FileName.find("eejj_16_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("eejj_16_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
+ if((FileName.find("eejj_16_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91273;
+
   
 
  return wgt;

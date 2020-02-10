@@ -1,7 +1,6 @@
 /**
 This Macro
 1. Prepares the rootplas to be used in the analysis, reading as input the nutplas 
-
 Need to specify
 0. See Declare constants
 1. The branches you want to handle. According to the analysis needs, one may want to handle 3 types of branches for reading and/or saving the variables
@@ -111,6 +110,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
   //int rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL; rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL = 0; TBranch* b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL = 0; readingtree->SetBranchAddress("HLT_DoubleEle33_CaloIdL_GsfTrkIdVL",&rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL,&b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL);
   int rHLT_Ele115_CaloIdVT_GsfTrkIdT; rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; TBranch* b_rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; readingtree->SetBranchAddress("HLT_Ele115_CaloIdVT_GsfTrkIdT",&rHLT_Ele115_CaloIdVT_GsfTrkIdT,&b_rHLT_Ele115_CaloIdVT_GsfTrkIdT);
   int rHLT_Mu50; rHLT_Mu50 = 0; TBranch* b_rHLT_Mu50 = 0; readingtree->SetBranchAddress("HLT_Mu50",&rHLT_Mu50,&b_rHLT_Mu50);
+  int rHLT_TkMu50; rHLT_TkMu50 = 0; TBranch* b_rHLT_TkMu50 = 0; readingtree->SetBranchAddress("HLT_TkMu50",&rHLT_TkMu50,&b_rHLT_TkMu50);
+  int rHLT_OldMu100; rHLT_OldMu100 = 0; TBranch* b_rHLT_OldMu100 = 0; readingtree->SetBranchAddress("HLT_OldMu100",&rHLT_OldMu100,&b_rHLT_OldMu100);
+  int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
 
   //PU
   double rPUWeight; rPUWeight = 0; TBranch* b_rPUWeight = 0; readingtree->SetBranchAddress("PUWeight",&rPUWeight,&b_rPUWeight);
@@ -289,6 +291,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
   //int HLT_DoubleEle33_CaloIdL_GsfTrkIdVL; newtree->Branch("HLT_DoubleEle33_CaloIdL_GsfTrkIdVL",&HLT_DoubleEle33_CaloIdL_GsfTrkIdVL);
   int HLT_Ele115_CaloIdVT_GsfTrkIdT; newtree->Branch("HLT_Ele115_CaloIdVT_GsfTrkIdT",&HLT_Ele115_CaloIdVT_GsfTrkIdT);
    int HLT_Mu50; newtree->Branch("HLT_Mu50",&HLT_Mu50);
+   int HLT_TkMu50; newtree->Branch("HLT_TkMu50",&HLT_TkMu50);
+   int HLT_OldMu100; newtree->Branch("HLT_OldMu100",&HLT_OldMu100);
+   int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
 
    //Muons:
    vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
@@ -561,6 +566,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
     //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
     b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
     b_rHLT_Mu50->GetEntry(en);
+    b_rHLT_TkMu50->GetEntry(en);
+    b_rHLT_OldMu100->GetEntry(en);
+    b_rHLT_TkMu100->GetEntry(en);
     
     //PU:
     b_rPUWeight->GetEntry(en);
@@ -796,6 +804,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
     //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = -999;
     HLT_Ele115_CaloIdVT_GsfTrkIdT = -999;
     HLT_Mu50 = -999;
+    HLT_TkMu50 = -999;
+    HLT_TkMu100 = -999;
+    HLT_OldMu100 = -999;
 
     PUWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999;
     Met_type1PF_pt = -999; Met_type1PF_phi = -999; Met_type1PF_px = -999; Met_type1PF_py = -999;
@@ -845,7 +856,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
    //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL;
    HLT_Ele115_CaloIdVT_GsfTrkIdT = rHLT_Ele115_CaloIdVT_GsfTrkIdT;
    HLT_Mu50 = rHLT_Mu50;
- 
+   HLT_TkMu50 = rHLT_TkMu50;
+   HLT_OldMu100 = rHLT_OldMu100;
+   HLT_TkMu100 = rHLT_TkMu100; 
 
     PUWeight = rPUWeight;
     trueInteractions = rtrueInteractions;
@@ -977,7 +990,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
       QCD_wgt_evt = (QCD_wgt_ele1/(1-QCD_wgt_ele1))*(QCD_wgt_ele2/(1-QCD_wgt_ele2));
      }
   
-     if(HLT_Mu50==1 && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfBoostedJets>=1){
+     if((HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfBoostedJets>=1){
       QCDmu=1;
       Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
       Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1), Muon_energy->at(1));
@@ -1004,7 +1017,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
       QCD_wgt_evt = (QCD_wgt_ele1/(1-QCD_wgt_ele1))*(QCD_wgt_mu1/(1-QCD_wgt_mu1));
      }
 
-     if(HLT_Mu50==1 && numOfFakeMu==1 && Muon_pt->at(0)>53 && numOfFakeEle==1 && patElectron_pt->at(0)>35 && numOfBoostedJets>=1){
+     if((HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfFakeMu==1 && Muon_pt->at(0)>53 && numOfFakeEle==1 && patElectron_pt->at(0)>35 && numOfBoostedJets>=1){
       QCDmue=1;
       Ele1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0), patElectron_energy->at(0));
       Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
@@ -1157,73 +1170,145 @@ double Wgt_QCDmu(double eta, double pt){
  return wgt;
 }
 
-
-double elesf(double eta){
- double elesf=0;
- if(fabs(eta)<1.5) elesf=0.990;
- else elesf=0.988;
+//following scale factors are copied from 2017 standard rootplizer 
+double elesf(double eta, double pt){
+//Electorn Sf for HEEPv7.0 taken from https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgammaRunIIRecommendations
+  double elesf=0;
+  //Barrel (EB)
+ if(fabs(eta) < 1.4442) elesf = 0.967; // stat 0.001
+  //Endcap (EE)
+ if(fabs(eta) >= 1.566 && fabs(eta) < 2.5)elesf = 0.973; // stat 0.002
  return elesf;
+ 
+//syst err:
+//  - barrel:
+//      1% for pT < 90 GeV
+//      1-3% linearly increasing for 90 GeV < pT < 1 TeV
+//      3% for pT > 1 TeV
+//  - endcap:
+//      2% for pT < 90 GeV
+//      2-5% linearly increasing for 90 GeV < pT < 300 GeV
+//      5% for pT > 300 GeV 
+//uncertainty: EB ET < 90 GeV: 1% else min(1+(ET-90)*0.0022)%,3%)
+//uncertainty: EE ET < 90 GeV: 1% else min(1+(ET-90)*0.0143)%,4%)
+     
 }
+
 double musf_trigger(double eta, double pt){
  double musf=0;
- if(pt<60){
-  if(fabs(eta)>=0.0 && fabs(eta)<0.9) musf=0.965465784072876;//0.9636659622192383;
-  if(fabs(eta)>=0.9 && fabs(eta)<1.2) musf=0.9533324837684631;//1.0442723035812378;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9568167924880981;//0.9711147546768188;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.8902276754379272;//1.0089114904403687;
- }
- if(pt>=60){
-  if(fabs(eta)>=0.0 && fabs(eta)<0.9) musf=0.9708314538002014;//0.9502088427543640;
-  if(fabs(eta)>=0.9 && fabs(eta)<1.2) musf=0.9528126120567322;//0.9564832448959351;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9712236523628235;//0.9529600739479065;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9417219758033752;//1.0511752367019653;
- }
- return musf;
+ // http://kplee.web.cern.ch/kplee/TagProbe/94X/v20180202_MergingHighPtBins/theJSONfile_RunBtoF_Nov17Nov2017.json
+ // Mu50_PtEtaBins
+ if(fabs(eta)>0.0 && fabs(eta)<=0.9){
+    if(pt > 52.0 && pt <= 55.0) musf=0.930254399776; // error 0.000330124915315 
+    if(pt > 60.0 && pt <= 120.0) musf=0.932169437408; // error 0.000349414043717 
+    if(pt > 120.0 && pt <= 200.0) musf=0.918701291084; // error 0.00161017738781 
+    if(pt > 55.0 && pt <= 60.0) musf=0.93343102932; // error 0.000360247785511 
+    if(pt > 200.0) musf=0.901651918888; // error 0.00303590818204 
 }
+if(fabs(eta)>1.2 && fabs(eta)<=2.1){
+    if(pt > 52.0 && pt <= 55.0) musf=0.836993277073; // error 0.000539421181353 
+    if(pt > 60.0 && pt <= 120.0) musf=0.889756679535; // error 0.000491026685425 
+    if(pt > 120.0 && pt <= 200.0) musf=0.888548195362; // error 0.00252479512055 
+    if(pt > 55.0 && pt <= 60.0) musf=0.873748421669; // error 0.000541756233235 
+    if(pt > 200.0) musf=0.881914794445; // error 0.0044963808387 
+}
+if(fabs(eta)>2.1 && fabs(eta)<=2.4){
+    if(pt > 52.0 && pt <= 55.0) musf=0.620357394218; // error 0.00156402904679 
+    if(pt > 60.0 && pt <= 120.0) musf=0.778689265251; // error 0.001623178653 
+    if(pt > 120.0 && pt <= 200.0) musf=0.801188826561; // error 0.00851593420778 
+    if(pt > 55.0 && pt <= 60.0) musf=0.716204881668; // error 0.00162560470264 
+    if(pt > 200.0) musf=0.782012581825; // error 0.0166533859589 
+}
+if(fabs(eta)>0.9 && fabs(eta)<=1.2){
+    if(pt > 52.0 && pt <= 55.0) musf=0.902984380722; // error 0.000677800931418 
+    if(pt > 60.0 && pt <= 120.0) musf=0.908429205418; // error 0.000718611547243 
+    if(pt > 120.0 && pt <= 200.0) musf=0.888775646687; // error 0.00311341546544 
+    if(pt > 55.0 && pt <= 60.0) musf=0.911294996738; // error 0.000730821277856 
+    if(pt > 200.0) musf=0.864663362503; // error 0.00624873485522 
+}
+return musf;
+}
+
 double musf_ID(double eta, double pt){
  double musf=0;
- if(pt<80){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.985720157623291;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9935390949249268;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9843316674232483;
- }
- if(pt>=80 && pt<140){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.990919828414917;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=1.001926302909851;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9332278370857239;
- }
- if(pt>=140){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9570706486701965;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9942596554756165;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.0;
- }
+ // https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ID.json
+ //  NUM_LooseID_DEN_genTracks
+ if(fabs(eta)>1.20 && fabs(eta)<=2.10){
+    if(pt > 20.00 && pt <= 25.00) musf=0.999909632675; // error 0.00201941206842 
+    if(pt > 50.00 && pt <= 60.00) musf=0.9980997518; // error 0.000684185701747 
+    if(pt > 25.00 && pt <= 30.00) musf=0.996435081688; // error 0.000879932653418 
+    if(pt > 60.00) musf=0.999389952862; // error 0.00136819343082 
+    if(pt > 30.00 && pt <= 40.00) musf=1.00087087236; // error 0.000286136383372 
+    if(pt > 40.00 && pt <= 50.00) musf=0.999715034719; // error 0.000199364593376 
+}
+if(fabs(eta)>2.10 && fabs(eta)<=2.40){
+    if(pt > 20.00 && pt <= 25.00) musf=0.994467640194; // error 0.00413363147597 
+    if(pt > 50.00 && pt <= 60.00) musf=0.994452508579; // error 0.00271974284964 
+    if(pt > 25.00 && pt <= 30.00) musf=0.992795879929; // error 0.00270694416175 
+    if(pt > 60.00) musf=0.998280825416; // error 0.00540182723314 
+    if(pt > 30.00 && pt <= 40.00) musf=0.994299301303; // error 0.000644567496949 
+    if(pt > 40.00 && pt <= 50.00) musf=0.995255789039; // error 0.00353405564813 
+}
+if(fabs(eta)>0.90 && fabs(eta)<=1.20){
+    if(pt > 20.00 && pt <= 25.00) musf=1.0021513273; // error 0.00124006226804 
+    if(pt > 50.00 && pt <= 60.00) musf=0.998273907575; // error 0.000949093543421 
+    if(pt > 25.00 && pt <= 30.00) musf=0.999742612926; // error 0.00233891455747 
+    if(pt > 60.00) musf=0.999236708166; // error 0.00232070890495 
+    if(pt > 30.00 && pt <= 40.00) musf=1.00191251092; // error 0.00039300639211 
+    if(pt > 40.00 && pt <= 50.00) musf=0.999689283029; // error 0.000251692108199 
+}
+if(fabs(eta)>0.00 && fabs(eta)<=0.90){
+    if(pt > 20.00 && pt <= 25.00) musf=0.998018670374; // error 0.00270148462107 
+    if(pt > 50.00 && pt <= 60.00) musf=0.998013142164; // error 0.000647440120925 
+    if(pt > 25.00 && pt <= 30.00) musf=0.99719721481; // error 0.00100079520242 
+    if(pt > 60.00) musf=1.00029091021; // error 0.000769284842631 
+    if(pt > 30.00 && pt <= 40.00) musf=1.00251468244; // error 0.000930597568193 
+    if(pt > 40.00 && pt <= 50.00) musf=1.00025688345; // error 0.000108737924741 
+}
+   
  return musf;
 }
+
 double musf_iso(double eta, double pt){
  double musf=0;
- if(pt<40){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9995902180671692;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=1.0008221864700317;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9995952844619751;
- }
- if(pt>=40 && pt<50){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9993510842323303;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9998430609703064;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.0003995895385742;
- }
- if(pt>=50 && pt<60){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9998735785484314;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9997379779815674;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.001578450202942;
- }
-
- if(pt>=60){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9995099306106567;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=1.0010874271392822;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.0011582374572754;
- }
+  // https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ISO.json
+  // NUM_LooseRelIso_DEN_LooseID
+ if(fabs(eta)>1.20 && fabs(eta)<=2.10){
+    if(pt > 20.00 && pt <= 25.00) musf=0.996818092334; // error 0.00164522935401 
+    if(pt > 50.00 && pt <= 60.00) musf=0.999785897107; // error 0.000238330309768 
+    if(pt > 25.00 && pt <= 30.00) musf=0.999027463031; // error 0.000927064171744 
+    if(pt > 60.00) musf=1.00042884607; // error 0.000527621298126 
+    if(pt > 30.00 && pt <= 40.00) musf=0.998857270926; // error 0.000282025383998 
+    if(pt > 40.00 && pt <= 50.00) musf=0.999358772799; // error 8.83043628539e-05 
+}
+if(fabs(eta)>2.10 && fabs(eta)<=2.40){
+    if(pt > 20.00 && pt <= 25.00) musf=0.997637930705; // error 0.0021762146285 
+    if(pt > 50.00 && pt <= 60.00) musf=1.00000739502; // error 0.00051569025142 
+    if(pt > 25.00 && pt <= 30.00) musf=0.999041108554; // error 0.00121077117093 
+    if(pt > 60.00) musf=0.999185175032; // error 0.000869085318614 
+    if(pt > 30.00 && pt <= 40.00) musf=0.998931511711; // error 0.00038714089077 
+    if(pt > 40.00 && pt <= 50.00) musf=0.999656907198; // error 0.00049408249872 
+}
+if(fabs(eta)>0.90 && fabs(eta)<=1.20){
+    if(pt > 20.00 && pt <= 25.00) musf=0.994565683675; // error 0.0040293760821 
+    if(pt > 50.00 && pt <= 60.00) musf=0.999415455351; // error 0.000435196999386 
+    if(pt > 25.00 && pt <= 30.00) musf=0.993159025857; // error 0.00203211183661 
+    if(pt > 60.00) musf=1.00018891743; // error 0.000685649929385 
+    if(pt > 30.00 && pt <= 40.00) musf=0.997442209969; // error 0.000526269074224 
+    if(pt > 40.00 && pt <= 50.00) musf=0.998804834864; // error 0.000153625579481 
+}
+if(fabs(eta)>0.00 && fabs(eta)<=0.90){
+    if(pt > 20.00 && pt <= 25.00) musf=0.992595371452; // error 0.00237293692765 
+    if(pt > 50.00 && pt <= 60.00) musf=0.999640008118; // error 0.00022379467891 
+    if(pt > 25.00 && pt <= 30.00) musf=0.996364229898; // error 0.00110154902027 
+    if(pt > 60.00) musf=1.0000774755; // error 0.000352734665191 
+    if(pt > 30.00 && pt <= 40.00) musf=0.99831176374; // error 0.000281739663164 
+    if(pt > 40.00 && pt <= 50.00) musf=0.999363610713; // error 9.26629482832e-05 
+}
+  
  return musf;
 }
+
 
 double get_wgtlumi(string FileName){
  double wgt=1;
@@ -1270,4 +1355,3 @@ double get_wgtlumi(string FileName){
 
  return wgt;
  }
-

@@ -468,7 +468,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
     b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
     b_rHLT_Mu50->GetEntry(en);
-    
+    b_rHLT_TkMu50->GetEntry(en);   
+    b_rHLT_OldMu100->GetEntry(en);
+    b_rHLT_TkMu100->GetEntry(en);
+
     //PU:
     b_rPUWeight->GetEntry(en);
     b_rnBestVtx->GetEntry(en);
@@ -1213,10 +1216,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
    if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1 && M_leplep>300) SRe=1;
    if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt->at(0)>130 && numOfHighptMu==1 &&  Muon_pt->at(0)>35 && numOfBoostedJets>=1 && M_leplep>300) TRe=1;
-   if(HLT_Mu50==1 && HLT_OldMu100==1 && HLT_TkMu50==1 && HLT_TkMu100==1 && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
-   if(HLT_Mu50==1 && HLT_OldMu100==1 && HLT_TkMu50==1 && HLT_TkMu100==1 && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
    if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1) DYRe=1;
-   if(HLT_Mu50==1 && HLT_OldMu100==1 && HLT_TkMu50==1 && HLT_TkMu100==1 && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
 
 
    newtree->Fill();    
@@ -1267,8 +1270,8 @@ double deltaPhi(double phi1, double phi2) {
 }
 
 double CalculatePileupWeight(int trueInteractions){
- double data[] =  {5.64297e-05,0.000269623,0.000382956,0.000552844,0.000979931,0.00231634,0.0072801,0.0281133,0.0770196,0.130953,0.169536,0.182158,0.161879,0.116249,0.067104,0.0316937,0.0130125,0.00540404,0.00265731,0.00140593,0.000649204,0.000236783,6.7861e-05,1.63211e-05,3.82396e-06,1.03356e-06,3.33506e-07,1.1967e-07,4.49699e-08,1.70463e-08,6.34643e-09,2.28001e-09,7.82427e-10,2.55149e-10,7.88717e-11,2.30861e-11,6.39564e-12,1.67664e-12,4.15902e-13,9.76172e-14,2.16793e-14,4.55562e-15,9.05813e-16,1.70419e-16,3.03394e-17,5.11017e-18,8.14821e-19,1.20894e-19,2.20432e-20,0,0};
- double mc[] = {0.000108643,0.000388957,0.000332882,0.00038397,0.000549167,0.00105412,0.00459007,0.0210314,0.0573688,0.103986,0.142369,0.157729,0.147685,0.121027,0.08855,0.0582866,0.0348526,0.019457,0.0107907,0.00654313,0.00463195,0.00370927,0.0031137,0.00261141,0.00215499,0.00174491,0.00138268,0.00106731,0.000798828,0.00057785,0.00040336,0.00027161,0.000176535,0.00011092,6.75502e-05,4.00323e-05,2.32123e-05,1.32585e-05,7.51611e-06,4.25902e-06,2.42513e-06,1.39077e-06,8.02452e-07,4.64159e-07,2.67845e-07,1.5344e-07,8.68966e-08,4.84931e-08,2.6606e-08,1.433e-08};
+ double data[] = {0.0 , 4.54817e-06 , 1.60102e-05 , 5.08879e-05 , 0.000114334 , 0.00020352 , 0.000317199 , 0.000468826 , 0.000682597 , 0.000966475 , 0.00134475 , 0.00188372 , 0.00264841 , 0.00369112 , 0.00504992 , 0.00675607 , 0.00884038 , 0.0113177 , 0.0141623 , 0.0172854 , 0.020527 , 0.0236734 , 0.0265085 , 0.0288834 , 0.0307635 , 0.0322212 , 0.0333835 , 0.0343773 , 0.0352956 , 0.0361851 , 0.0370513 , 0.0378689 , 0.0385948 , 0.039178 , 0.0395641 , 0.0396939 , 0.0395048 , 0.0389325 , 0.03792 , 0.0364284 , 0.034449 , 0.0320118 , 0.0291868 , 0.0260783 , 0.0228141 , 0.0195302 , 0.0163566 , 0.0134033 , 0.0107519 , 0.00845093 , 0.00651653 , 0.00493762 , 0.00368313 , 0.00271016 , 0.00197126 , 0.00142003 , 0.00101475 , 0.000720193 , 0.000507976 , 0.000356101 , 0.000247998 , 0.000171439 , 0.000117518 , 7.97901e-05 , 5.36043e-05 , 3.56038e-05 , 2.33662e-05 , 1.51476e-05 , 9.69945e-06 , 6.13591e-06 , 3.83617e-06 , 2.3714e-06 , 1.45016e-06 , 8.77675e-07 , 5.25911e-07 , 3.12064e-07 , 1.83377e-07 , 1.06696e-07 , 6.14494e-08 , 3.5015e-08 , 1.97293e-08 , 1.09854e-08 , 6.04058e-09 , 3.27806e-09 , 1.7545e-09 , 9.25626e-10 , 4.81087e-10 , 2.46212e-10 , 1.24024e-10 , 6.14672e-11 , 2.99629e-11 , 1.43615e-11 , 6.76687e-12 , 3.13368e-12 , 1.42603e-12 , 6.37614e-13 , 2.80107e-13 , 1.20911e-13 , 5.13038e-14 , 2.14199e-14}; 
+ double mc[] = {0.00056178559316322207, 0.0007578881923109293, 0.00089840730652213097, 0.0010038191685453057, 0.0011915955692529678, 0.0016831225948408246, 0.0027497191913425922, 0.0045576253905892372, 0.0069810771383345127, 0.0095816180109977722, 0.011853505857288837, 0.013561941683292389, 0.014868909493088722, 0.016164621338248253, 0.017800241708755493, 0.019943427294492722, 0.022553266957402229, 0.02537936344742775, 0.027978429570794106, 0.029862202703952789, 0.030737783759832382, 0.030647184699773788, 0.029888983815908432, 0.028840301558375359, 0.027826078236103058, 0.027054192498326302, 0.026599425822496414, 0.02642328292131424, 0.026400813832879066, 0.026344424113631248, 0.026030091568827629, 0.025283832103013992, 0.024102954193949699, 0.022694429382681847, 0.021359216421842575, 0.020321305841207504, 0.019643651321530342, 0.019244605675339699, 0.018951877951622009, 0.018589355051517487, 0.018086889758706093, 0.017514361068606377, 0.016997335478663445, 0.01660793274641037, 0.016348866745829582, 0.016209937632083893, 0.016200525686144829, 0.016327474266290665, 0.016558451578021049, 0.016807874664664268, 0.016936073079705238, 0.016756467521190643, 0.01605769619345665, 0.014654850587248802, 0.012486033141613007, 0.0097413137555122375, 0.0068911332637071609, 0.0044789197854697704, 0.0028035130817443132, 0.0017981450073421001, 0.0011986247263848782, 0.00078225688776001334, 0.00046188471606001258, 0.0002335387107450515, 9.8074830020777881e-05, 3.36361990775913e-05, 9.325763130618725e-06, 2.0754421257151989e-06, 3.6864730645902455e-07, 5.1980304505150343e-08, 5.7291127397718355e-09, 4.2278064382728076e-10, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; 
  double puw;
  puw=data[trueInteractions]/mc[trueInteractions];
  return puw;
@@ -1278,46 +1281,6 @@ double CalculatePileupWeight(int trueInteractions){
 
 double elesf(double eta, double pt){
  double elesf=0;
-/* if (pt >= 10 && pt < 20){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=0.974953;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=0.971215;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=1.0307; 
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=1.25678;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=0.983351;
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=1.01998;    
- }
- if (pt >= 20 && pt < 45){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=0.98968;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=0.99177;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=0.987525;   
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=0.986095;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=0.986639;  
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=0.986556;
- }
- if (pt >= 45 && pt < 75){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=0.989754;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=0.989775;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=0.989691;
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=0.9867672;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=0.988764;
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=0.98768;
- }
- if (pt >= 75 && pt < 100){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=1.00305;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=1.00815;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=1.00818;
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=1.04381;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=1.01837;
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=1.00206;
- }
- if (pt >= 100){
-  if (fabs(eta) >= 0. && fabs(eta) < 0.5) elesf=1.00304;
-  if (fabs(eta) >= 0.5 && fabs(eta) < 1.) elesf=1.0061;
-  if (fabs(eta) >=1 && fabs(eta) < 1.442) elesf=1.00718;
-  if (fabs(eta) >=1.442 && fabs(eta) < 1.566) elesf=1.03668;
-  if (fabs(eta) >=1.566 && fabs(eta) < 2.) elesf=0.997967;
-  if (fabs(eta) >=2. && fabs(eta) < 2.5) elesf=0.983673;
- }*/
  if(fabs(eta) < 1.4442) elesf = 0.989; // stat 0.001 // syst 0.014
  if(fabs(eta) >= 1.566 && fabs(eta) < 2.5)elesf = 0.982; // stat 0.001 syst 0.014
 
@@ -1450,21 +1413,21 @@ double get_wgtlumi(string FileName){
  // CHECKED OK!! 
  
  if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
- if(FileName.find("DY") != std::string::npos) wgt=6225.42/100194597;
- if(FileName.find("_ST_") != std::string::npos)  wgt=34.91/9598000; 
- if(FileName.find("_SaT_") != std::string::npos) wgt=34.97/7623000; 
- if(FileName.find("WW") != std::string::npos) wgt=75.7/7850000; 
- if(FileName.find("WZ") != std::string::npos) wgt=27.6/3885000; 
- if(FileName.find("ZZ") != std::string::npos) wgt=12.14/1979000;
- if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1292.0/28084244;
- if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1346.0/29521158;
- if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=407.9/25468933;
- if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=57.48/5932701; 
- if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=12.87/19771294; 
- if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=5.366/8402687; 
- if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.074/7633949;
- if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.008001/3273980;
- if(FileName.find("WJets_") != std::string::npos) wgt=52940.0/71026861;
+ if(FileName.find("DY") != std::string::npos) wgt=6077./100194597;
+ if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
+ if(FileName.find("_SaT_") != std::string::npos) wgt=32.7/7623000; 
+ if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
+ if(FileName.find("WZ") != std::string::npos) wgt=47.13/3885000; 
+ if(FileName.find("ZZ") != std::string::npos) wgt=16.523/1979000;
+ if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1563.32/28084244;
+ if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1628.66/29521158;
+ if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=493.559/25468933;
+ if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.5508/5932701; 
+ if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.5727/19771294; 
+ if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49286/8402687; 
+ if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.29954/7633949;
+ if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968121/3273980;
+ if(FileName.find("WJets_") != std::string::npos) wgt=63948.5/71026861;
  
  //muons
  

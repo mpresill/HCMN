@@ -1,7 +1,6 @@
 /**
 This Macro
 1. Prepares the rootplas to be used in the analysis, reading as input the nutplas 
-
 Need to specify
 0. See Declare constants
 1. The branches you want to handle. According to the analysis needs, one may want to handle 3 types of branches for reading and/or saving the variables
@@ -111,6 +110,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
   //int rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL; rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL = 0; TBranch* b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL = 0; readingtree->SetBranchAddress("HLT_DoubleEle33_CaloIdL_GsfTrkIdVL",&rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL,&b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL);
   int rHLT_Ele115_CaloIdVT_GsfTrkIdT; rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; TBranch* b_rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; readingtree->SetBranchAddress("HLT_Ele115_CaloIdVT_GsfTrkIdT",&rHLT_Ele115_CaloIdVT_GsfTrkIdT,&b_rHLT_Ele115_CaloIdVT_GsfTrkIdT);
   int rHLT_Mu50; rHLT_Mu50 = 0; TBranch* b_rHLT_Mu50 = 0; readingtree->SetBranchAddress("HLT_Mu50",&rHLT_Mu50,&b_rHLT_Mu50);
+  int rHLT_TkMu50; rHLT_TkMu50 = 0; TBranch* b_rHLT_TkMu50 = 0; readingtree->SetBranchAddress("HLT_TkMu50",&rHLT_TkMu50,&b_rHLT_TkMu50);
+  int rHLT_OldMu100; rHLT_OldMu100 = 0; TBranch* b_rHLT_OldMu100 = 0; readingtree->SetBranchAddress("HLT_OldMu100",&rHLT_OldMu100,&b_rHLT_OldMu100);
+  int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
 
   //PU
   double rPUWeight; rPUWeight = 0; TBranch* b_rPUWeight = 0; readingtree->SetBranchAddress("PUWeight",&rPUWeight,&b_rPUWeight);
@@ -289,6 +291,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
   //int HLT_DoubleEle33_CaloIdL_GsfTrkIdVL; newtree->Branch("HLT_DoubleEle33_CaloIdL_GsfTrkIdVL",&HLT_DoubleEle33_CaloIdL_GsfTrkIdVL);
   int HLT_Ele115_CaloIdVT_GsfTrkIdT; newtree->Branch("HLT_Ele115_CaloIdVT_GsfTrkIdT",&HLT_Ele115_CaloIdVT_GsfTrkIdT);
    int HLT_Mu50; newtree->Branch("HLT_Mu50",&HLT_Mu50);
+   int HLT_TkMu50; newtree->Branch("HLT_TkMu50",&HLT_TkMu50);
+   int HLT_OldMu100; newtree->Branch("HLT_OldMu100",&HLT_OldMu100);
+   int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
 
    //Muons:
    vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
@@ -561,7 +566,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
     //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
     b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
     b_rHLT_Mu50->GetEntry(en);
-    
+    b_rHLT_TkMu50->GetEntry(en); 
+    b_rHLT_OldMu100->GetEntry(en);
+    b_rHLT_TkMu100->GetEntry(en);    
     //PU:
     b_rPUWeight->GetEntry(en);
     b_rnBestVtx->GetEntry(en);
@@ -796,6 +803,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
     //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = -999;
     HLT_Ele115_CaloIdVT_GsfTrkIdT = -999;
     HLT_Mu50 = -999;
+    HLT_TkMu50 = -999;
+    HLT_TkMu100 = -999;
+    HLT_OldMu100 = -999;
 
     PUWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999;
     Met_type1PF_pt = -999; Met_type1PF_phi = -999; Met_type1PF_px = -999; Met_type1PF_py = -999;
@@ -845,7 +855,9 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
    //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL;
    HLT_Ele115_CaloIdVT_GsfTrkIdT = rHLT_Ele115_CaloIdVT_GsfTrkIdT;
    HLT_Mu50 = rHLT_Mu50;
- 
+   HLT_TkMu50 = rHLT_TkMu50;
+   HLT_OldMu100 = rHLT_OldMu100;
+   HLT_TkMu100 = rHLT_TkMu100; 
 
     PUWeight = rPUWeight;
     trueInteractions = rtrueInteractions;
@@ -977,7 +989,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
       QCD_wgt_evt = (QCD_wgt_ele1/(1-QCD_wgt_ele1))*(QCD_wgt_ele2/(1-QCD_wgt_ele2));
      }
   
-     if(HLT_Mu50==1 && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfBoostedJets>=1){
+     if((HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfBoostedJets>=1){
       QCDmu=1;
       Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
       Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1), Muon_energy->at(1));
@@ -1004,7 +1016,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
       QCD_wgt_evt = (QCD_wgt_ele1/(1-QCD_wgt_ele1))*(QCD_wgt_mu1/(1-QCD_wgt_mu1));
      }
 
-     if(HLT_Mu50==1 && numOfFakeMu==1 && Muon_pt->at(0)>53 && numOfFakeEle==1 && patElectron_pt->at(0)>35 && numOfBoostedJets>=1){
+     if((HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfFakeMu==1 && Muon_pt->at(0)>53 && numOfFakeEle==1 && patElectron_pt->at(0)>35 && numOfBoostedJets>=1){
       QCDmue=1;
       Ele1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0), patElectron_energy->at(0));
       Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
@@ -1160,68 +1172,119 @@ double Wgt_QCDmu(double eta, double pt){
 
 double elesf(double eta){
  double elesf=0;
- if(fabs(eta)<1.5) elesf=0.990;
- else elesf=0.988;
+  if(fabs(eta) < 1.4442) elesf = 0.989; // stat 0.001 // syst 0.014
+ if(fabs(eta) >= 1.566 && fabs(eta) < 2.5)elesf = 0.982; // stat 0.001 syst 0.014
  return elesf;
 }
 double musf_trigger(double eta, double pt){
  double musf=0;
- if(pt<60){
-  if(fabs(eta)>=0.0 && fabs(eta)<0.9) musf=0.965465784072876;//0.9636659622192383;
-  if(fabs(eta)>=0.9 && fabs(eta)<1.2) musf=0.9533324837684631;//1.0442723035812378;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9568167924880981;//0.9711147546768188;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.8902276754379272;//1.0089114904403687;
+ if (fabs(eta) >= 0.0 && fabs(eta)<0.9){
+  if(pt > 52. && pt <= 56) musf = 0.9385219812393188; //stat 0.0002566604294316861 
+  if(pt > 56. && pt <= 60) musf = 0.938785195350647; // stat 0.0003512045613493856
+  if(pt > 60. && pt <= 120) musf = 0.9373190402984619; // stat 0.00031808216113278883
+  if(pt > 120 && pt <= 200) musf = 0.9289411902427673; // stat 0.0014673600305817596
+  if(pt > 200 && pt <= 300) musf = 0.9162033796310425; // stat 0.0028656970513730017
+  if(pt > 300) musf = 0.8930183053016663; // stat 0.007617952889111469
  }
- if(pt>=60){
-  if(fabs(eta)>=0.0 && fabs(eta)<0.9) musf=0.9708314538002014;//0.9502088427543640;
-  if(fabs(eta)>=0.9 && fabs(eta)<1.2) musf=0.9528126120567322;//0.9564832448959351;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9712236523628235;//0.9529600739479065;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9417219758033752;//1.0511752367019653;
+ if (fabs(eta) >= 0.9 && fabs(eta)<1.2){
+  if(pt > 52. && pt <= 56) musf = 0.9429171681404114; //stat 0.0004323455043906205 
+  if(pt > 56. && pt <= 60) musf = 0.944566011428833; // stat 0.0006453209717745792
+  if(pt > 60. && pt <= 120) musf = 0.9416107535362244; // stat 0.0004590463319092091
+  if(pt > 120 && pt <= 200) musf = 0.9340407252311707; // stat 0.0019242274872617194
+  if(pt > 200 && pt <= 300) musf = 0.9116483330726624; // stat 0.004974297248567905
+  if(pt > 300) musf = 0.8819695115089417; // stat 0.01840147234943961
  }
+ if (fabs(eta) >= 1.2 && fabs(eta)<2.1){
+  if(pt > 52. && pt <= 56) musf = 0.9153958559036255; //stat 0.0003371717180362242  
+  if(pt > 56. && pt <= 60) musf = 0.9197514057159424; // stat 0.0004579121798908698
+  if(pt > 60. && pt <= 120) musf = 0.9216225147247314; // stat 0.000365347265978311
+  if(pt > 120 && pt <= 200) musf = 0.9233274459838867; // stat 0.0014746349755392736
+  if(pt > 200 && pt <= 300) musf = 0.9137247204780579; // stat 0.003394166872715402
+  if(pt > 300) musf = 0.9049304127693176; // stat 0.00863011621547623
+ }
+ if (fabs(eta) >= 2.1 && fabs(eta)<2.4){
+  if(pt > 52. && pt <= 56) musf = 0.801039457321167; //stat 0.0010483845705795774   
+  if(pt > 56. && pt <= 60) musf = 0.8250287771224976; // stat 0.0014525323104812836
+  if(pt > 60. && pt <= 120) musf = 0.8385295867919922; // stat 0.00112496967288113
+  if(pt > 120 && pt <= 200) musf = 0.8503307104110718; // stat 0.005195122102448952
+  if(pt > 200 && pt <= 300) musf = 0.8325985074043274; // stat 0.023364071376511055
+  if(pt > 300) musf = 0.8184008598327637; // stat 0.0307142641727703
+ }
+
  return musf;
 }
 double musf_ID(double eta, double pt){
  double musf=0;
- if(pt<80){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.985720157623291;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9935390949249268;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9843316674232483;
+ if(fabs(eta)>0.0 && fabs(eta)<=0.9){
+  if(pt>20 && pt<=25) musf=0.992114065208379; //stat 0.0009548339162957359 syst 0.003162399267958033
+  if(pt>25 && pt<=30) musf=0.9924247027728448; //stat 0.0005721135461542568 syst 0.0010782479163609626
+  if(pt>30 && pt<=40) musf=0.9922515732194475; //stat 0.00022056808100734152 syst 0.0007359632248935538
+  if(pt>40 && pt<=50) musf=0.9926712022753303;  //stat 0.00029555844081348594 syst 0.0003533157820171002
+  if(pt>50 && pt<=60) musf=0.9928603953286465; //stat 0.0004812825431584111 syst 0.00043672529257821963 
+  if(pt>60)musf=0.992263125763373; //stat 0.0007301722545706139 syst 0.002402158659265339
  }
- if(pt>=80 && pt<140){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.990919828414917;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=1.001926302909851;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9332278370857239;
+ if(fabs(eta)>0.9 && fabs(eta)<=1.2){
+  if(pt>20 && pt<=25) musf=0.9880778949699621; //stat 0.0015507830148471576 syst 0.005036496188936483
+  if(pt>25 && pt<=30) musf=0.9858269794946017; //stat 0.0008667578427999276 syst 0.001745662101625533
+  if(pt>30 && pt<=40) musf=0.9861662092005419; //stat 0.00040273205051734795 syst 0.0034511238183185886
+  if(pt>40 && pt<=50) musf=0.9868886396371438;  //stat 0.000358620121199017 syst 0.00030898133813181395
+  if(pt>50 && pt<=60) musf=0.9857803031481773; //stat 0.0008250932378258363 syst 0.0009861532718310382
+  if(pt>60)musf=0.9851298296096568; //stat 0.0013508015355310672 syst 0.001925392663728019
  }
- if(pt>=140){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9570706486701965;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9942596554756165;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.0;
+ if(fabs(eta)>1.2 && fabs(eta)<=2.1){
+  if(pt>20 && pt<=25) musf=0.9922334188037855; //stat 0.0006058268576121627 syst 0.000631608941554746
+  if(pt>25 && pt<=30) musf=0.9923174786068355; //stat 0.00041202179870509885 syst 0.0024034807992315737
+  if(pt>30 && pt<=40) musf=0.9922065831090526; //stat 0.00017938520880153905 syst 0.001333626342856719
+  if(pt>40 && pt<=50) musf=0.9915977902632379; //stat 0.00018633029867623288 syst 4.41027174736005e-05
+  if(pt>50 && pt<=60) musf=0.9925127625404958; //stat 0.00039796265367970246 syst 0.0008803577974452146
+  if(pt>60)musf=0.9910195523946569; //stat 0.0006320689063062524 syst 0.00036749348244443785
  }
+ if(fabs(eta)>2.1 && fabs(eta)<=2.4){
+  if(pt>20 && pt<=25) musf=0.9797230542389544; //stat 0.002343776036433275 syst 0.0030120193907532643 
+  if(pt>25 && pt<=30) musf=0.9781500508836776; //stat 0.0011083458857072618 syst 0.0028918407397342267
+  if(pt>30 && pt<=40) musf=0.9777848757048854; //stat 0.0005589872869792092 syst 0.0008953812470090439
+  if(pt>40 && pt<=50) musf=0.9777795367016231; //stat 0.000807982424363258 syst 0.0018536119955217358
+  if(pt>50 && pt<=60) musf=0.9770080438205287; //stat 0.0017636447439491989 syst 0.002434676080669997
+  if(pt>60)musf=0.9739992676455306; //stat 0.0028517427863376157 syst 0.004570509391366933
+ }
+
  return musf;
 }
 double musf_iso(double eta, double pt){
  double musf=0;
- if(pt<40){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9995902180671692;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=1.0008221864700317;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=0.9995952844619751;
+ if(fabs(eta)>0.0 && fabs(eta)<=0.9){
+  if(pt>20 && pt<=25) musf=0.9919099304633023; // stat 0.001982360612184662 syst 0.0007768385116509315  
+  if(pt>25 && pt<=30) musf=0.995306030345587; // stat 0.00091282105303195 syst 0.0005437735321288286 
+  if(pt>30 && pt<=40) musf=0.9976936604669998; // stat 0.0002265133242871324 //syst 0.00013374847679938027 
+  if(pt>40 && pt<=50) musf=0.999160897257596; // stat 0.006779894111641307 syst 0.0009722570427004104
+  if(pt>50 && pt<=60) musf=0.9994395659288342; // stat 0.00018295970484288526 syst 4.147968081605816e-05 
+  if(pt>60)musf=0.9997314718411786; // stat 0.00029221141460445045 syst 6.304097243921762e-05
  }
- if(pt>=40 && pt<50){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9993510842323303;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9998430609703064;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.0003995895385742;
+ if(fabs(eta)>0.9 && fabs(eta)<=1.2){
+  if(pt>20 && pt<=25) musf=0.9953563700599016; // stat 0.0032906573832472705  syst 0.0005738209578508946 
+  if(pt>25 && pt<=30) musf=0.9958066672787669; // stat 0.0016018795511927857 syst 0.0007864318418559466 
+  if(pt>30 && pt<=40) musf=0.9976864595912653; // stat 0.00042385521315222807 syst 1.7519913375327746e-05  
+  if(pt>40 && pt<=50) musf=0.9990643758399053; // stat 0.005770506626491954 syst 0.00010352489000910559 
+  if(pt>50 && pt<=60) musf=0.9996724133222297; // stat 0.00035595587283767104 syst 8.368040978291978e-05  
+  if(pt>60)musf=0.9999606370603018; // stat 0.0005612174449205558 syst 0.0001775859021951452 
  }
- if(pt>=50 && pt<60){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9998735785484314;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=0.9997379779815674;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.001578450202942;
+ if(fabs(eta)>1.2 && fabs(eta)<=2.1){
+  if(pt>20 && pt<=25) musf=1.0133215397660384; //stat 0.0014374908292117512 syst 0.0010623826366502446  
+  if(pt>25 && pt<=30) musf=1.0067858969024923; // stat 0.0008055497633813406 syst 0.0006414469468063717  
+  if(pt>30 && pt<=40) musf=1.0020695104449462; //stat 0.0002351337627393239 syst 0.00017717041081786712 
+  if(pt>40 && pt<=50) musf=1.0007060682634246; // stat 8.920118397517922e-05 syst 2.148581478604597e-05 
+  if(pt>50 && pt<=60) musf=1.0004354208637907; // stat 0.00021781099981016557 syst 3.7112311166975304e-05 
+  if(pt>60)musf=1.0002663898130457; // stat 0.00036988199644369217 syst 5.846133038844542e-05 
+ }
+ if(fabs(eta)>2.1 && fabs(eta)<=2.4){
+  if(pt>20 && pt<=25) musf=1.027556905914061; // stat 0.002277534192552351 syst 0.0008986247456337133 
+  if(pt>25 && pt<=30) musf=1.0143379791477725; // stat 0.0012908918832984988 && 0.0008195965444879856 
+  if(pt>30 && pt<=40) musf=1.0054419865929765; // stat 0.00040019495324649626 syst 0.0007217335869673098 
+  if(pt>40 && pt<=50) musf=1.0016460223436592; // stat 0.00019826487775344374 syst 4.880342247065058e-05 
+  if(pt>50 && pt<=60) musf=1.0009981450462042; // stat 0.0005033796400527971 syst 0.00011776242980718527 
+  if(pt>60 )musf=1.001493044021551; // stat 0.0009083825758175378 syst 0.0009244158331428465
  }
 
- if(pt>=60){
-  if(fabs(eta)>=0.0 && fabs(eta)<1.2) musf=0.9995099306106567;
-  if(fabs(eta)>=1.2 && fabs(eta)<2.1) musf=1.0010874271392822;
-  if(fabs(eta)>=2.1 && fabs(eta)<2.4) musf=1.0011582374572754;
- }
  return musf;
 }
 
@@ -1233,41 +1296,39 @@ double get_wgtlumi(string FileName){
 
  // CHECKED for 2017 OK!! 
  
- if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
- if(FileName.find("DY") != std::string::npos) wgt=6077/100194597;
- if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
- if(FileName.find("_SaT_") != std::string::npos) wgt=32.70/7623000; 
- if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
- if(FileName.find("WZ") != std::string::npos) wgt=47.13/3885000; 
- if(FileName.find("ZZ") != std::string::npos) wgt=16.532/1979000;
- if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/28084244;
- if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1687.95/29521158;
+ if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;
+ if(FileName.find("DY") != std::string::npos) wgt=6077./100194597;
+ if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000;
+ if(FileName.find("_SaT_") != std::string::npos) wgt=32.7/7623000;
+ if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000;
+ if(FileName.find("WZ") != std::string::npos) wgt=47.13/3885000;
+ if(FileName.find("ZZ") != std::string::npos) wgt=16.523/1979000;
+ if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1563.32/28084244;
+ if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1628.66/29521158;
  if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=493.559/25468933;
- if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.55/5932701; 
- if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.57/19771294; 
- if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49/8402687; 
- if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.30/7633949;
- if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968/3273980;
- if(FileName.find("WJets_") != std::string::npos) wgt=64057.4/71026861;
- 
+ if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.5508/5932701;
+ if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.5727/19771294;
+ if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49286/8402687;
+ if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.29954/7633949;
+ if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968121/3273980;
+ if(FileName.find("WJets_") != std::string::npos) wgt=63948.5/71026861;
+
  //muons
  
- if((FileName.find("mumujj_17_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("mumujj_17_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("mumujj_17_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("mumujj_17_L13_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
- if((FileName.find("mumujj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
+ if((FileName.find("mumujj_18_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("mumujj_18_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("mumujj_18_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("mumujj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
+ if((FileName.find("mumujj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
 
  //electrons
  
- if((FileName.find("eejj_17_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("eejj_17_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("eejj_17_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("eejj_17_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
- if((FileName.find("eejj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
+ if((FileName.find("eejj_18_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("eejj_18_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("eejj_18_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("eejj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
+ if((FileName.find("eejj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
-  
 
  return wgt;
  }
-
