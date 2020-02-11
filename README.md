@@ -1,4 +1,6 @@
 # Heavy composite Majorana neutrino reload of the EXO-16-026 analysis
+Logbook: https://docs.google.com/document/d/14MxpNkXs3OW78FuB512MSL_r50s7g9FbVkhlvtPY9wk/edit?usp=sharing
+
 Documentation in GitLab: https://gitlab.cern.ch/tdr/notes/AN-18-111 .
 
 Available samples in: https://docs.google.com/spreadsheets/d/1cjLUHCRwQxU6aovdtx6UJmBafhGXKXulmOkGTMoa9Ro/edit#gid=0
@@ -100,74 +102,3 @@ brilcalc lumi --hltpath HLT_OldMu100* -u /fb -i /afs/cern.ch/cms/CAF/CMSCOMM/COM
    1. run "submission_macro.sh" to submit jobs to condor (specify eos path etc etc) (check job status with condor_q)
    1. to resubmit failed jobs: ./submission_macro.sh resubmit
    
-### Some tables from the new SR (10-12-2019):   
-   
-   | Year    | 2016 |
-   |---|---|
-   | channel | electron|
-   | Process | N. events (with PU, sf,  |
-   | TTtW |  X|
-   | DY | X|
-   | Other | X|
-   | L13 M0.5 | X |
-   | L13 M1 | X |
-
-
-   | Year    | 2016 |
-   |---|---|
-   | channel | muon |
-   | Process | N. events (with PU, sf,  |
-   | TTtW |  X|
-   | DY | X|
-   | Other | X|
-   | L13 M0.5 | X |
-   | L13 M1 | X |
-
-----------------------
-
-   | Year    | 2017 |
-   |---|---|
-   | channel | electron|
-   | Process | N. events (with PU, sf,  |
-   | TTtW |  X|
-   | DY | X|
-   | Other | X|
-   | L13 M0.5 | X |
-   | L13 M1 | X |
-
-
-   | Year    | 2017 |
-   |---|---|
-   | channel | muon |
-   | Process | N. events (with PU, sf,  |
-   | TTtW |  X|
-   | DY | X|
-   | Other | X|
-   | L13 M0.5 | X |
-   | L13 M1 | X |
-
-----------------------
-
-   | Year    | 2018 |
-   |---|---|
-   | channel | electron|
-   | Process | N. events (with PU, sf,  |
-   | TTtW |  X|
-   | DY | X|
-   | Other | X|
-   | L13 M0.5 | X |
-   | L13 M1 | X |
-
-
-   | Year    | 2018 |
-   |---|---|
-   | channel | muon |
-   | Process | N. events (with PU, sf,  |
-   | TTtW |  X|
-   | DY | X|
-   | Other | X|
-   | L13 M0.5 | X |
-   | L13 M1 | X |
-
-----------------------
-
