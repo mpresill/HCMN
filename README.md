@@ -3,7 +3,7 @@ Logbook: https://docs.google.com/document/d/14MxpNkXs3OW78FuB512MSL_r50s7g9FbVkh
 
 Documentation in GitLab: https://gitlab.cern.ch/tdr/notes/AN-18-111 .
 
-Available samples in: https://docs.google.com/spreadsheets/d/1cjLUHCRwQxU6aovdtx6UJmBafhGXKXulmOkGTMoa9Ro/edit#gid=0
+Samples list: https://docs.google.com/spreadsheets/d/1cjLUHCRwQxU6aovdtx6UJmBafhGXKXulmOkGTMoa9Ro/edit#gid=0
 
 Framework available here:
 - https://github.com/vmariani/BSMFramework/tree/CMSSW_10_2_16 (for 2016-2018) 
