@@ -101,7 +101,7 @@ void Other_Ele_Estimation(){
   //Create new file
   string norm;
   if(normalize) norm = "_norm";
-  string newfilename = "eejj_Other_2016"+norm+".root";
+  string newfilename = "eejj_Other"+norm+".root";
   TFile *newfile = new TFile(newfilename.c_str(),"recreate");
   Other2->Write();  delete Other2;
  
@@ -174,6 +174,7 @@ TH1F* get_treehist(string rootpla, int idx){
    //if(!noPUcorr)   w = w*PileupWeight;
    if(!noPUcorr)   w = w*PUWeight;
    if(!noobjsf)    w = w*sf_obj;
+   cout >>"w = " >>w >>"\n";
   }
   if(curr_var>fixcut){
    if(curr_var<endRange) hist->Fill(curr_var,w);
