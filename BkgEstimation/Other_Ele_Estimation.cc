@@ -30,15 +30,15 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples 
-const string path         = "/eos/user/r/roleonar/rootple/bkp/";
+const string path         = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/";
 const char *samples[]     = {"Other"};
-const string selection    = "_SRe";  
+const string selection    = "_2016_SRe";  
 //Plots option
 const string varplot    = "M_leplepBjet";
 const double fixcut     = 0; //Save only events for which varplot>fixcut
 const string objsf      = "lepsf_evtmudown";//"lepsf_evt";
 const string PUw        = "PUWeight";
-const double Luminosity = 35900;
+const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool noLumiNorm   = false;
 const bool noPUcorr     = false;
 const bool noobjsf      = false;  
@@ -101,7 +101,7 @@ void Other_Ele_Estimation(){
   //Create new file
   string norm;
   if(normalize) norm = "_norm";
-  string newfilename = "eejj_Other"+norm+".root";
+  string newfilename = "eejj_Other_2016"+norm+".root";
   TFile *newfile = new TFile(newfilename.c_str(),"recreate");
   Other2->Write();  delete Other2;
  
@@ -147,9 +147,9 @@ TH1F* get_treehist(string rootpla, int idx){
  double curr_var;
  TBranch *b_curr_var = 0;
  tree->SetBranchAddress(varplot.c_str(),&curr_var,&b_curr_var);
- //double PileupWeight;
- //TBranch *b_PileupWeight = 0;
- //tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
+ double PUWeight;
+ TBranch *b_PUWeight = 0;
+ tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
  double PU_weight;
  TBranch *b_PU_weight = 0;
  tree->SetBranchAddress(PUw.c_str(),&PU_weight,&b_PU_weight);
@@ -164,7 +164,7 @@ TH1F* get_treehist(string rootpla, int idx){
  {
   Long64_t tentry = tree->LoadTree(j);
   b_curr_var->GetEntry(tentry);
-  //b_PileupWeight->GetEntry(tentry);
+  b_PUWeight->GetEntry(tentry);
   b_PU_weight->GetEntry(tentry);
   b_lumi_wgt->GetEntry(tentry);
   b_sf_obj->GetEntry(tentry);
@@ -172,7 +172,7 @@ TH1F* get_treehist(string rootpla, int idx){
   if(rootpla!="data_ele"){
    if(!noLumiNorm) w = w*lumi_wgt*Luminosity;
    //if(!noPUcorr)   w = w*PileupWeight;
-   if(!noPUcorr)   w = w*PU_weight;
+   if(!noPUcorr)   w = w*PUWeight;
    if(!noobjsf)    w = w*sf_obj;
   }
   if(curr_var>fixcut){
