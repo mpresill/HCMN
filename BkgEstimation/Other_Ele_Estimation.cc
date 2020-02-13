@@ -40,7 +40,7 @@ const string objsf      = "lepsf_evt";//"lepsf_evt";
 const string PUw        = "PUWeight";
 const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool noLumiNorm   = false;
-const bool noPUcorr     = false;
+const bool noPUcorr     = true;
 const bool noobjsf      = false;  
 const double normalize  = false;
 //Binning
@@ -101,7 +101,7 @@ void Other_Ele_Estimation(){
   //Create new file
   string norm;
   if(normalize) norm = "_norm";
-  string newfilename = "eejj_Other"+norm+".root";
+  string newfilename = "eejj_Other_2016"+norm+".root";
   TFile *newfile = new TFile(newfilename.c_str(),"recreate");
   Other2->Write();  delete Other2;
  
