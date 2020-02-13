@@ -174,7 +174,7 @@ TH1F* get_treehist(string rootpla, int idx){
    //if(!noPUcorr)   w = w*PileupWeight;
    if(!noPUcorr)   w = w*PUWeight;
    if(!noobjsf)    w = w*sf_obj;
-   cout >>"w = " >>w >>"\n";
+   cout <<"w = " << w <<"\n";
   }
   if(curr_var>fixcut){
    if(curr_var<endRange) hist->Fill(curr_var,w);
