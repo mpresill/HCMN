@@ -36,7 +36,7 @@ const string selection    = "_2016_SRe";
 //Plots option
 const string varplot    = "M_leplepBjet";
 const double fixcut     = 0; //Save only events for which varplot>fixcut
-const string objsf      = "lepsf_evtmudown";//"lepsf_evt";
+const string objsf      = "lepsf_evt";//"lepsf_evt";
 const string PUw        = "PUWeight";
 const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool noLumiNorm   = false;
