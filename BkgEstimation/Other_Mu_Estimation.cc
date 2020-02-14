@@ -30,17 +30,17 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples 
-const string path         = "/eos/user/r/roleonar/rootple/bkp/";
+const string path         = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/";
 const char *samples[]     = {"Other"};
-const string selection    = "_SRmu";  
+const string selection    = "_2016_SRmu";  
 //Plots option
 const string varplot    = "M_leplepBjet";
 const double fixcut     = 0; //Save only events for which varplot>fixcut
-const string objsf      = "lepsf_evtmudown";//"lepsf_evt";
+const string objsf      = "lepsf_evt";//"lepsf_evt";
 const string PUw        = "PUWeight";
-const double Luminosity = 35900;
+const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool noLumiNorm   = false;
-const bool noPUcorr     = false;
+const bool noPUcorr     = true;
 const bool noobjsf      = false;  
 const double normalize  = false;
 //Binning
@@ -101,7 +101,7 @@ void Other_Mu_Estimation(){
   //Create new file
   string norm;
   if(normalize) norm = "_norm";
-  string newfilename = "mumujj_Other"+norm+".root";
+  string newfilename = "mumujj_Other_2016"+norm+".root";
   TFile *newfile = new TFile(newfilename.c_str(),"recreate");
   Other2->Write();  delete Other2;
  
