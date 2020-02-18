@@ -30,12 +30,12 @@ Need to specify
 //   Declare constants
 /////
 //Path - samples 
-const string path     = "/eos/user/v/vmariani/NTuples/HN_2018/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2018/
-const char *samples[] = {/*"TT_2016","tW_2016",*/ "Other_2018","DY_2018","TTtW_2018",
-                         "data_ele_2018"
-                         //"data_mu_2018"
-                         //"mumujj_L13000_M500_2018","mumujj_L13000_M1000_2018","mumujj_L13000_M2000_2018","mumujj_L13000_M5000_2018","mumujj_L13000_M8000_2018"
-			//,"eejj_L13000_M500_2018","eejj_L13000_M1000_2018","eejj_L13000_M2000_2018","eejj_L13000_M5000_2018","eejj_L13000_M8000_2018" 
+const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
+const char *samples[] = {/*"TT_2016","tW_2016",*/ "Other_2016","DY_2016","TTtW_2016",
+                         //"data_ele_2016"
+                         "data_mu_2016"
+                         ,"mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
+			//,"eejj_L13000_M500_2016","eejj_L13000_M1000_2016","eejj_L13000_M2000_2016","eejj_L13000_M5000_2016","eejj_L13000_M8000_2016" 
 			};
 const string specsel  = "";
 //Selection
