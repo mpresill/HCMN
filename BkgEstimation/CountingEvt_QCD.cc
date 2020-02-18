@@ -35,12 +35,12 @@ const char *samples[]       = {
                               "DY","TT","tW","Other",
                               "data_mu"
 };
-const string selection      = "_QCDmu";//"_SignalRegion";//aggiungere _selection 
+const string selection      = "_2016_QCDmu";//"_SignalRegion";//aggiungere _selection 
 const string channel        = "";
 //Selections
 const bool obj_sel          = true;
 //Corrections
-const double xSecs[]        = {831.76
+/*const double xSecs[]        = {831.76
                           // 331.7e-03,114.4e-03,22.36e-03,5.029e-03,
                            //3.197e-03,0.7725e-03,0.226e-03,0.06214e-03,0.01584e-03,
                            //0.415e-03,0.08383e-03,0.001841e-03,
@@ -51,10 +51,10 @@ const double evtsRead[]     = {116591749
                            //99800,99200,99200,99800,99800,
                            //99200,100000,57000,
                            //9042031, 116591749, 995600, 988500, 72117311, 993640, 978512, 996944
-};
-const double Luminosity     = 35900;//2318.; //pb^-1
+};*/
+const double Luminosity     = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool LumiNorm         = true; 
-const bool PUcorr           = true; 
+const bool PUcorr           = false; 
 const bool GenWgtcorr       = false; 
 const bool eleSFcorrection  = false;
 const bool QCDcorr          = true;
@@ -75,8 +75,8 @@ void CountingEvt_QCD(){
  vector<double> evt_errs;
  vector<double> lumi_wgts; //Need to save it to calculate properly the errors
  //Run over all samples 
- vector<double> xsecs(xSecs, xSecs + sizeof(xSecs)/sizeof(xSecs[0]));
- vector<double> evtsread(evtsRead, evtsRead + sizeof(evtsRead)/sizeof(evtsRead[0]));
+// vector<double> xsecs(xSecs, xSecs + sizeof(xSecs)/sizeof(xSecs[0]));
+ //vector<double> evtsread(evtsRead, evtsRead + sizeof(evtsRead)/sizeof(evtsRead[0]));
  vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
  for(uint r=0; r<rootplas.size(); r++){
   double lumi_wgt2 = 1.;
