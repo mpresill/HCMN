@@ -30,13 +30,24 @@ Need to specify
 //   Declare constants
 /////
 //Path - samples 
-const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
-const char *samples[] = {/*"TT_2016","tW_2016",*/ "Other_2016","DY_2016","TTtW_2016",
+const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
+//const char *samples[] = {/*"TT_2016","tW_2016",*/ 
+//	                "Other_2016","DY_2016","TTtW_2016",
                          //"data_ele_2016"
-                         "data_mu_2016"
-                         ,"mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
+//                         "data_mu_2016"
+//                         ,"mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
 			//,"eejj_L13000_M500_2016","eejj_L13000_M1000_2016","eejj_L13000_M2000_2016","eejj_L13000_M5000_2016","eejj_L13000_M8000_2016" 
+//			};
+
+//QCD bkg estimation samples
+const char *samples[] = {/*"TT_2016","tW_2016",*/ 
+	                "Other_QCD_2016","DY_QCD_2016","TTtW_QCD_2016",
+                         //"data_QCD_ele_2016"
+                         "data_QCD_mu_2016"
+                         ,"mumujj_L13000_M500_QCD_2016","mumujj_L13000_M1000_QCD_2016","mumujj_L13000_M2000_QCD_2016","mumujj_L13000_M5000_QCD_2016","mumujj_L13000_M8000_QCD_2016"
+			//,"eejj_L13000_M500_QCD_2016","eejj_L13000_M1000_QCD_2016","eejj_L13000_M2000_QCD_2016","eejj_L13000_M5000_QCD_2016","eejj_L13000_M8000_QCD_2016" 
 			};
+
 const string specsel  = "";
 //Selection
 const string suffisso   = 
