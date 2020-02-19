@@ -41,9 +41,9 @@ const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/u
 
 //QCD bkg estimation samples
 const char *samples[] = {/*"TT_2016","tW_2016",*/ 
-	                "Other_QCD_2016"/*,"DY_QCD_2016","TTtW_QCD_2016",*/
+	                "Other_QCD_2016","DY_QCD_2016","TTtW_QCD_2016"
                          //"data_QCD_ele_2016"
-                        // "data_QCD_mu_2016"
+                        //, "data_QCD_mu_2016"
                          //,"mumujj_L13000_M500_QCD_2016","mumujj_L13000_M1000_QCD_2016","mumujj_L13000_M2000_QCD_2016","mumujj_L13000_M5000_QCD_2016","mumujj_L13000_M8000_QCD_2016"
 			//,"eejj_L13000_M500_QCD_2016","eejj_L13000_M1000_QCD_2016","eejj_L13000_M2000_QCD_2016","eejj_L13000_M5000_QCD_2016","eejj_L13000_M8000_QCD_2016" 
 			};
