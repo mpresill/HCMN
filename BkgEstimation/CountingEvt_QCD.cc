@@ -32,7 +32,7 @@ const string path           = "";
                               
 const char *samples[]       = {
                               //"DY","TT","tW","WJets","WW","WZ","ZZ", 
-                              "DY","TT","tW","Other",
+                              "DY","TTtW","Other",
                               "data_mu"
 };
 const string selection      = "_2016_QCDmu";//"_SignalRegion";//aggiungere _selection 
