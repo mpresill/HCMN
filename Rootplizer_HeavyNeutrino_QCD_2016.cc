@@ -99,7 +99,7 @@ double invMass4(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
 /////
 //   Main function
 /////
-void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output =""){
+void  filename_(const char*  Input = "", const char*  Output =""){
 
   Input = "inputFile";
   Output = "outputFile";
@@ -190,7 +190,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
   vector<int>* rpatElectron_isPassMedium; rpatElectron_isPassMedium = 0; TBranch* b_rpatElectron_isPassMedium = 0; readingtree->SetBranchAddress("patElectron_isPassMedium",&rpatElectron_isPassMedium,&b_rpatElectron_isPassMedium);
   vector<int>* rpatElectron_isPassTight; rpatElectron_isPassTight = 0; TBranch* b_rpatElectron_isPassTight = 0; readingtree->SetBranchAddress("patElectron_isPassTight",&rpatElectron_isPassTight,&b_rpatElectron_isPassTight);
   vector<int>* rpatElectron_isPassHEEPId; rpatElectron_isPassHEEPId = 0; TBranch* b_rpatElectron_isPassHEEPId = 0; readingtree->SetBranchAddress("patElectron_isPassHEEPId",&rpatElectron_isPassHEEPId,&b_rpatElectron_isPassHEEPId);
-  vector<int>* rpatElectron_isPassMvatrig; rpatElectron_isPassMvatrig = 0; TBranch* b_rpatElectron_isPassMvatrig = 0; readingtree->SetBranchAddress("patElectron_isPassMvatrig",&rpatElectron_isPassMvatrig,&b_rpatElectron_isPassMvatrig);
+ // vector<int>* rpatElectron_isPassMvatrig; rpatElectron_isPassMvatrig = 0; TBranch* b_rpatElectron_isPassMvatrig = 0; readingtree->SetBranchAddress("patElectron_isPassMvatrig",&rpatElectron_isPassMvatrig,&b_rpatElectron_isPassMvatrig);
 
 
   vector<double>* rpatElectron_Et; rpatElectron_Et = 0; TBranch* b_rpatElectron_Et = 0; readingtree->SetBranchAddress("patElectron_Et",&rpatElectron_Et,&b_rpatElectron_Et);
@@ -336,7 +336,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
   vector<int>* patElectron_isPassMedium = new std::vector<int>; newtree->Branch("patElectron_isPassMedium",&patElectron_isPassMedium);
   vector<int>* patElectron_isPassTight = new std::vector<int>; newtree->Branch("patElectron_isPassTight",&patElectron_isPassTight);
   vector<int>* patElectron_isPassHEEPId = new std::vector<int>; newtree->Branch("patElectron_isPassHEEPId",&patElectron_isPassHEEPId);
-  vector<int>* patElectron_isPassMvatrig = new std::vector<int>; newtree->Branch("patElectron_isPassMvatrig",&patElectron_isPassMvatrig);
+ // vector<int>* patElectron_isPassMvatrig = new std::vector<int>; newtree->Branch("patElectron_isPassMvatrig",&patElectron_isPassMvatrig);
   vector<double>* eleIsHEEPID = new std::vector<double>; newtree->Branch("eleIsHEEPID",&eleIsHEEPID);
   vector<double>* eleIsHEEPnonISO3 = new std::vector<double>; newtree->Branch("eleIsHEEPnonISO3",&eleIsHEEPnonISO3);
   vector<double>* eleIsHEEPnonISO6 = new std::vector<double>; newtree->Branch("eleIsHEEPnonISO6",&eleIsHEEPnonISO6);
@@ -625,7 +625,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
     b_rpatElectron_isPassMedium->GetEntry(en);
     b_rpatElectron_isPassTight->GetEntry(en);
     b_rpatElectron_isPassHEEPId->GetEntry(en);
-    b_rpatElectron_isPassMvatrig->GetEntry(en);
+//    b_rpatElectron_isPassMvatrig->GetEntry(en);
 
     b_rpatElectron_Et->GetEntry(en);
     b_rpatElectron_SCeta->GetEntry(en);
@@ -741,7 +741,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
     patElectron_isPassMedium->clear();
     patElectron_isPassTight->clear();
     patElectron_isPassHEEPId->clear();
-    patElectron_isPassMvatrig->clear();
+ //   patElectron_isPassMvatrig->clear();
     eleIsHEEPID->clear();
     eleIsHEEPnonISO3->clear();
     eleIsHEEPnonISO6->clear();
@@ -1359,7 +1359,7 @@ if(pt>50.00 && pt<=60.00){
 }
 double musf_iso(double eta, double pt){
  double musf=0;
-f(pt>25.00 && pt<=30.00){
+ if(pt>25.00 && pt<=30.00){
     if(eta > 0.50 && eta <= 0.80) musf=1.00042869732; // stat 0.00293326266133 syst 0.00111093871739 
     if(eta > -1.60 && eta <= -1.50) musf=0.998600901958; // stat 0.00375521315405 syst 0.000772649471568 
     if(eta > 2.00 && eta <= 2.10) musf=1.00165297112; // stat 0.00352691135049 syst 0.00117896999811 
