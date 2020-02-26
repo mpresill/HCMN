@@ -979,7 +979,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       }
      numOfBoostedJets=countBoostedJets;
 
-     if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfLooseMu==0 && numOfFakeEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfBoostedJets>=1){
+     if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfLooseMu==0 && numOfFakeEle==2 && patElectron_pt->at(0)>150 && patElectron_pt->at(1)>100 && numOfBoostedJets>=1){
       QCDele=1;
       Ele1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0), patElectron_energy->at(0));
       Ele2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1), patElectron_energy->at(1));
@@ -993,7 +993,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       QCD_wgt_evt = (QCD_wgt_ele1/(1-QCD_wgt_ele1))*(QCD_wgt_ele2/(1-QCD_wgt_ele2));
      }
   
-     if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfBoostedJets>=1){
+     if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt->at(0)>150 && Muon_pt->at(1)>100 && numOfBoostedJets>=1){
       QCDmu=1;
       Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
       Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1), Muon_energy->at(1));
@@ -1007,7 +1007,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       QCD_wgt_evt = (QCD_wgt_mu1/(1-QCD_wgt_mu1))*(QCD_wgt_mu2/(1-QCD_wgt_mu2));
      }
 
-     if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfFakeEle==1 && patElectron_pt->at(0)>130 && numOfFakeMu==1 && Muon_pt->at(0)>35 && numOfBoostedJets>=1){
+     if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfFakeEle==1 && patElectron_pt->at(0)>150 && numOfFakeMu==1 && Muon_pt->at(0)>100 && numOfBoostedJets>=1){
       QCDemu=1;
       Ele1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0), patElectron_energy->at(0));
       Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
@@ -1020,7 +1020,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       QCD_wgt_evt = (QCD_wgt_ele1/(1-QCD_wgt_ele1))*(QCD_wgt_mu1/(1-QCD_wgt_mu1));
      }
 
-     if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfFakeMu==1 && Muon_pt->at(0)>53 && numOfFakeEle==1 && patElectron_pt->at(0)>35 && numOfBoostedJets>=1){
+     if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfFakeMu==1 && Muon_pt->at(0)>150 && numOfFakeEle==1 && patElectron_pt->at(0)>100 && numOfBoostedJets>=1){
       QCDmue=1;
       Ele1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0), patElectron_energy->at(0));
       Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
