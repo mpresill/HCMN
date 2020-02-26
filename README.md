@@ -14,6 +14,12 @@ Rootple path:
  - 2017: /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/
  - 2018: /eos/user/v/vmariani/NTuples/HN_2018/
  
+Skimmed rootples: 
+/eos/user/m/mpresill/CMS/HN_Reload/skimmed_files
+
+Histograms for combine:
+/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms
+ 
 Plots path:
  - Vale: http://test-valentina-mariani.web.cern.ch/test-valentina-mariani/HN/
  - Matteo: /eos/user/m/mpresill/CMS/HN_Reload/plots
