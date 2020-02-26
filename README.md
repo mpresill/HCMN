@@ -13,7 +13,10 @@ Rootple path:
  - 2016: /eos/user/v/vmariani/NTuples/HN_2016/
  - 2017: /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/
  - 2018: /eos/user/v/vmariani/NTuples/HN_2018/
- 
+
+Rootple for QCD estimation:
+/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples/
+
 Skimmed rootples: 
 /eos/user/m/mpresill/CMS/HN_Reload/skimmed_files
 
