@@ -34,7 +34,7 @@ using namespace std;
 /////
 //   Declare constants
 /////
-const double Luminosity = 35900; //pb^-1
+const double Luminosity = 35542; //pb^-1
 //Plots
 const bool eejj        = true;
 const bool mumujj      = false;
@@ -42,7 +42,7 @@ const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 const bool   save_plot = true;
-const string name_plot = "mumujj_HighMassSR_L13000_stat_only.pdf"; //xsecBR or r
+const string name_plot = "mumujj_L13000_stat_only_2016.pdf"; //xsecBR or r
 const int    val       = 4;
 
 //limits from Combine
@@ -101,7 +101,7 @@ double Exp_p2s[val] = {0.6338,1.1482,40.5899,6167.083 };*/
 //   mumujj
 /////
 //HCMN reload  private production 2016, selezione High Mass 
-const double CumEff[val] = {0.186861099,0.610700894,0.692791903,0.666242661};
+const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
 double Exp_m2s[val] = {0.0761,0.1401,7.98,1252.8281};
 double Exp_m1s[val] = {0.1107,0.2049,11.3339,1779.3743};
