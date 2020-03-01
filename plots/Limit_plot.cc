@@ -42,15 +42,15 @@ const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 const bool   save_plot = true;
-const string name_plot = "mumujj_L13000_stat_only_2016.pdf"; //xsecBR or r
-const int    val       = 4;
+const string name_plot = "eejj_L13000_stat_only_2016-1Mar20.pdf"; //xsecBR or r
+const int    val       = 5;
 
 //limits from Combine
-const double Mass[val]   = {0.5,2,5,8};
+const double Mass[val]   = {0.5,1,2,5,8};
 const double SigEvt[val] = {};  //number of signal events eejj
 const double SigEvtMuon[val] = {};  //number of signal events mumujj
-const double xsec[val]   = {0.005716,0.0008207,0.00001425,0.00000009135}; //cross section of the sign  samples with which limits are derived in pb
-double xsecCF[val]       = {1,1,1,1}; //0.13};
+const double xsec[val]   = {0.005716,0.002819,0.0008207,0.00001425,0.00000009135}; //cross section of the sign  samples with which limits are derived in pb
+double xsecCF[val]       = {1,1,1,1,1}; //0.13};
 
 //theoretical cross section [pb]
 const int points = 10;
@@ -101,22 +101,22 @@ double Exp_p2s[val] = {0.6338,1.1482,40.5899,6167.083 };*/
 //   mumujj
 /////
 //HCMN reload  private production 2016, selezione High Mass 
-const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
+/*const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
 double Exp_m2s[val] = {0.0761,0.1401,7.98,1252.8281};
 double Exp_m1s[val] = {0.1107,0.2049,11.3339,1779.3743};
 double Exp[val]     = {0.1724,0.3203,17.3125,2718};  	//r value from Combine
 double Exp_p1s[val] = {0.2754,0.5169,27.3187,4288.9395};
-double Exp_p2s[val] = {0.4211,0.799,41.3668,6556.5601};
+double Exp_p2s[val] = {0.4211,0.799,41.3668,6556.5601};*/
 
 //HCMN reload  private production 2016, selezione 2015 SR
-/*const double CumEff[val] = {0.462866402,0.734943755,0.742717847,0.721966732};
+const double CumEff[val] = {};//{0.462866402,0.734943755,0.742717847,0.721966732};
 double Obs[val]     = {};
-double Exp_m2s[val] = {0.102,0.0805,7.8359,1189.6797};
-double Exp_m1s[val] = {0.1567,0.1396,11.1293,1689.6854};
-double Exp[val]     = {0.251,0.2607,17,2581};  	//r value from Combine
-double Exp_p1s[val] = {0.392,0.479,26.7578,4072.7566};
-double Exp_p2s[val] = {0.5704,0.7904,40.5899,6167.083};*/
+double Exp_m2s[val] = {8.49E-04,  3.39E-04,	1.83E-04,	9.72E-05,	9.71E-05};
+double Exp_m1s[val] = {1.16E-03,	4.68E-04,	2.56E-04,	1.40E-04,	1.40E-04};
+double Exp[val]     = {1.67E-03,	6.83E-04,	3.83E-04,	2.18E-04,	2.18E-04};  	
+double Exp_p1s[val] = {2.46E-03,	1.01E-03,	5.83E-04,	3.52E-04,	3.52E-04};
+double Exp_p2s[val] = {3.48E-03,	1.45E-03,	8.56E-04,	5.49E-04,	5.49E-04};
 /////////////
 
 
@@ -199,7 +199,7 @@ void Limit_plot(){
  c1_2->Draw(); c1_2->cd();
  TPaveText *pt1 = new TPaveText(.3,.1,.8,.99,"NDC");
 // pt1->AddText("#Lambda = 12 TeV, MC signal #Lambda = 5 TeV");
- pt1->AddText("#scale[0.90]{CMS preliminary, #sqrt{s} = 13 TeV, L = 35.9 fb^{-1}} - 2016 samples with High Mass SR");
+ pt1->AddText("#scale[0.90]{CMS preliminary, #sqrt{s} = 13 TeV, L = 35.9 fb^{-1}}");
 //pt1->AddText("CMS #scale[0.75]{#it{Preliminary}} 35.9 fb^{-1} (13 TeV)");
  pt1->SetShadowColor(0); pt1->SetBorderSize(0); pt1->SetFillColor(0);
  pt1->Draw("");
@@ -219,11 +219,11 @@ void get_limitvals(double xSec[], double xSecUp[], double xSecDown[]){
   xSecDown[i] = 0.;
   if(!plot_r){
    Obs[i]      = (Obs[i]*SigEvt[i])/(Luminosity*CumEff[i]);
-   Exp[i]      =   (Exp[i]*xsec[i]) ;    							//(Exp[i]*SigEvt[i])/(Luminosity*CumEff[i]);
-   Exp_m2s[i]  =   Exp_m2s[i]* xsec[i] ;                  //(Exp_m2s[i]*SigEvt[i])/(Luminosity*CumEff[i]);
-   Exp_m1s[i]  = 	Exp_m1s[i]*xsec[i]  ;					//(Exp_m1s[i]*SigEvt[i])/(Luminosity*CumEff[i]);
-   Exp_p1s[i]  = 	Exp_p1s[i]*xsec[i] ;					//(Exp_p1s[i]*SigEvt[i])/(Luminosity*CumEff[i]);
-   Exp_p2s[i]  = 	Exp_p2s[i]*xsec[i] ;					//(Exp_p2s[i]*SigEvt[i])/(Luminosity*CumEff[i]);
+   Exp[i]      =   (Exp[i]);//*xsec[i]) ;    							//(Exp[i]*SigEvt[i])/(Luminosity*CumEff[i]);
+   Exp_m2s[i]  =   Exp_m2s[i];//* xsec[i] ;                  //(Exp_m2s[i]*SigEvt[i])/(Luminosity*CumEff[i]);
+   Exp_m1s[i]  = 	Exp_m1s[i];//*xsec[i]  ;					//(Exp_m1s[i]*SigEvt[i])/(Luminosity*CumEff[i]);
+   Exp_p1s[i]  = 	Exp_p1s[i];//*xsec[i] ;					//(Exp_p1s[i]*SigEvt[i])/(Luminosity*CumEff[i]);
+   Exp_p2s[i]  = 	Exp_p2s[i];//*xsec[i] ;					//(Exp_p2s[i]*SigEvt[i])/(Luminosity*CumEff[i]);
    xSec[i]     = xsec[i]; 
    xSecUp[i]   = xsec[i]*(1+xsecCF[i]);//*(1 + 0.065); //This may be model dependent
    xSecDown[i] = xsec[i]*(1-xsecCF[i]);//*(1 - 0.065);
