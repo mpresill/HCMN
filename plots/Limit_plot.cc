@@ -36,13 +36,13 @@ using namespace std;
 /////
 const double Luminosity = 35542; //pb^-1
 //Plots
-const bool eejj        = true;
-const bool mumujj      = false;
+const bool eejj        = false;
+const bool mumujj      = true;
 const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 const bool   save_plot = true;
-const string name_plot = "eejj_L13000_stat_only_2016-1Mar20.pdf"; //xsecBR or r
+const string name_plot = "mumujj_L13000_stat_only_2016-1Mar20.pdf"; //xsecBR or r
 const int    val       = 5;
 
 //limits from Combine
@@ -101,16 +101,16 @@ double Exp_p2s[val] = {0.6338,1.1482,40.5899,6167.083 };*/
 //   mumujj
 /////
 //HCMN reload  private production 2016, selezione High Mass 
-/*const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
+const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
-double Exp_m2s[val] = {0.0761,0.1401,7.98,1252.8281};
-double Exp_m1s[val] = {0.1107,0.2049,11.3339,1779.3743};
-double Exp[val]     = {0.1724,0.3203,17.3125,2718};  	//r value from Combine
-double Exp_p1s[val] = {0.2754,0.5169,27.3187,4288.9395};
-double Exp_p2s[val] = {0.4211,0.799,41.3668,6556.5601};*/
+double Exp_m2s[val] = {1.01E-03,	4.06E-04,	2.03E-04,	9.27E-05,	8.99E-05};
+double Exp_m1s[val] = {1.36E-03,	5.52E-04,	2.80E-04,	1.31E-04,	1.28E-04};
+double Exp[val]     = {1.92E-03,	7.87E-04,	4.12E-04,	2.00E-04,	1.93E-04};  	//r value from Combine
+double Exp_p1s[val] = {2.75E-03,	1.14E-03,	6.17E-04,	3.12E-04,	3.03E-04};
+double Exp_p2s[val] = {3.78E-03,	1.60E-03,	8.88E-04,	4.71E-04,	4.57E-04};
 
 //HCMN reload  private production 2016, selezione 2015 SR
-const double CumEff[val] = {};//{0.462866402,0.734943755,0.742717847,0.721966732};
+/*const double CumEff[val] = {};//{0.462866402,0.734943755,0.742717847,0.721966732};
 double Obs[val]     = {};
 double Exp_m2s[val] = {8.49E-04,  3.39E-04,	1.83E-04,	9.72E-05,	9.71E-05};
 double Exp_m1s[val] = {1.16E-03,	4.68E-04,	2.56E-04,	1.40E-04,	1.40E-04};
@@ -118,7 +118,7 @@ double Exp[val]     = {1.67E-03,	6.83E-04,	3.83E-04,	2.18E-04,	2.18E-04};
 double Exp_p1s[val] = {2.46E-03,	1.01E-03,	5.83E-04,	3.52E-04,	3.52E-04};
 double Exp_p2s[val] = {3.48E-03,	1.45E-03,	8.56E-04,	5.49E-04,	5.49E-04};
 /////////////
-
+*/
 
 
 

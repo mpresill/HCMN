@@ -36,18 +36,34 @@ using namespace std;
 /////
 //   Declare constants
 /////
-const double Luminosity = 35900	; //pb^-1
+const double Luminosity = 35542	; //pb^-1
 //Plots
-const bool eejj        = true;
-const bool mumujj      = false;
+const bool eejj        = false;
+const bool mumujj      = true;
 const bool   save_plot = true;
-const string name_plot = "eejj_2D_limit_stat_2016.pdf"; //xsecBR or r
+const string name_plot = "mumujj_2D_limit_stat_only_2016-1Mar20.pdf"; //xsecBR or r
 const bool   plot_err  = false;
 const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 
 //mumujj     UNCOMMENT THIS FOR mumuJJ CHANNEL HighMass SR with 2016 samples, compared with old SR
+
+const int val = 9;
+double LambdaObs[val] = {}; 
+double Obs[val]       = {}; 
+double LambdaExp[val] = {5.6,6,7,9,11,13,15,17,17}; 
+double Exp[val]       = {5.6,5,4.4,3.6,3,2.3,1.4,0.5,0.5}; 
+double LambdaErrp2s[val] = {4.70, 6,    7,    8,    9,    9,   10}; 
+double Exp_p2s[val]   = {4.21, 3.06, 2.51, 1.79, 0.34, 0.34, 0.40};
+double LambdaErrp1s[val] = {4.70, 6,    7,    8,    9,    10,   10}; 
+double Exp_p1s[val]   = {4.41, 3.46, 2.94, 2.48, 1.94, 0.40, 0.40};
+double LambdaErrm1s[val] = {4.9, 6,    7,    8,    9,    10,   11};
+double Exp_m1s[val]   = {4.95, 4.53, 4.04, 3.61, 3.13, 2.75, 2.39};
+double LambdaErrm2s[val] = {5.17, 6,    7,    8,    9,    10,   11}; 
+double Exp_m2s[val]   = {5.31, 4.95, 4.50, 4.08, 3.61, 3.29, 2.39};
+
+
 /*const int val = 9;
 double LambdaObs[val] = {7, 7,  7, 9, 11, 13, 15, 17, 18 }; //2015 SR 
 double Obs[val]       = {4.6, 4.6, 4.6, 4, 3.5, 3, 2.5, 2, 0.7}; //2015 SR
@@ -65,8 +81,21 @@ double Exp_p2s[val]      = {4.08, 2.99, 2.50, 2.01, 1.67, 0.25, 0.35, 0.35};
 
 //eejj
     //UNCOMMENT THIS FOR eeJJ CHANNEL
-
-const int val = 9;
+/*const int val = 9;
+double LambdaObs[val] = {}; 
+double Obs[val]       = {}; 
+double LambdaExp[val] = {5.6,6,7,9,11,13,15,17,18.5}; 
+double Exp[val]       = {5.6,5.3,4.7,3.8,3.3,2.6,2.1,1.3,0.5}; 
+double LambdaErrp2s[val] = {4.70, 6,    7,    8,    9,    9,   10}; 
+double Exp_p2s[val]   = {4.21, 3.06, 2.51, 1.79, 0.34, 0.34, 0.40};
+double LambdaErrp1s[val] = {4.70, 6,    7,    8,    9,    10,   10}; 
+double Exp_p1s[val]   = {4.41, 3.46, 2.94, 2.48, 1.94, 0.40, 0.40};
+double LambdaErrm1s[val] = {4.9, 6,    7,    8,    9,    10,   11};
+double Exp_m1s[val]   = {4.95, 4.53, 4.04, 3.61, 3.13, 2.75, 2.39};
+double LambdaErrm2s[val] = {5.17, 6,    7,    8,    9,    10,   11}; 
+double Exp_m2s[val]   = {5.31, 4.95, 4.50, 4.08, 3.61, 3.29, 2.39};
+*/
+/*const int val = 9;
 double LambdaObs[val] = {7, 7,  7, 9, 11, 13, 15, 17, 17 }; //2015 SR 
 double Obs[val]       = {4.6, 4.6, 4.6, 3.8, 3.2, 2.5, 2, 0.7, 0.7}; //2015 SR
 double LambdaExp[val] = {5.4,6,7,9,11,13,15,17,20};  //HIgh Mass SR
@@ -79,7 +108,7 @@ double LambdaErrm1s[val] = {4.9, 6,    7,    8,    9,    10,   11}; //Il primo p
 double Exp_m1s[val]   = {4.95, 4.53, 4.04, 3.61, 3.13, 2.75, 2.39};  //il plot si usa 5.17,5.31
 double LambdaErrm2s[val] = {5.17, 6,    7,    8,    9,    10,   11}; 
 double Exp_m2s[val]   = {5.31, 4.95, 4.50, 4.08, 3.61, 3.29, 2.39};//L'ultimo punto sarebbe 2.93 ma per far tornare il plot si usa 2.39 come in m1s
-
+*/
 
 /////
 //   Declare functions 
