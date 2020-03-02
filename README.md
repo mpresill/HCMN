@@ -33,7 +33,8 @@ EXO pre-approval checklist: https://twiki.cern.ch/twiki/bin/viewauth/CMS/ExoPrea
 - First update talk by Roberto (to be added)
 - Update talk (25 Nov 2019)  https://docs.google.com/presentation/d/1V6kgz4rxWQv_1hDuIGVuL24RRUsnkTPn5hZyoxKP2og/edit#slide=id.g59567419ba_0_0
 (https://indico.cern.ch/event/865103/)
-
+- Update talk (2 Mar 2020)
+https://indico.cern.ch/event/892689/contributions/3769056/attachments/1996457/3330952/HN_updateJetX_2Mar20.pdf
 
 ## To-do list:
 Targeting subgroup Jet+X update on nov 11th with:
