@@ -30,13 +30,7 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples 
-const string path         = "/afs/cern.ch/work/r/roleonar/Analisi_2016/rootple/";
-//It is important you respect the orther: bkg, data_obs, sig
-//For the moment: all bkg are taken from MC; data_obs = sum of all bkg; 
-//const char *samples[]   = {"DY", "DYHT100to200", "DYHT200to400", "DYHT400to600", "DYHT100to200", "DYHT600toInf", "TT", "ST", "SaT", "WJets", "WW", "WZ", "ZZ", "sig"};
-//const char *ParamPoints[] = {"L5000_M500", "L5000_M1500", "L5000_M2500", "L5000_M3500", "L5000_M4500", 
-                            // "L15000_M500", "L15000_M1500", "L15000_M2500", "L15000_M3500", "L15000_M4500"       
-                           // };
+const string path         = "";
 const char *samples[]     = {"DY"};
 const string selection    = "_2016_SRe";  
 //Plots option
@@ -46,7 +40,7 @@ const string objsf      = "lepsf_evt";//"lepsf_evt";
 const string PUw        = "PUWeight";
 const double Luminosity = 35900; //35900 2255
 const bool noLumiNorm   = false;
-const bool noPUcorr     = false;
+const bool noPUcorr     = true;
 const bool noobjsf      = false;  
 const double normalize  = false;
 //Binning
@@ -113,7 +107,7 @@ void DY_Ele_Estimation(){
   //Create new file
   string norm;
   if(normalize) norm = "_norm";
-  string newfilename = "eejj_DY"+norm+".root";
+  string newfilename = "eejj_DY_AlphaRatio"+norm+".root";
   TFile *newfile = new TFile(newfilename.c_str(),"recreate");
   DYstim->Write();  delete DYstim;
   //DY->Write();    delete DY;
