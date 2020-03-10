@@ -30,24 +30,17 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples 
-const string path         = "/afs/cern.ch/work/r/roleonar/Analisi_2016/rootple/"; 
-                           //"/afs/cern.ch/work/r/roleonar/CMSSW_7_4_12/src/Macros/rootple/76X/jes/down/";
-//It is important you respect the orther: bkg, data_obs, sig
-//For the moment: all bkg are taken from MC; data_obs = sum of all bkg; 
-//const char *samples[]   = {"DY", "DYHT100to200", "DYHT200to400", "DYHT400to600", "DYHT100to200", "DYHT600toInf", "TT", "ST", "SaT", "WJets", "WW", "WZ", "ZZ", "sig"};
-//const char *ParamPoints[] = {"L5000_M500", "L5000_M1500", "L5000_M2500", "L5000_M3500", "L5000_M4500", 
-                            // "L15000_M500", "L15000_M1500", "L15000_M2500", "L15000_M3500", "L15000_M4500"       
-                           // };
+const string path         = "/afs/";    //VALE UPDATE
 const char *samples[]     = {"DY"};
-const string selection    = "_SRmu";  
+const string selection    = "_2016_SRmu";  
 //Plots option
 const string varplot    = "M_leplepBjet";
 const double fixcut     = 0; //Save only events for which varplot>fixcut
 const string objsf      = "lepsf_evt";//"lepsf_evt";
 const string PUw        = "PUWeight";
-const double Luminosity = 35900;
+const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool noLumiNorm   = false;
-const bool noPUcorr     = false;
+const bool noPUcorr     = true;    
 const bool noobjsf      = false;  
 const double normalize  = false;
 //Binning
@@ -56,8 +49,8 @@ const double inRange         = 0;
 const double endRange        = 10000;
 const bool   asymbin         = true;
 const double asymbins[bin+1] = {0,200,400,600,800,1000,1400,2000,3500,10000};
-const double DYSF            = 1.162;
-const double DYSFerr         = 0.008;
+const double DYSF            = 1.162;     //VALE UPDATE 
+const double DYSFerr         = 0.008;     //VALE UPDATE 
 //Error of bkg (pay attention to use symmetric or asymmetric errors)
 /////
 //   Declare functions 
@@ -114,7 +107,7 @@ void DY_Mu_Estimation(){
   //Create new file
   string norm;
   if(normalize) norm = "_norm";
-  string newfilename = "mumujj_DY"+norm+".root";
+  string newfilename = "mumujj_DY_AlphaRatio"+norm+".root";
   TFile *newfile = new TFile(newfilename.c_str(),"recreate");
   DYstim->Write();  delete DYstim;
   //DY->Write();    delete DY;
