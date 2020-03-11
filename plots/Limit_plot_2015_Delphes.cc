@@ -34,7 +34,7 @@ using namespace std;
 /////
 //   Declare constants
 /////
-const double Luminosity = 2318; //pb^-1
+const double Luminosity = 35542; //pb^-1
 //Plots
 const bool eejj        = true;
 const bool mumujj      = false;
@@ -42,7 +42,7 @@ const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 const bool   save_plot = true;
-const string name_plot = "test_SR_2.png"; //xsecBR or r
+const string name_plot = "limit_2016_eejj_stat_only.pdf"; //xsecBR or r
 const int    val         = 5;
 const double SigEvt[val] = {216.2998, 117.1731, 23.7754, 5.42671, 1.39927};
 const double CumEff[val] = {0.30354, 0.47612, 0.49458, 0.50239, 0.50738}; //Num evt in SR/Num evt in dataset (Or num evt read, to be more precise) 

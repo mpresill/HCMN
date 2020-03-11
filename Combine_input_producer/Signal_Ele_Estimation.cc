@@ -30,9 +30,9 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples 
-const string path         = "/afs/cern.ch/work/m/mpresill/HCMN/BkgEstimation/";
-const char *samples[]     = {"eejj_L13000_M500"};
-const string selection    = "_2016_SRe";  
+const string path         = "/eos/user/m/mpresill/CMS/HN_Reload/skimmed_files/";
+const char *samples[]     = {"mumujj_L13000_M500"};
+const string selection    = "_2016_SRmu";  
 //Plots option
 const string varplot    = "M_leplepBjet";
 const double fixcut     = 0; //Save only events for which varplot>fixcut
@@ -65,16 +65,16 @@ void Signal_Ele_Estimation(){
  vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
  //TCanvas* c1 = new TCanvas("SRshape","SRshape",400,400,1100,800);
   //Declare histos
-  TH1F *DY; TH1F *DYstim; TH1F *TT; TH1F *tW; TH1F *TTtW; TH1F *eejj_L13000_M500; TH1F *data_read; TH1F *data_obs; TH1F *data_sub; TH1F *sig; TH1F *eejj_L13000_M5002;
+  TH1F *DY; TH1F *DYstim; TH1F *TT; TH1F *tW; TH1F *TTtW; TH1F *mumujj_L13000_M500; TH1F *data_read; TH1F *data_obs; TH1F *data_sub; TH1F *sig; TH1F *mumujj_L13000_M5002;
   if(!asymbin){
-   eejj_L13000_M500    = new TH1F("","",bin,inRange,endRange);
-   eejj_L13000_M5002   = new TH1F("eejj_L13000_M500","eejj_L13000_M500",bin,inRange,endRange); 
+   mumujj_L13000_M500    = new TH1F("","",bin,inRange,endRange);
+   mumujj_L13000_M5002   = new TH1F("mumujj_L13000_M500","mumujj_L13000_M500",bin,inRange,endRange); 
   }else{
-   eejj_L13000_M500    = new TH1F("","",bin,asymbins);
-   eejj_L13000_M5002   = new TH1F("eejj_L13000_M500","eejj_L13000_M500",bin,asymbins);
+   mumujj_L13000_M500    = new TH1F("","",bin,asymbins);
+   mumujj_L13000_M5002   = new TH1F("mumujj_L13000_M500","mumujj_L13000_M500",bin,asymbins);
   }
   for(uint i=0; i<rootplas.size(); i++){
-   if(rootplas[i]=="eejj_L13000_M500") eejj_L13000_M500 = get_treehist(rootplas[i],i);
+   if(rootplas[i]=="mumujj_L13000_M500") mumujj_L13000_M500 = get_treehist(rootplas[i],i);
    }
   /*
   //Systematic calculation
@@ -90,20 +90,20 @@ void Signal_Ele_Estimation(){
   }
   */
   for(int i=1; i<=bin; i++){
-    eejj_L13000_M5002->SetBinContent(i,eejj_L13000_M500->GetBinContent(i));
-    if(eejj_L13000_M5002->GetBinContent(i)!=0){
-     eejj_L13000_M5002->SetBinError(i,eejj_L13000_M500->GetBinError(i));
+    mumujj_L13000_M5002->SetBinContent(i,mumujj_L13000_M500->GetBinContent(i));
+    if(mumujj_L13000_M5002->GetBinContent(i)!=0){
+     mumujj_L13000_M5002->SetBinError(i,mumujj_L13000_M500->GetBinError(i));
     }
-    else{eejj_L13000_M5002->SetBinError(i,0);}
-    cout<<"Bin"<<i<<"="<<eejj_L13000_M5002->GetBinContent(i)<<endl;
-    cout<<"Err"<<i<<"="<<eejj_L13000_M5002->GetBinError(i)<<endl;
+    else{mumujj_L13000_M5002->SetBinError(i,0);}
+    cout<<"Bin"<<i<<"="<<mumujj_L13000_M5002->GetBinContent(i)<<endl;
+    cout<<"Err"<<i<<"="<<mumujj_L13000_M5002->GetBinError(i)<<endl;
   } 
   //Create new file
   string norm;
   if(normalize) norm = "_norm";
-  string newfilename = "eejj_L13000_M500_2016"+norm+".root";
+  string newfilename = "mumujj_L13000_M500_2016"+norm+".root";
   TFile *newfile = new TFile(newfilename.c_str(),"recreate");
-  eejj_L13000_M5002->Write();  delete eejj_L13000_M5002;
+  mumujj_L13000_M5002->Write();  delete mumujj_L13000_M5002;
  
   newfile->Write();
   newfile->Close();

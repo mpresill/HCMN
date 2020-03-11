@@ -1,6 +1,6 @@
 
-TASK="WZ_" #EDIT: name of the output directory and the files
-INPUT_DATASET=(`cat listWZ.txt`) #EDIT: name of the list 
+TASK="TT_" #EDIT: name of the output directory and the files
+INPUT_DATASET=(`cat listTT.txt`) #EDIT: name of the list 
 
 i=0
 JOB_FOLDER=jobs_test #folder for jobs
