@@ -31,22 +31,22 @@ Need to specify
 /////
 //Path - samples 
 const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/"; //"/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
-//const char *samples[] = {/*"TT_2016","tW_2016",*/ 
+const char *samples[] = {/*"TT_2016","tW_2016",*/ 
 //	                "Other_2016","DY_2016","TTtW_2016",
                          //"data_ele_2016"
 //                         "data_mu_2016"
                         "mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
 			//,"eejj_L13000_M500_2016","eejj_L13000_M1000_2016","eejj_L13000_M2000_2016","eejj_L13000_M5000_2016","eejj_L13000_M8000_2016" 
-//			};
+			};
 
 //QCD bkg estimation samples
-const char *samples[] = {/*"TT_2016","tW_2016",*/ 
+//const char *samples[] = {/*"TT_2016","tW_2016",*/ 
 	                //"Other_QCD_2016","DY_QCD_2016","TTtW_QCD_2016"
                          //"data_ele_QCD_2016"
                         //, "data_mu_QCD_2016"
                         // "mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
 			//,"eejj_L13000_M500_2016","eejj_L13000_M1000_2016","eejj_L13000_M2000_2016","eejj_L13000_M5000_2016","eejj_L13000_M8000_2016" 
-			};
+//			};
 
 const string specsel  = "";
 //Selection
@@ -91,9 +91,14 @@ TFile* Call_TFile(string rootpla);
 void SkimNtuple(){
  //For all the samples
  vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
+ double EffCum[15]={0};
+ double num_EffCum[15]={0};
+ double den_EffCum[15]={0};
  for(uint i=0; i<rootplas.size(); i++){
   //Call old ntupla
   TFile* f = Call_TFile(rootplas[i]); TTree* tree; f->GetObject("BOOM",tree);
+  den_EffCum[i]=tree->GetEntries();
+  //cout<<"#tot events  "<< den_EffCum[i] <<"\n";
   //Create new ntupla
   string newfil  = specsel+rootplas[i]+"_"+suffisso+dotroot; 
   TFile *newfile = new TFile(newfil.c_str(),"recreate");
@@ -102,10 +107,15 @@ void SkimNtuple(){
   string varCut  = selection;
   TTree* newtree = tree->CopyTree(varCut.c_str());
   //Save
+  num_EffCum[i]=newtree->GetEntries();
+  //cout<<"#events SR "<< num_EffCum[i] <<"\n";
+  EffCum[i]=num_EffCum[i]/den_EffCum[i];
+  cout << "cumulative eff of sample '"<< rootplas[i] <<"' =  "<<EffCum[i]<<"\n";
   newtree->Write(); 
   newfile->Write();
   newfile->Close();
  }
+ 
 }
 /////
 //   Call TFile to be read
