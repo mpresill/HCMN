@@ -1422,6 +1422,7 @@ double get_wgtlumi(string FileName){
 
  // CHECKED OK!! 
  
+ //wgt = xsec_in_pb / number_of_events_from_DAS
  if(FileName.find("TT") != std::string::npos) wgt=88.29/8705576; //wgt=88.29/64310000;  
  if(FileName.find("DY") != std::string::npos) wgt=6077.0/97373487; //wgt=6077/100194597;
  if(FileName.find("_ST_") != std::string::npos) wgt=32.64/7581624; //wgt=32.64/9598000; 
