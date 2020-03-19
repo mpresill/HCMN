@@ -1131,13 +1131,19 @@ double deltaPhi(double phi1, double phi2) {
  while (result <= -M_PI) result += 2*M_PI;
  return result;
 }
+
 double CalculatePileupWeight(int trueInteractions){
- double data[] =  {5.64297e-05,0.000269623,0.000382956,0.000552844,0.000979931,0.00231634,0.0072801,0.0281133,0.0770196,0.130953,0.169536,0.182158,0.161879,0.116249,0.067104,0.0316937,0.0130125,0.00540404,0.00265731,0.00140593,0.000649204,0.000236783,6.7861e-05,1.63211e-05,3.82396e-06,1.03356e-06,3.33506e-07,1.1967e-07,4.49699e-08,1.70463e-08,6.34643e-09,2.28001e-09,7.82427e-10,2.55149e-10,7.88717e-11,2.30861e-11,6.39564e-12,1.67664e-12,4.15902e-13,9.76172e-14,2.16793e-14,4.55562e-15,9.05813e-16,1.70419e-16,3.03394e-17,5.11017e-18,8.14821e-19,1.20894e-19,2.20432e-20,0,0};
+/* double data[] =  {5.64297e-05,0.000269623,0.000382956,0.000552844,0.000979931,0.00231634,0.0072801,0.0281133,0.0770196,0.130953,0.169536,0.182158,0.161879,0.116249,0.067104,0.0316937,0.0130125,0.00540404,0.00265731,0.00140593,0.000649204,0.000236783,6.7861e-05,1.63211e-05,3.82396e-06,1.03356e-06,3.33506e-07,1.1967e-07,4.49699e-08,1.70463e-08,6.34643e-09,2.28001e-09,7.82427e-10,2.55149e-10,7.88717e-11,2.30861e-11,6.39564e-12,1.67664e-12,4.15902e-13,9.76172e-14,2.16793e-14,4.55562e-15,9.05813e-16,1.70419e-16,3.03394e-17,5.11017e-18,8.14821e-19,1.20894e-19,2.20432e-20,0,0};
  double mc[] = {0.000108643,0.000388957,0.000332882,0.00038397,0.000549167,0.00105412,0.00459007,0.0210314,0.0573688,0.103986,0.142369,0.157729,0.147685,0.121027,0.08855,0.0582866,0.0348526,0.019457,0.0107907,0.00654313,0.00463195,0.00370927,0.0031137,0.00261141,0.00215499,0.00174491,0.00138268,0.00106731,0.000798828,0.00057785,0.00040336,0.00027161,0.000176535,0.00011092,6.75502e-05,4.00323e-05,2.32123e-05,1.32585e-05,7.51611e-06,4.25902e-06,2.42513e-06,1.39077e-06,8.02452e-07,4.64159e-07,2.67845e-07,1.5344e-07,8.68966e-08,4.84931e-08,2.6606e-08,1.433e-08};
  double puw;
  puw=data[trueInteractions]/mc[trueInteractions];
+*/
+ //updated by Vale
+ double puw_[] = {0.366077 , 0.893925 , 1.19772 , 0.962699 , 1.12098 , 1.16486 , 0.795599 , 0.495824 , 0.742182 , 0.878856 , 0.964232 , 1.0725 , 1.12534 , 1.17603 , 1.20208 , 1.20764 , 1.20018 , 1.18268 , 1.144 , 1.09663 , 1.0656 , 1.05117 , 1.0516 , 1.05063 , 1.04986 , 1.05817 , 1.07216 , 1.08303 , 1.09569 , 1.10787 , 1.09462 , 1.08262 , 1.04125 , 0.985752 , 0.910807 , 0.820922 , 0.716787 , 0.610013 , 0.503118 , 0.404841 , 0.309195 , 0.22792 , 0.16369 , 0.11318 , 0.0773005 , 0.0509221 , 0.0318936 , 0.0200936 , 0.0122631 , 0.00742646 , 0.00438028 , 0.00260777 , 0.00156599 , 0.000971358 , 0.000729206 , 0.000672709 , 0.000730459 , 0.000948791 , 0.00135533 , 0.00189419 , 0.00308244 , 0.00409665 , 0.00487449 , 0.00525606 , 0.00578498 , 0.00551468 , 0.00500046 , 0.00440983 , 0.00401224 , 0.00354754 , 0.00310751 , 0.00270211 , 0.00233691 , 0.00202529 , 0.00172328 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0};
+ double puw=puw_[trueInteractions];
  return puw;
 }
+
 
 double Wgt_QCD(double SCeta, double Et){
  double wgt=0;
@@ -1481,15 +1487,19 @@ if(eta > 0.50 && eta <= 0.80) musf=0.999382296975; // stat 0.000200572274358 sys
  return musf;
 }
 
+//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunBCDEF_SF_ISO.json
+//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunGH_SF_ISO.json
+//NUM_LooseRelIso_DEN_LooseID
+//(pesoBF*L_BF + pesoGH*L_GH)/L_BH
+
 double get_wgtlumi(string FileName){
  double wgt=1;
  
  
-   //xsec in pb
-
- // CHECKED for 2017 OK!! 
- 
-  if(FileName.find("TT") != std::string::npos) wgt=730.6/76915549;
+    //xsec in pb
+   // number of events from DAS
+ // checked, OK! 
+ if(FileName.find("TT") != std::string::npos) wgt=730.6/76915549;
  if(FileName.find("DY") != std::string::npos) wgt=6077./146280395;
  if(FileName.find("_ST_") != std::string::npos)  wgt=35.61/6952830;
  if(FileName.find("_SaT_") != std::string::npos) wgt=35.59/6933094;
@@ -1505,22 +1515,22 @@ double get_wgtlumi(string FileName){
  if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.60809/6806162;
  if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.0388389/1398006;
  if(FileName.find("WJets_") != std::string::npos) wgt=60814.6/86916455;
+
  //muons
- 
+
  if((FileName.find("mumujj_16_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
  if((FileName.find("mumujj_16_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
  if((FileName.find("mumujj_16_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
  if((FileName.find("mumujj_16_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
  if((FileName.find("mumujj_16_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
+
  //electrons
- 
-  if((FileName.find("eejj_16_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+
+ if((FileName.find("eejj_16_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
  if((FileName.find("eejj_16_L13_M1000") != std::string::npos)) wgt=2.8140e-03/96800;
  if((FileName.find("eejj_16_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
  if((FileName.find("eejj_16_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
  if((FileName.find("eejj_16_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91273;
-
-  
 
  return wgt;
  }
