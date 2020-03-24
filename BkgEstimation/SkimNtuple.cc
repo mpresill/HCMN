@@ -40,7 +40,7 @@ const char *samples[] = {//"TT_2016","tW_2016",
 			};
 */
 //QCD bkg estimation samples
-const strin path = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
+const string path = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
 const char *samples[] = {"Other_QCD_2016","DY_QCD_2016","TTtW_QCD_2016"
                          "data_ele_QCD_2016"
                         //, "data_mu_QCD_2016"
