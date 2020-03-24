@@ -31,9 +31,8 @@ using namespace std;
 const string path           = ""; 
                               
 const char *samples[]       = {
-                              //"DY","TT","tW","WJets","WW","WZ","ZZ", 
                               "DY","TTtW","Other",
-                              "data_mu"
+                              "data_ele"
 };
 const string selection      = "_2016_QCDe";//aggiungere _selection 
 const string channel        = "";
@@ -96,22 +95,21 @@ void CountingEvt_QCD(){
   TBranch *b_lepsf_evt = 0;
   tree->SetBranchAddress("lepsf_evt",&lepsf_evt,&b_lepsf_evt);
   */
-  //Pileup
+  //Pileup: "PileupWeight" is the branch updated by Vale
   double PileupWeight;
   TBranch *b_PileupWeight = 0;
-  //tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
-  tree->SetBranchAddress("PUWeight",&PileupWeight,&b_PileupWeight);
+  tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
   //Lumi 
   double lumi_wgt;
   TBranch *b_lumi_wgt = 0;
   tree->SetBranchAddress("lumi_wgt",&lumi_wgt,&b_lumi_wgt);
   //QCDcorr
-  double QCD_wgt_mu1;
-  TBranch *b_QCD_wgt_mu1 = 0;
-  tree->SetBranchAddress("QCD_wgt_mu1",&QCD_wgt_mu1,&b_QCD_wgt_mu1);
-  double QCD_wgt_mu2;
-  TBranch *b_QCD_wgt_mu2 = 0;
-  tree->SetBranchAddress("QCD_wgt_mu2",&QCD_wgt_mu2,&b_QCD_wgt_mu2);
+ // double QCD_wgt_mu1;
+ //TBranch *b_QCD_wgt_mu1 = 0;
+ // tree->SetBranchAddress("QCD_wgt_mu1",&QCD_wgt_mu1,&b_QCD_wgt_mu1);
+ // double QCD_wgt_mu2;
+ // TBranch *b_QCD_wgt_mu2 = 0;
+ // tree->SetBranchAddress("QCD_wgt_mu2",&QCD_wgt_mu2,&b_QCD_wgt_mu2);
   double QCD_wgt_evt;
   TBranch *b_QCD_wgt_evt = 0;
   tree->SetBranchAddress("QCD_wgt_evt",&QCD_wgt_evt,&b_QCD_wgt_evt);
@@ -131,14 +129,14 @@ void CountingEvt_QCD(){
    //b_lepsf_evt->GetEntry(tentry);
    b_PileupWeight->GetEntry(tentry);
    b_lumi_wgt->GetEntry(tentry);
-   b_QCD_wgt_mu1->GetEntry(tentry);
-   b_QCD_wgt_mu2->GetEntry(tentry);
-   b_QCD_wgt_evt->GetEntry(tentry);
-   double QCD_wgt_evt2=(QCD_wgt_mu1/(1-QCD_wgt_mu1))*(QCD_wgt_mu2/(1-QCD_wgt_mu2));
+   //b_QCD_wgt_mu1->GetEntry(tentry);
+   //b_QCD_wgt_mu2->GetEntry(tentry);
+   //b_QCD_wgt_evt->GetEntry(tentry);
+   //double QCD_wgt_evt2=(QCD_wgt_mu1/(1-QCD_wgt_mu1))*(QCD_wgt_mu2/(1-QCD_wgt_mu2));
    
    evt_wgt=1.;
    //cout<<"evt_wgt prima "<<evt_wgt<<endl;
-   if(rootplas[r]!="data_mu" && rootplas[r]!="prova" && rootplas[r]!="data_mu"){
+   if(rootplas[r]!="data_ele" && rootplas[r]!="prova" && rootplas[r]!="data_mu"){
     if(LumiNorm){
      //lumi_wgt2 = xsecs[r]/evtsread[r]*Luminosity;
      evt_wgt = evt_wgt*lumi_wgt*Luminosity;
@@ -206,7 +204,7 @@ void Evt_after_sel(vector<string> &rootplas, vector<double> &evt_sel, vector<dou
  double evt_sel_tot_err = 0.;
  int bkg_samples = 0;
  for(uint i=0; i<evt_sel.size(); i++){
-  if(rootplas[i]!="data_mu"){
+  if(rootplas[i]!="data_ele"){
    double evt_sig_w     = evt_sel[i];
    double evt_sig_err_w =  evt_errs[i];
    cout<<"\\rowcolor{white}"<<rootplas[i]<<" & "<<evt_sig_w<<"$\\pm$"<<evt_sig_err_w<<"\\\\"<<endl;
