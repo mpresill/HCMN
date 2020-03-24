@@ -41,8 +41,8 @@ const char *samples[] = {//"TT_2016","tW_2016",
 */
 //QCD bkg estimation samples
 const string path = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
-const char *samples[] = {"Other_QCD_2016","DY_QCD_2016","TTtW_QCD_2016"
-                         "data_ele_QCD_2016"
+const char *samples[] = {"Other_Q2016","DY_2016","TTtW_2016",
+                         "data_ele_2016"
                         //, "data_mu_QCD_2016"
       			};
 
@@ -123,15 +123,3 @@ TFile* Call_TFile(string rootpla){
  TFile* f = new TFile(file_name.c_str(),"update");
  return f;
 }
-//const string selection  = "l1pvval!=-9999 && nmus==2 && neles==0 && cands_pt[0]>25 && cands_pt[1]>25";
-// && cands_pt[0]>25 && cands_pt[1]>25 && mus_pt[1]==cands_pt[1]";// && cands_pt[0]>20 && cands_pt[1]>10";
-// ((nmus==2 && mus_pt[0]>20 && mus_pt[1]>20) || (neles==2 && eles_pt[0]>20 && eles_pt[1]>20) || (nmus+neles==2 && mus_pt[0]>20 && meles_pt[0]>20))";
-//2mu
-//const string suffisso   = "2mu"; 
-//const string selection  = "l1pvval!=-9999 && nmus==2 && neles==0";
-//sig 2L
-//const string suffisso   = "sr_2lep"; 
-//const string selection  = "nLepGood==2 && LepGood_pt[0]>20 && LepGood_pt[1]>20 && LepGood_charge[0]*LepGood_charge[1] > 0 && nJet25>=4 && (nBJetLoose25 >= 2 || nBJetMedium25 >= 1)";
-//const string suffisso   = "sr_3lep"; 
-//const string selection  = "nLepGood==3 && LepGood_pt[0]>20 && LepGood_pt[1]>20 && LepGood_pt[2]>20 && nJet25>=4 && (nBJetLoose25 >= 2 || nBJetMedium25 >= 1)";
-
