@@ -1,7 +1,6 @@
 /**
 This Macro   
 1. Counts the number of events passing a given selection
-
 Need to specify
 1. See Declare Constants
 */
@@ -54,11 +53,11 @@ const double evtsRead[]     = {116591749
 const double Luminosity     = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool LumiNorm         = true; 
 const bool PUcorr           = true; 
-const bool GenWgtcorr       = false; 
+const bool GenWgtcorr       = true; 
 const bool eleSFcorrection  = false;
 const bool QCDcorr          = true;
 //Print
-const int SETPRECISION      = 4;
+const int SETPRECISION      = 3;
 double evt_wgt = 1.;
 /////
 //   Declare functions 
@@ -122,21 +121,19 @@ void CountingEvt_QCD(){
   double evt_err=0;
   //All entries
   for(int en=0; en<tree->GetEntries(); en++){
-  //for(int en=0; en<100; en++ ){
    Long64_t tentry = tree->LoadTree(en);
-   //nBestVtx
    b_nBestVtx->GetEntry(tentry);
    //b_lepsf_evt->GetEntry(tentry);
    b_PileupWeight->GetEntry(tentry);
    b_lumi_wgt->GetEntry(tentry);
+   b_QCD_wgt_evt->GetEntry(tentry);
    //b_QCD_wgt_mu1->GetEntry(tentry);
    //b_QCD_wgt_mu2->GetEntry(tentry);
    //b_QCD_wgt_evt->GetEntry(tentry);
    //double QCD_wgt_evt2=(QCD_wgt_mu1/(1-QCD_wgt_mu1))*(QCD_wgt_mu2/(1-QCD_wgt_mu2));
-   
    evt_wgt=1.;
    //cout<<"evt_wgt prima "<<evt_wgt<<endl;
-   if(rootplas[r]!="data_ele" && rootplas[r]!="prova" && rootplas[r]!="data_mu"){
+   if(rootplas[r]!="data_ele" && rootplas[r]!="data_mu"){
     if(LumiNorm){
      //lumi_wgt2 = xsecs[r]/evtsread[r]*Luminosity;
      evt_wgt = evt_wgt*lumi_wgt*Luminosity;
@@ -151,10 +148,11 @@ void CountingEvt_QCD(){
      //if(eleSFcorrection){
      //evt_wgt = evt_wgt*lepsf_evt;
      //}
-    }
-    if(QCDcorr){
+     if(QCDcorr){
     evt_wgt = evt_wgt*QCD_wgt_evt;
     }
+    }
+   
 
    /////
    //   Get values
@@ -204,7 +202,7 @@ void Evt_after_sel(vector<string> &rootplas, vector<double> &evt_sel, vector<dou
  double evt_sel_tot_err = 0.;
  int bkg_samples = 0;
  for(uint i=0; i<evt_sel.size(); i++){
-  if(rootplas[i]!="data_ele"){
+  if(rootplas[i]!="data_ele" && rootplas[i]!="data_mu"){
    double evt_sig_w     = evt_sel[i];
    double evt_sig_err_w =  evt_errs[i];
    cout<<"\\rowcolor{white}"<<rootplas[i]<<" & "<<evt_sig_w<<"$\\pm$"<<evt_sig_err_w<<"\\\\"<<endl;
