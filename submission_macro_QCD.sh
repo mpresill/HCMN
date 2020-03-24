@@ -1,9 +1,9 @@
 
-TASK="DY_QCD_" #EDIT: name of the output directory and the files
-INPUT_DATASET=(`cat list_2016_DY.txt`) #EDIT: name of the list 
+TASK="data_mu_B_QCD_" #EDIT: name of the output directory and the files
+INPUT_DATASET=(`cat list_2016_data_mu_B.txt`) #EDIT: name of the list 
 
 i=0
-JOB_FOLDER=jobs_test_1 #folder for jobs
+JOB_FOLDER=jobs_test_7 #folder for jobs
 
 OUTPUT_FOLDER=/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples/$TASK #EDIT: name of the folder where to save rootples
 echo "$OUTPUT_FOLDER"
