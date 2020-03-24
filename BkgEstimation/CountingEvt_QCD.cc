@@ -58,7 +58,7 @@ const bool GenWgtcorr       = false;
 const bool eleSFcorrection  = false;
 const bool QCDcorr          = true;
 //Print
-const int SETPRECISION      = 3;
+const int SETPRECISION      = 4;
 double evt_wgt = 1.;
 /////
 //   Declare functions 
