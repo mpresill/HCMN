@@ -30,29 +30,27 @@ Need to specify
 //   Declare constants
 /////
 //Path - samples 
-const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/"; //"/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
-const char *samples[] = {/*"TT_2016","tW_2016",*/ 
-//	                "Other_2016","DY_2016","TTtW_2016",
+/*const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/"; //"/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
+const char *samples[] = {//"TT_2016","tW_2016", 
+	                //"Other_2016","DY_2016","TTtW_2016",
                          //"data_ele_2016"
-//                         "data_mu_2016"
-                        "mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
+                         //"data_mu_2016"
+                        //"mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
 			//,"eejj_L13000_M500_2016","eejj_L13000_M1000_2016","eejj_L13000_M2000_2016","eejj_L13000_M5000_2016","eejj_L13000_M8000_2016" 
 			};
-
+*/
 //QCD bkg estimation samples
-//const char *samples[] = {/*"TT_2016","tW_2016",*/ 
-	                //"Other_QCD_2016","DY_QCD_2016","TTtW_QCD_2016"
-                         //"data_ele_QCD_2016"
+const strin path = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
+const char *samples[] = {"Other_QCD_2016","DY_QCD_2016","TTtW_QCD_2016"
+                         "data_ele_QCD_2016"
                         //, "data_mu_QCD_2016"
-                        // "mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
-			//,"eejj_L13000_M500_2016","eejj_L13000_M1000_2016","eejj_L13000_M2000_2016","eejj_L13000_M5000_2016","eejj_L13000_M8000_2016" 
-//			};
+      			};
 
 const string specsel  = "";
 //Selection
 const string suffisso   = 
                           ///////muon/////////////////////
-                          "SRmu";
+                          //"SRmu";
                           //"DYRmu";
                           //"DYRmuPlot";
                           //"DYRmuTest";
@@ -64,10 +62,10 @@ const string suffisso   =
                           //"DYRePlot";
                           //"DYReTest";
                           //"TRe"; //CR region TTtW estimation: the second leading lepton has opposite flavor
-                          //"QCDe"; //CR region QCD estimation
+                          "QCDe"; //CR region QCD estimation
 const string selection  =
 ////////////////////////muon/////////////////////////////
-"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt[0]>150 && Muon_pt[1]>100 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
+//"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt[0]>150 && Muon_pt[1]>100 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
 //"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt[0]>150 && Muon_pt[1]>100 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<100";
 //"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt[0]>150 && Muon_pt[1]>100 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>50 && M_leplep<130";
 //"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt[0]>150 && Muon_pt[1]>100 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<300";
@@ -79,7 +77,7 @@ const string selection  =
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>50 && M_leplep<300";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<300";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt[0]>150 && numOfHighptMu==1 &&  Muon_pt[0]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
-//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfLooseMu==0 && numOfFakeEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
+"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfLooseMu==0 && numOfFakeEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
 const string dotroot  = ".root"; 
 /////
 //   Declare functions 
