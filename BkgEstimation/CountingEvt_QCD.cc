@@ -32,10 +32,10 @@ const string path           = "";
                               
 const char *samples[]       = {
                               //"DY","TT","tW","WJets","WW","WZ","ZZ", 
-                              "DY_QCD","TTtW_QCD","Other_QCD",
-                              "data_mu_QCD"
+                              "DY","TTtW","Other",
+                              "data_mu"
 };
-const string selection      = "_2016_QCDmu";//"_SignalRegion";//aggiungere _selection 
+const string selection      = "_2016_QCDe";//aggiungere _selection 
 const string channel        = "";
 //Selections
 const bool obj_sel          = true;
@@ -54,7 +54,7 @@ const double evtsRead[]     = {116591749
 };*/
 const double Luminosity     = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool LumiNorm         = true; 
-const bool PUcorr           = false; 
+const bool PUcorr           = true; 
 const bool GenWgtcorr       = false; 
 const bool eleSFcorrection  = false;
 const bool QCDcorr          = true;
