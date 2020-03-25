@@ -30,15 +30,21 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples 
-const string path         = "/afs/cern.ch/work/r/roleonar/CMSSW_7_4_12/src/Analisi_2/rootple/QCD/";
+const string path         = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
 //It is important you respect the orther: bkg, data_obs, sig
 //For the moment: all bkg are taken from MC; data_obs = sum of all bkg; 
 //const char *samples[]   = {"DY", "DYHT100to200", "DYHT200to400", "DYHT400to600", "DYHT100to200", "DYHT600toInf", "TT", "ST", "SaT", "WJets", "WW", "WZ", "ZZ", "sig"};
 //const char *ParamPoints[] = {"L5000_M500", "L5000_M1500", "L5000_M2500", "L5000_M3500", "L5000_M4500", 
                             // "L15000_M500", "L15000_M1500", "L15000_M2500", "L15000_M3500", "L15000_M4500"       
                            // };
-const char *samples[]     = {"DY","TT","tW","Other","data_ele"};
-const string selection    = "_QCDele";  
+const char *samples[] = {//"TT_2016","tW_2016", 
+	                "Other_2016","DY_2016","TTtW_2016",
+                         "data_ele_2016"
+                         //"data_mu_2016"
+                        //"mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
+			//,"eejj_L13000_M500_2016","eejj_L13000_M1000_2016","eejj_L13000_M2000_2016","eejj_L13000_M5000_2016","eejj_L13000_M8000_2016" 
+			};
+const string selection    = "";  
 //Plots option
 const string varplot    = "M_leplepBjet1";
 const double fixcut     = 0; //Save only events for which varplot>fixcut
@@ -210,8 +216,8 @@ TH1F* get_treehist(string rootpla, int idx){
  tree->SetBranchAddress(varplot.c_str(),&curr_var,&b_curr_var);
  double PileupWeight;
  TBranch *b_PileupWeight = 0;
- //tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
- tree->SetBranchAddress("PUWeight",&PileupWeight,&b_PileupWeight);
+ tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
+ //tree->SetBranchAddress("PUWeight",&PileupWeight,&b_PileupWeight);
  double lumi_wgt;
  TBranch *b_lumi_wgt = 0;
  tree->SetBranchAddress("lumi_wgt",&lumi_wgt,&b_lumi_wgt);
@@ -244,7 +250,7 @@ TH1F* get_treehist(string rootpla, int idx){
 
 
   double w = 1.;
-  if(rootpla!="data_ele" && rootpla!="prova"){
+  if(rootpla!="data_ele" && rootpla!="data_mu"){
    if(!noLumiNorm) w = w*lumi_wgt*Luminosity;
    if(!noPUcorr)   w = w*PileupWeight;
    if(!noobjsf)    w = w*sf_obj;
