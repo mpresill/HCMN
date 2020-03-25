@@ -54,7 +54,7 @@ const double evtsRead[]     = {116591749
 const double Luminosity     = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool LumiNorm         = true; 
 const bool PUcorr           = true; 
-const bool GenWgtcorr       = true; 
+const bool GenWgtcorr       = false; 
 const bool eleSFcorrection  = false;
 const bool QCDcorr          = true;
 //Print
