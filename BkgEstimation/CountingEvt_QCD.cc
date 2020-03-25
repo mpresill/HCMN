@@ -32,6 +32,7 @@ const string path           = "";
 const char *samples[]       = {
                               "DY","TTtW","Other",
                               "data_ele"
+                              //"data_mu"
 };
 const string selection      = "_2016_QCDe";//aggiungere _selection 
 const string channel        = "";
