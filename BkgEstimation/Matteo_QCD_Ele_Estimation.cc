@@ -173,11 +173,13 @@ TH1F* get_treehist(string rootpla){
 
         double w = 1.;
         if(rootpla!="data_ele"){
-        if(LumiNorm) w = w*lumi_wgt*Luminosity;
-        if(PUcorr)   w = w*PileupWeight;
-        if(objsfCorr)    w = w*sf_obj;
+            if(LumiNorm) w = w*lumi_wgt*Luminosity;
+            if(PUcorr)   w = w*PileupWeight;
+            if(objsfCorr)    w = w*sf_obj;
         }
-        w = w*QCD_wgt_evt;
+        else{ 
+            w = w*QCD_wgt_evt;
+        }
         if(curr_var>fixcut){
         if(curr_var<endRange) hist->Fill(curr_var,w);
             else                  hist->Fill(endRange*0.99999,w);
