@@ -65,25 +65,31 @@ TH1F* get_treehist(string rootpla);
 void Matteo_QCD_Ele_Estimation(){
     vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
     //Declare histos
-    TH1F *DY; TH1F *TTtW; TH1F *Other; TH1F *data_read; TH1F *QCD_out; TH1F *sig;
+    TH1F *DY; TH1F *TT; TH1F *tW; TH1F *TTtW; TH1F *Other; TH1F *data_read; TH1F *data_obs; TH1F *data_sub; TH1F *sig;
     if(!asymbin){
     DY    = new TH1F("","",bin,inRange,endRange);
-    TTtW    = new TH1F("","",bin,inRange,endRange);
+    TT    = new TH1F("","",bin,inRange,endRange);
+    tW    = new TH1F("","",bin,inRange,endRange);
     Other = new TH1F("","",bin,inRange,endRange);
-    QCD_out = new TH1F("QCD","QCD",bin,inRange,endRange);
-    data_read = new TH1F("","",bin,inRange,endRange);
+    data_obs  = new TH1F("data_obs","data_obs",bin,inRange,endRange);
+    data_sub = new TH1F("QCD","QCD",bin,inRange,endRange);
+    data_read = new TH1F("QCD","QCD",bin,inRange,endRange);
     sig   = new TH1F("","",bin,inRange,endRange);
+    TTtW  = new TH1F("","",bin,inRange,endRange);
     }else{
     DY    = new TH1F("","",bin,asymbins);
-    TTtW    = new TH1F("","",bin,asymbins);
+    TT    = new TH1F("","",bin,asymbins);
+    tW    = new TH1F("","",bin,asymbins);
     Other = new TH1F("","",bin,asymbins);
-    QCD_out = new TH1F("QCD","QCD",bin,asymbins);
-    data_read = new TH1F("","",bin,asymbins);
+    data_obs  = new TH1F("data_obs","data_obs",bin,asymbins);
+    data_sub = new TH1F("QCD","QCD",bin,asymbins);
+    data_read = new TH1F("QCD","QCD",bin,asymbins);
     sig   = new TH1F("","",bin,asymbins);
+    TTtW  = new TH1F("","",bin,asymbins);
     }
-    
+    //data_obs->Sumw2();//For the moment, untile you get it as a sum of SM bkg
     data_read->Sumw2();
-    QCD_out->Sumw2();
+    data_sub->Sumw2();
     
     for(uint i=0; i<rootplas.size(); i++){
         if(rootplas[i]=="DY") DY = get_treehist(rootplas[i]);
@@ -97,18 +103,20 @@ void Matteo_QCD_Ele_Estimation(){
     data_read->Add(data_read,DY,1,-1);
     data_read->Add(data_read,Other,1,-1);
     data_read->Add(data_read,TTtW,1,-1);
-    cout<<"data after "<<data_read->Integral()<<endl;  
+    //data_read->Add(data_read,tW,1,-1);
+    cout<<"data after "<<data_read->Integral()<<endl;
+    //TTtW->Add(TT,tW,1,1);
     
     for(int i=1; i<=bin; i++){
         if(data_read->GetBinContent(i)>0){
-        QCD_out->SetBinContent(i,data_read->GetBinContent(i));
-        QCD_out->SetBinError(i,data_read->GetBinError(i));
+        data_sub->SetBinContent(i,data_read->GetBinContent(i));
+        data_sub->SetBinError(i,data_read->GetBinError(i));
         }
         else{
-        QCD_out->SetBinContent(i,0);
-        QCD_out->SetBinError(i,0);
+        data_sub->SetBinContent(i,0);
+        data_sub->SetBinError(i,0);
         }
-        cout<<"Bin"<<i<<"="<<QCD_out->GetBinContent(i)<<"\t"<<"Err"<<i<<"="<<QCD_out->GetBinError(i)<< endl;
+        cout<<"Bin"<<i<<"="<<data_sub->GetBinContent(i)<<"\t"<<"Err"<<i<<"="<<data_sub->GetBinError(i)<< endl;
     } 
     
     //Create new file with QCD bkg estimated from CR
@@ -116,7 +124,8 @@ void Matteo_QCD_Ele_Estimation(){
     if(normalize) norm = "_norm";
     string newfilename = "eejj_QCD"+norm+".root";
     TFile *newfile = new TFile(newfilename.c_str(),"recreate");
-    QCD_out->Write();  delete QCD_out;
+    data_sub->Write();  delete data_sub;
+    //eventually add Other_MC estimate output directly here
     
     newfile->Write();
     newfile->Close();
