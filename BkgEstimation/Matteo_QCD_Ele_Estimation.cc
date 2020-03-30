@@ -116,7 +116,7 @@ void Matteo_QCD_Ele_Estimation(){
     if(normalize) norm = "_norm";
     string newfilename = "eejj_QCD"+norm+".root";
     TFile *newfile = new TFile(newfilename.c_str(),"recreate");
-    QCD->Write();  delete data_sub;
+    QCD->Write();  delete QCD;
     
     newfile->Write();
     newfile->Close();
