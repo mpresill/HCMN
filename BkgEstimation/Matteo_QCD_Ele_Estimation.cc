@@ -45,7 +45,7 @@ const string objsf      = "lepsf_evt";
 const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool LumiNorm   = true;
 const bool PUcorr     = true;
-const bool objsf      = true;  
+const bool objsfCorr  = true;  
 const double normalize  = false;
 //Binning
 const int    bin             = 9; //For symmetric or asymmetric bins
@@ -166,7 +166,7 @@ TH1F* get_treehist(string rootpla){
         if(rootpla!="data_ele"){
         if(LumiNorm) w = w*lumi_wgt*Luminosity;
         if(PUcorr)   w = w*PileupWeight;
-        if(objsf)    w = w*sf_obj;
+        if(objsfCorr)    w = w*sf_obj;
         }
         w = w*QCD_wgt_evt;
         if(curr_var>fixcut){
