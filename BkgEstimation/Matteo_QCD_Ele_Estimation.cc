@@ -83,7 +83,7 @@ void Matteo_QCD_Ele_Estimation(){
     }
     
     data_read->Sumw2();
-    antopre80@yahoo.it->Sumw2();
+    QCD->Sumw2();
     
     for(uint i=0; i<rootplas.size(); i++){
         if(rootplas[i]=="DY") DY = get_treehist(rootplas[i]);
