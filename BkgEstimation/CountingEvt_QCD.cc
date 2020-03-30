@@ -58,7 +58,7 @@ const bool GenWgtcorr       = false;
 const bool eleSFcorrection  = false;
 const bool QCDcorr          = true;
 //Print
-const int SETPRECISION      = 3;
+const int SETPRECISION      = 4;
 double evt_wgt = 1.;
 /////
 //   Declare functions 
@@ -164,7 +164,7 @@ void CountingEvt_QCD(){
   //cout<<"evt_wgt dopo "<<evt_wgt<<endl;
   evt_obj_sel += evt_wgt;
   evt_n++;
-  //evt_err=sqrt(evt_n)*evt_obj_sel/evt_n;
+  //evt_err=sqrt(evt_n)*evt_obj_sel/evt_n; 
   //evt_obj_sel ++;
   }//End all entries
   evt_err=sqrt(evt_n)*evt_obj_sel/evt_n;
