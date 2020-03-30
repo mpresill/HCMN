@@ -45,7 +45,7 @@ const string objsf      = "lepsf_evt";
 const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool LumiNorm   = true;
 const bool PUcorr     = true;
-const bool objsfCorr  = true;  
+const bool objsfCorr  = false;  
 const double normalize  = false;
 //Binning
 const int    bin             = 9; //For symmetric or asymmetric bins
