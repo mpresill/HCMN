@@ -30,7 +30,7 @@ using namespace std;
 const string path           = ""; 
                               
 const char *samples[]       = {
-                              "DY","TTtW","Other",
+                              "DY","TT","ST","Other",
                               "data_ele"
                               //"data_mu"
 };
@@ -58,7 +58,7 @@ const bool GenWgtcorr       = false;
 const bool eleSFcorrection  = false;
 const bool QCDcorr          = true;
 //Print
-const int SETPRECISION      = 4;
+const int SETPRECISION      = 3;
 double evt_wgt = 1.;
 /////
 //   Declare functions 
@@ -77,149 +77,148 @@ void CountingEvt_QCD(){
 // vector<double> xsecs(xSecs, xSecs + sizeof(xSecs)/sizeof(xSecs[0]));
  //vector<double> evtsread(evtsRead, evtsRead + sizeof(evtsRead)/sizeof(evtsRead[0]));
  vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
- for(uint r=0; r<rootplas.size(); r++){
-  double lumi_wgt2 = 1.;
-  //Call tree  
-  TFile* f = Call_TFile(rootplas[r]); TTree* tree; f->GetObject("BOOM",tree);
-  /////
-  //   Get variables
-  /////
-  //nBestVtx
-  int nBestVtx;
-  nBestVtx = 0;
-  TBranch *b_nBestVtx = 0;
-  tree->SetBranchAddress("nBestVtx",&nBestVtx,&b_nBestVtx);
-  //Scale Factor
-  /*
-  double lepsf_evt;
-  TBranch *b_lepsf_evt = 0;
-  tree->SetBranchAddress("lepsf_evt",&lepsf_evt,&b_lepsf_evt);
-  */
-  //Pileup: "PileupWeight" is the branch updated by Vale
-  double PileupWeight;
-  TBranch *b_PileupWeight = 0;
-  tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
-  //Lumi 
-  double lumi_wgt;
-  TBranch *b_lumi_wgt = 0;
-  tree->SetBranchAddress("lumi_wgt",&lumi_wgt,&b_lumi_wgt);
-  //QCDcorr
- // double QCD_wgt_mu1;
- //TBranch *b_QCD_wgt_mu1 = 0;
- // tree->SetBranchAddress("QCD_wgt_mu1",&QCD_wgt_mu1,&b_QCD_wgt_mu1);
- // double QCD_wgt_mu2;
- // TBranch *b_QCD_wgt_mu2 = 0;
- // tree->SetBranchAddress("QCD_wgt_mu2",&QCD_wgt_mu2,&b_QCD_wgt_mu2);
-  double QCD_wgt_evt;
-  TBranch *b_QCD_wgt_evt = 0;
-  tree->SetBranchAddress("QCD_wgt_evt",&QCD_wgt_evt,&b_QCD_wgt_evt);
-  /////
-  //   Loop over events
-  /////
-  //Object selection
-  double evt_obj_sel = 0.;
-  double evt_n = 0.;
-  double evt_err=0;
-  //All entries
-  for(int en=0; en<tree->GetEntries(); en++){
-   Long64_t tentry = tree->LoadTree(en);
-   b_nBestVtx->GetEntry(tentry);
-   //b_lepsf_evt->GetEntry(tentry);
-   b_PileupWeight->GetEntry(tentry);
-   b_lumi_wgt->GetEntry(tentry);
-   b_QCD_wgt_evt->GetEntry(tentry);
-   //b_QCD_wgt_mu1->GetEntry(tentry);
-   //b_QCD_wgt_mu2->GetEntry(tentry);
-   //b_QCD_wgt_evt->GetEntry(tentry);
-   //double QCD_wgt_evt2=(QCD_wgt_mu1/(1-QCD_wgt_mu1))*(QCD_wgt_mu2/(1-QCD_wgt_mu2));
-   evt_wgt=1.;
-   //cout<<"evt_wgt prima "<<evt_wgt<<endl;
-   if(rootplas[r]!="data_ele" && rootplas[r]!="data_mu"){
-    if(LumiNorm){
-     //lumi_wgt2 = xsecs[r]/evtsread[r]*Luminosity;
-     evt_wgt = evt_wgt*lumi_wgt*Luminosity;
-     }
-     if(PUcorr){
-     evt_wgt = evt_wgt*PileupWeight;
-     }
-     if(GenWgtcorr){
-     double evt_genwg = 1.;
-     evt_wgt = evt_wgt*evt_genwg;
-     }
-     //if(eleSFcorrection){
-     //evt_wgt = evt_wgt*lepsf_evt;
-     //}
-     if(QCDcorr){
-    evt_wgt = evt_wgt*QCD_wgt_evt;
+    for(uint r=0; r<rootplas.size(); r++){
+    double lumi_wgt2 = 1.;
+    //Call tree  
+    TFile* f = Call_TFile(rootplas[r]); TTree* tree; f->GetObject("BOOM",tree);
+    /////
+    //   Get variables
+    /////
+    double lepsf_evt;
+    TBranch *b_lepsf_evt = 0;
+    tree->SetBranchAddress("lepsf_evt",&lepsf_evt,&b_lepsf_evt);
+    */
+    //Pileup: "PileupWeight" is the branch updated by Vale
+    double PileupWeight;
+    TBranch *b_PileupWeight = 0;
+    tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
+    //Lumi 
+    double lumi_wgt;
+    TBranch *b_lumi_wgt = 0;
+    tree->SetBranchAddress("lumi_wgt",&lumi_wgt,&b_lumi_wgt);
+    //QCDcorr
+    // double QCD_wgt_mu1;
+    //TBranch *b_QCD_wgt_mu1 = 0;
+    // tree->SetBranchAddress("QCD_wgt_mu1",&QCD_wgt_mu1,&b_QCD_wgt_mu1);
+    // double QCD_wgt_mu2;
+    // TBranch *b_QCD_wgt_mu2 = 0;
+    // tree->SetBranchAddress("QCD_wgt_mu2",&QCD_wgt_mu2,&b_QCD_wgt_mu2);
+    double QCD_wgt_evt;
+    TBranch *b_QCD_wgt_evt = 0;
+    tree->SetBranchAddress("QCD_wgt_evt",&QCD_wgt_evt,&b_QCD_wgt_evt);
+    /////
+    //   Loop over events
+    /////
+    //Object selection
+    double evt_obj_sel = 0.;
+    double evt_n = 0.;
+    double evt_err=0;
+    //All entries
+    for(int en=0; en<tree->GetEntries(); en++){
+        Long64_t tentry = tree->LoadTree(en);
+        //b_nBestVtx->GetEntry(tentry);
+        //b_lepsf_evt->GetEntry(tentry);
+        b_PileupWeight->GetEntry(tentry);
+        b_lumi_wgt->GetEntry(tentry);
+        b_QCD_wgt_evt->GetEntry(tentry);
+        //b_QCD_wgt_mu1->GetEntry(tentry);
+        //b_QCD_wgt_mu2->GetEntry(tentry);
+        //b_QCD_wgt_evt->GetEntry(tentry);
+        //double QCD_wgt_evt2=(QCD_wgt_mu1/(1-QCD_wgt_mu1))*(QCD_wgt_mu2/(1-QCD_wgt_mu2));
+        evt_wgt=1.;
+        //cout<<"evt_wgt prima "<<evt_wgt<<endl;
+        if(rootplas[r]!="data_ele" && rootplas[r]!="data_mu"){
+                if(LumiNorm){
+                    //lumi_wgt2 = xsecs[r]/evtsread[r]*Luminosity;
+                    if(rootplas[r]== "ST"){
+                        evt_wgt = evt_wgt*Luminosity*((6952830/(6952830+6933094))*(35.61/6952830)+(6933094/(6952830+6933094))*(35.59/6933094));//lumi_wgt inseriti a mano come media pesata di ST e SaT
+                        cout << "lumi wgt ST+SaT = "<< ((6952830/(6952830+6933094))*(35.61/6952830)+(6933094/(6952830+6933094))*(35.59/6933094)) << endl;
+                    }
+                    else{
+                        evt_wgt = evt_wgt*lumi_wgt*Luminosity;
+                    }
+                }
+                if(PUcorr){
+                evt_wgt = evt_wgt*PileupWeight;
+                }
+                if(GenWgtcorr){
+                double evt_genwg = 1.;
+                evt_wgt = evt_wgt*evt_genwg;
+                }
+                if(eleSFcorrection){
+                evt_wgt = evt_wgt*lepsf_evt;
+                }
+                if(QCDcorr){
+                evt_wgt = evt_wgt*QCD_wgt_evt;
+                }
     }
+            
+        /////
+        //   Get values
+        /////
+        //cout<<"lumi_wgt="<<lumi_wgt<<endl;
+        //cout<<"evt_wgt dopo "<<evt_wgt<<endl;
+        evt_obj_sel += evt_wgt;
+        evt_n++;
+        //evt_err=sqrt(evt_n)*evt_obj_sel/evt_n; 
+        //evt_obj_sel ++;
+        }//End all entries
+        evt_err=sqrt(evt_n)*evt_obj_sel/evt_n;
+        //Save info
+        //cout<<"Lumi="<<Luminosity<<endl;
+        evt_obj_sels.push_back(evt_obj_sel);
+        evt_errs.push_back(evt_err);
+        //Print values
+        //sig
+        string after_sel_acceptance = "Evt_after_acceptance_selection"; 
+        Evt_after_sel(rootplas,evt_obj_sels,evt_errs,after_sel_acceptance);
     }
-   
-
-   /////
-   //   Get values
-   /////
-   //Obj sel
-   //if(Muon_pt->size() > 0 && Tau_pt->size() > 0 && Muon_pt->at(0) > 18 && fabs(Muon_eta->at(0)) < 2.1 && Tau_pt->at(0) > 20 && fabs(Tau_eta->at(0)) < 2.3)
-  //cout<<"lumi_wgt="<<lumi_wgt<<endl;
-  //cout<<"evt_wgt dopo "<<evt_wgt<<endl;
-  evt_obj_sel += evt_wgt;
-  evt_n++;
-  //evt_err=sqrt(evt_n)*evt_obj_sel/evt_n; 
-  //evt_obj_sel ++;
-  }//End all entries
-  evt_err=sqrt(evt_n)*evt_obj_sel/evt_n;
-  //Save info
-  //cout<<"Lumi="<<Luminosity<<endl;
-  evt_obj_sels.push_back(evt_obj_sel);
-  evt_errs.push_back(evt_err);
- //Print values
- //sig
- string after_sel_acceptance = "Evt_after_acceptance_selection"; 
- Evt_after_sel(rootplas,evt_obj_sels,evt_errs,after_sel_acceptance);
-}
 }
 /////
 //   Call TFile to be read
 /////
 TFile* Call_TFile(string rootpla) {
- //string file_name = path+channel+selection+rootpla+".root";
- string file_name = path+rootpla+selection+".root";
- TFile* f = new TFile(file_name.c_str(),"update");
- return f;
+    //string file_name = path+channel+selection+rootpla+".root";
+    string file_name = path+rootpla+selection+".root";
+    TFile* f = new TFile(file_name.c_str(),"update");
+    return f;
 }
 /////
 //   Print evt after signal selection
 /////
 void Evt_after_sel(vector<string> &rootplas, vector<double> &evt_sel, vector<double> &evt_errs, string after_sel){
- cout<<setiosflags(ios::fixed)<<setprecision(SETPRECISION);
- cout<<endl;
- cout<<after_sel.c_str()<<endl;
- cout<<"\\hline"<<endl;
- cout<<"\\rowcolor{black} {\\color{white!90}Sample} & {\\color{white!90}Evt} \\\\"<<endl;
- cout<<"\\hline"<<endl;
- double evt_sel_tt = 0.;//This case is left as example for SM processes that have more samples
- double evt_sel_tt_err = 0.;
- double evt_sel_tot = 0.;
- double evt_sel_tot_err = 0.;
- int bkg_samples = 0;
- for(uint i=0; i<evt_sel.size(); i++){
-  if(rootplas[i]!="data_ele" && rootplas[i]!="data_mu"){
-   double evt_sig_w     = evt_sel[i];
-   double evt_sig_err_w =  evt_errs[i];
-   cout<<"\\rowcolor{white}"<<rootplas[i]<<" & "<<evt_sig_w<<"$\\pm$"<<evt_sig_err_w<<"\\\\"<<endl;
-   cout<<"\\hline"<<endl;
-   if(rootplas[i].substr(0,1)!="L"){
-    bkg_samples++;
-    evt_sel_tot += evt_sig_w;
-    evt_sel_tot_err += pow(evt_sig_err_w,2);
-   }
-  }
- }
- if(bkg_samples>0){
-  cout<<"\\rowcolor{lightgray} Sum bkg & "<<evt_sel_tot<<"$\\pm$"<<sqrt(evt_sel_tot_err)<<"\\\\"<<endl;
-  cout<<"\\hline"<<endl;
- }
- for(uint i=0; i<evt_sel.size(); i++) if(rootplas[i]=="data_mu")
- cout<<"\\rowcolor{gray} Data & "<<evt_sel[i]<<"$\\pm$"<<sqrt(evt_sel[i])<<"\\\\"<<endl;
- cout<<"\\hline"<<endl;
+    cout<<setiosflags(ios::fixed)<<setprecision(SETPRECISION);
+    cout<<endl;
+    cout<<after_sel.c_str()<<endl;
+    cout<<"\\hline"<<endl;
+    cout<<"Sample & Events"<<endl;
+    cout<<"\\hline"<<endl;
+    double evt_sel_tt = 0.;//This case is left as example for SM processes that have more samples
+    double evt_sel_tt_err = 0.;
+    double evt_sel_tot = 0.;
+    double evt_sel_tot_err = 0.;
+    int bkg_samples = 0;
+    for(uint i=0; i<evt_sel.size(); i++){
+        if(rootplas[i]!="data_ele" && rootplas[i]!="data_mu"){
+            double evt_sig_w     = evt_sel[i];
+            double evt_sig_err_w =  evt_errs[i];
+            cout<<"    "<<rootplas[i]<<" & "<<evt_sig_w<<"$\\pm$"<<evt_sig_err_w<<"\\"<<endl;
+            cout<<"\\hline"<<endl;
+            if(rootplas[i].substr(0,1)!="L"){
+                bkg_samples++;
+                evt_sel_tot += evt_sig_w;
+                evt_sel_tot_err += pow(evt_sig_err_w,2);
+            }
+        }
+    }
+    if(bkg_samples>0){
+        cout<<" Sum bkg & "<<evt_sel_tot<<"$\\pm$"<<sqrt(evt_sel_tot_err)<<"\\"<<endl;
+        cout<<"\\hline"<<endl;
+    }
+    for(uint i=0; i<evt_sel.size(); i++){ 
+        if(rootplas[i]=="data_mu" || rootplas[i]=="data_ele"){
+            cout<<" Data & "<<evt_sel[i]<<"$\\pm$"<<sqrt(evt_sel[i])<<"\\"<<endl;
+            cout<<"\\hline"<<endl;
+        }
+    }
 }
