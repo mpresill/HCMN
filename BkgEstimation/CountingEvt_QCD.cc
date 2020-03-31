@@ -58,7 +58,7 @@ const bool GenWgtcorr       = false;
 const bool eleSFcorrection  = false;
 const bool QCDcorr          = true;
 //Print
-const int SETPRECISION      = 3;
+const int SETPRECISION      = 10;
 double evt_wgt = 1.;
 /////
 //   Declare functions 
@@ -139,6 +139,7 @@ void CountingEvt_QCD(){
                 }
                 if(PUcorr){
                 evt_wgt = evt_wgt*PileupWeight;
+                cout << "PileupWeight "<<rootplas[r]<<" = "<<PileupWeight<<endl;
                 }
                 //if(GenWgtcorr){
                 //double evt_genwg = 1.;
@@ -149,9 +150,10 @@ void CountingEvt_QCD(){
                 }
                 if(QCDcorr){
                 evt_wgt = evt_wgt*QCD_wgt_evt;
+                cout<<"QCD_wgt_evt (MC) "<<rootplas[r]<<" = "<<QCD_wgt_evt<<endl;
                 }
         }
-        else{ if(QCDcorr) evt_wgt = evt_wgt*QCD_wgt_evt;}    
+        else{ if(QCDcorr) evt_wgt = evt_wgt*QCD_wgt_evt; cout<<"QCD_wgt_evt DATA = "<<QCD_wgt_evt<<endl;}    
  
         /////
         //   Get values
