@@ -30,11 +30,11 @@ using namespace std;
 const string path           = ""; 
                               
 const char *samples[]       = {
-                              "DY","TT","ST","Other",
-                              "data_ele"
-                              //"data_mu"
+                              "DY","TT","ST","WW","WZ","ZZ","WJets",
+                              //"data_ele"
+                              "data_mu"
 };
-const string selection      = "_2016_QCDe";//aggiungere _selection 
+const string selection      = "_2016_QCDmu";//aggiungere _selection 
 const string channel        = "";
 //Selections
 const bool obj_sel          = true;
