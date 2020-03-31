@@ -130,16 +130,16 @@ void CountingEvt_QCD(){
                     //lumi_wgt2 = xsecs[r]/evtsread[r]*Luminosity;
                     if(rootplas[r]== "ST"){
                         evt_wgt = evt_wgt*Luminosity*0.000005;//lumi_wgt inseriti a mano come media pesata di ST e SaT
-                        cout << "lumi wgt ST+SaT = "<< 0.000005 << endl;
+                        //cout << "lumi wgt ST+SaT = "<< 0.000005 << endl;
                     }
                     else{
                         evt_wgt = evt_wgt*lumi_wgt*Luminosity;
-                        cout << "lumi wgt "<<rootplas[r]<<" = "<<lumi_wgt<<endl;
+                        //cout << "lumi wgt "<<rootplas[r]<<" = "<<lumi_wgt<<endl;
                     }
                 }
                 if(PUcorr){
                 evt_wgt = evt_wgt*PileupWeight;
-                cout << "PileupWeight "<<rootplas[r]<<" = "<<PileupWeight<<endl;
+                //cout << "PileupWeight "<<rootplas[r]<<" = "<<PileupWeight<<endl;
                 }
                 //if(GenWgtcorr){
                 //double evt_genwg = 1.;
@@ -150,10 +150,10 @@ void CountingEvt_QCD(){
                 }
                 if(QCDcorr){
                 evt_wgt = evt_wgt*QCD_wgt_evt;
-                cout<<"QCD_wgt_evt (MC) "<<rootplas[r]<<" = "<<QCD_wgt_evt<<endl;
+                cout<<"total weight (MC) "<<rootplas[r]<<" = "<<evt_wgt<<endl;
                 }
         }
-        else{ if(QCDcorr) evt_wgt = evt_wgt*QCD_wgt_evt; cout<<"QCD_wgt_evt DATA = "<<QCD_wgt_evt<<endl;}    
+        else{ if(QCDcorr) evt_wgt = evt_wgt*QCD_wgt_evt; cout<<"QCD_wgt_evt DATA = "<<evt_wgt<<endl;}    
  
         /////
         //   Get values
