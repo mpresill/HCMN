@@ -87,7 +87,6 @@ void CountingEvt_QCD(){
     double lepsf_evt;
     TBranch *b_lepsf_evt = 0;
     tree->SetBranchAddress("lepsf_evt",&lepsf_evt,&b_lepsf_evt);
-    */
     //Pileup: "PileupWeight" is the branch updated by Vale
     double PileupWeight;
     TBranch *b_PileupWeight = 0;
@@ -116,8 +115,7 @@ void CountingEvt_QCD(){
     //All entries
     for(int en=0; en<tree->GetEntries(); en++){
         Long64_t tentry = tree->LoadTree(en);
-        //b_nBestVtx->GetEntry(tentry);
-        //b_lepsf_evt->GetEntry(tentry);
+        b_lepsf_evt->GetEntry(tentry);
         b_PileupWeight->GetEntry(tentry);
         b_lumi_wgt->GetEntry(tentry);
         b_QCD_wgt_evt->GetEntry(tentry);
