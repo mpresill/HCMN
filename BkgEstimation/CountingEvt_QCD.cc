@@ -129,20 +129,21 @@ void CountingEvt_QCD(){
                 if(LumiNorm){
                     //lumi_wgt2 = xsecs[r]/evtsread[r]*Luminosity;
                     if(rootplas[r]== "ST"){
-                        evt_wgt = evt_wgt*Luminosity*((6952830/(6952830+6933094))*(35.61/6952830)+(6933094/(6952830+6933094))*(35.59/6933094));//lumi_wgt inseriti a mano come media pesata di ST e SaT
-                        cout << "lumi wgt ST+SaT = "<< ((6952830/(6952830+6933094))*(35.61/6952830)+(6933094/(6952830+6933094))*(35.59/6933094)) << endl;
+                        evt_wgt = evt_wgt*Luminosity*0.000005;//lumi_wgt inseriti a mano come media pesata di ST e SaT
+                        cout << "lumi wgt ST+SaT = "<< 0.000005 << endl;
                     }
                     else{
                         evt_wgt = evt_wgt*lumi_wgt*Luminosity;
+                        cout << "lumi wgt "<<rootplas[r]<<" = "<<lumi_wgt<<endl;
                     }
                 }
                 if(PUcorr){
                 evt_wgt = evt_wgt*PileupWeight;
                 }
-                if(GenWgtcorr){
-                double evt_genwg = 1.;
-                evt_wgt = evt_wgt*evt_genwg;
-                }
+                //if(GenWgtcorr){
+                //double evt_genwg = 1.;
+                //evt_wgt = evt_wgt*evt_genwg;
+                //}
                 if(eleSFcorrection){
                 evt_wgt = evt_wgt*lepsf_evt;
                 }
@@ -150,7 +151,7 @@ void CountingEvt_QCD(){
                 evt_wgt = evt_wgt*QCD_wgt_evt;
                 }
         }
-        else{evt_wgt = evt_wgt*QCD_wgt_evt;}    
+        else{ if(QCDcorr) evt_wgt = evt_wgt*QCD_wgt_evt;}    
  
         /////
         //   Get values
