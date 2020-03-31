@@ -149,8 +149,9 @@ void CountingEvt_QCD(){
                 if(QCDcorr){
                 evt_wgt = evt_wgt*QCD_wgt_evt;
                 }
-    }
-            
+        }
+        else{evt_wgt = evt_wgt*QCD_wgt_evt;}    
+ 
         /////
         //   Get values
         /////
