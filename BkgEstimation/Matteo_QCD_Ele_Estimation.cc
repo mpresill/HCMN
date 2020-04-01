@@ -65,7 +65,7 @@ TH1F* get_treehist(string rootpla);
 void Matteo_QCD_Ele_Estimation(){
     vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
     //Declare histos
-    TH1F *DY; TH1F *TT; TH1F *tW; TH1F *TTtW; TH1F *Other; TH1F *data_read; TH1F *data_obs; TH1F *data_sub; TH1F *sig;
+    TH1F *DY; TH1F *TT; TH1F *tW; TH1F *ST; TH1F *WW; TH1F *WZ; TH1F *ZZ; TH1F *WJets; TH1F *TTtW; TH1F *Other; TH1F *data_read; TH1F *data_obs; TH1F *data_sub; TH1F *sig;
     if(!asymbin){
     DY    = new TH1F("","",bin,inRange,endRange);
     TT    = new TH1F("","",bin,inRange,endRange);
@@ -186,10 +186,10 @@ TH1F* get_treehist(string rootpla){
             if(LumiNorm) w = w*lumi_wgt*Luminosity;
             if(PUcorr)   w = w*PileupWeight;
             if(objsfCorr)    w = w*sf_obj;
-        }
-        w_QCD = w_QCD*QCD_wgt_evt; //debug
+        }        
 //      w = w*QCD_wgt_evt; 
-        else{cout<<"peso QCD "<< w_QCD<<endl;} //debug
+        w_QCD = w_QCD*QCD_wgt_evt; //debug
+        cout<<"peso QCD "<< w_QCD<<endl; //debug
         if(curr_var>fixcut){
         if(curr_var<endRange) hist->Fill(curr_var,w);
             else                  hist->Fill(endRange*0.99999,w);
