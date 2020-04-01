@@ -863,7 +863,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
     trueInteractions = rtrueInteractions;
     nBestVtx = rnBestVtx;
     PileupWeight = CalculatePileupWeight(trueInteractions);
-    lumi_wgt = get_wgtlumi(Output);
+    lumi_wgt = get_wgtlumi(Input);
    
    Met_type1PF_phi = rMet_type1PF_phi;  
    Met_type1PF_px = rMet_type1PF_px;
@@ -996,7 +996,7 @@ void  Rootplizer_HeavyNeutrino_QCD(const char*  Input = "", const char*  Output 
       BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
       M_mu1mu2= (Muon1 + Muon2).M();
       M_mu1mu2Bjet1= (Muon1 + Muon2 + BoostedJet1).M();
-      M_ele1ele2Bjet1= M_mu1mu2Bjet1;
+      M_leplepBjet1= M_mu1mu2Bjet1;
       if(!(M_mu1mu2>300)) continue;
       QCD_wgt_mu1 = Wgt_QCDmu(Muon_eta->at(0), Muon_pt->at(0));
       QCD_wgt_mu2 = Wgt_QCDmu(Muon_eta->at(1), Muon_pt->at(1));
