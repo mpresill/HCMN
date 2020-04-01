@@ -56,7 +56,7 @@ const bool LumiNorm         = true;
 const bool PUcorr           = true; 
 const bool GenWgtcorr       = false; 
 const bool eleSFcorrection  = false;
-const bool QCDcorr          = true;
+const bool QCDcorr          = false;
 //Print
 const int SETPRECISION      = 10;
 double evt_wgt = 1.;
@@ -115,9 +115,6 @@ void CountingEvt_QCD(){
     //All entries
     for(int en=0; en<tree->GetEntries(); en++){
         Long64_t tentry = tree->LoadTree(en);
-        b_lepsf_evt->GetEntry(tentry);
-        b_PileupWeight->GetEntry(tentry);
-        b_lumi_wgt->GetEntry(tentry);
         b_QCD_wgt_evt->GetEntry(tentry);
         //b_QCD_wgt_mu1->GetEntry(tentry);
         //b_QCD_wgt_mu2->GetEntry(tentry);
@@ -126,6 +123,9 @@ void CountingEvt_QCD(){
         evt_wgt=1.;
         //cout<<"evt_wgt prima "<<evt_wgt<<endl;
         if(rootplas[r]!="data_ele" && rootplas[r]!="data_mu"){
+                b_lepsf_evt->GetEntry(tentry);
+                b_PileupWeight->GetEntry(tentry);
+                b_lumi_wgt->GetEntry(tentry);
                 if(LumiNorm){
                     //lumi_wgt2 = xsecs[r]/evtsread[r]*Luminosity;
                     if(rootplas[r]== "ST"){
