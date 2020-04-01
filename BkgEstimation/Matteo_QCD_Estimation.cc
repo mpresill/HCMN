@@ -33,11 +33,11 @@ using namespace std;
 //Path - samples 
 const string path         = "";
 const char *samples[] = {//"TT","tW", 
-	                     "DY","TT","ST","WW","WZ","ZZ","WJets",
-                          //"data_ele"
+	                     "DY","TTtW","Other",
+                          //"data_mu"
                           "data_ele"
 			};
-const string selection    = "_2016_QCDele";  //QCDmu
+const string selection    = "_2016_QCDe";  //QCDmu
 //Plots option
 const string varplot    = "M_ele1ele2Bjet1"; //this is the variable for MllJ (for eejj and mumujj)
 const double fixcut     = 0; //Save only events for which varplot>fixcut
@@ -68,53 +68,37 @@ void Matteo_QCD_Ele_Estimation(){
     TH1F *DY; TH1F *TT; TH1F *tW; TH1F *ST; TH1F *WW; TH1F *WZ; TH1F *ZZ; TH1F *WJets; TH1F *TTtW; TH1F *Other; TH1F *data_read; TH1F *data_obs; TH1F *data_sub; TH1F *sig;
     if(!asymbin){
     DY    = new TH1F("","",bin,inRange,endRange);
-    TT    = new TH1F("","",bin,inRange,endRange);
-    tW    = new TH1F("","",bin,inRange,endRange);
+    TTtW    = new TH1F("","",bin,inRange,endRange);
     Other = new TH1F("","",bin,inRange,endRange);
-    ST    = new TH1F("","",bin,inRange,endRange);
-    WW    = new TH1F("","",bin,inRange,endRange);
-    WZ    = new TH1F("","",bin,inRange,endRange);
-    WJets    = new TH1F("","",bin,inRange,endRange);
     data_obs  = new TH1F("data_obs","data_obs",bin,inRange,endRange);
     data_sub = new TH1F("QCD","QCD",bin,inRange,endRange);
     data_read = new TH1F("QCD","QCD",bin,inRange,endRange);
     sig   = new TH1F("","",bin,inRange,endRange);
-    TTtW  = new TH1F("","",bin,inRange,endRange);
     }else{
     DY    = new TH1F("","",bin,asymbins);
-    TT    = new TH1F("","",bin,asymbins);
-    tW    = new TH1F("","",bin,asymbins);
+    TTtW    = new TH1F("","",bin,asymbins);
     Other = new TH1F("","",bin,asymbins);
-    ST    = new TH1F("","",bin,asymbins);
-    WW    = new TH1F("","",bin,asymbins);
-    WZ    = new TH1F("","",bin,asymbins);
-    ZZ    = new TH1F("","",bin,asymbins);
-    WJets    = new TH1F("","",bin,asymbins);
     data_obs  = new TH1F("data_obs","data_obs",bin,asymbins);
     data_sub = new TH1F("QCD","QCD",bin,asymbins);
     data_read = new TH1F("QCD","QCD",bin,asymbins);
     sig   = new TH1F("","",bin,asymbins);
-    TTtW  = new TH1F("","",bin,asymbins);
     }
-    //data_obs->Sumw2();//For the moment, untile you get it as a sum of SM bkg
     data_read->Sumw2();
     data_sub->Sumw2();
     
     for(uint i=0; i<rootplas.size(); i++){
         if(rootplas[i]=="DY") DY = get_treehist(rootplas[i]);
-        if(rootplas[i]=="TT") TTtW = get_treehist(rootplas[i]);
-        if(rootplas[i]=="WJets") Other = get_treehist(rootplas[i]);
+        if(rootplas[i]=="TTtW") TTtW = get_treehist(rootplas[i]);
+        if(rootplas[i]=="Other") Other = get_treehist(rootplas[i]);
         if(rootplas[i]=="data_ele")   data_read = get_treehist(rootplas[i]);
     }
 
-//subtracting the non-QCD backgrounds to the QCD bkg
-    cout<<"data before "<<data_read->Integral()<<endl;
+    //subtracting the non-QCD backgrounds to the QCD bkg
+    cout<<"data in CR "<<data_read->Integral()<<endl;
     data_read->Add(data_read,DY,1,-1);
-    data_read->Add(data_read,WJets,1,-1);
-    data_read->Add(data_read,TT,1,-1);
-    //data_read->Add(data_read,tW,1,-1);
-    cout<<"data after "<<data_read->Integral()<<endl;
-    //TTtW->Add(TT,tW,1,1);
+    data_read->Add(data_read,Other,1,-1);
+    data_read->Add(data_read,TTtW,1,-1);
+    cout<<"data - MC in CR "<<data_read->Integral()<<endl;
     
     for(int i=1; i<=bin; i++){
         if(data_read->GetBinContent(i)>0){
@@ -134,7 +118,6 @@ void Matteo_QCD_Ele_Estimation(){
     string newfilename = "eejj_QCD"+norm+".root";
     TFile *newfile = new TFile(newfilename.c_str(),"recreate");
     data_sub->Write();  delete data_sub;
-    //eventually add Other_MC estimate output directly here
     
     newfile->Write();
     newfile->Close();
@@ -181,15 +164,13 @@ TH1F* get_treehist(string rootpla){
         b_QCD_wgt_evt->GetEntry(tentry);
 
         double w = 1.;
-        double w_QCD = 1.; //debug
-        if(rootpla!="data_ele"){
+        if(rootpla!="data_ele" && rootpla!="data_mu"){
             if(LumiNorm) w = w*lumi_wgt*Luminosity;
             if(PUcorr)   w = w*PileupWeight;
             if(objsfCorr)    w = w*sf_obj;
         }        
-//      w = w*QCD_wgt_evt; 
-        w_QCD = w_QCD*QCD_wgt_evt; //debug
-        cout<<"peso QCD "<< w_QCD<<endl; //debug
+//        w = w*QCD_wgt_evt; 
+
         if(curr_var>fixcut){
         if(curr_var<endRange) hist->Fill(curr_var,w);
             else                  hist->Fill(endRange*0.99999,w);
