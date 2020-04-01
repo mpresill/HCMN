@@ -33,9 +33,9 @@ using namespace std;
 //Path - samples 
 const string path         = "";
 const char *samples[] = {//"TT","tW", 
-	                "Other","DY","TTtW",
-                         "data_ele"
-                         //"data_mu"
+	                     "DY","TT","ST","WW","WZ","ZZ","WJets",
+                          //"data_ele"
+                          "data_ele"
 			};
 const string selection    = "_2016_QCDele";  //QCDmu
 //Plots option
@@ -71,6 +71,10 @@ void Matteo_QCD_Ele_Estimation(){
     TT    = new TH1F("","",bin,inRange,endRange);
     tW    = new TH1F("","",bin,inRange,endRange);
     Other = new TH1F("","",bin,inRange,endRange);
+    ST    = new TH1F("","",bin,inRange,endRange);
+    WW    = new TH1F("","",bin,inRange,endRange);
+    WZ    = new TH1F("","",bin,inRange,endRange);
+    WJets    = new TH1F("","",bin,inRange,endRange);
     data_obs  = new TH1F("data_obs","data_obs",bin,inRange,endRange);
     data_sub = new TH1F("QCD","QCD",bin,inRange,endRange);
     data_read = new TH1F("QCD","QCD",bin,inRange,endRange);
@@ -81,6 +85,11 @@ void Matteo_QCD_Ele_Estimation(){
     TT    = new TH1F("","",bin,asymbins);
     tW    = new TH1F("","",bin,asymbins);
     Other = new TH1F("","",bin,asymbins);
+    ST    = new TH1F("","",bin,asymbins);
+    WW    = new TH1F("","",bin,asymbins);
+    WZ    = new TH1F("","",bin,asymbins);
+    ZZ    = new TH1F("","",bin,asymbins);
+    WJets    = new TH1F("","",bin,asymbins);
     data_obs  = new TH1F("data_obs","data_obs",bin,asymbins);
     data_sub = new TH1F("QCD","QCD",bin,asymbins);
     data_read = new TH1F("QCD","QCD",bin,asymbins);
@@ -93,16 +102,16 @@ void Matteo_QCD_Ele_Estimation(){
     
     for(uint i=0; i<rootplas.size(); i++){
         if(rootplas[i]=="DY") DY = get_treehist(rootplas[i]);
-        if(rootplas[i]=="TTtW") TTtW = get_treehist(rootplas[i]);
-        if(rootplas[i]=="Other") Other = get_treehist(rootplas[i]);
+        if(rootplas[i]=="TT") TTtW = get_treehist(rootplas[i]);
+        if(rootplas[i]=="WJets") Other = get_treehist(rootplas[i]);
         if(rootplas[i]=="data_ele")   data_read = get_treehist(rootplas[i]);
     }
 
 //subtracting the non-QCD backgrounds to the QCD bkg
     cout<<"data before "<<data_read->Integral()<<endl;
     data_read->Add(data_read,DY,1,-1);
-    data_read->Add(data_read,Other,1,-1);
-    data_read->Add(data_read,TTtW,1,-1);
+    data_read->Add(data_read,WJets,1,-1);
+    data_read->Add(data_read,TT,1,-1);
     //data_read->Add(data_read,tW,1,-1);
     cout<<"data after "<<data_read->Integral()<<endl;
     //TTtW->Add(TT,tW,1,1);
@@ -172,12 +181,15 @@ TH1F* get_treehist(string rootpla){
         b_QCD_wgt_evt->GetEntry(tentry);
 
         double w = 1.;
+        double w_QCD = 1.; //debug
         if(rootpla!="data_ele"){
             if(LumiNorm) w = w*lumi_wgt*Luminosity;
             if(PUcorr)   w = w*PileupWeight;
             if(objsfCorr)    w = w*sf_obj;
         }
-//        w = w*QCD_wgt_evt;
+        w_QCD = w_QCD*QCD_wgt_evt; //debug
+//      w = w*QCD_wgt_evt; 
+        else{cout<<"peso QCD "<< w_QCD<<endl;} //debug
         if(curr_var>fixcut){
         if(curr_var<endRange) hist->Fill(curr_var,w);
             else                  hist->Fill(endRange*0.99999,w);
