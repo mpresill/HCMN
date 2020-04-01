@@ -11,14 +11,13 @@ Framework available here:
 
 Rootple path:
  - 2016: /eos/user/v/vmariani/NTuples/HN_2016/
+         /eos/user/v/vmariani/NTuples/HN_2016/PUweight/ (with Pu correction included and corrected)
  - 2017: /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/
- - 2018: /eos/user/v/vmariani/NTuples/HN_2018/
+ - 2018: /eos/user/v/vmariani/NTuples/HN_2018/ 
+         /eos/user/v/vmariani/NTuples/HN_2018/PUweight/ (with Pu correction included and corrected)
 
 Rootple for QCD estimation:
-/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples/
-
-Skimmed rootples: 
-/eos/user/m/mpresill/CMS/HN_Reload/skimmed_files
+/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/
 
 Histograms for combine:
 /eos/user/m/mpresill/CMS/HN_Reload/combine_histograms
@@ -59,8 +58,8 @@ Targeting subgroup Jet+X update on nov 11th with:
 
 What is still needed from Roberto: 
    1. Macros for QCD/Other bkgs estimation (OK)
-   1. Macros for signal systematics (not yet)
-   1. Q: why do we have produced all these samples considering the Lambda independence on limit extraction?
+   2. Macros for signal systematics (not yet)
+   3. Q: why do we have produced all these samples considering the Lambda independence on limit extraction?
       R: for now we don't really need to analyse all the samples (the request was made just to be sure on the Lambda independence on limit extraction) (=> check efficiency independence on Lambda at some point!)
 
 
@@ -69,6 +68,7 @@ What is still needed from Roberto:
 - [ ] (TTtW bkg estimate MC based (with cross section))
 - [ ] (SF study for DY bkg) 
 - [ ] (can we find other models for reinterpreting the results?)
+- [ ] consider new versions of the model and present at MC&I group 
 
 ## Recipies for objects definition and weights:
  - pileup rewighting: using the scripts in https://github.com/mpresill/BSMFramework/tree/HN17/BSM3G_TNT_Maker/data/PUReweight
@@ -92,9 +92,9 @@ https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/Efficie
    - N.B. Since there are two different scale factor scenarios within 2016 data taking depending on the era (B-F) or (G-H) muon SFs for 2016 are computed by averageing the SF by the relative luminosity of each period and then apply a single weight to the MC: lumi(B-F)_Mu50=19.25 fb^-1, lumi(B-F)_TkMu50=16.64 fb^-1; lumi(G-H)_Mu50=16.29 fb^-1, lumi(G-H)_TkMu50=16.29 fb^-1 (Info from BrilCalc)   
 
 ## Notes on bkg estimation:
-- QCD: use "Rootplizer_HeavyNeutrino_QCD.cc" for the estimation method used in the previous version of the analysis
-- TTtW: with Low-mass we still have few bkgs -> try old method 
-- DY: with Low-mass we still have few bkgs -> try old method
+- QCD: use "Rootplizer_HeavyNeutrino_QCD_2016.cc" for the estimation method used in the previous version of the analysis
+- TTtW: CR on emu invariant mass
+- DY: alpha-ratio method
 
 ## Utils
 - How to find storage sites path: https://cmsweb.cern.ch/sitedb/prod/sites/
