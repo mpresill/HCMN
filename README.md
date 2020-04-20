@@ -42,7 +42,7 @@ Targeting subgroup Jet+X update on nov 11th with:
 - [x] make ntuple 2017
 - [x] make ntuple 2018
 - [+] how to do properly PUweighting:
-##which branch gives correct PU reweighting?PileupWeight after the fixing in the Rootplized (still needs to be done for 2017 and 2018)
+      instructions from https://github.com/UHH2/UHH2/wiki/Pileup-reweighting-for-MC
 - [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2016
 - [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2017
 - [x] ntuple->rootple conversion (only for reference signals for now = Lambda 13 TeV) for 2018
