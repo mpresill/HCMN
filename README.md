@@ -2,6 +2,9 @@
 Logbook: https://docs.google.com/document/d/14MxpNkXs3OW78FuB512MSL_r50s7g9FbVkhlvtPY9wk/edit?usp=sharing
 
 Documentation in GitLab: https://gitlab.cern.ch/tdr/notes/AN-18-111 .
+Documentation in Overleaf:
+ - PAS draft: https://it.overleaf.com/6559873491vzvnqgmkffph
+ - AN draft: https://www.overleaf.com/3691293487xsmbrgtgtpcj
 
 Samples list: https://docs.google.com/spreadsheets/d/1cjLUHCRwQxU6aovdtx6UJmBafhGXKXulmOkGTMoa9Ro/edit#gid=0
 
