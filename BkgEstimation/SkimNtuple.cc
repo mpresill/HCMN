@@ -30,8 +30,11 @@ Need to specify
 //   Declare constants
 /////
 //Path - samples 
-const string path     = "/eos/user/v/vmariani/NTuples/HN_2018/PUweight/"; //"/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
-// add "/PUweight/" to the path for MC samples with most recent PU prescription
+const string path     = "/eos/user/v/vmariani/NTuples/HN_2018/PUweight/"; 
+//path with rootples:
+//"/eos/user/v/vmariani/NTuples/HN_2016/PUweight/";
+//"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; 
+//"/eos/user/v/vmariani/NTuples/HN_2018/PUweight/";
 //QCD bkg estimation samples
 //const string path = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
 
