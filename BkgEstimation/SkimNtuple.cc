@@ -30,14 +30,14 @@ Need to specify
 //   Declare constants
 /////
 //Path - samples 
-//const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/"; //"/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
+const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/PUweight/"; //"/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
 // add "/PUweight/" to the path for MC samples with most recent PU prescription
 //QCD bkg estimation samples
-const string path = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
+//const string path = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
 
 const char *samples[] = {//"TT_2016","tW_2016", 
-	                "DY","TTtW","Other",
-                        "data_ele"
+	                "DY_2016","TTtW_2016","Other_2016"
+                        //"data_ele"
                         //"data_mu"
                          //,"data_ele_B", "data_ele_C", "data_ele_D", "data_ele_E", "data_ele_F", "data_ele_G", "data_ele_H",
                          //"data_mu_B","data_mu_C", "data_mu_D", "data_mu_E", "data_mu_F", "data_mu_G","data_mu_H"
@@ -57,12 +57,12 @@ const string suffisso   =
                           //"TRmu";   //CR region TTtW estimation: the second leading lepton has opposite flavor
                           //"QCDmu";   //CR region QCD estimation
 			  ////////ele/////////////////
-                          //"SRe";
+                          "SRe";
                           //"DYRe";
                           //"DYRePlot";
                           //"DYReTest";
                           //"TRe"; //CR region TTtW estimation: the second leading lepton has opposite flavor
-                          "QCDe"; //CR region QCD estimation
+                          //"QCDe"; //CR region QCD estimation
 const string selection  =
 ////////////////////////muon/////////////////////////////
 //"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt[0]>150 && Muon_pt[1]>100 && numOfVetoEle==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
@@ -72,13 +72,13 @@ const string selection  =
 //"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfHighptMu==1 &&  Muon_pt[0]>150 && numOfHighptEle==1 && patElectron_pt[0]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>400";
 //"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt[0]>150 && Muon_pt[1]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_mu1mu2>300";
 ////////////////////ele////////////////////////////////////
-//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
+"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<100";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>50 && M_leplep<300";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<300";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt[0]>150 && numOfHighptMu==1 &&  Muon_pt[0]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfLooseMu==0 && numOfFakeEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
-"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfLooseMu==0 &&  numOfFakeEle==2  && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_ele1ele2>300";
+//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfLooseMu==0 &&  numOfFakeEle==2  && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_ele1ele2>300";
 const string dotroot  = ".root"; 
 /////
 //   Declare functions 
