@@ -30,19 +30,19 @@ Need to specify
 //   Declare constants
 /////
 //Path - samples 
-const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/PUweight/"; //"/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
+const string path     = "/eos/user/v/vmariani/NTuples/HN_2018/PUweight/"; //"/eos/user/v/vmariani/NTuples/HN_2016/QCD/";   //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; // /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/ // /eos/user/v/vmariani/NTuples/HN_2016/ // /eos/user/v/vmariani/NTuples/HN_2016/
 // add "/PUweight/" to the path for MC samples with most recent PU prescription
 //QCD bkg estimation samples
 //const string path = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
 
 const char *samples[] = {//"TT_2016","tW_2016", 
-	                "DY_2016","TTtW_2016","Other_2016"
+	                "DY_2018","TTtW_2018","Other_2018"
                         //"data_ele"
                         //"data_mu"
                          //,"data_ele_B", "data_ele_C", "data_ele_D", "data_ele_E", "data_ele_F", "data_ele_G", "data_ele_H",
                          //"data_mu_B","data_mu_C", "data_mu_D", "data_mu_E", "data_mu_F", "data_mu_G","data_mu_H"
-                        ,"mumujj_L13000_M500_2016","mumujj_L13000_M1000_2016","mumujj_L13000_M2000_2016","mumujj_L13000_M5000_2016","mumujj_L13000_M8000_2016"
-			//,"eejj_L13000_M500_2016","eejj_L13000_M1000_2016","eejj_L13000_M2000_2016","eejj_L13000_M5000_2016","eejj_L13000_M8000_2016" 
+                        ,"mumujj_L13000_M500_2018","mumujj_L13000_M1000_2018","mumujj_L13000_M2000_2018","mumujj_L13000_M5000_2018","mumujj_L13000_M8000_2018"
+			//,"eejj_L13000_M500_2018","eejj_L13000_M1000_2018","eejj_L13000_M2000_2018","eejj_L13000_M5000_2018","eejj_L13000_M8000_2018" 
 			};
 
 
