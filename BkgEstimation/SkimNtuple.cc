@@ -30,7 +30,7 @@ Need to specify
 //   Declare constants
 /////
 //Path - samples 
-const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/PUweight/"; 
+const string path     = "/eos/user/v/vmariani/NTuples/HN_2018/PUweight/"; 
 //path with rootples:
 //"/eos/user/v/vmariani/NTuples/HN_2016/PUweight/";
 //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; 
@@ -39,7 +39,7 @@ const string path     = "/eos/user/v/vmariani/NTuples/HN_2016/PUweight/";
 //const string path = "/eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/";
 
 const char *samples[] = {//"TT_2016","tW_2016", 
-	                "DY_2016","TTtW_2016","Other_2016"
+	                "DY_2018","TTtW_2018","Other_2018"
                         //"data_ele"
                         //"data_mu"
                          //,"data_ele_B", "data_ele_C", "data_ele_D", "data_ele_E", "data_ele_F", "data_ele_G", "data_ele_H",

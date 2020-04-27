@@ -179,20 +179,20 @@ void StackPlots(){
     //Put histos in the hstack 
     int col = get_col(rootplas[i]);
     if(rootplas[i].substr(0,2)=="TT" || rootplas[i].substr(0,2)=="tW"){
-     h_var->SetFillColor(kRed+col);
-     h_var->SetLineColor(kRed+col);
-     h_TTtW->SetFillColor(kRed+col);
-     h_TTtW->SetLineColor(kRed+col);
+     h_var->SetFillColor("rgb(230,159,0)");
+     h_var->SetLineColor("rgb(230,159,0)");
+     h_TTtW->SetFillColor("rgb(230,159,0)");
+     h_TTtW->SetLineColor("rgb(230,159,0)");
     }else if (rootplas[i].substr(0,2)=="DY"){
-     h_var->SetFillColor(kGreen+col);
-     h_var->SetLineColor(kGreen+col);
-     h_DY->SetFillColor(kGreen+col);
-     h_DY->SetLineColor(kGreen+col);
+     h_var->SetFillColor("rgb(213,94,0)");
+     h_var->SetLineColor("rgb(213,94,0)");
+     h_DY->SetFillColor("rgb(213,94,0)");
+     h_DY->SetLineColor("rgb(213,94,0)");
     }else{
-     h_var->SetFillColor(kCyan+col);
-     h_var->SetLineColor(kCyan+col);
-     h_Other->SetFillColor(kCyan+col);
-     h_Other->SetLineColor(kCyan+col);
+     h_var->SetFillColor("rgb(0,114,178)");
+     h_var->SetLineColor("rgb(0,114,178)");
+     h_Other->SetFillColor("rgb(0,114,178)");
+     h_Other->SetLineColor("rgb(0,114,178)");
     }
     hstack->Add(h_var);
     float sig_entries_f = h_sig->Integral();
