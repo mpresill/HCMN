@@ -492,10 +492,10 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
  //h_data_var->Draw("text45same");
  gPad->RedrawAxis();
  h_sig->SetLineWidth(2);
- h_sig->SetLineStyle(2); //Dashed
  h_sig->SetLineColor(kBlack);
  if(h_sig->Integral()!=0) h_sig->Draw("histsame");
  h_sig2->SetLineWidth(2);
+ h_sig2->SetLineStyle(2); //Dashed
  h_sig2->SetLineColor(kBlack);
  if(h_sig2->Integral()!=0) h_sig2->Draw("histsame");
  char sig_entries_c[1000]; float sig_entries_f = h_sig->Integral();
