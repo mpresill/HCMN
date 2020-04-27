@@ -179,20 +179,20 @@ void StackPlots(){
     //Put histos in the hstack 
     int col = get_col(rootplas[i]);
     if(rootplas[i].substr(0,2)=="TT" || rootplas[i].substr(0,2)=="tW"){
-     h_var->SetFillColor(kOrange);
-     h_var->SetLineColor(kOrange);
-     h_TTtW->SetFillColor(kOrange);
-     h_TTtW->SetLineColor(kOrange);
+     h_var->SetFillColor(kOrange+1);
+     h_var->SetLineColor(kOrange+1);
+     h_TTtW->SetFillColor(kOrange+1);
+     h_TTtW->SetLineColor(kOrange+1);
     }else if (rootplas[i].substr(0,2)=="DY"){
      h_var->SetFillColor(kRed-3);
      h_var->SetLineColor(kRed-3);
      h_DY->SetFillColor(kRed-3);
      h_DY->SetLineColor(kRed-3);
     }else{
-     h_var->SetFillColor(kBlue);
-     h_var->SetLineColor(kBlue);
-     h_Other->SetFillColor(kBlue);
-     h_Other->SetLineColor(kBlue);
+     h_var->SetFillColor(kBlue-1);
+     h_var->SetLineColor(kBlue-1);
+     h_Other->SetFillColor(kBlue-1);
+     h_Other->SetLineColor(kBlue-1);
     }
     hstack->Add(h_var);
     float sig_entries_f = h_sig->Integral();
@@ -492,10 +492,11 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
  //h_data_var->Draw("text45same");
  gPad->RedrawAxis();
  h_sig->SetLineWidth(2);
- h_sig->SetLineColor(kGreen+4);
+ h_sig->SetLineStyle(3); //Dotted
+ h_sig->SetLineColor(kBlack);
  if(h_sig->Integral()!=0) h_sig->Draw("histsame");
  h_sig2->SetLineWidth(2);
- h_sig2->SetLineColor(kYellow+2);
+ h_sig2->SetLineColor(kBlack);
  if(h_sig2->Integral()!=0) h_sig2->Draw("histsame");
  char sig_entries_c[1000]; float sig_entries_f = h_sig->Integral();
  sprintf(sig_entries_c,"%.1f",sig_entries_f);
