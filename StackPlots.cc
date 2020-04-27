@@ -492,7 +492,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
  //h_data_var->Draw("text45same");
  gPad->RedrawAxis();
  h_sig->SetLineWidth(2);
- h_sig->SetLineStyle(3); //Dotted
+ h_sig->SetLineStyle(2); //Dashed
  h_sig->SetLineColor(kBlack);
  if(h_sig->Integral()!=0) h_sig->Draw("histsame");
  h_sig2->SetLineWidth(2);
