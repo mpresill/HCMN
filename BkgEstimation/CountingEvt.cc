@@ -28,16 +28,16 @@ using namespace std;
 //   Declare constants
 /////
 //Path and root files
-const string path           = ""; 
+const string path           = "/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/"; 
                               
 const char *samples[]       = {
-                              "TT","tW","Other",
-                              "DY",
+                              "TT","ST"//,"Other",
+                              //"DY",
                               //"data_ele"
                               "data_mu"
                               //"TTtW_TRmu","TTtW_SRmu" 
 };
-const string selection      = "_2016_DYRmu";//"_SignalRegion";//aggiungere _selection 
+const string selection      = "_2017";//"_SignalRegion";//aggiungere _selection 
                              
 const string channel        = "";
 //Selections
@@ -57,13 +57,13 @@ const double evtsRead[]     = {116591749
                            //9042031, 116591749, 995600, 988500, 72117311, 993640, 978512, 996944
 };
 */
-const double Luminosity     = 35900; //pb^-1
+const double Luminosity     = 41529; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542; 
 const bool LumiNorm         = true; 
 const bool PUcorr           = true; 
 const bool GenWgtcorr       = false; 
 const bool eleSFcorrection  = true;
 const string objsf          = "lepsf_evt";
-const string PUw            = "PUWeight";
+const string PUw            = "PileupWeight";
 //const bool QCDcorr          = true;
 //Print
 const int SETPRECISION      = 3;
@@ -104,9 +104,9 @@ void CountingEvt(){
   tree->SetBranchAddress(objsf.c_str(),&sf_obj,&b_sf_obj);
   
   //Pileup
-  //double PileupWeight;
-  //TBranch *b_PileupWeight = 0;
-  //tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
+  double PileupWeight;
+  TBranch *b_PileupWeight = 0;
+  tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
   double PUWeight;
   TBranch *b_PUWeight = 0;
   tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
@@ -132,7 +132,7 @@ void CountingEvt(){
    //nBestVtx
    b_nBestVtx->GetEntry(tentry);
    b_sf_obj->GetEntry(tentry);
-   //b_PileupWeight->GetEntry(tentry);
+   b_PileupWeight->GetEntry(tentry);
    b_PUWeight->GetEntry(tentry);
    b_lumi_wgt->GetEntry(tentry);
    //b_QCD_wgt_evt->GetEntry(tentry);
@@ -146,12 +146,12 @@ void CountingEvt(){
      //if(rootplas[r]=="DYinc") evt_wgt = evt_wgt*Luminosity*(6025.2/9004328.);
      }
      if(PUcorr){
-     //evt_wgt = evt_wgt*PileupWeight;
-     evt_wgt = evt_wgt*PUWeight;
+     evt_wgt = evt_wgt*PileupWeight;
+     //evt_wgt = evt_wgt*PUWeight;
      }
      if(GenWgtcorr){
      double evt_genwg = 1.;
-     evt_wgt = evt_wgt*evt_genwg;
+     //evt_wgt = evt_wgt*evt_genwg;
      }
      if(eleSFcorrection){
      evt_wgt = evt_wgt*sf_obj;
