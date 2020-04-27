@@ -93,10 +93,10 @@ void CountingEvt(){
   //   Get variables
   /////
   //nBestVtx
-  int nBestVtx;
+  /*int nBestVtx;
   nBestVtx = 0;
   TBranch *b_nBestVtx = 0;
-  tree->SetBranchAddress("nBestVtx",&nBestVtx,&b_nBestVtx);
+  tree->SetBranchAddress("nBestVtx",&nBestVtx,&b_nBestVtx);*/
   //Scale Factor
   
   double sf_obj;
@@ -130,7 +130,7 @@ void CountingEvt(){
   //for(int en=0; en<100; en++ ){
    Long64_t tentry = tree->LoadTree(en);
    //nBestVtx
-   b_nBestVtx->GetEntry(tentry);
+   //b_nBestVtx->GetEntry(tentry);
    b_sf_obj->GetEntry(tentry);
    b_PileupWeight->GetEntry(tentry);
    b_PUWeight->GetEntry(tentry);
