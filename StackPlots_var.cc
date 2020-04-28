@@ -45,10 +45,10 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples - selection
-const string path       = "/eos/user/v/vmariani/NTuples/HN_2018/";
+const string path       = "/eos/user/v/vmariani/NTuples/HN_2016/";
 //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
 const char *samples[]   = {"TTtW","DY","Other", "data_ele"};
-const string selection  = "_2018"; //_SingleEle, _SingleMu
+const string selection  = "_2016"; //_SingleEle, _SingleMu
 const bool nodata       = false;  //You must always comment data in "samples" if you don't want it
 const bool show_ratio   = true;
 //Weights
@@ -315,7 +315,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
 
 TH1F* double_h_var2(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
  TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
- double curr_var;
+ int curr_var;
  TBranch *b_curr_var = 0;
  tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
  double PileupWeight;
