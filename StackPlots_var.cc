@@ -106,9 +106,9 @@ const char *titleXaxis[]        = {
 const int    bin[numVar]        = {
 100
 };
-/*const int    bin2[numVar]       = {
-6
-};*/
+const int    bin2[numVar]       = {
+100
+};
 const double inRange[numVar]    = {
 0
 };
