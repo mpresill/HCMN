@@ -228,7 +228,7 @@ void StackPlots(){
 /////
 TFile* Call_TFile(string rootpla){
  string file_name = path+rootpla+selection+".root";
- TFile* f = new TFile(file_name.c_str(),"update");
+ TFile* f = new TFile(file_name.c_str(),"read");
  return f;
 }
 /////
@@ -276,7 +276,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   b_lumi_wgt->GetEntry(tentry);
   if(datatype!=0){
    if(LumiNorm) w = w*lumi_wgt*Luminosity;
-   if(PUcorr)   w = w*PUWeight;//PileupWeight;
+   if(PUcorr)   w = w*PileupWeight;//PileupWeight;
    if(SF)       w = w*lepsf_evt;
    if(scale!=0) w = w*scale;
    if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}

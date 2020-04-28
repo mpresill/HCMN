@@ -47,7 +47,7 @@ using namespace std;
 //Path - samples - selection
 const string path       = "/eos/user/v/vmariani/NTuples/HN_2018/";
 //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
-const char *samples[]   = {"PUweight/TTtW","PUweight/DY","PUweight/Other", "data_ele"};
+const char *samples[]   = {"TTtW","DY","Other", "data_ele"};
 const string selection  = "_2018"; //_SingleEle, _SingleMu
 const bool nodata       = false;  //You must always comment data in "samples" if you don't want it
 const bool show_ratio   = true;
@@ -229,7 +229,7 @@ void StackPlots_var(){
 /////
 TFile* Call_TFile(string rootpla){
  string file_name = path+rootpla+selection+".root";
- TFile* f = new TFile(file_name.c_str(),"update");
+ TFile* f = new TFile(file_name.c_str(),"read");
  return f;
 }
 /////
@@ -277,7 +277,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   b_lumi_wgt->GetEntry(tentry);
   if(datatype!=0){
    if(LumiNorm) w = w*lumi_wgt*Luminosity;
-   if(PUcorr)   w = w*PUWeight;//PileupWeight;
+   if(PUcorr)   w = w*PileupWeight;//PileupWeight;
    if(SF)       w = w*lepsf_evt;
    if(scale!=0) w = w*scale;
    if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
@@ -347,7 +347,7 @@ TH1F* double_h_var2(unsigned int v, string var, string varT, uint i, string root
   b_lumi_wgt->GetEntry(tentry);
   if(datatype!=0){
    if(LumiNorm) w = w*lumi_wgt*Luminosity;
-   if(PUcorr)   w = w*PUWeight; //default was "w*PileupWeight"
+   if(PUcorr)   w = w*PileupWeight; //default was "w*PileupWeight"
    if(SF)       w = w*lepsf_evt;
    if(scale!=0) w = w*scale;
    if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
