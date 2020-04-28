@@ -102,10 +102,11 @@ const char *titleXaxis[]        = {
 "#scale[1]{#font[12]{M}_{#mu #mu J}} #scale[0.8]{(GeV)}"
 //"#scale[1]{#font[12]{M}_{eeJ}} #scale[0.8]{(GeV)}"
 };
+*/
 const int    bin[numVar]        = {
-9
+100
 };
-const int    bin2[numVar]       = {
+/*const int    bin2[numVar]       = {
 6
 };*/
 const double inRange[numVar]    = {
