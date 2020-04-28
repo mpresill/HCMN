@@ -99,8 +99,8 @@ const char *variables[]         = {
 "M_leplepBjet"
 };
 const char *titleXaxis[]        = {
-"#scale[1]{#font[12]{M}_{#mu #mu J}} #scale[0.8]{(GeV)}"
-//"#scale[1]{#font[12]{M}_{eeJ}} #scale[0.8]{(GeV)}"
+//"#scale[1]{#font[12]{M}_{#mu #mu J}} #scale[0.8]{(GeV)}"
+"#scale[1]{#font[12]{M}_{eeJ}} #scale[0.8]{(GeV)}"
 };
 const int    bin[numVar]        = {
 9
@@ -346,7 +346,7 @@ TH1F* double_h_var2(unsigned int v, string var, string varT, uint i, string root
   b_lumi_wgt->GetEntry(tentry);
   if(datatype!=0){
    if(LumiNorm) w = w*lumi_wgt*Luminosity;
-   if(PUcorr)   w = w*PUWeight; //default was "w*PileupWeight"
+   if(PUcorr)   w = w*PileupWeight; //default was "w*PileupWeight"
    if(SF)       w = w*lepsf_evt;
    if(scale!=0) w = w*scale;
    if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
