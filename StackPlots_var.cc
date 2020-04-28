@@ -49,7 +49,7 @@ const string path       = "/eos/user/v/vmariani/NTuples/HN_2016/PUweight/";
 //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
 const char *samples[]   = {"TTtW","DY","Other", "data_ele"};
 const string selection  = "_2016"; //_SingleEle, _SingleMu
-const bool nodata       = true;  //You must always comment data in "samples" if you don't want it
+const bool nodata       = false;  //You must always comment data in "samples" if you don't want it
 const bool show_ratio   = true;
 //Weights
 const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
@@ -242,8 +242,8 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  //curr_var = 0;
  //TBranch *b_curr_var = 0;
  //tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
- double curr_var;
- //int curr_var;
+ //double curr_var;
+ int curr_var;
  TBranch *b_curr_var = 0;
  tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
  double PileupWeight;
