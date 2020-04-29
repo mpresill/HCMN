@@ -45,10 +45,10 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples - selection
-const string path       = "/eos/user/v/vmariani/NTuples/HN_2016/PUweight/";
+const string path       = "BkgEstimation";
 //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
 const char *samples[]   = {"TTtW","DY","Other", "data_ele"};
-const string selection  = "_2016"; //_SingleEle, _SingleMu
+const string selection  = "_2016_NPVmu"; //_SingleEle, _SingleMu
 const bool nodata       = false;  //You must always comment data in "samples" if you don't want it
 const bool show_ratio   = true;
 //Weights
