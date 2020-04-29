@@ -580,7 +580,7 @@ void save_canvas(TCanvas* c1, string var){
 //   Get legends and histos
 /////
 TLegend* get_legend(){
- TLegend *leg = new TLegend(0.19, 0.52, 0.40, 0.9);
+ TLegend *leg = new TLegend(0.6, 0.52, 0.90, 0.9);
  leg->SetHeader("");
  leg->SetBorderSize(0);
  leg->SetTextSize(0.05);
@@ -731,8 +731,3 @@ void setTDRStyle(){
  //tdrStyle->SetHistMinimumZero(kTRUE);
  tdrStyle->cd();
 }
- //if(logYscale[v]==1 && !normalised){h_data_var->SetMaximum((highestbinval+0.25*highestbinval)*10);}else if(logYscale[v]==1 && normalised)
- //{h_data_var->SetMaximum(2);}
- //if(logYscale[v]==1 && normalised){h_data_var->SetMinimum(0.0001);}else if(logYscale[v]==1 && !normalised){h_data_var->SetMinimum(0.01);}else{h_data_var->SetMinimum(0);}
- //if(logYscale[v]==1){hstack->SetMaximum((highestbinval+0.25*highestbinval)*10);}else{hstack->SetMaximum(highestbinval+0.25*highestbinval);}
- //if(logYscale[v]==1){hstack->SetMinimum(0.1);}else{hstack->SetMinimum(0);}
