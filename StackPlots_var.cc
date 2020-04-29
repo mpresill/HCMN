@@ -45,7 +45,7 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples - selection
-const string path       = "/eos/user/v/vmariani/NTuples/HN_2016/";
+const string path       = "/eos/user/v/vmariani/NTuples/HN_2016/PUweight/";
 //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
 const char *samples[]   = {"TTtW","DY","Other", "data_ele"};
 const string selection  = "_2016"; //_SingleEle, _SingleMu
@@ -473,7 +473,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
  }
  h_data_var->GetYaxis()->SetTitle("#scale[0.8]{Events/bin}");
- //if(show_title)  h_data_var->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L =  XXX fb^{-1}}");
+ if(show_title)  h_data_var->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L =  35.5 fb^{-1}}");
  if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
  h_data_var->SetBinErrorOption(TH1::kPoisson);
  h_data_var2->SetBinErrorOption(TH1::kPoisson);
@@ -581,7 +581,7 @@ void save_canvas(TCanvas* c1, string var){
 //   Get legends and histos
 /////
 TLegend* get_legend(){
- TLegend *leg = new TLegend(0.19, 0.52, 0.40, 0.9);
+ TLegend *leg = new TLegend(0.6, 0.52, 0.9, 0.9);
  leg->SetHeader("");
  leg->SetBorderSize(0);
  leg->SetTextSize(0.05);

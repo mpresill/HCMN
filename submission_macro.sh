@@ -1,11 +1,11 @@
 
-TASK="TT_" #EDIT: name of the output directory and the files
-INPUT_DATASET=(`cat listTT.txt`) #EDIT: name of the list 
+TASK="single_ele_D_" #EDIT: name of the output directory and the files
+INPUT_DATASET=(`cat list_single_ele_D.txt`) #EDIT: name of the list 
 
 i=0
-JOB_FOLDER=jobs_test #folder for jobs
+JOB_FOLDER=jobs_test2 #folder for jobs
 
-OUTPUT_FOLDER=/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/$TASK #EDIT: name of the folder where to save rootples
+OUTPUT_FOLDER=/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/data2904/$TASK #EDIT: name of the folder where to save rootples
 echo "$OUTPUT_FOLDER"
 
 RESUBMIT=$1 
