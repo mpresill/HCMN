@@ -34,7 +34,7 @@ using namespace std;
 /////
 //   Declare constants
 /////
-const double Luminosity =35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
+const double Luminosity =58873; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 //Plots
 const bool eejj        = true;
 const bool mumujj      = false;
@@ -81,23 +81,21 @@ double xsec_LM[Mass_eq_L_points]         = {6.10E+03,1.52E+02,1.28E+01,1.77E+00,
 /////
 //2016 
 
-const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
+/*const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
 double Exp_m2s[val] = {8.66E-04,	3.48E-04,	1.87E-04,	9.84E-05,	9.85E-05};
 double Exp_m1s[val] = {1.18E-03,	4.76E-04,	2.61E-04,	1.42E-04,	1.43E-04};
 double Exp[val]     = {1.71E-03,	6.97E-04,	3.90E-04,	2.21E-04,	2.21E-04};  	//r value from Combine
 double Exp_p1s[val] = {2.50E-03,	1.03E-03,	5.93E-04,	3.56E-04,	3.57E-04};
-double Exp_p2s[val] = {3.52E-03,	1.48E-03,	8.68E-04,	5.51E-04,	5.52E-04};
+double Exp_p2s[val] = {3.52E-03,	1.48E-03,	8.68E-04,	5.51E-04,	5.52E-04};*/
 /////////////
 //2018 
-/*
-const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
-double Obs[val]     = {};
-double Exp_m2s[val] = {};
-double Exp_m1s[val] = {};
-double Exp[val]     = {};  	//r value from Combine
-double Exp_p1s[val] = {};
-double Exp_p2s[val] = {};*/
+
+double Exp_m2s[val] = {4.32E-04,	1.29E-04,	4.67E-05,	1.96E-05,	1.89E-05};
+double Exp_m1s[val] = {6.53E-04,	2.09E-04,	8.05E-05,	3.44E-05,	3.33E-05};
+double Exp[val]     = {1.03E-03,	3.52E-04,	1.47E-04,	6.59E-05,	6.37E-05};  	//r value from Combine
+double Exp_p1s[val] = {1.62E-03,	5.83E-04,	2.66E-04,	1.27E-04,	1.23E-04};
+double Exp_p2s[val] = {2.36E-03,	8.88E-04,	4.36E-04,	2.00E-04,	1.93E-04};
 /////////////
 /////
 //   mumujj
@@ -112,13 +110,11 @@ double Exp_p1s[val] = {3.05E-03,	1.27E-03,	6.97E-04,	3.61E-04,	3.51E-04};
 double Exp_p2s[val] = {4.19E-03,	1.77E-03,	9.89E-04,	5.34E-04,	5.19E-04};*/
 /*
 //2018
-const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
-double Obs[val]     = {};
-double Exp_m2s[val] = {};
-double Exp_m1s[val] = {};
-double Exp[val]     = {};  	//r value from Combine
-double Exp_p1s[val] = {};
-double Exp_p2s[val] = {};
+double Exp_m2s[val] = {1.13E-03,	4.42E-04,	2.10E-04,	9.25E-05,	8.89E-05};
+double Exp_m1s[val] = {1.51E-03,	5.97E-04,	2.86E-04,	1.28E-04,	1.23E-04};
+double Exp[val]     = {2.12E-03,	8.45E-04,	4.14E-04,	1.88E-04,	1.81E-04};  	//r value from Combine
+double Exp_p1s[val] = {3.01E-03,	1.21E-03,	6.06E-04,	2.82E-04,	2.72E-04};
+double Exp_p2s[val] = {4.09E-03,	1.66E-03,	8.53E-04,	4.10E-04,	3.94E-04};
 */
 
 
@@ -200,7 +196,7 @@ void Limit_plot(){
  c1_2->Draw(); c1_2->cd();
  TPaveText *pt1 = new TPaveText(.3,.1,.8,.99,"NDC");
 // pt1->AddText("#Lambda = 12 TeV, MC signal #Lambda = 5 TeV");
- pt1->AddText("#scale[0.90]{CMS preliminary, #sqrt{s} = 13 TeV, L = 35.5 fb^{-1}}");
+ pt1->AddText("#scale[0.90]{CMS preliminary, #sqrt{s} = 13 TeV, L = 58.8 fb^{-1}}");
 //pt1->AddText("CMS #scale[0.75]{#it{Preliminary}} 35.5 fb^{-1} (13 TeV)");
  pt1->SetShadowColor(0); pt1->SetBorderSize(0); pt1->SetFillColor(0);
  pt1->Draw("");
