@@ -42,7 +42,7 @@ const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 const bool   save_plot = true;
-const string name_plot = "eejj_L13000_stat_only_2016-2May20.pdf";
+const string name_plot = "eejj_L13000_stat_only_2018-2May20.pdf";
 const int    val       = 5;
 
 //limits from Combine
