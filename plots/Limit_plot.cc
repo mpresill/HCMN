@@ -36,13 +36,14 @@ using namespace std;
 /////
 const double Luminosity =35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 //Plots
-const bool eejj        = false;
-const bool mumujj      = true;
+const bool eejj        = true;
+const bool mumujj      = false;
 const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 const bool   save_plot = true;
-const string name_plot = "mumujj_L13000_stat_only_2016-2May20.pdf"; //xsecBR or r
+if(eejj){ const string name_plot = "eejj_L13000_stat_only_2016-2May20.pdf"; //xsecBR or r}
+if(mumujj){ const string name_plot = "mumujj_L13000_stat_only_2016-2May20.pdf"; //xsecBR or r}}
 const int    val       = 5;
 
 //limits from Combine
@@ -80,14 +81,14 @@ double xsec_LM[Mass_eq_L_points]         = {6.10E+03,1.52E+02,1.28E+01,1.77E+00,
 //   eejj
 /////
 //2016 
-/*
+
 const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
 double Exp_m2s[val] = {8.66E-04,	3.48E-04,	1.87E-04,	9.84E-05,	9.85E-05};
 double Exp_m1s[val] = {1.18E-03,	4.76E-04,	2.61E-04,	1.42E-04,	1.43E-04};
 double Exp[val]     = {1.71E-03,	6.97E-04,	3.90E-04,	2.21E-04,	2.21E-04};  	//r value from Combine
 double Exp_p1s[val] = {2.50E-03,	1.03E-03,	5.93E-04,	3.56E-04,	3.57E-04};
-double Exp_p2s[val] = {3.52E-03,	1.48E-03,	8.68E-04,	5.51E-04,	5.52E-04};*/
+double Exp_p2s[val] = {3.52E-03,	1.48E-03,	8.68E-04,	5.51E-04,	5.52E-04};
 /////////////
 //2018 
 /*
@@ -103,13 +104,13 @@ double Exp_p2s[val] = {};*/
 //   mumujj
 /////
 //2016
-const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
+/*const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
 double Exp_m2s[val] = {1.12E-03,	4.56E-04,	2.36E-04,	1.12E-04,	1.09E-04};
 double Exp_m1s[val] = {1.51E-03,	6.20E-04,	3.25E-04,	1.57E-04,	1.52E-04};
 double Exp[val]     = {2.14E-03,	8.84E-04,	4.73E-04,	2.35E-04,	2.28E-04};  	//r value from Combine
 double Exp_p1s[val] = {3.05E-03,	1.27E-03,	6.97E-04,	3.61E-04,	3.51E-04};
-double Exp_p2s[val] = {4.19E-03,	1.77E-03,	9.89E-04,	5.34E-04,	5.19E-04};
+double Exp_p2s[val] = {4.19E-03,	1.77E-03,	9.89E-04,	5.34E-04,	5.19E-04};*/
 /*
 //2018
 const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
