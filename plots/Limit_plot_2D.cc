@@ -159,14 +159,14 @@ void Limit_plot_2D(){
  
  gPad->RedrawAxis();
   ////
-  TLatex latexLabel;
+ /* TLatex latexLabel;
 	latexLabel.SetTextSize(0.039);
 	latexLabel.SetNDC();
 	latexLabel.DrawLatex(0.13, 0.95,"CMS Run 2 #it{#bf{Preliminary}}");
 	TLatex latexLabel2;
 	latexLabel2.SetTextSize(0.039);
 	latexLabel2.SetNDC();
-	latexLabel2.DrawLatex(0.75, 0.95, "58.8 fb^{-1} (13 TeV)"); 
+	latexLabel2.DrawLatex(0.75, 0.95, "58.8 fb^{-1} (13 TeV)"); */
  //TGraph* sres = new TGraph(sval,xs,ys);
   //sres->SetLineWidth(2); sres->SetLineColor(2);
  //Legend
@@ -201,10 +201,10 @@ void Limit_plot_2D(){
  //c1->cd();
  //TPad* c1_2 = get_tpad("c1_2",0.01,0.925,0.99,0.99,0.01,0.15,0.01,0.125);
  //c1_2->Draw(); c1_2->cd();
- //TPaveText *pt1 = new TPaveText(.3,.1,.8,.99,"NDC");
- //pt1->AddText("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 2.32 fb^{-1}}");
- //pt1->SetShadowColor(0); pt1->SetBorderSize(0); pt1->SetFillColor(0);
- //pt1->Draw("");
+ TPaveText *pt1 = new TPaveText(.3,.1,.8,.99,"NDC");
+ pt1->AddText("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 58.8 fb^{-1}}");
+ pt1->SetShadowColor(0); pt1->SetBorderSize(0); pt1->SetFillColor(0);
+ pt1->Draw("");
  //Save plot
  if(save_plot) c1->SaveAs(name_plot.c_str()); 
 }
