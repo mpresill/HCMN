@@ -159,11 +159,11 @@ void Limit_plot_2D(){
  
  gPad->RedrawAxis();
   ////
-  TText latexLabel;
+  TLatex latexLabel;
 	latexLabel.SetTextSize(0.039);
 	latexLabel.SetNDC();
 	latexLabel.DrawLatex(0.13, 0.95,"CMS Run 2 #it{#bf{Preliminary}}");
-	TText latexLabel2;
+	TLatex latexLabel2;
 	latexLabel2.SetTextSize(0.039);
 	latexLabel2.SetNDC();
 	latexLabel2.DrawLatex(0.75, 0.95, "58.8 fb^{-1} (13 TeV)"); 
