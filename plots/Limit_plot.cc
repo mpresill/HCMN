@@ -114,11 +114,11 @@ double Exp_p2s[val] = {4.19E-03,	1.77E-03,	9.89E-04,	5.34E-04,	5.19E-04};*/
 //2018
 const double CumEff[val] ={};
 double Obs[val]     = {};
-double Exp_m2s[val] = {1.13E-03,	4.42E-04,	2.10E-04,	9.25E-05,	8.89E-05};
-double Exp_m1s[val] = {1.51E-03,	5.97E-04,	2.86E-04,	1.28E-04,	1.23E-04};
-double Exp[val]     = {2.12E-03,	8.45E-04,	4.14E-04,	1.88E-04,	1.81E-04};  	//r value from Combine
-double Exp_p1s[val] = {3.01E-03,	1.21E-03,	6.06E-04,	2.82E-04,	2.72E-04};
-double Exp_p2s[val] = {4.09E-03,	1.66E-03,	8.53E-04,	4.10E-04,	3.94E-04};
+double Exp_m2s[val] = {8.20E-04	3.15E-04	1.43E-04	6.18E-05	5.96E-05};
+double Exp_m1s[val] = {1.11E-03	4.26E-04	1.98E-04	8.70E-05	8.38E-05};
+double Exp[val]     = {1.57E-03	6.11E-04	2.92E-04	1.32E-04	1.27E-04};  	//r value from Combine
+double Exp_p1s[val] = {2.24E-03	8.86E-04	4.39E-04	2.06E-04	1.98E-04};
+double Exp_p2s[val] = {3.07E-03	1.24E-03	6.35E-04	3.11E-04	3.00E-04};
 
 
 
