@@ -36,20 +36,19 @@ using namespace std;
 /////
 //   Declare constants
 /////
-const double Luminosity = 35542	; //pb^-1
+const double Luminosity = 58873; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 //Plots
 const bool eejj        = false;
 const bool mumujj      = true;
 const bool   save_plot = true;
-const string name_plot = "mumujj_2D_limit_stat_only_2016-1Mar20.pdf"; //xsecBR or r
+const string name_plot = "mumujj_2D_limit_stat_only_2018-2May20.pdf"; //xsecBR or r
 const bool   plot_err  = false;
 const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 
-//mumujj     UNCOMMENT THIS FOR mumuJJ CHANNEL HighMass SR with 2016 samples, compared with old SR
-
-const int val = 9;
+//mumujj  2016
+/*const int val = 9;
 double LambdaObs[val] = {}; 
 double Obs[val]       = {}; 
 double LambdaExp[val] = {5.6,6,7,9,11,13,15,17,17}; 
@@ -61,23 +60,22 @@ double Exp_p1s[val]   = {4.41, 3.46, 2.94, 2.48, 1.94, 0.40, 0.40};
 double LambdaErrm1s[val] = {4.9, 6,    7,    8,    9,    10,   11};
 double Exp_m1s[val]   = {4.95, 4.53, 4.04, 3.61, 3.13, 2.75, 2.39};
 double LambdaErrm2s[val] = {5.17, 6,    7,    8,    9,    10,   11}; 
+double Exp_m2s[val]   = {5.31, 4.95, 4.50, 4.08, 3.61, 3.29, 2.39};*/
+
+//mumujj  2018
+const int val = 9;
+double LambdaObs[val] = {}; 
+double Obs[val]       = {}; 
+double LambdaExp[val] = {5.9,6,7,9,11,13,15,17,18}; 
+double Exp[val]       = {5.9,5.7,5.2,4.25,3.5,3,2.25,1.45,0.5}; 
+double LambdaErrp2s[val] = {4.70, 6,    7,    8,    9,    9,   10}; 
+double Exp_p2s[val]   = {4.21, 3.06, 2.51, 1.79, 0.34, 0.34, 0.40};
+double LambdaErrp1s[val] = {4.70, 6,    7,    8,    9,    10,   10}; 
+double Exp_p1s[val]   = {4.41, 3.46, 2.94, 2.48, 1.94, 0.40, 0.40};
+double LambdaErrm1s[val] = {4.9, 6,    7,    8,    9,    10,   11};
+double Exp_m1s[val]   = {4.95, 4.53, 4.04, 3.61, 3.13, 2.75, 2.39};
+double LambdaErrm2s[val] = {5.17, 6,    7,    8,    9,    10,   11}; 
 double Exp_m2s[val]   = {5.31, 4.95, 4.50, 4.08, 3.61, 3.29, 2.39};
-
-
-/*const int val = 9;
-double LambdaObs[val] = {7, 7,  7, 9, 11, 13, 15, 17, 18 }; //2015 SR 
-double Obs[val]       = {4.6, 4.6, 4.6, 4, 3.5, 3, 2.5, 2, 0.7}; //2015 SR
-double LambdaExp[val] = {5.4,6,7.5,10,12,14,16,18,20};  //HIgh Mass SR
-double Exp[val]       = {5.4,5.2,4.75,4,3.5,2.9,2.4,1.8,0.5}; //HIgh Mass SR
-double LambdaErrm2s[val] = {4.76, 6,    7,    8,    9,    10,   11,   12};//4.60,5.12 
-double Exp_m2s[val]      = {5.06, 4.66, 4.21, 3.81, 3.40, 3.11, 2.85, 2.05};//2.58};
-double LambdaErrm1s[val] = {4.73, 6,    7,    8,    9,    10,   11,   12};//4.60,4.86 
-double Exp_m1s[val]      = {4.73, 4.26, 3.81, 3.39, 3.02, 2.72, 2.44, 2.05};
-double LambdaErrp1s[val] = {4.60, 6,    7,    8,    9,    10,   11,   11}; 
-double Exp_p1s[val]      = {4.27, 3.33, 2.89, 2.49, 2.09, 1.73, 0.35, 0.35};
-double LambdaErrp2s[val] = {4.60, 6,    7,    8,    9,    10,   11,   11}; 
-double Exp_p2s[val]      = {4.08, 2.99, 2.50, 2.01, 1.67, 0.25, 0.35, 0.35};
-*/
 
 //eejj
     //UNCOMMENT THIS FOR eeJJ CHANNEL
@@ -168,7 +166,7 @@ void Limit_plot_2D(){
 	TLatex latexLabel2;
 	latexLabel2.SetTextSize(0.039);
 	latexLabel2.SetNDC();
-	latexLabel2.DrawLatex(0.75, 0.95, "35.9 fb^{-1} (13 TeV)"); 
+	latexLabel2.DrawLatex(0.75, 0.95, "58.8 fb^{-1} (13 TeV)"); 
  //TGraph* sres = new TGraph(sval,xs,ys);
   //sres->SetLineWidth(2); sres->SetLineColor(2);
  //Legend
