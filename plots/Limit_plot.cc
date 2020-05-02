@@ -34,7 +34,7 @@ using namespace std;
 /////
 //   Declare constants
 /////
-const double Luminosity = 35542; //pb^-1
+const double Luminosity =35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 //Plots
 const bool eejj        = false;
 const bool mumujj      = true;
@@ -42,7 +42,7 @@ const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 const bool   save_plot = true;
-const string name_plot = "mumujj_L13000_stat_only_2016-1Mar20.pdf"; //xsecBR or r
+const string name_plot = "mumujj_L13000_stat_only_2016-2May20.pdf"; //xsecBR or r
 const int    val       = 5;
 
 //limits from Combine
@@ -79,45 +79,46 @@ double xsec_LM[Mass_eq_L_points]         = {6.10E+03,1.52E+02,1.28E+01,1.77E+00,
 /////
 //   eejj
 /////
-//HCMN reload  private production 2016, selezione High Mass 
-/*const double CumEff[val] = {0.14131834,0.46217656,0.516316976,0.498995434};
-double Obs[val]     = {0.1724,0.3203,17.3125,2718};
-double Exp_m2s[val] = {0.0761,0.1401, 7.98,1252.8281};
-double Exp_m1s[val] = {0.1107, 0.2049,11.3339,1779.3743};
-double Exp[val]     = {0.1724,0.3203,17.3125,2718};  	//r value from Combine
-double Exp_p1s[val] = {0.2754, 0.5169,27.3187,4288.9395};
-double Exp_p2s[val] = {0.4211,0.799,41.3668,6556.5601};*/
-
-//HCMN reload  private production 2016, selezione 2015 SR
-/*const double CumEff[val] = {0.3371736330,0.552511416,0.548118606,0.534429224};
+//2016 
+/*
+const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
-double Exp_m2s[val] = {0.1611,0.2605,7.8359,1189.6797};
-double Exp_m1s[val] = {0.2179,0.3613,11.1293,1689.6854};
-double Exp[val]     = {0.3125,0.5293,17,2581};  	//r value from Combine
-double Exp_p1s[val] = {0.4533,0.7951,26.7578,4072.7566};
-double Exp_p2s[val] = {0.6338,1.1482,40.5899,6167.083 };*/
+double Exp_m2s[val] = {8.66E-04,	3.48E-04,	1.87E-04,	9.84E-05,	9.85E-05};
+double Exp_m1s[val] = {1.18E-03,	4.76E-04,	2.61E-04,	1.42E-04,	1.43E-04};
+double Exp[val]     = {1.71E-03,	6.97E-04,	3.90E-04,	2.21E-04,	2.21E-04};  	//r value from Combine
+double Exp_p1s[val] = {2.50E-03,	1.03E-03,	5.93E-04,	3.56E-04,	3.57E-04};
+double Exp_p2s[val] = {3.52E-03,	1.48E-03,	8.68E-04,	5.51E-04,	5.52E-04};*/
+/////////////
+//2018 
+/*
+const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
+double Obs[val]     = {};
+double Exp_m2s[val] = {};
+double Exp_m1s[val] = {};
+double Exp[val]     = {};  	//r value from Combine
+double Exp_p1s[val] = {};
+double Exp_p2s[val] = {};*/
 /////////////
 /////
 //   mumujj
 /////
-//HCMN reload  private production 2016, selezione High Mass 
+//2016
 const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
-double Exp_m2s[val] = {1.01E-03,	4.06E-04,	2.03E-04,	9.27E-05,	8.99E-05};
-double Exp_m1s[val] = {1.36E-03,	5.52E-04,	2.80E-04,	1.31E-04,	1.28E-04};
-double Exp[val]     = {1.92E-03,	7.87E-04,	4.12E-04,	2.00E-04,	1.93E-04};  	//r value from Combine
-double Exp_p1s[val] = {2.75E-03,	1.14E-03,	6.17E-04,	3.12E-04,	3.03E-04};
-double Exp_p2s[val] = {3.78E-03,	1.60E-03,	8.88E-04,	4.71E-04,	4.57E-04};
-
-//HCMN reload  private production 2016, selezione 2015 SR
-/*const double CumEff[val] = {};//{0.462866402,0.734943755,0.742717847,0.721966732};
+double Exp_m2s[val] = {1.12E-03,	4.56E-04,	2.36E-04,	1.12E-04,	1.09E-04};
+double Exp_m1s[val] = {1.51E-03,	6.20E-04,	3.25E-04,	1.57E-04,	1.52E-04};
+double Exp[val]     = {2.14E-03,	8.84E-04,	4.73E-04,	2.35E-04,	2.28E-04};  	//r value from Combine
+double Exp_p1s[val] = {3.05E-03,	1.27E-03,	6.97E-04,	3.61E-04,	3.51E-04};
+double Exp_p2s[val] = {4.19E-03,	1.77E-03,	9.89E-04,	5.34E-04,	5.19E-04};
+/*
+//2018
+const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
-double Exp_m2s[val] = {8.49E-04,  3.39E-04,	1.83E-04,	9.72E-05,	9.71E-05};
-double Exp_m1s[val] = {1.16E-03,	4.68E-04,	2.56E-04,	1.40E-04,	1.40E-04};
-double Exp[val]     = {1.67E-03,	6.83E-04,	3.83E-04,	2.18E-04,	2.18E-04};  	
-double Exp_p1s[val] = {2.46E-03,	1.01E-03,	5.83E-04,	3.52E-04,	3.52E-04};
-double Exp_p2s[val] = {3.48E-03,	1.45E-03,	8.56E-04,	5.49E-04,	5.49E-04};
-/////////////
+double Exp_m2s[val] = {};
+double Exp_m1s[val] = {};
+double Exp[val]     = {};  	//r value from Combine
+double Exp_p1s[val] = {};
+double Exp_p2s[val] = {};
 */
 
 
@@ -199,8 +200,8 @@ void Limit_plot(){
  c1_2->Draw(); c1_2->cd();
  TPaveText *pt1 = new TPaveText(.3,.1,.8,.99,"NDC");
 // pt1->AddText("#Lambda = 12 TeV, MC signal #Lambda = 5 TeV");
- pt1->AddText("#scale[0.90]{CMS preliminary, #sqrt{s} = 13 TeV, L = 35.9 fb^{-1}}");
-//pt1->AddText("CMS #scale[0.75]{#it{Preliminary}} 35.9 fb^{-1} (13 TeV)");
+ pt1->AddText("#scale[0.90]{CMS preliminary, #sqrt{s} = 13 TeV, L = 35.5 fb^{-1}}");
+//pt1->AddText("CMS #scale[0.75]{#it{Preliminary}} 35.5 fb^{-1} (13 TeV)");
  pt1->SetShadowColor(0); pt1->SetBorderSize(0); pt1->SetFillColor(0);
  pt1->Draw("");
  //TPaveText *pt2 = new TPaveText(.225,.1,.325,.99,"NDC");
