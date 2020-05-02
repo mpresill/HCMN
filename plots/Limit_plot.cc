@@ -90,6 +90,7 @@ double Exp_p1s[val] = {2.50E-03,	1.03E-03,	5.93E-04,	3.56E-04,	3.57E-04};
 double Exp_p2s[val] = {3.52E-03,	1.48E-03,	8.68E-04,	5.51E-04,	5.52E-04};*/
 /////////////
 //2018 
+const double CumEff[val] ={};
 double Obs[val]     = {};
 double Exp_m2s[val] = {4.32E-04,	1.29E-04,	4.67E-05,	1.96E-05,	1.89E-05};
 double Exp_m1s[val] = {6.53E-04,	2.09E-04,	8.05E-05,	3.44E-05,	3.33E-05};
@@ -110,6 +111,7 @@ double Exp_p1s[val] = {3.05E-03,	1.27E-03,	6.97E-04,	3.61E-04,	3.51E-04};
 double Exp_p2s[val] = {4.19E-03,	1.77E-03,	9.89E-04,	5.34E-04,	5.19E-04};*/
 /*
 //2018
+const double CumEff[val] ={};
 double Obs[val]     = {};
 double Exp_m2s[val] = {1.13E-03,	4.42E-04,	2.10E-04,	9.25E-05,	8.89E-05};
 double Exp_m1s[val] = {1.51E-03,	5.97E-04,	2.86E-04,	1.28E-04,	1.23E-04};
