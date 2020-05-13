@@ -47,12 +47,12 @@ using namespace std;
 //Path - samples - selection
 const string path       = "BkgEstimation/";
 //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
-const char *samples[]   = {"TTtW","DY","Other", "data_ele"};
-const string selection  = "_2016_NPVmu"; //_SingleEle, _SingleMu
+const char *samples[]   = {"TTtW","DY","Other", "single_ele_B"};
+const string selection  = "_2017_TRe"; //_SingleEle, _SingleMu
 const bool nodata       = false;  //You must always comment data in "samples" if you don't want it
 const bool show_ratio   = true;
 //Weights
-const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
+const double Luminosity = 4800; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
 const bool   LumiNorm   = true; //default true  
 const bool   PUcorr     = true; //default true
 const bool   SF         = true; //default true
@@ -605,7 +605,7 @@ TH1F* get_datath1f(string var, string title, int v){
  //else                          titleYaxis = "Events/"+(string) bin_size_c;
  //datath1f->GetYaxis()->SetTitle(titleYaxis.c_str());
  //TGaxis::SetMaxDigits(4);
- if(show_title) datath1f->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 35.5 fb^{-1}}");
+ if(show_title) datath1f->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 4.8 fb^{-1}}");
  return datath1f;
 }
 /////

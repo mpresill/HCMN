@@ -61,11 +61,11 @@ const string suffisso   =
                           //"QCDmu";   //CR region QCD estimation
 			  //"NPVmu";
 			  ////////ele/////////////////
-                          //"SRe";
+                          "SRe";
                           //"DYRe";
                           //"DYRePlot";
                           //"DYReTest";
-                          "TRe"; //CR region TTtW estimation: the second leading lepton has opposite flavor
+                          //"TRe"; //CR region TTtW estimation: the second leading lepton has opposite flavor
                           //"QCDe"; //CR region QCD estimation
                           //"NPVe";
 const string selection  =
@@ -78,11 +78,11 @@ const string selection  =
 //"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfVetoEle==0 && numOfFakeMu==2 && Muon_pt[0]>150 && Muon_pt[1]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_mu1mu2>300";
 //"(HLT_Mu50==1 || HLT_OldMu100 ==1 || HLT_TkMu100==1) && numOfHighptMu==2 &&  Muon_pt[0]>50 && Muon_pt[1]>30 && numOfVetoEle==0 ";
 ////////////////////ele////////////////////////////////////
-//"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
+"(HLT_Photon200==1 || HLT_Ele35_WPTight_Gsf==1 ) && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<100";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>50 && M_leplep<300";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfLooseMu==0 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>80 && M_leplep<300";
-"(HLT_Photon200==1 || HLT_Ele35_WPTight_Gsf==1 ) && numOfHighptEle==1 && patElectron_pt[0]>150 && numOfHighptMu==1 &&  Muon_pt[0]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
+//"(HLT_Photon200==1 || HLT_Ele35_WPTight_Gsf==1 ) && numOfHighptEle==1 && patElectron_pt[0]>150 && numOfHighptMu==1 &&  Muon_pt[0]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
 //"(HLT_Photon200==1 || HLT_Ele35_WPTight_Gsf==1 ) && numOfLooseMu==0 && numOfFakeEle==2 && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_leplep>300";
 //"HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfLooseMu==0 &&  numOfFakeEle==2  && patElectron_pt[0]>150 && patElectron_pt[1]>100 && numOfBoostedJets>=1 && BoostedJet_pt[0]>190 && M_ele1ele2>300";
 //"(HLT_Photon200==1 || HLT_Ele35_WPTight_Gsf==1 ) && numOfLooseMu==0 &&  numOfFakeEle==2  && patElectron_pt[0]>50 && patElectron_pt[1]>30";
