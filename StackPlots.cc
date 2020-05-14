@@ -97,7 +97,7 @@ const double endRange[numVar]   = {
 };
 */
 const char *variables[]         = {
-"M_leplepBjet"a
+"M_leplepBjet"
 };
 const char *titleXaxis[]        = {
 //"#scale[1]{#font[12]{M}_{#mu #mu J}} #scale[0.8]{(GeV)}"
