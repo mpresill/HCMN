@@ -48,8 +48,8 @@ using namespace std;
 const string path       = "BkgEstimation/";
 //"/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/";
 const char *samples[]   = {"TTtW","DY","Other", "single_ele_B"};//, "eejj_L13000_M2000"/*, "data_mu_2016" ,"data_ele"*/};
-const string selection  = "_2017_TRe"; //_SingleEle, _SingleMu
-const bool nodata       = false;  //You must always comment data in "samples" if you don't want it
+const string selection  = "_2017_SRe"; //_SingleEle, _SingleMu
+const bool nodata       = true;  //You must always comment data in "samples" if you don't want it
 const bool show_ratio   = false;
 //Weights
 const double Luminosity = 4800; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
@@ -67,8 +67,8 @@ const double normsig2   = 1;
 const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = true; 
-//const double asymbin[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
-const double asymbin[10] = {300,400,500,600,700,800,900,1000,1500,2000};
+const double asymbin[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+//const double asymbin[10] = {300,400,500,600,700,800,900,1000,1500,2000};
 const double asymbin2[7] = {400,600,800,1000,1400,2000,3500};
 const int    numVar     = 1;
 //const int logYscale[numVar] = {};
@@ -97,13 +97,12 @@ const double endRange[numVar]   = {
 };
 */
 const char *variables[]         = {
-//"M_leplepBjet"
-"M_leplep"
+"M_leplepBjet"a
 };
 const char *titleXaxis[]        = {
 //"#scale[1]{#font[12]{M}_{#mu #mu J}} #scale[0.8]{(GeV)}"
-//"#scale[1]{#font[12]{M}_{eeJ}} #scale[0.8]{(GeV)}"
-"#scale[1]{#font[12]{M}_{e #mu}} #scale[0.8]{(GeV)}"
+"#scale[1]{#font[12]{M}_{eeJ}} #scale[0.8]{(GeV)}"
+//"#scale[1]{#font[12]{M}_{e #mu}} #scale[0.8]{(GeV)}"
 };
 const int    bin[numVar]        = {
 9
@@ -265,7 +264,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  TH1F *hist = get_th1f(var, v);
  hist->SetTitle(0); hist->SetMarkerStyle(8); hist->SetMarkerColor(1); hist->SetLineColor(1);
  TH1F *hist_err;
- if(var=="M_leplep" && doasym) hist_err = new TH1F("hist_err","hist_err",bin[v],asymbin);
+ if(var=="M_leplepBjet" && doasym) hist_err = new TH1F("hist_err","hist_err",bin[v],asymbin);
  else                         hist_err = new TH1F("hist_err","hist_err",bin[v],inRange[v],endRange[v]);
  hist_err->Sumw2();
  for(int j=0; j<tree->GetEntries(); j++)
@@ -336,7 +335,7 @@ TH1F* double_h_var2(unsigned int v, string var, string varT, uint i, string root
  TH1F *hist = new TH1F("hist_err","hist_err",bin2[v],asymbin2);
  hist->SetTitle(0); hist->SetMarkerStyle(1); hist->SetMarkerColor(1); hist->SetLineColor(1);
  TH1F *hist_err;
- if(var=="M_leplep" && doasym) hist_err = new TH1F("hist_err","hist_err",bin2[v],asymbin2);
+ if(var=="M_leplepBjet" && doasym) hist_err = new TH1F("hist_err","hist_err",bin2[v],asymbin2);
  else                         hist_err = new TH1F("hist_err","hist_err",bin2[v],inRange[v],endRange[v]);
  hist_err->Sumw2();
  for(int j=0; j<tree->GetEntries(); j++)
@@ -523,7 +522,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
  for(int j=0; j<bin[v]; j++){
   all_bkg_statErr_x[j] = 0; all_bkg_statErr_y[j] = 0; all_bkg_statErr_xerr[j] = 0; all_bkg_statErr_yerr[j] = 0;
   all_bkg_statErr_x[j] = h_sum_var->GetBinCenter(j+1);
-  if(var=="M_leplep" && doasym){
+  if(var=="M_leplepBjet" && doasym){
    all_bkg_statErr_xerr[j] = (asymbin[j+1]-asymbin[j])*0.5;
   }else{
    all_bkg_statErr_xerr[j] = ((endRange[v]-inRange[v])/bin[v])*0.5;
@@ -592,7 +591,7 @@ TLegend* get_legend(){
 }
 TH1F* get_th1f(string var, int v){
  TH1F *th1f;
- if(var=="M_leplep" && doasym) th1f = new TH1F("","",bin[v],asymbin);
+ if(var=="M_leplepBjet" && doasym) th1f = new TH1F("","",bin[v],asymbin);
  else                         th1f = new TH1F("","",bin[v],inRange[v],endRange[v]);
  return th1f;
 }
