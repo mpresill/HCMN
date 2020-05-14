@@ -167,7 +167,7 @@ void StackPlots(){
   for(uint i=0; i<rootplas_size; i++){
    int datatype = 0; //for data
    if(rootplas[i]=="eejj_L13000_M2000" || rootplas[i]=="eejj_L13000_M1000"){                                                 datatype = 1; //for signal
-   }else if(rootplas[i]!="data_ele" && rootplas[i]!="data_mu" && rootplas[i]!="SLep"){ datatype = 2; //for other mc samples
+   }else if(rootplas[i]!="single_ele_B" && rootplas[i]!="data_mu" && rootplas[i]!="SLep"){ datatype = 2; //for other mc samples
    }
    //Declare histograms for variables
    TH1F *h_var = get_th1f(var[v], v);
