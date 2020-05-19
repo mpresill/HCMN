@@ -91,6 +91,19 @@ https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/Efficie
    
    - N.B. Since there are two different scale factor scenarios within 2016 data taking depending on the era (B-F) or (G-H) muon SFs for 2016 are computed by averageing the SF by the relative luminosity of each period and then apply a single weight to the MC: lumi(B-F)_Mu50=19.25 fb^-1, lumi(B-F)_TkMu50=16.64 fb^-1; lumi(G-H)_Mu50=16.29 fb^-1, lumi(G-H)_TkMu50=16.29 fb^-1 (Info from BrilCalc)   
 
+  - PU reweighting:
+MCscenario:
+./makeMCPileupHist.py <scenario> 
+2016 scenario: SimGeneral.MixingModule.mix_2016_25ns_Moriond17MC_PoissonOOTPU_cfi
+2017 scenario:  SimGeneral.MixingModule.mix_2017_25ns_WinterMC_PUScenarioV1_PoissonOOTPU_cfi.py 
+2018 scenario: SimGeneral.MixingModule.mix_2018_25ns_JuneProjectionFull18_PoissonOOTPU_cfi
+Link utili:
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/PileupJSONFileforData
+https://github.com/UHH2/UHH2/wiki/Pileup-reweighting-for-MC
+https://github.com/cms-sw/cmssw/tree/CMSSW_10_4_X/SimGeneral/MixingModule/python
+
+
+
 ## Notes on bkg estimation:
 - QCD: use "Rootplizer_HeavyNeutrino_QCD_2016.cc" for the estimation method used in the previous version of the analysis
 - TTtW: CR on emu invariant mass
