@@ -916,7 +916,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    int countBoostedJets_TLV=0;
    for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
     //BJet corrections:
-    double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*r©SF->at(jet_en);
+    double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*roostedJet_JesSF->at(jet_en);
     double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
     TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
     //BJet ID:
