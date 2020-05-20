@@ -107,7 +107,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   /////
   //Trigger
   int rHLT_Ele27_WPTight_Gsf; rHLT_Ele27_WPTight_Gsf = 0; TBranch* b_rHLT_Ele27_WPTight_Gsf = 0; readingtree->SetBranchAddress("HLT_Ele27_WPTight_Gsf",&rHLT_Ele27_WPTight_Gsf,&b_rHLT_Ele27_WPTight_Gsf);
-  int rHLT_Photon175_v; rHLT_Photon175_v = 0; TBranch* b_rHLT_Photon175_v = 0; readingtree->SetBranchAddress("HLT_Photon175_v",&rHLT_Photon175_v,&b_rHLT_Photon175_v);
+  int rHLT_Photon175; rHLT_Photon175 = 0; TBranch* b_rHLT_Photon175 = 0; readingtree->SetBranchAddress("HLT_Photon175",&rHLT_Photon175,&b_rHLT_Photon175);
   int rHLT_Ele115_CaloIdVT_GsfTrkIdT; rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; TBranch* b_rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; readingtree->SetBranchAddress("HLT_Ele115_CaloIdVT_GsfTrkIdT",&rHLT_Ele115_CaloIdVT_GsfTrkIdT,&b_rHLT_Ele115_CaloIdVT_GsfTrkIdT);
   int rHLT_Mu50; rHLT_Mu50 = 0; TBranch* b_rHLT_Mu50 = 0; readingtree->SetBranchAddress("HLT_Mu50",&rHLT_Mu50,&b_rHLT_Mu50);
   int rHLT_TkMu50; rHLT_TkMu50 = 0; TBranch* b_rHLT_TkMu50 = 0; readingtree->SetBranchAddress("HLT_TkMu50",&rHLT_TkMu50,&b_rHLT_TkMu50);
@@ -248,7 +248,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    /////
    //Trigger:
    int HLT_Ele27_WPTight_Gsf; newtree->Branch("HLT_Ele27_WPTight_Gsf",&HLT_Ele27_WPTight_Gsf);
-   int HLT_Photon175_v; newtree->Branch("HLT_Photon175_v",&HLT_Photon175_v);
+   int HLT_Photon175; newtree->Branch("HLT_Photon175",&HLT_Photon175);
    int HLT_Ele115_CaloIdVT_GsfTrkIdT; newtree->Branch("HLT_Ele115_CaloIdVT_GsfTrkIdT",&HLT_Ele115_CaloIdVT_GsfTrkIdT);
    int HLT_Mu50; newtree->Branch("HLT_Mu50",&HLT_Mu50);
    int HLT_TkMu50; newtree->Branch("HLT_TkMu50",&HLT_TkMu50);
@@ -497,7 +497,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //Trigger:
     
     b_rHLT_Ele27_WPTight_Gsf->GetEntry(en);
-    b_rHLT_Photon175_v->GetEntry(en);
+    b_rHLT_Photon175->GetEntry(en);
     b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
     b_rHLT_Mu50->GetEntry(en);
     b_rHLT_TkMu50->GetEntry(en);
@@ -667,7 +667,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
     //new var inizialize (scalars):
     HLT_Ele27_WPTight_Gsf = -999;
-    HLT_Photon175_v = -999;
+    HLT_Photon175 = -999;
     HLT_Ele115_CaloIdVT_GsfTrkIdT = -999;
     HLT_TkMu50 = -999;
     HLT_Mu50 = -999;
@@ -709,7 +709,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
     
    HLT_Ele27_WPTight_Gsf = rHLT_Ele27_WPTight_Gsf;
-   HLT_Photon175_v = rHLT_Photon175_v;
+   HLT_Photon175 = rHLT_Photon175;
    HLT_Ele115_CaloIdVT_GsfTrkIdT = rHLT_Ele115_CaloIdVT_GsfTrkIdT;
    HLT_Mu50 = rHLT_Mu50;
    HLT_TkMu50 = rHLT_TkMu50;
