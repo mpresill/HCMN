@@ -236,6 +236,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //Corrections:
   vector<double>* rBoostedJet_Uncorr_pt; rBoostedJet_Uncorr_pt = 0; TBranch* b_rBoostedJet_Uncorr_pt = 0; readingtree->SetBranchAddress("BoostedJet_Uncorr_pt",&rBoostedJet_Uncorr_pt,&b_rBoostedJet_Uncorr_pt);
   vector<double>* rBoostedJet_JesSF; rBoostedJet_JesSF = 0; TBranch* b_rBoostedJet_JesSF = 0; readingtree->SetBranchAddress("BoostedJet_JesSF",&rBoostedJet_JesSF,&b_rBoostedJet_JesSF);
+  //////systematics JesSF
+  vector<double>* rBoostedJet_JesSFup; rBoostedJet_JesSFup = 0; TBranch* b_rBoostedJet_JesSFup = 0; readingtree->SetBranchAddress("BoostedJet_JesSF",&rBoostedJet_JesSFup,&b_rBoostedJet_JesSFup);
+  
   //b-tagging: 
   vector<double>* rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags; rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;
   TBranch* b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;readingtree->SetBranchAddress("BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags",&rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags,&b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags); 
@@ -427,6 +430,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double M_leplepBjet; newtree->Branch("M_leplepBjet",&M_leplepBjet);
    double M_lep2Bjet; newtree->Branch("M_lep2Bjet",&M_lep2Bjet);  
    double M_leplepBjetBjet; newtree->Branch("M_leplepBjetBjet",&M_leplepBjetBjet);
+   //////systematics JesSF
+   double M_leplepBjet_JesSFup; newtree->Branch("M_leplepBjet_JesSFup",&M_leplepBjet_JesSFup);
 
    //Scale Factor
    double elesf_ele1; newtree->Branch("elesf_ele1",&elesf_ele1);
@@ -594,6 +599,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //corrections
     b_rBoostedJet_Uncorr_pt->GetEntry(en);
     b_rBoostedJet_JesSF->GetEntry(en);
+    b_rBoostedJet_JesSFup->GetEntry(en);  ///systematics JesSF
+
     //b-tagging:
     b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);    
     //MET
@@ -701,7 +708,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     S_T_BJ = -999; S_T_jj = -999;
     M_leplep = -999; M_leplepBjet = -999; M_leplepBjetBjet = -999;
     M_lep2Bjet = -999;
-
+    /////////////////////////////////////////////////////////
+    ///////systematics JesSF
+    M_leplepBjet_JesSFup = -999;
+    ////////////////////////////////////////////////////////
     //evt_type = -999;
     eejj_l = 0; emujj_l = 0; mumujj_l = 0; muejj_l = 0;
     SRe = 0; TRe = 0; SRmu = 0; TRmu = 0; DYRe = 0; DYRmu = 0;
@@ -1146,18 +1156,30 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      if(eejj_l==1){
       M_ele1ele2Bjet1 = (Ele1 + Ele2 + BoostedJet1).M();
       M_leplepBjet=M_ele1ele2Bjet1;
+      //////////////////////////////////////////////////
+      //systematics JES UP TEST
+      M_leplepBjet_JesSFup=(Ele1 + Ele2 + (BoostedJet1*rBoostedJet_JesSFup->at(jet_en)/rBoostedJet_JesSF->at(jet_en) ) ).M();
+      ///////////////////////////////////////////////////
       M_lep2Bjet = (Ele2 + BoostedJet1).M();
       S_T_BJ=Ele1_pt+Ele2_pt+BoostedJet1_pt;
      }
      if(mumujj_l==1){
       M_mu1mu2Bjet1 = (Muon1 + Muon2 + BoostedJet1).M();
       M_leplepBjet=M_mu1mu2Bjet1;
+      //////////////////////////////////////////////////
+      //systematics JES UP TEST
+      M_leplepBjet_JesSFup=(Ele1 + Ele2 + (BoostedJet1*rBoostedJet_JesSFup->at(jet_en)/rBoostedJet_JesSF->at(jet_en) ) ).M();
+      ///////////////////////////////////////////////////
       M_lep2Bjet = (Muon2 + BoostedJet1).M();
       S_T_BJ=Muon1_pt+Muon2_pt+BoostedJet1_pt;
      }
      if(emujj_l==1 || muejj_l==1){
       M_elemuBjet1=(Ele1 + Muon1 + BoostedJet1).M();
       M_leplepBjet=M_elemuBjet1;
+      //////////////////////////////////////////////////
+      //systematics JES UP TEST
+      M_leplepBjet_JesSFup=(Ele1 + Ele2 + (BoostedJet1*rBoostedJet_JesSFup->at(jet_en)/rBoostedJet_JesSF->at(jet_en) ) ).M();
+      ///////////////////////////////////////////////////
       if(patElectron_pt->at(0)>Muon_pt->at(0)){M_lep2Bjet = (Muon1 + BoostedJet1).M();}
       if(patElectron_pt->at(0)<Muon_pt->at(0)){M_lep2Bjet = (Ele1 + BoostedJet1).M();}
       S_T_BJ=Ele1_pt+Muon1_pt+BoostedJet1_pt;
