@@ -114,10 +114,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   int rHLT_OldMu100; rHLT_OldMu100 = 0; TBranch* b_rHLT_OldMu100 = 0; readingtree->SetBranchAddress("HLT_OldMu100",&rHLT_OldMu100,&b_rHLT_OldMu100);
   int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
 
-  //PU
+  //PU and systematics
   double rPUWeight; rPUWeight = 0; TBranch* b_rPUWeight = 0; readingtree->SetBranchAddress("PUWeight",&rPUWeight,&b_rPUWeight);
+  double rMinBiasUpWeight; rMinBiasUpWeight = 0; TBranch* b_rMinBiasUpWeight = 0; readingtree->SetBranchAddress("MinBiasUpWeight",&rMinBiasUpWeight,&b_rMinBiasUpWeight);
+  double rMinBiasDownWeight; rMinBiasDownWeight = 0; TBranch* b_rMinBiasDownWeight = 0; readingtree->SetBranchAddress("MinBiasDownWeight",&rMinBiasDownWeight,&b_rMinBiasDownWeight);
   double rtrueInteractions; rtrueInteractions = 0; TBranch* b_rtrueInteractions = 0; readingtree->SetBranchAddress("trueInteractions",&rtrueInteractions,&b_rtrueInteractions);
   int rnBestVtx; rnBestVtx = 0; TBranch* b_rnBestVtx = 0; readingtree->SetBranchAddress("nBestVtx",&rnBestVtx,&b_rnBestVtx);
+ 
   //MET
   double rMet_type1PF_pt; rMet_type1PF_pt = 0; TBranch* b_rMet_type1PF_pt = 0; 
   readingtree->SetBranchAddress("Met_type1PF_pt",&rMet_type1PF_pt,&b_rMet_type1PF_pt);
@@ -327,6 +330,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    //PU:
    double PileupWeight; newtree->Branch("PileupWeight",&PileupWeight);
    double PUWeight; newtree->Branch("PUWeight",&PUWeight);
+   double MinBiasUpWeight; newtree->Branch("MinBiasUpWeight",&MinBiasUpWeight);
+   double MinBiasDownWeight; newtree->Branch("MinBiasDownWeight",&MinBiasDownWeight);
    int nBestVtx; newtree->Branch("nBestVtx",&nBestVtx);
    double trueInteractions; newtree->Branch("trueInteractions",&trueInteractions);
    //Lumi weight
@@ -500,6 +505,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rHLT_TkMu100->GetEntry(en);
     //PU:
     b_rPUWeight->GetEntry(en);
+    b_rMinBiasUpWeight->GetEntry(en);
+    b_rMinBiasDownWeight->GetEntry(en);
     b_rnBestVtx->GetEntry(en);
     b_rtrueInteractions->GetEntry(en);
     //Muons
@@ -667,7 +674,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     HLT_TkMu100 = -999;
     HLT_OldMu100 = -999;
 
-    PUWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999;
+    PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999; 
     Met_type1PF_pt = -999;
 
     numOfHighptMu=0; numOfLooseMu=0; numOfMediumMu=0; numOfTightMu=0;
@@ -710,6 +717,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    HLT_TkMu100 = rHLT_TkMu100;
 
     PUWeight = rPUWeight;
+    MinBiasUpWeight = rMinBiasUpWeight;
+    MinBiasDownWeight = rMinBiasDownWeight;
     //trueInteractions = rtrueInteractions;
     if(rtrueInteractions > 0) trueInteractions = (double)rtrueInteractions;
     nBestVtx = rnBestVtx;
