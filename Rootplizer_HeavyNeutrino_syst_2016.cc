@@ -1152,13 +1152,17 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
      BoostedJet1_nJets=BoostedJet_nJets->at(0);
      BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
+      //////////////////////////////////////////////////
+      //systematics JES UP TEST
+     TLorentzVector BoostedJet_JesSFup(0,0,0,0); BoostedJet1_JesSFup.SetPtEtaPhiE(BoostedJet1_pt*rBoostedJet_JesSFup->at(jet_en)/rBoostedJet_JesSF->at(jet_en), BoostedJet1_eta, BoostedJet1_phi, BoostedJet1_energy);
+     //////////////////////////////////////////////////
 
      if(eejj_l==1){
       M_ele1ele2Bjet1 = (Ele1 + Ele2 + BoostedJet1).M();
       M_leplepBjet=M_ele1ele2Bjet1;
       //////////////////////////////////////////////////
       //systematics JES UP TEST
-      M_leplepBjet_JesSFup=(Ele1 + Ele2 + (BoostedJet1*rBoostedJet_JesSFup->at(jet_en)/rBoostedJet_JesSF->at(jet_en) ) ).M();
+      M_leplepBjet_JesSFup=(Ele1 + Ele2 + BoostedJet1_JesSFup ).M();
       ///////////////////////////////////////////////////
       M_lep2Bjet = (Ele2 + BoostedJet1).M();
       S_T_BJ=Ele1_pt+Ele2_pt+BoostedJet1_pt;
@@ -1168,7 +1172,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       M_leplepBjet=M_mu1mu2Bjet1;
       //////////////////////////////////////////////////
       //systematics JES UP TEST
-      M_leplepBjet_JesSFup=(Ele1 + Ele2 + (BoostedJet1*rBoostedJet_JesSFup->at(jet_en)/rBoostedJet_JesSF->at(jet_en) ) ).M();
+      M_leplepBjet_JesSFup=(Ele1 + Ele2 +BoostedJet1_JesSFup ).M();
       ///////////////////////////////////////////////////
       M_lep2Bjet = (Muon2 + BoostedJet1).M();
       S_T_BJ=Muon1_pt+Muon2_pt+BoostedJet1_pt;
@@ -1178,7 +1182,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       M_leplepBjet=M_elemuBjet1;
       //////////////////////////////////////////////////
       //systematics JES UP TEST
-      M_leplepBjet_JesSFup=(Ele1 + Ele2 + (BoostedJet1*rBoostedJet_JesSFup->at(jet_en)/rBoostedJet_JesSF->at(jet_en) ) ).M();
+      M_leplepBjet_JesSFup=(Ele1 + Ele2 + BoostedJet1_JesSFup ).M();
       ///////////////////////////////////////////////////
       if(patElectron_pt->at(0)>Muon_pt->at(0)){M_lep2Bjet = (Muon1 + BoostedJet1).M();}
       if(patElectron_pt->at(0)<Muon_pt->at(0)){M_lep2Bjet = (Ele1 + BoostedJet1).M();}
