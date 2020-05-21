@@ -242,42 +242,42 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //b-tagging: 
   vector<double>* rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags; rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;
   TBranch* b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;readingtree->SetBranchAddress("BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags",&rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags,&b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags); 
-    
-   TFile *newfile = new TFile(Output,"recreate");
-   TTree* newtree = new TTree("BOOM","BOOM");
-   newtree->SetMaxTreeSize(99000000000);
-   /////
-   //   New variables
-   /////
-   //Trigger:
-   int HLT_Ele27_WPTight_Gsf; newtree->Branch("HLT_Ele27_WPTight_Gsf",&HLT_Ele27_WPTight_Gsf);
-   int HLT_Photon175; newtree->Branch("HLT_Photon175",&HLT_Photon175);
-   int HLT_Ele115_CaloIdVT_GsfTrkIdT; newtree->Branch("HLT_Ele115_CaloIdVT_GsfTrkIdT",&HLT_Ele115_CaloIdVT_GsfTrkIdT);
-   int HLT_Mu50; newtree->Branch("HLT_Mu50",&HLT_Mu50);
-   int HLT_TkMu50; newtree->Branch("HLT_TkMu50",&HLT_TkMu50);
-   int HLT_OldMu100; newtree->Branch("HLT_OldMu100",&HLT_OldMu100);
-   int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
+  
+  TFile *newfile = new TFile(Output,"recreate");
+  TTree* newtree = new TTree("BOOM","BOOM");
+  newtree->SetMaxTreeSize(99000000000);
+  /////
+  //   New variables
+  /////
+  //Trigger:
+  int HLT_Ele27_WPTight_Gsf; newtree->Branch("HLT_Ele27_WPTight_Gsf",&HLT_Ele27_WPTight_Gsf);
+  int HLT_Photon175; newtree->Branch("HLT_Photon175",&HLT_Photon175);
+  int HLT_Ele115_CaloIdVT_GsfTrkIdT; newtree->Branch("HLT_Ele115_CaloIdVT_GsfTrkIdT",&HLT_Ele115_CaloIdVT_GsfTrkIdT);
+  int HLT_Mu50; newtree->Branch("HLT_Mu50",&HLT_Mu50);
+  int HLT_TkMu50; newtree->Branch("HLT_TkMu50",&HLT_TkMu50);
+  int HLT_OldMu100; newtree->Branch("HLT_OldMu100",&HLT_OldMu100);
+  int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
 
-   //Muons:
-   vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
-   vector<double>* Muon_eta = new std::vector<double>; newtree->Branch("Muon_eta",&Muon_eta);
-   vector<double>* Muon_phi = new std::vector<double>; newtree->Branch("Muon_phi",&Muon_phi);
-   vector<double>* Muon_p = new std::vector<double>; newtree->Branch("Muon_p",&Muon_p);
-   vector<double>* Muon_px = new std::vector<double>; newtree->Branch("Muon_px",&Muon_px);
-   vector<double>* Muon_py = new std::vector<double>; newtree->Branch("Muon_py",&Muon_py);
-   vector<double>* Muon_pz = new std::vector<double>; newtree->Branch("Muon_pz",&Muon_pz);
-   vector<double>* Muon_energy = new std::vector<double>; newtree->Branch("Muon_energy",&Muon_energy);
-   vector<double>* Muon_charge = new std::vector<double>; newtree->Branch("Muon_charge",&Muon_charge);
-   vector<double>* Muon_trackIso = new std::vector<double>; newtree->Branch("Muon_trackIso",&Muon_trackIso);
-   vector<double>* Muon_TrackerIso = new std::vector<double>; newtree->Branch("Muon_TrackerIso",&Muon_TrackerIso);
-   vector<double>* Muon_relIsoDeltaBetaR03 = new std::vector<double>; newtree->Branch("Muon_relIsoDeltaBetaR03",&Muon_relIsoDeltaBetaR03);
-   vector<double>* Muon_relIsoDeltaBetaR04 = new std::vector<double>; newtree->Branch("Muon_relIsoDeltaBetaR04",&Muon_relIsoDeltaBetaR04);
-   vector<double>* Muon_isHighPt = new std::vector<double>; newtree->Branch("Muon_isHighPt",&Muon_isHighPt);
-   vector<int>* Muon_loose = new std::vector<int>; newtree->Branch("Muon_loose",&Muon_loose);
-   vector<int>* Muon_medium = new std::vector<int>; newtree->Branch("Muon_medium",&Muon_medium);
-   vector<int>* Muon_tight = new std::vector<int>; newtree->Branch("Muon_tight",&Muon_tight);
-   
-   //Electrons:
+  //Muons:
+  vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
+  vector<double>* Muon_eta = new std::vector<double>; newtree->Branch("Muon_eta",&Muon_eta);
+  vector<double>* Muon_phi = new std::vector<double>; newtree->Branch("Muon_phi",&Muon_phi);
+  vector<double>* Muon_p = new std::vector<double>; newtree->Branch("Muon_p",&Muon_p);
+  vector<double>* Muon_px = new std::vector<double>; newtree->Branch("Muon_px",&Muon_px);
+  vector<double>* Muon_py = new std::vector<double>; newtree->Branch("Muon_py",&Muon_py);
+  vector<double>* Muon_pz = new std::vector<double>; newtree->Branch("Muon_pz",&Muon_pz);
+  vector<double>* Muon_energy = new std::vector<double>; newtree->Branch("Muon_energy",&Muon_energy);
+  vector<double>* Muon_charge = new std::vector<double>; newtree->Branch("Muon_charge",&Muon_charge);
+  vector<double>* Muon_trackIso = new std::vector<double>; newtree->Branch("Muon_trackIso",&Muon_trackIso);
+  vector<double>* Muon_TrackerIso = new std::vector<double>; newtree->Branch("Muon_TrackerIso",&Muon_TrackerIso);
+  vector<double>* Muon_relIsoDeltaBetaR03 = new std::vector<double>; newtree->Branch("Muon_relIsoDeltaBetaR03",&Muon_relIsoDeltaBetaR03);
+  vector<double>* Muon_relIsoDeltaBetaR04 = new std::vector<double>; newtree->Branch("Muon_relIsoDeltaBetaR04",&Muon_relIsoDeltaBetaR04);
+  vector<double>* Muon_isHighPt = new std::vector<double>; newtree->Branch("Muon_isHighPt",&Muon_isHighPt);
+  vector<int>* Muon_loose = new std::vector<int>; newtree->Branch("Muon_loose",&Muon_loose);
+  vector<int>* Muon_medium = new std::vector<int>; newtree->Branch("Muon_medium",&Muon_medium);
+  vector<int>* Muon_tight = new std::vector<int>; newtree->Branch("Muon_tight",&Muon_tight);
+  
+  //Electrons:
   vector<double>* patElectron_pt = new std::vector<double>; newtree->Branch("patElectron_pt",&patElectron_pt);
   vector<double>* patElectron_eta = new std::vector<double>; newtree->Branch("patElectron_eta",&patElectron_eta);
   vector<double>* patElectron_phi = new std::vector<double>; newtree->Branch("patElectron_phi",&patElectron_phi);
@@ -329,7 +329,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* BoostedJet_T = new std::vector<double>; newtree->Branch("BoostedJet_T",&BoostedJet_T);
    vector<double>* BoostedJet_TLV = new std::vector<double>; newtree->Branch("BoostedJet_TLV",&BoostedJet_TLV);
 
-   
+///////////////////////////////////////
+///////////systematics JesSFup
+   vector<double>* BoostedJet_JesSFup_pt = new std::vector<double>; newtree->Branch("BoostedJet_JesSFup_pt",&BoostedJet_JesSFup_pt);
+//////////////////////////////////////
+
+
+
    //PU:
    double PileupWeight; newtree->Branch("PileupWeight",&PileupWeight);
    double PUWeight; newtree->Branch("PUWeight",&PUWeight);
@@ -430,8 +436,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double M_leplepBjet; newtree->Branch("M_leplepBjet",&M_leplepBjet);
    double M_lep2Bjet; newtree->Branch("M_lep2Bjet",&M_lep2Bjet);  
    double M_leplepBjetBjet; newtree->Branch("M_leplepBjetBjet",&M_leplepBjetBjet);
-   //////systematics JesSF
+  ///////////////////////////////////////////////////
+  //////systematics JesSF
    double M_leplepBjet_JesSFup; newtree->Branch("M_leplepBjet_JesSFup",&M_leplepBjet_JesSFup);
+  ///////////////////////////////////////////////////
 
    //Scale Factor
    double elesf_ele1; newtree->Branch("elesf_ele1",&elesf_ele1);
@@ -670,7 +678,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_L->clear();
     BoostedJet_T->clear();
     BoostedJet_TLV->clear();
-
+///////////////////////////////////////////
+//////////////systematics JesSFup
+    BoostedJet_JesSFup_pt->clear();
+///////////////////////////////////////////
 
     //new var inizialize (scalars):
     HLT_Ele27_WPTight_Gsf = -999;
@@ -700,8 +711,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet1_nJets=-999;
     BoostedJet2_pt=-999; BoostedJet2_eta=-999; BoostedJet2_phi=-999; BoostedJet2_energy=-999;
     BoostedJet2_nJets=-999;
-
-
       
     M_ele1ele2Bjet1 = -999;  
     M_ele1ele2 = -999; M_elemu = -999; M_elemuBjet1 = -999; M_mu1mu2 = -999; M_mu1mu2Bjet1 = -999;
@@ -1031,6 +1040,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       BoostedJet_mass->push_back(rBoostedJet_mass->at(jet_en));
       BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
       //BoostedJet_nJets->push_back(0);
+      //////////////////////////////////////////////////
+      //systematics JES UP TEST
+      BoostedJet_JesSFup_pt->push_back(rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en) );
+      //////////////////////////////////////////////////
      }
     }
    }
@@ -1154,7 +1167,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
       //////////////////////////////////////////////////
       //systematics JES UP TEST
-     TLorentzVector BoostedJet_JesSFup(0,0,0,0); BoostedJet1_JesSFup.SetPtEtaPhiE(BoostedJet1_pt*rBoostedJet_JesSFup->at(jet_en)/rBoostedJet_JesSF->at(jet_en), BoostedJet1_eta, BoostedJet1_phi, BoostedJet1_energy);
+     TLorentzVector BoostedJet1_JesSFup(0,0,0,0); BoostedJet1_JesSFup.SetPtEtaPhiE(BoostedJet_JesSFup_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
      //////////////////////////////////////////////////
 
      if(eejj_l==1){
