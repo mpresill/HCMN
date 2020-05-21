@@ -1041,8 +1041,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
       //BoostedJet_nJets->push_back(0);
       //////////////////////////////////////////////////
+      //////////////////////////////////////////////////
       //systematics JES UP TEST
       BoostedJet_JesSFup_pt->push_back(rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en) );
+      //////////////////////////////////////////////////      
       //////////////////////////////////////////////////
      }
     }
@@ -1166,37 +1168,37 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      BoostedJet1_nJets=BoostedJet_nJets->at(0);
      BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
       //////////////////////////////////////////////////
+      //////////////////////////////////////////////////
       //systematics JES UP TEST
-     TLorentzVector BoostedJet1_JesSFup(0,0,0,0); BoostedJet1_JesSFup.SetPtEtaPhiE(BoostedJet_JesSFup_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
+     if(BoostedJet_JesSFup_pt->size()>0){
+        TLorentzVector BoostedJet1_JesSFup(0,0,0,0); BoostedJet1_JesSFup.SetPtEtaPhiE(BoostedJet_JesSFup_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
+        if(eejj_l==1){
+           M_leplepBjet_JesSFup=(Ele1 + Ele2 + BoostedJet1_JesSFup ).M();
+        }
+        if(mumujj_l==1){
+          M_leplepBjet_JesSFup=(Muon1 + Muon2 +BoostedJet1_JesSFup ).M();
+        }
+        if(emujj_l==1 || muejj_l==1){
+          M_leplepBjet_JesSFup=(Ele1 + Ele2 + BoostedJet1_JesSFup ).M();
+        }
+     //////////////////////////////////////////////////
      //////////////////////////////////////////////////
 
      if(eejj_l==1){
       M_ele1ele2Bjet1 = (Ele1 + Ele2 + BoostedJet1).M();
       M_leplepBjet=M_ele1ele2Bjet1;
-      //////////////////////////////////////////////////
-      //systematics JES UP TEST
-      M_leplepBjet_JesSFup=(Ele1 + Ele2 + BoostedJet1_JesSFup ).M();
-      ///////////////////////////////////////////////////
       M_lep2Bjet = (Ele2 + BoostedJet1).M();
       S_T_BJ=Ele1_pt+Ele2_pt+BoostedJet1_pt;
      }
      if(mumujj_l==1){
       M_mu1mu2Bjet1 = (Muon1 + Muon2 + BoostedJet1).M();
       M_leplepBjet=M_mu1mu2Bjet1;
-      //////////////////////////////////////////////////
-      //systematics JES UP TEST
-      M_leplepBjet_JesSFup=(Ele1 + Ele2 +BoostedJet1_JesSFup ).M();
-      ///////////////////////////////////////////////////
       M_lep2Bjet = (Muon2 + BoostedJet1).M();
       S_T_BJ=Muon1_pt+Muon2_pt+BoostedJet1_pt;
      }
      if(emujj_l==1 || muejj_l==1){
       M_elemuBjet1=(Ele1 + Muon1 + BoostedJet1).M();
       M_leplepBjet=M_elemuBjet1;
-      //////////////////////////////////////////////////
-      //systematics JES UP TEST
-      M_leplepBjet_JesSFup=(Ele1 + Ele2 + BoostedJet1_JesSFup ).M();
-      ///////////////////////////////////////////////////
       if(patElectron_pt->at(0)>Muon_pt->at(0)){M_lep2Bjet = (Muon1 + BoostedJet1).M();}
       if(patElectron_pt->at(0)<Muon_pt->at(0)){M_lep2Bjet = (Ele1 + BoostedJet1).M();}
       S_T_BJ=Ele1_pt+Muon1_pt+BoostedJet1_pt;
