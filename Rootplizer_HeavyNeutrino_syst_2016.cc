@@ -236,9 +236,11 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //Corrections:
   vector<double>* rBoostedJet_Uncorr_pt; rBoostedJet_Uncorr_pt = 0; TBranch* b_rBoostedJet_Uncorr_pt = 0; readingtree->SetBranchAddress("BoostedJet_Uncorr_pt",&rBoostedJet_Uncorr_pt,&b_rBoostedJet_Uncorr_pt);
   vector<double>* rBoostedJet_JesSF; rBoostedJet_JesSF = 0; TBranch* b_rBoostedJet_JesSF = 0; readingtree->SetBranchAddress("BoostedJet_JesSF",&rBoostedJet_JesSF,&b_rBoostedJet_JesSF);
+  //////////////////////////////////////////////////
   //////systematics JesSF
-  vector<double>* rBoostedJet_JesSFup; rBoostedJet_JesSFup = 0; TBranch* b_rBoostedJet_JesSFup = 0; readingtree->SetBranchAddress("BoostedJet_JesSF",&rBoostedJet_JesSFup,&b_rBoostedJet_JesSFup);
-  
+  vector<double>* rBoostedJet_JesSFup; rBoostedJet_JesSFup = 0; TBranch* b_rBoostedJet_JesSFup = 0; readingtree->SetBranchAddress("BoostedJet_JesSFup",&rBoostedJet_JesSFup,&b_rBoostedJet_JesSFup);
+  //////////////////////////////////////////////////
+
   //b-tagging: 
   vector<double>* rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags; rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;
   TBranch* b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;readingtree->SetBranchAddress("BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags",&rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags,&b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags); 
@@ -1043,6 +1045,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       //////////////////////////////////////////////////
       //////////////////////////////////////////////////
       //systematics JES UP TEST
+      double jet_pt_JesSFup=rBoostedJet_Uncorr_pt->at(jet_en) * rBoostedJet_JesSFup->at(jet_en);
       BoostedJet_JesSFup_pt->push_back( rBoostedJet_Uncorr_pt->at(jet_en) * rBoostedJet_JesSFup->at(jet_en) );
       //////////////////////////////////////////////////      
       //////////////////////////////////////////////////
