@@ -33,16 +33,17 @@ using namespace std;
 //   Declare constants
 /////
 //For sys
-const string mainpath = "/afs/cern.ch/work/r/roleonar/public/Systematics/";
-const string centralvalue_folder = "Central/";
-const string syst_folder = "muSF/";
-const string up_folder = "up/";
-const string down_folder = "down/";
+const string mainpath = "/afs/cern.ch/user/v/vmariani/public/Matteo/";
+const string centralvalue_folder = "";//Central/";
+const string syst_folder = "";//muSF/";
+const string up_folder = "";//up/";
+const string down_folder = "";//down/";
 const string channel = "eejj"; 
+const string histo_central = "Meejj";//eejj"; 
+const string histo_up = "Meejj_PUu";//eejj"; 
+const string histo_down = "Meejj_PUd";//eejj"; 
 const char *process[] = { 
-                         "Other","DY","TTtW",
-                         "L5000_M500","L5000_M1500","L5000_M2500","L5000_M3500",
-                         "L5000_M4500"
+                         "SR_syst_Other_2016","SR_syst_DY_2016","SR_syst_TTtW_2016"
                          
 };
 const int ini_proc    = 0;
@@ -50,7 +51,7 @@ const int fin_proc    = 8;
 //const string ininame = "masshape_";
 //const string finname = ".root";
 //const string finalms = "allbkg";
-const string sys     = "muSF";
+const string sys     = "";//muSF";
 const bool updown    = true;
 //For Plots
 const int    bin          = 30;
@@ -59,7 +60,7 @@ const double inRange      = 0.;
 const double endRange     = 10000.;
 const bool   doasym       = true;
 const int    asymbin      = 10;
-const double asymbins[11] = {0,200,400,600,800,1000,1400,2000,3500,5000,10000};
+const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
 const double upval        = 6;
 const bool   saveplot     = true;
 /////
@@ -79,7 +80,7 @@ void Masshape_systematics_signed() {
  }else{
   c1 = new TCanvas("Sys","Sys",200,200,1100,600);
  }
- string file = channel+"_"+proc[p]+".root";
+ string file = proc[p]+".root";
  string TitleX = sys+" systematics"+" for "+proc[p];
  //Legend
  TLegend *leg = new TLegend(0.8, 0.8, 1.0, 1.0);
@@ -93,8 +94,8 @@ void Masshape_systematics_signed() {
  TH1F *h_allbkg;
  if(doasym)  h_allbkg = new TH1F("","",nbin,asymbins);
  if(!doasym) h_allbkg = new TH1F("","",nbin,inRange,endRange);
- TFile* f_allbkg = new TFile((mainpath+centralvalue_folder+file).c_str(),"update");
- f_allbkg->GetObject(proc[p].c_str(),h_allbkg);
+ TFile* f_allbkg = new TFile((mainpath+centralvalue_folder+file).c_str(),"read");
+ f_allbkg->GetObject(histo_central.c_str(),h_allbkg);     ///////EDITED proc[p]
  //Sys Plus
  TH1F *h_sys_p;
  if(doasym)  h_sys_p = new TH1F("","",nbin,asymbins);
@@ -102,8 +103,8 @@ void Masshape_systematics_signed() {
  string Plus = "";
  if(updown) Plus = "Plus"; 
  //TFile* f_sys_p = new TFile((mainpath+centralvalue_folder+file).c_str(),"update");
- TFile* f_sys_p = new TFile((mainpath+syst_folder+up_folder+file).c_str(),"update");
- f_sys_p->GetObject(proc[p].c_str(),h_sys_p);
+ TFile* f_sys_p = new TFile((mainpath+syst_folder+up_folder+file).c_str(),"read");
+ f_sys_p->GetObject(histo_up.c_str(),h_sys_p);    ///////EDITED proc[p]
  TH1F *h_diff_p;
  if(doasym)  h_diff_p = new TH1F("","",nbin,asymbins);
  if(!doasym) h_diff_p = new TH1F("","",nbin,inRange,endRange);
@@ -128,8 +129,8 @@ void Masshape_systematics_signed() {
  string Minus = "";
  if(updown) Minus = "Minus";
  //TFile* f_sys_m = new TFile((mainpath+centralvalue_folder+file).c_str(),"update");
- TFile* f_sys_m = new TFile((mainpath+syst_folder+down_folder+file).c_str(),"update");
- f_sys_m->GetObject(proc[p].c_str(),h_sys_m);
+ TFile* f_sys_m = new TFile((mainpath+syst_folder+down_folder+file).c_str(),"read");
+ f_sys_m->GetObject(histo_down.c_str(),h_sys_m);    ///////EDITED proc[p]
  TH1F *h_diff_m;
  if(doasym)  h_diff_m = new TH1F("","",nbin,asymbins);
  if(!doasym) h_diff_m = new TH1F("","",nbin,inRange,endRange);
