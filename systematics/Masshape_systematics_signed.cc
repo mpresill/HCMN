@@ -34,12 +34,13 @@ using namespace std;
 //   Declare constants
 /////
 //For sys
-const string mainpath = "/afs/cern.ch/user/v/vmariani/public/Matteo/";
 const string centralvalue_folder = "";//Central/";
 const string syst_folder = "";//muSF/";
 const string up_folder = "";//up/";
 const string down_folder = "";//down/";
-const string channel = "eejj"; 
+/////////
+const string mainpath = "/afs/cern.ch/user/v/vmariani/public/Matteo/";
+const string systematics = "PU"; 
 const string histo_central = "M_eejj"; 
 const string histo_up = "M_eejj_PUu";
 const string histo_down = "M_eejj_PUd";
@@ -182,7 +183,7 @@ void Masshape_systematics_signed() {
  leg->AddEntry(h_diff_m,"Down","L");
  if(updown) leg->Draw();
  //Save
- string namefile = "sys_"+sys+"_"+proc[p]+"_"+channel+".pdf";
+ string namefile = "sys_"+proc[p]+"_"+systematics+".pdf";
  if(saveplot) c1->SaveAs(namefile.c_str());
  //Take maximum relative difference
  if(updown){
@@ -218,7 +219,7 @@ void Masshape_systematics_signed() {
   h_max_sys->SetTitle(TitleX.c_str());
   //h_max_sys->SetTitle(0);
   h_max_sys->Draw(); 
-  string namefile2 = proc[p]+"_"+histo_up+".pdf";
+  string namefile2 = "sysM_"+proc[p]+"_"+systematics+".pdf";
   if(saveplot) c2->SaveAs(namefile2.c_str());
  }
 }
