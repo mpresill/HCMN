@@ -40,7 +40,7 @@ const string up_folder = "";//up/";
 const string down_folder = "";//down/";
 /////////
 const string mainpath = "/afs/cern.ch/user/v/vmariani/public/Matteo/";
-const string systematics = "PU"; 
+const string systematics = "PUeejj"; 
 const string histo_central = "M_eejj"; 
 const string histo_up = "M_eejj_PUu";
 const string histo_down = "M_eejj_PUd";
