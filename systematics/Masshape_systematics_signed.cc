@@ -14,6 +14,7 @@ Need to specify
 /////
 #include "TFile.h"
 #include "TH1F.h"
+#include "TH1D.h"
 #include "THStack.h"
 #include "TLegend.h"
 #include "TTree.h"
@@ -91,23 +92,23 @@ void Masshape_systematics_signed() {
  if(doasym)  nbin = asymbin;
  if(!doasym) nbin = bin;
  //allbkg
- TH1F *h_allbkg;
- if(doasym)  h_allbkg = new TH1F("","",nbin,asymbins);
- if(!doasym) h_allbkg = new TH1F("","",nbin,inRange,endRange);
- TFile* f_allbkg = new TFile((mainpath+centralvalue_folder+file).c_str(),"read");
+ TH1D *h_allbkg;
+ if(doasym)  h_allbkg = new TH1D("","",nbin,asymbins);
+ if(!doasym) h_allbkg = new TH1D("","",nbin,inRange,endRange);
+ TFile* f_allbkg = new TFile((mainpath+file).c_str(),"read");
  f_allbkg->GetObject(histo_central.c_str(),h_allbkg);     ///////EDITED proc[p]
  //Sys Plus
- TH1F *h_sys_p;
- if(doasym)  h_sys_p = new TH1F("","",nbin,asymbins);
- if(!doasym) h_sys_p = new TH1F("","",nbin,inRange,endRange);
+ TH1D *h_sys_p;
+ if(doasym)  h_sys_p = new TH1D("","",nbin,asymbins);
+ if(!doasym) h_sys_p = new TH1D("","",nbin,inRange,endRange);
  string Plus = "";
  if(updown) Plus = "Plus"; 
  //TFile* f_sys_p = new TFile((mainpath+centralvalue_folder+file).c_str(),"update");
- TFile* f_sys_p = new TFile((mainpath+syst_folder+up_folder+file).c_str(),"read");
+ TFile* f_sys_p = new TFile((mainpath+file).c_str(),"read");
  f_sys_p->GetObject(histo_up.c_str(),h_sys_p);    ///////EDITED proc[p]
- TH1F *h_diff_p;
- if(doasym)  h_diff_p = new TH1F("","",nbin,asymbins);
- if(!doasym) h_diff_p = new TH1F("","",nbin,inRange,endRange);
+ TH1D *h_diff_p;
+ if(doasym)  h_diff_p = new TH1D("","",nbin,asymbins);
+ if(!doasym) h_diff_p = new TH1D("","",nbin,inRange,endRange);
  //h_diff_p->SetTitle(sys.c_str());
  //h_diff_p->SetTitle(0);
  h_diff_p->SetMarkerStyle(8);
@@ -123,17 +124,17 @@ void Masshape_systematics_signed() {
  string titleYaxis = "Relative difference (in %)";
  h_diff_p->GetYaxis()->SetTitle(titleYaxis.c_str());
  //Sys Minus
- TH1F *h_sys_m;
- if(doasym)  h_sys_m = new TH1F("","",nbin,asymbins);
- if(!doasym) h_sys_m = new TH1F("","",nbin,inRange,endRange);
+ TH1D *h_sys_m;
+ if(doasym)  h_sys_m = new TH1D("","",nbin,asymbins);
+ if(!doasym) h_sys_m = new TH1D("","",nbin,inRange,endRange);
  string Minus = "";
  if(updown) Minus = "Minus";
  //TFile* f_sys_m = new TFile((mainpath+centralvalue_folder+file).c_str(),"update");
- TFile* f_sys_m = new TFile((mainpath+syst_folder+down_folder+file).c_str(),"read");
+ TFile* f_sys_m = new TFile((mainpath+file).c_str(),"read");
  f_sys_m->GetObject(histo_down.c_str(),h_sys_m);    ///////EDITED proc[p]
- TH1F *h_diff_m;
- if(doasym)  h_diff_m = new TH1F("","",nbin,asymbins);
- if(!doasym) h_diff_m = new TH1F("","",nbin,inRange,endRange);
+ TH1D *h_diff_m;
+ if(doasym)  h_diff_m = new TH1D("","",nbin,asymbins);
+ if(!doasym) h_diff_m = new TH1D("","",nbin,inRange,endRange);
  h_diff_m->SetTitle(TitleX.c_str());
  if(updown){
   h_diff_m->SetLineColor(2);
@@ -185,9 +186,9 @@ void Masshape_systematics_signed() {
  if(saveplot) c1->SaveAs(namefile.c_str());
  //Take maximum relative difference
  if(updown){
-  TH1F *h_max_sys;
-  if(doasym)  h_max_sys = new TH1F("","",nbin,asymbins);
-  if(!doasym) h_max_sys = new TH1F("","",nbin,inRange,endRange);
+  TH1D *h_max_sys;
+  if(doasym)  h_max_sys = new TH1D("","",nbin,asymbins);
+  if(!doasym) h_max_sys = new TH1D("","",nbin,inRange,endRange);
   //h_max_sys->SetTitle(0);
   h_max_sys->SetMarkerStyle(8);
   h_max_sys->SetMarkerColor(1);
@@ -217,7 +218,7 @@ void Masshape_systematics_signed() {
   h_max_sys->SetTitle(TitleX.c_str());
   //h_max_sys->SetTitle(0);
   h_max_sys->Draw(); 
-  string namefile2 = "sysM_"+sys+"_"+proc[p]+"_"+channel+".pdf";
+  string namefile2 = "sysM_"+ +"_"+proc[p]+"_"+channel+".pdf";
   if(saveplot) c2->SaveAs(namefile2.c_str());
  }
 }
