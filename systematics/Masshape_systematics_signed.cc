@@ -39,9 +39,9 @@ const string syst_folder = "";//muSF/";
 const string up_folder = "";//up/";
 const string down_folder = "";//down/";
 const string channel = "eejj"; 
-const string histo_central = "Meejj";//eejj"; 
-const string histo_up = "Meejj_PUu";//eejj"; 
-const string histo_down = "Meejj_PUd";//eejj"; 
+const string histo_central = "M_eejj"; 
+const string histo_up = "M_eejj_PUu";
+const string histo_down = "M_eejj_PUd";
 const char *process[] = { 
                          "SR_syst_Other_2016","SR_syst_DY_2016","SR_syst_TTtW_2016"
                          
