@@ -120,7 +120,7 @@ void Masshape_systematics_signed() {
   h_diff_p->SetLineColor(kMagenta+2);
  }
  //h_diff_p->SetMaximum(upval);
- string titleXaxis = "M(#mu,#mu,J) [GeV]";
+ string titleXaxis = "M(e,e,J) [GeV]";
  h_diff_p->GetXaxis()->SetTitle(titleXaxis.c_str());
  string titleYaxis = "Relative difference (in %)";
  h_diff_p->GetYaxis()->SetTitle(titleYaxis.c_str());
