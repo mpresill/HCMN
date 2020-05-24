@@ -218,7 +218,7 @@ void Masshape_systematics_signed() {
   h_max_sys->SetTitle(TitleX.c_str());
   //h_max_sys->SetTitle(0);
   h_max_sys->Draw(); 
-  string namefile2 = "sysM_"+ +"_"+proc[p]+"_"+channel+".pdf";
+  string namefile2 = proc[p]+"_"+histo_up+".pdf";
   if(saveplot) c2->SaveAs(namefile2.c_str());
  }
 }
