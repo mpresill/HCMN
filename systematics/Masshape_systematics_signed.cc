@@ -40,10 +40,10 @@ const string up_folder = "";//up/";
 const string down_folder = "";//down/";
 /////////
 const string mainpath = "/afs/cern.ch/user/v/vmariani/public/Matteo/";
-const string systematics = "PUmumujj"; 
+const string systematics = "SFmumujj"; 
 const string histo_central = "M_mumujj"; 
-const string histo_up = "M_mumujj_PUu";
-const string histo_down = "M_mumujj_PUd";
+const string histo_up = "M_mumujj_SFu";
+const string histo_down = "M_mumujj_SFd";
 const char *process[] = { 
                          "SR_syst_Other_2016","SR_syst_DY_2016","SR_syst_TTtW_2016"
                          
