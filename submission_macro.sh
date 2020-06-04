@@ -1,11 +1,11 @@
 
-TASK="single_ele_D_" #EDIT: name of the output directory and the files
-INPUT_DATASET=(`cat list_single_ele_D.txt`) #EDIT: name of the list 
+TASK="WZ_test_" #EDIT: name of the output directory and the files
+INPUT_DATASET=(`cat listWZ_16.txt`) #EDIT: name of the list 
 
 i=0
-JOB_FOLDER=jobs_test2 #folder for jobs
+JOB_FOLDER=jobs_test_16 #folder for jobs
 
-OUTPUT_FOLDER=/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/data2904/$TASK #EDIT: name of the folder where to save rootples
+OUTPUT_FOLDER=/eos/user/m/mpresill/CMS/HN_Reload/$TASK #EDIT: name of the folder where to save rootples
 echo "$OUTPUT_FOLDER"
 
 RESUBMIT=$1 
@@ -31,7 +31,9 @@ if [ ! -e $OUTPUT_FOLDER/${TASK}${i}.root ]; then
 
 # Preparing job code
 #name of your macro
-cp Rootplizer_HeavyNeutrino_SigTopDY_2017.cc $JOB_FOLDER/${TASK}${i}.cc     #EDIT change name of the rootplizer
+#cp Rootplizer_HeavyNeutrino_SigTopDY_2017.cc $JOB_FOLDER/${TASK}${i}.cc     #EDIT change name of the rootplizer
+cp Rootplizer_HeavyNeutrino_sys_2016_DEV.cc $JOB_FOLDER/${TASK}${i}.cc     #EDIT change name of the rootplizer
+
 
 #this substitute inputfile and outpute file in your macro with the proper path
 #echo "\"s/inputFile/${file}/\" $JOB_FOLDER/${TASK}${i}.cc" 
