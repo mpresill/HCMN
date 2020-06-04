@@ -236,6 +236,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //Corrections:
   vector<double>* rBoostedJet_Uncorr_pt; rBoostedJet_Uncorr_pt = 0; TBranch* b_rBoostedJet_Uncorr_pt = 0; readingtree->SetBranchAddress("BoostedJet_Uncorr_pt",&rBoostedJet_Uncorr_pt,&b_rBoostedJet_Uncorr_pt);
   vector<double>* rBoostedJet_JesSF; rBoostedJet_JesSF = 0; TBranch* b_rBoostedJet_JesSF = 0; readingtree->SetBranchAddress("BoostedJet_JesSF",&rBoostedJet_JesSF,&b_rBoostedJet_JesSF);
+  //JES systematics
+  vector<double>* rBoostedJet_JesSFup; rBoostedJet_JesSFup = 0; TBranch* b_rBoostedJet_JesSFup = 0; readingtree->SetBranchAddress("BoostedJet_JesSFup",&rBoostedJet_JesSFup,&b_rBoostedJet_JesSFup);
+  vector<double>* rBoostedJet_JesSFdown; rBoostedJet_JesSFdown = 0; TBranch* b_rBoostedJet_JesSFdown = 0; readingtree->SetBranchAddress("BoostedJet_JesSFdown",&rBoostedJet_JesSFdown,&b_rBoostedJet_JesSFdown);
   //b-tagging: 
   vector<double>* rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags; rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;
   TBranch* b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;readingtree->SetBranchAddress("BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags",&rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags,&b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags); 
@@ -479,7 +482,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double TRmu; newtree->Branch("TRmu",&TRmu);
    double DYRe; newtree->Branch("DYRe",&DYRe);
    double DYRmu; newtree->Branch("DYRmu",&DYRmu);
-    
+
+  //event type systematics 
+   double centralJesJer; newtree->Branch("centralJesJer",&centralJesJer);
+   double JesSFup; newtree->Branch("JesSFup",&JesSFup);
+   double JesSFdown; newtree->Branch("JesSFdown",&JesSFdown);
+
+
  
    //reco 4-vectors:
    TLorentzVector Ele1(0,0,0,0);
@@ -594,6 +603,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //corrections
     b_rBoostedJet_Uncorr_pt->GetEntry(en);
     b_rBoostedJet_JesSF->GetEntry(en);
+    //systematics Jes
+    b_rBoostedJet_JesSFup->GetEntry(en);
+    b_rBoostedJet_JesSFdown->GetEntry(en);
     //b-tagging:
     b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);    
     //MET
@@ -705,7 +717,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //evt_type = -999;
     eejj_l = 0; emujj_l = 0; mumujj_l = 0; muejj_l = 0;
     SRe = 0; TRe = 0; SRmu = 0; TRmu = 0; DYRe = 0; DYRmu = 0;
-
+    //evt type systematics
+    centralJesJer = 0; JesSFup = 0; JesSFdown = 0;
 
     
    HLT_Ele27_WPTight_Gsf = rHLT_Ele27_WPTight_Gsf;
@@ -915,10 +928,35 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    int countBoostedJets_T=0;
    int countBoostedJets_TLV=0;
    for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
-    //BJet corrections:
-    double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
-    double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
-    TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
+
+/////////////////////////////////////////////////
+///////corrections on boosted jets with systematics up and down
+/////////////////////////////////////////////////
+
+     if(BJETSF=0){      //BJet corrections with central values of JER/JES:
+        double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
+        double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
+        TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
+        //// 
+        centralJesJer = 1;
+      }
+      if(BJETSF=1){      //BJet corrections with JES SF UP:
+        double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
+        double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
+        TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
+        ///
+        JesSFup = 1;
+      }
+      if(BJETSF=2){      //BJet corrections with JES SF DOWN:
+        double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
+        double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
+        TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
+        ///
+        JesSFdown = 1;
+      }
+//////////////////////////////////////////
+//////////////////////////////////////////
+//////////////////////////////////////////
     //BJet ID:
     BoostedJet_isIDL = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
     rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
@@ -1065,6 +1103,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_nJets->push_back(BJJ_count);
    }
    
+
+   //////////////////
+   ////the following lines could be avoided (up to ~line 1217)
+   /////////////////
     if(patElectron_pt->size()>0){
      Ele1_pt=patElectron_pt->at(0);
      Ele1_eta=patElectron_eta->at(0);
@@ -1189,8 +1231,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
 
     }
-
-    
+  
 
     if(eejj_l==1){
      M_ele1ele2= (Ele1 + Ele2).M();
@@ -1205,7 +1246,11 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      M_elemu= (Ele1 + Muon1).M();
      M_leplep=M_elemu;
     }
- 
+//////
+//the lines before here could be deleted since Vale's macro builds objects
+////////////  
+
+
    if(eejj_l==1){
     std::tie(elesf_ele1, elesf_ele1_d, elesf_ele1_u)=elesf(patElectron_eta->at(0), patElectron_pt->at(0));
     std::tie(elesf_ele2, elesf_ele2_d, elesf_ele2_u)=elesf(patElectron_eta->at(1), patElectron_pt->at(1));
@@ -1267,12 +1312,12 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     
 
 
-   if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1 && M_leplep>300) SRe=1;
-   if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt->at(0)>130 && numOfHighptMu==1 &&  Muon_pt->at(0)>35 && numOfBoostedJets>=1 && M_leplep>300) TRe=1;
-   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
-   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
-   if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1) DYRe=1;
-   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
+   //if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1 && M_leplep>300) SRe=1;
+   //if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt->at(0)>130 && numOfHighptMu==1 &&  Muon_pt->at(0)>35 && numOfBoostedJets>=1 && M_leplep>300) TRe=1;
+   //if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
+   //if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
+   //if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1) DYRe=1;
+   //if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
 
 
    newtree->Fill();    
