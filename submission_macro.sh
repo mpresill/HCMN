@@ -32,7 +32,7 @@ if [ ! -e $OUTPUT_FOLDER/${TASK}${i}.root ]; then
 # Preparing job code
 #name of your macro
 #cp Rootplizer_HeavyNeutrino_SigTopDY_2017.cc $JOB_FOLDER/${TASK}${i}.cc     #EDIT change name of the rootplizer
-cp Rootplizer_HeavyNeutrino_sys_2016_DEV.cc $JOB_FOLDER/${TASK}${i}.cc     #EDIT change name of the rootplizer
+cp Rootplizer_HeavyNeutrino_syst_2016_DEV.cc $JOB_FOLDER/${TASK}${i}.cc     #EDIT change name of the rootplizer
 
 
 #this substitute inputfile and outpute file in your macro with the proper path
