@@ -952,6 +952,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
           ///
           JesSFdown = 1;
         }
+        if(!((centralJesJer==1 || JesSFup==1 || JesSFdown==1))) continue;
   //////////////////////////////////////////
   //////////////////////////////////////////
   //////////////////////////////////////////
