@@ -925,6 +925,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     int countBoostedJets_L=0;
     int countBoostedJets_T=0;
     int countBoostedJets_TLV=0;
+    double jet_pt =0;
+    double jet_energy=0;
     for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
 
   /////////////////////////////////////////////////
@@ -932,21 +934,20 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   /////////////////////////////////////////////////
 
       if(BJETSF==0){      //BJet corrections with central values of JER/JES:
-          double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
-          double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
-          
+          jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
+          jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
           //// 
           centralJesJer = 1;
         }
         if(BJETSF==1){      //BJet corrections with JES SF UP:
-          double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
-          double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
+          jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
+          jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
                     ///
           JesSFup = 1;
         }
         if(BJETSF==2){      //BJet corrections with JES SF DOWN:
-          double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
-          double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
+          jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
+          jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
           ///
           JesSFdown = 1;
         }
