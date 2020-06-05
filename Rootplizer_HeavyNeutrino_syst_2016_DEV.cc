@@ -934,21 +934,19 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       if(BJETSF==0){      //BJet corrections with central values of JER/JES:
           double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
           double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
-          TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
+          
           //// 
           centralJesJer = 1;
         }
         if(BJETSF==1){      //BJet corrections with JES SF UP:
           double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
           double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
-          TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
-          ///
+                    ///
           JesSFup = 1;
         }
         if(BJETSF==2){      //BJet corrections with JES SF DOWN:
           double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
           double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
-          TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
           ///
           JesSFdown = 1;
         }
@@ -956,6 +954,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //////////////////////////////////////////
   //////////////////////////////////////////
   //////////////////////////////////////////
+      TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);  
       //BJet ID:
       BoostedJet_isIDL = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
       rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
