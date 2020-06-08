@@ -916,7 +916,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   for (int BJETSF = 0; BJETSF < 3; BJETSF++)//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2)
   {
     
-  ///////////////////////////////////////boosted jet cleaning and definition starts here
+    ///////////////////////////////////////boosted jet cleaning and definition starts here
     bool BoostedJet_isIDL=false;
     bool BoostedJet_isIDT=false;
     bool BoostedJet_isIDTLV=false;
@@ -929,40 +929,45 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     double jet_energy=0;
     for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
 
-  /////////////////////////////////////////////////
-  ///////corrections on boosted jets with systematics up and down
-  /////////////////////////////////////////////////
-
+      /////////////////////////////////////////////////
+      ///////corrections on boosted jets with systematics up and down
+      ////////////////////////////////////////////////
       if(BJETSF==0){      //BJet corrections with central values of JER/JES:
           jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
           jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
           //// 
           centralJesJer = 1;
+          JesSFup = 0;
+          JesSFdown = 0;
         }
         if(BJETSF==1){      //BJet corrections with JES SF UP:
           jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
           jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
                     ///
+          centralJesJer = 0;
           JesSFup = 1;
+          JesSFdown = 0;
         }
         if(BJETSF==2){      //BJet corrections with JES SF DOWN:
           jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
           jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
           ///
+          centralJesJer = 0;
+          JesSFup = 0;
           JesSFdown = 1;
         }
         if(!((centralJesJer==1 || JesSFup==1 || JesSFdown==1))) continue;
-  //////////////////////////////////////////
-  //////////////////////////////////////////
-  //////////////////////////////////////////
-      cout<<"jet_en = "<< jet_en <<endl;
+      //////////////////////////////////////////
+      //////////////////////////////////////////
+      //////////////////////////////////////////
+      cout<<"jet_en = "<< jet_en<<endl;
       cout<<"BJETSF = " << BJETSF << "jet_pt = " << jet_pt << endl;
       cout<<"BJETSF = " << BJETSF << "jet_energy = " << jet_energy << endl;
       cout<<"centralJesJer = "<<centralJesJer<<endl;
       cout<<"JesSFup = "<< JesSFup<<endl;
       cout<<"JesSFdown = "<< JesSFdown<<endl; 
       cout<<"------------"<<endl;
-  //////////////////////////////////////
+      //////////////////////////////////////
       TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);  
       //BJet ID:
       BoostedJet_isIDL = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
@@ -977,8 +982,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
       rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
       rBoostedJet_chargedEmEnergyFraction->at(jet_en));
-
-
 
 
       count = 0;
