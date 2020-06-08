@@ -940,23 +940,23 @@ void  filename_(const char*  Input = "", const char*  Output =""){
           JesSFup = 0;
           JesSFdown = 0;
         }
-        if(BJETSF==1){      //BJet corrections with JES SF UP:
+      if(BJETSF==1){      //BJet corrections with JES SF UP:
           jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
           jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
                     ///
           centralJesJer = 0;
           JesSFup = 1;
           JesSFdown = 0;
-        }
-        if(BJETSF==2){      //BJet corrections with JES SF DOWN:
+      }
+      if(BJETSF==2){      //BJet corrections with JES SF DOWN:
           jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
           jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
           ///
           centralJesJer = 0;
           JesSFup = 0;
           JesSFdown = 1;
-        }
-        if(!((centralJesJer==1 || JesSFup==1 || JesSFdown==1))) continue;
+      }
+      if(!((centralJesJer==1 || JesSFup==1 || JesSFdown==1))) continue;
       //////////////////////////////////////////
       //////////////////////////////////////////
       //////////////////////////////////////////
