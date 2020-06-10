@@ -329,7 +329,12 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* BoostedJet_T = new std::vector<double>; newtree->Branch("BoostedJet_T",&BoostedJet_T);
    vector<double>* BoostedJet_TLV = new std::vector<double>; newtree->Branch("BoostedJet_TLV",&BoostedJet_TLV);
 
-   
+   //systematics sf tags: 
+   vector<double>* centralJesJer = new std::vector<double>; newtree->Branch("centralJesJer",&centralJesJer);
+   vector<double>* JesSFup = new std::vector<double>; newtree->Branch("JesSFup",&JesSFup);
+   vector<double>* JesSFdown = new std::vector<double>; newtree->Branch("JesSFdown",&JesSFdown);
+
+
    //PU:
    double PileupWeight; newtree->Branch("PileupWeight",&PileupWeight);
    double PUWeight; newtree->Branch("PUWeight",&PUWeight);
@@ -483,10 +488,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double DYRe; newtree->Branch("DYRe",&DYRe);
    double DYRmu; newtree->Branch("DYRmu",&DYRmu);
 
-  //event type systematics 
-   double centralJesJer; newtree->Branch("centralJesJer",&centralJesJer);
-   double JesSFup; newtree->Branch("JesSFup",&JesSFup);
-   double JesSFdown; newtree->Branch("JesSFdown",&JesSFdown);
+   //event type systematics 
+   //double centralJesJer; newtree->Branch("centralJesJer",&centralJesJer);
+   //double JesSFup; newtree->Branch("JesSFup",&JesSFup);
+   //double JesSFdown; newtree->Branch("JesSFdown",&JesSFdown);
 
 
  
@@ -675,6 +680,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_L->clear();
     BoostedJet_T->clear();
     BoostedJet_TLV->clear();
+    //evt type systematics
+    centralJesJer ->clear(); 
+    JesSFup ->clear(); 
+    JesSFdown ->clear();
 
 
     //new var inizialize (scalars):
@@ -717,8 +726,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //evt_type = -999;
     eejj_l = 0; emujj_l = 0; mumujj_l = 0; muejj_l = 0;
     SRe = 0; TRe = 0; SRmu = 0; TRmu = 0; DYRe = 0; DYRmu = 0;
-    //evt type systematics
-    centralJesJer = 0; JesSFup = 0; JesSFdown = 0;
+    
 
     
    HLT_Ele27_WPTight_Gsf = rHLT_Ele27_WPTight_Gsf;
@@ -913,165 +921,167 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
 
 
-  for (int BJETSF = 0; BJETSF < 3; BJETSF++)//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2)
-  {
-    
-    ///////////////////////////////////////boosted jet cleaning and definition starts here
-    bool BoostedJet_isIDL=false;
-    bool BoostedJet_isIDT=false;
-    bool BoostedJet_isIDTLV=false;
-    //bool BoostedJet_isID=false;
-    int countBoostedJets=0;
-    int countBoostedJets_L=0;
-    int countBoostedJets_T=0;
-    int countBoostedJets_TLV=0;
-    double jet_pt =0;
-    double jet_energy=0;
-    for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
 
-      /////////////////////////////////////////////////
-      ///////corrections on boosted jets with systematics up and down
-      ////////////////////////////////////////////////
-      if(BJETSF==0){      //BJet corrections with central values of JER/JES:
-          jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
-          jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
-          //// 
-          centralJesJer = 1;
-          JesSFup = 0;
-          JesSFdown = 0;
+    /////////////////////////////////////////////////
+    ///////corrections on boosted jets with systematics up and down
+    ////////////////////////////////////////////////
+    for (int BJETSF = 0; BJETSF < 3; BJETSF++){//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2)
+  
+      ///////////////////////////////////////boosted jet cleaning and definition starts here
+      bool BoostedJet_isIDL=false;
+      bool BoostedJet_isIDT=false;
+      bool BoostedJet_isIDTLV=false;
+      //bool BoostedJet_isID=false;
+      int countBoostedJets=0;
+      int countBoostedJets_L=0;
+      int countBoostedJets_T=0;
+      int countBoostedJets_TLV=0;
+      double JesSF=0;
+      for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
+
+        if(BJETSF==0){      //BJet corrections with central values of JER/JES:
+            JesSF = rBoostedJet_JesSF->at(jet_en);
+            centralJesJer->push_back(true);
+            JesSFup->push_back(false);
+            JesSFdown->push_back(false);
+          }
+        if(BJETSF==1){      //BJet corrections with JES SF UP:
+            JesSF = rBoostedJet_JesSFup->at(jet_en);
+            centralJesJer->push_back(false);
+            JesSFup->push_back(true);
+            JesSFdown->push_back(false);
         }
-      if(BJETSF==1){      //BJet corrections with JES SF UP:
-          jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
-          jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFup->at(jet_en);
-                    ///
-          centralJesJer = 0;
-          JesSFup = 1;
-          JesSFdown = 0;
-      }
-      if(BJETSF==2){      //BJet corrections with JES SF DOWN:
-          jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
-          jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSFdown->at(jet_en);
-          ///
-          centralJesJer = 0;
-          JesSFup = 0;
-          JesSFdown = 1;
-      }
-      if(!((centralJesJer==1 || JesSFup==1 || JesSFdown==1))) continue;
-      //////////////////////////////////////////
-      //////////////////////////////////////////
-      //////////////////////////////////////////
-      cout<<"jet_en = "<< jet_en<<endl;
-      cout<<"BJETSF = " << BJETSF << "jet_pt = " << jet_pt << endl;
-      cout<<"BJETSF = " << BJETSF << "jet_energy = " << jet_energy << endl;
-      cout<<"centralJesJer = "<<centralJesJer<<endl;
-      cout<<"JesSFup = "<< JesSFup<<endl;
-      cout<<"JesSFdown = "<< JesSFdown<<endl; 
-      cout<<"------------"<<endl;
-      //////////////////////////////////////
-      TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);  
-      //BJet ID:
-      BoostedJet_isIDL = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
-      rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
-      rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
-      rBoostedJet_chargedEmEnergyFraction->at(jet_en));
-      BoostedJet_isIDT = BoostedJetID_Tight(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
-      rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
-      rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
-      rBoostedJet_chargedEmEnergyFraction->at(jet_en));
-      BoostedJet_isIDTLV = BoostedJetID_TightLepVeto(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
-      rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
-      rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
-      rBoostedJet_chargedEmEnergyFraction->at(jet_en));
+        if(BJETSF==2){      //BJet corrections with JES SF DOWN:
+            JesSF = rBoostedJet_JesSFdown->at(jet_en);
+            centralJesJer->push_back(false);
+            JesSFup->push_back(false);
+            JesSFdown->push_back(true);
+        }
+        //if(!((centralJesJer==1 || JesSFup==1 || JesSFdown==1))) continue;
+    
+        //BJet SFs:
+        double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*JesSF;
+        double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*JesSF;
+
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+        cout<<"numb event = " <<en<<endl;
+        cout<<"jet_en = "<< jet_en<<endl;
+        cout<<"BJETSF = " << BJETSF << "jet_pt = " << jet_pt << endl;
+        //cout<<"centralJesJer = "<<centralJesJer<<endl;
+        //cout<<"JesSFup = "<< JesSFup<<endl;
+        //cout<<"JesSFdown = "<< JesSFdown<<endl; 
+        cout<<"------------"<<endl;
+        //////////////////////////////////////
 
 
-      count = 0;
-      if(BoostedJet_isIDL==true){
-      BoostedJet_L->push_back(true);
-      for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-        double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
-        double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
-        if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
-      }
-      for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
-        double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-        double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
-        if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
-      }
-      if(count==0){
-        countBoostedJets_L++;
-      }
-      }
-      else BoostedJet_L->push_back(false);
-      count = 0;
-      if(BoostedJet_isIDT==true){
-      BoostedJet_T->push_back(true);
-      for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-        double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
-        double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
-        if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
-      }
-      for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
-        double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-        double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
-        if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
-      }
-      if(count==0){
-        countBoostedJets_T++;
-      }
-      }
-      else BoostedJet_T->push_back(false);
-      count = 0;
-      if(BoostedJet_isIDTLV==true){
-      BoostedJet_TLV->push_back(true);
-      for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-        double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
-        double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
-        if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
-      }
-      for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
-        double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-        double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
-        if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
-      }
-      if(count==0){
-        countBoostedJets_TLV++;
-      }
-      }
-      else BoostedJet_TLV->push_back(false);
+        TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);  
+        //BJet ID:
+        BoostedJet_isIDL = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
+        rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
+        rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
+        rBoostedJet_chargedEmEnergyFraction->at(jet_en));
+        BoostedJet_isIDT = BoostedJetID_Tight(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
+        rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
+        rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
+        rBoostedJet_chargedEmEnergyFraction->at(jet_en));
+        BoostedJet_isIDTLV = BoostedJetID_TightLepVeto(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
+        rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
+        rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
+        rBoostedJet_chargedEmEnergyFraction->at(jet_en));
 
-      
-      count = 0;
-      if(BoostedJet_isIDT==true){
-      //BJet cleaning:
-      for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-        double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
-        double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
-        if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
+
+        count = 0;
+        if(BoostedJet_isIDL==true){
+        BoostedJet_L->push_back(true);
+        for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
+          double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
+        }
+        for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+          double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
+        }
+        if(count==0){
+          countBoostedJets_L++;
+        }
+        }
+        else BoostedJet_L->push_back(false);
+        count = 0;
+        if(BoostedJet_isIDT==true){
+        BoostedJet_T->push_back(true);
+        for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
+          double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
+        }
+        for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+          double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
+        }
+        if(count==0){
+          countBoostedJets_T++;
+        }
+        }
+        else BoostedJet_T->push_back(false);
+        count = 0;
+        if(BoostedJet_isIDTLV==true){
+        BoostedJet_TLV->push_back(true);
+        for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
+          double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
+        }
+        for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+          double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
+        }
+        if(count==0){
+          countBoostedJets_TLV++;
+        }
+        }
+        else BoostedJet_TLV->push_back(false);
+
+        
+        count = 0;
+        if(BoostedJet_isIDT==true){
+        //BJet cleaning:
+        for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
+          double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
+        }
+        for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+          double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
+        }
+        if(count == 0 && fabs(JetCorr.Eta())<2.4){
+          countBoostedJets++;
+          BoostedJet_pt->push_back(JetCorr.Pt());
+          BoostedJet_eta->push_back(JetCorr.Eta());
+          BoostedJet_phi->push_back(JetCorr.Phi());
+          BoostedJet_energy->push_back(rBoostedJet_energy->at(jet_en));
+          BoostedJet_mass->push_back(rBoostedJet_mass->at(jet_en));
+          BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
+          //BoostedJet_nJets->push_back(0);
+        }
+        }
       }
-      for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
-        double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-        double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
-        if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
-      }
-      if(count == 0 && fabs(JetCorr.Eta())<2.4){
-        countBoostedJets++;
-        BoostedJet_pt->push_back(JetCorr.Pt());
-        BoostedJet_eta->push_back(JetCorr.Eta());
-        BoostedJet_phi->push_back(JetCorr.Phi());
-        BoostedJet_energy->push_back(rBoostedJet_energy->at(jet_en));
-        BoostedJet_mass->push_back(rBoostedJet_mass->at(jet_en));
-        BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
-        //BoostedJet_nJets->push_back(0);
-      }
-      }
-    }
-    numOfBoostedJets=countBoostedJets;
-    numOfBoostedJets_L=countBoostedJets_L;
-    numOfBoostedJets_T=countBoostedJets_T;
-    numOfBoostedJets_TLV=countBoostedJets_TLV;
-   ///////
-   }//end for on BJETSF for systematics
-   //////////
+      numOfBoostedJets=countBoostedJets;
+      numOfBoostedJets_L=countBoostedJets_L;
+      numOfBoostedJets_T=countBoostedJets_T;
+      numOfBoostedJets_TLV=countBoostedJets_TLV;
+    
+    ///////
+    }//end for on BJETSF for systematics
+    //////////
+
 
 
 
