@@ -96,10 +96,10 @@ double invMass4(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
 /////
 
 
-void  filename_(const char*  Input = "", const char*  Output =""){
+void  mumujj_L13_M500_1(const char*  Input = "", const char*  Output =""){
 
-  Input = "inputFile";
-  Output = "outputFile"; 
+  Input = "root://ss-03.recas.ba.infn.it:8080//store/user/vmariani/HeavyCompositeMajoranaNeutrino_L13000_M500_mumujj_CalcHep_2019/mumujj_16_L13_M500/191031_085925/0000/mumujj_16_L13_M500_1.root";
+  Output = "mumujj_L13_M500_1.root"; 
   TFile *oldfile = TFile::Open(Input);
   TTree *readingtree = new TTree("readingtree","readingtree"); readingtree = (TTree*) oldfile->Get("TNT/BOOM");
   /////
@@ -487,11 +487,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double TRmu; newtree->Branch("TRmu",&TRmu);
    double DYRe; newtree->Branch("DYRe",&DYRe);
    double DYRmu; newtree->Branch("DYRmu",&DYRmu);
-
-   //event type systematics 
-   //double centralJesJer; newtree->Branch("centralJesJer",&centralJesJer);
-   //double JesSFup; newtree->Branch("JesSFup",&JesSFup);
-   //double JesSFdown; newtree->Branch("JesSFdown",&JesSFdown);
 
 
  
@@ -925,55 +920,55 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     /////////////////////////////////////////////////
     ///////corrections on boosted jets with systematics up and down
     ////////////////////////////////////////////////
-    for (int BJETSF = 0; BJETSF < 3; BJETSF++){//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2)
+    bool BoostedJet_isIDL=false;
+    bool BoostedJet_isIDT=false;
+    bool BoostedJet_isIDTLV=false;
+    int countBoostedJets=0;
+    int countBoostedJets_L=0;
+    int countBoostedJets_T=0;
+    int countBoostedJets_TLV=0;
+    double JesSF=0;
+    double centr_JJ = 0, upJES = 0, downJES = 0;
+    for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
+
+     for (int BJETSF = 0; BJETSF < 3; BJETSF++){//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2)
   
       ///////////////////////////////////////boosted jet cleaning and definition starts here
-      bool BoostedJet_isIDL=false;
-      bool BoostedJet_isIDT=false;
-      bool BoostedJet_isIDTLV=false;
+       BoostedJet_isIDL=false;
+       BoostedJet_isIDT=false;
+       BoostedJet_isIDTLV=false;
       //bool BoostedJet_isID=false;
-      int countBoostedJets=0;
-      int countBoostedJets_L=0;
-      int countBoostedJets_T=0;
-      int countBoostedJets_TLV=0;
-      double JesSF=0;
-      for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
+       countBoostedJets=0;
+       countBoostedJets_L=0;
+       countBoostedJets_T=0;
+       countBoostedJets_TLV=0;
+       JesSF=0;
 
         if(BJETSF==0){      //BJet corrections with central values of JER/JES:
             JesSF = rBoostedJet_JesSF->at(jet_en);
-            centralJesJer->push_back(true);
-            JesSFup->push_back(false);
-            JesSFdown->push_back(false);
+            centr_JJ = 1;
+            upJES = 0;
+            downJES = 0;
+            //cout << "central " << rBoostedJet_JesSF->at(jet_en) << endl;
           }
         if(BJETSF==1){      //BJet corrections with JES SF UP:
             JesSF = rBoostedJet_JesSFup->at(jet_en);
-            centralJesJer->push_back(false);
-            JesSFup->push_back(true);
-            JesSFdown->push_back(false);
+            centr_JJ = 0;
+            upJES = 1;
+            downJES = 0;
+           // cout << "up " << rBoostedJet_JesSFup->at(jet_en) << endl;
         }
         if(BJETSF==2){      //BJet corrections with JES SF DOWN:
             JesSF = rBoostedJet_JesSFdown->at(jet_en);
-            centralJesJer->push_back(false);
-            JesSFup->push_back(false);
-            JesSFdown->push_back(true);
+            centr_JJ = 0;
+            upJES = 0;
+            downJES = 1;
+           // cout << "down " << rBoostedJet_JesSFdown->at(jet_en) << endl;
         }
-        //if(!((centralJesJer==1 || JesSFup==1 || JesSFdown==1))) continue;
     
         //BJet SFs:
         double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*JesSF;
         double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*JesSF;
-
-        //////////////////////////////////////////
-        //////////////////////////////////////////
-        //////////////////////////////////////////
-        cout<<"numb event = " <<en<<endl;
-        cout<<"jet_en = "<< jet_en<<endl;
-        cout<<"BJETSF = " << BJETSF << "jet_pt = " << jet_pt << endl;
-        //cout<<"centralJesJer = "<<centralJesJer<<endl;
-        //cout<<"JesSFup = "<< JesSFup<<endl;
-        //cout<<"JesSFdown = "<< JesSFdown<<endl; 
-        cout<<"------------"<<endl;
-        //////////////////////////////////////
 
 
         TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);  
@@ -1069,7 +1064,15 @@ void  filename_(const char*  Input = "", const char*  Output =""){
           BoostedJet_energy->push_back(rBoostedJet_energy->at(jet_en));
           BoostedJet_mass->push_back(rBoostedJet_mass->at(jet_en));
           BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
-          //BoostedJet_nJets->push_back(0);
+
+          //////////////////////////////         
+          //flag or JER systematics     
+          ///////////////////////////////
+          centralJesJer->push_back(centr_JJ);  
+          JesSFup->push_back(upJES);
+          JesSFdown->push_back(downJES);
+          ///////////////////////////////
+          //////////////////////////////
         }
         }
       }
