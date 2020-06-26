@@ -82,15 +82,6 @@ std::tuple<double, double, double> musf_ID(double eta, double pt);
 std::tuple<double, double, double> musf_iso(double eta, double pt);
 double get_wgtlumi(string FileName);
 
-/*double invMass2(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
-                double obj2_px, double obj2_py, double obj2_pz, double obj2_E);
-double invMass3(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
-                double obj2_px, double obj2_py, double obj2_pz, double obj2_E,
-                double obj3_px, double obj3_py, double obj3_pz, double obj3_E);
-double invMass4(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
-                double obj2_px, double obj2_py, double obj2_pz, double obj2_E,
-                double obj3_px, double obj3_py, double obj3_pz, double obj3_E,
-                double obj4_px, double obj4_py, double obj4_pz, double obj4_E);*/
 /////
 //   Main function
 /////
@@ -979,13 +970,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
         //////////////////////////////////////////
         //////////////////////////////////////////
         //////////////////////////////////////////
-        cout<<"numb event = " <<en<<endl;
-        cout<<"jet_en = "<< jet_en<<endl;
-        cout<<"BJETSF = " << BJETSF << "jet_pt = " << jet_pt << endl;
+        //cout<<"numb event = " <<en<<endl;
+        //cout<<"jet_en = "<< jet_en<<endl;
+        //cout<<"BJETSF = " << BJETSF << "jet_pt = " << jet_pt << endl;
         //cout<<"centralJesJer = "<<centralJesJer<<endl;
         //cout<<"JesSFup = "<< JesSFup<<endl;
         //cout<<"JesSFdown = "<< JesSFdown<<endl; 
-        cout<<"------------"<<endl;
+        //cout<<"------------"<<endl;
         //////////////////////////////////////
 
 
@@ -1085,8 +1076,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
           //BoostedJet_nJets->push_back(0);
         }
         }
-       cout << "BoostedJet_pt size " << BoostedJet_pt->size() << " SFsize " << centralJesJer->size << endl;
-       cout << "---- " << endl; 
+       //cout << "BoostedJet_pt size " << BoostedJet_pt->size() << " SFsize " << centralJesJer->size << endl;
+       //cout << "---- " << endl; 
       }
       numOfBoostedJets=countBoostedJets;
       numOfBoostedJets_L=countBoostedJets_L;
@@ -1135,151 +1126,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    }
    
 
-   /////////////////////////////////////////////////////////
-   ////the following lines could be avoided (up to ~line 1217)
-   /////////////////
-    if(patElectron_pt->size()>0){
-     Ele1_pt=patElectron_pt->at(0);
-     Ele1_eta=patElectron_eta->at(0);
-     Ele1_phi=patElectron_phi->at(0);
-     Ele1_energy=patElectron_energy->at(0);
-     Ele1_px=patElectron_px->at(0);
-     Ele1_py=patElectron_py->at(0);
-     Ele1_pz=patElectron_pz->at(0);
-     Ele1_p=patElectron_p->at(0);
- 
-     Ele1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0), patElectron_energy->at(0));
-   }
-    if(patElectron_pt->size()>1){
-
-     Ele2_pt=patElectron_pt->at(1);
-     Ele2_eta=patElectron_eta->at(1);
-     Ele2_phi=patElectron_phi->at(1);
-     Ele2_energy=patElectron_energy->at(1);
-     Ele2_px=patElectron_px->at(1);
-     Ele2_py=patElectron_py->at(1);
-     Ele2_pz=patElectron_pz->at(1);
-     Ele2_p=patElectron_p->at(1);
-   
-     Ele2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1), patElectron_energy->at(1));
-    }
-
-
-    if(Muon_pt->size()>0){
-     Muon1_pt=Muon_pt->at(0);
-     Muon1_eta=Muon_eta->at(0);
-     Muon1_phi=Muon_phi->at(0);
-     Muon1_energy=Muon_energy->at(0);
-     Muon1_px=Muon_px->at(0);
-     Muon1_py=Muon_py->at(0);
-     Muon1_pz=Muon_pz->at(0);
-     Muon1_p=Muon_p->at(0);
-
-     Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
-   }
-
-    if(Muon_pt->size()>1){
-
-     Muon2_pt=Muon_pt->at(1);
-     Muon2_eta=Muon_eta->at(1);
-     Muon2_phi=Muon_phi->at(1);
-     Muon2_energy=Muon_energy->at(1);
-     Muon2_px=Muon_px->at(1);
-     Muon2_py=Muon_py->at(1);
-     Muon2_pz=Muon_pz->at(1);
-     Muon2_p=Muon_p->at(1);
-
-     Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1), Muon_energy->at(1));
-    }
-
-    if(Jet_pt->size()>1){
-     if(eejj_l==1){
-      S_T_jj = Ele1_pt+Ele2_pt+Jet_pt->at(0)+Jet_pt->at(1);
-     }
-     if(mumujj_l==1){
-      S_T_jj = Muon1_pt+Muon2_pt+Jet_pt->at(0)+Jet_pt->at(1);
-     }
-     if(emujj_l==1 || muejj_l==1){
-      S_T_jj = Ele1_pt+Muon1_pt+Jet_pt->at(0)+Jet_pt->at(1);
-     }
-     
-    }
-    
-
-    if(BoostedJet_pt->size()>0){
-
-     BoostedJet1_pt=BoostedJet_pt->at(0);
-     BoostedJet1_eta=BoostedJet_eta->at(0);
-     BoostedJet1_phi=BoostedJet_phi->at(0);
-     BoostedJet1_energy=BoostedJet_energy->at(0);
-     BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
-     BoostedJet1_nJets=BoostedJet_nJets->at(0);
-     BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
-
-     if(eejj_l==1){
-      M_ele1ele2Bjet1 = (Ele1 + Ele2 + BoostedJet1).M();
-      M_leplepBjet=M_ele1ele2Bjet1;
-      M_lep2Bjet = (Ele2 + BoostedJet1).M();
-      S_T_BJ=Ele1_pt+Ele2_pt+BoostedJet1_pt;
-     }
-     if(mumujj_l==1){
-      M_mu1mu2Bjet1 = (Muon1 + Muon2 + BoostedJet1).M();
-      M_leplepBjet=M_mu1mu2Bjet1;
-      M_lep2Bjet = (Muon2 + BoostedJet1).M();
-      S_T_BJ=Muon1_pt+Muon2_pt+BoostedJet1_pt;
-     }
-     if(emujj_l==1 || muejj_l==1){
-      M_elemuBjet1=(Ele1 + Muon1 + BoostedJet1).M();
-      M_leplepBjet=M_elemuBjet1;
-      if(patElectron_pt->at(0)>Muon_pt->at(0)){M_lep2Bjet = (Muon1 + BoostedJet1).M();}
-      if(patElectron_pt->at(0)<Muon_pt->at(0)){M_lep2Bjet = (Ele1 + BoostedJet1).M();}
-      S_T_BJ=Ele1_pt+Muon1_pt+BoostedJet1_pt;
-     }
-     
-    }
-
-    if(BoostedJet_pt->size()>2){
-
-     BoostedJet2_pt=BoostedJet_pt->at(1);
-     BoostedJet2_eta=BoostedJet_eta->at(1);
-     BoostedJet2_phi=BoostedJet_phi->at(1);
-     BoostedJet2_energy=BoostedJet_energy->at(1);
-     BoostedJet2.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1), BoostedJet_energy->at(1));
-     BoostedJet2_nJets=BoostedJet_nJets->at(1);
-     BoostedJet2.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1), BoostedJet_energy->at(1));
-
-     if(eejj_l==1){
-      M_leplepBjetBjet = (Ele1 + Ele2 + BoostedJet1 + BoostedJet2).M();
-     }
-     if(mumujj_l==1){ 
-      M_leplepBjetBjet = (Muon1 + Muon2 + BoostedJet1 + BoostedJet2).M();
-     }
-     if(emujj_l==1 || muejj_l==1){
-      M_leplepBjetBjet=(Ele1 + Muon1 + BoostedJet1 + BoostedJet2).M();
-     }
-
-
-
-
-    }
-  
-
-    if(eejj_l==1){
-     M_ele1ele2= (Ele1 + Ele2).M();
-     M_leplep=M_ele1ele2;     
-    }
-    if(mumujj_l==1){
-     M_mu1mu2= (Muon1 + Muon2).M();
-     M_leplep=M_mu1mu2;
-    }
-    if(emujj_l==1 || muejj_l==1){
-     //Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
-     M_elemu= (Ele1 + Muon1).M();
-     M_leplep=M_elemu;
-    }
-//////
-//the lines before here could be deleted since Vale's macro builds objects
-///////////////////////////////////////////////////  
 
 ///////////////////////////////////////
 ///lepton scale factor part begins here
