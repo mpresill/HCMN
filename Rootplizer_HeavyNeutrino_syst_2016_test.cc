@@ -236,9 +236,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //Corrections:
   vector<double>* rBoostedJet_Uncorr_pt; rBoostedJet_Uncorr_pt = 0; TBranch* b_rBoostedJet_Uncorr_pt = 0; readingtree->SetBranchAddress("BoostedJet_Uncorr_pt",&rBoostedJet_Uncorr_pt,&b_rBoostedJet_Uncorr_pt);
   vector<double>* rBoostedJet_JesSF; rBoostedJet_JesSF = 0; TBranch* b_rBoostedJet_JesSF = 0; readingtree->SetBranchAddress("BoostedJet_JesSF",&rBoostedJet_JesSF,&b_rBoostedJet_JesSF);
+  vector<double>* rBoostedJet_JerSF; rBoostedJet_JerSF = 0; TBranch* b_rBoostedJet_JerSF = 0; readingtree->SetBranchAddress("BoostedJet_JerSF",&rBoostedJet_JerSF,&b_rBoostedJet_JerSF);
   //JES systematics
   vector<double>* rBoostedJet_JesSFup; rBoostedJet_JesSFup = 0; TBranch* b_rBoostedJet_JesSFup = 0; readingtree->SetBranchAddress("BoostedJet_JesSFup",&rBoostedJet_JesSFup,&b_rBoostedJet_JesSFup);
   vector<double>* rBoostedJet_JesSFdown; rBoostedJet_JesSFdown = 0; TBranch* b_rBoostedJet_JesSFdown = 0; readingtree->SetBranchAddress("BoostedJet_JesSFdown",&rBoostedJet_JesSFdown,&b_rBoostedJet_JesSFdown);
+  //JER systematics
+  vector<double>* rBoostedJet_JerSFup; rBoostedJet_JerSFup = 0; TBranch* b_rBoostedJet_JerSFup = 0; readingtree->SetBranchAddress("BoostedJet_JerSFup",&rBoostedJet_JerSFup,&b_rBoostedJet_JerSFup);
+  vector<double>* rBoostedJet_JerSFdown; rBoostedJet_JerSFdown = 0; TBranch* b_rBoostedJet_JerSFdown = 0; readingtree->SetBranchAddress("BoostedJet_JerSFdown",&rBoostedJet_JerSFdown,&b_rBoostedJet_JerSFdown);
   //b-tagging: 
   vector<double>* rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags; rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;
   TBranch* b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;readingtree->SetBranchAddress("BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags",&rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags,&b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags); 
@@ -334,6 +338,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* centralJesJer = new std::vector<double>; newtree->Branch("centralJesJer",&centralJesJer);
    vector<double>* JesSFup = new std::vector<double>; newtree->Branch("JesSFup",&JesSFup);
    vector<double>* JesSFdown = new std::vector<double>; newtree->Branch("JesSFdown",&JesSFdown);
+   vector<double>* JerSFup = new std::vector<double>; newtree->Branch("JerSFup",&JerSFup);
+   vector<double>* JerSFdown = new std::vector<double>; newtree->Branch("JerSFdown",&JerSFdown);
 
 
    //PU:
@@ -489,11 +495,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double DYRe; newtree->Branch("DYRe",&DYRe);
    double DYRmu; newtree->Branch("DYRmu",&DYRmu);
 
-   //event type systematics 
-   //double centralJesJer; newtree->Branch("centralJesJer",&centralJesJer);
-   //double JesSFup; newtree->Branch("JesSFup",&JesSFup);
-   //double JesSFdown; newtree->Branch("JesSFdown",&JesSFdown);
-
 
  
    //reco 4-vectors:
@@ -610,9 +611,14 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //corrections
     b_rBoostedJet_Uncorr_pt->GetEntry(en);
     b_rBoostedJet_JesSF->GetEntry(en);
+    b_rBoostedJet_JerSF->GetEntry(en);
     //systematics Jes
     b_rBoostedJet_JesSFup->GetEntry(en);
     b_rBoostedJet_JesSFdown->GetEntry(en);
+    //systematics Jer
+    b_rBoostedJet_JerSFup->GetEntry(en);
+    b_rBoostedJet_JerSFdown->GetEntry(en);
+
     //b-tagging:
     b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);    
     //MET
@@ -687,6 +693,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     centralJesJer ->clear(); 
     JesSFup ->clear(); 
     JesSFdown ->clear();
+    JerSFup ->clear(); 
+    JerSFdown ->clear();
 
 
     //new var inizialize (scalars):
@@ -947,11 +955,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     int countBoostedJets_L=0;
     int countBoostedJets_T=0;
     int countBoostedJets_TLV=0;
+    //////////////////////////////////////
     double JesSF=0;
+    double JerSF=0;
   
     for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
 
-     for (int BJETSF = 0; BJETSF < 3; BJETSF++){//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2)
+     for (int BJETSF = 0; BJETSF < 5; BJETSF++){//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2, JerUp=3, JerDown=4)
   
       ///////////////////////////////////////boosted jet cleaning and definition starts here
        BoostedJet_isIDL=false;
@@ -962,31 +972,60 @@ void  filename_(const char*  Input = "", const char*  Output =""){
        countBoostedJets_L=0;
        countBoostedJets_T=0;
        countBoostedJets_TLV=0;
+       ////jes/jer syst
        JesSF=0;
+       JerSF=0;
 
         if(BJETSF==0){      //BJet corrections with central values of JER/JES:
             JesSF = rBoostedJet_JesSF->at(jet_en);
+            JerSF = rBoostedJet_JerSF->at(jet_en);
             centralJesJer->push_back(1) ;
             JesSFup->push_back(0);
             JesSFdown->push_back(0);
+            JerSFup->push_back(0);
+            JerSFdown->push_back(0);
           }
         if(BJETSF==1){      //BJet corrections with JES SF UP:
             JesSF = rBoostedJet_JesSFup->at(jet_en);
+            JerSF = rBoostedJet_JerSF->at(jet_en);
             centralJesJer->push_back(0);
             JesSFup->push_back(1);
             JesSFdown->push_back(0);
+            JerSFup->push_back(0);
+            JerSFdown->push_back(0);
         }
         if(BJETSF==2){      //BJet corrections with JES SF DOWN:
             JesSF = rBoostedJet_JesSFdown->at(jet_en);
+            JerSF = rBoostedJet_JerSF->at(jet_en);
             centralJesJer->push_back(0);
             JesSFup->push_back(0);
             JesSFdown->push_back(1);
+            JerSFup->push_back(0);
+            JerSFdown->push_back(0);
         }
-        //if(!((centralJesJer==1 || JesSFup==1 || JesSFdown==1))) continue;
-    
+        if(BJETSF==3){      //BJet corrections with central values of JER/JES:
+            JesSF = rBoostedJet_JesSF->at(jet_en);
+            JerSF = rBoostedJet_JerSFup->at(jet_en);
+            centralJesJer->push_back(0) ;
+            JesSFup->push_back(0);
+            JesSFdown->push_back(0);
+            JerSFup->push_back(1);
+            JerSFdown->push_back(0);
+          }
+        if(BJETSF==4){      //BJet corrections with central values of JER/JES:
+            JesSF = rBoostedJet_JesSF->at(jet_en);
+            JerSF = rBoostedJet_JerSFdown->at(jet_en);
+            centralJesJer->push_back(0) ;
+            JesSFup->push_back(0);
+            JesSFdown->push_back(0);
+            JerSFup->push_back(0);
+            JerSFdown->push_back(1);
+          }
+          
+      
         //BJet SFs:
-        double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*JesSF;
-        double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*JesSF;
+        double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*JesSF*JerSF;
+        double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*JesSF*JerSF;
 
         //////////////////////////////////////////
         //////////////////////////////////////////
