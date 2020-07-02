@@ -59,6 +59,10 @@ F.
 #include <iostream>
 #include <TLorentzVector.h>
 #include "TVector3.h"
+#include "RoccoR.cc"
+#include "GEScaleSyst.cc"
+#include "GEScaleSyst.h"
+
 using namespace std;
 ////
 //   Declare constants
@@ -93,6 +97,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   Output = "outputFile"; 
   TFile *oldfile = TFile::Open(Input);
   TTree *readingtree = new TTree("readingtree","readingtree"); readingtree = (TTree*) oldfile->Get("TNT/BOOM");
+
+  // Rochester corrections
+  RoccoR  rc("RoccoR2016.txt");
+  GEScaleSyst *GE = new GEScaleSyst();
   /////
   //   Variables to read
   /////
@@ -126,6 +134,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<double>* rMuon_px; rMuon_px = 0; TBranch* b_rMuon_px = 0; readingtree->SetBranchAddress("Muon_px",&rMuon_px,&b_rMuon_px);
   vector<double>* rMuon_py; rMuon_py = 0; TBranch* b_rMuon_py = 0; readingtree->SetBranchAddress("Muon_py",&rMuon_py,&b_rMuon_py);
   vector<double>* rMuon_pz; rMuon_pz = 0; TBranch* b_rMuon_pz = 0; readingtree->SetBranchAddress("Muon_pz",&rMuon_pz,&b_rMuon_pz);
+  vector<int>* rMuon_TLayers; rMuon_TLayers = 0; TBranch* b_rMuon_TLayers = 0; readingtree->SetBranchAddress("Muon_TLayers", &rMuon_TLayers, &b_rMuon_TLayers);
   //Isolation
   vector<double>* rMuon_trackIso; rMuon_trackIso = 0; TBranch* b_rMuon_trackIso = 0;
   readingtree->SetBranchAddress("Muon_trackIso",&rMuon_trackIso,&b_rMuon_trackIso);
@@ -159,11 +168,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<int>* rpatElectron_py; rpatElectron_py = 0; TBranch* b_rpatElectron_py = 0; readingtree->SetBranchAddress("patElectron_py",&rpatElectron_py,&b_rpatElectron_py);
   vector<int>* rpatElectron_pz; rpatElectron_pz = 0; TBranch* b_rpatElectron_pz = 0; readingtree->SetBranchAddress("patElectron_pz",&rpatElectron_pz,&b_rpatElectron_pz);
   vector<double>* rpatElectron_energy; rpatElectron_energy = 0; TBranch* b_rpatElectron_energy = 0; readingtree->SetBranchAddress("patElectron_energy",&rpatElectron_energy,&b_rpatElectron_energy);
-  //Electron scale/reso systematics
-  vector<double>* rpatElectron_energyScaleDown; rpatElectron_energyScaleDown = 0; TBranch* b_rpatElectron_energyScaleDown = 0; readingtree->SetBranchAddress("patElectron_energyScaleDown",&rpatElectron_energyScaleDown,&b_rpatElectron_energyScaleDown);
-  vector<double>* rpatElectron_energyScaleUp; rpatElectron_energyScaleUp = 0; TBranch* b_rpatElectron_energyScaleUp = 0; readingtree->SetBranchAddress("patElectron_energyScaleUp",&rpatElectron_energyScaleUp,&b_rpatElectron_energyScaleUp);
-  
-  
   //Charge:
   vector<int>* rpatElectron_charge; rpatElectron_charge = 0; TBranch* b_rpatElectron_charge = 0; readingtree->SetBranchAddress("patElectron_charge",&rpatElectron_charge,&b_rpatElectron_charge);
   //ID selection:
@@ -256,6 +260,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
    //Muons:
    vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
+   vector<double>* Muon_pt_corr = new std::vector<double>; newtree->Branch("Muon_pt_corr",&Muon_pt_corr);
    vector<double>* Muon_eta = new std::vector<double>; newtree->Branch("Muon_eta",&Muon_eta);
    vector<double>* Muon_phi = new std::vector<double>; newtree->Branch("Muon_phi",&Muon_phi);
    vector<double>* Muon_p = new std::vector<double>; newtree->Branch("Muon_p",&Muon_p);
@@ -278,10 +283,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<double>* patElectron_eta = new std::vector<double>; newtree->Branch("patElectron_eta",&patElectron_eta);
   vector<double>* patElectron_phi = new std::vector<double>; newtree->Branch("patElectron_phi",&patElectron_phi);
   vector<double>* patElectron_energy = new std::vector<double>; newtree->Branch("patElectron_energy",&patElectron_energy);
-  //Electron energy scale/reso systematics
-  vector<double>* patElectron_energyScaleDown = new std::vector<double>; newtree->Branch("patElectron_energyScaleDown",&patElectron_energyScaleDown);
-  vector<double>* patElectron_energyScaleUp = new std::vector<double>; newtree->Branch("patElectron_energyScaleUp",&patElectron_energyScaleUp);
-  ///
   vector<int>* patElectron_p = new std::vector<int>; newtree->Branch("patElectron_p",&patElectron_p);
   vector<int>* patElectron_px = new std::vector<int>; newtree->Branch("patElectron_px",&patElectron_px);
   vector<int>* patElectron_py = new std::vector<int>; newtree->Branch("patElectron_py",&patElectron_py);
@@ -534,6 +535,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rMuon_py->GetEntry(en);
     b_rMuon_pz->GetEntry(en);
     b_rMuon_charge->GetEntry(en);
+    b_rMuon_TLayers->GetEntry(en);
     //Isolation
     b_rMuon_trackIso->GetEntry(en);
     b_rMuon_TrackerIso->GetEntry(en);
@@ -558,10 +560,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rpatElectron_py->GetEntry(en);
     b_rpatElectron_pz->GetEntry(en);
     b_rpatElectron_energy->GetEntry(en);
-    //electron energy scale/reso systematics 
-    b_rpatElectron_energyScaleDown->GetEntry(en);
-    b_rpatElectron_energyScaleUp->GetEntry(en);
-    ///
     b_rpatElectron_charge->GetEntry(en);
     //ID:
     b_rpatElectron_isPassVeto->GetEntry(en);
@@ -622,6 +620,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
     //New var clear (vectors):
     Muon_pt->clear();
+    Muon_pt_corr->clear();
     Muon_eta->clear();
     Muon_phi->clear();
     Muon_p->clear();
@@ -643,10 +642,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     patElectron_eta->clear();
     patElectron_phi->clear();
     patElectron_energy->clear();
-    //electron energy scale/reso systematics
-    patElectron_energyScaleDown->clear();
-    patElectron_energyScaleUp->clear();
-    /////
     patElectron_p->clear();
     patElectron_px->clear();
     patElectron_py->clear();
@@ -755,7 +750,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     lumi_wgt = get_wgtlumi(Input);
    
    
-
+   int num = 0;
    for(uint mu_en = 0; mu_en<rMuon_pt->size(); mu_en++){
     if( rMuon_pt->at(mu_en)>20 && fabs(rMuon_eta->at(mu_en))<2.4){
      if(rMuon_loose->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1) numOfLooseMu++;
@@ -763,7 +758,19 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      if(rMuon_tight->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1) numOfTightMu++;
      if(rMuon_isHighPt->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1){
       numOfHighptMu++;
+
       Muon_pt->push_back(rMuon_pt->at(mu_en));
+
+      if(rMuon_pt->at(mu_en) < 200 ){
+       double mcSF = rc.kSmearMC(rMuon_charge->at(mu_en), rMuon_pt->at(mu_en), rMuon_eta->at(mu_en), rMuon_phi->at(mu_en), rMuon_TLayers->at(mu_en), gRandom->Rndm(), 0, 0);
+       Muon_pt_corr->push_back(rMuon_pt->at(mu_en)*mcSF);
+      }
+      else{
+       num = 49 * gRandom->Rndm();
+       float pt_corr = GE->GEScaleCorrPt(160000+(int)num, (float) rMuon_pt->at(mu_en), (float) rMuon_eta->at(mu_en),(float) rMuon_phi->at(mu_en), (int) rMuon_charge->at(mu_en), false);
+       Muon_pt_corr->push_back((double) pt_corr);
+      }
+
       Muon_eta->push_back(rMuon_eta->at(mu_en));
       Muon_phi->push_back(rMuon_phi->at(mu_en));
       Muon_p->push_back(rMuon_p->at(mu_en));
@@ -803,10 +810,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       patElectron_pz->push_back(rpatElectron_pz->at(ele_en));
       patElectron_charge->push_back(rpatElectron_charge->at(ele_en));
       patElectron_energy->push_back(rpatElectron_energy->at(ele_en));
-      //electron energy scale/reso systeamatics
-      patElectron_energyScaleDown->push_back(rpatElectron_energyScaleDown->at(ele_en));
-      patElectron_energyScaleUp->push_back(rpatElectron_energyScaleUp->at(ele_en));
-      ////
       patElectron_isPassVeto->push_back(rpatElectron_isPassVeto->at(ele_en));
       patElectron_isPassLoose->push_back(rpatElectron_isPassLoose->at(ele_en));
       patElectron_isPassMedium->push_back(rpatElectron_isPassMedium->at(ele_en));
@@ -966,21 +969,18 @@ void  filename_(const char*  Input = "", const char*  Output =""){
             centralJesJer->push_back(1) ;
             JesSFup->push_back(0);
             JesSFdown->push_back(0);
-            cout << "central " << rBoostedJet_JesSF->at(jet_en) << endl;
           }
         if(BJETSF==1){      //BJet corrections with JES SF UP:
             JesSF = rBoostedJet_JesSFup->at(jet_en);
             centralJesJer->push_back(0);
             JesSFup->push_back(1);
             JesSFdown->push_back(0);
-            cout << "up " << rBoostedJet_JesSFup->at(jet_en) << endl;
         }
         if(BJETSF==2){      //BJet corrections with JES SF DOWN:
             JesSF = rBoostedJet_JesSFdown->at(jet_en);
             centralJesJer->push_back(0);
             JesSFup->push_back(0);
             JesSFdown->push_back(1);
-            cout << "down " << rBoostedJet_JesSFdown->at(jet_en) << endl;
         }
         //if(!((centralJesJer==1 || JesSFup==1 || JesSFdown==1))) continue;
     
