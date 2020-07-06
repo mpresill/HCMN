@@ -1,6 +1,7 @@
 /**
 This Macro
 1. Prepares the rootplas to be used in the analysis, reading as input the nutplas 
+
 Need to specify
 0. See Declare constants
 1. The branches you want to handle. According to the analysis needs, one may want to handle 3 types of branches for reading and/or saving the variables
@@ -58,10 +59,6 @@ F.
 #include <iostream>
 #include <TLorentzVector.h>
 #include "TVector3.h"
-#include "RoccoR.cc"
-#include "GEScaleSyst.cc"
-#include "GEScaleSyst.h"
-
 using namespace std;
 ////
 //   Declare constants
@@ -85,6 +82,15 @@ std::tuple<double, double, double> musf_ID(double eta, double pt);
 std::tuple<double, double, double> musf_iso(double eta, double pt);
 double get_wgtlumi(string FileName);
 
+/*double invMass2(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
+                double obj2_px, double obj2_py, double obj2_pz, double obj2_E);
+double invMass3(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
+                double obj2_px, double obj2_py, double obj2_pz, double obj2_E,
+                double obj3_px, double obj3_py, double obj3_pz, double obj3_E);
+double invMass4(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
+                double obj2_px, double obj2_py, double obj2_pz, double obj2_E,
+                double obj3_px, double obj3_py, double obj3_pz, double obj3_E,
+                double obj4_px, double obj4_py, double obj4_pz, double obj4_E);*/
 /////
 //   Main function
 /////
@@ -96,29 +102,24 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   Output = "outputFile"; 
   TFile *oldfile = TFile::Open(Input);
   TTree *readingtree = new TTree("readingtree","readingtree"); readingtree = (TTree*) oldfile->Get("TNT/BOOM");
-  
-  // Rochester corrections
-  RoccoR  rc("RoccoR2017.txt");
-  GEScaleSyst *GE = new GEScaleSyst();
   /////
   //   Variables to read
   /////
   //Trigger
-  int rHLT_Photon200; rHLT_Photon200 = 0; TBranch* b_rHLT_Photon200 = 0; readingtree->SetBranchAddress("HLT_Photon200",&rHLT_Photon200,&b_rHLT_Photon200);
-  int rHLT_Ele35_WPTight_Gsf; rHLT_Ele35_WPTight_Gsf = 0; TBranch* b_rHLT_Ele35_WPTight_Gsf = 0; readingtree->SetBranchAddress("HLT_Ele35_WPTight_Gsf",&rHLT_Ele35_WPTight_Gsf,&b_rHLT_Ele35_WPTight_Gsf);
+  //int rHLT_Ele27_eta2p1_WPLoose_Gsf; rHLT_Ele27_eta2p1_WPLoose_Gsf = 0; TBranch* b_rHLT_Ele27_eta2p1_WPLoose_Gsf = 0; readingtree->SetBranchAddress("HLT_Ele27_eta2p1_WPLoose_Gsf",&rHLT_Ele27_eta2p1_WPLoose_Gsf,&b_rHLT_Ele27_eta2p1_WPLoose_Gsf);
+  //int rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL; rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL = 0; TBranch* b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL = 0; readingtree->SetBranchAddress("HLT_DoubleEle33_CaloIdL_GsfTrkIdVL",&rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL,&b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL);
   int rHLT_Ele115_CaloIdVT_GsfTrkIdT; rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; TBranch* b_rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; readingtree->SetBranchAddress("HLT_Ele115_CaloIdVT_GsfTrkIdT",&rHLT_Ele115_CaloIdVT_GsfTrkIdT,&b_rHLT_Ele115_CaloIdVT_GsfTrkIdT);
+  int rHLT_Ele32_WPTight_Gsf; rHLT_Ele32_WPTight_Gsf = 0; TBranch* b_rHLT_Ele32_WPTight_Gsf = 0; readingtree->SetBranchAddress("HLT_Ele32_WPTight_Gsf",&rHLT_Ele32_WPTight_Gsf,&b_rHLT_Ele32_WPTight_Gsf);
+  int rHLT_Photon200; rHLT_Photon200 = 0; TBranch* b_rHLT_Photon200 = 0; readingtree->SetBranchAddress("HLT_Photon200",&rHLT_Photon200,&b_rHLT_Photon200);  
   int rHLT_Mu50; rHLT_Mu50 = 0; TBranch* b_rHLT_Mu50 = 0; readingtree->SetBranchAddress("HLT_Mu50",&rHLT_Mu50,&b_rHLT_Mu50);
   int rHLT_TkMu50; rHLT_TkMu50 = 0; TBranch* b_rHLT_TkMu50 = 0; readingtree->SetBranchAddress("HLT_TkMu50",&rHLT_TkMu50,&b_rHLT_TkMu50);
   int rHLT_OldMu100; rHLT_OldMu100 = 0; TBranch* b_rHLT_OldMu100 = 0; readingtree->SetBranchAddress("HLT_OldMu100",&rHLT_OldMu100,&b_rHLT_OldMu100);
   int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
 
-  //PU and systematics
+  //PU
   double rPUWeight; rPUWeight = 0; TBranch* b_rPUWeight = 0; readingtree->SetBranchAddress("PUWeight",&rPUWeight,&b_rPUWeight);
-  double rMinBiasUpWeight; rMinBiasUpWeight = 0; TBranch* b_rMinBiasUpWeight = 0; readingtree->SetBranchAddress("MinBiasUpWeight",&rMinBiasUpWeight,&b_rMinBiasUpWeight);
-  double rMinBiasDownWeight; rMinBiasDownWeight = 0; TBranch* b_rMinBiasDownWeight = 0; readingtree->SetBranchAddress("MinBiasDownWeight",&rMinBiasDownWeight,&b_rMinBiasDownWeight);
   double rtrueInteractions; rtrueInteractions = 0; TBranch* b_rtrueInteractions = 0; readingtree->SetBranchAddress("trueInteractions",&rtrueInteractions,&b_rtrueInteractions);
   int rnBestVtx; rnBestVtx = 0; TBranch* b_rnBestVtx = 0; readingtree->SetBranchAddress("nBestVtx",&rnBestVtx,&b_rnBestVtx);
-  
   //MET
   double rMet_type1PF_pt; rMet_type1PF_pt = 0; TBranch* b_rMet_type1PF_pt = 0; 
   readingtree->SetBranchAddress("Met_type1PF_pt",&rMet_type1PF_pt,&b_rMet_type1PF_pt);
@@ -133,8 +134,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<double>* rMuon_px; rMuon_px = 0; TBranch* b_rMuon_px = 0; readingtree->SetBranchAddress("Muon_px",&rMuon_px,&b_rMuon_px);
   vector<double>* rMuon_py; rMuon_py = 0; TBranch* b_rMuon_py = 0; readingtree->SetBranchAddress("Muon_py",&rMuon_py,&b_rMuon_py);
   vector<double>* rMuon_pz; rMuon_pz = 0; TBranch* b_rMuon_pz = 0; readingtree->SetBranchAddress("Muon_pz",&rMuon_pz,&b_rMuon_pz);
-  vector<int>* rMuon_TLayers; rMuon_TLayers = 0; TBranch* b_rMuon_TLayers = 0; readingtree->SetBranchAddress("Muon_TLayers", &rMuon_TLayers, &b_rMuon_TLayers);
-
   //Isolation
   vector<double>* rMuon_trackIso; rMuon_trackIso = 0; TBranch* b_rMuon_trackIso = 0;
   readingtree->SetBranchAddress("Muon_trackIso",&rMuon_trackIso,&b_rMuon_trackIso);
@@ -236,13 +235,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //Corrections:
   vector<double>* rBoostedJet_Uncorr_pt; rBoostedJet_Uncorr_pt = 0; TBranch* b_rBoostedJet_Uncorr_pt = 0; readingtree->SetBranchAddress("BoostedJet_Uncorr_pt",&rBoostedJet_Uncorr_pt,&b_rBoostedJet_Uncorr_pt);
   vector<double>* rBoostedJet_JesSF; rBoostedJet_JesSF = 0; TBranch* b_rBoostedJet_JesSF = 0; readingtree->SetBranchAddress("BoostedJet_JesSF",&rBoostedJet_JesSF,&b_rBoostedJet_JesSF);
-  vector<double>* rBoostedJet_JerSF; rBoostedJet_JerSF = 0; TBranch* b_rBoostedJet_JerSF = 0; readingtree->SetBranchAddress("BoostedJet_JerSF",&rBoostedJet_JerSF,&b_rBoostedJet_JerSF);
-  //JES systematics
-  vector<double>* rBoostedJet_JesSFup; rBoostedJet_JesSFup = 0; TBranch* b_rBoostedJet_JesSFup = 0; readingtree->SetBranchAddress("BoostedJet_JesSFup",&rBoostedJet_JesSFup,&b_rBoostedJet_JesSFup);
-  vector<double>* rBoostedJet_JesSFdown; rBoostedJet_JesSFdown = 0; TBranch* b_rBoostedJet_JesSFdown = 0; readingtree->SetBranchAddress("BoostedJet_JesSFdown",&rBoostedJet_JesSFdown,&b_rBoostedJet_JesSFdown);
-  //JER systematics
-  vector<double>* rBoostedJet_JerSFup; rBoostedJet_JerSFup = 0; TBranch* b_rBoostedJet_JerSFup = 0; readingtree->SetBranchAddress("BoostedJet_JerSFup",&rBoostedJet_JerSFup,&b_rBoostedJet_JerSFup);
-  vector<double>* rBoostedJet_JerSFdown; rBoostedJet_JerSFdown = 0; TBranch* b_rBoostedJet_JerSFdown = 0; readingtree->SetBranchAddress("BoostedJet_JerSFdown",&rBoostedJet_JerSFdown,&b_rBoostedJet_JerSFdown);
   //b-tagging: 
   vector<double>* rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags; rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;
   TBranch* b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;readingtree->SetBranchAddress("BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags",&rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags,&b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags); 
@@ -254,9 +246,11 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    //   New variables
    /////
    //Trigger:
-   int HLT_Photon200; newtree->Branch("HLT_Photon200",&HLT_Photon200);
-   int HLT_Ele35_WPTight_Gsf; newtree->Branch("HLT_Ele35_WPTight_Gsf",&HLT_Ele35_WPTight_Gsf);
+  //int HLT_Ele27_eta2p1_WPLoose_Gsf; newtree->Branch("HLT_Ele27_eta2p1_WPLoose_Gsf",&HLT_Ele27_eta2p1_WPLoose_Gsf);
+  //int HLT_DoubleEle33_CaloIdL_GsfTrkIdVL; newtree->Branch("HLT_DoubleEle33_CaloIdL_GsfTrkIdVL",&HLT_DoubleEle33_CaloIdL_GsfTrkIdVL);
    int HLT_Ele115_CaloIdVT_GsfTrkIdT; newtree->Branch("HLT_Ele115_CaloIdVT_GsfTrkIdT",&HLT_Ele115_CaloIdVT_GsfTrkIdT);
+   int HLT_Ele32_WPTight_Gsf; newtree->Branch("HLT_Ele32_WPTight_Gsf",&HLT_Ele32_WPTight_Gsf);
+   int HLT_Photon200; newtree->Branch("HLT_Photon200",&HLT_Photon200);
    int HLT_Mu50; newtree->Branch("HLT_Mu50",&HLT_Mu50);
    int HLT_TkMu50; newtree->Branch("HLT_TkMu50",&HLT_TkMu50);
    int HLT_OldMu100; newtree->Branch("HLT_OldMu100",&HLT_OldMu100);
@@ -264,7 +258,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
    //Muons:
    vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
-   vector<double>* Muon_pt_corr = new std::vector<double>; newtree->Branch("Muon_pt_corr",&Muon_pt_corr);
    vector<double>* Muon_eta = new std::vector<double>; newtree->Branch("Muon_eta",&Muon_eta);
    vector<double>* Muon_phi = new std::vector<double>; newtree->Branch("Muon_phi",&Muon_phi);
    vector<double>* Muon_p = new std::vector<double>; newtree->Branch("Muon_p",&Muon_p);
@@ -334,19 +327,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* BoostedJet_T = new std::vector<double>; newtree->Branch("BoostedJet_T",&BoostedJet_T);
    vector<double>* BoostedJet_TLV = new std::vector<double>; newtree->Branch("BoostedJet_TLV",&BoostedJet_TLV);
 
-   //systematics sf tags: 
-   vector<double>* centralJesJer = new std::vector<double>; newtree->Branch("centralJesJer",&centralJesJer);
-   vector<double>* JesSFup = new std::vector<double>; newtree->Branch("JesSFup",&JesSFup);
-   vector<double>* JesSFdown = new std::vector<double>; newtree->Branch("JesSFdown",&JesSFdown);
-   vector<double>* JerSFup = new std::vector<double>; newtree->Branch("JerSFup",&JerSFup);
-   vector<double>* JerSFdown = new std::vector<double>; newtree->Branch("JerSFdown",&JerSFdown);
-
    
    //PU:
    double PileupWeight; newtree->Branch("PileupWeight",&PileupWeight);
    double PUWeight; newtree->Branch("PUWeight",&PUWeight);
-   double MinBiasUpWeight; newtree->Branch("MinBiasUpWeight",&MinBiasUpWeight);
-   double MinBiasDownWeight; newtree->Branch("MinBiasDownWeight",&MinBiasDownWeight);
    int nBestVtx; newtree->Branch("nBestVtx",&nBestVtx);
    double trueInteractions; newtree->Branch("trueInteractions",&trueInteractions);
    //Lumi weight
@@ -381,14 +365,76 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double IsoTracker_T; newtree->Branch("IsoTracker_T",&IsoTracker_T); 
    double IsoPF_L; newtree->Branch("IsoPF_L",&IsoPF_L); 
    double IsoPF_T; newtree->Branch("IsoPF_T",&IsoPF_T); 
-  //Scale Factor
+   //Ele1 kinematics:
+   double Ele1_pt; newtree->Branch("Ele1_pt",&Ele1_pt);
+   double Ele1_eta; newtree->Branch("Ele1_eta",&Ele1_eta);
+   double Ele1_phi; newtree->Branch("Ele1_phi",&Ele1_phi);
+   double Ele1_energy; newtree->Branch("Ele1_energy",&Ele1_energy);
+   double Ele1_p; newtree->Branch("Ele1_p",&Ele1_p);
+   double Ele1_px; newtree->Branch("Ele1_px",&Ele1_px);
+   double Ele1_py; newtree->Branch("Ele1_py",&Ele1_py);
+   double Ele1_pz; newtree->Branch("Ele1_pz",&Ele1_pz);
+   //Ele2 Kinematics:
+   double Ele2_pt; newtree->Branch("Ele2_pt",&Ele2_pt);
+   double Ele2_eta; newtree->Branch("Ele2_eta",&Ele2_eta);
+   double Ele2_phi; newtree->Branch("Ele2_phi",&Ele2_phi);
+   double Ele2_energy; newtree->Branch("Ele2_energy",&Ele2_energy);
+   double Ele2_p; newtree->Branch("Ele2_p",&Ele2_p);
+   double Ele2_px; newtree->Branch("Ele2_px",&Ele2_px);
+   double Ele2_py; newtree->Branch("Ele2_py",&Ele2_py);
+   double Ele2_pz; newtree->Branch("Ele2_pz",&Ele2_pz);
+   //Muon1 Kinematics:
+   double Muon1_pt; newtree->Branch("Muon1_pt",&Muon1_pt);
+   double Muon1_eta; newtree->Branch("Muon1_eta",&Muon1_eta);
+   double Muon1_phi; newtree->Branch("Muon1_phi",&Muon1_phi);
+   double Muon1_energy; newtree->Branch("Muon1_energy",&Muon1_energy);
+   double Muon1_p; newtree->Branch("Muon1_p",&Muon1_p);
+   double Muon1_px; newtree->Branch("Muon1_px",&Muon1_px);
+   double Muon1_py; newtree->Branch("Muon1_py",&Muon1_py);
+   double Muon1_pz; newtree->Branch("Muon1_pz",&Muon1_pz);  
+   //Muon2 Kinematics:
+   double Muon2_pt; newtree->Branch("Muon2_pt",&Muon2_pt);
+   double Muon2_eta; newtree->Branch("Muon2_eta",&Muon2_eta);
+   double Muon2_phi; newtree->Branch("Muon2_phi",&Muon2_phi);
+   double Muon2_energy; newtree->Branch("Muon2_energy",&Muon2_energy);
+   double Muon2_p; newtree->Branch("Muon2_p",&Muon2_p);
+   double Muon2_px; newtree->Branch("Muon2_px",&Muon2_px);
+   double Muon2_py; newtree->Branch("Muon2_py",&Muon2_py);
+   double Muon2_pz; newtree->Branch("Muon2_pz",&Muon2_pz);    
+   //Boosted Jet1 kinematics:
+   double BoostedJet1_pt; newtree->Branch("BoostedJet1_pt",&BoostedJet1_pt);
+   double BoostedJet1_eta; newtree->Branch("BoostedJet1_eta",&BoostedJet1_eta);
+   double BoostedJet1_phi; newtree->Branch("BoostedJet1_phi",&BoostedJet1_phi);
+   double BoostedJet1_energy; newtree->Branch("BoostedJet1_energy",&BoostedJet1_energy);
+   double BoostedJet1_nJets; newtree->Branch("BoostedJet1_nJets",&BoostedJet1_nJets);
+   //Boosted Jet2 kinematics:
+   double BoostedJet2_pt; newtree->Branch("BoostedJet2_pt",&BoostedJet2_pt);
+   double BoostedJet2_eta; newtree->Branch("BoostedJet2_eta",&BoostedJet2_eta);
+   double BoostedJet2_phi; newtree->Branch("BoostedJet2_phi",&BoostedJet2_phi);
+   double BoostedJet2_energy; newtree->Branch("BoostedJet2_energy",&BoostedJet2_energy);
+   double BoostedJet2_nJets; newtree->Branch("BoostedJet2_nJets",&BoostedJet2_nJets);
+   //Masses:
+   double M_ele1ele2Bjet1; newtree->Branch("M_ele1ele2Bjet1",&M_ele1ele2Bjet1);  
+   double M_ele1ele2; newtree->Branch("M_ele1ele2",&M_ele1ele2);
+   double M_elemu; newtree->Branch("M_elemu",&M_elemu);
+   double M_elemuBjet1; newtree->Branch("M_elemuBjet1",&M_elemuBjet1);
+   double M_mu1mu2; newtree->Branch("M_mu1mu2",&M_mu1mu2);
+   double M_mu1mu2Bjet1; newtree->Branch("M_mu1mu2Bjet1",&M_mu1mu2Bjet1);   
+   double S_T_BJ; newtree->Branch("S_T_BJ",&S_T_BJ);
+   double S_T_jj; newtree->Branch("S_T_jj",&S_T_jj);
+   double M_leplep; newtree->Branch("M_leplep",&M_leplep);
+   double M_leplepBjet; newtree->Branch("M_leplepBjet",&M_leplepBjet);
+   double M_lep2Bjet; newtree->Branch("M_lep2Bjet",&M_lep2Bjet);  
+   double M_leplepBjetBjet; newtree->Branch("M_leplepBjetBjet",&M_leplepBjetBjet);
+
+   //Scale Factor
    double elesf_ele1; newtree->Branch("elesf_ele1",&elesf_ele1);
    double elesf_ele2; newtree->Branch("elesf_ele2",&elesf_ele2);
    double elesf_ele1_d; newtree->Branch("elesf_ele1_d",&elesf_ele1_d);
    double elesf_ele2_d; newtree->Branch("elesf_ele2_d",&elesf_ele2_d);
    double elesf_ele1_u; newtree->Branch("elesf_ele1_u",&elesf_ele1_u);
    double elesf_ele2_u; newtree->Branch("elesf_ele2_u",&elesf_ele2_u);
-
+ 
    double musf_trigger_mu1; newtree->Branch("musf_trigger_mu1",&musf_trigger_mu1);
    double musf_ID_mu1; newtree->Branch("musf_ID_mu1",&musf_ID_mu1);
    double musf_iso_mu1; newtree->Branch("musf_iso_mu1",&musf_iso_mu1);
@@ -397,7 +443,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double musf_ID_mu2; newtree->Branch("musf_ID_mu2",&musf_ID_mu2);
    double musf_iso_mu2; newtree->Branch("musf_iso_mu2",&musf_iso_mu2);
    double musf_tot_mu2; newtree->Branch("musf_tot_mu2",&musf_tot_mu2);
-
+ 
    double musf_trigger_mu1_u; newtree->Branch("musf_trigger_mu1_u",&musf_trigger_mu1_u);
    double musf_ID_mu1_u; newtree->Branch("musf_ID_mu1_u",&musf_ID_mu1_u);
    double musf_iso_mu1_u; newtree->Branch("musf_iso_mu1_u",&musf_iso_mu1_u);
@@ -419,7 +465,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double lepsf_evt; newtree->Branch("lepsf_evt",&lepsf_evt);
    double lepsf_evt_u; newtree->Branch("lepsf_evt_u",&lepsf_evt_u);
    double lepsf_evt_d; newtree->Branch("lepsf_evt_d",&lepsf_evt_d);
-
    //Event type
    //int evt_type; newtree->Branch("evt_type",&evt_type);
    double eejj_l; newtree->Branch("eejj_l",&eejj_l);
@@ -434,7 +479,14 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double DYRmu; newtree->Branch("DYRmu",&DYRmu);
     
  
-
+   //reco 4-vectors:
+   TLorentzVector Ele1(0,0,0,0);
+   TLorentzVector Ele2(0,0,0,0);
+   TLorentzVector Muon1(0,0,0,0);
+   TLorentzVector Muon2(0,0,0,0);
+   TLorentzVector BoostedJet1(0,0,0,0);
+   TLorentzVector BoostedJet2(0,0,0,0);
+  
    int nen = nentries;
    if(nentries==-1) nen = readingtree->GetEntries();
    cout << nen << endl;
@@ -442,18 +494,18 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //Read branches
     //Trigger:
     
-    b_rHLT_Photon200->GetEntry(en);
-    b_rHLT_Ele35_WPTight_Gsf->GetEntry(en);
+    //b_rHLT_Ele27_eta2p1_WPLoose_Gsf->GetEntry(en);
+    //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
     b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
+    b_rHLT_Ele32_WPTight_Gsf->GetEntry(en);
+    b_rHLT_Photon200->GetEntry(en);
     b_rHLT_Mu50->GetEntry(en);
-    b_rHLT_TkMu50->GetEntry(en);
+    b_rHLT_TkMu50->GetEntry(en);   
     b_rHLT_OldMu100->GetEntry(en);
-    b_rHLT_TkMu100->GetEntry(en);   
- 
+    b_rHLT_TkMu100->GetEntry(en);
+
     //PU:
     b_rPUWeight->GetEntry(en);
-    b_rMinBiasUpWeight->GetEntry(en);
-    b_rMinBiasDownWeight->GetEntry(en);
     b_rnBestVtx->GetEntry(en);
     b_rtrueInteractions->GetEntry(en);
     //Muons
@@ -467,8 +519,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rMuon_py->GetEntry(en);
     b_rMuon_pz->GetEntry(en);
     b_rMuon_charge->GetEntry(en);
-      //FOR ROCHESTER
-    b_rMuon_TLayers->GetEntry(en);
     //Isolation
     b_rMuon_trackIso->GetEntry(en);
     b_rMuon_TrackerIso->GetEntry(en);
@@ -543,14 +593,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //corrections
     b_rBoostedJet_Uncorr_pt->GetEntry(en);
     b_rBoostedJet_JesSF->GetEntry(en);
-    b_rBoostedJet_JerSF->GetEntry(en);
-    //systematics Jes
-    b_rBoostedJet_JesSFup->GetEntry(en);
-    b_rBoostedJet_JesSFdown->GetEntry(en);
-    //systematics Jer
-    b_rBoostedJet_JerSFup->GetEntry(en);
-    b_rBoostedJet_JerSFdown->GetEntry(en);
-  
     //b-tagging:
     b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);    
     //MET
@@ -558,7 +600,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
     //New var clear (vectors):
     Muon_pt->clear();
-    Muon_pt_corr->clear();
     Muon_eta->clear();
     Muon_phi->clear();
     Muon_p->clear();
@@ -621,31 +662,46 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_L->clear();
     BoostedJet_T->clear();
     BoostedJet_TLV->clear();
-    //evt type systematics
-    centralJesJer ->clear(); 
-    JesSFup ->clear(); 
-    JesSFdown ->clear();
-    JerSFup ->clear(); 
-    JerSFdown ->clear();
+
 
     //new var inizialize (scalars):
-    HLT_Photon200 = -999;
-    HLT_Ele35_WPTight_Gsf = -999;
+    //HLT_Ele27_eta2p1_WPLoose_Gsf = -999;
+    //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = -999;
     HLT_Ele115_CaloIdVT_GsfTrkIdT = -999;
+    HLT_Ele32_WPTight_Gsf = -999;
+    HLT_Photon200 = -999;
     HLT_TkMu50 = -999;
     HLT_Mu50 = -999;
     HLT_TkMu100 = -999;
     HLT_OldMu100 = -999;
 
-    PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999; 
+    PUWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999;
     Met_type1PF_pt = -999;
 
     numOfHighptMu=0; numOfLooseMu=0; numOfMediumMu=0; numOfTightMu=0;
 
     numOfHighptEle=0; numOfLooseEle=0; numOfMediumEle=0; numOfTightEle=0; numOfVetoEle=0;
 
+
     numOfJets_L=0; numOfJets_T=0; numOfJets_TLV=0;
     numOfBoostedJets_L=0; numOfBoostedJets_T=0; numOfBoostedJets_TLV=0; 
+
+    Ele1_pt=-999;  Ele1_eta=-999; Ele1_phi=-999; Ele1_energy=-999; Ele1_p=-999; Ele1_px=-999; Ele1_py=-999; Ele1_pz=-999;
+    Ele2_pt=-999; Ele2_eta=-999; Ele2_phi=-999; Ele2_energy=-999; Ele2_p=-999; Ele2_px=-999; Ele2_py=-999; Ele2_pz=-999;
+    Muon1_pt=-999;  Muon1_eta=-999; Muon1_phi=-999; Muon1_energy=-999; Muon1_p=-999; Muon1_px=-999; Muon1_py=-999; Muon1_pz=-999;
+    Muon2_pt=-999;  Muon2_eta=-999; Muon2_phi=-999; Muon2_energy=-999; Muon2_p=-999; Muon2_px=-999; Muon2_py=-999; Muon2_pz=-999;
+    BoostedJet1_pt=-999; BoostedJet1_eta=-999; BoostedJet1_phi=-999; BoostedJet1_energy=-999;
+    BoostedJet1_nJets=-999;
+    BoostedJet2_pt=-999; BoostedJet2_eta=-999; BoostedJet2_phi=-999; BoostedJet2_energy=-999;
+    BoostedJet2_nJets=-999;
+
+
+      
+    M_ele1ele2Bjet1 = -999;  
+    M_ele1ele2 = -999; M_elemu = -999; M_elemuBjet1 = -999; M_mu1mu2 = -999; M_mu1mu2Bjet1 = -999;
+    S_T_BJ = -999; S_T_jj = -999;
+    M_leplep = -999; M_leplepBjet = -999; M_leplepBjetBjet = -999;
+    M_lep2Bjet = -999;
 
     //evt_type = -999;
     eejj_l = 0; emujj_l = 0; mumujj_l = 0; muejj_l = 0;
@@ -653,17 +709,17 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
 
     
-   HLT_Photon200 = rHLT_Photon200;
-   HLT_Ele35_WPTight_Gsf = rHLT_Ele35_WPTight_Gsf;
+   //HLT_Ele27_eta2p1_WPLoose_Gsf = rHLT_Ele27_eta2p1_WPLoose_Gsf;
+   //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL;
    HLT_Ele115_CaloIdVT_GsfTrkIdT = rHLT_Ele115_CaloIdVT_GsfTrkIdT;
+   HLT_Ele32_WPTight_Gsf = rHLT_Ele32_WPTight_Gsf;
+   HLT_Photon200 = rHLT_Photon200; 
    HLT_Mu50 = rHLT_Mu50;
    HLT_TkMu50 = rHLT_TkMu50;
    HLT_OldMu100 = rHLT_OldMu100;
    HLT_TkMu100 = rHLT_TkMu100;
 
-   PUWeight = rPUWeight;
-   MinBiasUpWeight = rMinBiasUpWeight;
-   MinBiasDownWeight = rMinBiasDownWeight;
+    PUWeight = rPUWeight;
     //trueInteractions = rtrueInteractions;
     if(rtrueInteractions > 0) trueInteractions = (double)rtrueInteractions;
     nBestVtx = rnBestVtx;
@@ -671,7 +727,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     lumi_wgt = get_wgtlumi(Input);
    
    
-   int num = 0;
+
    for(uint mu_en = 0; mu_en<rMuon_pt->size(); mu_en++){
     if( rMuon_pt->at(mu_en)>20 && fabs(rMuon_eta->at(mu_en))<2.4){
      if(rMuon_loose->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1) numOfLooseMu++;
@@ -680,17 +736,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      if(rMuon_isHighPt->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1){
       numOfHighptMu++;
       Muon_pt->push_back(rMuon_pt->at(mu_en));
-      
-      if(rMuon_pt->at(mu_en) < 200 ){
-       double mcSF = rc.kSmearMC(rMuon_charge->at(mu_en), rMuon_pt->at(mu_en), rMuon_eta->at(mu_en), rMuon_phi->at(mu_en), rMuon_TLayers->at(mu_en), gRandom->Rndm(), 0, 0);
-       Muon_pt_corr->push_back(rMuon_pt->at(mu_en)*mcSF);
-      }
-      else{
-       num = 49 * gRandom->Rndm();
-       float pt_corr = GE->GEScaleCorrPt(170000+(int)num, (float) rMuon_pt->at(mu_en), (float) rMuon_eta->at(mu_en),(float) rMuon_phi->at(mu_en), (int) rMuon_charge->at(mu_en), false);
-       Muon_pt_corr->push_back((double) pt_corr);
-      }
-
       Muon_eta->push_back(rMuon_eta->at(mu_en));
       Muon_phi->push_back(rMuon_phi->at(mu_en));
       Muon_p->push_back(rMuon_p->at(mu_en));
@@ -821,7 +866,12 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     
     
    
-  
+    
+
+    //Jet_isID = JetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rJet_neutralHadEnergyFraction->at(jet_en),
+      //         rJet_neutralEmEnergyFraction->at(jet_en),rJet_numberOfConstituents->at(jet_en),rJet_muonEnergyFraction->at(jet_en),
+        //       rJet_chargedHadronEnergyFraction->at(jet_en),rJet_chargedMultiplicity->at(jet_en),rJet_chargedEmEnergyFraction->at(jet_en));
+    // cout << "Passa il jet: " <<Jet_isID << endl;
     count = 0;
     if(Jet_isIDT==true){
      //cout << "pt dei jet dopo la sel: " <<JetCorr.Pt() << endl;
@@ -857,10 +907,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    numOfJets_T=countJets_T;
    numOfJets_TLV=countJets_TLV;
 
-
-   /////////////////////////////////////////////////
-   ///////corrections on boosted jets with systematics up and down
-   ////////////////////////////////////////////////
    bool BoostedJet_isIDL=false;
    bool BoostedJet_isIDT=false;
    bool BoostedJet_isIDTLV=false;
@@ -869,79 +915,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    int countBoostedJets_L=0;
    int countBoostedJets_T=0;
    int countBoostedJets_TLV=0;
-   //////////////////////////////////////
-    double JesSF=0;
-    double JerSF=0;
-
-
    for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
-
-     for (int BJETSF = 0; BJETSF < 5; BJETSF++){//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2, JerUp=3, JerDown=4)
-  
-      ///////////////////////////////////////boosted jet cleaning and definition starts here
-       BoostedJet_isIDL=false;
-       BoostedJet_isIDT=false;
-       BoostedJet_isIDTLV=false;
-      //bool BoostedJet_isID=false;
-       countBoostedJets=0;
-       countBoostedJets_L=0;
-       countBoostedJets_T=0;
-       countBoostedJets_TLV=0;
-       ////jes/jer syst
-       JesSF=0;
-       JerSF=0;
-
-        if(BJETSF==0){      //BJet corrections with central values of JER/JES:
-            JesSF = rBoostedJet_JesSF->at(jet_en);
-            JerSF = rBoostedJet_JerSF->at(jet_en);
-            centralJesJer->push_back(1) ;
-            JesSFup->push_back(0);
-            JesSFdown->push_back(0);
-            JerSFup->push_back(0);
-            JerSFdown->push_back(0);
-          }
-        if(BJETSF==1){      //BJet corrections with JES SF UP:
-            JesSF = rBoostedJet_JesSFup->at(jet_en);
-            JerSF = rBoostedJet_JerSF->at(jet_en);
-            centralJesJer->push_back(0);
-            JesSFup->push_back(1);
-            JesSFdown->push_back(0);
-            JerSFup->push_back(0);
-            JerSFdown->push_back(0);
-        }
-        if(BJETSF==2){      //BJet corrections with JES SF DOWN:
-            JesSF = rBoostedJet_JesSFdown->at(jet_en);
-            JerSF = rBoostedJet_JerSF->at(jet_en);
-            centralJesJer->push_back(0);
-            JesSFup->push_back(0);
-            JesSFdown->push_back(1);
-            JerSFup->push_back(0);
-            JerSFdown->push_back(0);
-        }
-        if(BJETSF==3){      //BJet corrections with central values of JER/JES:
-            JesSF = rBoostedJet_JesSF->at(jet_en);
-            JerSF = rBoostedJet_JerSFup->at(jet_en);
-            centralJesJer->push_back(0) ;
-            JesSFup->push_back(0);
-            JesSFdown->push_back(0);
-            JerSFup->push_back(1);
-            JerSFdown->push_back(0);
-          }
-        if(BJETSF==4){      //BJet corrections with central values of JER/JES:
-            JesSF = rBoostedJet_JesSF->at(jet_en);
-            JerSF = rBoostedJet_JerSFdown->at(jet_en);
-            centralJesJer->push_back(0) ;
-            JesSFup->push_back(0);
-            JesSFdown->push_back(0);
-            JerSFup->push_back(0);
-            JerSFdown->push_back(1);
-          }
-          
-      
-        //BJet SFs:
-        double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*JesSF*JerSF;
-        double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*JesSF*JerSF;
-
+    //BJet corrections:
+    double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
+    double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
     TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
     //BJet ID:
     BoostedJet_isIDL = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
@@ -1016,6 +993,12 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     else BoostedJet_TLV->push_back(false);
 
     
+   
+    // BoostedJet_isID = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
+    //rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
+    //rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
+    //rBoostedJet_chargedEmEnergyFraction->at(jet_en));
+    //cout << "Passa il boostedjet: " <<Jet_isID << endl;
 
     count = 0;
     if(BoostedJet_isIDT==true){
@@ -1047,10 +1030,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    numOfBoostedJets_T=countBoostedJets_T;
    numOfBoostedJets_TLV=countBoostedJets_TLV;
 
-    ///////
-    }//end for on BJETSF for systematics
-    //////////
-
+   //if(!(numOfBoostedJets_T>=1)) continue;
 
    //Iso muon counting
     IsoTracker_L=0; IsoTracker_T=0; IsoTrack_L=0; IsoTrack_T=0; IsoPF_L=0; IsoPF_T=0;
@@ -1086,10 +1066,149 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_nJets->push_back(BJJ_count);
    }
    
+    if(patElectron_pt->size()>0){
+     Ele1_pt=patElectron_pt->at(0);
+     Ele1_eta=patElectron_eta->at(0);
+     Ele1_phi=patElectron_phi->at(0);
+     Ele1_energy=patElectron_energy->at(0);
+     Ele1_px=patElectron_px->at(0);
+     Ele1_py=patElectron_py->at(0);
+     Ele1_pz=patElectron_pz->at(0);
+     Ele1_p=patElectron_p->at(0);
+ 
+     Ele1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0), patElectron_energy->at(0));
+   }
+    if(patElectron_pt->size()>1){
 
-///////////////////////////////////////
-///lepton scale factor part begins here
+     Ele2_pt=patElectron_pt->at(1);
+     Ele2_eta=patElectron_eta->at(1);
+     Ele2_phi=patElectron_phi->at(1);
+     Ele2_energy=patElectron_energy->at(1);
+     Ele2_px=patElectron_px->at(1);
+     Ele2_py=patElectron_py->at(1);
+     Ele2_pz=patElectron_pz->at(1);
+     Ele2_p=patElectron_p->at(1);
+   
+     Ele2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1), patElectron_energy->at(1));
+    }
+
+
+    if(Muon_pt->size()>0){
+     Muon1_pt=Muon_pt->at(0);
+     Muon1_eta=Muon_eta->at(0);
+     Muon1_phi=Muon_phi->at(0);
+     Muon1_energy=Muon_energy->at(0);
+     Muon1_px=Muon_px->at(0);
+     Muon1_py=Muon_py->at(0);
+     Muon1_pz=Muon_pz->at(0);
+     Muon1_p=Muon_p->at(0);
+
+     Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
+   }
+
+    if(Muon_pt->size()>1){
+
+     Muon2_pt=Muon_pt->at(1);
+     Muon2_eta=Muon_eta->at(1);
+     Muon2_phi=Muon_phi->at(1);
+     Muon2_energy=Muon_energy->at(1);
+     Muon2_px=Muon_px->at(1);
+     Muon2_py=Muon_py->at(1);
+     Muon2_pz=Muon_pz->at(1);
+     Muon2_p=Muon_p->at(1);
+
+     Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1), Muon_energy->at(1));
+    }
+
+    if(Jet_pt->size()>1){
+     if(eejj_l==1){
+      S_T_jj = Ele1_pt+Ele2_pt+Jet_pt->at(0)+Jet_pt->at(1);
+     }
+     if(mumujj_l==1){
+      S_T_jj = Muon1_pt+Muon2_pt+Jet_pt->at(0)+Jet_pt->at(1);
+     }
+     if(emujj_l==1 || muejj_l==1){
+      S_T_jj = Ele1_pt+Muon1_pt+Jet_pt->at(0)+Jet_pt->at(1);
+     }
+     
+    }
+    
+
+    if(BoostedJet_pt->size()>0){
+
+     BoostedJet1_pt=BoostedJet_pt->at(0);
+     BoostedJet1_eta=BoostedJet_eta->at(0);
+     BoostedJet1_phi=BoostedJet_phi->at(0);
+     BoostedJet1_energy=BoostedJet_energy->at(0);
+     BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
+     BoostedJet1_nJets=BoostedJet_nJets->at(0);
+     BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
+
+     if(eejj_l==1){
+      M_ele1ele2Bjet1 = (Ele1 + Ele2 + BoostedJet1).M();
+      M_leplepBjet=M_ele1ele2Bjet1;
+      M_lep2Bjet = (Ele2 + BoostedJet1).M();
+      S_T_BJ=Ele1_pt+Ele2_pt+BoostedJet1_pt;
+     }
+     if(mumujj_l==1){
+      M_mu1mu2Bjet1 = (Muon1 + Muon2 + BoostedJet1).M();
+      M_leplepBjet=M_mu1mu2Bjet1;
+      M_lep2Bjet = (Muon2 + BoostedJet1).M();
+      S_T_BJ=Muon1_pt+Muon2_pt+BoostedJet1_pt;
+     }
+     if(emujj_l==1 || muejj_l==1){
+      M_elemuBjet1=(Ele1 + Muon1 + BoostedJet1).M();
+      M_leplepBjet=M_elemuBjet1;
+      if(patElectron_pt->at(0)>Muon_pt->at(0)){M_lep2Bjet = (Muon1 + BoostedJet1).M();}
+      if(patElectron_pt->at(0)<Muon_pt->at(0)){M_lep2Bjet = (Ele1 + BoostedJet1).M();}
+      S_T_BJ=Ele1_pt+Muon1_pt+BoostedJet1_pt;
+     }
+     
+    }
+
+    if(BoostedJet_pt->size()>2){
+
+     BoostedJet2_pt=BoostedJet_pt->at(1);
+     BoostedJet2_eta=BoostedJet_eta->at(1);
+     BoostedJet2_phi=BoostedJet_phi->at(1);
+     BoostedJet2_energy=BoostedJet_energy->at(1);
+     BoostedJet2.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1), BoostedJet_energy->at(1));
+     BoostedJet2_nJets=BoostedJet_nJets->at(1);
+     BoostedJet2.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1), BoostedJet_energy->at(1));
+
+     if(eejj_l==1){
+      M_leplepBjetBjet = (Ele1 + Ele2 + BoostedJet1 + BoostedJet2).M();
+     }
+     if(mumujj_l==1){ 
+      M_leplepBjetBjet = (Muon1 + Muon2 + BoostedJet1 + BoostedJet2).M();
+     }
+     if(emujj_l==1 || muejj_l==1){
+      M_leplepBjetBjet=(Ele1 + Muon1 + BoostedJet1 + BoostedJet2).M();
+     }
+
+
+
+
+    }
+
+    
+
     if(eejj_l==1){
+     M_ele1ele2= (Ele1 + Ele2).M();
+     M_leplep=M_ele1ele2;     
+    }
+    if(mumujj_l==1){
+     M_mu1mu2= (Muon1 + Muon2).M();
+     M_leplep=M_mu1mu2;
+    }
+    if(emujj_l==1 || muejj_l==1){
+     //Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
+     M_elemu= (Ele1 + Muon1).M();
+     M_leplep=M_elemu;
+    }
+ 
+
+   if(eejj_l==1){
     std::tie(elesf_ele1, elesf_ele1_d, elesf_ele1_u)=elesf(patElectron_eta->at(0), patElectron_pt->at(0));
     std::tie(elesf_ele2, elesf_ele2_d, elesf_ele2_u)=elesf(patElectron_eta->at(1), patElectron_pt->at(1));
     lepsf_evt=elesf_ele1*elesf_ele2;
@@ -1109,8 +1228,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     lepsf_evt_d=elesf_ele1_d*musf_tot_mu1_d;
     lepsf_evt_u=elesf_ele1_u*musf_tot_mu1_u;
 
-   } 
-
+   }
    if(muejj_l==1){
     std::tie(elesf_ele1, elesf_ele1_d, elesf_ele1_u)=elesf(patElectron_eta->at(0), patElectron_pt->at(0));
     std::tie(musf_trigger_mu1, musf_trigger_mu1_d, musf_trigger_mu1_u)=musf_trigger(Muon_eta->at(0),Muon_pt->at(0));
@@ -1143,8 +1261,15 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     lepsf_evt=musf_tot_mu1*musf_tot_mu2;
     lepsf_evt_d=musf_tot_mu1_d*musf_tot_mu2_d;
     lepsf_evt_u=musf_tot_mu1_u*musf_tot_mu2_u;
-   
+ 
    }
+
+   if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1 && M_leplep>300) SRe=1;
+   if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt->at(0)>130 && numOfHighptMu==1 &&  Muon_pt->at(0)>35 && numOfBoostedJets>=1 && M_leplep>300) TRe=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
+   if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1) DYRe=1;
+   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
 
 
    newtree->Fill();    
@@ -1195,156 +1320,145 @@ double deltaPhi(double phi1, double phi2) {
 }
 
 double CalculatePileupWeight(int trueInteractions){
- /*double data[] =  {5.64297e-05,0.000269623,0.000382956,0.000552844,0.000979931,0.00231634,0.0072801,0.0281133,0.0770196,0.130953,0.169536,0.182158,0.161879,0.116249,0.067104,0.0316937,0.0130125,0.00540404,0.00265731,0.00140593,0.000649204,0.000236783,6.7861e-05,1.63211e-05,3.82396e-06,1.03356e-06,3.33506e-07,1.1967e-07,4.49699e-08,1.70463e-08,6.34643e-09,2.28001e-09,7.82427e-10,2.55149e-10,7.88717e-11,2.30861e-11,6.39564e-12,1.67664e-12,4.15902e-13,9.76172e-14,2.16793e-14,4.55562e-15,9.05813e-16,1.70419e-16,3.03394e-17,5.11017e-18,8.14821e-19,1.20894e-19,2.20432e-20,0,0};
- double mc[] = {0.000108643,0.000388957,0.000332882,0.00038397,0.000549167,0.00105412,0.00459007,0.0210314,0.0573688,0.103986,0.142369,0.157729,0.147685,0.121027,0.08855,0.0582866,0.0348526,0.019457,0.0107907,0.00654313,0.00463195,0.00370927,0.0031137,0.00261141,0.00215499,0.00174491,0.00138268,0.00106731,0.000798828,0.00057785,0.00040336,0.00027161,0.000176535,0.00011092,6.75502e-05,4.00323e-05,2.32123e-05,1.32585e-05,7.51611e-06,4.25902e-06,2.42513e-06,1.39077e-06,8.02452e-07,4.64159e-07,2.67845e-07,1.5344e-07,8.68966e-08,4.84931e-08,2.6606e-08,1.433e-08};
+/* double data[] = {0.0 , 4.54817e-06 , 1.60102e-05 , 5.08879e-05 , 0.000114334 , 0.00020352 , 0.000317199 , 0.000468826 , 0.000682597 , 0.000966475 , 0.00134475 , 0.00188372 , 0.00264841 , 0.00369112 , 0.00504992 , 0.00675607 , 0.00884038 , 0.0113177 , 0.0141623 , 0.0172854 , 0.020527 , 0.0236734 , 0.0265085 , 0.0288834 , 0.0307635 , 0.0322212 , 0.0333835 , 0.0343773 , 0.0352956 , 0.0361851 , 0.0370513 , 0.0378689 , 0.0385948 , 0.039178 , 0.0395641 , 0.0396939 , 0.0395048 , 0.0389325 , 0.03792 , 0.0364284 , 0.034449 , 0.0320118 , 0.0291868 , 0.0260783 , 0.0228141 , 0.0195302 , 0.0163566 , 0.0134033 , 0.0107519 , 0.00845093 , 0.00651653 , 0.00493762 , 0.00368313 , 0.00271016 , 0.00197126 , 0.00142003 , 0.00101475 , 0.000720193 , 0.000507976 , 0.000356101 , 0.000247998 , 0.000171439 , 0.000117518 , 7.97901e-05 , 5.36043e-05 , 3.56038e-05 , 2.33662e-05 , 1.51476e-05 , 9.69945e-06 , 6.13591e-06 , 3.83617e-06 , 2.3714e-06 , 1.45016e-06 , 8.77675e-07 , 5.25911e-07 , 3.12064e-07 , 1.83377e-07 , 1.06696e-07 , 6.14494e-08 , 3.5015e-08 , 1.97293e-08 , 1.09854e-08 , 6.04058e-09 , 3.27806e-09 , 1.7545e-09 , 9.25626e-10 , 4.81087e-10 , 2.46212e-10 , 1.24024e-10 , 6.14672e-11 , 2.99629e-11 , 1.43615e-11 , 6.76687e-12 , 3.13368e-12 , 1.42603e-12 , 6.37614e-13 , 2.80107e-13 , 1.20911e-13 , 5.13038e-14 , 2.14199e-14}; 
+ double mc[] = {0.00056178559316322207, 0.0007578881923109293, 0.00089840730652213097, 0.0010038191685453057, 0.0011915955692529678, 0.0016831225948408246, 0.0027497191913425922, 0.0045576253905892372, 0.0069810771383345127, 0.0095816180109977722, 0.011853505857288837, 0.013561941683292389, 0.014868909493088722, 0.016164621338248253, 0.017800241708755493, 0.019943427294492722, 0.022553266957402229, 0.02537936344742775, 0.027978429570794106, 0.029862202703952789, 0.030737783759832382, 0.030647184699773788, 0.029888983815908432, 0.028840301558375359, 0.027826078236103058, 0.027054192498326302, 0.026599425822496414, 0.02642328292131424, 0.026400813832879066, 0.026344424113631248, 0.026030091568827629, 0.025283832103013992, 0.024102954193949699, 0.022694429382681847, 0.021359216421842575, 0.020321305841207504, 0.019643651321530342, 0.019244605675339699, 0.018951877951622009, 0.018589355051517487, 0.018086889758706093, 0.017514361068606377, 0.016997335478663445, 0.01660793274641037, 0.016348866745829582, 0.016209937632083893, 0.016200525686144829, 0.016327474266290665, 0.016558451578021049, 0.016807874664664268, 0.016936073079705238, 0.016756467521190643, 0.01605769619345665, 0.014654850587248802, 0.012486033141613007, 0.0097413137555122375, 0.0068911332637071609, 0.0044789197854697704, 0.0028035130817443132, 0.0017981450073421001, 0.0011986247263848782, 0.00078225688776001334, 0.00046188471606001258, 0.0002335387107450515, 9.8074830020777881e-05, 3.36361990775913e-05, 9.325763130618725e-06, 2.0754421257151989e-06, 3.6864730645902455e-07, 5.1980304505150343e-08, 5.7291127397718355e-09, 4.2278064382728076e-10, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; 
  double puw;
- puw=data[trueInteractions]/mc[trueInteractions];*/
- double puw_[] = {0 , 0.183457 , 3.93319 , 3.47116 , 2.49243 , 1.62497 , 1.51512 , 1.28793 , 1.27826 , 0.615853 , 1.4521 , 1.4977 , 1.48749 , 1.33118 , 1.16451 , 1.07903 , 1.05438 , 1.08066 , 1.12906 , 1.16582 , 1.18934 , 1.21282 , 1.23847 , 1.25965 , 1.27096 , 1.27269 , 1.2713 , 1.27087 , 1.26652 , 1.27448 , 1.25162 , 1.22131 , 1.16954 , 1.10903 , 1.03816 , 0.969435 , 0.911885 , 0.866817 , 0.834513 , 0.788387 , 0.750805 , 0.759161 , 0.793186 , 0.858359 , 0.958807 , 1.09434 , 1.25565 , 1.41966 , 1.49595 , 1.53056 , 1.46222 , 1.33677 , 1.1544 , 0.950569 , 0.749712 , 0.569796 , 0.410753 , 0.290011 , 0.198657 , 0.137646 , 0.0966403 , 0.0692323 , 0.0508594 , 0.0384435 , 0.0299599 , 0.0240952 , 0.0171203 , 0.0124799 , 0.0107685 , 0.00959733 , 0.00881253 , 0.00830998 , 0.0080177 , 0.00788486 , 0.0078748 , 0.00633739 , 0.00533376 , 0.00544378 , 0.00558372 , 0.00574419 , 0.00591607 , 0.00609016 , 0.00625719 , 0.00640824 , 0.00509469 , 0.00422809 , 0.00425921 , 0.00426563 , 0.00424672 , 0.00420331 , 0.00413744 , 0.00405199 , 0.00395025 , 0.00294307 , 0.00229606 , 0.00220006 , 0.0021014 , 0.00200168 , 0.00190217 , 0.00180383 , 0};
+ puw=data[trueInteractions]/mc[trueInteractions];
+*/
+ double puw_[] = {9686.56 , 13.2731 , 43.7711 , 18.688 , 12.5107 , 9.04181 , 6.57902 , 4.87346 , 3.62872 , 2.76274 , 2.22425 , 1.89967 , 1.7017 , 1.57883 , 1.50431 , 1.46451 , 1.44978 , 1.45098 , 1.4587 , 1.46369 , 1.45805 , 1.43709 , 1.40078 , 1.3533 , 1.30105 , 1.25009 , 1.20467 , 1.16697 , 1.13742 , 1.11537 , 1.0996 , 1.08877 , 1.0816 , 1.07683 , 1.07316 , 1.06908 , 1.06281 , 1.05246 , 1.03612 , 1.01213 , 0.979351 , 0.937295 , 0.886238 , 0.827196 , 0.761841 , 0.692342 , 0.6211 , 0.550495 , 0.482672 , 0.419357 , 0.361756 , 0.310542 , 0.265899 , 0.22761 , 0.195168 , 0.167896 , 0.145046 , 0.125873 , 0.109692 , 0.0959027 , 0.0840082 , 0.0736144 , 0.0644249 , 0.0562295 , 0.048887 , 0.0423067 , 0.03643 , 0.031215 , 0.0266245 , 0.0226187 , 0.0191526 , 0.0161753 , 0.0136325 , 0.0114695 , 0.00963313 , 0.00807454 , 0.00675025 , 0.00562281 , 0.00466074 , 0.00383815 , 0.00313397 , 0.00253121 , 0.0020162 , 0.00157798 , 0.00120787 , 0.000899112 , 0.000646511 , 0.000445842 , 0.000292888 , 0.000182388 , 0.000109393 , 6.25794e-05 , 3.42779e-05 , 1.80716e-05 , 9.22117e-06 , 4.57764e-06 , 2.22112e-06 , 1.05773e-06 , 4.96423e-07 , 2.30808e-07};
  double puw=puw_[trueInteractions];
  return puw;
 }
 
-std::tuple<double, double, double> elesf(double eta, double pt){
-//Electorn Sf for HEEPv7.0 taken from https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgammaRunIIRecommendations
-  double elesf=0,  elesf_d=0, elesf_u=0;
-  //Barrel (EB)
- if(fabs(eta) < 1.4442) elesf = 0.967; elesf_d = 0.966; elesf_u = 0.968; // stat 0.001
-  //Endcap (EE)
- if(fabs(eta) >= 1.566 && fabs(eta) < 2.5)elesf = 0.973; elesf_d = 0.971; elesf_u = 0.975; // stat 0.002
+// TO CHECK
+
+std::tuple<double, double, double>  elesf(double eta, double pt){
+ double elesf=0, elesf_d=0, elesf_u=0;
+ if(fabs(eta) < 1.4442) elesf = 0.989; elesf_d = 0.975; elesf_u = 1.003; // stat 0.001 // syst 0.014
+ if(fabs(eta) >= 1.566 && fabs(eta) < 2.5)elesf = 0.982; elesf_d = 0.968; elesf_u = 0.996; // stat 0.001 syst 0.014
+
  return std::make_tuple(elesf, elesf_d, elesf_u);
-
  
-//syst err:
-//  - barrel:
-//      1% for pT < 90 GeV
-//      1-3% linearly increasing for 90 GeV < pT < 1 TeV
-//      3% for pT > 1 TeV
-//  - endcap:
-//      2% for pT < 90 GeV
-//      2-5% linearly increasing for 90 GeV < pT < 300 GeV
-//      5% for pT > 300 GeV 
-//uncertainty: EB ET < 90 GeV: 1% else min(1+(ET-90)*0.0022)%,3%)
-//uncertainty: EE ET < 90 GeV: 1% else min(1+(ET-90)*0.0143)%,4%)
-     
 }
-
 std::tuple<double, double, double> musf_trigger(double eta, double pt){
- double musf=0, musf_d = 0, musf_u=0;
- // http://kplee.web.cern.ch/kplee/TagProbe/94X/v20180202_MergingHighPtBins/theJSONfile_RunBtoF_Nov17Nov2017.json
- // Mu50_PtEtaBins
+ double musf=0, musf_d=0, musf_u=0;
+ // Mu50_OR_OldMu100_OR_TkMu100_PtEtaBins
  if(fabs(eta)>0.0 && fabs(eta)<=0.9){
-    if(pt > 52.0 && pt <= 55.0) {musf=0.930254399776; musf_d=0.929924274861; musf_u=0.930584524692;}
-    if(pt > 60.0 && pt <= 120.0) {musf=0.932169437408; musf_d=0.931820023365; musf_u=0.932518851452;}
-    if(pt > 120.0 && pt <= 200.0) {musf=0.918701291084; musf_d=0.917091113696; musf_u=0.920311468472;}
-    if(pt > 55.0 && pt <= 60.0) {musf=0.93343102932; musf_d=0.933070781534; musf_u=0.933791277105;}
-    if(pt > 200.0 ) {musf=0.901651918888; musf_d=0.898616010706; musf_u=0.90468782707;}
+    if(pt > 56.0 && pt <= 60.0) {musf=0.938687980175; musf_d=0.93833995353; musf_u=0.93903600682;} 
+    if(pt > 60.0 && pt <= 120.0) {musf=0.93756788969; musf_d=0.937249553514; musf_u=0.937886225867;} 
+    if(pt > 120.0 && pt <= 200.0) {musf=0.933091819286; musf_d=0.931770048867; musf_u=0.934413589706;} 
+    if(pt > 52.0 && pt <= 56.0) {musf=0.938498675823; musf_d=0.938245295013; musf_u=0.938752056633;} 
+    if(pt > 200.0 && pt <= 300.0) {musf=0.920213341713; musf_d=0.91736017225; musf_u=0.923066511175;} 
+    if(pt > 300.0 ) {musf=0.899329483509; musf_d=0.893048536461; musf_u=0.905610430557;} 
 }
 if(fabs(eta)>1.2 && fabs(eta)<=2.1){
-    if(pt > 52.0 && pt <= 55.0) {musf=0.836993277073; musf_d=0.836453855892; musf_u=0.837532698254;}
-    if(pt > 60.0 && pt <= 120.0) {musf=0.889756679535; musf_d=0.889265652849; musf_u=0.89024770622;}
-    if(pt > 120.0 && pt <= 200.0) {musf=0.888548195362; musf_d=0.886023400242; musf_u=0.891072990483;}
-    if(pt > 55.0 && pt <= 60.0) {musf=0.873748421669; musf_d=0.873206665436; musf_u=0.874290177902;}
-    if(pt > 200.0 ) {musf=0.881914794445; musf_d=0.877418413606; musf_u=0.886411175284;}
+    if(pt > 56.0 && pt <= 60.0) {musf=0.919665038586; musf_d=0.919207775273; musf_u=0.920122301899;} 
+    if(pt > 60.0 && pt <= 120.0) {musf=0.921822488308; musf_d=0.921462448847; musf_u=0.922182527769;} 
+    if(pt > 120.0 && pt <= 200.0) {musf=0.925500690937; musf_d=0.924068493559; musf_u=0.926932888315;} 
+    if(pt > 52.0 && pt <= 56.0) {musf=0.915318489075; musf_d=0.91498419726; musf_u=0.915652780889;} 
+    if(pt > 200.0 && pt <= 300.0) {musf=0.915203690529; musf_d=0.911871659153; musf_u=0.918535721904;} 
+    if(pt > 300.0 ) {musf=0.907234668732; musf_d=0.8991807515; musf_u=0.915288585964;} 
 }
 if(fabs(eta)>2.1 && fabs(eta)<=2.4){
-    if(pt > 52.0 && pt <= 55.0) {musf=0.620357394218; musf_d=0.618793365172; musf_u=0.621921423265;}
-    if(pt > 60.0 && pt <= 120.0) {musf=0.778689265251; musf_d=0.777066086598; musf_u=0.780312443904;}
-    if(pt > 120.0 && pt <= 200.0) {musf=0.801188826561; musf_d=0.792672892353; musf_u=0.809704760769;}
-    if(pt > 55.0 && pt <= 60.0) {musf=0.716204881668; musf_d=0.714579276965; musf_u=0.717830486371;}
-    if(pt > 200.0 ) {musf=0.782012581825; musf_d=0.765359195866; musf_u=0.798665967784;}
+    if(pt > 56.0 && pt <= 60.0) {musf=0.825172126293; musf_d=0.823725066615; musf_u=0.826619185971;} 
+    if(pt > 60.0 && pt <= 120.0) {musf=0.83876734972; musf_d=0.837654823353; musf_u=0.839879876087;} 
+    if(pt > 120.0 && pt <= 200.0) {musf=0.850268900394; musf_d=0.845156414609; musf_u=0.85538138618;} 
+    if(pt > 52.0 && pt <= 56.0) {musf=0.801114976406; musf_d=0.800074921797; musf_u=0.802155031015;} 
+    if(pt > 200.0 && pt <= 300.0) {musf=0.833747982979; musf_d=0.811180599293; musf_u=0.856315366665;} 
+    if(pt > 300.0 ) {musf=0.820496737957; musf_d=0.790097492647; musf_u=0.850895983267;} 
 }
 if(fabs(eta)>0.9 && fabs(eta)<=1.2){
-    if(pt > 52.0 && pt <= 55.0) {musf=0.902984380722; musf_d=0.902306579791; musf_u=0.903662181653;}
-    if(pt > 60.0 && pt <= 120.0) {musf=0.908429205418; musf_d=0.90771059387; musf_u=0.909147816965;}
-    if(pt > 120.0 && pt <= 200.0) {musf=0.888775646687; musf_d=0.885662231221; musf_u=0.891889062152;}
-    if(pt > 55.0 && pt <= 60.0) {musf=0.911294996738; musf_d=0.910564175461; musf_u=0.912025818016;}
-    if(pt > 200.0) {musf=0.864663362503; musf_d=0.858414627648; musf_u=0.870912097358;}
+    if(pt > 56.0 && pt <= 60.0) {musf=0.944563567638; musf_d=0.943948321534; musf_u=0.945178813743;} 
+    if(pt > 60.0 && pt <= 120.0) {musf=0.942234635353; musf_d=0.941719615723; musf_u=0.942749654983;} 
+    if(pt > 120.0 && pt <= 200.0) {musf=0.93848502636; musf_d=0.936643039949; musf_u=0.94032701277;} 
+    if(pt > 52.0 && pt <= 56.0) {musf=0.942913889885; musf_d=0.942485997478; musf_u=0.943341782292;} 
+    if(pt > 200.0 && pt <= 300.0) {musf=0.921368479729; musf_d=0.916312795903; musf_u=0.926424163554;} 
+    if(pt > 300.0 ) {musf=0.887214004993; musf_d=0.865580096227; musf_u=0.90884791376;} 
 }
 
-return std::make_tuple(musf, musf_d, musf_u);
-
+ //https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json
+ 
+ return std::make_tuple(musf, musf_d, musf_u);
 }
-
 std::tuple<double, double, double> musf_ID(double eta, double pt){
- double musf=0, musf_d = 0, musf_u=0;
- // https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ID.json
- //  NUM_LooseID_DEN_genTracks
+ double musf=0, musf_d=0, musf_u = 0;
  if(fabs(eta)>1.20 && fabs(eta)<=2.10){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.999909632675; musf_d=0.997890220606; musf_u=1.00192904474;}
-    if(pt > 50.00 && pt <= 60.00) {musf=0.9980997518; musf_d=0.997415566098; musf_u=0.998783937502;}
-    if(pt > 25.00 && pt <= 30.00) {musf=0.996435081688; musf_d=0.995555149035; musf_u=0.997315014341;}
-    if(pt > 60.00 ) {musf=0.999389952862; musf_d=0.998021759432; musf_u=1.00075814629;}
-    if(pt > 30.00 && pt <= 40.00) {musf=1.00087087236; musf_d=1.00058473598; musf_u=1.00115700874;}
-    if(pt > 40.00 && pt <= 50.00) {musf=0.999715034719; musf_d=0.999515670125; musf_u=0.999914399312;}
+    if(pt > 20.00 && pt <= 25.00) {musf=0.992233418804; musf_d=0.991358229661; musf_u=0.993108607947;} 
+    if(pt > 30.00 && pt <= 40.00) {musf=0.992206583109; musf_d=0.990860946354; musf_u=0.993552219864;} 
+    if(pt > 25.00 && pt <= 30.00) {musf=0.992317478607; musf_d=0.989878937667; musf_u=0.994756019547;} 
+    if(pt > 60.00) {musf=0.991019552395; musf_d=0.99028841454; musf_u=0.991750690249;} 
+    if(pt > 40.00 && pt <= 50.00) {musf=0.991597790263; musf_d=0.991406311727; musf_u=0.9917892688;} 
+    if(pt > 50.00 && pt <= 60.00) {musf=0.99251276254; musf_d=0.99154663412; musf_u=0.993478890961;} 
 }
 if(fabs(eta)>2.10 && fabs(eta)<=2.40){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.994467640194; musf_d=0.990334008718; musf_u=0.99860127167;}
-    if(pt > 50.00 && pt <= 60.00) {musf=0.994452508579; musf_d=0.991732765729; musf_u=0.997172251428;}
-    if(pt > 25.00 && pt <= 30.00) {musf=0.992795879929; musf_d=0.990088935767; musf_u=0.99550282409;}
-    if(pt > 60.00 ) {musf=0.998280825416; musf_d=0.992878998183; musf_u=1.00368265265;}
-    if(pt > 30.00 && pt <= 40.00) {musf=0.994299301303; musf_d=0.993654733806; musf_u=0.9949438688;}
-    if(pt > 40.00 && pt <= 50.00) {musf=0.995255789039; musf_d=0.991721733391; musf_u=0.998789844687;}
+    if(pt > 20.00 && pt <= 25.00) {musf=0.979723054239; musf_d=0.975906570659; musf_u=0.983539537819;} 
+    if(pt > 30.00 && pt <= 40.00) {musf=0.977784875705; musf_d=0.976729331123; musf_u=0.978840420287;} 
+    if(pt > 25.00 && pt <= 30.00) {musf=0.978150050884; musf_d=0.97505308891; musf_u=0.981247012857;} 
+    if(pt > 60.00 ) {musf=0.973999267646; musf_d=0.968612061225; musf_u=0.979386474066;} 
+    if(pt > 40.00 && pt <= 50.00) {musf=0.977779536702; musf_d=0.975757480068; musf_u=0.979801593335;} 
+    if(pt > 50.00 && pt <= 60.00) {musf=0.977008043821; musf_d=0.974001702123; musf_u=0.980014385518;} 
 }
 if(fabs(eta)>0.90 && fabs(eta)<=1.20){
-    if(pt > 20.00 && pt <= 25.00) {musf=1.0021513273; musf_d=1.00091126503; musf_u=1.00339138957;}
-    if(pt > 50.00 && pt <= 60.00) {musf=0.998273907575; musf_d=0.997324814032; musf_u=0.999223001119;}
-    if(pt > 25.00 && pt <= 30.00) {musf=0.999742612926; musf_d=0.997403698369; musf_u=1.00208152748;}
-    if(pt > 60.00 ) {musf=0.999236708166; musf_d=0.996915999261; musf_u=1.00155741707;}
-    if(pt > 30.00 && pt <= 40.00) {musf=1.00191251092; musf_d=1.00151950453; musf_u=1.00230551731;}
-    if(pt > 40.00 && pt <= 50.00) {musf=0.999689283029; musf_d=0.999437590921; musf_u=0.999940975138;}
+    if(pt > 20.00 && pt <= 25.00) {musf=0.98807789497; musf_d=0.982808054192; musf_u=0.993347735747;} 
+    if(pt > 30.00 && pt <= 40.00) {musf=0.986166209201; musf_d=0.98269166625; musf_u=0.989640752151;} 
+    if(pt > 25.00 && pt <= 30.00) {musf=0.985826979495; musf_d=0.983877978383; musf_u=0.987775980606;} 
+    if(pt > 60.00) {musf=0.98512982961; musf_d=0.982777851358; musf_u=0.987481807862;} 
+    if(pt > 40.00 && pt <= 50.00) {musf=0.986888639637; musf_d=0.986415271008; musf_u=0.987362008266;} 
+    if(pt > 50.00 && pt <= 60.00) {musf=0.985780303148; musf_d=0.984494504903; musf_u=0.987066101393;} 
 }
 if(fabs(eta)>0.00 && fabs(eta)<=0.90){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.998018670374; musf_d=0.995317185753; musf_u=1.000720155;}
-    if(pt > 50.00 && pt <= 60.00) {musf=0.998013142164; musf_d=0.997365702043; musf_u=0.998660582285;}
-    if(pt > 25.00 && pt <= 30.00) {musf=0.99719721481; musf_d=0.996196419608; musf_u=0.998198010013;}
-    if(pt > 60.00 ) {musf=1.00029091021; musf_d=0.999521625371; musf_u=1.00106019506;}
-    if(pt > 30.00 && pt <= 40.00) {musf=1.00251468244; musf_d=1.00158408487; musf_u=1.00344528001;}
-    if(pt > 40.00 && pt <= 50.00) {musf=1.00025688345; musf_d=1.00014814553; musf_u=1.00036562138;}
+    if(pt > 20.00 && pt <= 25.00) {musf=0.992114065208; musf_d=0.988810661367; musf_u=0.99541746905;} 
+    if(pt > 30.00 && pt <= 40.00) {musf=0.992251573219; musf_d=0.991483268497; musf_u=0.993019877942;} 
+    if(pt > 25.00 && pt <= 30.00) {musf=0.992424702773; musf_d=0.991204074869; musf_u=0.993645330676;} 
+    if(pt > 60.00) {musf=0.992263125763; musf_d=0.98975244503; musf_u=0.994773806497;} 
+    if(pt > 40.00 && pt <= 50.00) {musf=0.992671202275; musf_d=0.992210564854; musf_u=0.993131839696;} 
+    if(pt > 50.00 && pt <= 60.00) {musf=0.992860395329; musf_d=0.992210501593; musf_u=0.993510289064;} 
 }
-
- return std::make_tuple(musf, musf_d, musf_u);
-
+return std::make_tuple(musf, musf_d, musf_u);
+//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018/jsonfiles/RunABCD_SF_ID.json
+////NUM_HighPtID_DEN_TrackerMuons
 }
 
 std::tuple<double, double, double> musf_iso(double eta, double pt){
  double musf=0, musf_d = 0, musf_u=0;
-  // https://twiki.cern.ch/twiki/pub/CMS/MuonReferenceEffs2017/RunBCDEF_SF_ISO.json
-  // NUM_LooseRelIso_DEN_LooseID
- if(fabs(eta)>1.20 && fabs(eta)<=2.10){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.996818092334; musf_d=0.99517286298; musf_u=0.998463321688;}
-    if(pt > 50.00 && pt <= 60.00) {musf=0.999785897107; musf_d=0.999547566797; musf_u=1.00002422742;}
-    if(pt > 25.00 && pt <= 30.00) {musf=0.999027463031; musf_d=0.998100398859; musf_u=0.999954527203;}
-    if(pt > 60.00 ) {musf=1.00042884607; musf_d=0.999901224768; musf_u=1.00095646736;}
-    if(pt > 30.00 && pt <= 40.00) {musf=0.998857270926; musf_d=0.998575245542; musf_u=0.99913929631;}
-    if(pt > 40.00 && pt <= 50.00) {musf=0.999358772799; musf_d=0.999270468436; musf_u=0.999447077162;}
+
+if(fabs(eta)>1.20 && fabs(eta)<=2.10){
+    if(pt > 20.00 && pt <= 25.00) {musf=1.01332153977; musf_d=1.01153407319; musf_u=1.01510900634;} 
+    if(pt > 50.00 && pt <= 60.00) {musf=1.00043542086; musf_d=1.00021447074; musf_u=1.00065637098;} 
+    if(pt > 25.00 && pt <= 30.00) {musf=1.0067858969; musf_d=1.00575615683; musf_u=1.00781563697;} 
+    if(pt > 60.00 ) {musf=1.00026638981; musf_d=0.999891916291; musf_u=1.00064086333;} 
+    if(pt > 30.00 && pt <= 40.00) {musf=1.00206951044; musf_d=1.00177510046; musf_u=1.00236392043;} 
+    if(pt > 40.00 && pt <= 50.00) {musf=1.00070606826; musf_d=1.00061431593; musf_u=1.0007978206;} 
 }
 if(fabs(eta)>2.10 && fabs(eta)<=2.40){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.997637930705; musf_d=0.995461716077; musf_u=0.999814145334;}
-    if(pt > 50.00 && pt <= 60.00) {musf=1.00000739502; musf_d=0.99949170477; musf_u=1.00052308527;}
-    if(pt > 25.00 && pt <= 30.00) {musf=0.999041108554; musf_d=0.997830337383; musf_u=1.00025187972;}
-    if(pt > 60.00 ) {musf=0.999185175032; musf_d=0.998316089714; musf_u=1.00005426035;}
-    if(pt > 30.00 && pt <= 40.00) {musf=0.998931511711; musf_d=0.99854437082; musf_u=0.999318652602;}
-    if(pt > 40.00 && pt <= 50.00) {musf=0.999656907198; musf_d=0.9991628247; musf_u=1.0001509897;}
+    if(pt > 20.00 && pt <= 25.00) {musf=1.02755690591; musf_d=1.02510850063; musf_u=1.0300053112;} 
+    if(pt > 50.00 && pt <= 60.00) {musf=1.00099814505; musf_d=1.00048117401; musf_u=1.00151511608;} 
+    if(pt > 25.00 && pt <= 30.00) {musf=1.01433797915; musf_d=1.01280888126; musf_u=1.01586707704;} 
+    if(pt > 60.00) {musf=1.00149304402; musf_d=1.00019701025; musf_u=1.00278907779;} 
+    if(pt > 30.00 && pt <= 40.00) {musf=1.00544198659; musf_d=1.0046167258; musf_u=1.00626724738;} 
+    if(pt > 40.00 && pt <= 50.00) {musf=1.00164602234; musf_d=1.00144183925; musf_u=1.00185020544;} 
 }
 if(fabs(eta)>0.90 && fabs(eta)<=1.20){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.994565683675; musf_d=0.990536307593; musf_u=0.998595059757;}
-    if(pt > 50.00 && pt <= 60.00) {musf=0.999415455351; musf_d=0.998980258351; musf_u=0.99985065235;}
-    if(pt > 25.00 && pt <= 30.00) {musf=0.993159025857; musf_d=0.991126914021; musf_u=0.995191137694;}
-    if(pt > 60.00 ) {musf=1.00018891743; musf_d=0.999503267497; musf_u=1.00087456736;}
-    if(pt > 30.00 && pt <= 40.00) {musf=0.997442209969; musf_d=0.996915940894; musf_u=0.997968479043;}
-    if(pt > 40.00 && pt <= 50.00) {musf=0.998804834864; musf_d=0.998651209285; musf_u=0.998958460444;}
+    if(pt > 20.00 && pt <= 25.00) {musf=0.99535637006; musf_d=0.992016056227; musf_u=0.998696683893;} 
+    if(pt > 50.00 && pt <= 60.00) {musf=0.999672413322; musf_d=0.999306753652; musf_u=1.00003807299;} 
+    if(pt > 25.00 && pt <= 30.00) {musf=0.995806667279; musf_d=0.99402215246; musf_u=0.997591182098;} 
+    if(pt > 60.00 ) {musf=0.99996063706; musf_d=0.999371993048; musf_u=1.00054928107;} 
+    if(pt > 30.00 && pt <= 40.00) {musf=0.997686459591; musf_d=0.997262242443; musf_u=0.99811067674;} 
+    if(pt > 40.00 && pt <= 50.00) {musf=0.99906437584; musf_d=0.993292940652; musf_u=1.00483581103;} 
 }
 if(fabs(eta)>0.00 && fabs(eta)<=0.90){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.992595371452; musf_d=0.990222434525; musf_u=0.99496830838;}
-    if(pt > 50.00 && pt <= 60.00) {musf=0.999640008118; musf_d=0.999416213439; musf_u=0.999863802797;}
-    if(pt > 25.00 && pt <= 30.00) {musf=0.996364229898; musf_d=0.995262680877; musf_u=0.997465778918;}
-    if(pt > 60.00 ) {musf=1.0000774755; musf_d=0.999724740833; musf_u=1.00043021016;}
-    if(pt > 30.00 && pt <= 40.00) {musf=0.99831176374; musf_d=0.998030024077; musf_u=0.998593503404;}
-    if(pt > 40.00 && pt <= 50.00) {musf=0.999363610713; musf_d=0.999270947765; musf_u=0.999456273661;}
+    if(pt > 20.00 && pt <= 25.00) {musf=0.991909930463; musf_d=0.989780791748; musf_u=0.994039069179;} 
+    if(pt > 50.00 && pt <= 60.00) {musf=0.999439565929; musf_d=0.99925196311; musf_u=0.999627168747;} 
+    if(pt > 25.00 && pt <= 30.00) {musf=0.995306030346; musf_d=0.994243518261; musf_u=0.99636854243;} 
+    if(pt > 60.00 ) {musf=0.999731471841; musf_d=0.999432537609; musf_u=1.00003040607;} 
+    if(pt > 30.00 && pt <= 40.00) {musf=0.997693660467; musf_d=0.997430607352; musf_u=0.997956713582;} 
+    if(pt > 40.00 && pt <= 50.00) {musf=0.999160897258; musf_d=0.992311645625; musf_u=1.00601014889;} 
 }
+ 
+//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018/jsonfiles/RunABCD_SF_ISO.json
+//NUM_LooseRelIso_DEN_LooseID
 
  return std::make_tuple(musf, musf_d, musf_u);
-
 }
 
 double get_wgtlumi(string FileName){
@@ -1354,39 +1468,37 @@ double get_wgtlumi(string FileName){
 
  // CHECKED OK!! 
  
- //wgt = xsec_in_pb / number_of_events_from_DAS
- if(FileName.find("TT") != std::string::npos) wgt=88.29/8705576; //wgt=88.29/64310000;  
- if(FileName.find("DY") != std::string::npos) wgt=6077.0/97373487; //wgt=6077/100194597;
- if(FileName.find("_ST_") != std::string::npos) wgt=32.64/7581624; //wgt=32.64/9598000; 
- if(FileName.find("_SaT_") != std::string::npos) wgt=32.70/7780870; //wgt=32.70/7623000; 
- if(FileName.find("WW") != std::string::npos) wgt=118.7/7791498; ///wgt=118.7/7850000; 
- if(FileName.find("WZ") != std::string::npos) wgt=47.13/3050057; //wgt=47.13/3885000; 
- if(FileName.find("ZZ") != std::string::npos) wgt=16.523/1949768; //wgt=16.532/1979000;
- //if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/28084244;
- if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1687.95/35862893; //wgt=1687.95/29521158;
- if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=493.559/21144264; //wgt=493.559/25468933;
- if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.55/14267690; //wgt=69.55/5932701; 
- if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.57/21664601; //wgt=15.57/19771294; 
- if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49/20348815; //wgt=6.49/8402687; 
- if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.30/20258624; //wgt=1.30/7633949;
- if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968/21495421; //wgt=0.00968/3273980;
- if(FileName.find("WJets_") != std::string::npos) wgt=64057.4/77654763; //wgt=64057.4/71026861;
+ if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
+ if(FileName.find("DY") != std::string::npos) wgt=6077./100194597;
+ if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
+ if(FileName.find("_SaT_") != std::string::npos) wgt=32.7/7623000; 
+ if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
+ if(FileName.find("WZ") != std::string::npos) wgt=47.13/3885000; 
+ if(FileName.find("ZZ") != std::string::npos) wgt=16.523/1979000;
+ if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1563.32/28084244;
+ if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1628.66/29521158;
+ if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=493.559/25468933;
+ if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.5508/5932701; 
+ if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.5727/19771294; 
+ if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49286/8402687; 
+ if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.29954/7633949;
+ if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968121/3273980;
+ if(FileName.find("WJets_") != std::string::npos) wgt=63948.5/71026861;
  
  //muons
  
- if((FileName.find("mumujj_17_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("mumujj_17_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("mumujj_17_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("mumujj_17_L13_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
- if((FileName.find("mumujj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
+ if((FileName.find("mumujj_18_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("mumujj_18_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("mumujj_18_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("mumujj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
+ if((FileName.find("mumujj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
 
  //electrons
- 
- if((FileName.find("eejj_17_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("eejj_17_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("eejj_17_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("eejj_17_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
- if((FileName.find("eejj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
+ if((FileName.find("eejj_18_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("eejj_18_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("eejj_18_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("eejj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
+ if((FileName.find("eejj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
  return wgt;
  }
