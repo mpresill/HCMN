@@ -168,6 +168,11 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<int>* rpatElectron_py; rpatElectron_py = 0; TBranch* b_rpatElectron_py = 0; readingtree->SetBranchAddress("patElectron_py",&rpatElectron_py,&b_rpatElectron_py);
   vector<int>* rpatElectron_pz; rpatElectron_pz = 0; TBranch* b_rpatElectron_pz = 0; readingtree->SetBranchAddress("patElectron_pz",&rpatElectron_pz,&b_rpatElectron_pz);
   vector<double>* rpatElectron_energy; rpatElectron_energy = 0; TBranch* b_rpatElectron_energy = 0; readingtree->SetBranchAddress("patElectron_energy",&rpatElectron_energy,&b_rpatElectron_energy);
+  vector<double>* rpatElectron_energyScaleUp; rpatElectron_energyScaleUp = 0; TBranch* b_rpatElectron_energyScaleUp = 0; readingtree->SetBranchAddress("patElectron_energyScaleUp",&rpatElectron_energyScaleUp, &b_rpatElectron_energyScaleUp);
+  vector<double>* rpatElectron_energyScaleDown; rpatElectron_energyScaleDown = 0; TBranch* b_rpatElectron_energyScaleDown = 0; readingtree->SetBranchAddress("patElectron_energyScaleDown",&rpatElectron_energyScaleDown, &b_rpatElectron_energyScaleDown);
+ vector<double>* rpatElectron_energySigmaUp; rpatElectron_energySigmaUp = 0; TBranch* b_rpatElectron_energySigmaUp = 0; readingtree->SetBranchAddress("patElectron_energySigmaUp",&rpatElectron_energySigmaUp, &b_rpatElectron_energySigmaUp);
+  vector<double>* rpatElectron_energySigmaDown; rpatElectron_energySigmaDown = 0; TBranch* b_rpatElectron_energySigmaDown = 0; readingtree->SetBranchAddress("patElectron_energySigmaDown",&rpatElectron_energySigmaDown, &b_rpatElectron_energySigmaDown);
+
   //Charge:
   vector<int>* rpatElectron_charge; rpatElectron_charge = 0; TBranch* b_rpatElectron_charge = 0; readingtree->SetBranchAddress("patElectron_charge",&rpatElectron_charge,&b_rpatElectron_charge);
   //ID selection:
@@ -287,6 +292,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<double>* patElectron_eta = new std::vector<double>; newtree->Branch("patElectron_eta",&patElectron_eta);
   vector<double>* patElectron_phi = new std::vector<double>; newtree->Branch("patElectron_phi",&patElectron_phi);
   vector<double>* patElectron_energy = new std::vector<double>; newtree->Branch("patElectron_energy",&patElectron_energy);
+  vector<double>* patElectron_energyScaleUp = new std::vector<double>; newtree->Branch("patElectron_energyScaleUp",&patElectron_energyScaleUp);
+  vector<double>* patElectron_energyScaleDown = new std::vector<double>; newtree->Branch("patElectron_energyScaleDown",&patElectron_energyScaleDown);
+  vector<double>* patElectron_energySigmaUp = new std::vector<double>; newtree->Branch("patElectron_energySigmaUp",&patElectron_energySigmaUp);
+  vector<double>* patElectron_energySigmaDown = new std::vector<double>; newtree->Branch("patElectron_energySigmaDown",&patElectron_energySigmaDown);
   vector<int>* patElectron_p = new std::vector<int>; newtree->Branch("patElectron_p",&patElectron_p);
   vector<int>* patElectron_px = new std::vector<int>; newtree->Branch("patElectron_px",&patElectron_px);
   vector<int>* patElectron_py = new std::vector<int>; newtree->Branch("patElectron_py",&patElectron_py);
@@ -561,6 +570,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rpatElectron_py->GetEntry(en);
     b_rpatElectron_pz->GetEntry(en);
     b_rpatElectron_energy->GetEntry(en);
+    b_rpatElectron_energyScaleUp->GetEntry(en);
+    b_rpatElectron_energyScaleDown->GetEntry(en);
+    b_rpatElectron_energySigmaUp->GetEntry(en);
+    b_rpatElectron_energySigmaDown->GetEntry(en);
     b_rpatElectron_charge->GetEntry(en);
     //ID:
     b_rpatElectron_isPassVeto->GetEntry(en);
@@ -648,6 +661,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     patElectron_eta->clear();
     patElectron_phi->clear();
     patElectron_energy->clear();
+    patElectron_energyScaleUp->clear();
+    patElectron_energyScaleDown->clear();
+    patElectron_energySigmaUp->clear();
+    patElectron_energySigmaDown->clear();
     patElectron_p->clear();
     patElectron_px->clear();
     patElectron_py->clear();
@@ -818,6 +835,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       patElectron_pz->push_back(rpatElectron_pz->at(ele_en));
       patElectron_charge->push_back(rpatElectron_charge->at(ele_en));
       patElectron_energy->push_back(rpatElectron_energy->at(ele_en));
+      patElectron_energyScaleUp->push_back(rpatElectron_energyScaleUp->at(ele_en));
+      patElectron_energyScaleDown->push_back(rpatElectron_energyScaleUp->at(ele_en));
+      patElectron_energySigmaUp->push_back(rpatElectron_energySigmaUp->at(ele_en));
+      patElectron_energySigmaDown->push_back(rpatElectron_energySigmaUp->at(ele_en));
       patElectron_isPassVeto->push_back(rpatElectron_isPassVeto->at(ele_en));
       patElectron_isPassLoose->push_back(rpatElectron_isPassLoose->at(ele_en));
       patElectron_isPassMedium->push_back(rpatElectron_isPassMedium->at(ele_en));

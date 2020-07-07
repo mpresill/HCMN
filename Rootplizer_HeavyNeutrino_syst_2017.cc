@@ -870,8 +870,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    int countBoostedJets_T=0;
    int countBoostedJets_TLV=0;
    //////////////////////////////////////
-    double JesSF=0;
-    double JerSF=0;
 
 
    for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
@@ -888,53 +886,53 @@ void  filename_(const char*  Input = "", const char*  Output =""){
        countBoostedJets_T=0;
        countBoostedJets_TLV=0;
        ////jes/jer syst
-       JesSF=0;
-       JerSF=0;
+       double JesSF=0; JerSF=0;
+       double centr_JJ = 0, upJES = 0, downJES = 0; upJER = 0; downJER = 0;
 
         if(BJETSF==0){      //BJet corrections with central values of JER/JES:
             JesSF = rBoostedJet_JesSF->at(jet_en);
             JerSF = rBoostedJet_JerSF->at(jet_en);
-            centralJesJer->push_back(1) ;
-            JesSFup->push_back(0);
-            JesSFdown->push_back(0);
-            JerSFup->push_back(0);
-            JerSFdown->push_back(0);
+            centr_JJ = 1;
+            upJES = 0;
+            downJES = 0;
+            upJER = 0;
+            downJER = 0;
           }
         if(BJETSF==1){      //BJet corrections with JES SF UP:
             JesSF = rBoostedJet_JesSFup->at(jet_en);
             JerSF = rBoostedJet_JerSF->at(jet_en);
-            centralJesJer->push_back(0);
-            JesSFup->push_back(1);
-            JesSFdown->push_back(0);
-            JerSFup->push_back(0);
-            JerSFdown->push_back(0);
+            centr_JJ = 0;
+            upJES = 1;
+            downJES = 0;
+            upJER = 0;
+            downJER = 0;
         }
         if(BJETSF==2){      //BJet corrections with JES SF DOWN:
             JesSF = rBoostedJet_JesSFdown->at(jet_en);
             JerSF = rBoostedJet_JerSF->at(jet_en);
-            centralJesJer->push_back(0);
-            JesSFup->push_back(0);
-            JesSFdown->push_back(1);
-            JerSFup->push_back(0);
-            JerSFdown->push_back(0);
+            centr_JJ = 0;
+            upJES = 0;
+            downJES = 1;
+            upJER = 0;
+            downJER = 0;
         }
         if(BJETSF==3){      //BJet corrections with central values of JER/JES:
             JesSF = rBoostedJet_JesSF->at(jet_en);
             JerSF = rBoostedJet_JerSFup->at(jet_en);
-            centralJesJer->push_back(0) ;
-            JesSFup->push_back(0);
-            JesSFdown->push_back(0);
-            JerSFup->push_back(1);
-            JerSFdown->push_back(0);
+            centr_JJ = 0;
+            upJES = 0;
+            downJES = 0;
+            upJER = 1;
+            downJER = 0;
           }
         if(BJETSF==4){      //BJet corrections with central values of JER/JES:
             JesSF = rBoostedJet_JesSF->at(jet_en);
             JerSF = rBoostedJet_JerSFdown->at(jet_en);
-            centralJesJer->push_back(0) ;
-            JesSFup->push_back(0);
-            JesSFdown->push_back(0);
-            JerSFup->push_back(0);
-            JerSFdown->push_back(1);
+            centr_JJ = 0;
+            upJES = 0;
+            downJES = 0;
+            upJER = 0;
+            downJER = 1;
           }
           
       
@@ -1038,6 +1036,12 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       BoostedJet_energy->push_back(rBoostedJet_energy->at(jet_en));
       BoostedJet_mass->push_back(rBoostedJet_mass->at(jet_en));
       BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
+     ///syst event flag
+      centralJesJer->push_back(centr_JJ);
+      JesSFup->push_back(upJES);
+      JesSFdown->push_back(downJES);
+      JerSFup->push_back(upJER);
+      JerSFdown->push_back(downJER);
       //BoostedJet_nJets->push_back(0);
      }
     }
