@@ -59,6 +59,10 @@ F.
 #include <iostream>
 #include <TLorentzVector.h>
 #include "TVector3.h"
+#include "RoccoR.cc"
+#include "GEScaleSyst.cc"
+#include "GEScaleSyst.h"
+
 using namespace std;
 ////
 //   Declare constants
@@ -82,15 +86,6 @@ std::tuple<double, double, double> musf_ID(double eta, double pt);
 std::tuple<double, double, double> musf_iso(double eta, double pt);
 double get_wgtlumi(string FileName);
 
-/*double invMass2(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
-                double obj2_px, double obj2_py, double obj2_pz, double obj2_E);
-double invMass3(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
-                double obj2_px, double obj2_py, double obj2_pz, double obj2_E,
-                double obj3_px, double obj3_py, double obj3_pz, double obj3_E);
-double invMass4(double obj1_px, double obj1_py, double obj1_pz, double obj1_E,
-                double obj2_px, double obj2_py, double obj2_pz, double obj2_E,
-                double obj3_px, double obj3_py, double obj3_pz, double obj3_E,
-                double obj4_px, double obj4_py, double obj4_pz, double obj4_E);*/
 /////
 //   Main function
 /////
@@ -102,6 +97,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   Output = "outputFile"; 
   TFile *oldfile = TFile::Open(Input);
   TTree *readingtree = new TTree("readingtree","readingtree"); readingtree = (TTree*) oldfile->Get("TNT/BOOM");
+
+  // Rochester corrections
+  RoccoR  rc("RoccoR2016.txt");
+  GEScaleSyst *GE = new GEScaleSyst();
   /////
   //   Variables to read
   /////
@@ -135,6 +134,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<double>* rMuon_px; rMuon_px = 0; TBranch* b_rMuon_px = 0; readingtree->SetBranchAddress("Muon_px",&rMuon_px,&b_rMuon_px);
   vector<double>* rMuon_py; rMuon_py = 0; TBranch* b_rMuon_py = 0; readingtree->SetBranchAddress("Muon_py",&rMuon_py,&b_rMuon_py);
   vector<double>* rMuon_pz; rMuon_pz = 0; TBranch* b_rMuon_pz = 0; readingtree->SetBranchAddress("Muon_pz",&rMuon_pz,&b_rMuon_pz);
+  vector<int>* rMuon_TLayers; rMuon_TLayers = 0; TBranch* b_rMuon_TLayers = 0; readingtree->SetBranchAddress("Muon_TLayers", &rMuon_TLayers, &b_rMuon_TLayers);
   //Isolation
   vector<double>* rMuon_trackIso; rMuon_trackIso = 0; TBranch* b_rMuon_trackIso = 0;
   readingtree->SetBranchAddress("Muon_trackIso",&rMuon_trackIso,&b_rMuon_trackIso);
@@ -168,6 +168,11 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<int>* rpatElectron_py; rpatElectron_py = 0; TBranch* b_rpatElectron_py = 0; readingtree->SetBranchAddress("patElectron_py",&rpatElectron_py,&b_rpatElectron_py);
   vector<int>* rpatElectron_pz; rpatElectron_pz = 0; TBranch* b_rpatElectron_pz = 0; readingtree->SetBranchAddress("patElectron_pz",&rpatElectron_pz,&b_rpatElectron_pz);
   vector<double>* rpatElectron_energy; rpatElectron_energy = 0; TBranch* b_rpatElectron_energy = 0; readingtree->SetBranchAddress("patElectron_energy",&rpatElectron_energy,&b_rpatElectron_energy);
+  vector<double>* rpatElectron_energyScaleUp; rpatElectron_energyScaleUp = 0; TBranch* b_rpatElectron_energyScaleUp = 0; readingtree->SetBranchAddress("patElectron_energyScaleUp",&rpatElectron_energyScaleUp, &b_rpatElectron_energyScaleUp);
+  vector<double>* rpatElectron_energyScaleDown; rpatElectron_energyScaleDown = 0; TBranch* b_rpatElectron_energyScaleDown = 0; readingtree->SetBranchAddress("patElectron_energyScaleDown",&rpatElectron_energyScaleDown, &b_rpatElectron_energyScaleDown);
+ vector<double>* rpatElectron_energySigmaUp; rpatElectron_energySigmaUp = 0; TBranch* b_rpatElectron_energySigmaUp = 0; readingtree->SetBranchAddress("patElectron_energySigmaUp",&rpatElectron_energySigmaUp, &b_rpatElectron_energySigmaUp);
+  vector<double>* rpatElectron_energySigmaDown; rpatElectron_energySigmaDown = 0; TBranch* b_rpatElectron_energySigmaDown = 0; readingtree->SetBranchAddress("patElectron_energySigmaDown",&rpatElectron_energySigmaDown, &b_rpatElectron_energySigmaDown);
+
   //Charge:
   vector<int>* rpatElectron_charge; rpatElectron_charge = 0; TBranch* b_rpatElectron_charge = 0; readingtree->SetBranchAddress("patElectron_charge",&rpatElectron_charge,&b_rpatElectron_charge);
   //ID selection:
@@ -236,6 +241,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //Corrections:
   vector<double>* rBoostedJet_Uncorr_pt; rBoostedJet_Uncorr_pt = 0; TBranch* b_rBoostedJet_Uncorr_pt = 0; readingtree->SetBranchAddress("BoostedJet_Uncorr_pt",&rBoostedJet_Uncorr_pt,&b_rBoostedJet_Uncorr_pt);
   vector<double>* rBoostedJet_JesSF; rBoostedJet_JesSF = 0; TBranch* b_rBoostedJet_JesSF = 0; readingtree->SetBranchAddress("BoostedJet_JesSF",&rBoostedJet_JesSF,&b_rBoostedJet_JesSF);
+  vector<double>* rBoostedJet_JerSF; rBoostedJet_JerSF = 0; TBranch* b_rBoostedJet_JerSF = 0; readingtree->SetBranchAddress("BoostedJet_JerSF",&rBoostedJet_JerSF,&b_rBoostedJet_JerSF);
+  //JES systematics
+  vector<double>* rBoostedJet_JesSFup; rBoostedJet_JesSFup = 0; TBranch* b_rBoostedJet_JesSFup = 0; readingtree->SetBranchAddress("BoostedJet_JesSFup",&rBoostedJet_JesSFup,&b_rBoostedJet_JesSFup);
+  vector<double>* rBoostedJet_JesSFdown; rBoostedJet_JesSFdown = 0; TBranch* b_rBoostedJet_JesSFdown = 0; readingtree->SetBranchAddress("BoostedJet_JesSFdown",&rBoostedJet_JesSFdown,&b_rBoostedJet_JesSFdown);
+  //JER systematics
+  vector<double>* rBoostedJet_JerSFup; rBoostedJet_JerSFup = 0; TBranch* b_rBoostedJet_JerSFup = 0; readingtree->SetBranchAddress("BoostedJet_JerSFup",&rBoostedJet_JerSFup,&b_rBoostedJet_JerSFup);
+  vector<double>* rBoostedJet_JerSFdown; rBoostedJet_JerSFdown = 0; TBranch* b_rBoostedJet_JerSFdown = 0; readingtree->SetBranchAddress("BoostedJet_JerSFdown",&rBoostedJet_JerSFdown,&b_rBoostedJet_JerSFdown);
   //b-tagging: 
   vector<double>* rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags; rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;
   TBranch* b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = 0;readingtree->SetBranchAddress("BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags",&rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags,&b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags); 
@@ -257,6 +269,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
    //Muons:
    vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
+   vector<double>* Muon_pt_corr = new std::vector<double>; newtree->Branch("Muon_pt_corr",&Muon_pt_corr);
    vector<double>* Muon_eta = new std::vector<double>; newtree->Branch("Muon_eta",&Muon_eta);
    vector<double>* Muon_phi = new std::vector<double>; newtree->Branch("Muon_phi",&Muon_phi);
    vector<double>* Muon_p = new std::vector<double>; newtree->Branch("Muon_p",&Muon_p);
@@ -279,6 +292,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<double>* patElectron_eta = new std::vector<double>; newtree->Branch("patElectron_eta",&patElectron_eta);
   vector<double>* patElectron_phi = new std::vector<double>; newtree->Branch("patElectron_phi",&patElectron_phi);
   vector<double>* patElectron_energy = new std::vector<double>; newtree->Branch("patElectron_energy",&patElectron_energy);
+  vector<double>* patElectron_energyScaleUp = new std::vector<double>; newtree->Branch("patElectron_energyScaleUp",&patElectron_energyScaleUp);
+  vector<double>* patElectron_energyScaleDown = new std::vector<double>; newtree->Branch("patElectron_energyScaleDown",&patElectron_energyScaleDown);
+  vector<double>* patElectron_energySigmaUp = new std::vector<double>; newtree->Branch("patElectron_energySigmaUp",&patElectron_energySigmaUp);
+  vector<double>* patElectron_energySigmaDown = new std::vector<double>; newtree->Branch("patElectron_energySigmaDown",&patElectron_energySigmaDown);
   vector<int>* patElectron_p = new std::vector<int>; newtree->Branch("patElectron_p",&patElectron_p);
   vector<int>* patElectron_px = new std::vector<int>; newtree->Branch("patElectron_px",&patElectron_px);
   vector<int>* patElectron_py = new std::vector<int>; newtree->Branch("patElectron_py",&patElectron_py);
@@ -326,7 +343,14 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* BoostedJet_T = new std::vector<double>; newtree->Branch("BoostedJet_T",&BoostedJet_T);
    vector<double>* BoostedJet_TLV = new std::vector<double>; newtree->Branch("BoostedJet_TLV",&BoostedJet_TLV);
 
-   
+   //systematics sf tags: 
+   vector<double>* centralJesJer = new std::vector<double>; newtree->Branch("centralJesJer",&centralJesJer);
+   vector<double>* JesSFup = new std::vector<double>; newtree->Branch("JesSFup",&JesSFup);
+   vector<double>* JesSFdown = new std::vector<double>; newtree->Branch("JesSFdown",&JesSFdown);
+   vector<double>* JerSFup = new std::vector<double>; newtree->Branch("JerSFup",&JerSFup);
+   vector<double>* JerSFdown = new std::vector<double>; newtree->Branch("JerSFdown",&JerSFdown);
+
+
    //PU:
    double PileupWeight; newtree->Branch("PileupWeight",&PileupWeight);
    double PUWeight; newtree->Branch("PUWeight",&PUWeight);
@@ -479,7 +503,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double TRmu; newtree->Branch("TRmu",&TRmu);
    double DYRe; newtree->Branch("DYRe",&DYRe);
    double DYRmu; newtree->Branch("DYRmu",&DYRmu);
-    
+
+
  
    //reco 4-vectors:
    TLorentzVector Ele1(0,0,0,0);
@@ -520,6 +545,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rMuon_py->GetEntry(en);
     b_rMuon_pz->GetEntry(en);
     b_rMuon_charge->GetEntry(en);
+    b_rMuon_TLayers->GetEntry(en);
     //Isolation
     b_rMuon_trackIso->GetEntry(en);
     b_rMuon_TrackerIso->GetEntry(en);
@@ -544,6 +570,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rpatElectron_py->GetEntry(en);
     b_rpatElectron_pz->GetEntry(en);
     b_rpatElectron_energy->GetEntry(en);
+    b_rpatElectron_energyScaleUp->GetEntry(en);
+    b_rpatElectron_energyScaleDown->GetEntry(en);
+    b_rpatElectron_energySigmaUp->GetEntry(en);
+    b_rpatElectron_energySigmaDown->GetEntry(en);
     b_rpatElectron_charge->GetEntry(en);
     //ID:
     b_rpatElectron_isPassVeto->GetEntry(en);
@@ -594,6 +624,14 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //corrections
     b_rBoostedJet_Uncorr_pt->GetEntry(en);
     b_rBoostedJet_JesSF->GetEntry(en);
+    b_rBoostedJet_JerSF->GetEntry(en);
+    //systematics Jes
+    b_rBoostedJet_JesSFup->GetEntry(en);
+    b_rBoostedJet_JesSFdown->GetEntry(en);
+    //systematics Jer
+    b_rBoostedJet_JerSFup->GetEntry(en);
+    b_rBoostedJet_JerSFdown->GetEntry(en);
+
     //b-tagging:
     b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);    
     //MET
@@ -601,6 +639,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
     //New var clear (vectors):
     Muon_pt->clear();
+    Muon_pt_corr->clear();
     Muon_eta->clear();
     Muon_phi->clear();
     Muon_p->clear();
@@ -622,6 +661,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     patElectron_eta->clear();
     patElectron_phi->clear();
     patElectron_energy->clear();
+    patElectron_energyScaleUp->clear();
+    patElectron_energyScaleDown->clear();
+    patElectron_energySigmaUp->clear();
+    patElectron_energySigmaDown->clear();
     patElectron_p->clear();
     patElectron_px->clear();
     patElectron_py->clear();
@@ -663,6 +706,12 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_L->clear();
     BoostedJet_T->clear();
     BoostedJet_TLV->clear();
+    //evt type systematics
+    centralJesJer ->clear(); 
+    JesSFup ->clear(); 
+    JesSFdown ->clear();
+    JerSFup ->clear(); 
+    JerSFdown ->clear();
 
 
     //new var inizialize (scalars):
@@ -705,7 +754,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //evt_type = -999;
     eejj_l = 0; emujj_l = 0; mumujj_l = 0; muejj_l = 0;
     SRe = 0; TRe = 0; SRmu = 0; TRmu = 0; DYRe = 0; DYRmu = 0;
-
+    
 
     
    HLT_Ele27_WPTight_Gsf = rHLT_Ele27_WPTight_Gsf;
@@ -726,7 +775,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     lumi_wgt = get_wgtlumi(Input);
    
    
-
+   int num = 0;
    for(uint mu_en = 0; mu_en<rMuon_pt->size(); mu_en++){
     if( rMuon_pt->at(mu_en)>20 && fabs(rMuon_eta->at(mu_en))<2.4){
      if(rMuon_loose->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1) numOfLooseMu++;
@@ -734,7 +783,19 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      if(rMuon_tight->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1) numOfTightMu++;
      if(rMuon_isHighPt->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1){
       numOfHighptMu++;
+
       Muon_pt->push_back(rMuon_pt->at(mu_en));
+
+      if(rMuon_pt->at(mu_en) < 200 ){
+       double mcSF = rc.kSmearMC(rMuon_charge->at(mu_en), rMuon_pt->at(mu_en), rMuon_eta->at(mu_en), rMuon_phi->at(mu_en), rMuon_TLayers->at(mu_en), gRandom->Rndm(), 0, 0);
+       Muon_pt_corr->push_back(rMuon_pt->at(mu_en)*mcSF);
+      }
+      else{
+       num = 49 * gRandom->Rndm();
+       float pt_corr = GE->GEScaleCorrPt(160000+(int)num, (float) rMuon_pt->at(mu_en), (float) rMuon_eta->at(mu_en),(float) rMuon_phi->at(mu_en), (int) rMuon_charge->at(mu_en), false);
+       Muon_pt_corr->push_back((double) pt_corr);
+      }
+
       Muon_eta->push_back(rMuon_eta->at(mu_en));
       Muon_phi->push_back(rMuon_phi->at(mu_en));
       Muon_p->push_back(rMuon_p->at(mu_en));
@@ -774,6 +835,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       patElectron_pz->push_back(rpatElectron_pz->at(ele_en));
       patElectron_charge->push_back(rpatElectron_charge->at(ele_en));
       patElectron_energy->push_back(rpatElectron_energy->at(ele_en));
+      patElectron_energyScaleUp->push_back(rpatElectron_energyScaleUp->at(ele_en));
+      patElectron_energyScaleDown->push_back(rpatElectron_energyScaleUp->at(ele_en));
+      patElectron_energySigmaUp->push_back(rpatElectron_energySigmaUp->at(ele_en));
+      patElectron_energySigmaDown->push_back(rpatElectron_energySigmaUp->at(ele_en));
       patElectron_isPassVeto->push_back(rpatElectron_isPassVeto->at(ele_en));
       patElectron_isPassLoose->push_back(rpatElectron_isPassLoose->at(ele_en));
       patElectron_isPassMedium->push_back(rpatElectron_isPassMedium->at(ele_en));
@@ -862,15 +927,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     }
     else Jet_TLV->push_back(false);  
     
-    
-    
-   
-    
 
-    //Jet_isID = JetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rJet_neutralHadEnergyFraction->at(jet_en),
-      //         rJet_neutralEmEnergyFraction->at(jet_en),rJet_numberOfConstituents->at(jet_en),rJet_muonEnergyFraction->at(jet_en),
-        //       rJet_chargedHadronEnergyFraction->at(jet_en),rJet_chargedMultiplicity->at(jet_en),rJet_chargedEmEnergyFraction->at(jet_en));
-    // cout << "Passa il jet: " <<Jet_isID << endl;
     count = 0;
     if(Jet_isIDT==true){
      //cout << "pt dei jet dopo la sel: " <<JetCorr.Pt() << endl;
@@ -906,130 +963,214 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    numOfJets_T=countJets_T;
    numOfJets_TLV=countJets_TLV;
 
-   bool BoostedJet_isIDL=false;
-   bool BoostedJet_isIDT=false;
-   bool BoostedJet_isIDTLV=false;
-   //bool BoostedJet_isID=false;
-   int countBoostedJets=0;
-   int countBoostedJets_L=0;
-   int countBoostedJets_T=0;
-   int countBoostedJets_TLV=0;
-   for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
-    //BJet corrections:
-    double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
-    double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*rBoostedJet_JesSF->at(jet_en);
-    TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
-    //BJet ID:
-    BoostedJet_isIDL = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
-    rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
-    rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
-    rBoostedJet_chargedEmEnergyFraction->at(jet_en));
-    BoostedJet_isIDT = BoostedJetID_Tight(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
-    rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
-    rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
-    rBoostedJet_chargedEmEnergyFraction->at(jet_en));
-    BoostedJet_isIDTLV = BoostedJetID_TightLepVeto(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
-    rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
-    rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
-    rBoostedJet_chargedEmEnergyFraction->at(jet_en));
 
 
 
+    /////////////////////////////////////////////////
+    ///////corrections on boosted jets with systematics up and down
+    ////////////////////////////////////////////////
+    bool BoostedJet_isIDL=false;
+    bool BoostedJet_isIDT=false;
+    bool BoostedJet_isIDTLV=false;
+    int countBoostedJets=0;
+    int countBoostedJets_L=0;
+    int countBoostedJets_T=0;
+    int countBoostedJets_TLV=0;
+    //////////////////////////////////////
+    double JesSF=0;
+    double JerSF=0;
+  
+    for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
 
-    count = 0;
-    if(BoostedJet_isIDL==true){
-     BoostedJet_L->push_back(true);
-     for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
-      if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
-     }
-     for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
-      double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
-      if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
-     }
-     if(count==0){
-      countBoostedJets_L++;
-     }
-    }
-    else BoostedJet_L->push_back(false);
-    count = 0;
-    if(BoostedJet_isIDT==true){
-     BoostedJet_T->push_back(true);
-     for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
-      if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
-     }
-     for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
-      double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
-      if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
-     }
-     if(count==0){
-      countBoostedJets_T++;
-     }
-    }
-    else BoostedJet_T->push_back(false);
-    count = 0;
-    if(BoostedJet_isIDTLV==true){
-     BoostedJet_TLV->push_back(true);
-     for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
-      if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
-     }
-     for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
-      double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
-      if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
-     }
-     if(count==0){
-      countBoostedJets_TLV++;
-     }
-    }
-    else BoostedJet_TLV->push_back(false);
+     for (int BJETSF = 0; BJETSF < 5; BJETSF++){//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2, JerUp=3, JerDown=4)
+  
+      ///////////////////////////////////////boosted jet cleaning and definition starts here
+       BoostedJet_isIDL=false;
+       BoostedJet_isIDT=false;
+       BoostedJet_isIDTLV=false;
+      //bool BoostedJet_isID=false;
+       countBoostedJets=0;
+       countBoostedJets_L=0;
+       countBoostedJets_T=0;
+       countBoostedJets_TLV=0;
+       ////jes/jer syst
+       JesSF=0;
+       JerSF=0;
 
+        if(BJETSF==0){      //BJet corrections with central values of JER/JES:
+            JesSF = rBoostedJet_JesSF->at(jet_en);
+            JerSF = rBoostedJet_JerSF->at(jet_en);
+            centralJesJer->push_back(1) ;
+            JesSFup->push_back(0);
+            JesSFdown->push_back(0);
+            JerSFup->push_back(0);
+            JerSFdown->push_back(0);
+          }
+        if(BJETSF==1){      //BJet corrections with JES SF UP:
+            JesSF = rBoostedJet_JesSFup->at(jet_en);
+            JerSF = rBoostedJet_JerSF->at(jet_en);
+            centralJesJer->push_back(0);
+            JesSFup->push_back(1);
+            JesSFdown->push_back(0);
+            JerSFup->push_back(0);
+            JerSFdown->push_back(0);
+        }
+        if(BJETSF==2){      //BJet corrections with JES SF DOWN:
+            JesSF = rBoostedJet_JesSFdown->at(jet_en);
+            JerSF = rBoostedJet_JerSF->at(jet_en);
+            centralJesJer->push_back(0);
+            JesSFup->push_back(0);
+            JesSFdown->push_back(1);
+            JerSFup->push_back(0);
+            JerSFdown->push_back(0);
+        }
+        if(BJETSF==3){      //BJet corrections with central values of JER/JES:
+            JesSF = rBoostedJet_JesSF->at(jet_en);
+            JerSF = rBoostedJet_JerSFup->at(jet_en);
+            centralJesJer->push_back(0) ;
+            JesSFup->push_back(0);
+            JesSFdown->push_back(0);
+            JerSFup->push_back(1);
+            JerSFdown->push_back(0);
+          }
+        if(BJETSF==4){      //BJet corrections with central values of JER/JES:
+            JesSF = rBoostedJet_JesSF->at(jet_en);
+            JerSF = rBoostedJet_JerSFdown->at(jet_en);
+            centralJesJer->push_back(0) ;
+            JesSFup->push_back(0);
+            JesSFdown->push_back(0);
+            JerSFup->push_back(0);
+            JerSFdown->push_back(1);
+          }
+          
+      
+        //BJet SFs:
+        double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*JesSF*JerSF;
+        double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*JesSF*JerSF;
+
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+        //////////////////////////////////////////
+        //cout<<"numb event = " <<en<<endl;
+        //cout<<"jet_en = "<< jet_en<<endl;
+        //cout<<"BJETSF = " << BJETSF << "jet_pt = " << jet_pt << endl;
+        //cout<<"centralJesJer = "<<centralJesJer<<endl;
+        //cout<<"JesSFup = "<< JesSFup<<endl;
+        //cout<<"JesSFdown = "<< JesSFdown<<endl; 
+        //cout<<"------------"<<endl;
+        //////////////////////////////////////
+
+
+        TLorentzVector JetCorr(0,0,0,0); JetCorr.SetPtEtaPhiE(jet_pt, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);  
+        //BJet ID:
+        BoostedJet_isIDL = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
+        rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
+        rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
+        rBoostedJet_chargedEmEnergyFraction->at(jet_en));
+        BoostedJet_isIDT = BoostedJetID_Tight(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
+        rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
+        rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
+        rBoostedJet_chargedEmEnergyFraction->at(jet_en));
+        BoostedJet_isIDTLV = BoostedJetID_TightLepVeto(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
+        rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
+        rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
+        rBoostedJet_chargedEmEnergyFraction->at(jet_en));
+
+
+        count = 0;
+        if(BoostedJet_isIDL==true){
+        BoostedJet_L->push_back(true);
+        for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
+          double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
+        }
+        for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+          double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
+        }
+        if(count==0){
+          countBoostedJets_L++;
+        }
+        }
+        else BoostedJet_L->push_back(false);
+        count = 0;
+        if(BoostedJet_isIDT==true){
+        BoostedJet_T->push_back(true);
+        for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
+          double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
+        }
+        for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+          double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
+        }
+        if(count==0){
+          countBoostedJets_T++;
+        }
+        }
+        else BoostedJet_T->push_back(false);
+        count = 0;
+        if(BoostedJet_isIDTLV==true){
+        BoostedJet_TLV->push_back(true);
+        for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
+          double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
+        }
+        for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+          double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
+        }
+        if(count==0){
+          countBoostedJets_TLV++;
+        }
+        }
+        else BoostedJet_TLV->push_back(false);
+
+        
+        count = 0;
+        if(BoostedJet_isIDT==true){
+        //BJet cleaning:
+        for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
+          double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
+        }
+        for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+          double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
+          double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+          if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
+        }
+        if(count == 0 && fabs(JetCorr.Eta())<2.4){
+          countBoostedJets++;
+          BoostedJet_pt->push_back(JetCorr.Pt());
+          BoostedJet_eta->push_back(JetCorr.Eta());
+          BoostedJet_phi->push_back(JetCorr.Phi());
+          BoostedJet_energy->push_back(rBoostedJet_energy->at(jet_en));
+          BoostedJet_mass->push_back(rBoostedJet_mass->at(jet_en));
+          BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
+          //BoostedJet_nJets->push_back(0);
+        }
+        }
+       //cout << "BoostedJet_pt size " << BoostedJet_pt->size() << " SFsize " << centralJesJer->size << endl;
+       //cout << "---- " << endl; 
+      }
+      numOfBoostedJets=countBoostedJets;
+      numOfBoostedJets_L=countBoostedJets_L;
+      numOfBoostedJets_T=countBoostedJets_T;
+      numOfBoostedJets_TLV=countBoostedJets_TLV;
     
-   
-    // BoostedJet_isID = BoostedJetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
-    //rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
-    //rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
-    //rBoostedJet_chargedEmEnergyFraction->at(jet_en));
-    //cout << "Passa il boostedjet: " <<Jet_isID << endl;
+    ///////
+    }//end for on BJETSF for systematics
+    //////////
 
-    count = 0;
-    if(BoostedJet_isIDT==true){
-     //BJet cleaning:
-     for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
-      if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
-     }
-     for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
-      double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
-      if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
-     }
-     if(count == 0 && fabs(JetCorr.Eta())<2.4){
-      countBoostedJets++;
-      BoostedJet_pt->push_back(JetCorr.Pt());
-      BoostedJet_eta->push_back(JetCorr.Eta());
-      BoostedJet_phi->push_back(JetCorr.Phi());
-      BoostedJet_energy->push_back(rBoostedJet_energy->at(jet_en));
-      BoostedJet_mass->push_back(rBoostedJet_mass->at(jet_en));
-      BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
-      //BoostedJet_nJets->push_back(0);
-     }
-    }
-   }
-   numOfBoostedJets=countBoostedJets;
-   numOfBoostedJets_L=countBoostedJets_L;
-   numOfBoostedJets_T=countBoostedJets_T;
-   numOfBoostedJets_TLV=countBoostedJets_TLV;
 
-   //if(!(numOfBoostedJets_T>=1)) continue;
+
 
    //Iso muon counting
     IsoTracker_L=0; IsoTracker_T=0; IsoTrack_L=0; IsoTrack_T=0; IsoPF_L=0; IsoPF_T=0;
@@ -1065,147 +1206,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_nJets->push_back(BJJ_count);
    }
    
-    if(patElectron_pt->size()>0){
-     Ele1_pt=patElectron_pt->at(0);
-     Ele1_eta=patElectron_eta->at(0);
-     Ele1_phi=patElectron_phi->at(0);
-     Ele1_energy=patElectron_energy->at(0);
-     Ele1_px=patElectron_px->at(0);
-     Ele1_py=patElectron_py->at(0);
-     Ele1_pz=patElectron_pz->at(0);
-     Ele1_p=patElectron_p->at(0);
- 
-     Ele1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0), patElectron_energy->at(0));
-   }
-    if(patElectron_pt->size()>1){
-
-     Ele2_pt=patElectron_pt->at(1);
-     Ele2_eta=patElectron_eta->at(1);
-     Ele2_phi=patElectron_phi->at(1);
-     Ele2_energy=patElectron_energy->at(1);
-     Ele2_px=patElectron_px->at(1);
-     Ele2_py=patElectron_py->at(1);
-     Ele2_pz=patElectron_pz->at(1);
-     Ele2_p=patElectron_p->at(1);
-   
-     Ele2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1), patElectron_energy->at(1));
-    }
 
 
-    if(Muon_pt->size()>0){
-     Muon1_pt=Muon_pt->at(0);
-     Muon1_eta=Muon_eta->at(0);
-     Muon1_phi=Muon_phi->at(0);
-     Muon1_energy=Muon_energy->at(0);
-     Muon1_px=Muon_px->at(0);
-     Muon1_py=Muon_py->at(0);
-     Muon1_pz=Muon_pz->at(0);
-     Muon1_p=Muon_p->at(0);
-
-     Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
-   }
-
-    if(Muon_pt->size()>1){
-
-     Muon2_pt=Muon_pt->at(1);
-     Muon2_eta=Muon_eta->at(1);
-     Muon2_phi=Muon_phi->at(1);
-     Muon2_energy=Muon_energy->at(1);
-     Muon2_px=Muon_px->at(1);
-     Muon2_py=Muon_py->at(1);
-     Muon2_pz=Muon_pz->at(1);
-     Muon2_p=Muon_p->at(1);
-
-     Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1), Muon_energy->at(1));
-    }
-
-    if(Jet_pt->size()>1){
-     if(eejj_l==1){
-      S_T_jj = Ele1_pt+Ele2_pt+Jet_pt->at(0)+Jet_pt->at(1);
-     }
-     if(mumujj_l==1){
-      S_T_jj = Muon1_pt+Muon2_pt+Jet_pt->at(0)+Jet_pt->at(1);
-     }
-     if(emujj_l==1 || muejj_l==1){
-      S_T_jj = Ele1_pt+Muon1_pt+Jet_pt->at(0)+Jet_pt->at(1);
-     }
-     
-    }
-    
-
-    if(BoostedJet_pt->size()>0){
-
-     BoostedJet1_pt=BoostedJet_pt->at(0);
-     BoostedJet1_eta=BoostedJet_eta->at(0);
-     BoostedJet1_phi=BoostedJet_phi->at(0);
-     BoostedJet1_energy=BoostedJet_energy->at(0);
-     BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
-     BoostedJet1_nJets=BoostedJet_nJets->at(0);
-     BoostedJet1.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
-
-     if(eejj_l==1){
-      M_ele1ele2Bjet1 = (Ele1 + Ele2 + BoostedJet1).M();
-      M_leplepBjet=M_ele1ele2Bjet1;
-      M_lep2Bjet = (Ele2 + BoostedJet1).M();
-      S_T_BJ=Ele1_pt+Ele2_pt+BoostedJet1_pt;
-     }
-     if(mumujj_l==1){
-      M_mu1mu2Bjet1 = (Muon1 + Muon2 + BoostedJet1).M();
-      M_leplepBjet=M_mu1mu2Bjet1;
-      M_lep2Bjet = (Muon2 + BoostedJet1).M();
-      S_T_BJ=Muon1_pt+Muon2_pt+BoostedJet1_pt;
-     }
-     if(emujj_l==1 || muejj_l==1){
-      M_elemuBjet1=(Ele1 + Muon1 + BoostedJet1).M();
-      M_leplepBjet=M_elemuBjet1;
-      if(patElectron_pt->at(0)>Muon_pt->at(0)){M_lep2Bjet = (Muon1 + BoostedJet1).M();}
-      if(patElectron_pt->at(0)<Muon_pt->at(0)){M_lep2Bjet = (Ele1 + BoostedJet1).M();}
-      S_T_BJ=Ele1_pt+Muon1_pt+BoostedJet1_pt;
-     }
-     
-    }
-
-    if(BoostedJet_pt->size()>2){
-
-     BoostedJet2_pt=BoostedJet_pt->at(1);
-     BoostedJet2_eta=BoostedJet_eta->at(1);
-     BoostedJet2_phi=BoostedJet_phi->at(1);
-     BoostedJet2_energy=BoostedJet_energy->at(1);
-     BoostedJet2.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1), BoostedJet_energy->at(1));
-     BoostedJet2_nJets=BoostedJet_nJets->at(1);
-     BoostedJet2.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1), BoostedJet_energy->at(1));
-
-     if(eejj_l==1){
-      M_leplepBjetBjet = (Ele1 + Ele2 + BoostedJet1 + BoostedJet2).M();
-     }
-     if(mumujj_l==1){ 
-      M_leplepBjetBjet = (Muon1 + Muon2 + BoostedJet1 + BoostedJet2).M();
-     }
-     if(emujj_l==1 || muejj_l==1){
-      M_leplepBjetBjet=(Ele1 + Muon1 + BoostedJet1 + BoostedJet2).M();
-     }
-
-
-
-
-    }
-
-    
-
-    if(eejj_l==1){
-     M_ele1ele2= (Ele1 + Ele2).M();
-     M_leplep=M_ele1ele2;     
-    }
-    if(mumujj_l==1){
-     M_mu1mu2= (Muon1 + Muon2).M();
-     M_leplep=M_mu1mu2;
-    }
-    if(emujj_l==1 || muejj_l==1){
-     //Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0), Muon_energy->at(0));
-     M_elemu= (Ele1 + Muon1).M();
-     M_leplep=M_elemu;
-    }
- 
+///////////////////////////////////////
+///lepton scale factor part begins here
    if(eejj_l==1){
     std::tie(elesf_ele1, elesf_ele1_d, elesf_ele1_u)=elesf(patElectron_eta->at(0), patElectron_pt->at(0));
     std::tie(elesf_ele2, elesf_ele2_d, elesf_ele2_u)=elesf(patElectron_eta->at(1), patElectron_pt->at(1));
@@ -1264,16 +1268,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     lepsf_evt_u=musf_tot_mu1_u*musf_tot_mu2_u;
 
   }   
-    
-
-
-   if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1 && M_leplep>300) SRe=1;
-   if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==1 && patElectron_pt->at(0)>130 && numOfHighptMu==1 &&  Muon_pt->at(0)>35 && numOfBoostedJets>=1 && M_leplep>300) TRe=1;
-   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==1 &&  Muon_pt->at(0)>53 && numOfHighptEle==1 && patElectron_pt->at(0)>30 && numOfBoostedJets>=1 && M_leplep>300) TRmu=1;
-   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1 && M_leplep>300) SRmu=1;
-   if(HLT_Ele115_CaloIdVT_GsfTrkIdT==1 && numOfHighptEle==2 && patElectron_pt->at(0)>130 && patElectron_pt->at(1)>35 && numOfLooseMu==0 && numOfBoostedJets>=1) DYRe=1;
-   if((HLT_Mu50==1 || HLT_OldMu100==1 || HLT_TkMu100==1) && numOfHighptMu==2 && Muon_pt->at(0)>53 && Muon_pt->at(1)>30 && numOfVetoEle==0 && numOfBoostedJets>=1) DYRmu=1;
-
+///lepton scale factor ends begins here
+///////////////////////////////////////    
 
    newtree->Fill();    
   }
