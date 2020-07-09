@@ -1,22 +1,17 @@
 voms-proxy-init --voms cms --valid 192:00 --out ~/proxy
 
 task_list=[
-        'mumujj_L13_M500_',
-        'mumujj_L13_M1000_',
-]
-
-dataset_list=[
-        'list_mumujj_L13_M500.txt',
-        'list_mumujj_L13_M1000.txt',
+        'mumujj_L13_M500',
+        'mumujj_L13_M1000',
 ]
 
 
 #####################
 
-for d in range(0,1)a: 
+for d in range(0,1): 
 
     TASK= $task_list[d]
-    INPUT_DATASET=(`cat`+$dataset_list[d]) 
+    INPUT_DATASET=(`cat`+task_list[d] +`.txt`) 
 
     i=0
     JOB_FOLDER=jobs_syst #folder for jobs
