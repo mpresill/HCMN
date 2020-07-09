@@ -6,7 +6,7 @@ INPUT_DATASET=(`cat list/list_mumujj_L13_M500.txt`)
 i=0
 JOB_FOLDER=jobs_test #folder for jobs
 
-OUTPUT_FOLDER=prova/$TASK
+OUTPUT_FOLDER=/eos/user/m/mpresill/CMS/HN_Reload/2017_syst/$TASK
 #OUTPUT_FOLDER=/eos/user/v/vmariani/NTuples/HN_2016/Syst_pu_sf_/$TASK
 echo "$OUTPUT_FOLDER"
 
@@ -33,7 +33,7 @@ if [ ! -e $OUTPUT_FOLDER/${TASK}${i}.root ]; then
 
 # Preparing job code
 #name of your macro
-cp Rootplizer_HeavyNeutrino_syst_2016_test.cc $JOB_FOLDER/${TASK}${i}.cc
+cp Rootplizer_HeavyNeutrino_syst_2017_test.cc $JOB_FOLDER/${TASK}${i}.cc
 #cp Rootplizer_HeavyNeutrino_QCD_2016.cc $JOB_FOLDER/${TASK}${i}.cc
 
 #this substitute inputfile and outpute file in your macro with the proper path
@@ -45,7 +45,7 @@ sed -i -e "s/filename_/${TASK}${i}/" $JOB_FOLDER/${TASK}${i}.cc
 echo "#!/bin/bash 
 cd $PWD 
 
-export X509_USER_PROXY=/afs/cern.ch/user/v/vmariani/proxy
+export X509_USER_PROXY=/afs/cern.ch/user/m/mpresill/proxy
 
 cd -
 
@@ -90,7 +90,7 @@ arguments             = \$(ClusterID) \$(ProcId)
 output                = /dev/null
 error                 = condor${TASK}.err 
 log                   = condor${TASK}.log
-transfer_input_files    = RoccoR.h,RoccoR2016.txt,RoccoR.cc,GEScaleSyst.h,GEScaleSyst.cc,$JOB_FOLDER/copy_\$Fn(filename).sh,$JOB_FOLDER/\$Fn(filename).cc
+transfer_input_files    = RoccoR.h,RoccoR2017.txt,RoccoR.cc,GEScaleSyst.h,GEScaleSyst.cc,$JOB_FOLDER/copy_\$Fn(filename).sh,$JOB_FOLDER/\$Fn(filename).cc
 +PostCmd  = \"copy_\$Fn(filename).sh\"
 +JobFlavour             = \"longlunch\"
 queue filename matching ($JOB_FOLDER/${TASK}*.sh)
