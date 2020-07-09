@@ -117,3 +117,5 @@ for d in range(0,1: do
     echo "DIR $OUTPUT_FOLDER ALREADY EXISTS, SKIPPING"
 
     fi
+
+done
