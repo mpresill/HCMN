@@ -13,7 +13,7 @@ dataset_list=[
 
 #####################
 
-for d in range(0,1: do
+for d in range(0,1: 
 
     TASK= $task_list[d]
     INPUT_DATASET=(`cat`+$dataset_list[d]) 
@@ -117,5 +117,3 @@ for d in range(0,1: do
     echo "DIR $OUTPUT_FOLDER ALREADY EXISTS, SKIPPING"
 
     fi
-
-done
