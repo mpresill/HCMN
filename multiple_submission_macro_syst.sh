@@ -13,7 +13,7 @@ dataset_list=[
 
 #####################
 
-for d in range(0,1: 
+for d in range(0,1)a: 
 
     TASK= $task_list[d]
     INPUT_DATASET=(`cat`+$dataset_list[d]) 
