@@ -1,3 +1,4 @@
+voms-proxy-init --voms cms --valid 192:00 --out ~/proxy
 
 TASK="mumujj_L13_M500_" 
 INPUT_DATASET=(`cat list/list_mumujj_L13_M500.txt`) 
