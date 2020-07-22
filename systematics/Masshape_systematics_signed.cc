@@ -39,13 +39,13 @@ const string syst_folder = "";//muSF/";
 const string up_folder = "";//up/";
 const string down_folder = "";//down/";
 /////////
-const string mainpath = "/afs/cern.ch/user/v/vmariani/public/Matteo/";
+const string mainpath = "/afs/cern.ch/user/v/vmariani/public/Matteo/SYST_2016/";
 const string systematics = "SFeejj"; 
-const string histo_central = "M_eejj"; 
-const string histo_up = "M_eejj_SFu";
-const string histo_down = "M_eejj_SFd";
+const string histo_central = "TTtW_eejj"; 
+const string histo_up = "TTtW_eejj_2016_SFUp";
+const string histo_down = "TTtW_eejj_2016_SFDOwn";
 const char *process[] = { 
-                         "SR_syst_Other_2016","SR_syst_DY_2016","SR_syst_TTtW_2016"
+                         "SR_syst_TTtW_2016"
                          
 };
 const int ini_proc    = 0;
