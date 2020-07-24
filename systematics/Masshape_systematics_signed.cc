@@ -44,14 +44,12 @@ const string systematics = "SFeejj";
 //const string histo_central = "TTtW_eejj"; 
 //const string histo_up = "TTtW_eejj_2016_SFUp";
 //const string histo_down = "TTtW_eejj_2016_SFDOwn";
-const char *histo_central[] = { "TTtW_eejj"            , "Other_eejj"            ,"DY_eejj"             }; 
-const char *histo_up[] =      { "TTtW_eejj_2016_SFUp"  , "Other_eejj_2016_SFUp"  ,"DY_eejj_2016_SFUp"   };
-const char *histo_down[] =    { "TTtW_eejj_2016_SFDown", "Other_eejj_2016_SFDown","DY_eejj_2016_SFDown" };
-const char *process[] = { 
-                              "SR_syst_TTtW_2016",     "SR_syst_Other_2016",     "SR_syst_DY_2016"                         
-};
+const char *histo_central[] = { "TTtW_eejj"            , "Other_eejj"            ,"DY_eejj"            , "eejj_L13_M500_eejj", "eejj_L13_M1000_eejj", "eejj_L13_M2000_eejj","eejj_L13_M5000_eejj", "eejj_L13_M8000_eejj"}; 
+const char *histo_up[] =      { "TTtW_eejj_2016_SFUp"  , "Other_eejj_2016_SFUp"  ,"DY_eejj_2016_SFUp"  , "eejj_L13_M500_eejj_2016_SFUp","eejj_L13_M1000_eejj_2016_SFUp","eejj_L13_M2000_eejj_2016_SFUp","eejj_L13_M5000_eejj_2016_SFUp","eejj_L13_M8000_eejj_2016_SFUp"};
+const char *histo_down[] =    { "TTtW_eejj_2016_SFDown", "Other_eejj_2016_SFDown","DY_eejj_2016_SFDown", "eejj_L13_M500_eejj_2016_SFDown","eejj_L13_M1000_eejj_2016_SFDown","eejj_L13_M2000_eejj_2016_SFDown","eejj_L13_M5000_eejj_2016_SFDown","eejj_L13_M8000_eejj_2016_SFDown"};
+const char *process[] =       {  "SR_syst_TTtW_2016"   ,  "SR_syst_Other_2016"   , "SR_syst_DY_2016"   , "SR_syst_eejj_L13_M500_2016", "SR_syst_eejj_L13_M1000_2016", "SR_syst_eejj_L13_M2000_2016","SR_syst_eejj_L13_M5000_2016","SR_syst_eejj_L13_M8000_2016"};
 const int ini_proc    = 0;
-const int fin_proc    = 3;   //numero di processi
+const int fin_proc    = 8;   //numero di processi
 //const string ininame = "masshape_";
 //const string finname = ".root";
 //const string finalms = "allbkg";
