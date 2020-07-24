@@ -83,11 +83,11 @@ double xsec_LM[Mass_eq_L_points]         = {6.10E+03,1.52E+02,1.28E+01,1.77E+00,
 //HCMN reload  private production 2016, selezione High Mass 
 const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
-double Exp_m2s[val] = {4.97E-02,	2.92E-02,	3.53E-02,	8.38E-01,	3.70E+01};
-double Exp_m1s[val] = {7.45E-02,	4.61E-02,	5.90E-02,	1.42E+00,	6.15E+01};
-double Exp[val]     = {1.16E-01,	7.62E-02,	1.05E-01,	2.62E+00,	1.10E+02};  	//r value from Combine
-double Exp_p1s[val] = {1.79E-01,	1.24E-01,	1.85E-01,	4.85E+00,	1.96E+02};
-double Exp_p2s[val] = {2.58E-01,	1.87E-01,	2.97E-01,	7.93E+00,	3.24E+02};
+double Exp_m2s[val] = {2.84E-04	,8.23E-05	,2.90E-05,	1.19E-05,	3.37E-06};
+double Exp_m1s[val] = {4.25E-04	,1.30E-04	,4.84E-05,	2.03E-05,	5.61E-06};
+double Exp[val]     = {6.61E-04	,2.15E-04	,8.62E-05,	3.73E-05,	1.00E-05};  	//r value from Combine
+double Exp_p1s[val] = {1.02E-03	,3.50E-04	,1.52E-04,	6.91E-05,	1.79E-05};
+double Exp_p2s[val] = {1.47E-03	,5.27E-04	,2.44E-04,	1.13E-04,	2.95E-05};
 
 
 /////
