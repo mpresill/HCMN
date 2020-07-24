@@ -51,7 +51,7 @@ const char *process[] = {
                               "SR_syst_TTtW_2016",     "SR_syst_Other_2016",     "SR_syst_DY_2016"                         
 };
 const int ini_proc    = 0;
-const int fin_proc    = 8;
+const int fin_proc    = 3;   //numero di processi
 //const string ininame = "masshape_";
 //const string finname = ".root";
 //const string finalms = "allbkg";
