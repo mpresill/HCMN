@@ -39,14 +39,16 @@ const string syst_folder = "";//muSF/";
 const string up_folder = "";//up/";
 const string down_folder = "";//down/";
 /////////
-const string mainpath = "/afs/cern.ch/user/v/vmariani/public/Matteo/SYST_2016/";
+const string mainpath = "/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016/";
 const string systematics = "SFeejj"; 
-const string histo_central = "TTtW_eejj"; 
-const string histo_up = "TTtW_eejj_2016_SFUp";
-const string histo_down = "TTtW_eejj_2016_SFDOwn";
+//const string histo_central = "TTtW_eejj"; 
+//const string histo_up = "TTtW_eejj_2016_SFUp";
+//const string histo_down = "TTtW_eejj_2016_SFDOwn";
+const char *histo_central = { "TTtW_eejj"            , "Other_eejj"            ,"DY_eejj"             }; 
+const char *histo_up =      { "TTtW_eejj_2016_SFUp"  , "Other_eejj_2016_SFUp"  ,"DY_eejj_2016_SFUp"   };
+const char *histo_down =    { "TTtW_eejj_2016_SFDOwn", "Other_eejj_2016_SFDOwn","DY_eejj_2016_SFDOwn" };
 const char *process[] = { 
-                         "SR_syst_TTtW_2016"
-                         
+                              "SR_syst_TTtW_2016",     "SR_syst_Other_2016",     "SR_syst_DY_2016"                         
 };
 const int ini_proc    = 0;
 const int fin_proc    = 8;
@@ -75,6 +77,10 @@ void setTDRStyle();
 void Masshape_systematics_signed() {
  setTDRStyle();
  vector<string> proc(process, process + sizeof(process)/sizeof(process[0]));
+ vector<string> histo_c(histo_central, histo_central + sizeof(histo_central)/sizeof(histo_central[0]));
+ vector<string> histo_u(histo_up, histo_up + sizeof(histo_up)/sizeof(histo_up[0]));
+ vector<string> histo_d(histo_down, histo_down + sizeof(histo_down)/sizeof(histo_down[0]));
+ 
  for(uint p=ini_proc; p<fin_proc; p++){
  TCanvas* c1;
  if(updown){
@@ -97,7 +103,7 @@ void Masshape_systematics_signed() {
  if(doasym)  h_allbkg = new TH1D("","",nbin,asymbins);
  if(!doasym) h_allbkg = new TH1D("","",nbin,inRange,endRange);
  TFile* f_allbkg = new TFile((mainpath+file).c_str(),"read");
- f_allbkg->GetObject(histo_central.c_str(),h_allbkg);     ///////EDITED proc[p]
+ f_allbkg->GetObject(histo_c[p].c_str(),h_allbkg);     ///////EDITED proc[p]
  //Sys Plus
  TH1D *h_sys_p;
  if(doasym)  h_sys_p = new TH1D("","",nbin,asymbins);
@@ -106,7 +112,7 @@ void Masshape_systematics_signed() {
  if(updown) Plus = "Plus"; 
  //TFile* f_sys_p = new TFile((mainpath+centralvalue_folder+file).c_str(),"update");
  TFile* f_sys_p = new TFile((mainpath+file).c_str(),"read");
- f_sys_p->GetObject(histo_up.c_str(),h_sys_p);    ///////EDITED proc[p]
+ f_sys_p->GetObject(histo_u[p].c_str(),h_sys_p);    ///////EDITED proc[p]
  TH1D *h_diff_p;
  if(doasym)  h_diff_p = new TH1D("","",nbin,asymbins);
  if(!doasym) h_diff_p = new TH1D("","",nbin,inRange,endRange);
@@ -132,7 +138,7 @@ void Masshape_systematics_signed() {
  if(updown) Minus = "Minus";
  //TFile* f_sys_m = new TFile((mainpath+centralvalue_folder+file).c_str(),"update");
  TFile* f_sys_m = new TFile((mainpath+file).c_str(),"read");
- f_sys_m->GetObject(histo_down.c_str(),h_sys_m);    ///////EDITED proc[p]
+ f_sys_m->GetObject(histo_d[p].c_str(),h_sys_m);    ///////EDITED proc[p]
  TH1D *h_diff_m;
  if(doasym)  h_diff_m = new TH1D("","",nbin,asymbins);
  if(!doasym) h_diff_m = new TH1D("","",nbin,inRange,endRange);
