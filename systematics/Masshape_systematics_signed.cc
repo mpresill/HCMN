@@ -44,9 +44,9 @@ const string systematics = "SFeejj";
 //const string histo_central = "TTtW_eejj"; 
 //const string histo_up = "TTtW_eejj_2016_SFUp";
 //const string histo_down = "TTtW_eejj_2016_SFDOwn";
-const char *histo_central = { "TTtW_eejj"            , "Other_eejj"            ,"DY_eejj"             }; 
-const char *histo_up =      { "TTtW_eejj_2016_SFUp"  , "Other_eejj_2016_SFUp"  ,"DY_eejj_2016_SFUp"   };
-const char *histo_down =    { "TTtW_eejj_2016_SFDOwn", "Other_eejj_2016_SFDOwn","DY_eejj_2016_SFDOwn" };
+const char *histo_central[] = { "TTtW_eejj"            , "Other_eejj"            ,"DY_eejj"             }; 
+const char *histo_up[] =      { "TTtW_eejj_2016_SFUp"  , "Other_eejj_2016_SFUp"  ,"DY_eejj_2016_SFUp"   };
+const char *histo_down[] =    { "TTtW_eejj_2016_SFDOwn", "Other_eejj_2016_SFDOwn","DY_eejj_2016_SFDOwn" };
 const char *process[] = { 
                               "SR_syst_TTtW_2016",     "SR_syst_Other_2016",     "SR_syst_DY_2016"                         
 };
