@@ -46,7 +46,7 @@ const string systematics = "SFeejj";
 //const string histo_down = "TTtW_eejj_2016_SFDOwn";
 const char *histo_central[] = { "TTtW_eejj"            , "Other_eejj"            ,"DY_eejj"             }; 
 const char *histo_up[] =      { "TTtW_eejj_2016_SFUp"  , "Other_eejj_2016_SFUp"  ,"DY_eejj_2016_SFUp"   };
-const char *histo_down[] =    { "TTtW_eejj_2016_SFDOwn", "Other_eejj_2016_SFDOwn","DY_eejj_2016_SFDOwn" };
+const char *histo_down[] =    { "TTtW_eejj_2016_SFDown", "Other_eejj_2016_SFDown","DY_eejj_2016_SFDown" };
 const char *process[] = { 
                               "SR_syst_TTtW_2016",     "SR_syst_Other_2016",     "SR_syst_DY_2016"                         
 };
@@ -81,8 +81,6 @@ void Masshape_systematics_signed() {
  vector<string> histo_u(histo_up, histo_up + sizeof(histo_up)/sizeof(histo_up[0]));
  vector<string> histo_d(histo_down, histo_down + sizeof(histo_down)/sizeof(histo_down[0]));
  
- TH1D *h_sys_m;
-
 
  for(uint p=ini_proc; p<fin_proc; p++){
  TCanvas* c1;
@@ -134,7 +132,7 @@ void Masshape_systematics_signed() {
  string titleYaxis = "Relative difference (in %)";
  h_diff_p->GetYaxis()->SetTitle(titleYaxis.c_str());
  //Sys Minus
- //TH1D *h_sys_m;
+ TH1D *h_sys_m;
  if(doasym)  h_sys_m = new TH1D("","",nbin,asymbins);
  if(!doasym) h_sys_m = new TH1D("","",nbin,inRange,endRange);
  string Minus = "";
@@ -193,7 +191,7 @@ void Masshape_systematics_signed() {
  if(updown) leg->Draw();
  //Save
  string namefile = "sys_"+proc[p]+"_"+systematics+".pdf";
- if(saveplot) c1->SaveAs(namefile.c_str());
+ if(saveplot){ c1->SaveAs(namefile.c_str());}
  //Take maximum relative difference
  if(updown){
   TH1D *h_max_sys;
@@ -229,7 +227,7 @@ void Masshape_systematics_signed() {
   //h_max_sys->SetTitle(0);
   h_max_sys->Draw(); 
   string namefile2 = "sysM_"+proc[p]+"_"+systematics+".pdf";
-  if(saveplot) c2->SaveAs(namefile2.c_str());
+  if(saveplot){ c2->SaveAs(namefile2.c_str());}
  }
 }
 }
