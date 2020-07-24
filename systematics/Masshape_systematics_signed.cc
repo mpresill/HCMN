@@ -81,6 +81,9 @@ void Masshape_systematics_signed() {
  vector<string> histo_u(histo_up, histo_up + sizeof(histo_up)/sizeof(histo_up[0]));
  vector<string> histo_d(histo_down, histo_down + sizeof(histo_down)/sizeof(histo_down[0]));
  
+ TH1D *h_sys_m;
+
+
  for(uint p=ini_proc; p<fin_proc; p++){
  TCanvas* c1;
  if(updown){
@@ -131,7 +134,7 @@ void Masshape_systematics_signed() {
  string titleYaxis = "Relative difference (in %)";
  h_diff_p->GetYaxis()->SetTitle(titleYaxis.c_str());
  //Sys Minus
- TH1D *h_sys_m;
+ //TH1D *h_sys_m;
  if(doasym)  h_sys_m = new TH1D("","",nbin,asymbins);
  if(!doasym) h_sys_m = new TH1D("","",nbin,inRange,endRange);
  string Minus = "";
