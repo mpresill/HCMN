@@ -34,7 +34,7 @@ using namespace std;
 /////
 //   Declare constants
 /////
-const double Luminosity = 41529; //pb^-1
+const double Luminosity = 136000; //pb^-1
 //Plots
 const bool eejj        = true;
 const bool mumujj      = false;
