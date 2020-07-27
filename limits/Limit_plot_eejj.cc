@@ -217,8 +217,8 @@ TGraph* plot_band_2s(){
  band_2s->Draw("ALF2");
 // band_2s->SetMinimum(0.0001);
  //band_2s->SetMaximum(0.01);
- band_2s->SetMinimum(0.00001);
- band_2s->SetMaximum(1);
+ band_2s->SetMinimum(0.000001);
+ band_2s->SetMaximum(0.1);
  band_2s->SetTitle(0);
  if(mumujj) band_2s->GetXaxis()->SetTitle("m_{N_{#mu}} (TeV)");
  if(eejj)   band_2s->GetXaxis()->SetTitle("m_{N_{e}} (TeV)");
