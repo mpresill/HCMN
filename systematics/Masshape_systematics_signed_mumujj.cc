@@ -35,25 +35,25 @@ using namespace std;
 /////
 //For sys
 const string centralvalue_folder = "";//Central/";
-const string syst_folder = "";//muAlphaRatio/";
+const string syst_folder = "";//muPtCorr/";
 const string up_folder = "";//up/";
 const string down_folder = "";//down/";
 /////////
 const string mainpath = "/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016/";
-const string systematics = "AlphaRatioeejj"; 
-//const string histo_central = "TTtW_eejj"; 
-//const string histo_up = "TTtW_eejj_2016_AlphaRatioUp";
-//const string histo_down = "TTtW_eejj_2016_AlphaRatioDOwn";
-const char *histo_central[] = { "TTtW_eejj"            , "Other_eejj"            ,"DY_eejj"            , "eejj_L13_M500_eejj", "eejj_L13_M1000_eejj", "eejj_L13_M2000_eejj","eejj_L13_M5000_eejj", "eejj_L13_M8000_eejj"}; 
-const char *histo_up[] =      { "TTtW_eejj_2016_AlphaRatioUp"  , "Other_eejj_2016_AlphaRatioUp"  ,"DY_eejj_2016_AlphaRatioUp"  , "eejj_L13_M500_eejj_2016_AlphaRatioUp","eejj_L13_M1000_eejj_2016_AlphaRatioUp","eejj_L13_M2000_eejj_2016_AlphaRatioUp","eejj_L13_M5000_eejj_2016_AlphaRatioUp","eejj_L13_M8000_eejj_2016_AlphaRatioUp"};
-const char *histo_down[] =    { "TTtW_eejj_2016_AlphaRatioDown", "Other_eejj_2016_AlphaRatioDown","DY_eejj_2016_AlphaRatioDown", "eejj_L13_M500_eejj_2016_AlphaRatioDown","eejj_L13_M1000_eejj_2016_AlphaRatioDown","eejj_L13_M2000_eejj_2016_AlphaRatioDown","eejj_L13_M5000_eejj_2016_AlphaRatioDown","eejj_L13_M8000_eejj_2016_AlphaRatioDown"};
-const char *process[] =       {  "SR_syst_TTtW_2016"   ,  "SR_syst_Other_2016"   , "SR_syst_DY_2016"   , "SR_syst_eejj_L13_M500_2016", "SR_syst_eejj_L13_M1000_2016", "SR_syst_eejj_L13_M2000_2016","SR_syst_eejj_L13_M5000_2016","SR_syst_eejj_L13_M8000_2016"};
+const string systematics = "PtCorrmumujj"; 
+//const string histo_central = "TTtW_mumujj"; 
+//const string histo_up = "TTtW_mumujj_2016_PtCorrUp";
+//const string histo_down = "TTtW_mumujj_2016_PtCorrDOwn";
+const char *histo_central[] = { "TTtW_mumujj"            , "Other_mumujj"            ,"DY_mumujj"            , "mumujj_L13_M500_mumujj", "mumujj_L13_M1000_mumujj", "mumujj_L13_M2000_mumujj","mumujj_L13_M5000_mumujj", "mumujj_L13_M8000_mumujj"}; 
+const char *histo_up[] =      { "TTtW_mumujj_2016_PtCorrUp"  , "Other_mumujj_2016_PtCorrUp"  ,"DY_mumujj_2016_PtCorrUp"  , "mumujj_L13_M500_mumujj_2016_PtCorrUp","mumujj_L13_M1000_mumujj_2016_PtCorrUp","mumujj_L13_M2000_mumujj_2016_PtCorrUp","mumujj_L13_M5000_mumujj_2016_PtCorrUp","mumujj_L13_M8000_mumujj_2016_PtCorrUp"};
+const char *histo_down[] =    { "TTtW_mumujj_2016_PtCorrDown", "Other_mumujj_2016_PtCorrDown","DY_mumujj_2016_PtCorrDown", "mumujj_L13_M500_mumujj_2016_PtCorrDown","mumujj_L13_M1000_mumujj_2016_PtCorrDown","mumujj_L13_M2000_mumujj_2016_PtCorrDown","mumujj_L13_M5000_mumujj_2016_PtCorrDown","mumujj_L13_M8000_mumujj_2016_PtCorrDown"};
+const char *process[] =       {  "SR_syst_TTtW_2016"   ,  "SR_syst_Other_2016"   , "SR_syst_DY_2016"   , "SR_syst_mumujj_L13_M500_2016", "SR_syst_mumujj_L13_M1000_2016", "SR_syst_mumujj_L13_M2000_2016","SR_syst_mumujj_L13_M5000_2016","SR_syst_mumujj_L13_M8000_2016"};
 const int ini_proc    = 0;
 const int fin_proc    = 8;   //numero di processi
 //const string ininame = "masshape_";
 //const string finname = ".root";
 //const string finalms = "allbkg";
-const string sys     = "";//muSF";
+const string sys     = "";//muPtCorr";
 const bool updown    = true;
 //For Plots
 const int    bin          = 30;
@@ -72,7 +72,7 @@ void setTDRStyle();
 /////
 //   Main function
 /////
-void Masshape_systematics_signed() {
+void Masshape_systematics_signed_mumujj() {
  setTDRStyle();
  vector<string> proc(process, process + sizeof(process)/sizeof(process[0]));
  vector<string> histo_c(histo_central, histo_central + sizeof(histo_central)/sizeof(histo_central[0]));
@@ -125,7 +125,7 @@ void Masshape_systematics_signed() {
   h_diff_p->SetLineColor(kMagenta+2);
  }
  //h_diff_p->SetMaximum(upval);
- string titleXaxis = "M(e,e,J) [GeV]";
+ string titleXaxis = "M(#mu,#mu,J) [GeV]";
  h_diff_p->GetXaxis()->SetTitle(titleXaxis.c_str());
  string titleYaxis = "Relative difference (in %)";
  h_diff_p->GetYaxis()->SetTitle(titleYaxis.c_str());
