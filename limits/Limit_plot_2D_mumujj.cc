@@ -49,7 +49,7 @@ const bool   plot_r    = false; //r is the strenght; the alternative is to plot 
 
 //mumujj     UNCOMMENT THIS FOR mumuJJ CHANNEL HighMass SR with 2016 samples, compared with old SR
 
-const int val = 9;
+const int val = 10;
 double LambdaObs[val] = {}; 
 double Obs[val]       = {}; 
 double LambdaExp[val] = {6.3, 6.3, 7,   9,   11,   13,   15,   17,  20, 20};    //Lambda [TeV]
