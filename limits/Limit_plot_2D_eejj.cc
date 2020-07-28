@@ -52,8 +52,8 @@ const bool   plot_r    = false; //r is the strenght; the alternative is to plot 
 const int val = 10;
 double LambdaObs[val] = {}; 
 double Obs[val]       = {}; 
-double LambdaExp[val] = {5.6, 6,   7,    9,   11,   13,   15,   17,  17.5, 17};    //Lambda [TeV]
-double Exp[val]       = {5.6, 5.4, 4.65, 3.8, 3.2, 2.48, 1.9,  1.2,  0.9, 0.5};  //Mass [TeV]
+double LambdaExp[val] = {6.8,  7,    9,   11,   13,   15,   17,   20,  21, 21.5, 21};    //Lambda [TeV]
+double Exp[val]       = {6.8,  6,  4.9,  4.2,  3.5,  2.9,  2.95,  2.2, 1.4, 1,  0.5};  //Mass [TeV]
 double LambdaErrp2s[val] = {4.70, 6,    7,    8,    9,    9,   10}; 
 double Exp_p2s[val]   = {4.21, 3.06, 2.51, 1.79, 0.34, 0.34, 0.40};
 double LambdaErrp1s[val] = {4.70, 6,    7,    8,    9,    10,   10}; 
@@ -103,7 +103,7 @@ void Limit_plot_2D_eejj(){
  if(mumujj) expLim->GetXaxis()->SetTitle("#scale[1.2]{#font[12]{m}_{N_{#mu}}} (TeV)");
  expLim->GetYaxis()->SetTitle("#Lambda (TeV)"); 
  expLim->GetYaxis()->SetRangeUser(0,22);
- expLim->GetXaxis()->SetRangeUser(0,6);
+ expLim->GetXaxis()->SetRangeUser(0,6.8);
  ///obs limits
  TGraph* obsLim = new TGraph(val,Obs,LambdaObs);
  obsLim->SetLineWidth(2); obsLim->SetLineStyle(2); obsLim->SetLineColor(kBlue);  //obsLim->SetLineColor(9);

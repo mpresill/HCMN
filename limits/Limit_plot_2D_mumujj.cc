@@ -120,7 +120,7 @@ void Limit_plot_2D_mumujj(){
  if(mumujj) expLim->GetXaxis()->SetTitle("#scale[1.2]{#font[12]{m}_{N_{#mu}}} (TeV)");
  expLim->GetYaxis()->SetTitle("#Lambda (TeV)"); 
  expLim->GetYaxis()->SetRangeUser(0,22);
- expLim->GetXaxis()->SetRangeUser(0,6);
+ expLim->GetXaxis()->SetRangeUser(0,6.8);
  ///obs limits
  TGraph* obsLim = new TGraph(val,Obs,LambdaObs);
  obsLim->SetLineWidth(2); obsLim->SetLineStyle(2); obsLim->SetLineColor(kBlue);  //obsLim->SetLineColor(9);
