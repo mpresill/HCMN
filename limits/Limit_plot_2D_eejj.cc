@@ -49,7 +49,7 @@ const bool   plot_r    = false; //r is the strenght; the alternative is to plot 
 
 
 //eejj
-const int val = 9;
+const int val = 10;
 double LambdaObs[val] = {}; 
 double Obs[val]       = {}; 
 double LambdaExp[val] = {5.6, 6,   7,    9,   11,   13,   15,   17,  18, 17};    //Lambda [TeV]
