@@ -6,6 +6,14 @@ rm listZZ.txt;
 rm listWZ.txt;
 rm listWW.txt;
 rm listWJets.txt;
+rm listWJets100200.txt;
+rm listWJets200400.txt;
+rm listWJets400600.txt;
+rm listWJets600800.txt;
+rm listWJets8001200.txt;
+rm listWJets12002500.txt;
+rm listWJets2500inf.txt;
+rm listWJetsincl.txt;
 rm listDY.txt;
 rm listTT.txt;
 
@@ -123,6 +131,61 @@ do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets.txt; done
 
 sed -i -e "s/\"/\\\\\"/g" listWJets.txt
 sed -i -e "s/\//\\\\\//g" listWJets.txt
+
+
+#WJets
+#100200
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJetsHT100To200/191023_100211/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets100200.txt; done
+sed -i -e "s/\"/\\\\\"/g" listWJets100200.txt
+sed -i -e "s/\//\\\\\//g" listWJets100200.txt
+
+#200400
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJetsHT200To400/191023_100439/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets200400.txt; done
+sed -i -e "s/\"/\\\\\"/g" listWJets200400.txt
+sed -i -e "s/\//\\\\\//g" listWJets200400.txt
+
+#400600
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJetsHT400To600/191104_104208/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets400600.txt; done
+sed -i -e "s/\"/\\\\\"/g" listWJets400600.txt
+sed -i -e "s/\//\\\\\//g" listWJets400600.txt
+
+#600800
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJetsHT600To800/191023_100925/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets600800.txt; done
+sed -i -e "s/\"/\\\\\"/g" listWJets600800.txt
+sed -i -e "s/\//\\\\\//g" listWJets600800.txt
+
+#8001200
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJetsHT800To1200/191023_101156/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets8001200.txt; done
+sed -i -e "s/\"/\\\\\"/g" listWJets8001200.txt
+sed -i -e "s/\//\\\\\//g" listWJets8001200.txt
+
+#12002500
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJetsHT1200To2500/191023_101419/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets12002500.txt; done
+sed -i -e "s/\"/\\\\\"/g" listWJets12002500.txt
+sed -i -e "s/\//\\\\\//g" listWJets12002500.txt
+
+#2500inf
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJetsHT2500ToInf/191023_101650/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJets2500inf.txt; done
+sed -i -e "s/\"/\\\\\"/g" listWJets2500inf.txt
+sed -i -e "s/\//\\\\\//g" listWJets2500inf.txt
+
+#incl
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJets_1/191023_101914/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJetsincl.txt; done
+
+for i in `xrdfs root://t2-xrdcms.lnl.infn.it:7070 ls /store/user/mpresill/WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8/Fall17V2_WJets_2/191023_102138/0000`;
+do echo "root://t2-xrdcms.lnl.infn.it:7070/${i//\/cms/}" >> listWJetsincl.txt; done
+sed -i -e "s/\"/\\\\\"/g" listWJetsincl.txt
+sed -i -e "s/\//\\\\\//g" listWJetsincl.txt
+
+
 
 
 #Signals
