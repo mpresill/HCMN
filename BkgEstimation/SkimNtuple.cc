@@ -40,7 +40,7 @@ const string path     = "/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2
 
 const char *samples[] = {//"TT_2016","tW_2016", 
 	                "DY_2017","TTtW_2017","Other_2017"
-                        ,"single_ele_B_2017"
+                        //,"single_ele_B_2017"
                         //"data_mu"
                          //,"data_ele_B", "data_ele_C", "data_ele_D", "data_ele_E", "data_ele_F", "data_ele_G", "data_ele_H",
                          //"data_mu_B","data_mu_C", "data_mu_D", "data_mu_E", "data_mu_F", "data_mu_G","data_mu_H"
@@ -97,14 +97,14 @@ TFile* Call_TFile(string rootpla);
 void SkimNtuple(){
  //For all the samples
  vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
- //double EffCum[15]={0};
- //double num_EffCum[15]={0};
- //double den_EffCum[15]={0};
+ double EffCum[15]={0};
+ double num_EffCum[15]={0};
+ double den_EffCum[15]={0};
  for(uint i=0; i<rootplas.size(); i++){
   //Call old ntupla
   TFile* f = Call_TFile(rootplas[i]); TTree* tree; f->GetObject("BOOM",tree);
-  //den_EffCum[i]=tree->GetEntries();
-  //cout<<"#tot events  "<< den_EffCum[i] <<"\n";
+  den_EffCum[i]=tree->GetEntries();
+  cout<<"#tot events  "<< den_EffCum[i] <<"\n";
   //Create new ntupla
   string newfil  = specsel+rootplas[i]+"_"+suffisso+dotroot; 
   TFile *newfile = new TFile(newfil.c_str(),"recreate");
@@ -113,11 +113,11 @@ void SkimNtuple(){
   string varCut  = selection;
   TTree* newtree = tree->CopyTree(varCut.c_str());
   //Save
-  //num_EffCum[i]=newtree->GetEntries();
-  //cout<<"#events SR "<< num_EffCum[i] <<"\n";
-  //EffCum[i]=num_EffCum[i]/den_EffCum[i];
-  //cout << "Number of selected events of sample "<< rootplas[i] <<"' =  "<<num_EffCum[i]<<"\n";
-  //cout << "cumulative eff of sample "<< rootplas[i] <<"' =  "<<EffCum[i]<<"\n";
+  num_EffCum[i]=newtree->GetEntries();
+  cout<<"#events SR "<< num_EffCum[i] <<"\n";
+  EffCum[i]=num_EffCum[i]/den_EffCum[i];
+  cout << "Number of selected events of sample "<< rootplas[i] <<"' =  "<<num_EffCum[i]<<"\n";
+  cout << "cumulative eff of sample "<< rootplas[i] <<"' =  "<<EffCum[i]<<"\n";
   newtree->Write(); 
   newfile->Write();
   newfile->Close();
