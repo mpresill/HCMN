@@ -823,19 +823,18 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     PileupWeight = CalculatePileupWeight(trueInteractions);
     lumi_wgt = get_wgtlumi(Input);
    
-
-  //Gen variables (writing)
-  Gen_pt->push_back(rGen_pt->at(en));
-  Gen_eta->push_back(rGen_eta->at(en));
-  Gen_phi->push_back(rGen_phi->at(en));
-  Gen_charge->push_back(rGen_charge->at(en));
-  Gen_energy->push_back(rGen_energy->at(en));
-  Gen_pdg_id->push_back(rGen_pdg_id->at(en));
-  Gen_motherpdg_id->push_back(rGen_motherpdg_id->at(en));
-  Gen_numDaught->push_back(rGen_numDaught->at(en));
-  Gen_numMother->push_back(rGen_numMother->at(en));
-
-
+   for(uint gen_en = 0; gen_en<rGen_pt->size(); gen_en++){
+    //Gen variables (writing)
+    Gen_pt->push_back(rGen_pt->at(gen_en));
+    Gen_eta->push_back(rGen_eta->at(gen_en));
+    Gen_phi->push_back(rGen_phi->at(gen_en));
+    Gen_charge->push_back(rGen_charge->at(gen_en));
+    Gen_energy->push_back(rGen_energy->at(gen_en));
+    Gen_pdg_id->push_back(rGen_pdg_id->at(gen_en));
+    Gen_motherpdg_id->push_back(rGen_motherpdg_id->at(gen_en));
+    Gen_numDaught->push_back(rGen_numDaught->at(gen_en));
+    Gen_numMother->push_back(rGen_numMother->at(gen_en));
+   }
    
    int num = 0;
    for(uint mu_en = 0; mu_en<rMuon_pt->size(); mu_en++){
