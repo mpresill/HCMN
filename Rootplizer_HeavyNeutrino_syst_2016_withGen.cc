@@ -952,7 +952,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     if(Jet_isIDL==true){
      Jet_L->push_back(true);
      for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Pt()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
       double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
      }
@@ -965,7 +965,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     if(Jet_isIDT==true){
      Jet_T->push_back(true);
      for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Pt()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
       double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
      }
@@ -994,12 +994,12 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      //cout << "pt dei jet dopo la sel: " <<JetCorr.Pt() << endl;
      //Jet cleaning: 
      for(uint ele_en = 0; ele_en<patElectron_pt->size(); ele_en++){
-      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Pt()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
+      double DR_jetele = sqrt(pow(deltaPhi(patElectron_phi->at(ele_en),JetCorr.Phi()),2)+pow(patElectron_eta->at(ele_en)-JetCorr.Eta(),2) );
       double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
     }
      for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
-      double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Pt()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
+      double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
       double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
      }
