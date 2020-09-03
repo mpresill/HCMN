@@ -234,6 +234,73 @@ a_JerSFup->SetAddress(&JerSFup);
 a_JerSFdown->SetAddress(&JerSFdown);
 
 const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+
+TH1D *den = new TH1D ("den", "den", 4, 0, 2);
+TH1D *den_ = new TH1D ("den_", "den_", 4, 0, 2);
+TH1D *q1q2_within_lj = new TH1D ("q1q2_within_lj", "q1q2_within_lj", 4, 0, 2);
+TH1D *q1_within_lj_q2_within_slj = new TH1D ("q1_within_lj_within_slj ", "q1_within_lj_within_slj ", 4, 0, 2);
+TH1D *lj_or_slj_matched = new TH1D ("lj_or_slj_matched", "lj_or_slj_matched", 4, 0, 2);
+TH1D *lj_and_slj_matched = new TH1D ("lj_and_slj_matched", "lj_and_slj_matched", 4, 0, 2);
+TH1D *q1q2_within_lJ = new TH1D ("q1q2_within_lJ", "q1q2_within_lJ", 4, 0, 2);
+TH1D *q1_within_lJ_q2_within_slJ = new TH1D ("q1_within_lJ_within_slJ ", "q1_within_lJ_within_slJ ", 4, 0, 2);
+TH1D *lJ_or_slJ_matched = new TH1D ("lJ_or_slJ_matched", "lJ_or_slJ_matched", 4, 0, 2);
+TH1D *lJ_and_slJ_matched = new TH1D ("lJ_and_slJ_matched", "lJ_and_slJ_matched", 4, 0, 2);
+
+TH1D *njets_1 = new TH1D ("njets_1", "njets_1", 10, 0, 10);
+TH1D *njets_2 = new TH1D ("njets_2", "njets_2", 10, 0, 10);
+TH1D *njets_3 = new TH1D ("njets_3", "njets_3", 10, 0, 10);
+TH1D *njets_4 = new TH1D ("njets_4", "njets_4", 10, 0, 10);
+TH1D *njets_5 = new TH1D ("njets_5", "njets_5", 10, 0, 10);
+TH1D *index_q1_j1 = new TH1D ("index_q1_j1", "index_q1_j1", 4, 0, 2);
+TH1D *index_q1_j2 = new TH1D ("index_q1_j2", "index_q1_j2", 4, 0, 2);
+TH1D *index_q1_j3 = new TH1D ("index_q1_j3", "index_q1_j3", 4, 0, 2);
+TH1D *index_q1_j4 = new TH1D ("index_q1_j4", "index_q1_j4", 4, 0, 2);
+TH1D *index_q1_j5 = new TH1D ("index_q1_j5", "index_q1_j5", 4, 0, 2);
+TH1D *index_q2_j1 = new TH1D ("index_q2_j1", "index_q2_j1", 4, 0, 2);
+TH1D *index_q2_j2 = new TH1D ("index_q2_j2", "index_q2_j2", 4, 0, 2);
+TH1D *index_q2_j3 = new TH1D ("index_q2_j3", "index_q2_j3", 4, 0, 2);
+TH1D *index_q2_j4 = new TH1D ("index_q2_j4", "index_q2_j4", 4, 0, 2);
+TH1D *index_q2_j5 = new TH1D ("index_q2_j5", "index_q2_j5", 4, 0, 2);
+TH1D *index_q1q2_j1 = new TH1D ("index_q1q2_j1", "index_q1q2_j1", 4, 0, 2);
+TH1D *index_q1q2_j2 = new TH1D ("index_q1q2_j2", "index_q1q2_j2", 4, 0, 2);
+TH1D *index_q1q2_j3 = new TH1D ("index_q1q2_j3", "index_q1q2_j3", 4, 0, 2);
+TH1D *index_q1q2_j4 = new TH1D ("index_q1q2_j4", "index_q1q2_j4", 4, 0, 2);
+TH1D *index_q1q2_j5 = new TH1D ("index_q1q2_j5", "index_q1q2_j5", 4, 0, 2);
+TH1D *nomatch_j1 = new TH1D ("nomatch_j1", "nomatch_j1", 4, 0, 2);
+TH1D *nomatch_j2 = new TH1D ("nomatch_j2", "nomatch_j2", 4, 0, 2);
+TH1D *nomatch_j3 = new TH1D ("nomatch_j3", "nomatch_j3", 4, 0, 2);
+TH1D *nomatch_j4 = new TH1D ("nomatch_j4", "nomatch_j4", 4, 0, 2);
+TH1D *nomatch_j5 = new TH1D ("nomatch_j5", "nomatch_j5", 4, 0, 2);
+TH1D *nJets_1 = new TH1D ("nJets_1", "nJets_1", 10, 0, 10);
+TH1D *nJets_2 = new TH1D ("nJets_2", "nJets_2", 10, 0, 10);
+TH1D *nJets_3 = new TH1D ("nJets_3", "nJets_3", 10, 0, 10);
+TH1D *nJets_4 = new TH1D ("nJets_4", "nJets_4", 10, 0, 10);
+TH1D *nJets_5 = new TH1D ("nJets_5", "nJets_5", 10, 0, 10);
+TH1D *index_q1_J1 = new TH1D ("index_q1_J1", "index_q1_J1", 4, 0, 2);
+TH1D *index_q1_J2 = new TH1D ("index_q1_J2", "index_q1_J2", 4, 0, 2);
+TH1D *index_q1_J3 = new TH1D ("index_q1_J3", "index_q1_J3", 4, 0, 2);
+TH1D *index_q1_J4 = new TH1D ("index_q1_J4", "index_q1_J4", 4, 0, 2);
+TH1D *index_q1_J5 = new TH1D ("index_q1_J5", "index_q1_J5", 4, 0, 2);
+TH1D *index_q2_J1 = new TH1D ("index_q2_J1", "index_q2_J1", 4, 0, 2);
+TH1D *index_q2_J2 = new TH1D ("index_q2_J2", "index_q2_J2", 4, 0, 2);
+TH1D *index_q2_J3 = new TH1D ("index_q2_J3", "index_q2_J3", 4, 0, 2);
+TH1D *index_q2_J4 = new TH1D ("index_q2_J4", "index_q2_J4", 4, 0, 2);
+TH1D *index_q2_J5 = new TH1D ("index_q2_J5", "index_q2_J5", 4, 0, 2);
+TH1D *index_q1q2_J1 = new TH1D ("index_q1q2_J1", "index_q1q2_J1", 4, 0, 2);
+TH1D *index_q1q2_J2 = new TH1D ("index_q1q2_J2", "index_q1q2_J2", 4, 0, 2);
+TH1D *index_q1q2_J3 = new TH1D ("index_q1q2_J3", "index_q1q2_J3", 4, 0, 2);
+TH1D *index_q1q2_J4 = new TH1D ("index_q1q2_J4", "index_q1q2_J4", 4, 0, 2);
+TH1D *index_q1q2_J5 = new TH1D ("index_q1q2_J5", "index_q1q2_J5", 4, 0, 2);
+TH1D *nomatch_J1 = new TH1D ("nomatch_J1", "nomatch_J1", 4, 0, 2);
+TH1D *nomatch_J2 = new TH1D ("nomatch_J2", "nomatch_J2", 4, 0, 2);
+TH1D *nomatch_J3 = new TH1D ("nomatch_J3", "nomatch_J3", 4, 0, 2);
+TH1D *nomatch_J4 = new TH1D ("nomatch_J4", "nomatch_J4", 4, 0, 2);
+TH1D *nomatch_J5 = new TH1D ("nomatch_J5", "nomatch_J5", 4, 0, 2);
+
+TH1D *index_jq1 = new TH1D ("index_jq1", "index_jq1", 10, 0, 10);
+TH1D *index_jq2 = new TH1D ("index_jq2", "index_jq2", 10, 0, 10);
+TH1D *index_Jq1 = new TH1D ("index_Jq1", "index_Jq1", 10, 0, 10);
+TH1D *index_Jq2 = new TH1D ("index_Jq2", "index_Jq2", 10, 0, 10);
 TH1D *deltaRq2Leadj = new TH1D ("deltaRq2Leadj", "deltaRq2Leadj", 100, 0, 5);
 TH1D *deltaRq2LeadJ = new TH1D ("deltaRq2LeadJ", "deltaRq2LeadJ", 100, 0, 5);
 TH1D *deltaR_mu1j1 = new TH1D ("deltaR_mu1j1", "deltaR_mu1j1", 100, 0, 5);
@@ -251,8 +318,8 @@ TH1D *DeltaR_q1J = new TH1D ("DeltaR_q1J", "DeltaR_q1J", 100, 0, 5);
 TH1D *Muon_pt_gen = new TH1D ("Muon_pt_gen", "Muon_pt_gen", 100, 0, 1000);
 TH1D *Quark2_pt_gen = new TH1D ("Quark2_pt_gen", "Quark2_pt_gen", 100, 0, 1000);
 TH1D *Quark1_pt_gen = new TH1D ("Quark1_pt_gen", "Quark1_pt_gen", 100, 0, 1000);
-TH1D *FatJet1_pt = new TH1D ("FatJet1_pt", "FatJet1_pt", 1000, 0, 1000);
-TH1D *FatJet2_pt = new TH1D ("FatJet2_pt", "FatJet2_pt", 1000, 0, 1000);
+TH1D *FatJet1_pt = new TH1D ("FatJet1_pt", "FatJet1_pt", 1000, 0, 10000);
+TH1D *FatJet2_pt = new TH1D ("FatJet2_pt", "FatJet2_pt", 1000, 0, 10000);
 TH1D *Jet1_pt = new TH1D ("Jet1_pt", "Jet1_pt", 1000, 0, 10000);
 TH1D *Jet2_pt = new TH1D ("Jet2_pt", "Jet2_pt", 1000, 0, 10000);
 TH1D *deltaRmu1FJ1 = new TH1D ("deltaRmu1FJ1", "deltaRmu1FJ1", 100, 0, 20);
@@ -305,32 +372,43 @@ TLorentzVector BoostJet_JESdown;
 TLorentzVector BoostJet_JERup;
 TLorentzVector BoostJet_JERdown;
 
-double deltaEta_jj = 0, deltaPhi_jj = 0, deltaR_jj = 0;
+double deltaEta_jj = 0, deltaPhi_jj = 0, deltaR_jj = 100;
 double deltaEta_mu1FJ1 = 0, deltaEta_mu1FJ2 = 0, deltaEta_mu2FJ1 = 0, deltaEta_mu2FJ2 = 0;
 double deltaPhi_mu1FJ1 = 0, deltaPhi_mu1FJ2 = 0, deltaPhi_mu2FJ1 = 0, deltaPhi_mu2FJ2 = 0;
-double deltaR_mu1FJ1 = 0, deltaR_mu1FJ2 = 0, deltaR_mu2FJ1 = 0, deltaR_mu2FJ2 = 0;
-double deltaR_mu12 = 0, deltaEta_mu12 = 0, deltaPhi_mu12 = 0;
+double deltaR_mu1FJ1 = 100, deltaR_mu1FJ2 = 100, deltaR_mu2FJ1 = 100, deltaR_mu2FJ2 = 100;
+double deltaR_mu12 = 100, deltaEta_mu12 = 0, deltaPhi_mu12 = 0;
 double Quark2_gen_pt = 0, Quark2_gen_eta = 0, Quark2_gen_phi = 0, Quark2_gen_energy = 0;
 double Quark1_gen_pt = 0, Quark1_gen_eta = 0, Quark1_gen_phi = 0, Quark1_gen_energy = 0;
+double Quark2_gen_pt_tmp = 0, Quark2_gen_eta_tmp = 0, Quark2_gen_phi_tmp = 0, Quark2_gen_energy_tmp = 0;
+double Quark1_gen_pt_tmp = 0, Quark1_gen_eta_tmp = 0, Quark1_gen_phi_tmp = 0, Quark1_gen_energy_tmp = 0;
 double Muon_gen_pt = 0, Muon_gen_eta = 0, Muon_gen_phi = 0, Muon_gen_energy = 0;
 int quark = 0;
 double Jet1_matched_pt = 0, Jet1_matched_eta = 0, Jet1_matched_phi = 0, Jet1_matched_energy=0;
 double Jet2_matched_pt = 0, Jet2_matched_eta = 0, Jet2_matched_phi = 0, Jet2_matched_energy=0;
 double BoostedJet1_matched_pt = 0, BoostedJet1_matched_eta = 0, BoostedJet1_matched_phi = 0, BoostedJet1_matched_energy=0;
 double BoostedJet2_matched_pt = 0, BoostedJet2_matched_eta = 0, BoostedJet2_matched_phi = 0, BoostedJet2_matched_energy=0;
-double deltaEta_q1j = 0, deltaPhi_q1j = 0, deltaR_q1j = 0, deltaR_q1j_tmp = 0;
-double deltaEta_q2j = 0, deltaPhi_q2j = 0, deltaR_q2j = 0, deltaR_q2j_tmp = 0;
-double deltaEta_q1J = 0, deltaPhi_q1J = 0, deltaR_q1J = 0, deltaR_q1J_tmp = 0;
-double deltaEta_q2J = 0, deltaPhi_q2J = 0, deltaR_q2J = 0, deltaR_q2J_tmp = 0;
+double deltaEta_q1j = 0, deltaPhi_q1j = 0, deltaR_q1j = 100, deltaR_q1j_tmp = 100;
+double deltaEta_q2j = 0, deltaPhi_q2j = 0, deltaR_q2j = 100, deltaR_q2j_tmp = 100;
+double deltaEta_q1J = 0, deltaPhi_q1J = 0, deltaR_q1J = 100, deltaR_q1J_tmp = 100;
+double deltaEta_q2J = 0, deltaPhi_q2J = 0, deltaR_q2J = 100, deltaR_q2J_tmp = 100;
 double deltaeta_mu1j1 = 0, deltaeta_mu2j1 = 0, deltaeta_mu1j2 = 0, deltaeta_mu2j2= 0;
 double deltaphi_mu1j1 = 0, deltaphi_mu2j1 = 0, deltaphi_mu1j2 = 0, deltaphi_mu2j2= 0;
 double deltaeta_mu1J1 = 0, deltaeta_mu2J1 = 0, deltaeta_mu1J2 = 0, deltaeta_mu2J2= 0;
 double deltaphi_mu1J1 = 0, deltaphi_mu2J1 = 0, deltaphi_mu1J2 = 0, deltaphi_mu2J2= 0;
-double deltaRmu1j1 = 0, deltaRmu2j1 = 0, deltaRmu1j2 = 0, deltaRmu2j2= 0;
-double deltaRmu1J1 = 0, deltaRmu2J1 = 0, deltaRmu1J2 = 0, deltaRmu2J2= 0;
-double deltaEta_JJ = 0, deltaPhi_JJ = 0, deltaR_JJ = 0;
-double deltaEta_q2Leadj = 0, deltaPhi_q2Leadj = 0, deltaR_q2Leadj = 0;
-double deltaEta_q2LeadJ = 0, deltaPhi_q2LeadJ = 0, deltaR_q2LeadJ = 0;
+double deltaRmu1j1 = 100, deltaRmu2j1 = 100, deltaRmu1j2 = 100, deltaRmu2j2= 100;
+double deltaRmu1J1 = 100, deltaRmu2J1 = 100, deltaRmu1J2 = 100, deltaRmu2J2= 100;
+double deltaEta_JJ = 100, deltaPhi_JJ = 0, deltaR_JJ = 0;
+double deltaEta_q2Leadj = 0, deltaPhi_q2Leadj = 0, deltaR_q2Leadj = 100;
+double deltaEta_q2LeadJ = 0, deltaPhi_q2LeadJ = 0, deltaR_q2LeadJ = 100;
+double deltaeta_q1Lj = 0, deltaphi_q1Lj = 0, deltaR_q1Lj = 100;
+double deltaeta_q2Lj = 0, deltaphi_q2Lj = 0, deltaR_q2Lj = 100;
+double deltaeta_q2SLj = 0, deltaphi_q2SLj = 0, deltaR_q2SLj = 100;
+double deltaeta_q1LJ = 0, deltaphi_q1LJ = 0, deltaR_q1LJ = 100;
+double deltaeta_q2LJ = 0, deltaphi_q2LJ = 0, deltaR_q2LJ = 100;
+double deltaeta_q2SLJ = 0, deltaphi_q2SLJ = 0, deltaR_q2SLJ = 100;
+bool LeadJet_matched = false, SubLeadJet_matched = false;
+bool LeadFJet_matched = false, SubLeadFJet_matched = false;
+int index_matched_jq1 = -1, index_matched_jq2 = -1, index_matched_Jq1 = -1, index_matched_Jq2 = -1;
 
 for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
@@ -347,19 +425,40 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    if (fabs(Gen_pdg_id->at(l)) >= 1 && fabs(Gen_pdg_id->at(l)) <= 6 ){
     quark++;
     if(quark == 1){
-     Quark1_gen_pt = Gen_pt->at(l);
-     Quark1_gen_eta = Gen_eta->at(l);
-     Quark1_gen_phi = Gen_phi->at(l);
-     Quark1_gen_energy = Gen_energy->at(l);
+     Quark1_gen_pt_tmp = Gen_pt->at(l);
+     Quark1_gen_eta_tmp = Gen_eta->at(l);
+     Quark1_gen_phi_tmp = Gen_phi->at(l);
+     Quark1_gen_energy_tmp = Gen_energy->at(l);
     }
     if(quark == 2){
-     Quark2_gen_pt = Gen_pt->at(l);
-     Quark2_gen_eta = Gen_eta->at(l);
-     Quark2_gen_phi = Gen_phi->at(l);
-     Quark2_gen_energy = Gen_energy->at(l);
+     Quark2_gen_pt_tmp = Gen_pt->at(l);
+     Quark2_gen_eta_tmp = Gen_eta->at(l);
+     Quark2_gen_phi_tmp = Gen_phi->at(l);
+     Quark2_gen_energy_tmp = Gen_energy->at(l);
     }    
    }
   }
+ }
+
+ if (Quark1_gen_pt_tmp > Quark2_gen_pt_tmp){
+  Quark1_gen_pt = Quark1_gen_pt_tmp;
+  Quark1_gen_eta = Quark1_gen_eta_tmp;
+  Quark1_gen_phi = Quark1_gen_phi_tmp;
+  Quark1_gen_energy = Quark1_gen_energy_tmp;
+  Quark2_gen_pt = Quark2_gen_pt_tmp;
+  Quark2_gen_eta = Quark2_gen_eta_tmp;
+  Quark2_gen_phi = Quark2_gen_phi_tmp;
+  Quark2_gen_energy = Quark2_gen_energy_tmp; 
+ }
+ else{
+  Quark1_gen_pt = Quark2_gen_pt_tmp;
+  Quark1_gen_eta = Quark2_gen_eta_tmp;
+  Quark1_gen_phi = Quark2_gen_phi_tmp;
+  Quark1_gen_energy = Quark2_gen_energy_tmp;
+  Quark2_gen_pt = Quark1_gen_pt_tmp;
+  Quark2_gen_eta = Quark1_gen_eta_tmp;
+  Quark2_gen_phi = Quark1_gen_phi_tmp;
+  Quark2_gen_energy = Quark1_gen_energy_tmp;
  }
  Muon_pt_gen->Fill(Muon_gen_pt);
  Quark1_pt_gen->Fill(Quark1_gen_pt);
@@ -392,6 +491,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    Mlljj->Fill((Muon1+Muon2+Jet1+Jet2).M(),wg);
 
    deltaR_q1j = 100, deltaR_q2j = 100;
+   index_matched_jq1 = -1, index_matched_jq2 = -1;
+
    for (int j=0; j<numOfJets; j++){
     deltaEta_q1j=fabs(Quark1_gen_eta - Jet_eta->at(j)); 
     deltaPhi_q1j=deltaPhi(Quark1_gen_phi, Jet_phi->at(j));
@@ -402,8 +503,10 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
      Jet1_matched_eta = Jet_eta->at(j);
      Jet1_matched_phi = Jet_phi->at(j);
      Jet1_matched_energy = Jet_energy->at(j); 
+     if(deltaR_q1j < 0.3) index_matched_jq1 = j;
     }
    }
+
    for (int j=0; j<numOfJets; j++){
     deltaEta_q2j=fabs(Quark2_gen_eta - Jet_eta->at(j)); 
     deltaPhi_q2j=deltaPhi(Quark2_gen_phi, Jet_phi->at(j));
@@ -414,8 +517,51 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
      Jet2_matched_eta = Jet_eta->at(j);
      Jet2_matched_phi = Jet_phi->at(j);
      Jet2_matched_energy = Jet_energy->at(j);
+     if(deltaR_q2j < 0.3) index_matched_jq2 = j;
     }
    }
+
+   // FILL table Pat //
+
+   if (numOfJets >= 1) njets_1->Fill(1);
+   if (numOfJets >= 2) njets_2->Fill(1);
+   if (numOfJets >= 3) njets_3->Fill(1);
+   if (numOfJets >= 4) njets_4->Fill(1);
+   if (numOfJets >= 5) njets_5->Fill(1);
+
+   if (deltaR_q1j < 0.3){
+    if(index_matched_jq1 != index_matched_jq2){
+     if (index_matched_jq1 == 0) index_q1_j1->Fill(1);
+     if (index_matched_jq1 == 1) index_q1_j2->Fill(1);
+     if (index_matched_jq1 == 2) index_q1_j3->Fill(1);
+     if (index_matched_jq1 == 3) index_q1_j4->Fill(1);
+     if (index_matched_jq1 == 4) index_q1_j5->Fill(1);
+    }
+   }
+   if (deltaR_q2j < 0.3){
+    if(index_matched_jq1 != index_matched_jq2){
+     if (index_matched_jq2 == 0) index_q2_j1->Fill(1);
+     if (index_matched_jq2 == 1) index_q2_j2->Fill(1);
+     if (index_matched_jq2 == 2) index_q2_j3->Fill(1);
+     if (index_matched_jq2 == 3) index_q2_j4->Fill(1);
+     if (index_matched_jq2 == 4) index_q2_j5->Fill(1); 
+    }
+   }
+   if (deltaR_q1j < 0.3 && deltaR_q2j < 0.3 && index_matched_jq1 == index_matched_jq2){
+    if (index_matched_jq1 == 0) index_q1q2_j1->Fill(1);
+    if (index_matched_jq1 == 1) index_q1q2_j2->Fill(1);
+    if (index_matched_jq1 == 2) index_q1q2_j3->Fill(1);
+    if (index_matched_jq1 == 3) index_q1q2_j4->Fill(1);
+    if (index_matched_jq1 == 4) index_q1q2_j5->Fill(1);
+   }
+   if (numOfJets >= 1 && ((deltaR_q2j > 0.3 && deltaR_q1j > 0.3) || (index_matched_jq1 != 0 && index_matched_jq2 != 0) )) nomatch_j1->Fill(1);
+   if (numOfJets >= 2 && ((deltaR_q2j > 0.3 && deltaR_q1j > 0.3) || (index_matched_jq1 != 1 && index_matched_jq2 != 1) )) nomatch_j2->Fill(1);
+   if (numOfJets >= 3 && ((deltaR_q2j > 0.3 && deltaR_q1j > 0.3) || (index_matched_jq1 != 2 && index_matched_jq2 != 2) )) nomatch_j3->Fill(1);
+   if (numOfJets >= 4 && ((deltaR_q2j > 0.3 && deltaR_q1j > 0.3) || (index_matched_jq1 != 3 && index_matched_jq2 != 3) )) nomatch_j4->Fill(1);
+   if (numOfJets >= 5 && ((deltaR_q2j > 0.3 && deltaR_q1j > 0.3) || (index_matched_jq1 != 4 && index_matched_jq2 != 4) )) nomatch_j5->Fill(1);
+
+   // end //
+
    DeltaR_q1j->Fill(deltaR_q1j);
    DeltaR_q2j->Fill(deltaR_q2j);
    deltaeta_mu1j1 = fabs(Muon1.Eta() - Jet1_matched_eta);
@@ -431,6 +577,29 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    deltaRmu1j2 = sqrt(pow(deltaphi_mu1j2,2) + (deltaeta_mu1j2,2));
    deltaRmu2j2 = sqrt(pow(deltaphi_mu2j2,2) + (deltaeta_mu2j2,2));
 
+   den->Fill(1);
+   LeadJet_matched = false;
+   SubLeadJet_matched = false;
+   deltaeta_q1Lj = fabs(Quark1_gen_eta - Jet_eta->at(0));
+   deltaeta_q2Lj = fabs(Quark2_gen_eta - Jet_eta->at(0));
+   deltaphi_q1Lj = deltaPhi(Quark1_gen_phi, Jet_phi->at(0));
+   deltaphi_q2Lj = deltaPhi(Quark2_gen_phi, Jet_phi->at(0));
+   deltaR_q1Lj = sqrt(pow(deltaeta_q1Lj,2) + pow(deltaphi_q1Lj,2));
+   deltaR_q2Lj = sqrt(pow(deltaeta_q2Lj,2) + pow(deltaphi_q2Lj,2)); 
+   deltaeta_q2SLj = fabs(Quark2_gen_eta - Jet_eta->at(1));
+   deltaphi_q2SLj = deltaPhi(Quark2_gen_phi, Jet_phi->at(1));
+   deltaR_q2SLj = sqrt(pow(deltaeta_q2SLj,2) + pow(deltaphi_q2SLj,2));
+   if (deltaR_q1Lj < 0.3 && deltaR_q2Lj < 0.3) q1q2_within_lj->Fill(1);
+   if (deltaR_q1Lj < 0.3 && deltaR_q2SLj < 0.3) q1_within_lj_q2_within_slj->Fill(1);
+   if (deltaR_q1j < 0.3) {
+    if ((1 - (Jet_pt->at(0)/Jet1_matched_pt) < 0.001 || 1-(Jet_pt->at(0)/Jet2_matched_pt) < 0.001)) LeadJet_matched = true;
+   }
+   if (deltaR_q2j < 0.3){
+    if ((1 - (Jet_pt->at(1)/Jet1_matched_pt) < 0.001 || 1-(Jet_pt->at(1)/Jet2_matched_pt) < 0.001)) SubLeadJet_matched = true;
+   }
+   if (LeadJet_matched == true || SubLeadJet_matched == true) lj_or_slj_matched->Fill(1);
+   if (LeadJet_matched == true && SubLeadJet_matched == true) lj_and_slj_matched->Fill(1);
+
    if (deltaR_q1j < 0.3 && deltaR_q2j < 0.3){
     deltaEta_jj = fabs(Jet1_matched_eta - Jet2_matched_eta);
     deltaPhi_jj = deltaPhi(Jet1_matched_phi, Jet2_matched_phi);
@@ -444,10 +613,12 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     deltaR_mu2j1->Fill(deltaRmu2j1);
     deltaR_mu1j2->Fill(deltaRmu1j2);
     deltaR_mu2j2->Fill(deltaRmu2j2); 
+    index_jq1->Fill(index_matched_jq1);
+    index_jq2->Fill(index_matched_jq2);
    }
    deltaEta_q2Leadj = fabs(Quark2_gen_eta - Jet_eta->at(0));
    deltaPhi_q2Leadj = deltaPhi(Quark2_gen_phi, Jet_phi->at(0));
-   deltaR_q2Leadj = sqrt(pow(deltaEta_q2Leadj,2) + pow(deltaPhi_q2Leadj,2)); 
+   deltaR_q2Leadj = sqrt(pow(deltaEta_q2Leadj,2) + pow(deltaPhi_q2Leadj,2));
    deltaRq2Leadj->Fill(deltaR_q2Leadj);
   }
  }
@@ -471,6 +642,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    NumFatJet->Fill(numOfBoostedJets,wg);
 
    deltaR_q1J = 100, deltaR_q2J = 100;
+   index_matched_Jq1 = -12, index_matched_Jq2 = -2000;
+
    for (int j=0; j<BoostedJet_pt->size(); j+=5){
     deltaEta_q1J=fabs(Quark1_gen_eta - BoostedJet_eta->at(j));
     deltaPhi_q1J=deltaPhi(Quark1_gen_phi, BoostedJet_phi->at(j));
@@ -481,6 +654,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
      BoostedJet1_matched_eta = BoostedJet_eta->at(j);
      BoostedJet1_matched_phi = BoostedJet_phi->at(j);
      BoostedJet1_matched_energy = BoostedJet_energy->at(j);
+     if(deltaR_q1J < 0.8)index_matched_Jq1 = j/5;
     }
    }
 
@@ -494,6 +668,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
      BoostedJet2_matched_eta = BoostedJet_eta->at(j);
      BoostedJet2_matched_phi = BoostedJet_phi->at(j);
      BoostedJet2_matched_energy = BoostedJet_energy->at(j);
+     if(deltaR_q2J < 0.8) index_matched_Jq2 = j/5;
     }
    }
    DeltaR_q1J->Fill(deltaR_q1J);
@@ -523,8 +698,80 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     deltaR_mu2J1->Fill(deltaRmu2J1);
     deltaR_mu1J2->Fill(deltaRmu1J2);
     deltaR_mu2J2->Fill(deltaRmu2J2);
+    if(index_matched_Jq1 == 0) index_Jq1->Fill(index_matched_Jq1);
+    else index_Jq1->Fill(index_matched_Jq1/5);
+    if(index_matched_Jq2 == 0) index_Jq2->Fill(index_matched_Jq2);
+    else index_Jq2->Fill(index_matched_Jq2/5);
    }
-      
+
+   // FILL table Pat //
+
+   if (numOfBoostedJets >= 1) nJets_1->Fill(1);
+   if (numOfBoostedJets >= 2) nJets_2->Fill(1);
+   if (numOfBoostedJets >= 3) nJets_3->Fill(1);
+   if (numOfBoostedJets >= 4) nJets_4->Fill(1);
+   if (numOfBoostedJets >= 5) nJets_5->Fill(1);
+
+   if (deltaR_q1J < 0.8){
+    if(index_matched_Jq1 != index_matched_Jq2){
+     if (index_matched_Jq1 == 0) index_q1_J1->Fill(1);
+     if (index_matched_Jq1 == 1) index_q1_J2->Fill(1);
+     if (index_matched_Jq1 == 2) index_q1_J3->Fill(1);
+     if (index_matched_Jq1 == 3) index_q1_J4->Fill(1);
+     if (index_matched_Jq1 == 4) index_q1_J5->Fill(1);
+    }
+   }
+   if (deltaR_q2J < 0.8){
+    if(index_matched_Jq1 != index_matched_Jq2){
+     if (index_matched_Jq2 == 0) index_q2_J1->Fill(1);
+     if (index_matched_Jq2 == 1) index_q2_J2->Fill(1);
+     if (index_matched_Jq2 == 2) index_q2_J3->Fill(1);
+     if (index_matched_Jq2 == 3) index_q2_J4->Fill(1);
+     if (index_matched_Jq2 == 4) index_q2_J5->Fill(1);
+    }
+   }
+   if (deltaR_q1J < 0.8 && deltaR_q2J < 0.8 && index_matched_Jq1 == index_matched_Jq2){
+    if (index_matched_Jq1 == 0) index_q1q2_J1->Fill(1);
+    if (index_matched_Jq1 == 1) index_q1q2_J2->Fill(1);
+    if (index_matched_Jq1 == 2) index_q1q2_J3->Fill(1);
+    if (index_matched_Jq1 == 3) index_q1q2_J4->Fill(1);
+    if (index_matched_Jq1 == 4) index_q1q2_J5->Fill(1);
+   }
+   if (numOfBoostedJets >= 1 && ((deltaR_q2J > 0.8 && deltaR_q1J > 0.8) || (index_matched_Jq1 != 0 && index_matched_Jq2 != 0) )) nomatch_J1->Fill(1);
+   if (numOfBoostedJets >= 2 && ((deltaR_q2J > 0.8 && deltaR_q1J > 0.8) || (index_matched_Jq1 != 1 && index_matched_Jq2 != 1) )) nomatch_J2->Fill(1);
+   if (numOfBoostedJets >= 3 && ((deltaR_q2J > 0.8 && deltaR_q1J > 0.8) || (index_matched_Jq1 != 2 && index_matched_Jq2 != 2) )) nomatch_J3->Fill(1);
+   if (numOfBoostedJets >= 4 && ((deltaR_q2J > 0.8 && deltaR_q1J > 0.8) || (index_matched_Jq1 != 3 && index_matched_Jq2 != 3) )) nomatch_J4->Fill(1);
+   if (numOfBoostedJets >= 5 && ((deltaR_q2J > 0.8 && deltaR_q1J > 0.8) || (index_matched_Jq1 != 4 && index_matched_Jq2 != 4) )) nomatch_J5->Fill(1); 
+ 
+   // end //
+
+   den_->Fill(1);
+   LeadFJet_matched = false;
+   SubLeadFJet_matched = false;
+   deltaR_q1LJ = 100, deltaR_q2SLJ = 100, deltaR_q2LJ = 100;
+   deltaeta_q1LJ = fabs(Quark1_gen_eta - BoostedJet_eta->at(0));
+   deltaeta_q2LJ = fabs(Quark2_gen_eta - BoostedJet_eta->at(0));
+   deltaphi_q1LJ = deltaPhi(Quark1_gen_phi, BoostedJet_phi->at(0));
+   deltaphi_q2LJ = deltaPhi(Quark2_gen_phi, BoostedJet_phi->at(0));
+   deltaR_q1LJ = sqrt(pow(deltaeta_q1LJ,2) + pow(deltaphi_q1LJ,2));
+   deltaR_q2LJ = sqrt(pow(deltaeta_q2LJ,2) + pow(deltaphi_q2LJ,2));
+   if (numOfBoostedJets > 1){   
+    deltaeta_q2SLJ = fabs(Quark2_gen_eta - BoostedJet_eta->at(1));
+    deltaphi_q2SLJ = deltaPhi(Quark2_gen_phi, BoostedJet_phi->at(1));
+    deltaR_q2SLJ = sqrt(pow(deltaeta_q2SLJ,2) + pow(deltaphi_q2SLJ,2));
+   }
+   if (deltaR_q1LJ < 0.8 && deltaR_q2LJ < 0.8) q1q2_within_lJ->Fill(1);
+   if (deltaR_q1LJ < 0.8 && deltaR_q2SLJ < 0.8) q1_within_lJ_q2_within_slJ->Fill(1);
+   if (deltaR_q1J < 0.8){
+    if ((1-(BoostedJet_pt->at(0)/BoostedJet1_matched_pt) < 0.001 || 1-(BoostedJet_pt->at(0)/BoostedJet2_matched_pt) < 0.001)) LeadFJet_matched = true;
+   }
+   if (numOfBoostedJets > 1 && deltaR_q2J < 0.8) {
+    if ((1-(BoostedJet_pt->at(1)/BoostedJet1_matched_pt) < 0.001 || 1-(BoostedJet_pt->at(1)/BoostedJet2_matched_pt) < 0.001)) SubLeadFJet_matched = true;
+   }
+   if (LeadFJet_matched == true || SubLeadFJet_matched == true) lJ_or_slJ_matched->Fill(1);
+   if (LeadFJet_matched == true && SubLeadFJet_matched == true) lJ_and_slJ_matched->Fill(1);
+
+ 
    //FatJet1_pt->Fill(BoostedJet_pt->at(0));
    deltaEta_mu2FJ1 =fabs(Muon_eta->at(1) - BoostedJet_eta->at(0));
    deltaPhi_mu2FJ1 = deltaPhi(Muon_phi->at(1), BoostedJet_phi->at(0));
@@ -584,6 +831,72 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 }
 
 TFile *f = new TFile("plot/SR_plots_gen_mumujj_L13_M500_2016.root", "RECREATE");
+den->Write();
+den_->Write();
+q1q2_within_lj->Write();
+q1_within_lj_q2_within_slj->Write();
+lj_or_slj_matched->Write();
+lj_and_slj_matched->Write();
+q1q2_within_lJ->Write();
+q1_within_lJ_q2_within_slJ->Write();
+lJ_or_slJ_matched->Write();
+lJ_and_slJ_matched->Write();
+
+njets_1->Write();
+njets_2->Write();
+njets_3->Write();
+njets_4->Write();
+njets_5->Write();
+index_q1_j1->Write();
+index_q1_j2->Write();
+index_q1_j3->Write();
+index_q1_j4->Write();
+index_q1_j5->Write();
+index_q2_j1->Write();
+index_q2_j2->Write();
+index_q2_j3->Write();
+index_q2_j4->Write();
+index_q2_j5->Write();
+index_q1q2_j1->Write();
+index_q1q2_j2->Write();
+index_q1q2_j3->Write();
+index_q1q2_j4->Write();
+index_q1q2_j5->Write();
+nomatch_j1->Write();
+nomatch_j2->Write();
+nomatch_j3->Write();
+nomatch_j4->Write();
+nomatch_j5->Write();
+nJets_1->Write();
+nJets_2->Write();
+nJets_3->Write();
+nJets_4->Write();
+nJets_5->Write();
+index_q1_J1->Write();
+index_q1_J2->Write();
+index_q1_J3->Write();
+index_q1_J4->Write();
+index_q1_J5->Write();
+index_q2_J1->Write();
+index_q2_J2->Write();
+index_q2_J3->Write();
+index_q2_J4->Write();
+index_q2_J5->Write();
+index_q1q2_J1->Write();
+index_q1q2_J2->Write();
+index_q1q2_J3->Write();
+index_q1q2_J4->Write();
+index_q1q2_J5->Write();
+nomatch_J1->Write();
+nomatch_J2->Write();
+nomatch_J3->Write();
+nomatch_J4->Write();
+nomatch_J5->Write();
+
+index_jq1->Write();
+index_jq2->Write();
+index_Jq1->Write();
+index_Jq2->Write();
 deltaRmu1FJ1->Write();
 deltaRmu2FJ1->Write();
 deltaRmu1FJ2->Write();
