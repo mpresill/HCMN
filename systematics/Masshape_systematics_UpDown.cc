@@ -35,19 +35,19 @@ using namespace std;
 /////
 //For sys
 const string centralvalue_folder = "";//Central/";
-const string syst_folder = "";//muenergySigma/";
+const string syst_folder = "";//muAlphaRatio/";
 const string up_folder = "";//up/";
 const string down_folder = "";//down/";
 /////////
-const string mainpath = "/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017/";
-const string systematics = "energySigmaeejj"; 
+const string mainpath = "/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018/";
+const string systematics = "AlphaRatioeejj"; 
 //const string histo_central = "TTtW_eejj"; 
-//const string histo_up = "TTtW_eejj_2017_energySigmaUp";
-//const string histo_down = "TTtW_eejj_2017_energySigmaDOwn";
-const char *histo_central[] = { "TTtW_eejj"            , "Other_eejj"            ,"DY_eejj_2017_AlphaRatio"          , "eejj_L13_M500_eejj", "eejj_L13_M1000_eejj", "eejj_L13_M2000_eejj","eejj_L13_M5000_eejj", "eejj_L13_M8000_eejj"}; 
-const char *histo_up[] =      { "TTtW_eejj_2017_energySigmaUp"  , "Other_eejj_2017_energySigmaUp"  ,"DY_eejj_2017_energySigmaUp"  , "eejj_L13_M500_eejj_2017_energySigmaUp","eejj_L13_M1000_eejj_2017_energySigmaUp","eejj_L13_M2000_eejj_2017_energySigmaUp","eejj_L13_M5000_eejj_2017_energySigmaUp","eejj_L13_M8000_eejj_2017_energySigmaUp"};
-const char *histo_down[] =    { "TTtW_eejj_2017_energySigmaDown", "Other_eejj_2017_energySigmaDown","DY_eejj_2017_energySigmaDown" , "eejj_L13_M500_eejj_2017_energySigmaDown","eejj_L13_M1000_eejj_2017_energySigmaDown","eejj_L13_M2000_eejj_2017_energySigmaDown","eejj_L13_M5000_eejj_2017_energySigmaDown","eejj_L13_M8000_eejj_2017_energySigmaDown"};
-const char *process[] =       {  "SR_syst_TTtW_2017"   ,  "SR_syst_Other_2017"   , "SR_syst_DY_2017"  , "SR_syst_eejj_L13_M500_2017", "SR_syst_eejj_L13_M1000_2017", "SR_syst_eejj_L13_M2000_2017","SR_syst_eejj_L13_M5000_2017","SR_syst_eejj_L13_M8000_2017"};
+//const string histo_up = "TTtW_eejj_2018_AlphaRatioUp";
+//const string histo_down = "TTtW_eejj_2018_AlphaRatioDOwn";
+const char *histo_central[] = { "TTtW_eejj"            , "Other_eejj"            ,"DY_eejj_2018_AlphaRatio"          , "eejj_L13_M500_eejj", "eejj_L13_M1000_eejj", "eejj_L13_M2000_eejj","eejj_L13_M5000_eejj", "eejj_L13_M8000_eejj"}; 
+const char *histo_up[] =      { "TTtW_eejj_2018_AlphaRatioUp"  , "Other_eejj_2018_AlphaRatioUp"  ,"DY_eejj_2018_AlphaRatioUp"  , "eejj_L13_M500_eejj_2018_AlphaRatioUp","eejj_L13_M1000_eejj_2018_AlphaRatioUp","eejj_L13_M2000_eejj_2018_AlphaRatioUp","eejj_L13_M5000_eejj_2018_AlphaRatioUp","eejj_L13_M8000_eejj_2018_AlphaRatioUp"};
+const char *histo_down[] =    { "TTtW_eejj_2018_AlphaRatioDown", "Other_eejj_2018_AlphaRatioDown","DY_eejj_2018_AlphaRatioDown" , "eejj_L13_M500_eejj_2018_AlphaRatioDown","eejj_L13_M1000_eejj_2018_AlphaRatioDown","eejj_L13_M2000_eejj_2018_AlphaRatioDown","eejj_L13_M5000_eejj_2018_AlphaRatioDown","eejj_L13_M8000_eejj_2018_AlphaRatioDown"};
+const char *process[] =       {  "SR_syst_TTtW_2018"   ,  "SR_syst_Other_2018"   , "SR_syst_DY_2018"  , "SR_syst_eejj_L13_M500_2018", "SR_syst_eejj_L13_M1000_2018", "SR_syst_eejj_L13_M2000_2018","SR_syst_eejj_L13_M5000_2018","SR_syst_eejj_L13_M8000_2018"};
 const int ini_proc    = 0;
 const int fin_proc    = 8;   //numero di processi
 //const string ininame = "masshape_";
@@ -72,7 +72,7 @@ void setTDRStyle();
 /////
 //   Main function
 /////
-void Masshape_systematics_signed() {
+void Masshape_systematics_UpDown() {
  setTDRStyle();
  vector<string> proc(process, process + sizeof(process)/sizeof(process[0]));
  vector<string> histo_c(histo_central, histo_central + sizeof(histo_central)/sizeof(histo_central[0]));
@@ -109,7 +109,6 @@ void Masshape_systematics_signed() {
  if(!doasym) h_sys_p = new TH1D("","",nbin,inRange,endRange);
  string Plus = "";
  if(updown) Plus = "Plus"; 
- //TFile* f_sys_p = new TFile((mainpath+centralvalue_folder+file).c_str(),"update");
  TFile* f_sys_p = new TFile((mainpath+file).c_str(),"read");
  f_sys_p->GetObject(histo_u[p].c_str(),h_sys_p);    ///////EDITED proc[p]
  TH1D *h_diff_p;
@@ -124,10 +123,9 @@ void Masshape_systematics_signed() {
  }else{
   h_diff_p->SetLineColor(kMagenta+2);
  }
- //h_diff_p->SetMaximum(upval);
  string titleXaxis = "M(e,e,J) [GeV]";
  h_diff_p->GetXaxis()->SetTitle(titleXaxis.c_str());
- string titleYaxis = "Relative difference (in %)";
+ string titleYaxis = "Events";
  h_diff_p->GetYaxis()->SetTitle(titleYaxis.c_str());
  //Sys Minus
  TH1D *h_sys_m;
@@ -135,7 +133,6 @@ void Masshape_systematics_signed() {
  if(!doasym) h_sys_m = new TH1D("","",nbin,inRange,endRange);
  string Minus = "";
  if(updown) Minus = "Minus";
- //TFile* f_sys_m = new TFile((mainpath+centralvalue_folder+file).c_str(),"update");
  TFile* f_sys_m = new TFile((mainpath+file).c_str(),"read");
  f_sys_m->GetObject(histo_d[p].c_str(),h_sys_m);    ///////EDITED proc[p]
  TH1D *h_diff_m;
@@ -152,32 +149,16 @@ void Masshape_systematics_signed() {
   double mainval   = h_allbkg->GetBinContent(i);
   //Sys Plus
   double shiftpval = h_sys_p->GetBinContent(i);
-  //double diffp     = fabs(mainval-shiftpval);
-  double diffp     = mainval-shiftpval;
-  double reldiffp;
-  if(mainval!=0){
-   reldiffp = diffp/mainval*100;
-  }else{
-   reldiffp = 0;
-  }
-  h_diff_p->SetBinContent(i,reldiffp); 
+  h_diff_p->SetBinContent(i,shiftpval); 
   //Sys Minus
   double shiftmval = h_sys_m->GetBinContent(i);
-  //double diffm     = fabs(mainval-shiftmval);
-  double diffm     = mainval-shiftmval;
-  double reldiffm;
-  if(mainval!=0){
-   reldiffm = diffm/mainval*100;
-  }else{
-   reldiffm = 0;
-  }
-  h_diff_m->SetBinContent(i,reldiffm);
+  h_diff_m->SetBinContent(i,shiftmval);
   //cout<<h_diff_m->GetBinContent(i)<<endl;
  }
  double highestbinval = 0;
  for(int h=1; h<=h_diff_p->GetNbinsX(); h++) if(h_diff_p->GetBinContent(h)>highestbinval) highestbinval=h_diff_p->GetBinContent(h);
  for(int h=1; h<=h_diff_p->GetNbinsX(); h++) if(h_diff_m->GetBinContent(h)>highestbinval) highestbinval=h_diff_m->GetBinContent(h);
- h_diff_p->SetMaximum(highestbinval+0.5);
+ h_diff_p->SetMaximum(highestbinval+0.5*highestbinval );
  TGaxis::SetMaxDigits(3);
  h_diff_p->SetTitle(TitleX.c_str());
  //h_diff_p->SetTitle(0);
@@ -188,43 +169,31 @@ void Masshape_systematics_signed() {
  leg->AddEntry(h_diff_m,"Down","L");
  if(updown) leg->Draw();
  //Save
- string namefile = "/eos/user/m/mpresill/www/HN/systematics/eejj/sys_"+proc[p]+"_"+systematics+".png";
+ string namefile = "/eos/user/m/mpresill/www/HN/systematics/eejj/AlphaRatio/UpDownSys_"+proc[p]+"_"+systematics+".png";
  if(saveplot){ c1->SaveAs(namefile.c_str());}
+ /////////////////////////////////////////////////////
  //Take maximum relative difference
  if(updown){
-  TH1D *h_max_sys;
-  if(doasym)  h_max_sys = new TH1D("","",nbin,asymbins);
-  if(!doasym) h_max_sys = new TH1D("","",nbin,inRange,endRange);
-  //h_max_sys->SetTitle(0);
-  h_max_sys->SetMarkerStyle(8);
-  h_max_sys->SetMarkerColor(1);
-  h_max_sys->SetLineColor(kMagenta+2);
-  h_max_sys->SetMaximum(upval);
-  h_max_sys->GetXaxis()->SetTitle(titleXaxis.c_str());
-  string titleYaxis2 = "Maximum relative difference (in %)";
-  h_max_sys->GetYaxis()->SetTitle(titleYaxis2.c_str());
-  cout<<" "<<endl;
-  cout<<"{";
-  for(int m=1; m<=nbin; m++){
-   if(fabs(h_diff_p->GetBinContent(m)) > fabs(h_diff_m->GetBinContent(m))){
-    h_max_sys->SetBinContent(m,fabs(h_diff_p->GetBinContent(m)));
-   }else{
-    h_max_sys->SetBinContent(m,fabs(h_diff_m->GetBinContent(m)));
-   }
-   cout<<h_max_sys->GetBinContent(m)<<","; 
-  }
-  cout<<"}"<<"  //"<<proc[p]<<endl;
-  cout<<" "<<endl;
   TCanvas* c2;
   if(updown){
    c2 = new TCanvas("Sys2","Sys2",200,200,700,600);
   }else{
    c2 = new TCanvas("Sys2","Sys2",200,200,1100,600);
   }
-  h_max_sys->SetTitle(TitleX.c_str());
-  //h_max_sys->SetTitle(0);
-  h_max_sys->Draw(); 
-  string namefile2 = "/eos/user/m/mpresill/www/HN/systematics/MaxBinSyst/eejj/sysM_"+proc[p]+"_"+systematics+".png";
+  h_allbkg->SetLineColor(1);
+  h_allbkg->SetMaximum(highestbinval+0.5*highestbinval );
+  h_allbkg->GetXaxis()->SetTitle(titleXaxis.c_str());
+  h_allbkg->GetYaxis()->SetTitle(titleYaxis.c_str());
+  h_allbkg->SetTitle(TitleX.c_str());
+
+  h_allbkg->Draw("histo");
+  h_diff_p->Draw("histosame"); 
+  h_diff_m->Draw("histosame");
+ //Legend
+  leg->AddEntry(h_allbkg,"Central","L");
+  //h_allbkg->SetTitle(0);
+  leg->Draw(); 
+  string namefile2 = "/eos/user/m/mpresill/www/HN/systematics/eejj/AlphaRatio/CentralUpDownSys_"+proc[p]+"_"+systematics+".png";
   if(saveplot){ c2->SaveAs(namefile2.c_str());}
  }
 }
@@ -349,12 +318,12 @@ void setTDRStyle(){
   tdrStyle->SetPadTickY(1);
 
   // Change for log plots:
-  tdrStyle->SetOptLogx(0);
+  tdrStyle->SetOptLogx(1);
   tdrStyle->SetOptLogy(0);
   tdrStyle->SetOptLogz(0);
   // Postscript options:
   // tdrStyle->SetPaperSize(15.,15.);
-  // tdrStyle->SetLineSigmaPS(Float_t scale = 3);
+  // tdrStyle->SetLineScalePS(Float_t scale = 3);
   // tdrStyle->SetLineStyleString(Int_t i, const char* text);
   // tdrStyle->SetHeaderPS(const char* header);
   // tdrStyle->SetTitlePS(const char* pstitle);
