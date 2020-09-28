@@ -33,7 +33,7 @@ void Analisi_CR_TTtW_data_2016(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/data_mu_2016.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/data_ele_2016.root");
 //inputFile
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
@@ -141,7 +141,7 @@ TH1D *Ele_phi = new TH1D ("Ele_phi", "Ele_phi", 200, -3, 3);
 TH1D *Mu_phi = new TH1D ("Mu_phi", "Mu_phi", 200, -3, 3);
 TH1D *Ele_eta = new TH1D ("Ele_eta", "Ele_eta", 200, -4, 4);
 TH1D *Mu_eta = new TH1D ("Mu_eta", "Mu_eta", 200, -4, 4);
-TH1D *data_obs = new TH1D ("data_obs", "data_obs", 8, asymbins);
+TH1D *data_obs = new TH1D ("data_obs", "data_obs", 6, asymbins);
 
 TLorentzVector Muon;
 TLorentzVector Electron;
@@ -202,7 +202,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  }
 }
 
-TFile *f = new TFile("plot/CR_TTtW_data_mu_2016.root", "RECREATE");
+TFile *f = new TFile("plot/CR_TTtW_data_ele_2016.root", "RECREATE");
 
 n_best_Vtx->Write();
 true_interactions->Write();
