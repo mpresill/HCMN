@@ -29,7 +29,7 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_SR_MC_syst_2017(){
+void Analisi_SR_DY_syst_2017(){
 
 TChain *a_ = new TChain("BOOM");
 

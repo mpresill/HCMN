@@ -39,11 +39,11 @@ double deltaPhi(double phi1, double phi2) {
 
 
 //void filename_()
-void Analisi_SR_MC_syst_2016(){
+void Analisi_SR_DY_syst_2016(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL/WJets_2016.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL/DY_2016.root");
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
 double muejj_l, emujj_l;
