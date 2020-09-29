@@ -337,7 +337,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  
 }
 
-TFile *f = new TFile("plot/SR_syst_WJets_2017.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017/SR_syst_WJets_2017.root", "RECREATE");
 WJets_eejj->Write();
 WJets_eejj_2017_AlphaRatio->Write();
 WJets_eejj_2017_AlphaRatioUp->Write();
