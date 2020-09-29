@@ -29,7 +29,7 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_SR_MC_syst(){
+void Analisi_SR_MC_syst_2018(){
 
 TChain *a_ = new TChain("BOOM");
 
@@ -323,7 +323,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  
 }
 
-TFile *f = new TFile("plot/SR_syst_WJets_nobin_2018.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018/SR_syst_WJets_nobin_2018.root", "RECREATE");
 WJets_nobin_eejj->Write();
 WJets_nobin_eejj_2018_AlphaRatio->Write();
 WJets_nobin_eejj_2018_AlphaRatioUp->Write();
