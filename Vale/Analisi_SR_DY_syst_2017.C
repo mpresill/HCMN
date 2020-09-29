@@ -286,7 +286,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    DY_mumujj_2017_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_PUd*0.89);
    DY_mumujj_2017_PtCorr->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg*0.89);
    DY_mumujj_2017_PtCorrUp->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg*0.89);
-   DY_mumujj_2017_PtCorrDown->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), w*0.89g);
+   DY_mumujj_2017_PtCorrDown->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg*0.89);
    if(centralJesJer->at(0)==1)DY_mumujj_2017_centralJesJer->Fill((Muon1+Muon2+BoostJet).M(), wg*0.89);
    if(JesSFup->at(1)==1)DY_mumujj_2017_JesSFUp->Fill((Muon1+Muon2+BoostJet_JESup).M(), wg*0.89);
    if(JesSFdown->at(2)==1)DY_mumujj_2017_JesSFDown->Fill((Muon1+Muon2+BoostJet_JESdown).M(), wg*0.89);
