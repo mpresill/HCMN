@@ -193,6 +193,9 @@ TH1D *DY_mumujj_2018_JerSFDown = new TH1D ("DY_mumujj_2018_JerSFDown", "DY_mumuj
 TH1D *DY_mumujj_2018_PtCorr = new TH1D ("DY_mumujj_2018_PtCorr", "DY_mumujj_2018_PtCorr", 8, asymbins);
 TH1D *DY_mumujj_2018_PtCorrDown = new TH1D ("DY_mumujj_2018_PtCorrDown", "DY_mumujj_2018_PtCorrDown", 8, asymbins);
 TH1D *DY_mumujj_2018_PtCorrUp = new TH1D ("DY_mumujj_2018_PtCorrUp", "DY_mumujj_2018_PtCorrUp", 8, asymbins);
+TH1D *DY_mumujj_2018_PtResoUp  = new TH1D ("DY_mumujj_2018_PtResoUp", "DY_mumujj_2018_PtResoUp", 8, asymbins);
+TH1D *DY_mumujj_2018_PtResoDown  = new TH1D ("DY_mumujj_2018_PtResoDown", "DY_mumujj_2018_PtResoDown", 8, asymbins);
+
 TH1D *DY_eejj = new TH1D ("DY_eejj", "DY_eejj", 8, asymbins);
 TH1D *DY_eejj_2018_AlphaRatio = new TH1D ("DY_eejj_2018_AlphaRatio", "DY_eejj_2018_AlphaRatio", 8, asymbins);
 TH1D *DY_eejj_2018_AlphaRatioDown = new TH1D ("DY_eejj_2018_AlphaRatioDown", "DY_eejj_2018_AlphaRatioDown", 8, asymbins);
@@ -237,6 +240,10 @@ TLorentzVector BoostJet_JESup;
 TLorentzVector BoostJet_JESdown;
 TLorentzVector BoostJet_JERup;
 TLorentzVector BoostJet_JERdown;
+TLorentzVector Muon1_ptResoUp;
+TLorentzVector Muon1_ptResoDown;
+TLorentzVector Muon2_ptResoUp;
+TLorentzVector Muon2_ptResoDown;
 
 for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
@@ -263,6 +270,24 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    BoostJet_JERdown.SetPtEtaPhiE(BoostedJet_pt->at(4), BoostedJet_eta->at(4), BoostedJet_phi->at(4),BoostedJet_energy->at(4));
    Muon1_ptCorr.SetPtEtaPhiE(Muon_pt_corr->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
    Muon2_ptCorr.SetPtEtaPhiE(Muon_pt_corr->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+   if (fabs(Muon1.Eta()) > 1.2) {
+    Muon1_ptResoUp.SetPtEtaPhiE(Muon_pt->at(0)+0.15*Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+    Muon1_ptResoDown.SetPtEtaPhiE(Muon_pt->at(0)-0.15*Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+   }
+   else{
+    Muon1_ptResoUp = Muon1;
+    Muon1_ptResoDown = Muon1;
+   }
+   if (fabs(Muon2.Eta()) > 1.2) {
+    Muon2_ptResoUp.SetPtEtaPhiE(Muon_pt->at(1)+0.15*Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+    Muon2_ptResoDown.SetPtEtaPhiE(Muon_pt->at(1)-0.15*Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+   }
+   else{
+    Muon2_ptResoUp = Muon2;
+    Muon2_ptResoDown= Muon2;
+   }
+
+
 
    DY_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
    DY_mumujj_2018_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg*0.85);
@@ -272,6 +297,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    DY_mumujj_2018_SFDown->Fill((Muon1+Muon2+BoostJet).M(), wg_SFd*0.85);
    DY_mumujj_2018_PUUp->Fill((Muon1+Muon2+BoostJet).M(), wg_PUu*0.85);
    DY_mumujj_2018_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_PUd*0.85);
+   DY_mumujj_2018_PtResoUp->Fill((Muon1_ptResoUp+Muon2_ptResoUp+BoostJet).M(), wg*0.85);
+   DY_mumujj_2018_PtResoDown->Fill((Muon1_ptResoDown+Muon2_ptResoDown+BoostJet).M(), wg*0.85);
    DY_mumujj_2018_PtCorr->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg*0.85);
    DY_mumujj_2018_PtCorrUp->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg*0.85);
    DY_mumujj_2018_PtCorrDown->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg*0.85);
@@ -324,6 +351,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 }
 
 TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018/SR_syst_DY_2018.root", "RECREATE");
+TFile *f2 = new TFile("SR_syst_DY_2018.root", "RECREATE");
 DY_eejj->Write();
 DY_eejj_2018_AlphaRatio->Write();
 DY_eejj_2018_AlphaRatioUp->Write();
@@ -357,6 +385,8 @@ DY_mumujj_2018_JerSFDown->Write();
 DY_mumujj_2018_PtCorr->Write();
 DY_mumujj_2018_PtCorrDown->Write();
 DY_mumujj_2018_PtCorrUp->Write();
+DY_mumujj_2018_PtResoUp->Write();
+DY_mumujj_2018_PtResoDown->Write();
 f->Write();
 f->Close();
 
