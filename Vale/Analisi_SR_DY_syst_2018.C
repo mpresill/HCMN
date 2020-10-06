@@ -33,7 +33,7 @@ void Analisi_SR_DY_syst_2018(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2018/Syst_ALL/DY_2018.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2018_newMuonSF/Syst_ALL/DY_2018.root");
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
 double muejj_l, emujj_l;
