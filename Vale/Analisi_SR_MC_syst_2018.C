@@ -175,44 +175,49 @@ a_JesSFdown->SetAddress(&JesSFdown);
 a_JerSFup->SetAddress(&JerSFup);
 a_JerSFdown->SetAddress(&JerSFdown);
 
-const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
+//new bin
+//const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
 
-TH1D *TTtW_mumujj = new TH1D ("TTtW_mumujj", "TTtW_mumujj", 8, asymbins);
-TH1D *TTtW_mumujj_2018_AlphaRatio = new TH1D ("TTtW_mumujj_2018_AlphaRatio", "TTtW_2018_mumujj_AlphaRatio", 8, asymbins);
-TH1D *TTtW_mumujj_2018_AlphaRatioDown = new TH1D ("TTtW_mumujj_2018_AlphaRatioDown", "TTtW_mumujj_2018_AlphaRatioDown", 8, asymbins);
-TH1D *TTtW_mumujj_2018_AlphaRatioUp = new TH1D ("TTtW_mumujj_2018_AlphaRatioUp", "TTtW_mumujj_2018_AlphaRatioUp", 8, asymbins);
-TH1D *TTtW_mumujj_2018_SFUp = new TH1D ("TTtW_mumujj_2018_SFUp", "TTtW_mumujj_2018_SFUp", 8, asymbins);
-TH1D *TTtW_mumujj_2018_SFDown = new TH1D ("TTtW_mumujj_2018_SFDown", "TTtW_mumujj_2018_SFDown", 8, asymbins);
-TH1D *TTtW_mumujj_2018_PUUp = new TH1D ("TTtW_mumujj_2018_PUUp", "TTtW_mumujj_2018_PUUp", 8, asymbins);
-TH1D *TTtW_mumujj_2018_PUDown = new TH1D ("TTtW_mumujj_2018_PUDown", "TTtW_mumujj_2018_PUDown", 8, asymbins);
-TH1D *TTtW_mumujj_2018_centralJesJer = new TH1D ("TTtW_mumujj_2018_centralJesJer", "TTtW_mumujj_2018_centralJesJer", 8, asymbins);
-TH1D *TTtW_mumujj_2018_JesSFUp = new TH1D ("TTtW_mumujj_2018_JesSFUp", "TTtW_mumujj_2018_JesSFUp", 8, asymbins);
-TH1D *TTtW_mumujj_2018_JesSFDown = new TH1D ("TTtW_mumujj_2018_JesSFDown", "TTtW_mumujj_2018_JesSFDown", 8, asymbins);
-TH1D *TTtW_mumujj_2018_JerSFUp = new TH1D ("TTtW_mumujj_2018_JerSFUp", "TTtW_mumujj_2018_JerSFUp", 8, asymbins);
-TH1D *TTtW_mumujj_2018_JerSFDown = new TH1D ("TTtW_mumujj_2018_JerSFDown", "TTtW_mumujj_2018_JerSFDown", 8, asymbins);
-TH1D *TTtW_mumujj_2018_PtCorr = new TH1D ("TTtW_mumujj_2018_PtCorr", "TTtW_mumujj_2018_PtCorr", 8, asymbins);
-TH1D *TTtW_mumujj_2018_PtCorrDown = new TH1D ("TTtW_mumujj_2018_PtCorrDown", "TTtW_mumujj_2018_PtCorrDown", 8, asymbins);
-TH1D *TTtW_mumujj_2018_PtCorrUp = new TH1D ("TTtW_mumujj_2018_PtCorrUp", "TTtW_mumujj_2018_PtCorrUp", 8, asymbins);
-TH1D *TTtW_mumujj_2018_PtResoUp  = new TH1D ("TTtW_mumujj_2018_PtResoUp", "TTtW_mumujj_2018_PtResoUp", 8, asymbins);
-TH1D *TTtW_mumujj_2018_PtResoDown  = new TH1D ("TTtW_mumujj_2018_PtResoDown", "TTtW_mumujj_2018_PtResoDown", 8, asymbins);
 
-TH1D *TTtW_eejj = new TH1D ("TTtW_eejj", "TTtW_eejj", 8, asymbins);
-TH1D *TTtW_eejj_2018_AlphaRatio = new TH1D ("TTtW_eejj_2018_AlphaRatio", "TTtW_eejj_2018_AlphaRatio", 8, asymbins);
-TH1D *TTtW_eejj_2018_AlphaRatioDown = new TH1D ("TTtW_eejj_2018_AlphaRatioDown", "TTtW_eejj_2018_AlphaRatioDown", 8, asymbins);
-TH1D *TTtW_eejj_2018_AlphaRatioUp = new TH1D ("TTtW_eejj_2018_AlphaRatioUp", "TTtW_eejj_2018_AlphaRatioUp", 8, asymbins);
-TH1D *TTtW_eejj_2018_SFUp = new TH1D ("TTtW_eejj_2018_SFUp", "TTtW_eejj_2018_SFUp", 8, asymbins);
-TH1D *TTtW_eejj_2018_SFDown = new TH1D ("TTtW_eejj_2018_SFDown", "TTtW_eejj_2018_SFDown", 8, asymbins);
-TH1D *TTtW_eejj_2018_PUUp = new TH1D ("TTtW_eejj_2018_PUUp", "TTtW_eejj_2018_PUUp", 8, asymbins);
-TH1D *TTtW_eejj_2018_PUDown = new TH1D ("TTtW_eejj_2018_PUDown", "TTtW_eejj_2018_PUDown", 8, asymbins);
-TH1D *TTtW_eejj_2018_centralJesJer = new TH1D ("TTtW_eejj_2018_centralJesJer", "TTtW_eejj_2018_centralJesJer", 8, asymbins);
-TH1D *TTtW_eejj_2018_JesSFUp = new TH1D ("TTtW_eejj_2018_JesSFUp", "TTtW_eejj_2018_JesSFUp", 8, asymbins);
-TH1D *TTtW_eejj_2018_JesSFDown = new TH1D ("TTtW_eejj_2018_JesSFDown", "TTtW_eejj_2018_JesSFDown", 8, asymbins);
-TH1D *TTtW_eejj_2018_JerSFUp = new TH1D ("TTtW_eejj_2018_JerSFUp", "TTtW_eejj_2018_JerSFUp", 8, asymbins);
-TH1D *TTtW_eejj_2018_JerSFDown = new TH1D ("TTtW_eejj_2018_JerSFDown", "TTtW_eejj_2018_JerSFDown", 8, asymbins);
-TH1D *TTtW_eejj_2018_energyScaleUp = new TH1D ("TTtW_eejj_2018_energyScaleUp", "TTtW_eejj_2018_energyScaleUp", 8, asymbins);
-TH1D *TTtW_eejj_2018_energyScaleDown = new TH1D ("TTtW_eejj_2018_energyScaleDown", "TTtW_eejj_2018_energyScaleDown", 8, asymbins);
-TH1D *TTtW_eejj_2018_energySigmaUp = new TH1D ("TTtW_eejj_2018_energySigmaUp", "TTtW_eejj_2018_energySigmaUp", 8, asymbins);
-TH1D *TTtW_eejj_2018_energySigmaDown = new TH1D ("TTtW_eejj_2018_energySigmaDown", "TTtW_eejj_2018_energySigmaDown", 8, asymbins);
+//old bin
+const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+
+TH1D *TTtW_mumujj = new TH1D ("TTtW_mumujj", "TTtW_mumujj", 9, asymbins);
+TH1D *TTtW_mumujj_2018_AlphaRatio = new TH1D ("TTtW_mumujj_2018_AlphaRatio", "TTtW_2018_mumujj_AlphaRatio", 9, asymbins);
+TH1D *TTtW_mumujj_2018_AlphaRatioDown = new TH1D ("TTtW_mumujj_2018_AlphaRatioDown", "TTtW_mumujj_2018_AlphaRatioDown", 9, asymbins);
+TH1D *TTtW_mumujj_2018_AlphaRatioUp = new TH1D ("TTtW_mumujj_2018_AlphaRatioUp", "TTtW_mumujj_2018_AlphaRatioUp", 9, asymbins);
+TH1D *TTtW_mumujj_2018_SFUp = new TH1D ("TTtW_mumujj_2018_SFUp", "TTtW_mumujj_2018_SFUp", 9, asymbins);
+TH1D *TTtW_mumujj_2018_SFDown = new TH1D ("TTtW_mumujj_2018_SFDown", "TTtW_mumujj_2018_SFDown", 9, asymbins);
+TH1D *TTtW_mumujj_2018_PUUp = new TH1D ("TTtW_mumujj_2018_PUUp", "TTtW_mumujj_2018_PUUp", 9, asymbins);
+TH1D *TTtW_mumujj_2018_PUDown = new TH1D ("TTtW_mumujj_2018_PUDown", "TTtW_mumujj_2018_PUDown", 9, asymbins);
+TH1D *TTtW_mumujj_2018_centralJesJer = new TH1D ("TTtW_mumujj_2018_centralJesJer", "TTtW_mumujj_2018_centralJesJer", 9, asymbins);
+TH1D *TTtW_mumujj_2018_JesSFUp = new TH1D ("TTtW_mumujj_2018_JesSFUp", "TTtW_mumujj_2018_JesSFUp", 9, asymbins);
+TH1D *TTtW_mumujj_2018_JesSFDown = new TH1D ("TTtW_mumujj_2018_JesSFDown", "TTtW_mumujj_2018_JesSFDown", 9, asymbins);
+TH1D *TTtW_mumujj_2018_JerSFUp = new TH1D ("TTtW_mumujj_2018_JerSFUp", "TTtW_mumujj_2018_JerSFUp", 9, asymbins);
+TH1D *TTtW_mumujj_2018_JerSFDown = new TH1D ("TTtW_mumujj_2018_JerSFDown", "TTtW_mumujj_2018_JerSFDown", 9, asymbins);
+TH1D *TTtW_mumujj_2018_PtCorr = new TH1D ("TTtW_mumujj_2018_PtCorr", "TTtW_mumujj_2018_PtCorr", 9, asymbins);
+TH1D *TTtW_mumujj_2018_PtCorrDown = new TH1D ("TTtW_mumujj_2018_PtCorrDown", "TTtW_mumujj_2018_PtCorrDown", 9, asymbins);
+TH1D *TTtW_mumujj_2018_PtCorrUp = new TH1D ("TTtW_mumujj_2018_PtCorrUp", "TTtW_mumujj_2018_PtCorrUp", 9, asymbins);
+TH1D *TTtW_mumujj_2018_PtResoUp  = new TH1D ("TTtW_mumujj_2018_PtResoUp", "TTtW_mumujj_2018_PtResoUp", 9, asymbins);
+TH1D *TTtW_mumujj_2018_PtResoDown  = new TH1D ("TTtW_mumujj_2018_PtResoDown", "TTtW_mumujj_2018_PtResoDown", 9, asymbins);
+
+TH1D *TTtW_eejj = new TH1D ("TTtW_eejj", "TTtW_eejj", 9, asymbins);
+TH1D *TTtW_eejj_2018_AlphaRatio = new TH1D ("TTtW_eejj_2018_AlphaRatio", "TTtW_eejj_2018_AlphaRatio", 9, asymbins);
+TH1D *TTtW_eejj_2018_AlphaRatioDown = new TH1D ("TTtW_eejj_2018_AlphaRatioDown", "TTtW_eejj_2018_AlphaRatioDown", 9, asymbins);
+TH1D *TTtW_eejj_2018_AlphaRatioUp = new TH1D ("TTtW_eejj_2018_AlphaRatioUp", "TTtW_eejj_2018_AlphaRatioUp", 9, asymbins);
+TH1D *TTtW_eejj_2018_SFUp = new TH1D ("TTtW_eejj_2018_SFUp", "TTtW_eejj_2018_SFUp", 9, asymbins);
+TH1D *TTtW_eejj_2018_SFDown = new TH1D ("TTtW_eejj_2018_SFDown", "TTtW_eejj_2018_SFDown", 9, asymbins);
+TH1D *TTtW_eejj_2018_PUUp = new TH1D ("TTtW_eejj_2018_PUUp", "TTtW_eejj_2018_PUUp", 9, asymbins);
+TH1D *TTtW_eejj_2018_PUDown = new TH1D ("TTtW_eejj_2018_PUDown", "TTtW_eejj_2018_PUDown", 9, asymbins);
+TH1D *TTtW_eejj_2018_centralJesJer = new TH1D ("TTtW_eejj_2018_centralJesJer", "TTtW_eejj_2018_centralJesJer", 9, asymbins);
+TH1D *TTtW_eejj_2018_JesSFUp = new TH1D ("TTtW_eejj_2018_JesSFUp", "TTtW_eejj_2018_JesSFUp", 9, asymbins);
+TH1D *TTtW_eejj_2018_JesSFDown = new TH1D ("TTtW_eejj_2018_JesSFDown", "TTtW_eejj_2018_JesSFDown", 9, asymbins);
+TH1D *TTtW_eejj_2018_JerSFUp = new TH1D ("TTtW_eejj_2018_JerSFUp", "TTtW_eejj_2018_JerSFUp", 9, asymbins);
+TH1D *TTtW_eejj_2018_JerSFDown = new TH1D ("TTtW_eejj_2018_JerSFDown", "TTtW_eejj_2018_JerSFDown", 9, asymbins);
+TH1D *TTtW_eejj_2018_energyScaleUp = new TH1D ("TTtW_eejj_2018_energyScaleUp", "TTtW_eejj_2018_energyScaleUp", 9, asymbins);
+TH1D *TTtW_eejj_2018_energyScaleDown = new TH1D ("TTtW_eejj_2018_energyScaleDown", "TTtW_eejj_2018_energyScaleDown", 9, asymbins);
+TH1D *TTtW_eejj_2018_energySigmaUp = new TH1D ("TTtW_eejj_2018_energySigmaUp", "TTtW_eejj_2018_energySigmaUp", 9, asymbins);
+TH1D *TTtW_eejj_2018_energySigmaDown = new TH1D ("TTtW_eejj_2018_energySigmaDown", "TTtW_eejj_2018_energySigmaDown", 9, asymbins);
 
 cout << a_->GetEntries() << endl;
 int tot=0, muejj = 0;
@@ -347,8 +352,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  
 }
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018/SR_syst_TTtW_2018.root", "RECREATE");
-TFile *f2 = new TFile("plot/SR_syst_TTtW_2018.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/SR_syst_TTtW_2018.root", "RECREATE");
+//TFile *f2 = new TFile("plot/SR_syst_TTtW_2018.root", "RECREATE");
 TTtW_eejj->Write();
 TTtW_eejj_2018_AlphaRatio->Write();
 TTtW_eejj_2018_AlphaRatioUp->Write();

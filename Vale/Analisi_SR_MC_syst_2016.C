@@ -43,9 +43,9 @@ void Analisi_SR_MC_syst_2016(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL/eejj_L13_M500_2016.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/mumujj_L13_M500_2016.root");
 
-int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
+int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_TkMu50;
 double muejj_l, emujj_l;
 std:vector<double>* patElectron_pt; patElectron_pt=0;
 vector<double>* patElectron_eta; patElectron_eta=0;
@@ -83,9 +83,7 @@ int nBestVtx;
 
 TBranch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
 TBranch *a_HLT_Mu50=a_->GetBranch("HLT_Mu50");
-TBranch *a_HLT_OldMu100=a_->GetBranch("HLT_OldMu100");
 TBranch *a_HLT_TkMu50=a_->GetBranch("HLT_TkMu50");
-TBranch *a_HLT_TkMu100=a_->GetBranch("HLT_TkMu100");
 
 TBranch *a_patElectron_pt=a_->GetBranch("patElectron_pt");
 TBranch *a_patElectron_eta=a_->GetBranch("patElectron_eta");
@@ -143,9 +141,7 @@ TBranch *a_JerSFdown=a_->GetBranch("JerSFdown");
 
 a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele);
 a_HLT_Mu50->SetAddress(&HLT_Mu50);
-a_HLT_OldMu100->SetAddress(&HLT_OldMu100);
 a_HLT_TkMu50->SetAddress(&HLT_TkMu50);
-a_HLT_TkMu100->SetAddress(&HLT_TkMu100);
 
 a_patElectron_pt->SetAddress(&patElectron_pt);
 a_patElectron_eta->SetAddress(&patElectron_eta);
@@ -201,18 +197,22 @@ a_JesSFdown->SetAddress(&JesSFdown);
 a_JerSFup->SetAddress(&JerSFup);
 a_JerSFdown->SetAddress(&JerSFdown);
 
-const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
+//new bins
+//const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
+
+//old bins
+const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
 
 TH1D *deltaRmu1FJ1 = new TH1D ("deltaRmu1FJ1", "deltaRmu1FJ1", 100, 0, 20);
 TH1D *deltaRmu1FJ2 = new TH1D ("deltaRmu1FJ2", "deltaRmu1FJ2", 100, 0, 20);
 TH1D *deltaRmu2FJ1 = new TH1D ("deltaRmu2FJ1", "deltaRmu2FJ1", 100, 0, 20);
 TH1D *deltaRmu2FJ2 = new TH1D ("deltaRmu2FJ2", "deltaRmu2FJ2", 100, 0, 20);
-TH1D *MllJJ = new TH1D ("MllJJ", "MllJJ", 8, asymbins);
-TH1D *MllJ = new TH1D ("MllJ", "MllJ", 8, asymbins);
-TH1D *MllJ_FJ1 = new TH1D ("MllJ_FJ1", "MllJ_FJ1", 8, asymbins);
+TH1D *MllJJ = new TH1D ("MllJJ", "MllJJ", 9, asymbins);
+TH1D *MllJ = new TH1D ("MllJ", "MllJ", 9, asymbins);
+TH1D *MllJ_FJ1 = new TH1D ("MllJ_FJ1", "MllJ_FJ1", 9, asymbins);
 TH1D *NumFatJet = new TH1D ("NumFatJet", "NumFatJet", 20, 0, 20);
 TH1D *NumJet = new TH1D ("NumJet", "NumJet", 20, 0, 20);
-TH1D *Mlljj = new TH1D ("Mlljj", "Mlljj", 8, asymbins);
+TH1D *Mlljj = new TH1D ("Mlljj", "Mlljj", 9, asymbins);
 TH1D *deltaPhijj = new TH1D ("deltaPhijj", "deltaPhijj", 60, -3, 3);
 TH1D *deltaEtajj = new TH1D ("deltaEtajj", "deltaEtajj", 60, 0, 3);
 TH1D *deltaRjj = new TH1D ("deltaRjj", "deltaRjj", 100, 0, 20);
@@ -222,38 +222,38 @@ TH1D *Mu2_pt = new TH1D ("Mu2_pt", "Mu2_pt", 1000, 0, 10000);
 TH1D *Mu1_relIso = new TH1D ("Mu1_relIso", "Mu1_relIso", 100, 0, 10);
 TH1D *Mu2_relIso = new TH1D ("Mu2_relIso", "Mu2_relIso", 100, 0, 10);
 
-TH1D *eejj_L13_M500_mumujj = new TH1D ("eejj_L13_M500_mumujj", "eejj_L13_M500_mumujj", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_AlphaRatio = new TH1D ("eejj_L13_M500_mumujj_2016_AlphaRatio", "eejj_L13_M500_mumujj_2016_AlphaRatio", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_AlphaRatioUp = new TH1D ("eejj_L13_M500_mumujj_2016_AlphaRatioUp", "eejj_L13_M500_mumujj_2016_AlphaRatioUp", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_AlphaRatioDown = new TH1D ("eejj_L13_M500_mumujj_2016_AlphaRatioDown", "eejj_L13_M500_mumujj_2016_AlphaRatioDown", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_SFUp = new TH1D ("eejj_L13_M500_mumujj_2016_SFUp", "eejj_L13_M500_mumujj_2016_SFUp", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_SFDown = new TH1D ("eejj_L13_M500_mumujj_2016_SFDown", "eejj_L13_M500_mumujj_2016_SFDown", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_PUUp = new TH1D ("eejj_L13_M500_mumujj_2016_PUUp", "eejj_L13_M500_mumujj_2016_PUUp", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_PUDown = new TH1D ("eejj_L13_M500_mumujj_2016_PUDown", "eejj_L13_M500_mumujj_2016_PUDown", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_centralJesJer = new TH1D ("eejj_L13_M500_mumujj_centralJesJer", "eejj_L13_M500_mumujj_centralJesJer", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_JesSFUp = new TH1D ("eejj_L13_M500_mumujj_2016_JesSFUp", "eejj_L13_M500_mumujj_2016_JesSFUp", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_JesSFDown = new TH1D ("eejj_L13_M500_mumujj_2016_JesSFDown", "eejj_L13_M500_mumujj_2016_JesSFDown", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_JerSFUp = new TH1D ("eejj_L13_M500_mumujj_2016_JerSFUp", "eejj_L13_M500_mumujj_2016_JerSFUp", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_JerSFDown = new TH1D ("eejj_L13_M500_mumujj_2016_JerSFDown", "eejj_L13_M500_mumujj_2016_JerSFDown", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_PtCorrUp = new TH1D ("eejj_L13_M500_mumujj_2016_PtCorrUp", "eejj_L13_M500_mumujj_2016_PtCorrUp", 8, asymbins);
-TH1D *eejj_L13_M500_mumujj_2016_PtCorrDown = new TH1D ("eejj_L13_M500_mumujj_2016_PtCorrDown", "eejj_L13_M500_mumujj_2016_PtCorrDown", 8, asymbins);
-TH1D *eejj_L13_M500_eejj = new TH1D ("eejj_L13_M500_eejj", "eejj_L13_M500_eejj", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_AlphaRatio = new TH1D ("eejj_L13_M500_eejj_2016_AlphaRatio", "eejj_L13_M500_eejj_2016_AlphaRatio", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_AlphaRatioUp = new TH1D ("eejj_L13_M500_eejj_2016_AlphaRatioUp", "eejj_L13_M500_eejj_2016_AlphaRatioUp", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_AlphaRatioDown = new TH1D ("eejj_L13_M500_eejj_2016_AlphaRatioDown", "eejj_L13_M500_eejj_2016_AlphaRatioDown", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_SFUp = new TH1D ("eejj_L13_M500_eejj_2016_SFUp", "eejj_L13_M500_eejj_2016_SFUp", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_SFDown = new TH1D ("eejj_L13_M500_eejj_2016_SFDown", "eejj_L13_M500_eejj_2016_SFDown", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_PUUp = new TH1D ("eejj_L13_M500_eejj_2016_PUUp", "eejj_L13_M500_eejj_2016_PUUp", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_PUDown = new TH1D ("eejj_L13_M500_eejj_2016_PUDown", "eejj_L13_M500_eejj_2016_PUDown", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_centralJesJer = new TH1D ("eejj_L13_M500_eejj_centralJesJer", "eejj_L13_M500_eejj_centralJesJer", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_JesSFUp = new TH1D ("eejj_L13_M500_eejj_2016_JesSFUp", "eejj_L13_M500_eejj_2016_JesSFUp", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_JesSFDown = new TH1D ("eejj_L13_M500_eejj_2016_JesSFDown", "eejj_L13_M500_eejj_2016_JesSFDown", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_JerSFUp = new TH1D ("eejj_L13_M500_eejj_2016_JerSFUp", "eejj_L13_M500_eejj_2016_JerSFUp", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_JerSFDown = new TH1D ("eejj_L13_M500_eejj_2016_JerSFDown", "eejj_L13_M500_eejj_2016_JerSFDown", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_energyScaleUp = new TH1D ("eejj_L13_M500_eejj_2016_energyScaleUp", "eejj_L13_M500_eejj_2016_energyScaleUp", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_energyScaleDown = new TH1D ("eejj_L13_M500_eejj_2016_energyScaleDown", "eejj_L13_M500_eejj_2016_energyScaleDown", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_energySigmaUp = new TH1D ("eejj_L13_M500_eejj_2016_energySigmaUp", "eejj_L13_M500_eejj_2016_energySigmaUp", 8, asymbins);
-TH1D *eejj_L13_M500_eejj_2016_energySigmaDown = new TH1D ("eejj_L13_M500_eejj_2016_energySigmaDown", "eejj_L13_M500_eejj_2016_energySigmaDown", 8, asymbins);
+TH1D *mumujj_L13_M500_mumujj = new TH1D ("mumujj_L13_M500_mumujj", "mumujj_L13_M500_mumujj", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_AlphaRatio = new TH1D ("mumujj_L13_M500_mumujj_2016_AlphaRatio", "mumujj_L13_M500_mumujj_2016_AlphaRatio", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_AlphaRatioUp = new TH1D ("mumujj_L13_M500_mumujj_2016_AlphaRatioUp", "mumujj_L13_M500_mumujj_2016_AlphaRatioUp", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_AlphaRatioDown = new TH1D ("mumujj_L13_M500_mumujj_2016_AlphaRatioDown", "mumujj_L13_M500_mumujj_2016_AlphaRatioDown", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_SFUp = new TH1D ("mumujj_L13_M500_mumujj_2016_SFUp", "mumujj_L13_M500_mumujj_2016_SFUp", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_SFDown = new TH1D ("mumujj_L13_M500_mumujj_2016_SFDown", "mumujj_L13_M500_mumujj_2016_SFDown", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_PUUp = new TH1D ("mumujj_L13_M500_mumujj_2016_PUUp", "mumujj_L13_M500_mumujj_2016_PUUp", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_PUDown = new TH1D ("mumujj_L13_M500_mumujj_2016_PUDown", "mumujj_L13_M500_mumujj_2016_PUDown", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_centralJesJer = new TH1D ("mumujj_L13_M500_mumujj_centralJesJer", "mumujj_L13_M500_mumujj_centralJesJer", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_JesSFUp = new TH1D ("mumujj_L13_M500_mumujj_2016_JesSFUp", "mumujj_L13_M500_mumujj_2016_JesSFUp", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_JesSFDown = new TH1D ("mumujj_L13_M500_mumujj_2016_JesSFDown", "mumujj_L13_M500_mumujj_2016_JesSFDown", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_JerSFUp = new TH1D ("mumujj_L13_M500_mumujj_2016_JerSFUp", "mumujj_L13_M500_mumujj_2016_JerSFUp", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_JerSFDown = new TH1D ("mumujj_L13_M500_mumujj_2016_JerSFDown", "mumujj_L13_M500_mumujj_2016_JerSFDown", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_PtCorrUp = new TH1D ("mumujj_L13_M500_mumujj_2016_PtCorrUp", "mumujj_L13_M500_mumujj_2016_PtCorrUp", 9, asymbins);
+TH1D *mumujj_L13_M500_mumujj_2016_PtCorrDown = new TH1D ("mumujj_L13_M500_mumujj_2016_PtCorrDown", "mumujj_L13_M500_mumujj_2016_PtCorrDown", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj = new TH1D ("mumujj_L13_M500_eejj", "mumujj_L13_M500_eejj", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_AlphaRatio = new TH1D ("mumujj_L13_M500_eejj_2016_AlphaRatio", "mumujj_L13_M500_eejj_2016_AlphaRatio", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_AlphaRatioUp = new TH1D ("mumujj_L13_M500_eejj_2016_AlphaRatioUp", "mumujj_L13_M500_eejj_2016_AlphaRatioUp", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_AlphaRatioDown = new TH1D ("mumujj_L13_M500_eejj_2016_AlphaRatioDown", "mumujj_L13_M500_eejj_2016_AlphaRatioDown", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_SFUp = new TH1D ("mumujj_L13_M500_eejj_2016_SFUp", "mumujj_L13_M500_eejj_2016_SFUp", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_SFDown = new TH1D ("mumujj_L13_M500_eejj_2016_SFDown", "mumujj_L13_M500_eejj_2016_SFDown", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_PUUp = new TH1D ("mumujj_L13_M500_eejj_2016_PUUp", "mumujj_L13_M500_eejj_2016_PUUp", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_PUDown = new TH1D ("mumujj_L13_M500_eejj_2016_PUDown", "mumujj_L13_M500_eejj_2016_PUDown", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_centralJesJer = new TH1D ("mumujj_L13_M500_eejj_centralJesJer", "mumujj_L13_M500_eejj_centralJesJer", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_JesSFUp = new TH1D ("mumujj_L13_M500_eejj_2016_JesSFUp", "mumujj_L13_M500_eejj_2016_JesSFUp", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_JesSFDown = new TH1D ("mumujj_L13_M500_eejj_2016_JesSFDown", "mumujj_L13_M500_eejj_2016_JesSFDown", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_JerSFUp = new TH1D ("mumujj_L13_M500_eejj_2016_JerSFUp", "mumujj_L13_M500_eejj_2016_JerSFUp", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_JerSFDown = new TH1D ("mumujj_L13_M500_eejj_2016_JerSFDown", "mumujj_L13_M500_eejj_2016_JerSFDown", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_energyScaleUp = new TH1D ("mumujj_L13_M500_eejj_2016_energyScaleUp", "mumujj_L13_M500_eejj_2016_energyScaleUp", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_energyScaleDown = new TH1D ("mumujj_L13_M500_eejj_2016_energyScaleDown", "mumujj_L13_M500_eejj_2016_energyScaleDown", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_energySigmaUp = new TH1D ("mumujj_L13_M500_eejj_2016_energySigmaUp", "mumujj_L13_M500_eejj_2016_energySigmaUp", 9, asymbins);
+TH1D *mumujj_L13_M500_eejj_2016_energySigmaDown = new TH1D ("mumujj_L13_M500_eejj_2016_energySigmaDown", "mumujj_L13_M500_eejj_2016_energySigmaDown", 9, asymbins);
 
 cout << a_->GetEntries() << endl;
 int tot=0, muejj = 0;
@@ -303,7 +303,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  wg_2016_PUUp = lumi * lumi_wgt * lepsf_evt * MinBiasUpWeight;
  wg_2016_PUDown = lumi * lumi_wgt * lepsf_evt * MinBiasDownWeight;
           
- if (HLT_Mu50==1 || HLT_TkMu100==1 || HLT_OldMu100==1 ) HLT_Mu = 1;
+ if (HLT_Mu50==1 || HLT_TkMu50==1 ) HLT_Mu = 1;
  
  if (Muon_pt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfJets >=2){
   Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
@@ -373,22 +373,21 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    Mu1_relIso->Fill(Muon_relIsoDeltaBetaR04->at(0),wg);
    Mu2_relIso->Fill(Muon_relIsoDeltaBetaR04->at(1)),wg;
   
-   eejj_L13_M500_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
-   cout << "wg " << wg << " lumi " << lumi << " lumi_wgt " << lumi_wgt << " lepsf_evt " << lepsf_evt << " PUWeight " << PUWeight << endl;
-   eejj_L13_M500_mumujj_2016_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg*1.04);
-   eejj_L13_M500_mumujj_2016_AlphaRatioUp->Fill((Muon1+Muon2+BoostJet).M(), wg*1.14);
-   eejj_L13_M500_mumujj_2016_AlphaRatioDown->Fill((Muon1+Muon2+BoostJet).M(), wg*0.94);
-   eejj_L13_M500_mumujj_2016_SFUp->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_SFUp);
-   eejj_L13_M500_mumujj_2016_SFDown->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_SFDown);
-   eejj_L13_M500_mumujj_2016_PUUp->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_PUUp);
-   eejj_L13_M500_mumujj_2016_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_PUDown);
-   eejj_L13_M500_mumujj_2016_PtCorrUp->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg);
-   eejj_L13_M500_mumujj_2016_PtCorrDown->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg);
-   if(centralJesJer->at(0)==1)eejj_L13_M500_mumujj_centralJesJer->Fill((Muon1+Muon2+BoostJet).M(), wg);
-   if(JesSFup->at(1)==1)eejj_L13_M500_mumujj_2016_JesSFUp->Fill((Muon1+Muon2+BoostJet_JESup).M(), wg);
-   if(JesSFdown->at(2)==1)eejj_L13_M500_mumujj_2016_JesSFDown->Fill((Muon1+Muon2+BoostJet_JESdown).M(), wg);
-   if(JerSFup->at(3)==1)eejj_L13_M500_mumujj_2016_JerSFUp->Fill((Muon1+Muon2+BoostJet_JERup).M(), wg);
-   if(JerSFdown->at(4)==1)eejj_L13_M500_mumujj_2016_JerSFDown->Fill((Muon1+Muon2+BoostJet_JERdown).M(), wg);  
+   mumujj_L13_M500_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
+   mumujj_L13_M500_mumujj_2016_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg*1.04);
+   mumujj_L13_M500_mumujj_2016_AlphaRatioUp->Fill((Muon1+Muon2+BoostJet).M(), wg*1.14);
+   mumujj_L13_M500_mumujj_2016_AlphaRatioDown->Fill((Muon1+Muon2+BoostJet).M(), wg*0.94);
+   mumujj_L13_M500_mumujj_2016_SFUp->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_SFUp);
+   mumujj_L13_M500_mumujj_2016_SFDown->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_SFDown);
+   mumujj_L13_M500_mumujj_2016_PUUp->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_PUUp);
+   mumujj_L13_M500_mumujj_2016_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_PUDown);
+   mumujj_L13_M500_mumujj_2016_PtCorrUp->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg);
+   mumujj_L13_M500_mumujj_2016_PtCorrDown->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg);
+   if(centralJesJer->at(0)==1)mumujj_L13_M500_mumujj_centralJesJer->Fill((Muon1+Muon2+BoostJet).M(), wg);
+   if(JesSFup->at(1)==1)mumujj_L13_M500_mumujj_2016_JesSFUp->Fill((Muon1+Muon2+BoostJet_JESup).M(), wg);
+   if(JesSFdown->at(2)==1)mumujj_L13_M500_mumujj_2016_JesSFDown->Fill((Muon1+Muon2+BoostJet_JESdown).M(), wg);
+   if(JerSFup->at(3)==1)mumujj_L13_M500_mumujj_2016_JerSFUp->Fill((Muon1+Muon2+BoostJet_JERup).M(), wg);
+   if(JerSFdown->at(4)==1)mumujj_L13_M500_mumujj_2016_JerSFDown->Fill((Muon1+Muon2+BoostJet_JERdown).M(), wg);  
   }
  }
  
@@ -412,29 +411,30 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    Ele2_SigmaUp.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energySigmaUp->at(1));
    Ele2_SigmaDown.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energySigmaDown->at(1));
 
-   eejj_L13_M500_eejj->Fill((Electron1+Electron2+BoostJet).M(), wg);
-   eejj_L13_M500_eejj_2016_AlphaRatio->Fill((Electron1+Electron2+BoostJet).M(), wg*1.07);
-   eejj_L13_M500_eejj_2016_AlphaRatioUp->Fill((Electron1+Electron2+BoostJet).M(), wg*1.32);
-   eejj_L13_M500_eejj_2016_AlphaRatioDown->Fill((Electron1+Electron2+BoostJet).M(), wg*0.82);
-   eejj_L13_M500_eejj_2016_SFUp->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_SFUp);
-   eejj_L13_M500_eejj_2016_SFDown->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_SFDown);
-   eejj_L13_M500_eejj_2016_PUUp->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_PUUp);
-   eejj_L13_M500_eejj_2016_PUDown->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_PUDown);
-   eejj_L13_M500_eejj_2016_energyScaleUp->Fill((Ele1_ScaleUp+Ele2_ScaleUp+BoostJet).M(), wg);
-   eejj_L13_M500_eejj_2016_energyScaleDown->Fill((Ele1_ScaleDown+Ele2_ScaleDown+BoostJet).M(), wg);
-   eejj_L13_M500_eejj_2016_energySigmaUp->Fill((Ele1_SigmaUp+Ele2_SigmaUp+BoostJet).M(), wg);
-   eejj_L13_M500_eejj_2016_energySigmaDown->Fill((Ele1_SigmaDown+Ele2_SigmaDown+BoostJet).M(), wg);
-   if(centralJesJer->at(0)==1)eejj_L13_M500_eejj_centralJesJer->Fill((Electron1+Electron2+BoostJet).M(), wg);
-   if(JesSFup->at(1)==1)eejj_L13_M500_eejj_2016_JesSFUp->Fill((Electron1+Electron2+BoostJet_JESup).M(), wg);
-   if(JesSFdown->at(2)==1)eejj_L13_M500_eejj_2016_JesSFDown->Fill((Electron1+Electron2+BoostJet_JESdown).M(), wg);
-   if(JerSFup->at(3)==1)eejj_L13_M500_eejj_2016_JerSFUp->Fill((Electron1+Electron2+BoostJet_JERup).M(), wg);
-   if(JerSFdown->at(4)==1)eejj_L13_M500_eejj_2016_JerSFDown->Fill((Electron1+Electron2+BoostJet_JERdown).M(), wg); 
+   mumujj_L13_M500_eejj->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   mumujj_L13_M500_eejj_2016_AlphaRatio->Fill((Electron1+Electron2+BoostJet).M(), wg*1.07);
+   mumujj_L13_M500_eejj_2016_AlphaRatioUp->Fill((Electron1+Electron2+BoostJet).M(), wg*1.32);
+   mumujj_L13_M500_eejj_2016_AlphaRatioDown->Fill((Electron1+Electron2+BoostJet).M(), wg*0.82);
+   mumujj_L13_M500_eejj_2016_SFUp->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_SFUp);
+   mumujj_L13_M500_eejj_2016_SFDown->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_SFDown);
+   mumujj_L13_M500_eejj_2016_PUUp->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_PUUp);
+   mumujj_L13_M500_eejj_2016_PUDown->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_PUDown);
+   mumujj_L13_M500_eejj_2016_energyScaleUp->Fill((Ele1_ScaleUp+Ele2_ScaleUp+BoostJet).M(), wg);
+   mumujj_L13_M500_eejj_2016_energyScaleDown->Fill((Ele1_ScaleDown+Ele2_ScaleDown+BoostJet).M(), wg);
+   mumujj_L13_M500_eejj_2016_energySigmaUp->Fill((Ele1_SigmaUp+Ele2_SigmaUp+BoostJet).M(), wg);
+   mumujj_L13_M500_eejj_2016_energySigmaDown->Fill((Ele1_SigmaDown+Ele2_SigmaDown+BoostJet).M(), wg);
+   if(centralJesJer->at(0)==1)mumujj_L13_M500_eejj_centralJesJer->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   if(JesSFup->at(1)==1)mumujj_L13_M500_eejj_2016_JesSFUp->Fill((Electron1+Electron2+BoostJet_JESup).M(), wg);
+   if(JesSFdown->at(2)==1)mumujj_L13_M500_eejj_2016_JesSFDown->Fill((Electron1+Electron2+BoostJet_JESdown).M(), wg);
+   if(JerSFup->at(3)==1)mumujj_L13_M500_eejj_2016_JerSFUp->Fill((Electron1+Electron2+BoostJet_JERup).M(), wg);
+   if(JerSFdown->at(4)==1)mumujj_L13_M500_eejj_2016_JerSFDown->Fill((Electron1+Electron2+BoostJet_JERdown).M(), wg); 
   }
  } 
  
 }
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016/SR_syst_eejj_L13_M500_2016.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR_syst_mumujj_L13_M500_2016.root", "RECREATE");
+//TFile *f2 = new TFile("SR_syst_mumujj_L13_M500_oldbin_2016.root", "RECREATE");
 deltaRmu1FJ1->Write();
 deltaRmu2FJ1->Write();
 deltaRmu1FJ2->Write();
@@ -455,40 +455,41 @@ Mu2_pt->Write();
 Mu1_relIso->Write();
 Mu2_relIso->Write();
 
-eejj_L13_M500_eejj->Write();
-eejj_L13_M500_eejj_2016_AlphaRatio->Write();
-eejj_L13_M500_eejj_2016_AlphaRatioUp->Write();
-eejj_L13_M500_eejj_2016_AlphaRatioDown->Write();
-eejj_L13_M500_eejj_2016_SFUp->Write();
-eejj_L13_M500_eejj_2016_SFDown->Write();
-eejj_L13_M500_eejj_2016_PUUp->Write();
-eejj_L13_M500_eejj_2016_PUDown->Write();
-eejj_L13_M500_eejj_centralJesJer->Write();
-eejj_L13_M500_eejj_2016_JesSFUp->Write();
-eejj_L13_M500_eejj_2016_JesSFDown->Write();
-eejj_L13_M500_eejj_2016_JerSFUp->Write();
-eejj_L13_M500_eejj_2016_JerSFDown->Write();
-eejj_L13_M500_eejj_2016_energyScaleUp->Write();
-eejj_L13_M500_eejj_2016_energyScaleDown->Write();
-eejj_L13_M500_eejj_2016_energySigmaUp->Write();
-eejj_L13_M500_eejj_2016_energySigmaDown->Write();
-eejj_L13_M500_mumujj->Write();
-eejj_L13_M500_mumujj_2016_AlphaRatio->Write();
-eejj_L13_M500_mumujj_2016_AlphaRatioUp->Write();
-eejj_L13_M500_mumujj_2016_AlphaRatioDown->Write();
-eejj_L13_M500_mumujj_2016_SFUp->Write();
-eejj_L13_M500_mumujj_2016_SFDown->Write();
-eejj_L13_M500_mumujj_2016_PUUp->Write();
-eejj_L13_M500_mumujj_2016_PUDown->Write();
-eejj_L13_M500_mumujj_centralJesJer->Write();
-eejj_L13_M500_mumujj_2016_JesSFUp->Write();
-eejj_L13_M500_mumujj_2016_JesSFDown->Write();
-eejj_L13_M500_mumujj_2016_JerSFUp->Write();
-eejj_L13_M500_mumujj_2016_JerSFDown->Write();
-eejj_L13_M500_mumujj_2016_PtCorrDown->Write();
-eejj_L13_M500_mumujj_2016_PtCorrUp->Write();
+mumujj_L13_M500_eejj->Write();
+mumujj_L13_M500_eejj_2016_AlphaRatio->Write();
+mumujj_L13_M500_eejj_2016_AlphaRatioUp->Write();
+mumujj_L13_M500_eejj_2016_AlphaRatioDown->Write();
+mumujj_L13_M500_eejj_2016_SFUp->Write();
+mumujj_L13_M500_eejj_2016_SFDown->Write();
+mumujj_L13_M500_eejj_2016_PUUp->Write();
+mumujj_L13_M500_eejj_2016_PUDown->Write();
+mumujj_L13_M500_eejj_centralJesJer->Write();
+mumujj_L13_M500_eejj_2016_JesSFUp->Write();
+mumujj_L13_M500_eejj_2016_JesSFDown->Write();
+mumujj_L13_M500_eejj_2016_JerSFUp->Write();
+mumujj_L13_M500_eejj_2016_JerSFDown->Write();
+mumujj_L13_M500_eejj_2016_energyScaleUp->Write();
+mumujj_L13_M500_eejj_2016_energyScaleDown->Write();
+mumujj_L13_M500_eejj_2016_energySigmaUp->Write();
+mumujj_L13_M500_eejj_2016_energySigmaDown->Write();
+mumujj_L13_M500_mumujj->Write();
+mumujj_L13_M500_mumujj_2016_AlphaRatio->Write();
+mumujj_L13_M500_mumujj_2016_AlphaRatioUp->Write();
+mumujj_L13_M500_mumujj_2016_AlphaRatioDown->Write();
+mumujj_L13_M500_mumujj_2016_SFUp->Write();
+mumujj_L13_M500_mumujj_2016_SFDown->Write();
+mumujj_L13_M500_mumujj_2016_PUUp->Write();
+mumujj_L13_M500_mumujj_2016_PUDown->Write();
+mumujj_L13_M500_mumujj_centralJesJer->Write();
+mumujj_L13_M500_mumujj_2016_JesSFUp->Write();
+mumujj_L13_M500_mumujj_2016_JesSFDown->Write();
+mumujj_L13_M500_mumujj_2016_JerSFUp->Write();
+mumujj_L13_M500_mumujj_2016_JerSFDown->Write();
+mumujj_L13_M500_mumujj_2016_PtCorrDown->Write();
+mumujj_L13_M500_mumujj_2016_PtCorrUp->Write();
 f->Write();
 f->Close();
-
+//f2->Write();
+//f2->Close();
 }
  

@@ -36,7 +36,7 @@ TChain *a_ = new TChain("BOOM");
 a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/DY_2016.root");
 //inputFile
 
-int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
+int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_TkMu50;
 double muejj_l, emujj_l;
 double M_leplep;
 std:vector<double>* patElectron_pt; patElectron_pt=0;
@@ -62,9 +62,7 @@ double puw[100]={0.366077 , 0.893925 , 1.19772 , 0.962699 , 1.12098 , 1.16486 , 
 
 TBranch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
 TBranch *a_HLT_Mu50=a_->GetBranch("HLT_Mu50");
-TBranch *a_HLT_OldMu100=a_->GetBranch("HLT_OldMu100");
 TBranch *a_HLT_TkMu50=a_->GetBranch("HLT_TkMu50");
-TBranch *a_HLT_TkMu100=a_->GetBranch("HLT_TkMu100");
 
 TBranch *a_patElectron_pt=a_->GetBranch("patElectron_pt");
 TBranch *a_patElectron_eta=a_->GetBranch("patElectron_eta");
@@ -102,9 +100,7 @@ TBranch *a_numOfVetoEle=a_->GetBranch("numOfVetoEle");
 
 a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele);
 a_HLT_Mu50->SetAddress(&HLT_Mu50);
-a_HLT_OldMu100->SetAddress(&HLT_OldMu100);
 a_HLT_TkMu50->SetAddress(&HLT_TkMu50);
-a_HLT_TkMu100->SetAddress(&HLT_TkMu100);
 
 a_patElectron_pt->SetAddress(&patElectron_pt);
 a_patElectron_eta->SetAddress(&patElectron_eta);
@@ -171,9 +167,11 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
  tot = a_->GetEntries();
  if (i%100000 == 0) cout << i << " eventi analizzati su " << tot << endl;
 
+ HLT_Mu = 0;
+
  n_best_Vtx_bef->Fill(trueInteractions);
 
- if (HLT_Mu50==1 || HLT_OldMu100 == 1 || HLT_TkMu100==1) HLT_Mu = 1;
+ if (HLT_Mu50==1 || HLT_TkMu50==1) HLT_Mu = 1;
 
  for (int j=0; j<100; j++){
   if (trueInteractions > j && trueInteractions <= j+1){
@@ -183,8 +181,6 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
  }
 
  wg = lumi * lumi_wgt * lepsf_evt;
-          
- if (HLT_Mu50==1 || HLT_TkMu100==1 || HLT_OldMu100==1 ) HLT_Mu = 1;
 
  if (Muon_pt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
   if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){

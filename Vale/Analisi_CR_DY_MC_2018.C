@@ -177,6 +177,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
 
  n_best_Vtx_bef->Fill(trueInteractions);
 
+ HLT_Mu = 0;
  if (HLT_Mu50==1 || HLT_TkMu100==1 || HLT_OldMu100==1 ) HLT_Mu = 1;
  for (int j=0; j<100; j++){
   if (trueInteractions > j && trueInteractions <= j+1){
