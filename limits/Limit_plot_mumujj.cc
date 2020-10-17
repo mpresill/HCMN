@@ -42,7 +42,7 @@ const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 const bool   save_plot = true;
-const string name_plot = "mumujj_L13000_YearsCombined-24July20_fitCR.pdf"; //xsecBR or r
+const string name_plot = "mumujj_L13000_YearsCombined-7Oct20_fitCR.pdf"; //xsecBR or r
 const int    val       = 5;
 
 //limits from Combine
@@ -83,11 +83,11 @@ double xsec_LM[Mass_eq_L_points]         = {6.10E+03,1.52E+02,1.28E+01,1.77E+00,
 //HCMN reload  private production 2016, selezione High Mass 
 const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
-double Exp_m2s[val] = {5.95E-04,	2.18E-04,	9.93E-05,	4.15E-05,	4.33E-06};
-double Exp_m1s[val] = {7.96E-04,	2.94E-04,	1.35E-04,	5.73E-05,	7.12E-06};
-double Exp[val]     = {1.12E-03,	4.17E-04,	1.96E-04,	8.44E-05,	1.25E-05};  	//r value from Combine
-double Exp_p1s[val] = {1.59E-03,	5.97E-04,	2.85E-04,	1.27E-04,	2.17E-05};
-double Exp_p2s[val] = {2.16E-03,	8.19E-04,	4.01E-04,	1.83E-04,	3.50E-05};
+double Exp_m2s[val] = {9.53E-04,	3.71E-04,	1.81E-04,	8.31E-05,	8.23E-05};
+double Exp_m1s[val] = {1.27E-03,	4.95E-04,	2.41E-04,	1.12E-04,	1.11E-04};
+double Exp[val]     = {1.76E-03,	6.88E-04,	3.41E-04,	1.58E-04,	1.57E-04};  	//r value from Combine
+double Exp_p1s[val] = {2.44E-03,	9.63E-04,	4.82E-04,	2.26E-04,	2.26E-04};
+double Exp_p2s[val] = {3.25E-03,	1.29E-03,	6.53E-04,	3.12E-04,	3.14E-04};
 
 
 
@@ -218,7 +218,7 @@ TGraph* plot_band_2s(){
  band_2s->Draw("ALF2");
 // band_2s->SetMinimum(0.0001);
  //band_2s->SetMaximum(0.01);
- band_2s->SetMinimum(0.000001);
+ band_2s->SetMinimum(0.00005);
  band_2s->SetMaximum(0.1);
  band_2s->SetTitle(0);
  if(mumujj) band_2s->GetXaxis()->SetTitle("m_{N_{#mu}} (TeV)");
