@@ -253,7 +253,6 @@ TLorentzVector Muon2_ptResoDown;
 
 for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
- HLT_Mu = 0; 
  tot = a_->GetEntries();
  if (i%100000 == 0) cout << i << " eventi analizzati su " << tot << endl;
 
@@ -262,7 +261,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  wg_SFd = lumi * lumi_wgt * lepsf_evt_d * PUWeight;
  wg_PUu = lumi * lumi_wgt * lepsf_evt * MinBiasUpWeight;
  wg_PUd = lumi * lumi_wgt * lepsf_evt * MinBiasDownWeight;
-          
+
+ HLT_Mu = 0; HLT_Ele = 0;          
  if (HLT_Mu50==1 || HLT_TkMu100==1 || HLT_OldMu100==1 ) HLT_Mu = 1;
  if (HLT_Photon200 == 1 || HLT_Ele35==1 || HLT_Ele115 == 1) HLT_Ele = 1;
 

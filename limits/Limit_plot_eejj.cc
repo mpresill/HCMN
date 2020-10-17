@@ -42,7 +42,7 @@ const bool comb        = false;
 const bool thcorrected = false;
 const bool   plot_r    = false; //r is the strenght; the alternative is to plot xsec times Br
 const bool   save_plot = true;
-const string name_plot = "eejj_L13000_YearsCombined-24July20_fitCR.pdf"; //xsecBR or r
+const string name_plot = "eejj_L13000_YearsCombined-7Oct20_fitCR-toys.pdf"; //xsecBR or r
 const int    val       = 5;
 
 //limits from Combine
@@ -83,12 +83,19 @@ double xsec_LM[Mass_eq_L_points]         = {6.10E+03,1.52E+02,1.28E+01,1.77E+00,
 //HCMN reload  private production 2016, selezione High Mass 
 const double CumEff[val] ={};// {0.186861099,0.610700894,0.692791903,0.666242661};
 double Obs[val]     = {};
-double Exp_m2s[val] = {2.84E-04	,8.23E-05	,2.90E-05,	1.19E-05,	3.37E-06};
-double Exp_m1s[val] = {4.25E-04	,1.30E-04	,4.84E-05,	2.03E-05,	5.61E-06};
-double Exp[val]     = {6.61E-04	,2.15E-04	,8.62E-05,	3.73E-05,	1.00E-05};  	//r value from Combine
-double Exp_p1s[val] = {1.02E-03	,3.50E-04	,1.52E-04,	6.91E-05,	1.79E-05};
-double Exp_p2s[val] = {1.47E-03	,5.27E-04	,2.44E-04,	1.13E-04,	2.95E-05};
+//double Exp_m2s[val] = {3.42E-04,	9.05E-05,	2.96E-05,	1.22E-05,	1.20E-05};
+//double Exp_m1s[val] = {5.32E-04,	1.48E-04,	5.08E-05,	2.10E-05,	2.06E-05};
+//double Exp[val]     = {8.59E-04,	2.55E-04,	9.26E-05,	3.90E-05,	3.82E-05};  	//r value from Combine
+//double Exp_p1s[val] = {1.36E-03,	4.31E-04,	1.68E-04,	7.25E-05,	7.15E-05};
+//double Exp_p2s[val] = {2.00E-03,	6.59E-04,	2.77E-04,	1.18E-04,	1.16E-04};
 
+
+///the following uses M1000 to M8000 limits with toys
+double Exp_m2s[val] = {3.42E-04,	1.20E-04,	6.16E-05,	4.03E-05,	3.86E-05};
+double Exp_m1s[val] = {5.32E-04,	2.20E-04,	9.85E-05,	4.62E-05,	4.77E-05};
+double Exp[val]     = {8.59E-04,	2.96E-04,	1.23E-04,	5.13E-05,	4.87E-05};  	//r value from Combine
+double Exp_p1s[val] = {1.36E-03,	4.17E-04,	1.40E-04,	5.74E-05,	5.52E-05};
+double Exp_p2s[val] = {2.00E-03,	5.64E-04,	1.73E-04,	6.74E-05,	6.36E-05};
 
 /////
 //   Declare functions 
@@ -217,7 +224,7 @@ TGraph* plot_band_2s(){
  band_2s->Draw("ALF2");
 // band_2s->SetMinimum(0.0001);
  //band_2s->SetMaximum(0.01);
- band_2s->SetMinimum(0.000001);
+ band_2s->SetMinimum(0.00002);
  band_2s->SetMaximum(0.1);
  band_2s->SetTitle(0);
  if(mumujj) band_2s->GetXaxis()->SetTitle("m_{N_{#mu}} (TeV)");

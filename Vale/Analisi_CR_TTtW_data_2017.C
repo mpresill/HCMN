@@ -67,6 +67,7 @@ double lepsf_evt, lumi_wgt, trueInteractions, PUWeight;
 int nBestVtx;
 
 TBranch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
+
 TBranch *a_HLT_Mu50=a_->GetBranch("HLT_Mu50");
 TBranch *a_HLT_OldMu100=a_->GetBranch("HLT_OldMu100");
 TBranch *a_HLT_TkMu50=a_->GetBranch("HLT_TkMu50");
@@ -178,7 +179,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  tot = a_->GetEntries();
  if (i%100000 == 0) cout << i << " eventi analizzati su " << tot << endl;
 
- if (HLT_Mu50==1 || HLT_OldMu100 == 1 || HLT_TkMu50==1) HLT_Mu = 1;
+ if (HLT_Mu50==1 || HLT_OldMu100 == 1 || HLT_TkMu100==1) HLT_Mu = 1;
  if (HLT_Ele115==1 || HLT_Photon200 ==1 || HLT_Ele35 ==1) HLT_Ele=1;
  
  if (emujj_l == 1 || muejj_l == 1) muejj = 1; 

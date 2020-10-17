@@ -33,7 +33,7 @@ void Analisi_SR_DY_syst_2018(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2018/Syst_ALL/DY_2018.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2018/Syst_ALL_newMuonSF/DY_2018.root");
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
 double muejj_l, emujj_l;
@@ -351,7 +351,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 }
 
 TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018/SR_syst_DY_2018.root", "RECREATE");
-TFile *f2 = new TFile("SR_syst_DY_2018.root", "RECREATE");
+TFile *f2 = new TFile("plot/SR_syst_DY_2018.root", "RECREATE");
 DY_eejj->Write();
 DY_eejj_2018_AlphaRatio->Write();
 DY_eejj_2018_AlphaRatioUp->Write();

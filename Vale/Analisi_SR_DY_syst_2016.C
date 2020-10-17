@@ -43,9 +43,9 @@ void Analisi_SR_DY_syst_2016(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL/DY_2016.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/DY_2016.root");
 
-int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
+int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_TkMu50;
 double muejj_l, emujj_l;
 std:vector<double>* patElectron_pt; patElectron_pt=0;
 vector<double>* patElectron_eta; patElectron_eta=0;
@@ -83,9 +83,7 @@ int nBestVtx;
 
 TBranch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
 TBranch *a_HLT_Mu50=a_->GetBranch("HLT_Mu50");
-TBranch *a_HLT_OldMu100=a_->GetBranch("HLT_OldMu100");
 TBranch *a_HLT_TkMu50=a_->GetBranch("HLT_TkMu50");
-TBranch *a_HLT_TkMu100=a_->GetBranch("HLT_TkMu100");
 
 TBranch *a_patElectron_pt=a_->GetBranch("patElectron_pt");
 TBranch *a_patElectron_eta=a_->GetBranch("patElectron_eta");
@@ -143,9 +141,7 @@ TBranch *a_JerSFdown=a_->GetBranch("JerSFdown");
 
 a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele);
 a_HLT_Mu50->SetAddress(&HLT_Mu50);
-a_HLT_OldMu100->SetAddress(&HLT_OldMu100);
 a_HLT_TkMu50->SetAddress(&HLT_TkMu50);
-a_HLT_TkMu100->SetAddress(&HLT_TkMu100);
 
 a_patElectron_pt->SetAddress(&patElectron_pt);
 a_patElectron_eta->SetAddress(&patElectron_eta);
@@ -303,7 +299,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  wg_2016_PUUp = lumi * lumi_wgt * lepsf_evt * MinBiasUpWeight;
  wg_2016_PUDown = lumi * lumi_wgt * lepsf_evt * MinBiasDownWeight;
           
- if (HLT_Mu50==1 || HLT_TkMu100==1 || HLT_OldMu100==1 ) HLT_Mu = 1;
+ if (HLT_Mu50==1 || HLT_TkMu50==1 ) HLT_Mu = 1;
  
  if (Muon_pt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfJets >=2){
   Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
@@ -435,6 +431,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 }
 
 TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016/SR_syst_DY_2016.root", "RECREATE");
+TFile *f2 = new TFile("SR_syst_DY_2016.root", "RECREATE");
 deltaRmu1FJ1->Write();
 deltaRmu2FJ1->Write();
 deltaRmu1FJ2->Write();
