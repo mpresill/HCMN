@@ -128,6 +128,8 @@ a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
 const double asymbins[7] = {300,350,400,450,500,700,2000};
+const double asymbins2[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+
 
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
 TH1D *true_interactions = new TH1D ("true_interactions", "true_interactions", 100,0, 100 );
@@ -138,6 +140,8 @@ TH1D *Mu_phi = new TH1D ("Mu_phi", "Mu_phi", 200, -3, 3);
 TH1D *Ele_eta = new TH1D ("Ele_eta", "Ele_eta", 200, -4, 4);
 TH1D *Mu_eta = new TH1D ("Mu_eta", "Mu_eta", 200, -4, 4);
 TH1D *data_obs = new TH1D ("data_obs", "data_obs", 6, asymbins);
+
+TH1D *M_leplepJ = new TH1D ("M_leplepJ", "M_leplepJ", 9, asymbins2);
 
 TLorentzVector Muon;
 TLorentzVector Electron;
@@ -193,12 +197,14 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    Mu_eta->Fill(Muon_eta->at(0));
    Mu_phi->Fill(Muon_phi->at(0));
    data_obs->Fill((LeadLep+SubLeadLep).M());
+   M_leplepJ->Fill((LeadLep+SubLeadLep+BoostJet).M());
+
    }
   }
  }
 }
 
-TFile *f = new TFile("plot/CR_TTtW_data_ele_2016.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_TTtW_data_ele_2016.root", "RECREATE");
 
 n_best_Vtx->Write();
 true_interactions->Write();
@@ -209,6 +215,7 @@ Mu_eta->Write();
 Ele_phi->Write();
 Mu_phi->Write();
 data_obs->Write();
+M_leplepJ->Write();
 f->Write();
 f->Close();
 

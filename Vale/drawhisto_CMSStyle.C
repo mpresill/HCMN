@@ -175,7 +175,7 @@ line1->SetLineWidth(2);
 line2->SetLineColor(kBlack);
 line2->SetLineWidth(2);
 
-int v = 0;
+int v = 1;
 v = nbin/bin;
 double mc_tot[v], mc_err[v], mc_x[v], mc_ex[v];
 double bincontent_d3 = 0, bincontent_d4 = 0;
