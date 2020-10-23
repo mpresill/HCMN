@@ -387,8 +387,8 @@ line->Draw("same");
 }
   CMS_lumi( c1_2, iPeriod, iPos, 1.3 );
   c1_2->cd();
-  canv->Print("Immagini/"+canvName+"_CR_DY_2016.pdf");
-  canv->Print("Immagini/"+canvName+"_CR_DY_2016.png");
+//  canv->Print("Immagini/"+canvName+"_CR_DY_2016.pdf");
+//  canv->Print("Immagini/"+canvName+"_CR_DY_2016.png");
   canv->Print("/eos/home-v/vmariani/www/HN/CR_DY_2016/"+canvName+"_2016.png");
   canv->Print("/eos/home-v/vmariani/www/HN/CR_DY_2016/pdf/"+canvName+"_2016.pdf");
 
