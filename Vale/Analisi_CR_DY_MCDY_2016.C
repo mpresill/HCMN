@@ -30,11 +30,11 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_CR_DY_MC_2016(){
+void Analisi_CR_DY_MCDY_2016(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/Other_2016.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/DY_2016.root");
 //inputFile
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_TkMu50, HLT_OldMu100, HLT_TkMu100;
@@ -193,17 +193,16 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
   }
  }
 
- wg = lumi * lumi_wgt * lepsf_evt;
-
  if (Muon_pt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
   if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
    Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
    Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
 
-   wg = lumi*lumi_wgt*lepsf_evt;
    mmumu= (Muon1+Muon2).M();
   // k = 1.067 - 0.000112*mmumu + 3.176*exp(1) - 8*pow(mmumu,2) - 4.068*exp(1) - 12*pow(mmumu,3);
+   k = 1.067 - 0.000112*mmumu + 3.176e-8*pow(mmumu,2) - 4.068e-12*pow(mmumu,3);
+   wg = lumi*lumi_wgt*lepsf_evt*k; 
    if(mmumu > 100 && mmumu < 300){
     M_mumu_100300->Fill(mmumu,wg*pu_w);
    }
@@ -232,8 +231,10 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
    Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
 
-    wg = lumi*lumi_wgt*lepsf_evt;
     mee = (Electron1+Electron2).M();
+    //k = 1.067 - 0.000112*mee + 3.176*exp(1) - 8*pow(mee,2) - 4.068*exp(1) - 12*pow(mee,3);
+    k = 1.067 - 0.000112*mee + 3.176e-8*pow(mee,2) - 4.068e-12*pow(mee,3);
+    wg = lumi*lumi_wgt*lepsf_evt*k;
     if(mee > 100 && mee < 300){
      M_ee_100300->Fill(mee,wg*pu_w);
     }
@@ -257,7 +258,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
  
 }
 
-TFile *f = new TFile("plot/CR_DY_Other_2016.root", "RECREATE");
+TFile *f = new TFile("plot/CR_DY_DY_2016.root", "RECREATE");
 n_best_Vtx->Write();
 n_best_Vtx_w->Write();
 n_best_Vtx_bef->Write();
