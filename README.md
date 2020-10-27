@@ -9,22 +9,33 @@ Framework available here:
 - https://github.com/vmariani/BSMFramework/tree/CMSSW_10_2_16 (for 2016-2018) 
 - https://github.com/mpresill/BSMFramework (2017, branch "HN17")
 
-Rootple path:
- - 2016: /eos/user/v/vmariani/NTuples/HN_2016/
-         /eos/user/v/vmariani/NTuples/HN_2016/PUweight/ (with Pu correction included and corrected)
- - 2017: /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/
- - 2018: /eos/user/v/vmariani/NTuples/HN_2018/ 
-         /eos/user/v/vmariani/NTuples/HN_2018/PUweight/ (with Pu correction included and corrected)
+Rootple path: 
+ - 2016: (MC)/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/
+         (data ele)/eos/user/v/vmariani/NTuples/HN_2016/data_ele_2016.root
+         (data mu) /eos/user/v/vmariani/NTuples/HN_2016/data_mu_2016.root
+         
+ - 2017: (MC) /eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/
+         (data ele)/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/TriggerUpdate_0505/data_ele_2017.root
+         (data mu)/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/TriggerUpdate_0505/data_mu_2017.root
+ 
+ - 2018: (MC muon)/eos/user/v/vmariani/NTuples/HN_2018/Syst_ALL_newMuonSF/
+         (data ele) 
+         (data mu) 
+         
+
+Histograms for combine:
+(2016) /eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/
+(2017) /eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/
+(2018) /eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/
+
 
 Rootple for QCD estimation:
 /eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/
 
-Histograms for combine:
-/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms
- 
+
 Plots path:
  - Vale: http://test-valentina-mariani.web.cern.ch/test-valentina-mariani/HN/
- - Matteo: /eos/user/m/mpresill/CMS/HN_Reload/plots
+ - Matteo: http://mpresill.web.cern.ch/mpresill/HN/ 
 
 EXO pre-approval checklist: https://twiki.cern.ch/twiki/bin/viewauth/CMS/ExoPreapprovalChecklist
 
