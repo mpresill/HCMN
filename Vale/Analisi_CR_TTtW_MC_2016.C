@@ -167,10 +167,6 @@ a_JerSFdown->SetAddress(&JerSFdown);
 
 const double asymbins[7] = {300,350,400,450,500,700,2000};
 const double asymbins2[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
-<<<<<<< HEAD
-=======
-
->>>>>>> bf842eeda520a2834335bb4640ad3de83acd869b
 
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
 TH1D *true_interactions = new TH1D ("true_interactions", "true_interactions", 100,0, 100 );
@@ -182,11 +178,8 @@ TH1D *Ele_eta = new TH1D ("Ele_eta", "Ele_eta", 200, -4, 4);
 TH1D *Mu_eta = new TH1D ("Mu_eta", "Mu_eta", 200, -4, 4);
 TH1D *M_ll_puw = new TH1D ("M_ll_puw", "M_ll_puw", 6, asymbins);
 
-<<<<<<< HEAD
 TH1D *M_leplepJ = new TH1D ("M_leplepJ", "M_leplepJ", 9, asymbins2);
 
-=======
->>>>>>> bf842eeda520a2834335bb4640ad3de83acd869b
 TH1D *TTtW_ll = new TH1D ("TTtW_ll", "TTtW_ll", 6, asymbins);
 TH1D *TTtW_ll_2016_AlphaRatio = new TH1D ("TTtW_ll_2016_AlphaRatio", "TTtW_ll_2016_AlphaRatio", 6, asymbins);
 TH1D *TTtW_ll_2016_AlphaRatioUp = new TH1D ("TTtW_ll_2016_AlphaRatioUp", "TTtW_ll_2016_AlphaRatioUp", 6, asymbins);
@@ -206,11 +199,7 @@ TH1D *TTtW_ll_2016_JesSFUp = new TH1D ("TTtW_ll_2016_JesSFUp", "TTtW_ll_2016_Jes
 TH1D *TTtW_ll_2016_JesSFDown = new TH1D ("TTtW_ll_2016_JesSFDown", "TTtW_ll_2016_JesSFDown", 6, asymbins);
 TH1D *TTtW_ll_2016_JerSFUp = new TH1D ("TTtW_ll_2016_JerSFUp", "TTtW_ll_2016_JerSFUp", 6, asymbins);
 TH1D *TTtW_ll_2016_JerSFDown = new TH1D ("TTtW_ll_2016_JerSFDown", "TTtW_ll_2016_JerSFDown", 6, asymbins); 
-<<<<<<< HEAD
-=======
 
-TH1D *M_leplepJ = new TH1D ("M_leplepJ", "M_leplepJ", 9, asymbins2);
->>>>>>> bf842eeda520a2834335bb4640ad3de83acd869b
 
 
 TLorentzVector BoostJet;
@@ -351,10 +340,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     TTtW_ll_2016_SFUp->Fill((LeadLep+SubLeadLep).M(),wg_SFup);
     TTtW_ll_2016_SFDown->Fill((LeadLep+SubLeadLep).M(),wg_SFdown);
     TTtW_ll_2016_PUUp->Fill((LeadLep+SubLeadLep).M(),wg_PUup);
-<<<<<<< HEAD
     TTtW_ll_2016_PUDown->Fill((LeadLep+SubLeadLep).M(),wg_PUdown);  
-=======
->>>>>>> bf842eeda520a2834335bb4640ad3de83acd869b
 
     TTtW_ll_2016_PtCorrUp->Fill((Muon_ptCorr+LeadLep).M(),wg);
     TTtW_ll_2016_PtCorrDown->Fill((Muon_ptCorr+LeadLep).M(),wg);
@@ -363,11 +349,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     TTtW_ll_2016_energySigmaUp->Fill((Ele_SigmaUp+SubLeadLep).M(),wg);
     TTtW_ll_2016_energySigmaDown->Fill((Ele_SigmaDown+SubLeadLep).M(),wg);
 
-<<<<<<< HEAD
     M_leplepJ->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg);
 
-=======
->>>>>>> bf842eeda520a2834335bb4640ad3de83acd869b
     if(centralJesJer->at(0)==1)TTtW_ll_centralJesJer->Fill((LeadLep+SubLeadLep).M(), wg);
     if(JesSFup->at(1)==1)TTtW_ll_2016_JesSFUp->Fill((LeadLep+SubLeadLep).M(), wg);
     if(JesSFdown->at(2)==1)TTtW_ll_2016_JesSFDown->Fill((LeadLep+SubLeadLep).M(), wg);
@@ -380,7 +363,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 }
 
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_TTtW_TTtW_2016_syst.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_TTtW_TTtW_2016_syst.root", "RECREATE");
+TFile *f = new TFile("plots/CR_TTtW_TTtW_2016_syst.root", "RECREATE");
 
 n_best_Vtx->Write();
 true_interactions->Write();

@@ -43,7 +43,7 @@ void Analisi_CR_TTtW_data_2017(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/data_ele_2017.root");
+a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/TriggerUpdate_0505/data_ele_2017.root");
 
 //inputFile
 
@@ -148,6 +148,7 @@ a_numOfVetoEle->SetAddress(&numOfVetoEle);
 a_numOfJets->SetAddress(&numOfJets);
 
 const double asymbins[7] = {300,350,400,450,500,700,2000};
+const double asymbins2[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
 
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
 TH1D *true_interactions = new TH1D ("true_interactions", "true_interactions", 100,0, 100 );
@@ -159,6 +160,7 @@ TH1D *Ele_eta = new TH1D ("Ele_eta", "Ele_eta", 200, -4, 4);
 TH1D *Mu_eta = new TH1D ("Mu_eta", "Mu_eta", 200, -4, 4);
 TH1D *data_obs = new TH1D ("data_obs", "data_obs", 6, asymbins);
 TH1D *Nevents = new TH1D ("Nevents", "Nevents", 4, 0, 2);
+TH1D *M_leplepJ = new TH1D ("M_leplepJ", "M_leplepJ", 9, asymbins2);
 
 TLorentzVector Muon;
 TLorentzVector Electron;
@@ -194,9 +196,10 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
    SubLeadLep.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
   }
-  if (HLT_Mu == 1 && LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4
+  if (HLT_Mu == 1  && LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4
      && BoostedJet_pt->at(0) > 190 && M_leplep > 300 ){
-
+   
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
    veto_ele = false;
    for(int j = 0; j < Muon_pt->size(); j++){
     if (Muon_pt->at(j) > 5){
@@ -219,14 +222,16 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     Mu_pt->Fill(Muon_pt->at(0));
     Mu_eta->Fill(Muon_eta->at(0));
     Mu_phi->Fill(Muon_phi->at(0));
-    data_obs->Fill((LeadLep+SubLeadLep).M());
+    data_obs->Fill((LeadLep+SubLeadLep).M()); 
+    M_leplepJ->Fill((LeadLep+SubLeadLep+BoostJet).M());
    }
   }
  }
 
 }
 
-TFile *f = new TFile("plot/CR_TTtW_data_ele_2017.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_TTtW_data_ele_2017_syst.root", "RECREATE");
+TFile *f = new TFile("plots/CR_TTtW_data_ele_2017.root", "RECREATE");
 
 n_best_Vtx->Write();
 true_interactions->Write();
@@ -238,6 +243,7 @@ Mu_eta->Write();
 Ele_phi->Write();
 Mu_phi->Write();
 data_obs->Write();
+M_leplepJ->Write();
 
 f->Write();
 f->Close();

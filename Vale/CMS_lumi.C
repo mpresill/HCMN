@@ -49,12 +49,12 @@ CMS_lumi( TPad* pad, int iPeriod, int iPosX, double scale )
       lumiText += lumi_7TeV;
       lumiText += " (7 TeV)";
     }
-  else if ( iPeriod==4 )
+  else if ( iPeriod==5 )
     {
-      lumiText += lumi_13TeV;
+      lumiText += lumi_2017;
       lumiText += " (13 TeV)";
     }
-  else if ( iPeriod==5 )
+  else if ( iPeriod==4 )
     { 
       lumiText += lumi_2016;
       lumiText += " (13 TeV)";

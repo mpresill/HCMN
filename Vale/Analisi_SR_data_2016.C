@@ -29,47 +29,49 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_CR_TTtW_data_2018(){
+void Analisi_SR_data_2016(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2018/data_ele_2018.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/data_ele_2016.root");
 //inputFile
 
-int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
+int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_TkMu50;
 double muejj_l, emujj_l;
 double M_leplep;
 std:vector<double>* patElectron_pt; patElectron_pt=0;
 vector<double>* patElectron_eta; patElectron_eta=0;
 vector<double>* patElectron_phi; patElectron_phi=0;
 vector<double>* patElectron_energy; patElectron_energy=0;
+vector<int>* patElectron_charge; patElectron_charge=0;
 vector<double>* Muon_pt; Muon_pt=0;
 vector<double>* Muon_eta; Muon_eta=0;
 vector<double>* Muon_phi; Muon_phi=0;
 vector<double>* Muon_energy; Muon_energy=0;
+vector<double>* Muon_charge; Muon_charge=0;
 vector<double>*BoostedJet_pt; BoostedJet_pt=0;
 vector<double>*BoostedJet_eta; BoostedJet_eta=0;
 vector<double>*BoostedJet_phi; BoostedJet_phi=0;
 vector<double>*BoostedJet_energy; BoostedJet_energy=0;
 double numOfHighptEle, numOfVetoEle, numOfHighptMu, numOfLooseMu, numOfBoostedJets;
 double lepsf_evt, lumi_wgt, trueInteractions, PUWeight;
-int nBestVtx; 
+int nBestVtx;
 
 TBranch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
 TBranch *a_HLT_Mu50=a_->GetBranch("HLT_Mu50");
-TBranch *a_HLT_OldMu100=a_->GetBranch("HLT_OldMu100");
 TBranch *a_HLT_TkMu50=a_->GetBranch("HLT_TkMu50");
-TBranch *a_HLT_TkMu100=a_->GetBranch("HLT_TkMu100");
 
 TBranch *a_patElectron_pt=a_->GetBranch("patElectron_pt");
 TBranch *a_patElectron_eta=a_->GetBranch("patElectron_eta");
 TBranch *a_patElectron_phi=a_->GetBranch("patElectron_phi");
 TBranch *a_patElectron_energy=a_->GetBranch("patElectron_energy");
+TBranch *a_patElectron_charge=a_->GetBranch("patElectron_charge");
 
 TBranch *a_Muon_pt=a_->GetBranch("Muon_pt");
 TBranch *a_Muon_eta=a_->GetBranch("Muon_eta");
 TBranch *a_Muon_phi=a_->GetBranch("Muon_phi");
 TBranch *a_Muon_energy=a_->GetBranch("Muon_energy");
+TBranch *a_Muon_charge=a_->GetBranch("Muon_charge");
 
 TBranch *a_BoostedJet_pt=a_->GetBranch("BoostedJet_pt");
 TBranch *a_BoostedJet_eta=a_->GetBranch("BoostedJet_eta");
@@ -95,19 +97,19 @@ TBranch *a_numOfVetoEle=a_->GetBranch("numOfVetoEle");
 
 a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele);
 a_HLT_Mu50->SetAddress(&HLT_Mu50);
-a_HLT_OldMu100->SetAddress(&HLT_OldMu100);
 a_HLT_TkMu50->SetAddress(&HLT_TkMu50);
-a_HLT_TkMu100->SetAddress(&HLT_TkMu100);
 
 a_patElectron_pt->SetAddress(&patElectron_pt);
 a_patElectron_eta->SetAddress(&patElectron_eta);
 a_patElectron_phi->SetAddress(&patElectron_phi);
 a_patElectron_energy->SetAddress(&patElectron_energy);
+a_patElectron_charge->SetAddress(&patElectron_charge);
 
 a_Muon_pt->SetAddress(&Muon_pt);
 a_Muon_eta->SetAddress(&Muon_eta);
 a_Muon_phi->SetAddress(&Muon_phi);
 a_Muon_energy->SetAddress(&Muon_energy);
+a_Muon_charge->SetAddress(&Muon_charge);
 
 a_M_leplep->SetAddress(&M_leplep);
 a_lepsf_evt->SetAddress(&lepsf_evt);
@@ -118,12 +120,12 @@ a_BoostedJet_eta->SetAddress(&BoostedJet_eta);
 a_BoostedJet_phi->SetAddress(&BoostedJet_phi);
 a_BoostedJet_energy->SetAddress(&BoostedJet_energy);
 
-a_muejj_l->SetAddress(&muejj_l);
-a_emujj_l->SetAddress(&emujj_l);
-
 a_nBestVtx->SetAddress(&nBestVtx);
 a_trueInteractions->SetAddress(&trueInteractions);
 a_PUWeight->SetAddress(&PUWeight);
+
+a_muejj_l->SetAddress(&muejj_l);
+a_emujj_l->SetAddress(&emujj_l);
 
 a_numOfHighptEle->SetAddress(&numOfHighptEle);
 a_numOfHighptMu->SetAddress(&numOfHighptMu);
@@ -131,102 +133,70 @@ a_numOfLooseMu->SetAddress(&numOfLooseMu);
 a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
-const double asymbins[7] = {300,350,400,450,500,700,2000};
-const double asymbins2[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
-
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
-TH1D *true_interactions = new TH1D ("true_interactions", "true_interactions", 100,0, 100 ); 
-TH1D *Ele_pt = new TH1D ("Ele_pt", "Ele_pt", 200, 0, 5000);
-TH1D *Mu_pt = new TH1D ("Mu_pt", "Mu_pt", 200, 0, 5000);
-TH1D *Ele_phi = new TH1D ("Ele_phi", "Ele_phi", 200, -3, 3);
-TH1D *Mu_phi = new TH1D ("Mu_phi", "Mu_phi", 200, -3, 3);
-TH1D *Ele_eta = new TH1D ("Ele_eta", "Ele_eta", 200, -4, 4);
-TH1D *Mu_eta = new TH1D ("Mu_eta", "Mu_eta", 200, -4, 4);
-TH1D *data_obs = new TH1D ("data_obs", "data_obs", 6, asymbins);
-TH1D *Nevents = new TH1D ("Nevents", "Nevents", 4, 0, 2);
-TH1D *M_leplepJ = new TH1D ("M_leplepJ", "M_leplepJ", 9, asymbins2);
+TH1D *data_obs_mumu = new TH1D ("data_obs_mumu", "data_obs_mumu", 220, 80, 300);
+TH1D *data_obs_ee = new TH1D ("data_obs_ee", "data_obs_ee", 220, 80, 300);
+TH1D *data_obs_mumu_Z = new TH1D ("data_obs_mumu_Z", "data_obs_mumu_Z", 80, 50, 130);
+TH1D *data_obs_ee_Z = new TH1D ("data_obs_ee_Z", "data_obs_ee_Z", 80, 50, 130);
 
-TLorentzVector Muon;
-TLorentzVector Electron;
+TLorentzVector Muon1;
+TLorentzVector Muon2;
+TLorentzVector Electron1;
+TLorentzVector Electron2;
 TLorentzVector BoostJet;
-TLorentzVector LeadLep;
-TLorentzVector SubLeadLep;
+
 
 cout << a_->GetEntries() << endl;
 int tot=0, muejj = 0;
 double wg = 0;
-int lumi = 58872; //2017: 41529 //2016: 35920
+int lumi = 35542;//2018: 58873 //2017: 41529 //2016: 35542
 bool veto_ele = false;
-double deltaEta = 0, deltaPhi = 0, deltaR = 0;
+double mee = 0, mmumu = 0;
 
 for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
  tot = a_->GetEntries();
  if (i%100000 == 0) cout << i << " eventi analizzati su " << tot << endl;
-
  HLT_Mu = 0;
 
- if (HLT_Mu50==1 || HLT_TkMu100==1 || HLT_OldMu100==1 ) HLT_Mu = 1;
- if (emujj_l == 1 || muejj_l == 1) muejj = 1; 
-
- if (Muon_pt->size() > 0 && patElectron_pt->size() > 0 && numOfHighptMu==1 && numOfHighptEle == 1 && numOfBoostedJets>=1){
-  if (Muon_pt->at(0) >= patElectron_pt->at(0)){
-   LeadLep.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
-   SubLeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
-  }
-  else {
-   LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
-   SubLeadLep.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
-  }
-  if (HLT_Mu == 1 && LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4
-     && BoostedJet_pt->at(0) > 190 && M_leplep > 300 ){
-  
-   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0), BoostedJet_energy->at(0));
-   veto_ele = false;
-   for(int j = 0; j < Muon_pt->size(); j++){
-    if (Muon_pt->at(j) > 5){
-     deltaEta=fabs(Muon_eta->at(j) - patElectron_eta->at(0));
-     deltaPhi = Muon_phi->at(j) - patElectron_phi->at(0);
-     if(deltaPhi > M_PI) deltaPhi -= 2*M_PI;
-     else if(deltaPhi <= -M_PI) deltaPhi +=2*M_PI;
-     deltaR=sqrt(pow(deltaEta,2) + pow(deltaPhi,2));
-     if (deltaR < 0.1) veto_ele = true;
-    }
-   }
-   if (veto_ele == false){
-   
-    n_best_Vtx->Fill(nBestVtx);
-    true_interactions->Fill(trueInteractions);
-    Nevents->Fill(1);
-    Ele_pt->Fill(patElectron_pt->at(0));
-    Ele_eta->Fill(patElectron_eta->at(0));
-    Ele_phi->Fill(patElectron_phi->at(0));
-    Mu_pt->Fill(Muon_pt->at(0));
-    Mu_eta->Fill(Muon_eta->at(0));
-    Mu_phi->Fill(Muon_phi->at(0));
-    data_obs->Fill((LeadLep+SubLeadLep).M());
-    M_leplepJ->Fill((LeadLep+SubLeadLep+BoostJet).M());
+ if (HLT_Mu50==1 || HLT_TkMu50==1) HLT_Mu = 1;
+ if (Muon_pt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
+  if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
+   Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+   Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+   mmumu= (Muon1+Muon2+BoostJet).M();
+   if(mmumu > 300){
+    data_obs_mumu->Fill(mmumu);
    }
   }
  }
+
+ if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
+   if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190){
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));	
+   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));
+
+    mee = (Electron1+Electron2+BoostJet).M();
+    if(mee > 300){
+     data_obs_ee->Fill(mee);
+    }
+  }
+ }
+ 
 }
 
-//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_TTtW_data_ele_2018.root", "RECREATE");
-TFile *f = new TFile("plots/CR_TTtW_data_ele_2018.root", "RECREATE");
-n_best_Vtx->Write();
-true_interactions->Write();
-Nevents->Write();
-Ele_pt->Write();
-Mu_pt->Write();
-Ele_eta->Write();
-Mu_eta->Write();
-Ele_phi->Write();
-Mu_phi->Write();
-data_obs->Write();
-M_leplepJ->Write();
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR_data_ele_2016_syst.root", "RECREATE");
 
+n_best_Vtx->Write();
+data_obs_mumu->Write();
+data_obs_mumu_Z->Write();
+data_obs_ee->Write();
+data_obs_ee_Z->Write();
 f->Write();
 f->Close();
+
 
 }
  

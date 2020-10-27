@@ -12,7 +12,7 @@ void drawhisto_CMSStyle()
  writeExtraText = false;       // if extra text
  extraText  = "Simulation";
  lumi_sqrtS = "13 TeV";
- int iPeriod = 5; //periodo 4=2016, periodo 5=2017, periodo 6=2018
+ int iPeriod = 5;
  c1( iPeriod, 11 );
 }
 
@@ -56,17 +56,14 @@ int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
 TH1F * gHisto ;
 THStack *hs = new THStack("hs","");
 
-TFile *f00_ = new TFile("plots/CR_TTtW_DY_2017_syst.root");
-TFile *f01_ = new TFile("plots/CR_TTtW_TTtW_2017_syst.root");
-TFile *f02_ = new TFile("plots/CR_TTtW_Other_2017_syst.root");
+TFile *f00_ = new TFile("plot/CR_DY_DY_2016_puw.root");
+TFile *f01_ = new TFile("plot/CR_DY_TTtW_2016_puw.root");
+TFile *f02_ = new TFile("plot/CR_DY_Other_2016_puw.root");
 
-TFile *f00 = new TFile("plots/CR_TTtW_data_ele_2017.root");
+TFile *f00 = new TFile("plot/CR_DY_data_ele_2016_syst.root");
 
-int bin = 1;
-TString name="M_leplepJ";
-TString nameTop="TTtW_ll";
-TString nameDY="DY_ll";
-TString nameOther="Other_ll";
+int bin = 4;
+TString name="pt_ee";
 canvName = name;
 TH1F *da_= (TH1F*) f00_->Get(name);
 TH1F *da1_= (TH1F*) f01_->Get(name);
@@ -133,7 +130,6 @@ d1_->GetXaxis()->SetRangeUser(0,10000);
 d2_->GetXaxis()->SetRangeUser(0,10000);
 */
 //d->SetMaximum(4500);
-d->GetYaxis()->SetRangeUser(0,300);
 d->SetMinimum(0.5);
 canv->cd();
 
@@ -238,13 +234,13 @@ for(int j=0; j<v; j++){
 
 TGraphErrors *dataSUmc = new TGraphErrors(v, dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
 
-dataSUmc->GetXaxis()->SetLimits(0,10000);
+dataSUmc->GetXaxis()->SetLimits(0,1000);
 dataSUmc->Draw("APZ");
 dataSUmc->SetTitle(0);
 dataSUmc->SetMarkerStyle(8); 
 dataSUmc->GetYaxis()->SetNdivisions(5,5,1);
 
-dataSUmc->GetXaxis()->SetTitle("M (llJ) [GeV]");
+dataSUmc->GetXaxis()->SetTitle("p_{T} (llJ) [GeV]");
 dataSUmc->GetXaxis()->SetLabelSize(25);
 dataSUmc->GetXaxis()->SetLabelFont(43);
 dataSUmc->GetXaxis()->SetTitleSize(30);
@@ -261,7 +257,7 @@ dataSUmc->GetYaxis()->SetTitleOffset(1.5);
 
 dataSUmc->SetMinimum(0.4);  //0.5
 dataSUmc->SetMaximum(1.6);  //1.5
-TLine* line = new TLine(0,1,10000,1);
+TLine* line = new TLine(0,1,1000,1);
 line->SetLineColor(kRed);
 line->SetLineWidth(2);
 line->Draw("same");
@@ -391,10 +387,10 @@ line->Draw("same");
 }
   CMS_lumi( c1_2, iPeriod, iPos, 1.3 );
   c1_2->cd();
-//  canv->Print("Immagini/"+canvName+"_CR_DY_2017.pdf");
-//  canv->Print("Immagini/"+canvName+"_CR_DY_2017.png");
-  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2017.png");
-  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2017.pdf");
+//  canv->Print("Immagini/"+canvName+"_CR_DY_2016.pdf");
+//  canv->Print("Immagini/"+canvName+"_CR_DY_2016.png");
+  canv->Print("/eos/home-v/vmariani/www/HN/CR_DY_2016/"+canvName+"_2016.png");
+  canv->Print("/eos/home-v/vmariani/www/HN/CR_DY_2016/pdf/"+canvName+"_2016.pdf");
 
  return canv;
 

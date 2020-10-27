@@ -34,6 +34,7 @@ TString lumi_13TeV = "20.1 fb^{-1}";
 TString lumi_8TeV  = "19.7 fb^{-1}";
 TString lumi_7TeV  = "5.1 fb^{-1}";
 TString lumi_2018 = "59.74 fb^{-1} pp collision 2018";
+TString lumi_2017 = "41.53 fb^{-1} pp collision 2017";
 TString lumi_2016 = "35.92 fb^{-1} pp collision 2016";
 TString lumi_sqrtS = "";
 

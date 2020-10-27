@@ -202,7 +202,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  }
 }
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_TTtW_data_ele_2016.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_TTtW_data_ele_2016.root", "RECREATE");
+TFile *f = new TFile("plots/CR_TTtW_data_ele_2016.root", "RECREATE");
 
 n_best_Vtx->Write();
 true_interactions->Write();
