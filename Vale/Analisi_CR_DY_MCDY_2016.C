@@ -258,7 +258,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
  
 }
 
-TFile *f = new TFile("plot/CR_DY_DY_2016.root", "RECREATE");
+TFile *f = new TFile("plots/CR_DY_DY_2016.root", "RECREATE");
 n_best_Vtx->Write();
 n_best_Vtx_w->Write();
 n_best_Vtx_bef->Write();

@@ -161,6 +161,7 @@ TH1D *Mu_eta = new TH1D ("Mu_eta", "Mu_eta", 200, -4, 4);
 TH1D *data_obs = new TH1D ("data_obs", "data_obs", 6, asymbins);
 TH1D *Nevents = new TH1D ("Nevents", "Nevents", 4, 0, 2);
 TH1D *M_leplepJ = new TH1D ("M_leplepJ", "M_leplepJ", 9, asymbins2);
+TH1D *pt_J = new TH1D ("pt_J", "pt_J", 100, 200, 1000);
 
 TLorentzVector Muon;
 TLorentzVector Electron;
@@ -224,6 +225,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     Mu_phi->Fill(Muon_phi->at(0));
     data_obs->Fill((LeadLep+SubLeadLep).M()); 
     M_leplepJ->Fill((LeadLep+SubLeadLep+BoostJet).M());
+    pt_J->Fill(LeadLep.Pt()+SubLeadLep.Pt() + BoostedJet_pt->at(0));
    }
   }
  }
@@ -244,6 +246,7 @@ Ele_phi->Write();
 Mu_phi->Write();
 data_obs->Write();
 M_leplepJ->Write();
+pt_J->Write();
 
 f->Write();
 f->Close();

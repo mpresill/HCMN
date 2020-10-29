@@ -44,6 +44,7 @@ void Analisi_CR_TTtW_MC_2017(){
 TChain *a_ = new TChain("BOOM");
 
 a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/oldBinning_oldMuonSFs/TTtW_2017.root");
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/TTtW_2017.root");
 //("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/TriggerUpdate_0505/TTtW_2017.root");
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/top0606/TTtW_v2_2017.root");
 //inputFile
@@ -204,6 +205,8 @@ TH1D *M_ll_puw = new TH1D ("M_ll_puw", "M_ll_puw", 6, asymbins);
 
 TH1D *M_leplepJ = new TH1D ("M_leplepJ", "M_leplepJ", 9, asymbins2);
 
+TH1D *pt_J = new TH1D ("pt_J", "pt_J", 100, 200, 1000);
+
 TH1D *TTtW_ll = new TH1D ("TTtW_ll", "TTtW_ll", 6, asymbins);
 TH1D *TTtW_ll_2017_AlphaRatio = new TH1D ("TTtW_ll_2017_AlphaRatio", "TTtW_ll_2017_AlphaRatio", 6, asymbins);
 TH1D *TTtW_ll_2017_AlphaRatioUp = new TH1D ("TTtW_ll_2017_AlphaRatioUp", "TTtW_ll_2017_AlphaRatioUp", 6, asymbins);
@@ -321,6 +324,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
     M_leplepJ->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg);
 
+    pt_J->Fill(LeadLep.Pt()+SubLeadLep.Pt()+BoostedJet_pt->at(0),wg);
+
     if(centralJesJer->at(0)==1)TTtW_ll_centralJesJer->Fill((LeadLep+SubLeadLep).M(), wg);
     if(JesSFup->at(1)==1)TTtW_ll_2017_JesSFUp->Fill((LeadLep+SubLeadLep).M(), wg);
     if(JesSFdown->at(2)==1)TTtW_ll_2017_JesSFDown->Fill((LeadLep+SubLeadLep).M(), wg);
@@ -376,6 +381,9 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
     M_leplepJ->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg);
 
+
+    pt_J->Fill(LeadLep.Pt()+SubLeadLep.Pt()+BoostedJet_pt->at(0),wg);
+
     if(centralJesJer->at(0)==1)TTtW_ll_centralJesJer->Fill((LeadLep+SubLeadLep).M(), wg);
     if(JesSFup->at(1)==1)TTtW_ll_2017_JesSFUp->Fill((LeadLep+SubLeadLep).M(), wg);
     if(JesSFdown->at(2)==1)TTtW_ll_2017_JesSFDown->Fill((LeadLep+SubLeadLep).M(), wg);
@@ -401,6 +409,8 @@ Ele_phi->Write();
 Mu_phi->Write();
 M_ll_puw->Write();
 M_leplepJ->Write();
+pt_J->Write();
+
 TTtW_ll->Write();
 TTtW_ll_2017_AlphaRatio->Write();
 TTtW_ll_2017_AlphaRatioUp->Write();

@@ -5,14 +5,14 @@
 
 
 TCanvas* c1(int iPeriod, int iPos);
-void drawhisto_CMSStyle()
+void drawhisto_dy()
 {
  setTDRStyle();
 
  writeExtraText = false;       // if extra text
  extraText  = "Simulation";
  lumi_sqrtS = "13 TeV";
- int iPeriod = 5; //periodo 4=2016, periodo 5=2017, periodo 6=2018
+ int iPeriod = 6; //periodo 4=2016, periodo 5=2017, periodo 6=2018
  c1( iPeriod, 11 );
 }
 
@@ -56,14 +56,15 @@ int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
 TH1F * gHisto ;
 THStack *hs = new THStack("hs","");
 
-TFile *f00_ = new TFile("plots/CR_TTtW_DY_2017_syst.root");
-TFile *f01_ = new TFile("plots/CR_TTtW_TTtW_2017_syst.root");
-TFile *f02_ = new TFile("plots/CR_TTtW_Other_2017_syst.root");
+TFile *f00_ = new TFile("plots/CR_DY_DY_2018.root");
+TFile *f01_ = new TFile("plots/CR_DY_TTtW_2018.root");
+TFile *f02_ = new TFile("plots/CR_DY_Other_2018.root");
 
-TFile *f00 = new TFile("plots/CR_TTtW_data_ele_2017.root");
+TFile *f00 = new TFile("plots/CR_DY_data_ele_2018.root");
+//TFile *f00 = new TFile("plots/CR_DY_data_mu_2018.root");
 
-int bin = 2;
-TString name="pt_J";      //"M_leplepJ";
+int bin = 1;
+TString name="M_ee_Z_50130";      //"M_leplepJ";
 TString nameTop="TTtW_ll";
 TString nameDY="DY_ll";
 TString nameOther="Other_ll";
@@ -79,7 +80,7 @@ TH1F *d2_=(TH1F*) da2_->Clone();
 
 TH1F *d=(TH1F*) da->Clone();
 
-int nbin = d2_->GetNbinsX();
+int nbin = d->GetNbinsX();
 
 //d->SetFillColor(color2);
 d_->SetFillColor(color2);
@@ -133,13 +134,13 @@ d1_->GetXaxis()->SetRangeUser(0,10000);
 d2_->GetXaxis()->SetRangeUser(0,10000);
 */
 //d->SetMaximum(4500);
-d->GetYaxis()->SetRangeUser(0,80);
+d->GetYaxis()->SetRangeUser(0,5000);
 d->SetMinimum(0.5);
 canv->cd();
 
 
 TLine* line1 = new TLine(80,0,80,4500);
-TLine* line2 = new TLine(100,80,1000,4500);
+TLine* line2 = new TLine(50,80,130,4500);
 line1->SetLineColor(kBlack);
 line1->SetLineWidth(2);
 line2->SetLineColor(kBlack);
@@ -187,7 +188,8 @@ hs_err->SetLineColor(kGray+3);
 hs_err->SetFillStyle(3004);
 hs_err->SetFillColor(kGray+3);
 
-d->GetXaxis()->SetTitle("p_{T} (ll) [GeV]");
+d->GetXaxis()->SetTitle("M (ee) [GeV]");
+//d->GetXaxis()->SetTitle("M (#mu #mu) [GeV]");
 d->GetXaxis()->SetLabelSize(25);
 d->GetXaxis()->SetLabelFont(43);
 d->GetXaxis()->SetTitleSize(30);
@@ -203,11 +205,11 @@ d->Draw("PEsame");
 //d1->Draw("histosame");
 /*d2->Draw("histosame");
 d3->Draw("histosame");
-d4->Draw("histosame");
+d4->Draw("histosame");*/
 //hs_err->Draw("E2same");
 //line1->Draw("same");
 //line2->Draw("same");
-*/
+
 
 canv->cd();
 c1_1->SetTopMargin(0);
@@ -238,13 +240,13 @@ for(int j=0; j<v; j++){
 
 TGraphErrors *dataSUmc = new TGraphErrors(v, dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
 
-dataSUmc->GetXaxis()->SetLimits(200,1000);
+dataSUmc->GetXaxis()->SetLimits(0,130);
 dataSUmc->Draw("APZ");
 dataSUmc->SetTitle(0);
 dataSUmc->SetMarkerStyle(8); 
 dataSUmc->GetYaxis()->SetNdivisions(5,5,1);
 
-dataSUmc->GetXaxis()->SetTitle("HT [GeV]");
+dataSUmc->GetXaxis()->SetTitle("M(ee) [GeV]");
 dataSUmc->GetXaxis()->SetLabelSize(25);
 dataSUmc->GetXaxis()->SetLabelFont(43);
 dataSUmc->GetXaxis()->SetTitleSize(30);
@@ -261,7 +263,7 @@ dataSUmc->GetYaxis()->SetTitleOffset(1.5);
 
 dataSUmc->SetMinimum(0.4);  //0.5
 dataSUmc->SetMaximum(1.6);  //1.5
-TLine* line = new TLine(200,1,1000,1);
+TLine* line = new TLine(50,1,130,1);     //larghezza linea rossa (specificare x1, x2)
 line->SetLineColor(kRed);
 line->SetLineWidth(2);
 line->Draw("same");
@@ -391,10 +393,10 @@ line->Draw("same");
 }
   CMS_lumi( c1_2, iPeriod, iPos, 1.3 );
   c1_2->cd();
-//  canv->Print("Immagini/"+canvName+"_CR_DY_2017.pdf");
-//  canv->Print("Immagini/"+canvName+"_CR_DY_2017.png");
-  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2017.png");
-  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2017.pdf");
+//  canv->Print("Immagini/"+canvName+"_CR_DY_2018.pdf");
+//  canv->Print("Immagini/"+canvName+"_CR_DY_2018.png");
+  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2018.png");
+  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2018.pdf");
 
  return canv;
 

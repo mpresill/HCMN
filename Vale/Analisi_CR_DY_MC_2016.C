@@ -34,7 +34,7 @@ void Analisi_CR_DY_MC_2016(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/Other_2016.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/TTtW_2016.root");
 //inputFile
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_TkMu50, HLT_OldMu100, HLT_TkMu100;
@@ -257,7 +257,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
  
 }
 
-TFile *f = new TFile("plot/CR_DY_Other_2016.root", "RECREATE");
+TFile *f = new TFile("plots/CR_DY_TTtW_2016.root", "RECREATE");
 n_best_Vtx->Write();
 n_best_Vtx_w->Write();
 n_best_Vtx_bef->Write();

@@ -232,7 +232,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  }
 }
 
-TFile *f = new TFile("plot/CR_DY_data_ele_2016.root", "RECREATE");
+TFile *f = new TFile("plots/CR_DY_data_ele_2016.root", "RECREATE");
 
 n_best_Vtx->Write();
 M_mumu_100300->Write();
