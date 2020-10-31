@@ -1,0 +1,54 @@
+These are the fits used for the DY systematics. The DY samples uses the inv.mass-dependent k-factor correction.
+Date: 30Oct2020
+
+M ee 2016
+
+Minimizer is Linear
+Chi2                      =$     22.4482
+NDf                       =$          17
+p0                        =$     0.75804   \pm   0.149146    $
+p1                        =$ 0.000931712   \pm   0.000889917 $
+
+
+M mumu 2016
+
+Minimizer is Linear
+Chi2                      =$     18.6553
+NDf                       =$          17
+p0                        =$     1.05762   \pm   0.136751    $
+p1                        =$-0.000574122   \pm   0.000764783 $
+-------------------------------------
+
+
+M ee 2017
+
+Minimizer is Linear
+Chi2                      =$     19.0547
+NDf                       =$          17
+p0                        =$    0.429608   \pm   0.137903    $
+p1                        =$  0.00215029   \pm   0.000897223 $
+
+M mu mu 2017
+
+Chi2                      =$     9.76544
+NDf                       =$          17
+p0                        =$    0.550542   \pm   0.115855    $
+p1                        =$  0.00180952   \pm   0.000740328 $
+
+---------------------------$------
+M ee 2018
+
+Minimizer is Linear
+Chi2                      =$     13.6145
+NDf                       =$          17
+p0                        =$    0.761011   \pm   0.137174    $
+p1                        =$   0.0003677   \pm   0.000806397 $
+
+M mu mu 2018
+
+Minimizer is Linear
+Chi2                      =$     8.27694
+NDf                       =$          17
+p0                        =$    0.729559   \pm   0.120085    $
+p1                        =$    0.000912   \pm   0.000736052 $
+---------------------------$------

@@ -5,14 +5,17 @@
 
 
 TCanvas* c1(int iPeriod, int iPos);
-void drawhisto_dy()
+void drawhisto_dy_PA()
 {
  setTDRStyle();
 
  writeExtraText = false;       // if extra text
  extraText  = "Simulation";
  lumi_sqrtS = "13 TeV";
- int iPeriod = 6; //periodo 4=2016, periodo 5=2017, periodo 6=2018
+//========================================
+//REPLACE HERE 0 to choose the period 
+//========================================
+ int iPeriod = 4; //periodo 4=2016, periodo 5=2017, periodo 6=2018
  c1( iPeriod, 11 );
 }
 
@@ -56,18 +59,60 @@ int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
 TH1F * gHisto ;
 THStack *hs = new THStack("hs","");
 
+//REPLACE HERE 1  - to choose the path 
+//===================================================
+//file for 2016 
+TFile *f00_ = new TFile("plots/CR_DY_DY_2016.root");
+TFile *f01_ = new TFile("plots/CR_DY_TTtW_2016.root");
+TFile *f02_ = new TFile("plots/CR_DY_Other_2016.root");
+
+TFile *f00 = new TFile("plots/CR_DY_data_ele_2016.root");
+//TFile *f00 = new TFile("plots/CR_DY_data_mu_2016.root");
+//====================================================
+//files for 2017 
+/*
+TFile *f00_ = new TFile("plots/CR_DY_DY_2017.root");
+TFile *f01_ = new TFile("plots/CR_DY_TTtW_2017.root");
+TFile *f02_ = new TFile("plots/CR_DY_Other_2017.root");
+
+TFile *f00 = new TFile("plots/CR_DY_data_ele_2017.root");*/
+//TFile *f00 = new TFile("plots/CR_DY_data_mu_2017.root");
+//=============================
+//files for 2018 
+/*
 TFile *f00_ = new TFile("plots/CR_DY_DY_2018.root");
 TFile *f01_ = new TFile("plots/CR_DY_TTtW_2018.root");
 TFile *f02_ = new TFile("plots/CR_DY_Other_2018.root");
 
-TFile *f00 = new TFile("plots/CR_DY_data_ele_2018.root");
-//TFile *f00 = new TFile("plots/CR_DY_data_mu_2018.root");
+//here change mu or ele 
+//TFile *f00 = new TFile("plots/CR_DY_data_ele_2018.root");
+TFile *f00 = new TFile("plots/CR_DY_data_mu_2018.root"); */
 
-int bin = 5;
-TString name="M_ee_Z_50130";      //"M_leplepJ";
-TString nameTop="TTtW_ll";
-TString nameDY="DY_ll";
-TString nameOther="Other_ll";
+
+//==================================================
+//REPLACE HERE 2 - to change the binning 
+//==================================================
+//int bin=5; //here change binning for the Z mass plot  50-130    
+//int bin=10; //rebinning for Mee100300 
+//int bin=4;  //rebinning for ptee -->>> Need to fix ratio below 
+
+//here change binning for other plots 
+int bin=5;
+
+//====================================================
+//All the different plots we need here: 
+//REPLACE HERE 3 - to change the histogram to plot
+//====================================================
+TString name="M_ee_Z_50130";      // this is plot in fig.17  
+//TString name="M_mumu_100300";      //this is for the sideband fit for systematics 
+
+//TString name="M_ee_Zpeak";      //this is for the SF value for the background
+//TString name="M_eeJ";   //this is to check the effect of the new weight on the DY MC 
+//TString name="pt_ee";   // this is to check the effect of the new weight on the DY MC 
+//TString name="M_mumuJ";   //this is to check the effect of the new weight on the DY MC 
+//TString name="pt_mumu";   // this is to check the effect of the new weight on the DY MC 
+
+
 canvName = name;
 TH1F *da_= (TH1F*) f00_->Get(name);
 TH1F *da1_= (TH1F*) f01_->Get(name);
@@ -133,14 +178,27 @@ d_->GetXaxis()->SetRangeUser(0,10000);
 d1_->GetXaxis()->SetRangeUser(0,10000);
 d2_->GetXaxis()->SetRangeUser(0,10000);
 */
-//d->SetMaximum(4500);
-d->GetYaxis()->SetRangeUser(0,5000);
+
+//============================================
+//REPLACE HERE 4 -- to change the maximum (if needed) 
+//============================================
+//d->SetMaximum(4500); 
+//d->GetYaxis()->SetRangeUser(0,350); //for 2016 ee100300 sideband
+//d->GetYaxis()->SetRangeUser(0,450); //for 2017 ee100300 sideband 
+//d->GetYaxis()->SetRangeUser(0,650); //for 2017 mumu100300 sideband 
+
+//d->GetYaxis()->SetRangeUser(0,650); //for 2018 ee100300 sideband 
+//d->GetYaxis()->SetRangeUser(0,850); //for 2018 mumu100300 sideband 
+
+//d->GetYaxis()->SetRangeUser(0,3500); //for 2016 Meej 
+d->GetYaxis()->SetRangeUser(0,6000); //for 2017 
+//d->GetYaxis()->SetRangeUser(0,9000); //for 2018 
 d->SetMinimum(0.5);
 canv->cd();
 
 
-TLine* line1 = new TLine(80,0,80,4500);
-TLine* line2 = new TLine(50,80,130,4500);
+TLine* line1 = new TLine(80,0,80,130);
+TLine* line2 = new TLine(100,80,300,130);
 line1->SetLineColor(kBlack);
 line1->SetLineWidth(2);
 line2->SetLineColor(kBlack);
@@ -188,7 +246,7 @@ hs_err->SetLineColor(kGray+3);
 hs_err->SetFillStyle(3004);
 hs_err->SetFillColor(kGray+3);
 
-d->GetXaxis()->SetTitle("M (ee) [GeV]");
+//d->GetXaxis()->SetTitle("M (ee) [GeV]");
 //d->GetXaxis()->SetTitle("M (#mu #mu) [GeV]");
 d->GetXaxis()->SetLabelSize(25);
 d->GetXaxis()->SetLabelFont(43);
@@ -239,14 +297,19 @@ for(int j=0; j<v; j++){
 }
 
 TGraphErrors *dataSUmc = new TGraphErrors(v, dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
-
-dataSUmc->GetXaxis()->SetLimits(50,130);
+//===========================================
+//HERE TOO REPLACE ????? - not clear how it works
+//=============================================
+dataSUmc->GetXaxis()->SetLimits(50,130);//this for SF 
+//dataSUmc->GetXaxis()->SetLimits(100,300);//this for sideband fit 
+//dataSUmc->GetXaxis()->SetLimits(0,5000); //this is for the MeeJ
 dataSUmc->Draw("APZ");
 dataSUmc->SetTitle(0);
 dataSUmc->SetMarkerStyle(8); 
 dataSUmc->GetYaxis()->SetNdivisions(5,5,1);
 
 dataSUmc->GetXaxis()->SetTitle("M(ee) [GeV]");
+//dataSUmc->GetXaxis()->SetTitle("M (#mu #mu) [GeV]");
 dataSUmc->GetXaxis()->SetLabelSize(25);
 dataSUmc->GetXaxis()->SetLabelFont(43);
 dataSUmc->GetXaxis()->SetTitleSize(30);
@@ -263,11 +326,11 @@ dataSUmc->GetYaxis()->SetTitleOffset(1.5);
 
 dataSUmc->SetMinimum(0.4);  //0.5
 dataSUmc->SetMaximum(1.6);  //1.5
+//TLine* line = new TLine(50,1,130,1);     //larghezza linea rossa (specificare x1, x2)
 TLine* line = new TLine(50,1,130,1);     //larghezza linea rossa (specificare x1, x2)
 line->SetLineColor(kRed);
 line->SetLineWidth(2);
 line->Draw("same");
-
   
 }
 {
@@ -393,11 +456,20 @@ line->Draw("same");
 }
   CMS_lumi( c1_2, iPeriod, iPos, 1.3 );
   c1_2->cd();
-//  canv->Print("Immagini/"+canvName+"_CR_DY_2018.pdf");
-//  canv->Print("Immagini/"+canvName+"_CR_DY_2018.png");
-  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2018.png");
-  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2018.pdf");
-
+//===========================================
+//HERE REPLACE 5 
+//==========================================
+//2016 
+//  canv->Print("DY/"+canvName+"_2016.png");
+//  canv->Print("DY/"+canvName+"_2016.pdf");
+//2017 
+//  canv->Print("DY/"+canvName+"_2017.png");
+//  canv->Print("DY/"+canvName+"_2017.pdf");
+  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2016_KF.png");
+  canv->Print("/eos/user/m/mpresill/www/HN/"+canvName+"_2016_KF.pdf");
+//2018 
+//  canv->Print("DY/"+canvName+"_2018.png");
+//  canv->Print("DY/"+canvName+"_2018.pdf");
  return canv;
 
 }
