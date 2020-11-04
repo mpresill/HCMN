@@ -4,7 +4,11 @@
 voms-proxy-init --voms cms --valid 192:00 --out ~/proxy 
 
 # Declare a string array with type
-declare -a StringArray=("WW" "WZ" "WJets" "DY" "TT" "ST" "mumujjL13M500" "mumujjL13M1000" "mumujjL13M2000" "mumujjL13M5000" "mumujjL13M8000")
+
+#declare -a StringArray=("WW" "WZ" "WJets" "DY" "TT" "ST" "mumujjL13M500" "mumujjL13M1000" "mumujjL13M2000" "mumujjL13M5000" "mumujjL13M8000")
+
+declare -a StringArray=("eejjL11M7000" "eejjL9M6000"  "eejjL13M500" "eejjL13M1000" "eejjL13M2000" "eejjL13M5000" "eejjL13M8000" "mumujjL13M500" "mumujjL13M1000" "mumujjL13M2000" "mumujjL13M5000" "mumujjL13M8000")
+
 
 # Read the array values with space
 for val in "${StringArray[@]}"; do

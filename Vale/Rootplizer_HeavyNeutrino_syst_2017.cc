@@ -104,6 +104,15 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   /////
   //   Variables to read
   /////
+  //EVENT variables (PDF syst)
+  int rEVENT_PDFv4_lhaid; rEVENT_PDFv4_lhaid = 0; TBranch* b_rEVENT_PDFv4_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv4_lhaid",&rEVENT_PDFv4_lhaid,&b_rEVENT_PDFv4_lhaid);
+  double rEVENT_PDFv4WeightUp; rEVENT_PDFv4WeightUp = 0; TBranch* b_rEVENT_PDFv4WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightUp",&rEVENT_PDFv4WeightUp,&b_rEVENT_PDFv4WeightUp);
+  double rEVENT_PDFv4WeightDown; rEVENT_PDFv4WeightDown = 0; TBranch* b_rEVENT_PDFv4WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightDown",&rEVENT_PDFv4WeightDown,&b_rEVENT_PDFv4WeightDown);
+  double rEVENT_PDFv4WeightCentral; rEVENT_PDFv4WeightCentral = 0; TBranch* b_rEVENT_PDFv4WeightCentral = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightCentral",&rEVENT_PDFv4WeightCentral,&b_rEVENT_PDFv4WeightCentral);
+  double rEVENT_PDFv4WeightMean; rEVENT_PDFv4WeightMean = 0; TBranch* b_rEVENT_PDFv4WeightMean = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightMean",&rEVENT_PDFv4WeightMean,&b_rEVENT_PDFv4WeightMean);
+  double rEVENT_PDFv4WeightStdDev; rEVENT_PDFv4WeightStdDev = 0; TBranch* b_rEVENT_PDFv4WeightStdDev = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightStdDev",&rEVENT_PDFv4WeightStdDev,&b_rEVENT_PDFv4WeightStdDev);
+
+
   //Trigger
   int rHLT_Photon200; rHLT_Photon200 = 0; TBranch* b_rHLT_Photon200 = 0; readingtree->SetBranchAddress("HLT_Photon200",&rHLT_Photon200,&b_rHLT_Photon200);
   int rHLT_Ele35_WPTight_Gsf; rHLT_Ele35_WPTight_Gsf = 0; TBranch* b_rHLT_Ele35_WPTight_Gsf = 0; readingtree->SetBranchAddress("HLT_Ele35_WPTight_Gsf",&rHLT_Ele35_WPTight_Gsf,&b_rHLT_Ele35_WPTight_Gsf);
@@ -351,6 +360,15 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* JerSFdown = new std::vector<double>; newtree->Branch("JerSFdown",&JerSFdown);
 
    
+
+  // EVENT (PDF syst)
+  double EVENT_PDFv4_lhaid; newtree->Branch("EVENT_PDFv4_lhaid",&EVENT_PDFv4_lhaid);
+  double EVENT_PDFv4WeightUp; newtree->Branch("EVENT_PDFv4WeightUp",&EVENT_PDFv4WeightUp);
+  double EVENT_PDFv4WeightDown; newtree->Branch("EVENT_PDFv4WeightDown",&EVENT_PDFv4WeightDown);
+  double EVENT_PDFv4WeightCentral; newtree->Branch("EVENT_PDFv4WeightCentral",&EVENT_PDFv4WeightCentral);
+  double EVENT_PDFv4WeightMean; newtree->Branch("EVENT_PDFv4WeightMean",&EVENT_PDFv4WeightMean);
+  double EVENT_PDFv4WeightStdDev; newtree->Branch("EVENT_PDFv4WeightStdDev",&EVENT_PDFv4WeightStdDev);
+
    //PU:
    double PileupWeight; newtree->Branch("PileupWeight",&PileupWeight);
    double PUWeight; newtree->Branch("PUWeight",&PUWeight);
@@ -465,6 +483,14 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rHLT_OldMu100->GetEntry(en);
     b_rHLT_TkMu100->GetEntry(en);   
  
+    //EVENT (PDF syst)
+    b_rEVENT_PDFv4_lhaid->GetEntry(en);
+    b_rEVENT_PDFv4WeightUp->GetEntry(en);
+    b_rEVENT_PDFv4WeightCentral->GetEntry(en);
+    b_rEVENT_PDFv4WeightDown->GetEntry(en);
+    b_rEVENT_PDFv4WeightMean->GetEntry(en);
+    b_rEVENT_PDFv4WeightStdDev->GetEntry(en);
+
     //PU:
     b_rPUWeight->GetEntry(en);
     b_rMinBiasUpWeight->GetEntry(en);
@@ -660,6 +686,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     HLT_TkMu100 = -999;
     HLT_OldMu100 = -999;
 
+    EVENT_PDFv4WeightStdDev = -999; EVENT_PDFv4WeightCentral=-999; EVENT_PDFv4WeightMean=-999; EVENT_PDFv4WeightDown=-999; EVENT_PDFv4WeightUp=-999; EVENT_PDFv4_lhaid=-999;
+
     PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999; 
     Met_type1PF_pt = -999;
 
@@ -683,6 +711,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    HLT_TkMu50 = rHLT_TkMu50;
    HLT_OldMu100 = rHLT_OldMu100;
    HLT_TkMu100 = rHLT_TkMu100;
+
+  //EVENT (PDF syst)
+  EVENT_PDFv4WeightStdDev = rEVENT_PDFv4WeightStdDev; EVENT_PDFv4WeightMean = rEVENT_PDFv4WeightMean; EVENT_PDFv4WeightCentral=rEVENT_PDFv4WeightCentral; EVENT_PDFv4WeightUp=rEVENT_PDFv4WeightUp; EVENT_PDFv4WeightDown=rEVENT_PDFv4WeightDown; EVENT_PDFv4_lhaid=rEVENT_PDFv4_lhaid;
 
    PUWeight = rPUWeight;
    MinBiasUpWeight = rMinBiasUpWeight;
