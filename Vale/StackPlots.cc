@@ -45,55 +45,42 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples - selection
-const string path       = "plots/CR_TTtW_"; //"plots/CR_TTtW_"; // 
-const char *samples[]   = {"TTtW","DY","Other", "data_ele"};
-const string selection  = "_2017"; //_SingleEle, _SingleMu
-const bool nodata       = false;  //You must always comment data in "samples" if you don't want it
-const bool show_ratio   = true;
+const string path       = "plots/CR_TTtW_";                       //path of the folder of the samples 
+const char *samples[]   = {"TTtW","DY","Other", "data_ele"};      //here specify only the name of the sample, i.e. TTtW, DY, ...
+const string selection  = "_2017";                                // year 
+const bool nodata       = false;                                 //You must always comment data in "samples" if you don't want it
+const bool show_ratio   = true;                                   //do you want ratio plot?
 //Weights
-const double Luminosity = 41529; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
-const bool   LumiNorm   = true; //default true  
-const bool   PUcorr     = true; //default true
-const bool   SF         = true; //default true
-const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
-//Normalisation of plots (it requires to run one time for get bkg normalisation)
-const bool normalised   = false;
-const double normbkg    = 1; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-const double normdata   = 1;
-const double normsig1    = 1;
-const double normsig2   = 1;
+//const double Luminosity = 41529; //pb^-1                         //2018: 58873 //2017: 41529 //2016: 35542
 //Plots
 const bool save_plots   = true;
 const bool show_title   = true;
-const bool doasym       = true; 
-const double asymbin[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
-//const double asymbin[10] = {300,400,500,600,700,800,900,1000,1500,2000};
-//const double asymbin2[7] = {400,600,800,1000,1400,2000,3500};
-const int    numVar     = 1;
+const bool doasym       = true;                                     //do you want asymettric binning?
+const double asymbin[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};  //binning currently used in the SR
+const int    numVar     = 2;                                               //insert how many variables you want to plot
 //const int logYscale[numVar] = {};
-const int logYscale[numVar] = {0};
-const int logXscale[numVar] = {1};
-const int    col_size   = 1000; //>= highest bin
+const int logYscale[numVar] = {0};                                         // 0 =linear scale on Y axis
+const int logXscale[numVar] = {1};                                         // 0=linear scale on X axis
+const int    col_size   = 1000;                                            //choose a number >= of the highest bin
+
 //Variables
-const unsigned int NumOfVar = 1; 
 const int posvtcr          = 0;
-/*
 const char *variables[]         = {
-"BJetness_num_vetonoipnoiso_leps", "BJetness_num_soft_leps", "BJetness_num_pdgid_leps", "BJetness_num_loosenoipnoiso_leps", "BJetness_pvTrkOVcollTrk", "BJetness_numjettrksnopv", "BJetness_avsip3d_sig", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip1d_sig", "nBestVtx"
+"M_leplepJ", "pt_J"
 };
 const char *titleXaxis[]        = {
-"BJetness_num_vetonoipnoiso_leps", "BJetness_num_soft_leps", "BJetness_num_pdgid_leps", "Number of leptons", "pvTrkOVcollTrk", "Number of not PV tracks", "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Vertices"
+"#scale[1]{#font[12]{M}_{e #mu J}} #scale[0.8]{(GeV)}", "HT"
 };
 const int    bin[numVar]        = {
-5, 10, 8, 8, 15, 15, 90, 70, 80, 80, 30
+9, 100
 };
 const double inRange[numVar]    = {
-0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0
+0, 0
 };
 const double endRange[numVar]   = {
-20, 10, 8, 8, 1.5, 15, 80, 1, 80, 100, 30
+10000, 10000
 };
-*/
+/*
 const char *variables[]         = {
 "M_leplepJ"
 };
@@ -112,7 +99,18 @@ const double inRange[numVar]    = {
 const double endRange[numVar]   = {
 10000
 //2000
-};
+};*/
+//This are options in case you want normalisation of plots (it requires to run one time for get bkg normalisation)
+const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
+const bool normalised   = false;
+const double normbkg    = 1; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+const double normdata   = 1;
+const double normsig1    = 1;
+const double normsig2   = 1;
+const unsigned int NumOfVar = numVar; 
+
+
+
 /////
 //   Declare functions 
 /////
@@ -121,15 +119,12 @@ TH1F* double_h_var(unsigned int v, string var, string vaT, uint i, string rootpl
 TH1F* double_h_var2(unsigned int v, string var, string vaT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype);
 void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var, TH1F* h_data_var2, TH1F* h_sig, TH1F* h_sig2, TH1F* h_TTtW, TH1F* h_DY, TH1F* h_Other, TLegend* leg, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], uint rootplas_size, int v, string var, string vartitle, double highestbinval);
 void draw_lines(double x1, double y1, double x2, double y2);
-int      get_col(string name);
 double   get_highestbinval(TH1F* h_data_var, TH1F* h_sig, TH1F* h_sig2, THStack* hstack, int v);
 void save_canvas(TCanvas* c1, string var);
 TLegend* get_legend();
 TH1F*    get_th1f(string var, int v);
 TH1F*    get_datath1f(string var, string title, int v);
 void setTDRStyle();
-
-
 
 
 
@@ -187,19 +182,18 @@ void StackPlots(){
          
          if(datatype==2){ 
             //Put MC bkgs' histos in the hstack 
-            int col = get_col(rootplas[i]);
             if(rootplas[i].substr(0,2)=="TT" || rootplas[i].substr(0,2)=="tW"){
-            h_var->SetFillColor(kOrange+1);
+            h_var->SetFillColor(kOrange+1);     //kOrange+1 for Matteo before
             h_var->SetLineColor(kOrange+1);
             h_TTtW->SetFillColor(kOrange+1);
             h_TTtW->SetLineColor(kOrange+1);
             }else if (rootplas[i].substr(0,2)=="DY"){
-            h_var->SetFillColor(kRed-3);
+            h_var->SetFillColor(kRed-3);           //kRed-3 for Matteo before
             h_var->SetLineColor(kRed-3);
             h_DY->SetFillColor(kRed-3);
             h_DY->SetLineColor(kRed-3);
             }else{
-            h_var->SetFillColor(kBlue-1);
+            h_var->SetFillColor(kBlue-1);          //kBlue-1 for Matteo before
             h_var->SetLineColor(kBlue-1);
             h_Other->SetFillColor(kBlue-1);
             h_Other->SetLineColor(kBlue-1);
@@ -211,9 +205,7 @@ void StackPlots(){
             float numBkg_entries_f = h_var->Integral();
             sprintf(numBkg_entries_c,"%.1f",numBkg_entries_f);
             string bkg_leg = "#scale[0.75]{"+rootplas[i]+"}";
-            //if(rootplas[i]=="TTtW") bkg_leg = "#scale[0.75]{t#bar{t}+tW}";
-            //leg->AddEntry(h_var,rootplas[i].c_str(),"F");
-            ////////////////leg->AddEntry(h_var,bkg_leg.c_str(),"F");
+
             //Sum them for the error
             h_sum_var->Add(h_sum_var,h_var); 
             cout<<setw(5)<<"Evt"<<setw(15)<<rootplas[i]<<setw(15)<<h_var->Integral()<<endl;
@@ -268,9 +260,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
    if(datatype==2){
    for(int j=0; j<bin[v]; j++){
       ent_AllBkg[i][j] = hist->GetBinContent(j+1);
-//cout << " bin content mc " <<  hist->GetBinContent(j+1) <<"\n";
       err_AllBkg[i][j] = sqrt(hist->GetBinError(j+1));
-//cout << " bin err mc " <<  sqrt(hist->GetBinError(j+1)) <<"\n";
       if(normalised)   err_AllBkg[i][j] = err_AllBkg[i][j]/normbkg;
    }
    }
@@ -284,17 +274,16 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
 //////////////
 void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var, TH1F* h_data_var2, TH1F* h_sig, TH1F* h_sig2, TH1F* h_TTtW, TH1F* h_DY, TH1F* h_Other, TLegend* leg, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], uint rootplas_size, int v, string var, string vartitle, double highestbinval){
    //Canvas
-//   if(logYscale[v]==1) c1->SetLogy();
-//   if(logXscale[v]==1) c1->SetLogx();
+   if(logYscale[v]==1) c1->SetLogy();
+   if(logXscale[v]==1) c1->SetLogx();
 
    ////RATIO PLOT
    if(show_ratio){  
       //Bottom plot
-      TPad *c1_1 = new TPad("c1_1", "newpad",0.01,0.01,0.99,0.33);
-     // if(logYscale[v]==1) c1_1->SetLogy();
-      if(logXscale[v]==1) c1_1->SetLogx();
+      TPad *c1_1 = new TPad("c1_1", "newpad",0.01,0.01,0.99,0.32);
       c1_1->Draw();
       c1_1->cd();
+//      if(logXscale[v]==1) c1_1->SetLogx();
       c1_1->SetTopMargin(0.01);
       c1_1->SetBottomMargin(0.4);
       c1_1->SetRightMargin(0.01);
@@ -302,15 +291,15 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
 
       //c1_1->SetFillStyle(0);
       /////////////////////
-      ////// ratio dots
+      ////// dots in the ratio
       ////////////////////
       double dataSUmc_x[bin[v]]; double dataSUmc_y[bin[v]]; double dataSUmc_xerr[bin[v]]; double dataSUmc_yerr[bin[v]];
       for(int j=0; j<bin[v]; j++){
          dataSUmc_x[j] = 0; dataSUmc_y[j] = 0; dataSUmc_xerr[j] = 0; dataSUmc_yerr[j] = 0;
-         dataSUmc_x[j] =  h_sum_var->GetBinCenter(j+1);  dataSUmc_xerr[j] = 0; 
+         dataSUmc_x[j] =  h_sum_var->GetBinCenter(j+1);  dataSUmc_xerr[j] = h_sum_var->GetBinWidth(j+1); 
          double mc_err = 0;
          for(uint i=0; i<rootplas_size; i++) mc_err += err_AllBkg[i][j]*err_AllBkg[i][j];
-//cout<< "mc err "<< mc_err <<"\n";
+
 
          if(h_sum_var->GetBinContent(j+1)!=0){
             double rd = h_data_var->GetBinContent(j+1);
@@ -331,9 +320,13 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
    
       //Plot values
       TGraphErrors *dataSUmc = new TGraphErrors(bin[v], dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
-      dataSUmc->Draw("APZ");
       dataSUmc->SetTitle(0);
-      dataSUmc->SetMarkerStyle(7);
+      //dataSUmc->SetTitleSize(10);
+      dataSUmc->SetMarkerStyle(8); 
+      dataSUmc->GetYaxis()->SetNdivisions(5,5,1);
+      //dataSUmc->SetMarkerColor(1);
+      //dataSUmc->SetLineColor(1);
+      dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
       dataSUmc->GetXaxis()->SetTitle(vartitle.c_str()); 
       dataSUmc->GetXaxis()->SetTitleSize(0.2);
       dataSUmc->GetYaxis()->SetTitle("Data/MC");
@@ -342,11 +335,12 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
       dataSUmc->GetYaxis()->SetTitleOffset(0.35);
       dataSUmc->SetMinimum(0.4);  //0.5
       dataSUmc->SetMaximum(1.6);  //1.5
-//      dataSUmc->SetRangeUser(inRange[v],endRange[v]);
-      dataSUmc->GetYaxis()->SetNdivisions(5,5,1);
+      dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
+//      dataSUmc->GetYaxis()->SetRangeUser(0.4,1.6);
+      dataSUmc->GetXaxis()->SetLimits(inRange[v],endRange[v]);
+      dataSUmc->Draw("APZ");
       dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
       dataSUmc->GetXaxis()->SetLimits(inRange[v],endRange[v]);
-
 
        /////////////////
       /////// ratio error bands
@@ -383,7 +377,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
       //Top plots
       c1->cd();
       TPad *c1_2 = new TPad("c1_2", "newpad",0.01,0.33,0.99,0.99);
-      if(logYscale[v]==1) c1_2->SetLogy();
+
       if(logXscale[v]==1) c1_2->SetLogx();
       c1_2->Draw();
       c1_2->cd();
@@ -414,8 +408,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
    h_data_var->SetTitleOffset(1.02,"x");
    h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
    }
-   h_data_var->GetYaxis()->SetTitle("#scale[1.5]{Events/bin}");
-   //if(show_title)  h_data_var->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L =  XXX fb^{-1}}");
+   h_data_var->GetYaxis()->SetTitle("#scale[2]{Events/bin}");
+//   if(show_title)  h_data_var->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L =  XXX fb^{-1}}");
    if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
    h_data_var->SetBinErrorOption(TH1::kPoisson);
    h_data_var2->SetBinErrorOption(TH1::kPoisson);
@@ -487,7 +481,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
    leg->AddEntry(all_bkg_statErr,"#scale[0.75]{Bkg stat. uncert.}","F");
    leg->Draw();
 
-   //CMS_lumi( c1, 0, 11 ); //uncomment for writing "CMS" on top left of inner box
+//   CMS_lumi( c1, 5, 11 ); //uncomment for writing "CMS" on top left of inner box
 
 }
 void draw_lines(double x1, double y1, double x2, double y2){
@@ -495,19 +489,6 @@ void draw_lines(double x1, double y1, double x2, double y2){
  line1->SetLineColor(kRed);
  line1->SetLineWidth(3);
  line1->Draw("same");
-}
-int get_col(string name){
- int col;
- if(name=="Other")    col = -10;  //Non main bkg need a different color type
- //if(name=="WW")   col = -10;
- //if(name=="WZ") col = -9;   //Possibly with soft intensity
- //if(name=="WJets")    col = -8;
- //if(name=="ZZ")    col = -7;
- //if(name=="QCD")   col = -6;
- if(name=="DY") col = -5; //For main bkg uses same color type with different numbers
- if(name=="TTtW") col = -8;  //darker for lower bkg (that should come first) 
- if(name=="tW")  col = -6;  //softer for higher bkg (that should come after)
- return col;
 }
 
 ////find the highest bin of the histograms in input
@@ -520,6 +501,8 @@ double get_highestbinval(TH1F* h_data_var, TH1F* h_sig, TH1F* h_sig2, THStack* h
    return highestbinval;
 }
 
+
+
 ////// save the canvas
 void save_canvas(TCanvas* c1, string var){
  string namefile = var+selection+".pdf";
@@ -530,7 +513,7 @@ void save_canvas(TCanvas* c1, string var){
 //   Get legends and histos
 /////
 TLegend* get_legend(){
- TLegend *leg = new TLegend(0.6, 0.52, 0.90, 0.9);
+ TLegend *leg = new TLegend(0.65, 0.52, 0.95, 0.9);
  leg->SetHeader("");
  leg->SetBorderSize(0);
  leg->SetTextSize(0.05);
@@ -552,7 +535,7 @@ TH1F* get_datath1f(string var, string title, int v){
  datath1f->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
  datath1f->GetXaxis()->SetLimits(inRange[v],endRange[v]);
 
- if(show_title) datath1f->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 36.9 fb^{-1}}");
+ //if(show_title) datath1f->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 36.9 fb^{-1}}");
  return datath1f;
 }
 
