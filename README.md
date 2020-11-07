@@ -27,7 +27,7 @@ Histograms for combine:
 (2016) /eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/
 (2017) /eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/
 (2018) /eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/
-
+(FullRun2) /eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_FullRun2/
 
 Rootple for QCD estimation:
 /eos/user/m/mpresill/CMS/HN_Reload/QCD_Rootplized_samples_2016/
