@@ -114,6 +114,17 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   int rHLT_OldMu100; rHLT_OldMu100 = 0; TBranch* b_rHLT_OldMu100 = 0; readingtree->SetBranchAddress("HLT_OldMu100",&rHLT_OldMu100,&b_rHLT_OldMu100);
   int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
 
+  //Gen variables:
+  vector<double>* rGen_pt; rGen_pt = 0; TBranch* b_rGen_pt = 0; readingtree->SetBranchAddress("Gen_pt",&rGen_pt,&b_rGen_pt);
+  vector<double>* rGen_eta; rGen_eta = 0; TBranch* b_rGen_eta = 0; readingtree->SetBranchAddress("Gen_eta",&rGen_eta,&b_rGen_eta);
+  vector<double>* rGen_phi; rGen_phi = 0; TBranch* b_rGen_phi = 0; readingtree->SetBranchAddress("Gen_phi",&rGen_phi,&b_rGen_phi);
+  vector<double>* rGen_energy; rGen_energy = 0; TBranch* b_rGen_energy = 0; readingtree->SetBranchAddress("Gen_energy",&rGen_energy,&b_rGen_energy);
+  vector<double>* rGen_charge; rGen_charge = 0; TBranch* b_rGen_charge = 0; readingtree->SetBranchAddress("Gen_charge",&rGen_charge,&b_rGen_charge);
+  vector<double>* rGen_pdg_id; rGen_pdg_id = 0; TBranch* b_rGen_pdg_id = 0; readingtree->SetBranchAddress("Gen_pdg_id",&rGen_pdg_id,&b_rGen_pdg_id);
+  vector<double>* rGen_motherpdg_id; rGen_motherpdg_id = 0; TBranch* b_rGen_motherpdg_id = 0; readingtree->SetBranchAddress("Gen_motherpdg_id",&rGen_motherpdg_id,&b_rGen_motherpdg_id);
+  vector<double>* rGen_numDaught; rGen_numDaught = 0; TBranch* b_rGen_numDaught = 0; readingtree->SetBranchAddress("Gen_numDaught",&rGen_numDaught,&b_rGen_numDaught);
+  vector<double>* rGen_numMother; rGen_numMother = 0; TBranch* b_rGen_numMother = 0; readingtree->SetBranchAddress("Gen_numMother",&rGen_numMother,&b_rGen_numMother);
+
   //PU and systematics
   double rPUWeight; rPUWeight = 0; TBranch* b_rPUWeight = 0; readingtree->SetBranchAddress("PUWeight",&rPUWeight,&b_rPUWeight);
   double rMinBiasUpWeight; rMinBiasUpWeight = 0; TBranch* b_rMinBiasUpWeight = 0; readingtree->SetBranchAddress("MinBiasUpWeight",&rMinBiasUpWeight,&b_rMinBiasUpWeight);
@@ -267,6 +278,17 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    int HLT_TkMu50; newtree->Branch("HLT_TkMu50",&HLT_TkMu50);
    int HLT_OldMu100; newtree->Branch("HLT_OldMu100",&HLT_OldMu100);
    int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
+
+  //Gen variables
+  vector<double>* Gen_pt = new std::vector<double>; newtree->Branch("Gen_pt",&Gen_pt);
+  vector<double>* Gen_eta = new std::vector<double>; newtree->Branch("Gen_eta",&Gen_eta);
+  vector<double>* Gen_phi = new std::vector<double>; newtree->Branch("Gen_phi",&Gen_phi);
+  vector<double>* Gen_charge = new std::vector<double>; newtree->Branch("Gen_charge",&Gen_charge);
+  vector<double>* Gen_energy = new std::vector<double>; newtree->Branch("Gen_energy",&Gen_energy);
+  vector<double>* Gen_pdg_id = new std::vector<double>; newtree->Branch("Gen_pdg_id",&Gen_pdg_id);
+  vector<double>* Gen_motherpdg_id = new std::vector<double>; newtree->Branch("Gen_motherpdg_id",&Gen_motherpdg_id);
+  vector<double>* Gen_numDaught = new std::vector<double>; newtree->Branch("Gen_numDaught",&Gen_numDaught);
+  vector<double>* Gen_numMother = new std::vector<double>; newtree->Branch("Gen_numMother",&Gen_numMother);
 
    //Muons:
    vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
@@ -541,6 +563,19 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rMinBiasDownWeight->GetEntry(en);
     b_rnBestVtx->GetEntry(en);
     b_rtrueInteractions->GetEntry(en);
+
+    //Gen variables
+    b_rGen_pt->GetEntry(en);
+    b_rGen_eta->GetEntry(en);
+    b_rGen_phi->GetEntry(en);
+    b_rGen_charge->GetEntry(en);
+    b_rGen_energy->GetEntry(en);
+    b_rGen_pdg_id->GetEntry(en);
+    b_rGen_motherpdg_id->GetEntry(en);
+    b_rGen_numDaught->GetEntry(en);
+    b_rGen_numMother->GetEntry(en);
+
+
     //Muons
     //Kinematics:
     b_rMuon_pt->GetEntry(en);
@@ -643,6 +678,17 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);    
     //MET
     b_rMet_type1PF_pt->GetEntry(en);
+
+    //Gen variables to be written
+    Gen_pt->clear();    
+    Gen_eta->clear();    
+    Gen_phi->clear();    
+    Gen_charge->clear();    
+    Gen_energy->clear();    
+    Gen_pdg_id->clear();    
+    Gen_motherpdg_id->clear();    
+    Gen_numDaught->clear();    
+    Gen_numMother->clear();    
 
     //New var clear (vectors):
     Muon_pt->clear();
@@ -781,6 +827,18 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     PileupWeight = CalculatePileupWeight(trueInteractions);
     lumi_wgt = get_wgtlumi(Input);
    
+    for(uint gen_en = 0; gen_en<rGen_pt->size(); gen_en++){
+    //Gen variables (writing)
+    Gen_pt->push_back(rGen_pt->at(gen_en));
+    Gen_eta->push_back(rGen_eta->at(gen_en));
+    Gen_phi->push_back(rGen_phi->at(gen_en));
+    Gen_charge->push_back(rGen_charge->at(gen_en));
+    Gen_energy->push_back(rGen_energy->at(gen_en));
+    Gen_pdg_id->push_back(rGen_pdg_id->at(gen_en));
+    Gen_motherpdg_id->push_back(rGen_motherpdg_id->at(gen_en));
+    Gen_numDaught->push_back(rGen_numDaught->at(gen_en));
+    Gen_numMother->push_back(rGen_numMother->at(gen_en));
+   }
    
    int num = 0;
    for(uint mu_en = 0; mu_en<rMuon_pt->size(); mu_en++){
