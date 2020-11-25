@@ -179,8 +179,11 @@ a_JerSFdown->SetAddress(&JerSFdown);
 //const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
 
 
-//old bin
+//old bin PRE APPROVAL ONE
 const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+
+TH1D *NumFatJet = new TH1D ("NumFatJet", "NumFatJet", 20, 0, 20);
+TH1D *NumFatJet_mu = new TH1D ("NumFatJet_mu", "NumFatJet_mu", 20, 0, 20);
 
 TH1D *TTtW_mumujj = new TH1D ("TTtW_mumujj", "TTtW_mumujj", 9, asymbins);
 TH1D *TTtW_mumujj_2018_AlphaRatio = new TH1D ("TTtW_mumujj_2018_AlphaRatio", "TTtW_2018_mumujj_AlphaRatio", 9, asymbins);
@@ -291,6 +294,9 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     Muon2_ptResoUp = Muon2;
     Muon2_ptResoDown= Muon2;
    }
+
+   NumFatJet_mu->Fill(numOfBoostedJets,wg); 
+
    TTtW_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
    TTtW_mumujj_2018_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg*0.85);
    TTtW_mumujj_2018_AlphaRatioUp->Fill((Muon1+Muon2+BoostJet).M(), wg*0.87);
@@ -329,6 +335,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    Ele1_SigmaDown.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energySigmaDown->at(0));
    Ele2_SigmaUp.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energySigmaUp->at(1));
    Ele2_SigmaDown.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energySigmaDown->at(1));
+
+   NumFatJet->Fill(numOfBoostedJets,wg); 
 
    TTtW_eejj->Fill((Electron1+Electron2+BoostJet).M(), wg);
    TTtW_eejj_2018_AlphaRatio->Fill((Electron1+Electron2+BoostJet).M(), wg*0.79);
@@ -389,6 +397,9 @@ TTtW_mumujj_2018_PtCorrDown->Write();
 TTtW_mumujj_2018_PtCorrUp->Write();
 TTtW_mumujj_2018_PtResoUp->Write();
 TTtW_mumujj_2018_PtResoDown->Write();
+NumFatJet->Write();
+NumFatJet_mu->Write();
+
 f->Write();
 f->Close();
 

@@ -29,14 +29,17 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_CR_DY_MC_2018(){
+void Analisi_SR_data_2017(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2018/Syst_ALL_newMuonSF/Other_2018.root");
+
+//if ELECTRON CHANNEL: restore electron and photon triggers
+a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/TriggerUpdate_0505/data_ele_2017.root");
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/data_mu_2017.root");
 //inputFile
 
-int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
+int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100, HLT_Photon200, HLT_Ele115, HLT_Ele35;
 double muejj_l, emujj_l;
 double M_leplep;
 std:vector<double>* patElectron_pt; patElectron_pt=0;
@@ -55,13 +58,11 @@ vector<double>*BoostedJet_phi; BoostedJet_phi=0;
 vector<double>*BoostedJet_energy; BoostedJet_energy=0;
 double numOfHighptEle, numOfVetoEle, numOfHighptMu, numOfLooseMu, numOfBoostedJets;
 double lepsf_evt, lumi_wgt, trueInteractions, PUWeight;
-int nBestVtx; 
-
-
-//PU projection June
-double puweight[100]={9686.56 , 13.2731 , 43.7711 , 18.688 , 12.5107 , 9.04181 , 6.57902 , 4.87346 , 3.62872 , 2.76274 , 2.22425 , 1.89967 , 1.7017 , 1.57883 , 1.50431 , 1.46451 , 1.44978 , 1.45098 , 1.4587 , 1.46369 , 1.45805 , 1.43709 , 1.40078 , 1.3533 , 1.30105 , 1.25009 , 1.20467 , 1.16697 , 1.13742 , 1.11537 , 1.0996 , 1.08877 , 1.0816 , 1.07683 , 1.07316 , 1.06908 , 1.06281 , 1.05246 , 1.03612 , 1.01213 , 0.979351 , 0.937295 , 0.886238 , 0.827196 , 0.761841 , 0.692342 , 0.6211 , 0.550495 , 0.482672 , 0.419357 , 0.361756 , 0.310542 , 0.265899 , 0.22761 , 0.195168 , 0.167896 , 0.145046 , 0.125873 , 0.109692 , 0.0959027 , 0.0840082 , 0.0736144 , 0.0644249 , 0.0562295 , 0.048887 , 0.0423067 , 0.03643 , 0.031215 , 0.0266245 , 0.0226187 , 0.0191526 , 0.0161753 , 0.0136325 , 0.0114695 , 0.00963313 , 0.00807454 , 0.00675025 , 0.00562281 , 0.00466074 , 0.00383815 , 0.00313397 , 0.00253121 , 0.0020162 , 0.00157798 , 0.00120787 , 0.000899112 , 0.000646511 , 0.000445842 , 0.000292888 , 0.000182388 , 0.000109393 , 6.25794e-05 , 3.42779e-05 , 1.80716e-05 , 9.22117e-06 , 4.57764e-06 , 2.22112e-06 , 1.05773e-06 , 4.96423e-07 , 2.30808e-07};
+int nBestVtx;
 
 TBranch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
+TBranch *a_HLT_Ele35_WPTight_Gsf=a_->GetBranch("HLT_Ele35_WPTight_Gsf");
+TBranch *a_HLT_Photon200=a_->GetBranch("HLT_Photon200");
 TBranch *a_HLT_Mu50=a_->GetBranch("HLT_Mu50");
 TBranch *a_HLT_OldMu100=a_->GetBranch("HLT_OldMu100");
 TBranch *a_HLT_TkMu50=a_->GetBranch("HLT_TkMu50");
@@ -102,6 +103,8 @@ TBranch *a_numOfBoostedJets=a_->GetBranch("numOfBoostedJets");
 TBranch *a_numOfVetoEle=a_->GetBranch("numOfVetoEle");
 
 a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele);
+a_HLT_Ele35_WPTight_Gsf->SetAddress(&HLT_Ele35);
+a_HLT_Photon200->SetAddress(&HLT_Photon200); 
 a_HLT_Mu50->SetAddress(&HLT_Mu50);
 a_HLT_OldMu100->SetAddress(&HLT_OldMu100);
 a_HLT_TkMu50->SetAddress(&HLT_TkMu50);
@@ -128,12 +131,12 @@ a_BoostedJet_eta->SetAddress(&BoostedJet_eta);
 a_BoostedJet_phi->SetAddress(&BoostedJet_phi);
 a_BoostedJet_energy->SetAddress(&BoostedJet_energy);
 
-a_muejj_l->SetAddress(&muejj_l);
-a_emujj_l->SetAddress(&emujj_l);
-
 a_nBestVtx->SetAddress(&nBestVtx);
 a_trueInteractions->SetAddress(&trueInteractions);
 a_PUWeight->SetAddress(&PUWeight);
+
+a_muejj_l->SetAddress(&muejj_l);
+a_emujj_l->SetAddress(&emujj_l);
 
 a_numOfHighptEle->SetAddress(&numOfHighptEle);
 a_numOfHighptMu->SetAddress(&numOfHighptMu);
@@ -141,28 +144,15 @@ a_numOfLooseMu->SetAddress(&numOfLooseMu);
 a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
-const double asymbins[10] = {0, 100, 200, 300, 500, 700, 1000, 1500, 3000, 5000};
-
-TH1D *NumFatJet = new TH1D ("NumFatJet", "NumFatJet", 20, 0, 20);
-TH1D *NumFatJet_mu = new TH1D ("NumFatJet_mu", "NumFatJet_mu", 20, 0, 20);
-
-TH1D *n_best_Vtx_bef = new TH1D ("n_best_Vtx_bef", "n_best_Vtx_bef", 100,0, 100);
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
-TH1D *n_best_Vtx_w = new TH1D ("n_best_Vtx_w", "n_best_Vtx_w", 100,0, 100);
-TH1D *M_mumu_100300 = new TH1D ("M_mumu_100300", "M_mumu_100300", 200, 100, 300);
-TH1D *M_ee_100300 = new TH1D ("M_ee_100300", "M_ee_100300", 200, 100, 300);
-TH1D *M_mumu_Z_50130 = new TH1D ("M_mumu_Z_50130", "M_mumu_Z_50130", 80, 50, 130);
-TH1D *M_ee_Z_50130 = new TH1D ("M_ee_Z_50130", "M_ee_Z_50130", 80, 50, 130);
-TH1D *M_mumuJ = new TH1D ("M_mumuJ", "M_mumuJ", 9, asymbins);
-TH1D *pt_mumu = new TH1D ("pt_mumu", "pt_mumu", 100, 0, 1000);
-TH1D *M_eeJ = new TH1D ("M_eeJ", "M_eeJ", 9, asymbins);
-TH1D *pt_ee = new TH1D ("pt_ee", "pt_ee", 100, 0, 1000);
-TH1D *M_mumuJ_Z = new TH1D ("M_mumuJ_Z", "M_mumuJ_Z", 9, asymbins);
-TH1D *pt_mumu_Z = new TH1D ("pt_mumu_Z", "pt_mumu_Z", 100, 0, 1000);
-TH1D *M_eeJ_Z = new TH1D ("M_eeJ_Z", "M_eeJ_Z", 9, asymbins);
-TH1D *pt_ee_Z = new TH1D ("pt_ee_Z", "pt_ee_Z", 100, 0, 1000);
-TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 10, 80, 100);
-TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 10, 80, 100);
+TH1D *data_obs_mumu = new TH1D ("data_obs_mumu", "data_obs_mumu", 220, 80, 300);
+TH1D *data_obs_ee = new TH1D ("data_obs_ee", "data_obs_ee", 220, 80, 300);
+TH1D *data_obs_mumu_Z = new TH1D ("data_obs_mumu_Z", "data_obs_mumu_Z", 80, 50, 130);
+TH1D *data_obs_ee_Z = new TH1D ("data_obs_ee_Z", "data_obs_ee_Z", 80, 50, 130);
+
+const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+
+TH1D *data_obs = new TH1D ("data_obs", "data_obs", 9, asymbins);
 
 
 TLorentzVector Muon1;
@@ -175,115 +165,55 @@ TLorentzVector BoostJet;
 cout << a_->GetEntries() << endl;
 int tot=0, muejj = 0;
 double wg = 0;
-int lumi = 58872; //2017: 41529 //2016: 35920
+int lumi = 41529;//2018: 58873 //2017: 41529 //2016: 35542
 bool veto_ele = false;
-double mee = 0, mmumu = 0, pu_w = 0;
+double mee = 0, mmumu = 0;
 
-for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
+for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
  tot = a_->GetEntries();
  if (i%100000 == 0) cout << i << " eventi analizzati su " << tot << endl;
 
- n_best_Vtx_bef->Fill(trueInteractions);
-
+ HLT_Ele=0;
  HLT_Mu = 0;
  if (HLT_Mu50==1 || HLT_TkMu100==1 || HLT_OldMu100==1 ) HLT_Mu = 1;
- for (int j=0; j<100; j++){
-  if (trueInteractions > j && trueInteractions <= j+1){
-   pu_w = puweight[j];
-  break;
-  }
- }
+ if (HLT_Ele115==1 || HLT_Photon200 ==1 || HLT_Ele35 ==1) HLT_Ele=1;
+
+
  if (Muon_pt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
   if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
-
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
    Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
    Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
-   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
-
-   wg = lumi*lumi_wgt*lepsf_evt;
    mmumu= (Muon1+Muon2).M();
-  // k = 1.067 - 0.000112*mmumu + 3.176*exp(1) - 8*pow(mmumu,2) - 4.068*exp(1) - 12*pow(mmumu,3);
-   if(mmumu > 100 && mmumu < 300){
-    M_mumu_100300->Fill(mmumu,wg*pu_w);
+   if(mmumu > 300){
+    data_obs->Fill((Muon1+Muon2+BoostJet).M());
+    
    }
-   if(mmumu >50 && mmumu < 130){
-    n_best_Vtx->Fill(nBestVtx, wg);
-    n_best_Vtx_w->Fill(nBestVtx, wg*pu_w);
-    M_mumu_Z_50130->Fill(mmumu,wg*pu_w);
-   }
-
-   if(mmumu >= 76 && mmumu <= 106) M_mumu_Zpeak->Fill((Muon1+Muon2).M(), wg*pu_w);
- 
-   if (mmumu < 300){
-    M_mumuJ->Fill((Muon1+Muon2+BoostJet).M(),wg*pu_w);  
-    pt_mumu->Fill(Muon1.Pt() + Muon2.Pt(), wg*pu_w);
-    if (mmumu > 76 && mmumu < 106){
-     M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M(),wg*pu_w);
-     pt_mumu_Z->Fill(Muon1.Pt() + Muon2.Pt(), wg*pu_w);
-     NumFatJet_mu->Fill(numOfBoostedJets,wg*pu_w);  
-    }
-   }
-  
   }
  }
- if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
-  if (HLT_Ele==1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190){
 
-   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0)); 
+ if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
+   if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190){
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));	
+   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
    Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));
 
-    wg = lumi*lumi_wgt*lepsf_evt;
     mee = (Electron1+Electron2).M();
-    if(mee > 100 && mee < 300){
-     M_ee_100300->Fill(mee,wg*pu_w);
+    if(mee > 300){
+     data_obs->Fill((Electron1+Electron2+BoostJet).M());
     }
-    if(mee > 50 && mee < 130){
-    M_ee_Z_50130->Fill(mee,wg*pu_w);
-   } 
- 
-   if(mee >= 76 && mee <= 106) M_ee_Zpeak->Fill((Electron1+Electron2).M(), wg*pu_w);
-   
-   if (mee < 300){
-    M_eeJ->Fill((Electron1+Electron2+BoostJet).M(),wg*pu_w);
-    pt_ee ->Fill(Electron1.Pt() + Electron2.Pt(), wg*pu_w);
-    if (mee > 76 && mee < 106){
-     M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M(),wg*pu_w);
-     pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt(), wg*pu_w);
-     NumFatJet->Fill(numOfBoostedJets,wg*pu_w);  
-    }
-   }
-  
-  
   }
  }
+ 
 }
 
-TFile *f = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_Other_2018.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/SR_data_ele_2017.root", "RECREATE");
 
-n_best_Vtx->Write();
-n_best_Vtx_w->Write();
-n_best_Vtx_bef->Write();
-M_mumu_100300->Write();
-M_ee_100300->Write();
-M_mumu_Z_50130->Write();
-M_ee_Z_50130->Write();
-M_eeJ->Write();
-pt_ee->Write();
-M_eeJ_Z->Write();
-pt_ee_Z->Write();
-M_mumuJ->Write();
-pt_mumu->Write();
-M_mumuJ_Z->Write();
-pt_mumu_Z->Write();
-M_mumu_Zpeak->Write();
-M_ee_Zpeak->Write();
-
-NumFatJet->Write();
-NumFatJet_mu->Write();
-
+data_obs->Write();
 f->Write();
 f->Close();
+
 
 }
  

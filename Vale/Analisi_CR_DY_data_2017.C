@@ -60,7 +60,7 @@ double numOfHighptEle, numOfVetoEle, numOfHighptMu, numOfLooseMu, numOfBoostedJe
 double lepsf_evt, lumi_wgt, trueInteractions, PUWeight;
 int nBestVtx; 
 
-TBranch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
+//Branch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
 //TBranch *a_HLT_Ele35_WPTight_Gsf=a_->GetBranch("HLT_Ele35_WPTight_Gsf");
 //TBranch *a_HLT_Photon200=a_->GetBranch("HLT_Photon200");
 TBranch *a_HLT_Mu50=a_->GetBranch("HLT_Mu50");
@@ -102,7 +102,7 @@ TBranch *a_numOfLooseMu=a_->GetBranch("numOfLooseMu");
 TBranch *a_numOfBoostedJets=a_->GetBranch("numOfBoostedJets");
 TBranch *a_numOfVetoEle=a_->GetBranch("numOfVetoEle");
 
-a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele115);
+//a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele115);
 //a_HLT_Ele35_WPTight_Gsf->SetAddress(&HLT_Ele35);
 //a_HLT_Photon200->SetAddress(&HLT_Photon200); 
 a_HLT_Mu50->SetAddress(&HLT_Mu50);
@@ -244,7 +244,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 }
 
 //TFile *f = new TFile("plots/CR_DY_data_ele_2017.root", "RECREATE");
-TFile *f = new TFile("plots/CR_DY_data_mu_2017.root", "RECREATE");
+TFile *f = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_data_mu_2017.root", "RECREATE");
 
 n_best_Vtx->Write();
 M_mumu_100300->Write();
