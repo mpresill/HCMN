@@ -1563,7 +1563,7 @@ double get_wgtlumi(string FileName){
  
  //wgt = xsec_in_pb / number_of_events_from_DAS
  if(FileName.find("TT") != std::string::npos) wgt=88.29/8705576; //wgt=88.29/64310000;  
- if(FileName.find("DY") != std::string::npos) wgt=6077.0/97373487; //wgt=6077/100194597;
+ //if(FileName.find("DY") != std::string::npos) wgt=6077.0/97373487; //wgt=6077/100194597;
  if(FileName.find("_ST_") != std::string::npos) wgt=32.64/7581624; //wgt=32.64/9598000; 
  if(FileName.find("_SaT_") != std::string::npos) wgt=32.70/7780870; //wgt=32.70/7623000; 
  if(FileName.find("WW") != std::string::npos) wgt=118.7/7791498; ///wgt=118.7/7850000; 
@@ -1595,6 +1595,20 @@ double get_wgtlumi(string FileName){
  if((FileName.find("eejj_17_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
  if((FileName.find("eejj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
+ // DY NLO FxFx samples
+ if(FileName.find("DY_FxFx") != std::string::npos) wgt=6529.0/(27413121+182359906*43/5443); //ok
+ 
+
+ // DY HT binned LO samples
+ if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.7/9344037;//ok
+ if(FileName.find("DY_HT100to200") != std::string::npos) wgt=161.1/3950339;//ok
+ if(FileName.find("DY_HT200to400") != std::string::npos) wgt=48.66/(10298412 + (10728447*11/485) + 1200863);//ok
+ if(FileName.find("DY_HT400to600") != std::string::npos) wgt=6.968/((9533635*3/631)+1124294);//ok
+ if(FileName.find("DY_HT600to800") != std::string::npos) wgt=1.743/(8153358*4/390); //ok
+ if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=0.8052/(3089861*2/175); //ok
+ if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=0.1933/(625517*6/77); //ok
+ //if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=/; //marked with "submit failed"
+
  return wgt;
  }
 

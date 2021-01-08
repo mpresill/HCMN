@@ -1618,7 +1618,7 @@ double get_wgtlumi(string FileName){
  // CHECKED OK!! 
  
  if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
- if(FileName.find("DY") != std::string::npos) wgt=6077./100194597;
+ //if(FileName.find("DY") != std::string::npos) wgt=6077./100194597;
  if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
  if(FileName.find("_SaT_") != std::string::npos) wgt=32.7/7623000; 
  if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
@@ -1649,6 +1649,24 @@ double get_wgtlumi(string FileName){
  if((FileName.find("eejj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
  if((FileName.find("eejj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
+	
+ // DY NLO FxFx samples
+ if(FileName.find("DY_FxFx") != std::string::npos) wgt=6435.0/997561; 
+
+// DY HT binned LO samples
+ if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.5/10019684;
+ if(FileName.find("DY_HT100to200") != std::string::npos) wgt=160.7/11530510;
+ if(FileName.find("DY_HT200to400") != std::string::npos) wgt=48.63/11225887;
+ if(FileName.find("DY_HT400to600") != std::string::npos) wgt=6.993/9358053;
+ if(FileName.find("DY_HT600to800") != std::string::npos) wgt=1.761/8862104;
+ if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=0.8021/3138129;
+ if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=0.1937/536416;
+ if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=0.003514/427051;
+
+
+
+
+
  return wgt;
  }
 
