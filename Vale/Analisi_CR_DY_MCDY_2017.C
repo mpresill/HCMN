@@ -179,7 +179,7 @@ a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
 
-const double asymbins[10] = {0, 100, 200, 300, 500, 700, 1000, 1500, 3000, 5000};
+const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
 
 TH1D *n_best_Vtx_bef = new TH1D ("n_best_Vtx_bef", "n_best_Vtx_bef", 100,0, 100);
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
@@ -188,10 +188,12 @@ TH1D *M_mumu_100300 = new TH1D ("M_mumu_100300", "M_mumu_100300", 200, 100, 300)
 TH1D *M_ee_100300 = new TH1D ("M_ee_100300", "M_ee_100300", 200, 100, 300);
 TH1D *M_mumu_Z_50130 = new TH1D ("M_mumu_Z_50130", "M_mumu_Z_50130", 80, 50, 130);
 TH1D *M_ee_Z_50130 = new TH1D ("M_ee_Z_50130", "M_ee_Z_50130", 80, 50, 130);
+
 TH1D *M_mumuJ = new TH1D ("M_mumuJ", "M_mumuJ", 9, asymbins);
 TH1D *pt_mumu = new TH1D ("pt_mumu", "pt_mumu", 100, 0, 1000);
 TH1D *M_eeJ = new TH1D ("M_eeJ", "M_eeJ", 9, asymbins);
 TH1D *pt_ee = new TH1D ("pt_ee", "pt_ee", 100, 0, 1000);
+
 TH1D *M_mumuJ_Z = new TH1D ("M_mumuJ_Z", "M_mumuJ_Z", 9, asymbins);
 TH1D *pt_mumu_Z = new TH1D ("pt_mumu_Z", "pt_mumu_Z", 100, 0, 1000);
 TH1D *M_eeJ_Z = new TH1D ("M_eeJ_Z", "M_eeJ_Z", 9, asymbins);
@@ -274,6 +276,9 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
 
+
+
+
  if (Muon_pt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
   if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
    Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
@@ -282,7 +287,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
 
    mmumu= (Muon1+Muon2).M();
   // k = 1.067 - 0.000112*mmumu + 3.176*exp(1) - 8*pow(mmumu,2) - 4.068*exp(1) - 12*pow(mmumu,3);
-    k = 1.067 - 0.000112*mmumu + 3.176e-8*pow(mmumu,2) - 4.068e-12*pow(mmumu,3);
+    //k = 1.067 - 0.000112*mmumu + 3.176e-8*pow(mmumu,2) - 4.068e-12*pow(mmumu,3);
 
    //k=1;
    wg = lumi*lumi_wgt*lepsf_evt*PUWeight*k_ewk*k_qcd; 
@@ -295,17 +300,16 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
     n_best_Vtx_w->Fill(nBestVtx, wg);
     M_mumu_Z_50130->Fill(mmumu,wg);
    }
-
-   if(mmumu >= 60 && mmumu <= 120) M_mumu_Zpeak->Fill((Muon1+Muon2).M(), wg);
- 
-   if (mmumu < 300){
+   if (mmumu >=150 && mmumu <= 300){
     M_mumuJ->Fill((Muon1+Muon2+BoostJet).M(),wg);  
     pt_mumu->Fill(Muon1.Pt() + Muon2.Pt(), wg);
-    if (mmumu > 60 && mmumu < 120){
+   }
+    if (mmumu >= 60 && mmumu <= 120){
      M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M(),wg);
      pt_mumu_Z->Fill(Muon1.Pt() + Muon2.Pt(), wg);
+     M_mumu_Zpeak->Fill((Muon1+Muon2).M(), wg);
     }
-   }
+   
   }
  }
  if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
@@ -317,32 +321,27 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
 
     mee = (Electron1+Electron2).M();
     //k = 1.067 - 0.000112*mee + 3.176*exp(1) - 8*pow(mee,2) - 4.068*exp(1) - 12*pow(mee,3);
-    k = 1.067 - 0.000112*mee + 3.176e-8*pow(mee,2) - 4.068e-12*pow(mee,3);
+    //k = 1.067 - 0.000112*mee + 3.176e-8*pow(mee,2) - 4.068e-12*pow(mee,3);
     // k=1;
     wg = lumi*lumi_wgt*lepsf_evt*PUWeight*k_ewk*k_qcd;
     
     
-    if(mee > 100 && mee < 300){
+    if(mee >= 100 && mee <= 300){
      M_ee_100300->Fill(mee,wg);
     }
     if(mee > 50 && mee < 130){
     M_ee_Z_50130->Fill(mee,wg);
    } 
- 
-   if(mee >= 60 && mee <= 120){ 
-          M_ee_Zpeak->Fill((Electron1+Electron2).M(), wg);
-   
-   }
-
-
-   if (mee < 300){
+   if (mee>=150 && mee <= 300){
     M_eeJ->Fill((Electron1+Electron2+BoostJet).M(),wg);
     pt_ee ->Fill(Electron1.Pt() + Electron2.Pt(), wg);
-    if (mee > 60 && mee < 120){
+   }
+   if (mee >= 60 && mee <= 120){
+     M_ee_Zpeak->Fill((Electron1+Electron2).M(), wg);
      M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M(),wg);
      pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt(), wg);
     }
-   }
+   
    
   }
  } 

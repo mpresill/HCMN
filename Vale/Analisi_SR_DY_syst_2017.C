@@ -34,6 +34,7 @@ void Analisi_SR_DY_syst_2017(){
 TChain *a_ = new TChain("BOOM");
 
 a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/DY_2017.root");
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/DY_FxFx_2017.root"); //uncomment line 335 
 //inputFile
 
 int HLT_Ele, HLT_Photon200, HLT_Ele115, HLT_Ele35, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
@@ -330,8 +331,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   }
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
-
-
+  //k_ewk=1;k_qcd=1;   ///comment if using LO samples
 
  wg = lumi * lumi_wgt * lepsf_evt * PUWeight *k_ewk*k_qcd;
  wg_SFu = lumi * lumi_wgt * lepsf_evt_u * PUWeight*k_ewk*k_qcd;
@@ -378,23 +378,23 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
    DY_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg);
    //cout << "wg " << wg << " lumi " << lumi << " lumi_wgt " << lumi_wgt << " lepsf_evt " << lepsf_evt << " PUWeight " << PUWeight << endl;
-   DY_mumujj_2017_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg*0.81);
-   DY_mumujj_2017_AlphaRatioUp->Fill((Muon1+Muon2+BoostJet).M(), wg*0.92);
-   DY_mumujj_2017_AlphaRatioDown->Fill((Muon1+Muon2+BoostJet).M(), wg*0.86);
-   DY_mumujj_2017_SFUp->Fill((Muon1+Muon2+BoostJet).M(), wg_SFu*0.81);
-   DY_mumujj_2017_SFDown->Fill((Muon1+Muon2+BoostJet).M(), wg_SFd*0.81);
-   DY_mumujj_2017_PUUp->Fill((Muon1+Muon2+BoostJet).M(), wg_PUu*0.81);
-   DY_mumujj_2017_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_PUd*0.81);
-   DY_mumujj_2017_PtResoUp->Fill((Muon1_ptResoUp+Muon2_ptResoUp+BoostJet).M(), wg*0.81);
-   DY_mumujj_2017_PtResoDown->Fill((Muon1_ptResoDown+Muon2_ptResoDown+BoostJet).M(), wg*0.81);
-   DY_mumujj_2017_PtCorr->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg*0.81);
-   DY_mumujj_2017_PtCorrUp->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg*0.81);
-   DY_mumujj_2017_PtCorrDown->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg*0.81);
-   if(centralJesJer->at(0)==1)DY_mumujj_2017_centralJesJer->Fill((Muon1+Muon2+BoostJet).M(), wg*0.81);
-   if(JesSFup->at(1)==1)DY_mumujj_2017_JesSFUp->Fill((Muon1+Muon2+BoostJet_JESup).M(), wg*0.81);
-   if(JesSFdown->at(2)==1)DY_mumujj_2017_JesSFDown->Fill((Muon1+Muon2+BoostJet_JESdown).M(), wg*0.81);
-   if(JerSFup->at(3)==1)DY_mumujj_2017_JerSFUp->Fill((Muon1+Muon2+BoostJet_JERup).M(), wg*0.81);
-   if(JerSFdown->at(4)==1)DY_mumujj_2017_JerSFDown->Fill((Muon1+Muon2+BoostJet_JERdown).M(), wg*0.81);
+   DY_mumujj_2017_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg);
+   DY_mumujj_2017_AlphaRatioUp->Fill((Muon1+Muon2+BoostJet).M(), wg);
+   DY_mumujj_2017_AlphaRatioDown->Fill((Muon1+Muon2+BoostJet).M(), wg);
+   DY_mumujj_2017_SFUp->Fill((Muon1+Muon2+BoostJet).M(), wg_SFu);
+   DY_mumujj_2017_SFDown->Fill((Muon1+Muon2+BoostJet).M(), wg_SFd);
+   DY_mumujj_2017_PUUp->Fill((Muon1+Muon2+BoostJet).M(), wg_PUu);
+   DY_mumujj_2017_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_PUd);
+   DY_mumujj_2017_PtResoUp->Fill((Muon1_ptResoUp+Muon2_ptResoUp+BoostJet).M(), wg);
+   DY_mumujj_2017_PtResoDown->Fill((Muon1_ptResoDown+Muon2_ptResoDown+BoostJet).M(), wg);
+   DY_mumujj_2017_PtCorr->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg);
+   DY_mumujj_2017_PtCorrUp->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg);
+   DY_mumujj_2017_PtCorrDown->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg);
+   if(centralJesJer->at(0)==1)DY_mumujj_2017_centralJesJer->Fill((Muon1+Muon2+BoostJet).M(), wg);
+   if(JesSFup->at(1)==1)DY_mumujj_2017_JesSFUp->Fill((Muon1+Muon2+BoostJet_JESup).M(), wg);
+   if(JesSFdown->at(2)==1)DY_mumujj_2017_JesSFDown->Fill((Muon1+Muon2+BoostJet_JESdown).M(), wg);
+   if(JerSFup->at(3)==1)DY_mumujj_2017_JerSFUp->Fill((Muon1+Muon2+BoostJet_JERup).M(), wg);
+   if(JerSFdown->at(4)==1)DY_mumujj_2017_JerSFDown->Fill((Muon1+Muon2+BoostJet_JERdown).M(), wg);
   }
  }
 
@@ -416,31 +416,93 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    Ele2_SigmaUp.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energySigmaUp->at(1));
    Ele2_SigmaDown.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energySigmaDown->at(1));
 
-    DY_eejj->Fill((Electron1+Electron2+BoostJet).M(), wg);
-   DY_eejj_2017_AlphaRatio->Fill((Electron1+Electron2+BoostJet).M(), wg*0.82);
-   DY_eejj_2017_AlphaRatioUp->Fill((Electron1+Electron2+BoostJet).M(), wg*1.09);
-   DY_eejj_2017_AlphaRatioDown->Fill((Electron1+Electron2+BoostJet).M(), wg*0.55);
-   DY_eejj_2017_SFUp->Fill((Electron1+Electron2+BoostJet).M(), wg_SFu*0.82);
-   DY_eejj_2017_SFDown->Fill((Electron1+Electron2+BoostJet).M(), wg_SFd*0.82);
-   DY_eejj_2017_PUUp->Fill((Electron1+Electron2+BoostJet).M(), wg_PUu*0.82);
-   DY_eejj_2017_PUDown->Fill((Electron1+Electron2+BoostJet).M(), wg_PUd*0.82);
-   DY_eejj_2017_energyScaleUp->Fill((Ele1_ScaleUp+Ele2_ScaleUp+BoostJet).M(), wg*0.82);
-   DY_eejj_2017_energyScaleDown->Fill((Ele1_ScaleDown+Ele2_ScaleDown+BoostJet).M(), wg*0.82);
-   DY_eejj_2017_energySigmaUp->Fill((Ele1_SigmaUp+Ele2_SigmaUp+BoostJet).M(), wg*0.82);
-   DY_eejj_2017_energySigmaDown->Fill((Ele1_SigmaDown+Ele2_SigmaDown+BoostJet).M(), wg*0.82);
-   if(centralJesJer->at(0)==1)DY_eejj_2017_centralJesJer->Fill((Electron1+Electron2+BoostJet).M(), wg*0.82);
-   if(JesSFup->at(1)==1)DY_eejj_2017_JesSFUp->Fill((Electron1+Electron2+BoostJet_JESup).M(), wg*0.82);
-   if(JesSFdown->at(2)==1)DY_eejj_2017_JesSFDown->Fill((Electron1+Electron2+BoostJet_JESdown).M(), wg*0.82);
-   if(JerSFup->at(3)==1)DY_eejj_2017_JerSFUp->Fill((Electron1+Electron2+BoostJet_JERup).M(), wg*0.82);
-   if(JerSFdown->at(4)==1)DY_eejj_2017_JerSFDown->Fill((Electron1+Electron2+BoostJet_JERdown).M(), wg*0.82);
+   DY_eejj->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   DY_eejj_2017_AlphaRatio->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   DY_eejj_2017_AlphaRatioUp->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   DY_eejj_2017_AlphaRatioDown->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   DY_eejj_2017_SFUp->Fill((Electron1+Electron2+BoostJet).M(), wg_SFu);
+   DY_eejj_2017_SFDown->Fill((Electron1+Electron2+BoostJet).M(), wg_SFd);
+   DY_eejj_2017_PUUp->Fill((Electron1+Electron2+BoostJet).M(), wg_PUu);
+   DY_eejj_2017_PUDown->Fill((Electron1+Electron2+BoostJet).M(), wg_PUd);
+   DY_eejj_2017_energyScaleUp->Fill((Ele1_ScaleUp+Ele2_ScaleUp+BoostJet).M(), wg);
+   DY_eejj_2017_energyScaleDown->Fill((Ele1_ScaleDown+Ele2_ScaleDown+BoostJet).M(), wg);
+   DY_eejj_2017_energySigmaUp->Fill((Ele1_SigmaUp+Ele2_SigmaUp+BoostJet).M(), wg);
+   DY_eejj_2017_energySigmaDown->Fill((Ele1_SigmaDown+Ele2_SigmaDown+BoostJet).M(), wg);
+   if(centralJesJer->at(0)==1)DY_eejj_2017_centralJesJer->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   if(JesSFup->at(1)==1)DY_eejj_2017_JesSFUp->Fill((Electron1+Electron2+BoostJet_JESup).M(), wg);
+   if(JesSFdown->at(2)==1)DY_eejj_2017_JesSFDown->Fill((Electron1+Electron2+BoostJet_JESdown).M(), wg);
+   if(JerSFup->at(3)==1)DY_eejj_2017_JerSFUp->Fill((Electron1+Electron2+BoostJet_JERup).M(), wg);
+   if(JerSFdown->at(4)==1)DY_eejj_2017_JerSFDown->Fill((Electron1+Electron2+BoostJet_JERdown).M(), wg);
   }
  }
 
   
- 
 }
 
+
+/**** adding the Alpha ratio and it's uncertainty*******/
+/* alpha ratio and it's statistical error, bin per bin*/
+const double Alpha_ele[9] = {1,1,0.94, 0.76, 0.77, 0.75, 0.81, 1.42, 1};
+const double dAlpha_ele[9] ={0,0,0.08, 0.03, 0.03, 0.03, 0.08, 0.43, 0};
+const double Alpha_mu[9] = {1,1,0.74, 0.78, 0.79, 0.76, 0.91, 1.26, 1}; //last bin is actually 0.86
+const double dAlpha_mu[9] ={0,0,0.06, 0.03, 0.03, 0.03, 0.08, 0.28, 0}; //last bin error is actually 1.1
+for (Int_t j=1;j<=9;j++) {
+/*electron channel histograms*/
+    double alpha_ele=Alpha_ele[j-1];
+    double dalpha_ele=dAlpha_ele[j-1];
+    DY_eejj_2017_AlphaRatio->SetBinContent(j, DY_eejj_2017_AlphaRatio->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_AlphaRatioUp->SetBinContent(j, DY_eejj_2017_AlphaRatioUp->GetBinContent(j) * (alpha_ele+dalpha_ele));
+    DY_eejj_2017_AlphaRatioDown->SetBinContent(j, DY_eejj_2017_AlphaRatioDown->GetBinContent(j) * (alpha_ele-dalpha_ele));
+    DY_eejj_2017_SFUp->SetBinContent(j, DY_eejj_2017_SFUp->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_SFDown->SetBinContent(j, DY_eejj_2017_SFDown->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_PUUp->SetBinContent(j, DY_eejj_2017_PUUp->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_PUDown->SetBinContent(j, DY_eejj_2017_PUDown->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_energyScaleUp->SetBinContent(j, DY_eejj_2017_energyScaleUp->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_energyScaleDown->SetBinContent(j, DY_eejj_2017_energyScaleDown->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_energySigmaUp->SetBinContent(j, DY_eejj_2017_energySigmaUp->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_energySigmaDown->SetBinContent(j, DY_eejj_2017_energySigmaDown->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_centralJesJer->SetBinContent(j, DY_eejj_2017_centralJesJer->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_JesSFUp->SetBinContent(j, DY_eejj_2017_JesSFUp->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_JesSFDown->SetBinContent(j, DY_eejj_2017_JesSFDown->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_JerSFUp->SetBinContent(j, DY_eejj_2017_JerSFUp->GetBinContent(j) * alpha_ele);
+    DY_eejj_2017_JerSFDown->SetBinContent(j, DY_eejj_2017_JerSFDown->GetBinContent(j) * alpha_ele);
+  /* debugging ele*/
+ // cout<< DY_eejj_2017_AlphaRatio->GetBinContenttent(j)/DY_eejj->GetBinContent(j) <<endl;
+ // cout<< DY_eejj_2017_AlphaRatioDown->GetBinContent(j)/DY_eejj->GetBinContent(j) <<endl;
+ // cout<<"================"<<endl; 
+/* muon channel histograms*/
+    double alpha_mu=Alpha_mu[j-1];
+    double dalpha_mu=dAlpha_mu[j-1];
+    DY_mumujj_2017_AlphaRatio->SetBinContent(j, DY_mumujj_2017_AlphaRatio->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_AlphaRatioUp->SetBinContent(j, DY_mumujj_2017_AlphaRatioUp->GetBinContent(j) * (alpha_mu+dalpha_mu));
+    DY_mumujj_2017_AlphaRatioDown->SetBinContent(j, DY_mumujj_2017_AlphaRatioDown->GetBinContent(j) * (alpha_mu-dalpha_mu));
+    DY_mumujj_2017_SFUp->SetBinContent(j, DY_mumujj_2017_SFUp->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_SFDown->SetBinContent(j, DY_mumujj_2017_SFDown->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_PUUp->SetBinContent(j, DY_mumujj_2017_PUUp->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_PUDown->SetBinContent(j, DY_mumujj_2017_PUDown->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_PtResoUp->SetBinContent(j, DY_mumujj_2017_PtResoUp->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_PtResoDown->SetBinContent(j, DY_mumujj_2017_PtResoDown->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_PtCorr->SetBinContent(j, DY_mumujj_2017_PtCorr->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_PtCorrUp->SetBinContent(j, DY_mumujj_2017_PtCorrUp->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_PtCorrDown->SetBinContent(j, DY_mumujj_2017_PtCorrDown->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_centralJesJer->SetBinContent(j, DY_mumujj_2017_centralJesJer->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_JesSFUp->SetBinContent(j, DY_mumujj_2017_JesSFUp->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_JesSFDown->SetBinContent(j, DY_mumujj_2017_JesSFDown->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_JerSFUp->SetBinContent(j, DY_mumujj_2017_JerSFUp->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_JerSFDown->SetBinContent(j, DY_mumujj_2017_JerSFDown->GetBinContent(j) * alpha_mu);
+  /* debugging muons*/
+ //cout<< DY_mumujj_2017_AlphaRatio->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
+ // cout<< DY_mumujj_2017_AlphaRatioUp->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
+ // cout<< DY_mumujj_2017_AlphaRatioDown->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
+ // cout<<"================"<<endl; 
+ // cout<<"================"<<endl; 
+}
+/********/
+
+
+
 TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/SR_syst_DY_Kewkqcd_2017.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/SR_syst_DY_FxFx_2017.root", "RECREATE");
 //TFile *f2 = new TFile("SR_syst_DY_2017.root", "RECREATE");
 
 DY_eejj->Write();

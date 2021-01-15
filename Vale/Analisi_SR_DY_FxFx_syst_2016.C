@@ -367,7 +367,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   }
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
-  //k_ewk=1, k_qcd=1;//uncomment for LO DY samples
+
+k_ewk=1, k_qcd=1;//uncomment for LO DY samples
  
  
  wg = lumi * lumi_wgt * lepsf_evt * PUWeight*k_ewk*k_qcd;
@@ -515,64 +516,40 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
 /**** adding the Alpha ratio and it's uncertainty*******/
 /* alpha ratio and it's statistical error, bin per bin*/
-const double Alpha_ele[9] = {1,1,1, 1.03, 1, 1.03, 1.07, 1.09, 1};
-const double dAlpha_ele[9] ={0,0,0.08, 0.04, 0.04, 0.05, 0.11, 0.27, 0};
-const double Alpha_mu[9] = {1,1,1.01, 0.99, 1.01, 1.06, 1.02, 1.00, 1}; //last bin is actually 0.86
-const double dAlpha_mu[9] ={0,0,0.08, 0.04, 0.04, 0.04, 0.08, 0.16, 0}; //last bin error is actually 1.1
+const double Alpha_ele[10] = {1,1,1, 1.03, 1, 1.03, 1.07, 1.09, 1};
+const double dAlpha_ele[10] ={0,0,0.08, 0.04, 0.04, 0.05, 0.11, 0.27, 0};
+
+const double Alpha_mu[10] = {1,1,1, 1.03, 1, 1.03, 1.07, 1.09, 1};
+const double dAlpha_mu[10] ={0,0,0.08, 0.04, 0.04, 0.05, 0.11, 0.27, 0};
+
+
 for (Int_t j=1;j<=9;j++) {
-/*electron channel histograms*/
-    double alpha_ele=Alpha_ele[j-1];
-    double dalpha_ele=dAlpha_ele[j-1];
-    DY_eejj_2016_AlphaRatio->SetBinContent(j, DY_eejj_2016_AlphaRatio->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_AlphaRatioUp->SetBinContent(j, DY_eejj_2016_AlphaRatioUp->GetBinContent(j) * (alpha_ele+dalpha_ele));
-    DY_eejj_2016_AlphaRatioDown->SetBinContent(j, DY_eejj_2016_AlphaRatioDown->GetBinContent(j) * (alpha_ele-dalpha_ele));
-    DY_eejj_2016_SFUp->SetBinContent(j, DY_eejj_2016_SFUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_SFDown->SetBinContent(j, DY_eejj_2016_SFDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_PUUp->SetBinContent(j, DY_eejj_2016_PUUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_PUDown->SetBinContent(j, DY_eejj_2016_PUDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_energyScaleUp->SetBinContent(j, DY_eejj_2016_energyScaleUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_energyScaleDown->SetBinContent(j, DY_eejj_2016_energyScaleDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_energySigmaUp->SetBinContent(j, DY_eejj_2016_energySigmaUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_energySigmaDown->SetBinContent(j, DY_eejj_2016_energySigmaDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_centralJesJer->SetBinContent(j, DY_eejj_centralJesJer->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_JesSFUp->SetBinContent(j, DY_eejj_2016_JesSFUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_JesSFDown->SetBinContent(j, DY_eejj_2016_JesSFDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_JerSFUp->SetBinContent(j, DY_eejj_2016_JerSFUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2016_JerSFDown->SetBinContent(j, DY_eejj_2016_JerSFDown->GetBinContent(j) * alpha_ele);
-  /* debugging ele*/
- // cout<< DY_eejj_2016_AlphaRatio->GetBinContent(j)/DY_eejj->GetBinContent(j) <<endl;
- // cout<< DY_eejj_2016_AlphaRatioUp->GetBinContent(j)/DY_eejj->GetBinContent(j) <<endl;
- // cout<< DY_eejj_2016_AlphaRatioDown->GetBinContent(j)/DY_eejj->GetBinContent(j) <<endl;
- // cout<<"================"<<endl; 
-/* muon channel histograms*/
     double alpha_mu=Alpha_mu[j-1];
-    double dalpha_mu=dAlpha_mu[j-1];
     DY_mumujj_2016_AlphaRatio->SetBinContent(j, DY_mumujj_2016_AlphaRatio->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_AlphaRatioUp->SetBinContent(j, DY_mumujj_2016_AlphaRatioUp->GetBinContent(j) * (alpha_mu+dalpha_mu));
-    DY_mumujj_2016_AlphaRatioDown->SetBinContent(j, DY_mumujj_2016_AlphaRatioDown->GetBinContent(j) * (alpha_mu-dalpha_mu));
+    DY_mumujj_2016_AlphaRatioUp->SetBinContent(j, DY_mumujj_2016_AlphaRatioUp->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2016_AlphaRatioDown->SetBinContent(j, DY_mumujj_2016_AlphaRatioDown->GetBinContent(j) * alpha_mu);
     DY_mumujj_2016_SFUp->SetBinContent(j, DY_mumujj_2016_SFUp->GetBinContent(j) * alpha_mu);
     DY_mumujj_2016_SFDown->SetBinContent(j, DY_mumujj_2016_SFDown->GetBinContent(j) * alpha_mu);
     DY_mumujj_2016_PUUp->SetBinContent(j, DY_mumujj_2016_PUUp->GetBinContent(j) * alpha_mu);
     DY_mumujj_2016_PUDown->SetBinContent(j, DY_mumujj_2016_PUDown->GetBinContent(j) * alpha_mu);
     DY_mumujj_2016_PtCorrUp->SetBinContent(j, DY_mumujj_2016_PtCorrUp->GetBinContent(j) * alpha_mu);
     DY_mumujj_2016_PtCorrDown->SetBinContent(j, DY_mumujj_2016_PtCorrDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_centralJesJer->SetBinContent(j, DY_mumujj_centralJesJer->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_JesSFUp->SetBinContent(j, DY_mumujj_2016_JesSFUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_JesSFDown->SetBinContent(j, DY_mumujj_2016_JesSFDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_JerSFUp->SetBinContent(j, DY_mumujj_2016_JerSFUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_JerSFDown->SetBinContent(j, DY_mumujj_2016_JerSFDown->GetBinContent(j) * alpha_mu);
-  /* debugging muons*/
- //cout<< DY_mumujj_2016_AlphaRatio->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
- // cout<< DY_mumujj_2016_AlphaRatioUp->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
- // cout<< DY_mumujj_2016_AlphaRatioDown->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
- // cout<<"================"<<endl; 
- // cout<<"================"<<endl; 
+    DY_eejj_centralJesJer->SetBinContent(j, DY_eejj_centralJesJer->GetBinContent(j) * alpha_mu);
+    DY_eejj_2016_JesSFUp->SetBinContent(j, DY_eejj_2016_JesSFUp->GetBinContent(j) * alpha_mu);
+    DY_eejj_2016_JesSFDown->SetBinContent(j, DY_eejj_2016_JesSFDown->GetBinContent(j) * alpha_mu);
+    DY_eejj_2016_JerSFUp->SetBinContent(j, DY_eejj_2016_JerSFUp->GetBinContent(j) * alpha_mu);
+    DY_eejj_2016_JerSFDown->SetBinContent(j, DY_eejj_2016_JerSFDown->GetBinContent(j) * alpha_mu);
+
+  /* debugging */
+  cout<< DY_mumujj_2016_AlphaRatio->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
+
+
 }
-/********/
 
 
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR_syst_DY_Kewkqcd_2016.root", "RECREATE");
+
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR_syst_DY_Kewkqcd_2016-TEST.root", "RECREATE");
 //TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR_syst_DY_FxFx_2016.root", "RECREATE");
 //TFile *f2 = new TFile("SR_syst_DY_2016.root", "RECREATE");
 deltaRmu1FJ1->Write();

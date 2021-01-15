@@ -173,7 +173,8 @@ a_numOfLooseMu->SetAddress(&numOfLooseMu);
 a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
-const double asymbins[10] = {0, 100, 200, 300, 500, 700, 1000, 1500, 3000, 5000};
+
+const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
 
 TH1D *n_best_Vtx_bef = new TH1D ("n_best_Vtx_bef", "n_best_Vtx_bef", 100,0, 100);
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
@@ -192,6 +193,11 @@ TH1D *M_eeJ_Z = new TH1D ("M_eeJ_Z", "M_eeJ_Z", 9, asymbins);
 TH1D *pt_ee_Z = new TH1D ("pt_ee_Z", "pt_ee_Z", 100, 0, 1000);
 TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 10, 80, 100);
 TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 10, 80, 100);
+
+/*****************************************/
+TH1D *M_eeJ_CR = new TH1D ("M_eeJ_CR", "M_eeJ_CR", 9, asymbins);
+TH1D *M_mumuJ_CR = new TH1D ("M_mumuJ_CR", "M_mumuJ_CR", 9, asymbins);
+/*****************************************/
 
 TLorentzVector Muon1;
 TLorentzVector Muon2;
@@ -267,6 +273,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
   }
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
+  k_qcd=1, k_ewk=1;
+
 
  if (Muon_pt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
   if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
@@ -277,27 +285,26 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
    mmumu= (Muon1+Muon2).M();
   // k = 1.067 - 0.000112*mmumu + 3.176*exp(1) - 8*pow(mmumu,2) - 4.068*exp(1) - 12*pow(mmumu,3);  //k factor implemented by Kerstin
   
-   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd; 
+   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd*pu_w; 
 
    if(mmumu > 100 && mmumu < 300){
-    M_mumu_100300->Fill(mmumu,wg*pu_w);
+    M_mumu_100300->Fill(mmumu,wg);
    }
    if(mmumu >50 && mmumu < 130){
     n_best_Vtx->Fill(nBestVtx, wg);
-    n_best_Vtx_w->Fill(nBestVtx, wg*pu_w);
-    M_mumu_Z_50130->Fill(mmumu,wg*pu_w);
+    n_best_Vtx_w->Fill(nBestVtx, wg);
+    M_mumu_Z_50130->Fill(mmumu,wg);
    }
-
-   if(mmumu >= 60 && mmumu <= 120) M_mumu_Zpeak->Fill((Muon1+Muon2).M(), wg*pu_w);
- 
-   if (mmumu < 300){
-    M_mumuJ->Fill((Muon1+Muon2+BoostJet).M(),wg*pu_w);  
-    pt_mumu->Fill(Muon1.Pt() + Muon2.Pt(), wg*pu_w);
-    if (mmumu > 60 && mmumu < 120){
-     M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M(),wg*pu_w);
-     pt_mumu_Z->Fill(Muon1.Pt() + Muon2.Pt(), wg*pu_w);
+   if (mmumu >=150 && mmumu <= 300){
+    M_mumuJ->Fill((Muon1+Muon2+BoostJet).M(),wg);  
+    pt_mumu->Fill(Muon1.Pt() + Muon2.Pt(), wg);
+   }
+    if (mmumu >= 60 && mmumu <= 120){
+     M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M(),wg);
+     pt_mumu_Z->Fill(Muon1.Pt() + Muon2.Pt(), wg);
+     M_mumu_Zpeak->Fill((Muon1+Muon2).M(), wg);
     }
-   }
+   
   }
  }
  if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
@@ -310,32 +317,32 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
     mee = (Electron1+Electron2).M();
     //k = 1.067 - 0.000112*mee + 3.176*exp(1) - 8*pow(mee,2) - 4.068*exp(1) - 12*pow(mee,3); //k factor implemented by Kerstin
 
-    wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;
-    if(mee > 100 && mee < 300){
-     M_ee_100300->Fill(mee,wg*pu_w);
+    wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd*pu_w;
+
+    if(mee >= 100 && mee <= 300){
+     M_ee_100300->Fill(mee,wg);
     }
     if(mee > 50 && mee < 130){
-    M_ee_Z_50130->Fill(mee,wg*pu_w);
+    M_ee_Z_50130->Fill(mee,wg);
    } 
- 
-   if(mee >= 60 && mee <= 120) M_ee_Zpeak->Fill((Electron1+Electron2).M(), wg*pu_w);
-   
-   if (mee < 300){
-    M_eeJ->Fill((Electron1+Electron2+BoostJet).M(),wg*pu_w);
-    pt_ee ->Fill(Electron1.Pt() + Electron2.Pt(), wg*pu_w);
-    if (mee > 60 && mee < 120){
-     M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M(),wg*pu_w);
-     pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt(), wg*pu_w);
-    }
+   if (mee>=150 && mee <= 300){
+    M_eeJ->Fill((Electron1+Electron2+BoostJet).M(),wg);
+    pt_ee ->Fill(Electron1.Pt() + Electron2.Pt(), wg);
    }
+   if (mee >= 60 && mee <= 120){
+     M_ee_Zpeak->Fill((Electron1+Electron2).M(), wg);
+     M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M(),wg);
+     pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt(), wg);
+    } 
+
    
   }
  } 
  
 }
 
-TFile *f = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_DY_Kewkqcd_2016.root", "RECREATE"); 
-TFile *f2 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_DY_Kewkqcd_2016.root", "RECREATE"); 
+//TFile *f = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_DY_Kewkqcd_2016.root", "RECREATE"); 
+TFile *f2 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_DY_2016.root", "RECREATE"); 
 n_best_Vtx_w->Write();
 n_best_Vtx_bef->Write();
 M_mumu_100300->Write();
@@ -353,8 +360,11 @@ pt_mumu_Z->Write();
 M_mumu_Zpeak->Write();
 M_ee_Zpeak->Write();
 
-f->Write();
-f->Close();
+M_eeJ_CR->Write();
+M_mumuJ_CR->Write();
+
+//f->Write();
+//f->Close();
 f2->Write();
 f2->Close();
 }

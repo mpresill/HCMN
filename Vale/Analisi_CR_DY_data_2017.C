@@ -60,9 +60,9 @@ double numOfHighptEle, numOfVetoEle, numOfHighptMu, numOfLooseMu, numOfBoostedJe
 double lepsf_evt, lumi_wgt, trueInteractions, PUWeight;
 int nBestVtx; 
 
-//Branch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
-//TBranch *a_HLT_Ele35_WPTight_Gsf=a_->GetBranch("HLT_Ele35_WPTight_Gsf");
-//TBranch *a_HLT_Photon200=a_->GetBranch("HLT_Photon200");
+/*TBranch *a_HLT_Ele115_CaloIdVT_GsfTrkIdT=a_->GetBranch("HLT_Ele115_CaloIdVT_GsfTrkIdT");
+TBranch *a_HLT_Ele35_WPTight_Gsf=a_->GetBranch("HLT_Ele35_WPTight_Gsf");
+TBranch *a_HLT_Photon200=a_->GetBranch("HLT_Photon200");*/
 TBranch *a_HLT_Mu50=a_->GetBranch("HLT_Mu50");
 TBranch *a_HLT_OldMu100=a_->GetBranch("HLT_OldMu100");
 TBranch *a_HLT_TkMu50=a_->GetBranch("HLT_TkMu50");
@@ -102,9 +102,9 @@ TBranch *a_numOfLooseMu=a_->GetBranch("numOfLooseMu");
 TBranch *a_numOfBoostedJets=a_->GetBranch("numOfBoostedJets");
 TBranch *a_numOfVetoEle=a_->GetBranch("numOfVetoEle");
 
-//a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele115);
-//a_HLT_Ele35_WPTight_Gsf->SetAddress(&HLT_Ele35);
-//a_HLT_Photon200->SetAddress(&HLT_Photon200); 
+/*a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele115);
+a_HLT_Ele35_WPTight_Gsf->SetAddress(&HLT_Ele35);
+a_HLT_Photon200->SetAddress(&HLT_Photon200); */
 a_HLT_Mu50->SetAddress(&HLT_Mu50);
 a_HLT_OldMu100->SetAddress(&HLT_OldMu100);
 a_HLT_TkMu50->SetAddress(&HLT_TkMu50);
@@ -144,17 +144,19 @@ a_numOfLooseMu->SetAddress(&numOfLooseMu);
 a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
-const double asymbins[10] = {0, 100, 200, 300, 500, 700, 1000, 1500, 3000, 5000};
+const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
 
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
 TH1D *M_mumu_100300 = new TH1D ("M_mumu_100300", "M_mumu_100300", 200, 100, 300);
 TH1D *M_ee_100300 = new TH1D ("M_ee_100300", "M_ee_100300", 200, 100, 300);
 TH1D *M_mumu_Z_50130 = new TH1D ("M_mumu_Z_50130", "M_mumu_Z_50130", 80, 50, 130);
 TH1D *M_ee_Z_50130 = new TH1D ("M_ee_Z_50130", "M_ee_Z_50130", 80, 50, 130);
+
 TH1D *M_mumuJ = new TH1D ("M_mumuJ", "M_mumuJ", 9, asymbins);
 TH1D *pt_mumu = new TH1D ("pt_mumu", "pt_mumu", 100, 0, 1000);
 TH1D *M_eeJ = new TH1D ("M_eeJ", "M_eeJ", 9, asymbins);
 TH1D *pt_ee = new TH1D ("pt_ee", "pt_ee", 100, 0, 1000);
+
 TH1D *M_mumuJ_Z = new TH1D ("M_mumuJ_Z", "M_mumuJ_Z", 9, asymbins);
 TH1D *pt_mumu_Z = new TH1D ("pt_mumu_Z", "pt_mumu_Z", 100, 0, 1000);
 TH1D *M_eeJ_Z = new TH1D ("M_eeJ_Z", "M_eeJ_Z", 9, asymbins);
@@ -171,7 +173,7 @@ TLorentzVector BoostJet;
 cout << a_->GetEntries() << endl;
 int tot=0, muejj = 0;
 double wg = 0;
-int lumi = 58872; //2017: 41529 //2016: 35920
+int lumi = 41529; //2017: 41529 //2016: 35920
 bool veto_ele = false;
 double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 double mee = 0, mmumu = 0;
@@ -191,25 +193,25 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
    Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
    Muon2.SetPtEtaPhiE(Muon_pt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
+
+
    mmumu= (Muon1+Muon2).M();
-
-    if (mmumu < 300){
-     M_mumuJ->Fill((Muon1+Muon2+BoostJet).M());
-     pt_mumu->Fill(Muon1.Pt() + Muon2.Pt());
-
-    if (mmumu > 80 && mmumu < 100){
-     M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M());
-     pt_mumu_Z->Fill(Muon1.Pt() + Muon2.Pt());
+    if(mmumu > 100 && mmumu < 300){
+        M_mumu_100300->Fill(mmumu);
     }
-    if(mmumu > 100 && mmumu < 300) M_mumu_100300->Fill(mmumu);
-
-    if(mmumu >= 80 && mmumu <= 100) M_mumu_Zpeak->Fill(mmumu); 
-
     if(mmumu >50 && mmumu < 130){
      M_mumu_Z_50130->Fill(mmumu);
-     n_best_Vtx->Fill(nBestVtx);
-    }
    }
+   if (mmumu >=150 && mmumu <= 300){
+    M_mumuJ->Fill((Muon1+Muon2+BoostJet).M());  
+    pt_mumu->Fill(Muon1.Pt() + Muon2.Pt());
+   }
+    if (mmumu >= 60 && mmumu <= 120){
+     M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M());
+     pt_mumu_Z->Fill(Muon1.Pt() + Muon2.Pt());
+     M_mumu_Zpeak->Fill((Muon1+Muon2).M());
+    }
 
 
   }
@@ -221,30 +223,30 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
 
-   mee = (Electron1+Electron2).M();
-   if (mee < 300){
-    M_eeJ->Fill((Electron1+Electron2+BoostJet).M());
-    pt_ee->Fill(Electron1.Pt() + Electron2.Pt());
-
-    if (mee > 80 && mee < 100){
+    mee = (Electron1+Electron2).M();
+    if(mee >= 100 && mee <= 300){
+     M_ee_100300->Fill(mee);
+    }
+    if(mee > 50 && mee < 130){
+        M_ee_Z_50130->Fill(mee);
+    } 
+    if (mee>=150 && mee <= 300){
+        M_eeJ->Fill((Electron1+Electron2+BoostJet).M());
+        pt_ee ->Fill(Electron1.Pt() + Electron2.Pt());
+    }
+    if (mee >= 60 && mee <= 120){
+     M_ee_Zpeak->Fill((Electron1+Electron2).M());
      M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M());
      pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt());
     }
   
-    if(mee >= 80 && mee <= 100) M_ee_Zpeak->Fill(mee);
-
-    if(mee > 100 && mee < 300) M_ee_100300->Fill(mee);
-    
-    if(mee > 50 && mee < 130) M_ee_Z_50130->Fill(mee);
-    
-   }
   }
  }
 
 }
 
 //TFile *f = new TFile("plots/CR_DY_data_ele_2017.root", "RECREATE");
-TFile *f = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_data_mu_2017.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_data_mu_2017.root", "RECREATE");
 
 n_best_Vtx->Write();
 M_mumu_100300->Write();
