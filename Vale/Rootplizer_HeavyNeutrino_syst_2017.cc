@@ -1342,12 +1342,10 @@ std::tuple<double, double, double> elesf(double eta, double pt){
 //Electorn Sf for HEEPv7.0 taken from https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgammaRunIIRecommendations
   double elesf=0,  elesf_d=0, elesf_u=0;
   //Barrel (EB)
- if(fabs(eta) < 1.4442) elesf = 0.967; elesf_d = 0.966; elesf_u = 0.968; // stat 0.001
+ if(fabs(eta) < 1.4442){ elesf = 0.967; elesf_d = 0.966; elesf_u = 0.968;} // stat 0.001
   //Endcap (EE)
- if(fabs(eta) >= 1.566 && fabs(eta) < 2.5)elesf = 0.973; elesf_d = 0.971; elesf_u = 0.975; // stat 0.002
+ if(fabs(eta) >= 1.566 && fabs(eta) < 2.5){elesf = 0.973; elesf_d = 0.971; elesf_u = 0.975;} // stat 0.002
  return std::make_tuple(elesf, elesf_d, elesf_u);
-
- 
 //syst err:
 //  - barrel:
 //      1% for pT < 90 GeV
@@ -1596,18 +1594,18 @@ double get_wgtlumi(string FileName){
  if((FileName.find("eejj_17_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
  // DY NLO FxFx samples
- if(FileName.find("DY_FxFx") != std::string::npos) wgt=6529.0/(27413121+182359906*43/5443); //ok
+ if(FileName.find("DY_FxFx") != std::string::npos) wgt=6077.22/208332373.7; //ok: la cross section non è da XDBS, ma quella dei coreani (stessa del LO, ma corretta con kfactor)
  
 
  // DY HT binned LO samples
- if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.7/9344037;//ok
+ /*if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.7/9344037;//ok
  if(FileName.find("DY_HT100to200") != std::string::npos) wgt=161.1/3950339;//ok
  if(FileName.find("DY_HT200to400") != std::string::npos) wgt=48.66/(10298412 + (10728447*11/485) + 1200863);//ok
  if(FileName.find("DY_HT400to600") != std::string::npos) wgt=6.968/((9533635*3/631)+1124294);//ok
  if(FileName.find("DY_HT600to800") != std::string::npos) wgt=1.743/(8153358*4/390); //ok
  if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=0.8052/(3089861*2/175); //ok
  if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=0.1933/(625517*6/77); //ok
- //if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=/; //marked with "submit failed"
+ //if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=/; //marked with "submit failed"*/
 
  return wgt;
  }

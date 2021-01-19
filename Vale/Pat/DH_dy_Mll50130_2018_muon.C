@@ -135,7 +135,7 @@ d->Rebin(bin);
 //============================================
 // to change the maximum (if needed) 
 //============================================
-d->SetMaximum(8000);    //do we need this? 
+d->SetMaximum(9000);    //do we need this? 
 d->SetMinimum(0.5);   //do we need this? 
 canv->cd();
 

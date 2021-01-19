@@ -98,33 +98,31 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   Output = "outputFile"; 
   TFile *oldfile = TFile::Open(Input);
   TTree *readingtree = new TTree("readingtree","readingtree"); readingtree = (TTree*) oldfile->Get("TNT/BOOM");
- 
- // Rochester corrections
-  RoccoR  rc("RoccoR2018.txt");
-  GEScaleSyst *GE = new GEScaleSyst(); 
- 
+
+  // Rochester corrections
+  RoccoR  rc("RoccoR2016.txt");
+  GEScaleSyst *GE = new GEScaleSyst();
   /////
   //   Variables to read
   /////
+  // PDF syst
+  int rEVENT_PDFv4_lhaid; rEVENT_PDFv4_lhaid = 0; TBranch* b_rEVENT_PDFv4_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv4_lhaid",&rEVENT_PDFv4_lhaid,&b_rEVENT_PDFv4_lhaid);
+  double rEVENT_PDFv4WeightUp; rEVENT_PDFv4WeightUp = 0; TBranch* b_rEVENT_PDFv4WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightUp",&rEVENT_PDFv4WeightUp,&b_rEVENT_PDFv4WeightUp);
+  double rEVENT_PDFv4WeightDown; rEVENT_PDFv4WeightDown = 0; TBranch* b_rEVENT_PDFv4WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightDown",&rEVENT_PDFv4WeightDown,&b_rEVENT_PDFv4WeightDown);
+  double rEVENT_PDFv4WeightCentral; rEVENT_PDFv4WeightCentral = 0; TBranch* b_rEVENT_PDFv4WeightCentral = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightCentral",&rEVENT_PDFv4WeightCentral,&b_rEVENT_PDFv4WeightCentral);
+  double rEVENT_PDFv4WeightMean; rEVENT_PDFv4WeightMean = 0; TBranch* b_rEVENT_PDFv4WeightMean = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightMean",&rEVENT_PDFv4WeightMean,&b_rEVENT_PDFv4WeightMean);
+  double rEVENT_PDFv4WeightStdDev; rEVENT_PDFv4WeightStdDev = 0; TBranch* b_rEVENT_PDFv4WeightStdDev = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightStdDev",&rEVENT_PDFv4WeightStdDev,&b_rEVENT_PDFv4WeightStdDev);
+
+
+
   //Trigger
+  int rHLT_Ele27_WPTight_Gsf; rHLT_Ele27_WPTight_Gsf = 0; TBranch* b_rHLT_Ele27_WPTight_Gsf = 0; readingtree->SetBranchAddress("HLT_Ele27_WPTight_Gsf",&rHLT_Ele27_WPTight_Gsf,&b_rHLT_Ele27_WPTight_Gsf);
+  int rHLT_Photon175; rHLT_Photon175 = 0; TBranch* b_rHLT_Photon175 = 0; readingtree->SetBranchAddress("HLT_Photon175",&rHLT_Photon175,&b_rHLT_Photon175);
   int rHLT_Ele115_CaloIdVT_GsfTrkIdT; rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; TBranch* b_rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; readingtree->SetBranchAddress("HLT_Ele115_CaloIdVT_GsfTrkIdT",&rHLT_Ele115_CaloIdVT_GsfTrkIdT,&b_rHLT_Ele115_CaloIdVT_GsfTrkIdT);
-  int rHLT_Ele32_WPTight_Gsf; rHLT_Ele32_WPTight_Gsf = 0; TBranch* b_rHLT_Ele32_WPTight_Gsf = 0; readingtree->SetBranchAddress("HLT_Ele32_WPTight_Gsf",&rHLT_Ele32_WPTight_Gsf,&b_rHLT_Ele32_WPTight_Gsf);
-  int rHLT_Photon200; rHLT_Photon200 = 0; TBranch* b_rHLT_Photon200 = 0; readingtree->SetBranchAddress("HLT_Photon200",&rHLT_Photon200,&b_rHLT_Photon200);  
   int rHLT_Mu50; rHLT_Mu50 = 0; TBranch* b_rHLT_Mu50 = 0; readingtree->SetBranchAddress("HLT_Mu50",&rHLT_Mu50,&b_rHLT_Mu50);
   int rHLT_TkMu50; rHLT_TkMu50 = 0; TBranch* b_rHLT_TkMu50 = 0; readingtree->SetBranchAddress("HLT_TkMu50",&rHLT_TkMu50,&b_rHLT_TkMu50);
   int rHLT_OldMu100; rHLT_OldMu100 = 0; TBranch* b_rHLT_OldMu100 = 0; readingtree->SetBranchAddress("HLT_OldMu100",&rHLT_OldMu100,&b_rHLT_OldMu100);
   int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
-
-//Gen variables:
-  vector<double>* rGen_pt; rGen_pt = 0; TBranch* b_rGen_pt = 0; readingtree->SetBranchAddress("Gen_pt",&rGen_pt,&b_rGen_pt);
-  vector<double>* rGen_eta; rGen_eta = 0; TBranch* b_rGen_eta = 0; readingtree->SetBranchAddress("Gen_eta",&rGen_eta,&b_rGen_eta);
-  vector<double>* rGen_phi; rGen_phi = 0; TBranch* b_rGen_phi = 0; readingtree->SetBranchAddress("Gen_phi",&rGen_phi,&b_rGen_phi);
-  vector<double>* rGen_energy; rGen_energy = 0; TBranch* b_rGen_energy = 0; readingtree->SetBranchAddress("Gen_energy",&rGen_energy,&b_rGen_energy);
-  vector<double>* rGen_charge; rGen_charge = 0; TBranch* b_rGen_charge = 0; readingtree->SetBranchAddress("Gen_charge",&rGen_charge,&b_rGen_charge);
-  vector<double>* rGen_pdg_id; rGen_pdg_id = 0; TBranch* b_rGen_pdg_id = 0; readingtree->SetBranchAddress("Gen_pdg_id",&rGen_pdg_id,&b_rGen_pdg_id);
-  vector<double>* rGen_motherpdg_id; rGen_motherpdg_id = 0; TBranch* b_rGen_motherpdg_id = 0; readingtree->SetBranchAddress("Gen_motherpdg_id",&rGen_motherpdg_id,&b_rGen_motherpdg_id);
-  vector<double>* rGen_numDaught; rGen_numDaught = 0; TBranch* b_rGen_numDaught = 0; readingtree->SetBranchAddress("Gen_numDaught",&rGen_numDaught,&b_rGen_numDaught);
-  vector<double>* rGen_numMother; rGen_numMother = 0; TBranch* b_rGen_numMother = 0; readingtree->SetBranchAddress("Gen_numMother",&rGen_numMother,&b_rGen_numMother);
 
   //PU and systematics
   double rPUWeight; rPUWeight = 0; TBranch* b_rPUWeight = 0; readingtree->SetBranchAddress("PUWeight",&rPUWeight,&b_rPUWeight);
@@ -132,7 +130,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   double rMinBiasDownWeight; rMinBiasDownWeight = 0; TBranch* b_rMinBiasDownWeight = 0; readingtree->SetBranchAddress("MinBiasDownWeight",&rMinBiasDownWeight,&b_rMinBiasDownWeight);
   double rtrueInteractions; rtrueInteractions = 0; TBranch* b_rtrueInteractions = 0; readingtree->SetBranchAddress("trueInteractions",&rtrueInteractions,&b_rtrueInteractions);
   int rnBestVtx; rnBestVtx = 0; TBranch* b_rnBestVtx = 0; readingtree->SetBranchAddress("nBestVtx",&rnBestVtx,&b_rnBestVtx);
-
+ 
   //MET
   double rMet_type1PF_pt; rMet_type1PF_pt = 0; TBranch* b_rMet_type1PF_pt = 0; 
   readingtree->SetBranchAddress("Met_type1PF_pt",&rMet_type1PF_pt,&b_rMet_type1PF_pt);
@@ -147,7 +145,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<double>* rMuon_px; rMuon_px = 0; TBranch* b_rMuon_px = 0; readingtree->SetBranchAddress("Muon_px",&rMuon_px,&b_rMuon_px);
   vector<double>* rMuon_py; rMuon_py = 0; TBranch* b_rMuon_py = 0; readingtree->SetBranchAddress("Muon_py",&rMuon_py,&b_rMuon_py);
   vector<double>* rMuon_pz; rMuon_pz = 0; TBranch* b_rMuon_pz = 0; readingtree->SetBranchAddress("Muon_pz",&rMuon_pz,&b_rMuon_pz);
- vector<int>* rMuon_TLayers; rMuon_TLayers = 0; TBranch* b_rMuon_TLayers = 0; readingtree->SetBranchAddress("Muon_TLayers", &rMuon_TLayers, &b_rMuon_TLayers); 
+  vector<int>* rMuon_TLayers; rMuon_TLayers = 0; TBranch* b_rMuon_TLayers = 0; readingtree->SetBranchAddress("Muon_TLayers", &rMuon_TLayers, &b_rMuon_TLayers);
   //Isolation
   vector<double>* rMuon_trackIso; rMuon_trackIso = 0; TBranch* b_rMuon_trackIso = 0;
   readingtree->SetBranchAddress("Muon_trackIso",&rMuon_trackIso,&b_rMuon_trackIso);
@@ -272,24 +270,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    //   New variables
    /////
    //Trigger:
+   int HLT_Ele27_WPTight_Gsf; newtree->Branch("HLT_Ele27_WPTight_Gsf",&HLT_Ele27_WPTight_Gsf);
+   int HLT_Photon175; newtree->Branch("HLT_Photon175",&HLT_Photon175);
    int HLT_Ele115_CaloIdVT_GsfTrkIdT; newtree->Branch("HLT_Ele115_CaloIdVT_GsfTrkIdT",&HLT_Ele115_CaloIdVT_GsfTrkIdT);
-   int HLT_Ele32_WPTight_Gsf; newtree->Branch("HLT_Ele32_WPTight_Gsf",&HLT_Ele32_WPTight_Gsf);
-   int HLT_Photon200; newtree->Branch("HLT_Photon200",&HLT_Photon200);
    int HLT_Mu50; newtree->Branch("HLT_Mu50",&HLT_Mu50);
    int HLT_TkMu50; newtree->Branch("HLT_TkMu50",&HLT_TkMu50);
    int HLT_OldMu100; newtree->Branch("HLT_OldMu100",&HLT_OldMu100);
    int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
-
- //Gen variables
-  vector<double>* Gen_pt = new std::vector<double>; newtree->Branch("Gen_pt",&Gen_pt);
-  vector<double>* Gen_eta = new std::vector<double>; newtree->Branch("Gen_eta",&Gen_eta);
-  vector<double>* Gen_phi = new std::vector<double>; newtree->Branch("Gen_phi",&Gen_phi);
-  vector<double>* Gen_charge = new std::vector<double>; newtree->Branch("Gen_charge",&Gen_charge);
-  vector<double>* Gen_energy = new std::vector<double>; newtree->Branch("Gen_energy",&Gen_energy);
-  vector<double>* Gen_pdg_id = new std::vector<double>; newtree->Branch("Gen_pdg_id",&Gen_pdg_id);
-  vector<double>* Gen_motherpdg_id = new std::vector<double>; newtree->Branch("Gen_motherpdg_id",&Gen_motherpdg_id);
-  vector<double>* Gen_numDaught = new std::vector<double>; newtree->Branch("Gen_numDaught",&Gen_numDaught);
-  vector<double>* Gen_numMother = new std::vector<double>; newtree->Branch("Gen_numMother",&Gen_numMother);
 
    //Muons:
    vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
@@ -367,13 +354,22 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* BoostedJet_T = new std::vector<double>; newtree->Branch("BoostedJet_T",&BoostedJet_T);
    vector<double>* BoostedJet_TLV = new std::vector<double>; newtree->Branch("BoostedJet_TLV",&BoostedJet_TLV);
 
-    //systematics sf tags: 
+   //systematics sf tags: 
    vector<double>* centralJesJer = new std::vector<double>; newtree->Branch("centralJesJer",&centralJesJer);
    vector<double>* JesSFup = new std::vector<double>; newtree->Branch("JesSFup",&JesSFup);
    vector<double>* JesSFdown = new std::vector<double>; newtree->Branch("JesSFdown",&JesSFdown);
    vector<double>* JerSFup = new std::vector<double>; newtree->Branch("JerSFup",&JerSFup);
    vector<double>* JerSFdown = new std::vector<double>; newtree->Branch("JerSFdown",&JerSFdown);
-   
+
+   //PDF syst
+   int EVENT_PDFv4_lhaid; newtree->Branch("EVENT_PDFv4_lhaid",&EVENT_PDFv4_lhaid);
+   double EVENT_PDFv4WeightUp; newtree->Branch("EVENT_PDFv4WeightUp",&EVENT_PDFv4WeightUp);
+   double EVENT_PDFv4WeightDown; newtree->Branch("EVENT_PDFv4WeightDown",&EVENT_PDFv4WeightDown);
+   double EVENT_PDFv4WeightCentral; newtree->Branch("EVENT_PDFv4WeightCentral",&EVENT_PDFv4WeightCentral);
+   double EVENT_PDFv4WeightMean; newtree->Branch("EVENT_PDFv4WeightMean",&EVENT_PDFv4WeightMean);
+   double EVENT_PDFv4WeightStdDev; newtree->Branch("EVENT_PDFv4WeightStdDev",&EVENT_PDFv4WeightStdDev);
+
+
    //PU:
    double PileupWeight; newtree->Branch("PileupWeight",&PileupWeight);
    double PUWeight; newtree->Branch("PUWeight",&PUWeight);
@@ -482,7 +478,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double elesf_ele2_d; newtree->Branch("elesf_ele2_d",&elesf_ele2_d);
    double elesf_ele1_u; newtree->Branch("elesf_ele1_u",&elesf_ele1_u);
    double elesf_ele2_u; newtree->Branch("elesf_ele2_u",&elesf_ele2_u);
- 
+
    double musf_trigger_mu1; newtree->Branch("musf_trigger_mu1",&musf_trigger_mu1);
    double musf_ID_mu1; newtree->Branch("musf_ID_mu1",&musf_ID_mu1);
    double musf_iso_mu1; newtree->Branch("musf_iso_mu1",&musf_iso_mu1);
@@ -493,7 +489,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double musf_iso_mu2; newtree->Branch("musf_iso_mu2",&musf_iso_mu2);
    double musf_reco_mu2; newtree->Branch("musf_reco_mu2",&musf_reco_mu2);
    double musf_tot_mu2; newtree->Branch("musf_tot_mu2",&musf_tot_mu2);
- 
+
    double musf_trigger_mu1_u; newtree->Branch("musf_trigger_mu1_u",&musf_trigger_mu1_u);
    double musf_ID_mu1_u; newtree->Branch("musf_ID_mu1_u",&musf_ID_mu1_u);
    double musf_iso_mu1_u; newtree->Branch("musf_iso_mu1_u",&musf_iso_mu1_u);
@@ -519,6 +515,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double lepsf_evt; newtree->Branch("lepsf_evt",&lepsf_evt);
    double lepsf_evt_u; newtree->Branch("lepsf_evt_u",&lepsf_evt_u);
    double lepsf_evt_d; newtree->Branch("lepsf_evt_d",&lepsf_evt_d);
+
    //Event type
    //int evt_type; newtree->Branch("evt_type",&evt_type);
    double eejj_l; newtree->Branch("eejj_l",&eejj_l);
@@ -531,7 +528,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double TRmu; newtree->Branch("TRmu",&TRmu);
    double DYRe; newtree->Branch("DYRe",&DYRe);
    double DYRmu; newtree->Branch("DYRmu",&DYRmu);
-    
+
+
  
    //reco 4-vectors:
    TLorentzVector Ele1(0,0,0,0);
@@ -548,34 +546,28 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //Read branches
     //Trigger:
     
-    //b_rHLT_Ele27_eta2p1_WPLoose_Gsf->GetEntry(en);
-    //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
+    b_rHLT_Ele27_WPTight_Gsf->GetEntry(en);
+    b_rHLT_Photon175->GetEntry(en);
     b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
-    b_rHLT_Ele32_WPTight_Gsf->GetEntry(en);
-    b_rHLT_Photon200->GetEntry(en);
     b_rHLT_Mu50->GetEntry(en);
-    b_rHLT_TkMu50->GetEntry(en);   
-    b_rHLT_OldMu100->GetEntry(en);
+    b_rHLT_TkMu50->GetEntry(en);
+    b_rHLT_OldMu100->GetEntry(en); 
     b_rHLT_TkMu100->GetEntry(en);
+ 
+    //PDF syst
+    b_rEVENT_PDFv4_lhaid->GetEntry(en);
+    b_rEVENT_PDFv4WeightUp->GetEntry(en);
+    b_rEVENT_PDFv4WeightCentral->GetEntry(en);
+    b_rEVENT_PDFv4WeightDown->GetEntry(en);
+    b_rEVENT_PDFv4WeightMean->GetEntry(en);
+    b_rEVENT_PDFv4WeightStdDev->GetEntry(en);
 
-    //PU:
+     //PU:
     b_rPUWeight->GetEntry(en);
     b_rMinBiasUpWeight->GetEntry(en);
     b_rMinBiasDownWeight->GetEntry(en);
     b_rnBestVtx->GetEntry(en);
     b_rtrueInteractions->GetEntry(en);
-
-    //Gen variables
-    b_rGen_pt->GetEntry(en);
-    b_rGen_eta->GetEntry(en);
-    b_rGen_phi->GetEntry(en);
-    b_rGen_charge->GetEntry(en);
-    b_rGen_energy->GetEntry(en);
-    b_rGen_pdg_id->GetEntry(en);
-    b_rGen_motherpdg_id->GetEntry(en);
-    b_rGen_numDaught->GetEntry(en);
-    b_rGen_numMother->GetEntry(en);
-
     //Muons
     //Kinematics:
     b_rMuon_pt->GetEntry(en);
@@ -586,8 +578,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rMuon_px->GetEntry(en);
     b_rMuon_py->GetEntry(en);
     b_rMuon_pz->GetEntry(en);
-    b_rMuon_TLayers->GetEntry(en);
     b_rMuon_charge->GetEntry(en);
+    b_rMuon_TLayers->GetEntry(en);
     //Isolation
     b_rMuon_trackIso->GetEntry(en);
     b_rMuon_TrackerIso->GetEntry(en);
@@ -666,28 +658,18 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //corrections
     b_rBoostedJet_Uncorr_pt->GetEntry(en);
     b_rBoostedJet_JesSF->GetEntry(en);
-     b_rBoostedJet_JerSF->GetEntry(en);
+    b_rBoostedJet_JerSF->GetEntry(en);
     //systematics Jes
     b_rBoostedJet_JesSFup->GetEntry(en);
     b_rBoostedJet_JesSFdown->GetEntry(en);
     //systematics Jer
     b_rBoostedJet_JerSFup->GetEntry(en);
     b_rBoostedJet_JerSFdown->GetEntry(en);
+
     //b-tagging:
     b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);    
     //MET
     b_rMet_type1PF_pt->GetEntry(en);
-
-    //Gen variables to be written
-    Gen_pt->clear();    
-    Gen_eta->clear();    
-    Gen_phi->clear();    
-    Gen_charge->clear();    
-    Gen_energy->clear();    
-    Gen_pdg_id->clear();    
-    Gen_motherpdg_id->clear();    
-    Gen_numDaught->clear();    
-    Gen_numMother->clear();    
 
     //New var clear (vectors):
     Muon_pt->clear();
@@ -759,24 +741,26 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_T->clear();
     BoostedJet_TLV->clear();
     //evt type systematics
-    centralJesJer ->clear();
-    JesSFup ->clear();
+    centralJesJer ->clear(); 
+    JesSFup ->clear(); 
     JesSFdown ->clear();
-    JerSFup ->clear();
+    JerSFup ->clear(); 
     JerSFdown ->clear();
 
+
     //new var inizialize (scalars):
-    //HLT_Ele27_eta2p1_WPLoose_Gsf = -999;
-    //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = -999;
+    HLT_Ele27_WPTight_Gsf = -999;
+    HLT_Photon175 = -999;
     HLT_Ele115_CaloIdVT_GsfTrkIdT = -999;
-    HLT_Ele32_WPTight_Gsf = -999;
-    HLT_Photon200 = -999;
     HLT_TkMu50 = -999;
     HLT_Mu50 = -999;
     HLT_TkMu100 = -999;
     HLT_OldMu100 = -999;
 
-    PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999;
+    //PDF syst
+    EVENT_PDFv4WeightStdDev = -999; EVENT_PDFv4WeightCentral=-999; EVENT_PDFv4WeightMean=-999; EVENT_PDFv4WeightDown=-999; EVENT_PDFv4WeightUp=-999; EVENT_PDFv4_lhaid=-999;
+
+    PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999; 
     Met_type1PF_pt = -999;
 
     numOfHighptMu=0; numOfLooseMu=0; numOfMediumMu=0; numOfTightMu=0;
@@ -807,18 +791,20 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //evt_type = -999;
     eejj_l = 0; emujj_l = 0; mumujj_l = 0; muejj_l = 0;
     SRe = 0; TRe = 0; SRmu = 0; TRmu = 0; DYRe = 0; DYRmu = 0;
-
+    
 
     
-   //HLT_Ele27_eta2p1_WPLoose_Gsf = rHLT_Ele27_eta2p1_WPLoose_Gsf;
-   //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL;
+   HLT_Ele27_WPTight_Gsf = rHLT_Ele27_WPTight_Gsf;
+   HLT_Photon175 = rHLT_Photon175;
    HLT_Ele115_CaloIdVT_GsfTrkIdT = rHLT_Ele115_CaloIdVT_GsfTrkIdT;
-   HLT_Ele32_WPTight_Gsf = rHLT_Ele32_WPTight_Gsf;
-   HLT_Photon200 = rHLT_Photon200; 
    HLT_Mu50 = rHLT_Mu50;
    HLT_TkMu50 = rHLT_TkMu50;
    HLT_OldMu100 = rHLT_OldMu100;
    HLT_TkMu100 = rHLT_TkMu100;
+
+
+   //PDF syst
+    EVENT_PDFv4WeightStdDev = rEVENT_PDFv4WeightStdDev; EVENT_PDFv4WeightMean = rEVENT_PDFv4WeightMean; EVENT_PDFv4WeightCentral=rEVENT_PDFv4WeightCentral; EVENT_PDFv4WeightUp=rEVENT_PDFv4WeightUp; EVENT_PDFv4WeightDown=rEVENT_PDFv4WeightDown; EVENT_PDFv4_lhaid=rEVENT_PDFv4_lhaid;
 
     PUWeight = rPUWeight;
     MinBiasUpWeight = rMinBiasUpWeight;
@@ -829,19 +815,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     PileupWeight = CalculatePileupWeight(trueInteractions);
     lumi_wgt = get_wgtlumi(Input);
    
-    for(uint gen_en = 0; gen_en<rGen_pt->size(); gen_en++){
-      //Gen variables (writing)
-      Gen_pt->push_back(rGen_pt->at(gen_en));
-      Gen_eta->push_back(rGen_eta->at(gen_en));
-      Gen_phi->push_back(rGen_phi->at(gen_en));
-      Gen_charge->push_back(rGen_charge->at(gen_en));
-      Gen_energy->push_back(rGen_energy->at(gen_en));
-      Gen_pdg_id->push_back(rGen_pdg_id->at(gen_en));
-      Gen_motherpdg_id->push_back(rGen_motherpdg_id->at(gen_en));
-      Gen_numDaught->push_back(rGen_numDaught->at(gen_en));
-      Gen_numMother->push_back(rGen_numMother->at(gen_en));
-    }
-    
+   
    int num = 0;
    for(uint mu_en = 0; mu_en<rMuon_pt->size(); mu_en++){
     if( rMuon_pt->at(mu_en)>20 && fabs(rMuon_eta->at(mu_en))<2.4){
@@ -850,15 +824,16 @@ void  filename_(const char*  Input = "", const char*  Output =""){
      if(rMuon_tight->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1) numOfTightMu++;
      if(rMuon_isHighPt->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1){
       numOfHighptMu++;
+
       Muon_pt->push_back(rMuon_pt->at(mu_en));
-     
+
       if(rMuon_pt->at(mu_en) < 200 ){
        double mcSF = rc.kSmearMC(rMuon_charge->at(mu_en), rMuon_pt->at(mu_en), rMuon_eta->at(mu_en), rMuon_phi->at(mu_en), rMuon_TLayers->at(mu_en), gRandom->Rndm(), 0, 0);
        Muon_pt_corr->push_back(rMuon_pt->at(mu_en)*mcSF);
       }
       else{
        num = 49 * gRandom->Rndm();
-       float pt_corr = GE->GEScaleCorrPt(180000+(int)num, (float) rMuon_pt->at(mu_en), (float) rMuon_eta->at(mu_en),(float) rMuon_phi->at(mu_en), (int) rMuon_charge->at(mu_en), false);
+       float pt_corr = GE->GEScaleCorrPt(160000+(int)num, (float) rMuon_pt->at(mu_en), (float) rMuon_eta->at(mu_en),(float) rMuon_phi->at(mu_en), (int) rMuon_charge->at(mu_en), false);
        Muon_pt_corr->push_back((double) pt_corr);
       }
 
@@ -918,12 +893,11 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    
    Met_type1PF_pt = rMet_type1PF_pt;
 
-  if(numOfHighptEle==2 && patElectron_pt->at(0)>150 && patElectron_pt->at(1)>100 && numOfLooseMu==0) eejj_l=1;
+   if(numOfHighptEle==2 && patElectron_pt->at(0)>150 && patElectron_pt->at(1)>100 && numOfLooseMu==0) eejj_l=1;
    if(numOfHighptEle==1 && patElectron_pt->at(0)>150 && numOfHighptMu==1 &&  Muon_pt->at(0)>100) emujj_l=1;
    if(numOfHighptEle==1 && patElectron_pt->at(0)>100 && numOfHighptMu==1 &&  Muon_pt->at(0)>150) muejj_l=1;
    if(numOfHighptMu==2 && Muon_pt->at(0)>150 && Muon_pt->at(1)>100 && numOfVetoEle==0) mumujj_l=1;
-
- 
+   
    if(!((eejj_l==1 || emujj_l==1 || muejj_l==1 || mumujj_l==1))) continue;
 
 
@@ -994,15 +968,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     }
     else Jet_TLV->push_back(false);  
     
-    
-    
-   
-    
 
-    //Jet_isID = JetID_Loose(JetCorr.Pt(),fabs(JetCorr.Eta()),rJet_neutralHadEnergyFraction->at(jet_en),
-      //         rJet_neutralEmEnergyFraction->at(jet_en),rJet_numberOfConstituents->at(jet_en),rJet_muonEnergyFraction->at(jet_en),
-        //       rJet_chargedHadronEnergyFraction->at(jet_en),rJet_chargedMultiplicity->at(jet_en),rJet_chargedEmEnergyFraction->at(jet_en));
-    // cout << "Passa il jet: " <<Jet_isID << endl;
     count = 0;
     if(Jet_isIDT==true){
      //cout << "pt dei jet dopo la sel: " <<JetCorr.Pt() << endl;
@@ -1038,10 +1004,12 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    numOfJets_T=countJets_T;
    numOfJets_TLV=countJets_TLV;
 
-    /////////////////////////////////////////////////
+
+
+
+  /////////////////////////////////////////////////
    ///////corrections on boosted jets with systematics up and down
    ////////////////////////////////////////////////
-
    bool BoostedJet_isIDL=false;
    bool BoostedJet_isIDT=false;
    bool BoostedJet_isIDTLV=false;
@@ -1057,7 +1025,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    for(uint jet_en = 0; jet_en<rBoostedJet_pt->size(); jet_en++){
 
     for (int BJETSF = 0; BJETSF < 5; BJETSF++){//this for is for running different JesSF corrections (central value=0, JesUp=1, JesDown=2, JerUp=3, JerDown=4)
-
+  
       ///////////////////////////////////////boosted jet cleaning and definition starts here
        BoostedJet_isIDL=false;
        BoostedJet_isIDT=false;
@@ -1089,7 +1057,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
             upJER = 0;
             downJER = 0;
         }
-         if(BJETSF==2){      //BJet corrections with JES SF DOWN:
+        if(BJETSF==2){      //BJet corrections with JES SF DOWN:
             JesSF = rBoostedJet_JesSFdown->at(jet_en);
             JerSF = rBoostedJet_JerSF->at(jet_en);
             centr_JJ = 0;
@@ -1116,6 +1084,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
             upJER = 0;
             downJER = 1;
           }
+          
+      
         //BJet SFs:
         double jet_pt = rBoostedJet_Uncorr_pt->at(jet_en)*JesSF*JerSF;
         double jet_energy=rBoostedJet_energy->at(jet_en)*rBoostedJet_Uncorr_pt->at(jet_en)/rBoostedJet_pt->at(jet_en)*JesSF*JerSF;
@@ -1126,7 +1096,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
         TLorentzVector JetCorr_ID(0,0,0,0); JetCorr_ID.SetPtEtaPhiE(jet_pt_ID, rBoostedJet_eta->at(jet_en), rBoostedJet_phi->at(jet_en), jet_energy);
         ///
 
-   //BJet ID:
+
+    //BJet ID:
     BoostedJet_isIDL = BoostedJetID_Loose(JetCorr_ID.Pt(),fabs(JetCorr_ID.Eta()),rBoostedJet_neutralHadEnergyFraction->at(jet_en),
     rBoostedJet_neutralEmEmEnergyFraction->at(jet_en),rBoostedJet_numberOfConstituents->at(jet_en),rBoostedJet_muonEnergyFraction->at(jet_en),
     rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
@@ -1140,7 +1111,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     rBoostedJet_chargedHadronEnergyFraction->at(jet_en),rBoostedJet_chargedMultiplicity->at(jet_en),
     rBoostedJet_chargedEmEnergyFraction->at(jet_en));
 
-     //forse anche le prossime righe che servono per il conteggio del numero di Boosted Jet nell'evento devono usare la definizion del JetCorr_ID
+
+    //forse anche le prossime righe che servono per il conteggio del numero di Boosted Jet nell'evento devono usare la definizion del JetCorr_ID
 
     count = 0;
     if(BoostedJet_isIDT_first==true){
@@ -1177,7 +1149,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       countBoostedJets_T++;
      }
     }
-     else BoostedJet_T->push_back(false);
+    else BoostedJet_T->push_back(false);
     count = 0;
     if(BoostedJet_isIDTLV==true){
      BoostedJet_TLV->push_back(true);
@@ -1197,6 +1169,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     }
     else BoostedJet_TLV->push_back(false);
 
+    
 
     count = 0;
     if(BoostedJet_isIDT==true){
@@ -1215,13 +1188,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       if(BJETSF == 0){
        countBoostedJets++;
        numOfBoostedJets=countBoostedJets;
-      }
+      } 
       BoostedJet_pt->push_back(JetCorr.Pt());
       BoostedJet_eta->push_back(JetCorr.Eta());
       BoostedJet_phi->push_back(JetCorr.Phi());
       BoostedJet_energy->push_back(rBoostedJet_energy->at(jet_en));
       BoostedJet_mass->push_back(rBoostedJet_mass->at(jet_en));
-      BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));
+      BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
      ///syst event flag
       centralJesJer->push_back(centr_JJ);
       JesSFup->push_back(upJES);
@@ -1235,11 +1208,14 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    //numOfBoostedJets=countBoostedJets;
    numOfBoostedJets_L=countBoostedJets_L;
    numOfBoostedJets_T=countBoostedJets_T;
-   numOfBoostedJets_TLV=countBoostedJets_TLV; 
+   numOfBoostedJets_TLV=countBoostedJets_TLV;
 
-   ///////
+
+    ///////
     }//end for on BJETSF for systematics
     //////////
+
+
 
 
    //Iso muon counting
@@ -1276,7 +1252,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_nJets->push_back(BJJ_count);
    }
    
-  ///////////////////////////////////////
+
+
+///////////////////////////////////////
 ///lepton scale factor part begins here
    if(eejj_l==1){
     std::tie(elesf_ele1, elesf_ele1_d, elesf_ele1_u)=elesf(patElectron_eta->at(0), patElectron_pt->at(0));
@@ -1284,18 +1262,19 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     lepsf_evt=elesf_ele1*elesf_ele2;
     lepsf_evt_d=elesf_ele1_d*elesf_ele2_d;
     lepsf_evt_u=elesf_ele1_u*elesf_ele2_u;
+    //cout << elesf_ele1 << endl;
    }
-
-   if(emujj_l==1){
+ 
+  if(emujj_l==1){
     std::tie(elesf_ele1, elesf_ele1_d, elesf_ele1_u)=elesf(patElectron_eta->at(0), patElectron_pt->at(0));
     //musf_trigger_mu1=musf_trigger(Muon_eta->at(0),Muon_pt->at(0));
     //std::tie(musf_ID_mu1, musf_ID_mu1_d, musf_ID_mu1_u)=musf_ID(Muon_eta->at(0),Muon_pt->at(0));
     //std::tie(musf_iso_mu1, musf_iso_mu1_d, musf_iso_mu1_u)=musf_iso(Muon_eta->at(0),Muon_pt->at(0));
-    //musf_tot_mu1=musf_trigger_mu1*musf_ID_mu1*musf_iso_mu1;
     std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt->at(0));
+    //musf_tot_mu1=musf_trigger_mu1*musf_ID_mu1*musf_iso_mu1;
     musf_tot_mu1= musf_reco_mu1; //musf_ID_mu1*musf_iso_mu1;
-    musf_tot_mu1_d= musf_reco_mu1_d; //musf_ID_mu1_d*musf_iso_mu1_d;
-    musf_tot_mu1_u= musf_reco_mu1_u; //musf_ID_mu1_u*musf_iso_mu1_u;
+    musf_tot_mu1_d=musf_reco_mu1_d; //musf_ID_mu1_d*musf_iso_mu1_d;
+    musf_tot_mu1_u=musf_reco_mu1_u; //musf_ID_mu1_u*musf_iso_mu1_u;
     lepsf_evt=elesf_ele1*musf_tot_mu1;
     lepsf_evt_d=elesf_ele1_d*musf_tot_mu1_d;
     lepsf_evt_u=elesf_ele1_u*musf_tot_mu1_u;
@@ -1308,42 +1287,41 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //std::tie(musf_ID_mu1, musf_ID_mu1_d, musf_ID_mu1_u)=musf_ID(Muon_eta->at(0),Muon_pt->at(0));
     //std::tie(musf_iso_mu1, musf_iso_mu1_d, musf_iso_mu1_u)=musf_iso(Muon_eta->at(0),Muon_pt->at(0));
     std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt->at(0));
-    musf_tot_mu1=musf_trigger_mu1*musf_reco_mu1; //*musf_ID_mu1*musf_iso_mu1;
-    musf_tot_mu1_d=musf_trigger_mu1_d*musf_reco_mu1_d; //*musf_ID_mu1_d*musf_iso_mu1_d;
-    musf_tot_mu1_u=musf_trigger_mu1_u*musf_reco_mu1_u; //*musf_ID_mu1_u*musf_iso_mu1_u;
+    musf_tot_mu1=musf_trigger_mu1*musf_reco_mu1; //musf_ID_mu1*musf_iso_mu1;
+    musf_tot_mu1_d=musf_trigger_mu1_d*musf_reco_mu1_d; //musf_ID_mu1_d*musf_iso_mu1_d;
+    musf_tot_mu1_u=musf_trigger_mu1_u*musf_reco_mu1_u; //musf_ID_mu1_u*musf_iso_mu1_u;
     lepsf_evt=elesf_ele1*musf_tot_mu1;
     lepsf_evt_d=elesf_ele1_d*musf_tot_mu1_d;
     lepsf_evt_u=elesf_ele1_u*musf_tot_mu1_u;
-
    }
-   if(mumujj_l==1){
+
+    if(mumujj_l==1){
     std::tie(musf_trigger_mu1, musf_trigger_mu1_d, musf_trigger_mu1_u)=musf_trigger(Muon_eta->at(0),Muon_pt->at(0));
-    std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt->at(0));
     //std::tie(musf_ID_mu1, musf_ID_mu1_d, musf_ID_mu1_u)=musf_ID(Muon_eta->at(0),Muon_pt->at(0));
     //std::tie(musf_iso_mu1, musf_iso_mu1_d, musf_iso_mu1_u)=musf_iso(Muon_eta->at(0),Muon_pt->at(0));
-    musf_tot_mu1=musf_trigger_mu1*musf_reco_mu1; //*musf_ID_mu1*musf_iso_mu1;
-    musf_tot_mu1_d=musf_trigger_mu1_d*musf_reco_mu1_d; //*musf_ID_mu1_d*musf_iso_mu1_d;
-    musf_tot_mu1_u=musf_trigger_mu1_u*musf_reco_mu1_u; //*musf_ID_mu1_u*musf_iso_mu1_u;
+    std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt->at(0));
+    musf_tot_mu1=musf_trigger_mu1*musf_reco_mu1; //musf_ID_mu1*musf_iso_mu1;
+    musf_tot_mu1_d=musf_trigger_mu1_d*musf_reco_mu1_d; //musf_ID_mu1_d*musf_iso_mu1_d;
+    musf_tot_mu1_u=musf_trigger_mu1_u*musf_reco_mu1_u; //musf_ID_mu1_u*musf_iso_mu1_u;
 
     //musf_trigger_mu2=musf_trigger(Muon_eta->at(1),Muon_pt->at(1));
     //std::tie(musf_ID_mu2, musf_ID_mu2_d, musf_ID_mu2_u)=musf_ID(Muon_eta->at(1),Muon_pt->at(1));
     //std::tie(musf_iso_mu2, musf_iso_mu2_d, musf_iso_mu2_u)=musf_iso(Muon_eta->at(1),Muon_pt->at(1));
     //musf_tot_mu2=musf_trigger_mu2*musf_ID_mu2*musf_iso_mu2;
-    std::tie(musf_reco_mu2, musf_reco_mu2_d, musf_reco_mu2_u)=musf_reco(Muon_eta->at(1),Muon_pt->at(1));  
-    musf_tot_mu2=musf_reco_mu2; //musf_ID_mu2*musf_iso_mu2;
-    musf_tot_mu2_d=musf_reco_mu2_d; //musf_ID_mu2_d*musf_iso_mu2_d;
-    musf_tot_mu2_u=musf_reco_mu2_u; //musf_ID_mu2_u*musf_iso_mu2_u;
+    std::tie(musf_reco_mu2, musf_reco_mu2_d, musf_reco_mu2_u)=musf_reco(Muon_eta->at(1),Muon_pt->at(1));
+    musf_tot_mu2=musf_reco_mu2;  //musf_ID_mu2*musf_iso_mu2;
+    musf_tot_mu2_d=musf_reco_mu2_d;  //musf_ID_mu2_d*musf_iso_mu2_d;
+    musf_tot_mu2_u=musf_reco_mu2_u;  //musf_ID_mu2_u*musf_iso_mu2_u;
 
     lepsf_evt=musf_tot_mu1*musf_tot_mu2;
     lepsf_evt_d=musf_tot_mu1_d*musf_tot_mu2_d;
     lepsf_evt_u=musf_tot_mu1_u*musf_tot_mu2_u;
- 
-   }
 
+  }
 ///lepton scale factor ends begins here
-///////////////////////////////////////
+///////////////////////////////////////    
 
-   newtree->Fill();    
+   newtree->Fill(); 
   }
   newfile->cd();
   newfile->Write();
@@ -1391,25 +1369,35 @@ double deltaPhi(double phi1, double phi2) {
 }
 
 double CalculatePileupWeight(int trueInteractions){
-/* double data[] = {0.0 , 4.54817e-06 , 1.60102e-05 , 5.08879e-05 , 0.000114334 , 0.00020352 , 0.000317199 , 0.000468826 , 0.000682597 , 0.000966475 , 0.00134475 , 0.00188372 , 0.00264841 , 0.00369112 , 0.00504992 , 0.00675607 , 0.00884038 , 0.0113177 , 0.0141623 , 0.0172854 , 0.020527 , 0.0236734 , 0.0265085 , 0.0288834 , 0.0307635 , 0.0322212 , 0.0333835 , 0.0343773 , 0.0352956 , 0.0361851 , 0.0370513 , 0.0378689 , 0.0385948 , 0.039178 , 0.0395641 , 0.0396939 , 0.0395048 , 0.0389325 , 0.03792 , 0.0364284 , 0.034449 , 0.0320118 , 0.0291868 , 0.0260783 , 0.0228141 , 0.0195302 , 0.0163566 , 0.0134033 , 0.0107519 , 0.00845093 , 0.00651653 , 0.00493762 , 0.00368313 , 0.00271016 , 0.00197126 , 0.00142003 , 0.00101475 , 0.000720193 , 0.000507976 , 0.000356101 , 0.000247998 , 0.000171439 , 0.000117518 , 7.97901e-05 , 5.36043e-05 , 3.56038e-05 , 2.33662e-05 , 1.51476e-05 , 9.69945e-06 , 6.13591e-06 , 3.83617e-06 , 2.3714e-06 , 1.45016e-06 , 8.77675e-07 , 5.25911e-07 , 3.12064e-07 , 1.83377e-07 , 1.06696e-07 , 6.14494e-08 , 3.5015e-08 , 1.97293e-08 , 1.09854e-08 , 6.04058e-09 , 3.27806e-09 , 1.7545e-09 , 9.25626e-10 , 4.81087e-10 , 2.46212e-10 , 1.24024e-10 , 6.14672e-11 , 2.99629e-11 , 1.43615e-11 , 6.76687e-12 , 3.13368e-12 , 1.42603e-12 , 6.37614e-13 , 2.80107e-13 , 1.20911e-13 , 5.13038e-14 , 2.14199e-14}; 
- double mc[] = {0.00056178559316322207, 0.0007578881923109293, 0.00089840730652213097, 0.0010038191685453057, 0.0011915955692529678, 0.0016831225948408246, 0.0027497191913425922, 0.0045576253905892372, 0.0069810771383345127, 0.0095816180109977722, 0.011853505857288837, 0.013561941683292389, 0.014868909493088722, 0.016164621338248253, 0.017800241708755493, 0.019943427294492722, 0.022553266957402229, 0.02537936344742775, 0.027978429570794106, 0.029862202703952789, 0.030737783759832382, 0.030647184699773788, 0.029888983815908432, 0.028840301558375359, 0.027826078236103058, 0.027054192498326302, 0.026599425822496414, 0.02642328292131424, 0.026400813832879066, 0.026344424113631248, 0.026030091568827629, 0.025283832103013992, 0.024102954193949699, 0.022694429382681847, 0.021359216421842575, 0.020321305841207504, 0.019643651321530342, 0.019244605675339699, 0.018951877951622009, 0.018589355051517487, 0.018086889758706093, 0.017514361068606377, 0.016997335478663445, 0.01660793274641037, 0.016348866745829582, 0.016209937632083893, 0.016200525686144829, 0.016327474266290665, 0.016558451578021049, 0.016807874664664268, 0.016936073079705238, 0.016756467521190643, 0.01605769619345665, 0.014654850587248802, 0.012486033141613007, 0.0097413137555122375, 0.0068911332637071609, 0.0044789197854697704, 0.0028035130817443132, 0.0017981450073421001, 0.0011986247263848782, 0.00078225688776001334, 0.00046188471606001258, 0.0002335387107450515, 9.8074830020777881e-05, 3.36361990775913e-05, 9.325763130618725e-06, 2.0754421257151989e-06, 3.6864730645902455e-07, 5.1980304505150343e-08, 5.7291127397718355e-09, 4.2278064382728076e-10, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; 
+/* double data[] =  {5.64297e-05,0.000269623,0.000382956,0.000552844,0.000979931,0.00231634,0.0072801,0.0281133,0.0770196,0.130953,0.169536,0.182158,0.161879,0.116249,0.067104,0.0316937,0.0130125,0.00540404,0.00265731,0.00140593,0.000649204,0.000236783,6.7861e-05,1.63211e-05,3.82396e-06,1.03356e-06,3.33506e-07,1.1967e-07,4.49699e-08,1.70463e-08,6.34643e-09,2.28001e-09,7.82427e-10,2.55149e-10,7.88717e-11,2.30861e-11,6.39564e-12,1.67664e-12,4.15902e-13,9.76172e-14,2.16793e-14,4.55562e-15,9.05813e-16,1.70419e-16,3.03394e-17,5.11017e-18,8.14821e-19,1.20894e-19,2.20432e-20,0,0};
+ double mc[] = {0.000108643,0.000388957,0.000332882,0.00038397,0.000549167,0.00105412,0.00459007,0.0210314,0.0573688,0.103986,0.142369,0.157729,0.147685,0.121027,0.08855,0.0582866,0.0348526,0.019457,0.0107907,0.00654313,0.00463195,0.00370927,0.0031137,0.00261141,0.00215499,0.00174491,0.00138268,0.00106731,0.000798828,0.00057785,0.00040336,0.00027161,0.000176535,0.00011092,6.75502e-05,4.00323e-05,2.32123e-05,1.32585e-05,7.51611e-06,4.25902e-06,2.42513e-06,1.39077e-06,8.02452e-07,4.64159e-07,2.67845e-07,1.5344e-07,8.68966e-08,4.84931e-08,2.6606e-08,1.433e-08};
  double puw;
  puw=data[trueInteractions]/mc[trueInteractions];
 */
- double puw_[] = {9686.56 , 13.2731 , 43.7711 , 18.688 , 12.5107 , 9.04181 , 6.57902 , 4.87346 , 3.62872 , 2.76274 , 2.22425 , 1.89967 , 1.7017 , 1.57883 , 1.50431 , 1.46451 , 1.44978 , 1.45098 , 1.4587 , 1.46369 , 1.45805 , 1.43709 , 1.40078 , 1.3533 , 1.30105 , 1.25009 , 1.20467 , 1.16697 , 1.13742 , 1.11537 , 1.0996 , 1.08877 , 1.0816 , 1.07683 , 1.07316 , 1.06908 , 1.06281 , 1.05246 , 1.03612 , 1.01213 , 0.979351 , 0.937295 , 0.886238 , 0.827196 , 0.761841 , 0.692342 , 0.6211 , 0.550495 , 0.482672 , 0.419357 , 0.361756 , 0.310542 , 0.265899 , 0.22761 , 0.195168 , 0.167896 , 0.145046 , 0.125873 , 0.109692 , 0.0959027 , 0.0840082 , 0.0736144 , 0.0644249 , 0.0562295 , 0.048887 , 0.0423067 , 0.03643 , 0.031215 , 0.0266245 , 0.0226187 , 0.0191526 , 0.0161753 , 0.0136325 , 0.0114695 , 0.00963313 , 0.00807454 , 0.00675025 , 0.00562281 , 0.00466074 , 0.00383815 , 0.00313397 , 0.00253121 , 0.0020162 , 0.00157798 , 0.00120787 , 0.000899112 , 0.000646511 , 0.000445842 , 0.000292888 , 0.000182388 , 0.000109393 , 6.25794e-05 , 3.42779e-05 , 1.80716e-05 , 9.22117e-06 , 4.57764e-06 , 2.22112e-06 , 1.05773e-06 , 4.96423e-07 , 2.30808e-07};
+ double puw_[] = {0.366077 , 0.893925 , 1.19772 , 0.962699 , 1.12098 , 1.16486 , 0.795599 , 0.495824 , 0.742182 , 0.878856 , 0.964232 , 1.0725 , 1.12534 , 1.17603 , 1.20208 , 1.20764 , 1.20018 , 1.18268 , 1.144 , 1.09663 , 1.0656 , 1.05117 , 1.0516 , 1.05063 , 1.04986 , 1.05817 , 1.07216 , 1.08303 , 1.09569 , 1.10787 , 1.09462 , 1.08262 , 1.04125 , 0.985752 , 0.910807 , 0.820922 , 0.716787 , 0.610013 , 0.503118 , 0.404841 , 0.309195 , 0.22792 , 0.16369 , 0.11318 , 0.0773005 , 0.0509221 , 0.0318936 , 0.0200936 , 0.0122631 , 0.00742646 , 0.00438028 , 0.00260777 , 0.00156599 , 0.000971358 , 0.000729206 , 0.000672709 , 0.000730459 , 0.000948791 , 0.00135533 , 0.00189419 , 0.00308244 , 0.00409665 , 0.00487449 , 0.00525606 , 0.00578498 , 0.00551468 , 0.00500046 , 0.00440983 , 0.00401224 , 0.00354754 , 0.00310751 , 0.00270211 , 0.00233691 , 0.00202529 , 0.00172328 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0};
  double puw=puw_[trueInteractions];
  return puw;
 }
 
-// TO CHECK
-
-std::tuple<double, double, double>  elesf(double eta, double pt){
+std::tuple<double, double, double> elesf(double eta, double pt){
  double elesf=0, elesf_d=0, elesf_u=0;
- if(fabs(eta) < 1.4442){ elesf = 0.989; elesf_d = 0.975; elesf_u = 1.003; }// stat 0.001 // syst 0.014
- if(fabs(eta) >= 1.566 && fabs(eta) < 2.5){elesf = 0.982; elesf_d = 0.968; elesf_u = 0.996; }// stat 0.001 syst 0.014
+ if(fabs(eta) < 1.4442) {elesf = 0.971; elesf_d=0.970; elesf_u=0.972;} // stat 0.001
+ if(fabs(eta) >= 1.566 && fabs(eta) < 2.5){elesf = 0.983; elesf_d=0.982; elesf_u=0.984;} // stat 0.001
 
  return std::make_tuple(elesf, elesf_d, elesf_u);
+ //return elesf;
  
+//stat err 0.001 for both EB and EE
+//syst err:
+//  - barrel:
+//      1% for pT < 90 GeV
+//      1-3% linearly increasing for 90 GeV < pT < 1 TeV
+//      3% for pT > 1 TeV
+//  - endcap:
+//      2% for pT < 90 GeV
+//      2-5% linearly increasing for 90 GeV < pT < 300 GeV
+//      5% for pT > 300 GeV 
+
 }
 
 //SF per high-pt muon da https://twiki.cern.ch/twiki/bin/viewauth/CMS/HighPtMuonReferenceRun2
@@ -1417,196 +1405,515 @@ std::tuple<double, double, double>  elesf(double eta, double pt){
 std::tuple<double, double, double>  musf_reco(double eta, double pt){
  double musf=0, musf_d = 0, musf_u = 0;
  if(fabs(eta) <= 1.6){
-  if (pt >= 50 && pt < 100) {musf = 0.9943; musf_d = 0.9936; musf_u = 0.9950;}
-  if (pt >=100 && pt < 150) {musf = 0.9948; musf_d = 0.9941; musf_u = 0.9955;}
-  if (pt >=150 && pt < 200) {musf = 0.9950; musf_d = 0.9941; musf_u = 0.9959;}
-  if (pt >=200 && pt < 300) {musf = 0.9940; musf_d = 0.9930; musf_u = 0.9950;}
-  if (pt >=300 && pt < 400) {musf = 0.9914; musf_d = 0.9905; musf_u = 0.9923;}
-  if (pt >=400 && pt < 600) {musf = 0.9930; musf_d = 0.9910; musf_u = 0.9950;}
-  if (pt >=600 && pt <1500) {musf = 0.9910; musf_d = 0.9870; musf_u = 0.9950;}
-  if (pt >=1500) {musf = 1.0; musf_d = 0.9; musf_u =1.1;}
- }       
+  if (pt >= 50 && pt < 100) {musf = 0.9914; musf_d = 0.9906; musf_u = 0.9922;}
+  if (pt >=100 && pt < 150) {musf = 0.9936; musf_d = 0.9927; musf_u = 0.9945;}
+  if (pt >=150 && pt < 200) {musf = 0.9930; musf_d = 0.9920; musf_u = 0.9940;}
+  if (pt >=200 && pt < 300) {musf = 0.9930; musf_d = 0.9910; musf_u = 0.9950;}
+  if (pt >=300 && pt < 400) {musf = 0.9900; musf_d = 0.9860; musf_u = 0.9940;}
+  if (pt >=400 && pt < 600) {musf = 0.9900; musf_d = 0.9870; musf_u = 0.9930;}
+  if (pt >=600 && pt <1500) {musf = 0.9890; musf_d = 0.9850; musf_u = 0.9940;}
+  if (pt >=1500) {musf = 0.8; musf_d = 0.5; musf_u =1.1;}
+ }
  if(fabs(eta) >1.6 && fabs(eta)<=2.4){
   if (pt >= 50 && pt < 100) {musf = 1.; musf_d = 1.; musf_u = 1.;}
   if (pt >=100 && pt < 150) {musf = 0.9930; musf_d = 0.9920; musf_u = 0.9940;}
-  if (pt >=150 && pt < 200) {musf = 0.9900; musf_d = 0.9890; musf_u = 0.9910;}
-  if (pt >=200 && pt < 300) {musf = 0.9880; musf_d = 0.9870; musf_u = 0.9890;}
+  if (pt >=150 && pt < 200) {musf = 0.9910; musf_d = 0.9900; musf_u = 0.9920;}
+  if (pt >=200 && pt < 300) {musf = 0.9850; musf_d = 0.9840; musf_u = 0.9860;}
   if (pt >=300 && pt < 400) {musf = 0.9810; musf_d = 0.9790; musf_u = 0.9830;}
-  if (pt >=400 && pt < 600) {musf = 0.9830; musf_d = 0.9800; musf_u = 0.9860;}
-  if (pt >=600 && pt <1500) {musf = 0.9780; musf_d = 0.9720; musf_u = 0.9840;}
-  if (pt >=1500) {musf = 0.98; musf_d = 0.95; musf_u = 1.01;}
- }           
+  if (pt >=400 && pt < 600) {musf = 0.9790; musf_d = 0.9750; musf_u = 0.9830;}
+  if (pt >=600 && pt <1500) {musf = 0.9780; musf_d = 0.9730; musf_u = 0.9830;}
+  if (pt >=1500) {musf = 0.9; musf_d = 0.7; musf_u = 1.1;}  
+ }
  return std::make_tuple(musf, musf_d, musf_u);
 }
 
 std::tuple<double, double, double>  musf_trigger(double eta, double pt){
  double musf=0, musf_d = 0, musf_u = 0;
  if (pt >= 52 && pt < 55){
-  if (fabs(eta) <= 0.9) {musf = 0.980; musf_d = 0.974; musf_u = 0.986;}
-  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.982; musf_d = 0.981; musf_u = 0.983;}
-  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 0.983; musf_d = 0.982; musf_u = 0.984;}
-  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.987; musf_d = 0.984; musf_u = 0.990;}
+  if (fabs(eta) <= 0.9) {musf = 0.980; musf_d = 0.973; musf_u = 0.987;}
+  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.938; musf_d = 0.932; musf_u = 0.944;}
+  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 0.996; musf_d = 0.986; musf_u = 1.006;}
+  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.934; musf_d = 0.904; musf_u = 0.964;} 
  }
  if (pt >= 55 && pt < 60){
-  if (fabs(eta) <= 0.9) {musf = 0.982; musf_d = 0.978; musf_u = 0.986;}
-  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.966; musf_d = 0.961; musf_u = 0.971;}
-  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 1.012; musf_d = 1.004; musf_u = 1.020;}
-  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.952; musf_d = 0.950; musf_u = 0.954;}
+  if (fabs(eta) <= 0.9) {musf = 0.983; musf_d = 0.979; musf_u = 0.987;}
+  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.958; musf_d = 0.953; musf_u = 0.963;}
+  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 1.005; musf_d = 0.996; musf_u = 1.014;}
+  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.954; musf_d = 0.934; musf_u = 0.974;}
  }
  if (pt >= 60 && pt < 120){
-  if (fabs(eta) <= 0.9) {musf = 0.976; musf_d = 0.975; musf_u = 0.977;}
-  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.967; musf_d = 0.965; musf_u = 0.969;}
-  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 1.002; musf_d = 0.999; musf_u = 1.005;}
-  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.999; musf_d = 0.991; musf_u = 1.007;}
+  if (fabs(eta) <= 0.9) {musf = 0.980; musf_d = 0.978; musf_u = 0.982;}
+  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.956; musf_d = 0.954; musf_u = 0.958;}
+  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 0.990; musf_d = 0.987; musf_u = 0.993;}
+  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.948; musf_d = 0.941; musf_u = 0.955;}
  }
  if (pt >= 120 && pt < 200 ){
-  if (fabs(eta) <= 0.9) {musf = 0.980; musf_d = 0.978; musf_u = 0.982;}
-  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.964; musf_d = 0.960; musf_u = 0.968;}
-  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 1.004; musf_d = 1.000; musf_u = 1.008;}
-  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 1.003; musf_d = 1.002; musf_u = 1.004;}
+  if (fabs(eta) <= 0.9) {musf = 0.980; musf_d = 0.977; musf_u = 0.983;}
+  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.948; musf_d = 0.943; musf_u = 0.953;}
+  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 0.988; musf_d = 0.983; musf_u = 0.993;}
+  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.935; musf_d = 0.925; musf_u = 0.945;}
  }
  if (pt >= 200 && pt < 300) {
-  if (fabs(eta) <= 0.9) {musf = 0.978; musf_d = 0.974; musf_u = 0.982;}
-  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.960; musf_d = 0.951; musf_u = 0.969;}
-  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 1.009; musf_d = 1.000; musf_u = 1.018;}
-  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 1.024; musf_d = 1.022; musf_u = 1.026;}
+  if (fabs(eta) <= 0.9) {musf = 0.980; musf_d = 0.973; musf_u = 0.987;}
+  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.927; musf_d = 0.917; musf_u = 0.937;}
+  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 0.977; musf_d = 0.967; musf_u = 0.987;}
+  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.888; musf_d = 0.858; musf_u = 0.918;}
  }
  if (pt >= 300 && pt < 500) {
-  if (fabs(eta) <= 0.9) {musf = 0.973; musf_d = 0.964; musf_u = 0.982;}
-  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.985; musf_d = 0.983; musf_u = 0.987;}
-  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 0.993; musf_d = 0.992; musf_u = 0.994;}
-  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.993; musf_d = 0.988; musf_u = 0.998;}
+  if (fabs(eta) <= 0.9) {musf = 0.962; musf_d = 0.961; musf_u = 0.963;}
+  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.911; musf_d = 0.908; musf_u = 0.914;}
+  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 1.010; musf_d = 0.990; musf_u = 1.030;}
+  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 0.953; musf_d = 0.946; musf_u = 0.960;}
  }
  if (pt >= 500){
-  if (fabs(eta) <= 0.9) {musf = 0.957; musf_d = 0.954; musf_u = 0.960;}
-  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.988; musf_d = 0.982; musf_u = 0.994;}
-  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 1.062; musf_d = 1.058; musf_u = 1.066;}
-  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 1.070; musf_d = 1.050; musf_u = 1.090;}
+  if (fabs(eta) <= 0.9) {musf = 0.983; musf_d = 0.978; musf_u = 0.988;}
+  if (fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf = 0.824; musf_d = 0.814; musf_u = 0.834;}
+  if (fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf = 1.020; musf_d = 1.010; musf_u = 1.030;}
+  if (fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf = 1.134; musf_d = 0.634; musf_u = 1.634;}
  }
 
- return std::make_tuple(musf, musf_d, musf_u);
-}
-
-/*
-std::tuple<double, double, double> musf_trigger(double eta, double pt){
- double musf=0, musf_d=0, musf_u=0;
- // Mu50_OR_OldMu100_OR_TkMu100_PtEtaBins
- if(fabs(eta)>0.0 && fabs(eta)<=0.9){
-    if(pt > 56.0 && pt <= 60.0) {musf=0.938687980175; musf_d=0.93833995353; musf_u=0.93903600682;} 
-    if(pt > 60.0 && pt <= 120.0) {musf=0.93756788969; musf_d=0.937249553514; musf_u=0.937886225867;} 
-    if(pt > 120.0 && pt <= 200.0) {musf=0.933091819286; musf_d=0.931770048867; musf_u=0.934413589706;} 
-    if(pt > 52.0 && pt <= 56.0) {musf=0.938498675823; musf_d=0.938245295013; musf_u=0.938752056633;} 
-    if(pt > 200.0 && pt <= 300.0) {musf=0.920213341713; musf_d=0.91736017225; musf_u=0.923066511175;} 
-    if(pt > 300.0 ) {musf=0.899329483509; musf_d=0.893048536461; musf_u=0.905610430557;} 
-}
-if(fabs(eta)>1.2 && fabs(eta)<=2.1){
-    if(pt > 56.0 && pt <= 60.0) {musf=0.919665038586; musf_d=0.919207775273; musf_u=0.920122301899;} 
-    if(pt > 60.0 && pt <= 120.0) {musf=0.921822488308; musf_d=0.921462448847; musf_u=0.922182527769;} 
-    if(pt > 120.0 && pt <= 200.0) {musf=0.925500690937; musf_d=0.924068493559; musf_u=0.926932888315;} 
-    if(pt > 52.0 && pt <= 56.0) {musf=0.915318489075; musf_d=0.91498419726; musf_u=0.915652780889;} 
-    if(pt > 200.0 && pt <= 300.0) {musf=0.915203690529; musf_d=0.911871659153; musf_u=0.918535721904;} 
-    if(pt > 300.0 ) {musf=0.907234668732; musf_d=0.8991807515; musf_u=0.915288585964;} 
-}
-if(fabs(eta)>2.1 && fabs(eta)<=2.4){
-    if(pt > 56.0 && pt <= 60.0) {musf=0.825172126293; musf_d=0.823725066615; musf_u=0.826619185971;} 
-    if(pt > 60.0 && pt <= 120.0) {musf=0.83876734972; musf_d=0.837654823353; musf_u=0.839879876087;} 
-    if(pt > 120.0 && pt <= 200.0) {musf=0.850268900394; musf_d=0.845156414609; musf_u=0.85538138618;} 
-    if(pt > 52.0 && pt <= 56.0) {musf=0.801114976406; musf_d=0.800074921797; musf_u=0.802155031015;} 
-    if(pt > 200.0 && pt <= 300.0) {musf=0.833747982979; musf_d=0.811180599293; musf_u=0.856315366665;} 
-    if(pt > 300.0 ) {musf=0.820496737957; musf_d=0.790097492647; musf_u=0.850895983267;} 
-}
-if(fabs(eta)>0.9 && fabs(eta)<=1.2){
-    if(pt > 56.0 && pt <= 60.0) {musf=0.944563567638; musf_d=0.943948321534; musf_u=0.945178813743;} 
-    if(pt > 60.0 && pt <= 120.0) {musf=0.942234635353; musf_d=0.941719615723; musf_u=0.942749654983;} 
-    if(pt > 120.0 && pt <= 200.0) {musf=0.93848502636; musf_d=0.936643039949; musf_u=0.94032701277;} 
-    if(pt > 52.0 && pt <= 56.0) {musf=0.942913889885; musf_d=0.942485997478; musf_u=0.943341782292;} 
-    if(pt > 200.0 && pt <= 300.0) {musf=0.921368479729; musf_d=0.916312795903; musf_u=0.926424163554;} 
-    if(pt > 300.0 ) {musf=0.887214004993; musf_d=0.865580096227; musf_u=0.90884791376;} 
-}
-
- //https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018_trigger/theJSONfile_2018Data_AfterMuonHLTUpdate.json
+ return std::make_tuple(musf, musf_d, musf_u);   
  
+}
+/*
+std::tuple<double, double, double>  musf_trigger(double eta, double pt){
+ double musf=0, musf_d = 0, musf_u = 0;
+if(pt>80.0 && pt<=120.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) {musf=0.979348945351;  musf_d=0.977265714365; musf_u=0.981432176337;} 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf=0.991559553185;  musf_d=0.988111925646; musf_u=0.995007180724;} 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf=0.945687243525;  musf_d=0.935909294895; musf_u=0.955465192155;} 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf=0.953858663675;  musf_d=0.950632342712; musf_u=0.957084984637;} 
+}
+if(pt>120.0 && pt<=200.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) {musf=0.971963141223;  musf_d=0.968380013463; musf_u=0.975546268983;} 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf=0.997236642678;  musf_d=0.98966441714; musf_u=1.00480886822;} 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf=0.964864307448;  musf_d=0.937640130163; musf_u=0.992088484733;} 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf=0.940906087621;  musf_d=0.931374554136; musf_u=0.950437621107;} 
+}
+if(pt>400.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) {musf=0.965216120987;  musf_d=0.916600471829; musf_u=1.01383177014;} 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf=0.90780463359;  musf_d=0.71762718827; musf_u=1.09798207891;} 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf=0.720766933187;  musf_d=-0.275871437504; musf_u=1.71740530388;} 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf=0.975444916201;  musf_d=0.897421601101; musf_u=1.0534682313;} 
+}
+if(pt>55.0 && pt<=60.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) {musf=0.982172313956;  musf_d=0.98125723782; musf_u=0.983087390092;} 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf=0.993104561456;  musf_d=0.991531453531; musf_u=0.994677669381;} 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf=0.935460280411;  musf_d=0.931382829152; musf_u=0.93953773167;} 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf=0.958748861806;  musf_d=0.957374459366; musf_u=0.960123264245;} 
+}
+if(pt<=55.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) {musf=0.97765533033;  musf_d=0.976781956431; musf_u=0.97852870423;} 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf=0.987151898728;  musf_d=0.985680420903; musf_u=0.988623376552;} 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf=0.918599081349;  musf_d=0.914578055895; musf_u=0.922620106803;} 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf=0.953752562062;  musf_d=0.952694388101; musf_u=0.954810736023;} 
+}
+if(pt>60.0 && pt<=80.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) {musf=0.981439045142;  musf_d=0.980585398465; musf_u=0.982292691819;} 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf=0.994310399764;  musf_d=0.992856147299; musf_u=0.99576465223;} 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf=0.940574201481;  musf_d=0.936698312831; musf_u=0.944450090132;} 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf=0.958232578952;  musf_d=0.956991254268; musf_u=0.959473903636;} 
+}
+if(pt>200.0 && pt<=300.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) {musf=0.977938102104;  musf_d=0.96828324453; musf_u=0.987592959677;} 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf=0.957358230391;  musf_d=0.935165396239; musf_u=0.979551064543;} 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf=0.825968477035;  musf_d=0.657394417708; musf_u=0.994542536362;} 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf=0.944979742807;  musf_d=0.920758939704; musf_u=0.96920054591;} 
+}
+if(pt>300.0 && pt<=400.0){
+    if(fabs(eta) > 0.0 && fabs(eta) <= 0.9) {musf=1.00528291728;  musf_d=0.981240797575; musf_u=1.02932503699;} 
+    if(fabs(eta) > 1.2 && fabs(eta) <= 2.1) {musf=1.12126658491;  musf_d=0.968695316519; musf_u=1.2738378533;} 
+    if(fabs(eta) > 2.1 && fabs(eta) <= 2.4) {musf=0.785026453282;  musf_d=0.714468578451; musf_u=0.855584328113;} 
+    if(fabs(eta) > 0.9 && fabs(eta) <= 1.2) {musf=0.944298028685;  musf_d=0.890522362409; musf_u=0.99807369496;} 
+}
+
+//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_trigger/EfficienciesAndSF_RunGtoH.json
+//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_trigger/EfficienciesAndSF_RunBtoF.json
+//Mu50_OR_TkMu50_PtEtaBins
+// (pesoBF*L_BF + pesoGH*L_GH)/L_BH
+ //return musf;
  return std::make_tuple(musf, musf_d, musf_u);
 }
 std::tuple<double, double, double> musf_ID(double eta, double pt){
- double musf=0, musf_d=0, musf_u = 0;
- if(fabs(eta)>1.20 && fabs(eta)<=2.10){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.992233418804; musf_d=0.991358229661; musf_u=0.993108607947;} 
-    if(pt > 30.00 && pt <= 40.00) {musf=0.992206583109; musf_d=0.990860946354; musf_u=0.993552219864;} 
-    if(pt > 25.00 && pt <= 30.00) {musf=0.992317478607; musf_d=0.989878937667; musf_u=0.994756019547;} 
-    if(pt > 60.00) {musf=0.991019552395; musf_d=0.99028841454; musf_u=0.991750690249;} 
-    if(pt > 40.00 && pt <= 50.00) {musf=0.991597790263; musf_d=0.991406311727; musf_u=0.9917892688;} 
-    if(pt > 50.00 && pt <= 60.00) {musf=0.99251276254; musf_d=0.99154663412; musf_u=0.993478890961;} 
-}
-if(fabs(eta)>2.10 && fabs(eta)<=2.40){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.979723054239; musf_d=0.975906570659; musf_u=0.983539537819;} 
-    if(pt > 30.00 && pt <= 40.00) {musf=0.977784875705; musf_d=0.976729331123; musf_u=0.978840420287;} 
-    if(pt > 25.00 && pt <= 30.00) {musf=0.978150050884; musf_d=0.97505308891; musf_u=0.981247012857;} 
-    if(pt > 60.00 ) {musf=0.973999267646; musf_d=0.968612061225; musf_u=0.979386474066;} 
-    if(pt > 40.00 && pt <= 50.00) {musf=0.977779536702; musf_d=0.975757480068; musf_u=0.979801593335;} 
-    if(pt > 50.00 && pt <= 60.00) {musf=0.977008043821; musf_d=0.974001702123; musf_u=0.980014385518;} 
-}
-if(fabs(eta)>0.90 && fabs(eta)<=1.20){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.98807789497; musf_d=0.982808054192; musf_u=0.993347735747;} 
-    if(pt > 30.00 && pt <= 40.00) {musf=0.986166209201; musf_d=0.98269166625; musf_u=0.989640752151;} 
-    if(pt > 25.00 && pt <= 30.00) {musf=0.985826979495; musf_d=0.983877978383; musf_u=0.987775980606;} 
-    if(pt > 60.00) {musf=0.98512982961; musf_d=0.982777851358; musf_u=0.987481807862;} 
-    if(pt > 40.00 && pt <= 50.00) {musf=0.986888639637; musf_d=0.986415271008; musf_u=0.987362008266;} 
-    if(pt > 50.00 && pt <= 60.00) {musf=0.985780303148; musf_d=0.984494504903; musf_u=0.987066101393;} 
-}
-if(fabs(eta)>0.00 && fabs(eta)<=0.90){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.992114065208; musf_d=0.988810661367; musf_u=0.99541746905;} 
-    if(pt > 30.00 && pt <= 40.00) {musf=0.992251573219; musf_d=0.991483268497; musf_u=0.993019877942;} 
-    if(pt > 25.00 && pt <= 30.00) {musf=0.992424702773; musf_d=0.991204074869; musf_u=0.993645330676;} 
-    if(pt > 60.00) {musf=0.992263125763; musf_d=0.98975244503; musf_u=0.994773806497;} 
-    if(pt > 40.00 && pt <= 50.00) {musf=0.992671202275; musf_d=0.992210564854; musf_u=0.993131839696;} 
-    if(pt > 50.00 && pt <= 60.00) {musf=0.992860395329; musf_d=0.992210501593; musf_u=0.993510289064;} 
-}
-return std::make_tuple(musf, musf_d, musf_u);
-//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018/jsonfiles/RunABCD_SF_ID.json
-////NUM_HighPtID_DEN_TrackerMuons
-}
+ double musf=0, musf_d=0, musf_u=0;
 
+ if(pt>20.00 && pt<=25.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=1.00211123155;  musf_d=0.993107429777; musf_u=1.01111503333;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=1.00017596119;  musf_d=0.987350955459; musf_u=1.01300096693;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.983123138639;  musf_d=0.971356772293; musf_u=0.994889504985;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.971543094276;  musf_d=0.955664929194; musf_u=0.987421259358;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.987239460735;  musf_d=0.981324660655; musf_u=0.993154260815;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=0.996946306362;  musf_d=0.988229897565; musf_u=1.00566271516;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=1.00577129019;  musf_d=0.993302232877; musf_u=1.01824034751;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.985070797329;  musf_d=0.975187592778; musf_u=0.99495400188;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=0.982612531854;  musf_d=0.973759075666; musf_u=0.991465988042;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.991455095023;  musf_d=0.977985659732; musf_u=1.00492453032;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.996163796457;  musf_d=0.981894102508; musf_u=1.01043349041;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=1.00558218584;  musf_d=0.99720961053; musf_u=1.01395476115;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.984930856296;  musf_d=0.978521496174; musf_u=0.991340216418;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.987865920447;  musf_d=0.981008525624; musf_u=0.994723315271;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.961931450658;  musf_d=0.941533633656; musf_u=0.98232926766;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.990074021836;  musf_d=0.979176664989; musf_u=1.00097137868;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.999509845929;  musf_d=0.989158985655; musf_u=1.0098607062;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=1.01030208447;  musf_d=0.994242061232; musf_u=1.0263621077;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.965039975584;  musf_d=0.954274684323; musf_u=0.975805266845;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=1.00404959599;  musf_d=0.994279132334; musf_u=1.01382005965;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.978548864125;  musf_d=0.973065024921; musf_u=0.984032703329;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=1.00225789031;  musf_d=0.993543194177; musf_u=1.01097258644;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=1.0021762764;  musf_d=0.99750681278; musf_u=1.00684574002;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.995791165678;  musf_d=0.979508371973; musf_u=1.01207395938;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=0.999834182426;  musf_d=0.98580318518; musf_u=1.01386517967;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.981066679517;  musf_d=0.961678579757; musf_u=1.00045477928;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=1.00493346708;  musf_d=0.988891461488; musf_u=1.02097547266;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=1.00244577072;  musf_d=0.990290580093; musf_u=1.01460096135;} 
+}
+if(pt>30.00 && pt<=40.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=0.993171553226;  musf_d=0.99027571802; musf_u=0.996067388432;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=0.995571077074;  musf_d=0.993283205519; musf_u=0.997858948629;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.98716846182;  musf_d=0.984003472548; musf_u=0.990333451092;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.994802753112;  musf_d=0.991610916414; musf_u=0.99799458981;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.982798420661;  musf_d=0.981475405871; musf_u=0.984121435451;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=0.993748868003;  musf_d=0.992125601409; musf_u=0.995372134597;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=1.00046296334;  musf_d=0.997629922046; musf_u=1.00329600463;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.98277405036;  musf_d=0.980700475309; musf_u=0.984847625411;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=0.966209375263;  musf_d=0.962203067798; musf_u=0.970215682728;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.989650272339;  musf_d=0.981490693274; musf_u=0.997809851405;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.994147694607;  musf_d=0.989304493043; musf_u=0.99899089617;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.996633483094;  musf_d=0.995336262309; musf_u=0.997930703879;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.988421675521;  musf_d=0.986943012832; musf_u=0.98990033821;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.98282412137;  musf_d=0.981300311198; musf_u=0.984347931543;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.962215450793;  musf_d=0.955248900755; musf_u=0.969182000831;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.987352265035;  musf_d=0.983564390772; musf_u=0.991140139297;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.998094089468;  musf_d=0.995478058889; musf_u=1.00071012005;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=0.993242728016;  musf_d=0.991001555142; musf_u=0.99548390089;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.958949104838;  musf_d=0.954884673273; musf_u=0.963013536403;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=1.00407209998;  musf_d=1.00116019482; musf_u=1.00698400514;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.982639631735;  musf_d=0.981437945568; musf_u=0.983841317902;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=0.996259901845;  musf_d=0.994309829618; musf_u=0.998209974072;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.9926232517;  musf_d=0.989700368918; musf_u=0.995546134482;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.991192011359;  musf_d=0.988706273589; musf_u=0.993677749128;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=0.982082795263;  musf_d=0.977169747049; musf_u=0.986995843477;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.970430309159;  musf_d=0.964569788868; musf_u=0.976290829451;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=0.990286054256;  musf_d=0.985213657078; musf_u=0.995358451433;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=0.998381592494;  musf_d=0.992627060801; musf_u=1.00413612419;} 
+}
+if(pt>25.00 && pt<=30.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=0.996211530507;  musf_d=0.992169579594; musf_u=1.00025348142;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=0.99764673899;  musf_d=0.992013219915; musf_u=1.00328025807;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.982571249317;  musf_d=0.977762719555; musf_u=0.987379779079;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.99102854627;  musf_d=0.984630730447; musf_u=0.997426362093;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.985988791428;  musf_d=0.982536578402; musf_u=0.989441004455;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=0.990302435021;  musf_d=0.985982112351; musf_u=0.994622757692;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=1.00309792606;  musf_d=0.996044129421; musf_u=1.0101517227;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.981363815703;  musf_d=0.977036305332; musf_u=0.985691326074;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=0.974520357643;  musf_d=0.969243050882; musf_u=0.979797664403;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.99053563837;  musf_d=0.980084005976; musf_u=1.00098727076;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.99329654759;  musf_d=0.987806270894; musf_u=0.998786824286;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.992715112192;  musf_d=0.989049489014; musf_u=0.996380735369;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.986000657425;  musf_d=0.983810001649; musf_u=0.988191313201;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.983505277391;  musf_d=0.980041370305; musf_u=0.986969184476;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.970047730902;  musf_d=0.958637618168; musf_u=0.981457843637;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.99273100417;  musf_d=0.984157191601; musf_u=1.00130481674;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.997898823653;  musf_d=0.989480988269; musf_u=1.00631665904;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=0.991801917122;  musf_d=0.987065193875; musf_u=0.996538640369;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.964192873112;  musf_d=0.956890250689; musf_u=0.971495495534;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=0.998213836326;  musf_d=0.988626880084; musf_u=1.00780079257;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.98342227361;  musf_d=0.980352950936; musf_u=0.986491596285;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=0.994177120609;  musf_d=0.989021532537; musf_u=0.999332708681;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.999070252947;  musf_d=0.994765471717; musf_u=1.00337503418;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.990957471481;  musf_d=0.984377488833; musf_u=0.997537454128;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=0.975559944702;  musf_d=0.967648561841; musf_u=0.983471327564;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.974416369701;  musf_d=0.964754411274; musf_u=0.984078328129;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=0.994643236923;  musf_d=0.988585617381; musf_u=1.00070085646;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=0.998927102685;  musf_d=0.992695385681; musf_u=1.00515881969;} 
+}
+if(pt>60.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=0.991068684788;  musf_d=0.979513693868; musf_u=1.00262367571;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=1.00516617628;  musf_d=0.996609925764; musf_u=1.01372242679;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.994790658377;  musf_d=0.982875676682; musf_u=1.00670564007;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.994651136687;  musf_d=0.982351558923; musf_u=1.00695071445;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.985038939081;  musf_d=0.978774287633; musf_u=0.991303590529;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=0.987608611833;  musf_d=0.979234081315; musf_u=0.995983142351;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=1.00064074462;  musf_d=0.994266229172; musf_u=1.00701526007;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.992789681498;  musf_d=0.979879133729; musf_u=1.00570022927;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=0.960907003749;  musf_d=0.945002962267; musf_u=0.976811045232;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.979531136993;  musf_d=0.952926330391; musf_u=1.00613594359;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.988549687905;  musf_d=0.971695337122; musf_u=1.00540403869;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.995776070011;  musf_d=0.988148342362; musf_u=1.00340379766;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.983880391947;  musf_d=0.97786441826; musf_u=0.989896365633;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.981085186123;  musf_d=0.973190219789; musf_u=0.988980152456;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.979220742404;  musf_d=0.96003342181; musf_u=0.998408062997;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.994406899012;  musf_d=0.976623435559; musf_u=1.01219036247;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.985910895555;  musf_d=0.969731246106; musf_u=1.002090545;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=1.0075411648;  musf_d=0.995130639222; musf_u=1.01995169038;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.956294223377;  musf_d=0.940249737243; musf_u=0.972338709511;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=1.00116449917;  musf_d=0.986899080454; musf_u=1.01542991789;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.983889947415;  musf_d=0.974958361889; musf_u=0.992821532942;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=0.992977665285;  musf_d=0.982543844352; musf_u=1.00341148622;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.998389793101;  musf_d=0.987976839989; musf_u=1.00880274621;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.994532641055;  musf_d=0.983603783828; musf_u=1.00546149828;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=1.00360525694;  musf_d=0.986545318127; musf_u=1.02066519576;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.972506855405;  musf_d=0.954875543813; musf_u=0.990138166996;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=1.0010432274;  musf_d=0.987561130483; musf_u=1.01452532433;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=0.995671437332;  musf_d=0.981787402848; musf_u=1.00955547182;} 
+}
+if(pt>40.00 && pt<=50.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=0.994052501394;  musf_d=0.992043390254; musf_u=0.996061612535;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=0.996668440524;  musf_d=0.99438780318; musf_u=0.998949077868;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.988827732118;  musf_d=0.986000739979; musf_u=0.991654724256;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.994566936222;  musf_d=0.992657882981; musf_u=0.996475989463;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.98343516845;  musf_d=0.981879892393; musf_u=0.984990444507;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=0.993012926187;  musf_d=0.991332588184; musf_u=0.99469326419;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=1.00222026273;  musf_d=0.997648829255; musf_u=1.00679169621;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.983202189391;  musf_d=0.980597371914; musf_u=0.985807006867;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=0.971087717152;  musf_d=0.967436853406; musf_u=0.974738580897;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.99080486154;  musf_d=0.985407006819; musf_u=0.996202716261;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.989350035065;  musf_d=0.984669911158; musf_u=0.994030158972;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.99585293099;  musf_d=0.993965361601; musf_u=0.99774050038;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.989202360522;  musf_d=0.987381873953; musf_u=0.99102284709;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.982754144322;  musf_d=0.981013335131; musf_u=0.984494953514;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.965186543065;  musf_d=0.961562274074; musf_u=0.968810812055;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.987046149703;  musf_d=0.983344698904; musf_u=0.990747600502;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=1.00180348757;  musf_d=0.99765977022; musf_u=1.00594720492;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=0.994814850892;  musf_d=0.992337097616; musf_u=0.997292604168;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.959912235473;  musf_d=0.953403614684; musf_u=0.966420856261;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=1.00357309057;  musf_d=0.998650174754; musf_u=1.00849600639;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.983643009919;  musf_d=0.98133085339; musf_u=0.985955166449;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=0.996327381878;  musf_d=0.992653576825; musf_u=1.00000118693;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.993898054283;  musf_d=0.992201930904; musf_u=0.995594177662;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.99350655446;  musf_d=0.99122053941; musf_u=0.99579256951;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=0.990675090438;  musf_d=0.9855384476; musf_u=0.995811733276;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.972499498227;  musf_d=0.968902393802; musf_u=0.976096602652;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=0.991374746795;  musf_d=0.989300186815; musf_u=0.993449306775;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=1.00024939714;  musf_d=0.997012330824; musf_u=1.00348646346;} 
+}
+if(pt>50.00 && pt<=60.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=0.987370778403;  musf_d=0.984704814208; musf_u=0.990036742597;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=0.993719346923;  musf_d=0.989567303665; musf_u=0.99787139018;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.985959152461;  musf_d=0.980542675835; musf_u=0.991375629088;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.989657897264;  musf_d=0.98624107554; musf_u=0.993074718987;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.977721488229;  musf_d=0.975027508748; musf_u=0.98041546771;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=0.993178839424;  musf_d=0.989248160142; musf_u=0.997109518706;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=0.983802728963;  musf_d=0.97644044633; musf_u=0.991165011596;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.982640111998;  musf_d=0.976225532502; musf_u=0.989054691493;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=0.964939703756;  musf_d=0.957559025561; musf_u=0.972320381951;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.978655008479;  musf_d=0.964788762768; musf_u=0.99252125419;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.980775804059;  musf_d=0.973246816764; musf_u=0.988304791353;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.992303149594;  musf_d=0.989030860029; musf_u=0.995575439159;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.986224415426;  musf_d=0.983343231856; musf_u=0.989105598995;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.978314445771;  musf_d=0.975524806085; musf_u=0.981104085456;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.965063565844;  musf_d=0.957079131255; musf_u=0.973048000433;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.978259303368;  musf_d=0.969612231123; musf_u=0.986906375612;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.989545489316;  musf_d=0.983279480602; musf_u=0.99581149803;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=0.991481630101;  musf_d=0.98819891851; musf_u=0.994764341692;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.958070271818;  musf_d=0.95018593966; musf_u=0.965954603977;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=0.993731313714;  musf_d=0.986538485678; musf_u=1.00092414175;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.985087445306;  musf_d=0.982665689315; musf_u=0.987509201297;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=0.99551622415;  musf_d=0.991185952255; musf_u=0.999846496045;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.99057180175;  musf_d=0.988085902867; musf_u=0.993057700634;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.989428312639;  musf_d=0.985943818626; musf_u=0.992912806653;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=0.986055565116;  musf_d=0.974365943687; musf_u=0.997745186545;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.971249095128;  musf_d=0.962743236936; musf_u=0.97975495332;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=0.990328746205;  musf_d=0.987115111426; musf_u=0.993542380984;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=0.988123770719;  musf_d=0.983295109432; musf_u=0.992952432006;} 
+}
+ return std::make_tuple(musf, musf_d, musf_u);
+ //return musf;
+ // https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunBCDEF_SF_ID.json
+ // https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunGH_SF_ID.json
+ //NUM_HighPtID_DEN_genTracks
+ // (pesoBF*L_BF + pesoGH*L_GH)/L_BH
+}
 std::tuple<double, double, double> musf_iso(double eta, double pt){
  double musf=0, musf_d = 0, musf_u=0;
 
-if(fabs(eta)>1.20 && fabs(eta)<=2.10){
-    if(pt > 20.00 && pt <= 25.00) {musf=1.01332153977; musf_d=1.01153407319; musf_u=1.01510900634;} 
-    if(pt > 50.00 && pt <= 60.00) {musf=1.00043542086; musf_d=1.00021447074; musf_u=1.00065637098;} 
-    if(pt > 25.00 && pt <= 30.00) {musf=1.0067858969; musf_d=1.00575615683; musf_u=1.00781563697;} 
-    if(pt > 60.00 ) {musf=1.00026638981; musf_d=0.999891916291; musf_u=1.00064086333;} 
-    if(pt > 30.00 && pt <= 40.00) {musf=1.00206951044; musf_d=1.00177510046; musf_u=1.00236392043;} 
-    if(pt > 40.00 && pt <= 50.00) {musf=1.00070606826; musf_d=1.00061431593; musf_u=1.0007978206;} 
+if(pt>20.00 && pt<=25.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=0.991665875336;  musf_d=0.985827613695; musf_u=0.997504136977;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=0.995257967695;  musf_d=0.988570810695; musf_u=1.00194512469;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.998802662751;  musf_d=0.992255085249; musf_u=1.00535024025;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.98594635525;  musf_d=0.978875403907; musf_u=0.993017306593;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.996539912083;  musf_d=0.992140497362; musf_u=1.00093932681;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=0.991463121049;  musf_d=0.985055560315; musf_u=0.997870681783;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=0.999571130051;  musf_d=0.991942656751; musf_u=1.00719960335;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.998580522123;  musf_d=0.992263606454; musf_u=1.00489743779;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=0.993445977561;  musf_d=0.987444476363; musf_u=0.99944747876;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.986741207025;  musf_d=0.979433616325; musf_u=0.994048797725;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.995579254012;  musf_d=0.988882173889; musf_u=1.00227633413;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.991755468766;  musf_d=0.986186840536; musf_u=0.997324096996;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.996790234808;  musf_d=0.993182891576; musf_u=1.00039757804;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.99767949735;  musf_d=0.993185580008; musf_u=1.00217341469;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.992372321774;  musf_d=0.981329732093; musf_u=1.00341491145;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.99854981963;  musf_d=0.992109622909; musf_u=1.00499001635;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.995580663022;  musf_d=0.988862267511; musf_u=1.00229905853;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=0.984500920159;  musf_d=0.977218480077; musf_u=0.99178336024;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.995850544056;  musf_d=0.989305725812; musf_u=1.0023953623;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=1.00280408329;  musf_d=0.995711256373; musf_u=1.0098969102;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.998777845797;  musf_d=0.99515997664; musf_u=1.00239571495;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=0.999870375355;  musf_d=0.992291409928; musf_u=1.00744934078;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.996391080241;  musf_d=0.990748130383; musf_u=1.0020340301;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.992110509615;  musf_d=0.984707550733; musf_u=0.999513468498;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=0.996603659362;  musf_d=0.988673235067; musf_u=1.00453408366;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.990195285901;  musf_d=0.979654674303; musf_u=1.0007358975;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=0.998796754792;  musf_d=0.991335808688; musf_u=1.0062577009;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=0.992655878172;  musf_d=0.986873346335; musf_u=0.998438410008;} 
 }
-if(fabs(eta)>2.10 && fabs(eta)<=2.40){
-    if(pt > 20.00 && pt <= 25.00) {musf=1.02755690591; musf_d=1.02510850063; musf_u=1.0300053112;} 
-    if(pt > 50.00 && pt <= 60.00) {musf=1.00099814505; musf_d=1.00048117401; musf_u=1.00151511608;} 
-    if(pt > 25.00 && pt <= 30.00) {musf=1.01433797915; musf_d=1.01280888126; musf_u=1.01586707704;} 
-    if(pt > 60.00) {musf=1.00149304402; musf_d=1.00019701025; musf_u=1.00278907779;} 
-    if(pt > 30.00 && pt <= 40.00) {musf=1.00544198659; musf_d=1.0046167258; musf_u=1.00626724738;} 
-    if(pt > 40.00 && pt <= 50.00) {musf=1.00164602234; musf_d=1.00144183925; musf_u=1.00185020544;} 
+if(pt>50.00 && pt<=60.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=0.999366347869;  musf_d=0.998722629228; musf_u=1.00001006651;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=1.00018102218;  musf_d=0.999099307319; musf_u=1.00126273705;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.999277179667;  musf_d=0.997865049418; musf_u=1.00068930992;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=1.00029505699;  musf_d=0.9994151812; musf_u=1.00117493277;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.999792961959;  musf_d=0.999215813684; musf_u=1.00037011023;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=1.00001357218;  musf_d=0.998795983306; musf_u=1.00123116106;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=1.0005693559;  musf_d=0.999000057771; musf_u=1.00213865403;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.998781388361;  musf_d=0.997595056984; musf_u=0.999967719739;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=1.00072402012;  musf_d=0.999339049172; musf_u=1.00210899107;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=1.00032562735;  musf_d=0.99632935519; musf_u=1.00432189951;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.999817912233;  musf_d=0.998419970734; musf_u=1.00121585373;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.999318491503;  musf_d=0.998452916903; musf_u=1.0001840661;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.999343129566;  musf_d=0.998593287742; musf_u=1.00009297139;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.99964379363;  musf_d=0.99907927688; musf_u=1.00020831038;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=1.00013014575;  musf_d=0.998962126904; musf_u=1.0012981646;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.999793510699;  musf_d=0.998130273214; musf_u=1.00145674818;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.999896636814;  musf_d=0.998889032249; musf_u=1.00090424138;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=0.999438171371;  musf_d=0.998623641384; musf_u=1.00025270136;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.999775696632;  musf_d=0.99835645478; musf_u=1.00119493848;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=1.00031393554;  musf_d=0.999201501816; musf_u=1.00142636927;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.999017644387;  musf_d=0.998356759025; musf_u=0.999678529748;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=1.00004682833;  musf_d=0.998976179313; musf_u=1.00111747736;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.999730677729;  musf_d=0.999080359871; musf_u=1.00038099559;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.999931313261;  musf_d=0.998991681104; musf_u=1.00087094542;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=1.00048918506;  musf_d=0.998660708078; musf_u=1.00231766205;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.999136749056;  musf_d=0.997998879594; musf_u=1.00027461852;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=0.99962886722;  musf_d=0.998817988373; musf_u=1.00043974607;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=0.999553164257;  musf_d=0.998764204455; musf_u=1.00034212406;} 
 }
-if(fabs(eta)>0.90 && fabs(eta)<=1.20){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.99535637006; musf_d=0.992016056227; musf_u=0.998696683893;} 
-    if(pt > 50.00 && pt <= 60.00) {musf=0.999672413322; musf_d=0.999306753652; musf_u=1.00003807299;} 
-    if(pt > 25.00 && pt <= 30.00) {musf=0.995806667279; musf_d=0.99402215246; musf_u=0.997591182098;} 
-    if(pt > 60.00 ) {musf=0.99996063706; musf_d=0.999371993048; musf_u=1.00054928107;} 
-    if(pt > 30.00 && pt <= 40.00) {musf=0.997686459591; musf_d=0.997262242443; musf_u=0.99811067674;} 
-    if(pt > 40.00 && pt <= 50.00) {musf=0.99906437584; musf_d=0.993292940652; musf_u=1.00483581103;} 
+if(pt>25.00 && pt<=30.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=1.00042869732;  musf_d=0.997292104475; musf_u=1.00356529016;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=0.998600901958;  musf_d=0.994767024934; musf_u=1.00243477898;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=1.00165297112;  musf_d=0.997934224839; musf_u=1.00537171741;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.994870290388;  musf_d=0.99116601548; musf_u=0.998574565295;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.998930908627;  musf_d=0.996419353496; musf_u=1.00144246376;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=0.998346359565;  musf_d=0.994398728889; musf_u=1.00229399024;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=0.996409489631;  musf_d=0.991882379731; musf_u=1.00093659953;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=1.00057996091;  musf_d=0.996111753831; musf_u=1.00504816798;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=1.00058148533;  musf_d=0.995775300309; musf_u=1.00538767036;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.998279345445;  musf_d=0.993903960061; musf_u=1.00265473083;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=1.00496365526;  musf_d=1.00106535586; musf_u=1.00886195465;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.999072921106;  musf_d=0.995766135438; musf_u=1.00237970677;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=1.00038307456;  musf_d=0.998078276857; musf_u=1.00268787226;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=1.00105050708;  musf_d=0.998305331406; musf_u=1.00379568276;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.99561804042;  musf_d=0.990784961699; musf_u=1.00045111914;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=1.00409071847;  musf_d=1.00020554869; musf_u=1.00797588825;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.998097292295;  musf_d=0.99417732866; musf_u=1.00201725593;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=0.996796804192;  musf_d=0.993204586148; musf_u=1.00038902224;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.996225911969;  musf_d=0.992665752735; musf_u=0.999786071204;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=1.00064955287;  musf_d=0.996676514799; musf_u=1.00462259093;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.999316635772;  musf_d=0.997179115015; musf_u=1.00145415653;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=0.998441347882;  musf_d=0.994347939701; musf_u=1.00253475606;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.999725822904;  musf_d=0.996738193212; musf_u=1.0027134526;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=1.00075914875;  musf_d=0.997440794617; musf_u=1.00407750289;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=0.994827534928;  musf_d=0.990416023933; musf_u=0.999239045923;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.998452762532;  musf_d=0.993579791621; musf_u=1.00332573344;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=0.998321926337;  musf_d=0.994724487134; musf_u=1.00191936554;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=1.00031922743;  musf_d=0.997135692231; musf_u=1.00350276262;} 
 }
-if(fabs(eta)>0.00 && fabs(eta)<=0.90){
-    if(pt > 20.00 && pt <= 25.00) {musf=0.991909930463; musf_d=0.989780791748; musf_u=0.994039069179;} 
-    if(pt > 50.00 && pt <= 60.00) {musf=0.999439565929; musf_d=0.99925196311; musf_u=0.999627168747;} 
-    if(pt > 25.00 && pt <= 30.00) {musf=0.995306030346; musf_d=0.994243518261; musf_u=0.99636854243;} 
-    if(pt > 60.00 ) {musf=0.999731471841; musf_d=0.999432537609; musf_u=1.00003040607;} 
-    if(pt > 30.00 && pt <= 40.00) {musf=0.997693660467; musf_d=0.997430607352; musf_u=0.997956713582;} 
-    if(pt > 40.00 && pt <= 50.00) {musf=0.999160897258; musf_d=0.992311645625; musf_u=1.00601014889;} 
+if(pt>60.00 ){
+    if(eta > 0.50 && eta <= 0.80) {musf=0.999986938605;  musf_d=0.999111953919; musf_u=1.00086192329;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=0.998943545176;  musf_d=0.996625959162; musf_u=1.00126113119;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.998048845223;  musf_d=0.996351560687; musf_u=0.999746129759;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=1.00018681808;  musf_d=0.998743617636; musf_u=1.00163001852;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=1.00023774097;  musf_d=0.998835833398; musf_u=1.00163964853;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=1.00030294672;  musf_d=0.998253185795; musf_u=1.00235270764;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=1.00031030809;  musf_d=0.998809565777; musf_u=1.00181105041;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.998368799868;  musf_d=0.996561332789; musf_u=1.00017626695;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=1.00203720943;  musf_d=0.999771988633; musf_u=1.00430243023;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.9972888727;  musf_d=0.994643555213; musf_u=0.999934190186;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=1.00104479845;  musf_d=0.998362993106; musf_u=1.0037266038;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.999024737385;  musf_d=0.997620402837; musf_u=1.00042907193;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.999301093145;  musf_d=0.998288963593; musf_u=1.0003132227;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=1.00045734967;  musf_d=0.999569108525; musf_u=1.00134559081;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.999419619355;  musf_d=0.997743291569; musf_u=1.00109594714;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.997963351448;  musf_d=0.995893512416; musf_u=1.00003319048;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.998460107423;  musf_d=0.997113327892; musf_u=0.999806886954;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=1.0002937232;  musf_d=0.999057223913; musf_u=1.00153022249;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=1.00207101998;  musf_d=0.999865374583; musf_u=1.00427666538;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=0.999069462541;  musf_d=0.997790019571; musf_u=1.00034890551;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.999391472024;  musf_d=0.998214582924; musf_u=1.00056836112;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=0.99959447897;  musf_d=0.998229185988; musf_u=1.00095977195;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.999289929311;  musf_d=0.998247548632; musf_u=1.00033230999;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.999279132377;  musf_d=0.998131743127; musf_u=1.00042652163;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=1.00068372541;  musf_d=0.997272973556; musf_u=1.00409447726;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.999574057956;  musf_d=0.997802425756; musf_u=1.00134569016;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=1.00057278263;  musf_d=0.999363265016; musf_u=1.00178230025;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=1.00116008947;  musf_d=0.999838432103; musf_u=1.00248174684;} 
 }
- 
-//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2018/jsonfiles/RunABCD_SF_ISO.json
-//NUM_LooseRelIso_DEN_LooseID
+if(pt>30.00 && pt<=40.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=1.00026685759;  musf_d=0.999442048742; musf_u=1.00109166644;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=1.00282366237;  musf_d=1.00124650595; musf_u=1.0044008188;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.999553137985;  musf_d=0.998201441353; musf_u=1.00090483462;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.998020768034;  musf_d=0.996999986452; musf_u=0.999041549616;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.998843579556;  musf_d=0.998086223194; musf_u=0.999600935919;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=1.00192983554;  musf_d=0.998641800661; musf_u=1.00521787042;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=0.999690195097;  musf_d=0.998179887023; musf_u=1.00120050317;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.999757355218;  musf_d=0.998484104241; musf_u=1.0010306062;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=1.00009890494;  musf_d=0.998803118004; musf_u=1.00139469187;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=1.00088506045;  musf_d=0.999215715143; musf_u=1.00255440575;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.998145040104;  musf_d=0.996809015423; musf_u=0.999481064784;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.997999687069;  musf_d=0.997007562948; musf_u=0.998991811191;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=1.00049159862;  musf_d=0.999684813741; musf_u=1.0012983835;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.999972905153;  musf_d=0.999193333203; musf_u=1.0007524771;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.99846176596;  musf_d=0.996958383781; musf_u=0.999965148139;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=0.999975940898;  musf_d=0.998638086769; musf_u=1.00131379503;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.999435598044;  musf_d=0.998014358889; musf_u=1.0008568372;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=0.998328399003;  musf_d=0.997265167951; musf_u=0.999391630054;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.999704239815;  musf_d=0.998415007448; musf_u=1.00099347218;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=1.00032575236;  musf_d=0.998919505284; musf_u=1.00173199943;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=1.00126299161;  musf_d=1.00026725009; musf_u=1.00225873313;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=1.00074450843;  musf_d=0.999174811123; musf_u=1.00231420574;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.99958644003;  musf_d=0.998720608641; musf_u=1.00045227142;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.998422849562;  musf_d=0.997402184596; musf_u=0.999443514529;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=1.00055383834;  musf_d=0.998828816984; musf_u=1.00227885969;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.998577573844;  musf_d=0.99710449868; musf_u=1.00005064901;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=0.999662808211;  musf_d=0.998645927702; musf_u=1.00067968872;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=0.998497831054;  musf_d=0.997421248902; musf_u=0.999574413205;} 
+}
+if(pt>40.00 && pt<=50.00){
+    if(eta > 0.50 && eta <= 0.80) {musf=0.999382296975;  musf_d=0.999159691412; musf_u=0.999604902539;} 
+    if(eta > -1.60 && eta <= -1.50) {musf=1.00010598225;  musf_d=1.00001622385; musf_u=1.00019574064;} 
+    if(eta > 2.00 && eta <= 2.10) {musf=0.999105492016;  musf_d=0.998668816035; musf_u=0.999542167997;} 
+    if(eta > -0.20 && eta <= 0.00) {musf=0.999023744877;  musf_d=0.998556183123; musf_u=0.999491306632;} 
+    if(eta > -1.20 && eta <= -0.80) {musf=0.999071249316;  musf_d=0.998788129316; musf_u=0.999354369316;} 
+    if(eta > -1.70 && eta <= -1.60) {musf=0.999898564845;  musf_d=0.999289458872; musf_u=1.00050767082;} 
+    if(eta > 1.40 && eta <= 1.50) {musf=0.999383505195;  musf_d=0.995804236997; musf_u=1.00296277339;} 
+    if(eta > -2.10 && eta <= -2.00) {musf=0.999904190174;  musf_d=0.999248182403; musf_u=1.00056019794;} 
+    if(eta > 2.10 && eta <= 2.20) {musf=0.999785993346;  musf_d=0.999388135694; musf_u=1.000183851;} 
+    if(eta > -2.40 && eta <= -2.30) {musf=0.999660495892;  musf_d=0.998697573775; musf_u=1.00062341801;} 
+    if(eta > 2.20 && eta <= 2.30) {musf=0.999774100637;  musf_d=0.99897052014; musf_u=1.00057768113;} 
+    if(eta > -1.40 && eta <= -1.20) {musf=0.998897327957;  musf_d=0.99863356504; musf_u=0.999161090875;} 
+    if(eta > 1.70 && eta <= 2.00) {musf=0.999560115365;  musf_d=0.99925442481; musf_u=0.999865805919;} 
+    if(eta > 0.80 && eta <= 1.20) {musf=0.999632494093;  musf_d=0.999317381008; musf_u=0.999947607179;} 
+    if(eta > 0.20 && eta <= 0.30) {musf=0.999730230781;  musf_d=0.999105849148; musf_u=1.00035461241;} 
+    if(eta > -2.30 && eta <= -2.20) {musf=1.00063079528;  musf_d=0.999818160837; musf_u=1.00144342972;} 
+    if(eta > 1.60 && eta <= 1.70) {musf=0.999474654102;  musf_d=0.999014327936; musf_u=0.999934980269;} 
+    if(eta > -0.50 && eta <= -0.30) {musf=0.998951006001;  musf_d=0.998505574216; musf_u=0.999396437786;} 
+    if(eta > -2.20 && eta <= -2.10) {musf=0.999517510267;  musf_d=0.999233033562; musf_u=0.999801986971;} 
+    if(eta > 1.50 && eta <= 1.60) {musf=0.999665735474;  musf_d=0.999105686623; musf_u=1.00022578432;} 
+    if(eta > -2.00 && eta <= -1.70) {musf=0.999395044471;  musf_d=0.999280545561; musf_u=0.999509543381;} 
+    if(eta > -1.50 && eta <= -1.40) {musf=0.999662830647;  musf_d=0.997519222538; musf_u=1.00180643876;} 
+    if(eta > -0.80 && eta <= -0.50) {musf=0.999300696472;  musf_d=0.993525999357; musf_u=1.00507539359;} 
+    if(eta > 0.00 && eta <= 0.20) {musf=0.998783821716;  musf_d=0.998317524391; musf_u=0.999250119042;} 
+    if(eta > 2.30 && eta <= 2.40) {musf=1.00048933347;  musf_d=0.999531875364; musf_u=1.00144679158;} 
+    if(eta > -0.30 && eta <= -0.20) {musf=0.999330851985;  musf_d=0.994987809906; musf_u=1.00367389406;} 
+    if(eta > 0.30 && eta <= 0.50) {musf=0.999387818578;  musf_d=0.998984919479; musf_u=0.999790717677;} 
+    if(eta > 1.20 && eta <= 1.40) {musf=0.998969905219;  musf_d=0.998708392653; musf_u=0.999231417785;} 
+}
 
+//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunBCDEF_SF_ISO.json
+//https://gitlab.cern.ch/cms-muonPOG/MuonReferenceEfficiencies/blob/master/EfficienciesStudies/2016_legacy_rereco/systematic/RunGH_SF_ISO.json
+//NUM_LooseRelIso_DEN_LooseID
+//(pesoBF*L_BF + pesoGH*L_GH)/L_BH
  return std::make_tuple(musf, musf_d, musf_u);
+// return musf;
 }
 */
 
@@ -1614,59 +1921,40 @@ double get_wgtlumi(string FileName){
  double wgt=1;
 
  //xsec in pb
-
- // CHECKED OK!! 
- 
- if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
- //if(FileName.find("DY") != std::string::npos) wgt=6077./100194597;
- if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
- if(FileName.find("_SaT_") != std::string::npos) wgt=32.7/7623000; 
- if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
- if(FileName.find("WZ") != std::string::npos) wgt=47.13/3885000; 
- if(FileName.find("ZZ") != std::string::npos) wgt=16.523/1979000;
- if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1563.32/28084244;
- if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1628.66/29521158;
- if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=493.559/25468933;
- if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.5508/5932701; 
- if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=15.5727/19771294; 
- if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49286/8402687; 
- if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.29954/7633949;
- if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968121/3273980;
- if(FileName.find("WJets_") != std::string::npos) wgt=63948.5/71026861;
+ // checked, OK!
+ if(FileName.find("TT") != std::string::npos) wgt=730.6/76915549;  
+ if(FileName.find("DY") != std::string::npos) wgt=6077./146280395;
+ if(FileName.find("_ST_") != std::string::npos)  wgt=35.61/6952830; 
+ if(FileName.find("_SaT_") != std::string::npos) wgt=35.59/6933094; 
+ if(FileName.find("WW") != std::string::npos) wgt=118.7/7982180; 
+ if(FileName.find("WZ") != std::string::npos) wgt=47.13/3997571; 
+ if(FileName.find("ZZ") != std::string::npos) wgt=16.523/1988098;
+ if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/10020533;
+ if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1628.66/78043017;
+ if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=435.721/38984322;
+ if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=59.048/7759701; 
+ if(FileName.find("WJetsHT600To800") != std::string::npos) wgt=14.6047/18687480; 
+ if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.65137/7830536; 
+ if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.60809/6806162;
+ if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.0388389/1398006;
+ if(FileName.find("WJets_") != std::string::npos) wgt=60814.6/86916455;
  
  //muons
  
- if((FileName.find("mumujj_18_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("mumujj_18_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("mumujj_18_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("mumujj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/98500;
- if((FileName.find("mumujj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
+ if((FileName.find("mumujj_16_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("mumujj_16_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
+ if((FileName.find("mumujj_16_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("mumujj_16_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
+ if((FileName.find("mumujj_16_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91350;
 
  //electrons
- if((FileName.find("eejj_18_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
- if((FileName.find("eejj_18_L13_M1000") != std::string::npos)) wgt=2.8140e-03/100000;
- if((FileName.find("eejj_18_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
- if((FileName.find("eejj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
- if((FileName.find("eejj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
-	
- // DY NLO FxFx samples
- if(FileName.find("DY_FxFx") != std::string::npos) wgt=6077.22/997561; 
-
-// DY HT binned LO samples
-/* if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.5/10019684;
- if(FileName.find("DY_HT100to200") != std::string::npos) wgt=160.7/11530510;
- if(FileName.find("DY_HT200to400") != std::string::npos) wgt=48.63/11225887;
- if(FileName.find("DY_HT400to600") != std::string::npos) wgt=6.993/9358053;
- if(FileName.find("DY_HT600to800") != std::string::npos) wgt=1.761/8862104;
- if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=0.8021/3138129;
- if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=0.1937/536416;
- if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=0.003514/427051;
-*/
-
-
-
-
+ if((FileName.find("eejj_16_L13_M500") != std::string::npos)) wgt=5.7090e-03/100000;
+ if((FileName.find("eejj_16_L13_M1000") != std::string::npos)) wgt=2.8140e-03/96800;
+ if((FileName.find("eejj_16_L13_M2000") != std::string::npos)) wgt=0.82140e-03/100000;
+ if((FileName.find("eejj_16_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100000;
+ if((FileName.find("eejj_16_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/91273;
+ 
  return wgt;
  }
 

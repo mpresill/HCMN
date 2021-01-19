@@ -106,7 +106,15 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   /////
   //   Variables to read
   /////
-  //Trigger
+  //PDF syst 
+  int rEVENT_PDFv4_lhaid; rEVENT_PDFv4_lhaid = 0; TBranch* b_rEVENT_PDFv4_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv4_lhaid",&rEVENT_PDFv4_lhaid,&b_rEVENT_PDFv4_lhaid);
+  double rEVENT_PDFv4WeightUp; rEVENT_PDFv4WeightUp = 0; TBranch* b_rEVENT_PDFv4WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightUp",&rEVENT_PDFv4WeightUp,&b_rEVENT_PDFv4WeightUp);
+  double rEVENT_PDFv4WeightDown; rEVENT_PDFv4WeightDown = 0; TBranch* b_rEVENT_PDFv4WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightDown",&rEVENT_PDFv4WeightDown,&b_rEVENT_PDFv4WeightDown);
+  double rEVENT_PDFv4WeightCentral; rEVENT_PDFv4WeightCentral = 0; TBranch* b_rEVENT_PDFv4WeightCentral = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightCentral",&rEVENT_PDFv4WeightCentral,&b_rEVENT_PDFv4WeightCentral);
+  double rEVENT_PDFv4WeightMean; rEVENT_PDFv4WeightMean = 0; TBranch* b_rEVENT_PDFv4WeightMean = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightMean",&rEVENT_PDFv4WeightMean,&b_rEVENT_PDFv4WeightMean);
+  double rEVENT_PDFv4WeightStdDev; rEVENT_PDFv4WeightStdDev = 0; TBranch* b_rEVENT_PDFv4WeightStdDev = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightStdDev",&rEVENT_PDFv4WeightStdDev,&b_rEVENT_PDFv4WeightStdDev);
+
+ //Trigger
   int rHLT_Ele115_CaloIdVT_GsfTrkIdT; rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; TBranch* b_rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; readingtree->SetBranchAddress("HLT_Ele115_CaloIdVT_GsfTrkIdT",&rHLT_Ele115_CaloIdVT_GsfTrkIdT,&b_rHLT_Ele115_CaloIdVT_GsfTrkIdT);
   int rHLT_Ele32_WPTight_Gsf; rHLT_Ele32_WPTight_Gsf = 0; TBranch* b_rHLT_Ele32_WPTight_Gsf = 0; readingtree->SetBranchAddress("HLT_Ele32_WPTight_Gsf",&rHLT_Ele32_WPTight_Gsf,&b_rHLT_Ele32_WPTight_Gsf);
   int rHLT_Photon200; rHLT_Photon200 = 0; TBranch* b_rHLT_Photon200 = 0; readingtree->SetBranchAddress("HLT_Photon200",&rHLT_Photon200,&b_rHLT_Photon200);  
@@ -114,17 +122,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   int rHLT_TkMu50; rHLT_TkMu50 = 0; TBranch* b_rHLT_TkMu50 = 0; readingtree->SetBranchAddress("HLT_TkMu50",&rHLT_TkMu50,&b_rHLT_TkMu50);
   int rHLT_OldMu100; rHLT_OldMu100 = 0; TBranch* b_rHLT_OldMu100 = 0; readingtree->SetBranchAddress("HLT_OldMu100",&rHLT_OldMu100,&b_rHLT_OldMu100);
   int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
-
-//Gen variables:
-  vector<double>* rGen_pt; rGen_pt = 0; TBranch* b_rGen_pt = 0; readingtree->SetBranchAddress("Gen_pt",&rGen_pt,&b_rGen_pt);
-  vector<double>* rGen_eta; rGen_eta = 0; TBranch* b_rGen_eta = 0; readingtree->SetBranchAddress("Gen_eta",&rGen_eta,&b_rGen_eta);
-  vector<double>* rGen_phi; rGen_phi = 0; TBranch* b_rGen_phi = 0; readingtree->SetBranchAddress("Gen_phi",&rGen_phi,&b_rGen_phi);
-  vector<double>* rGen_energy; rGen_energy = 0; TBranch* b_rGen_energy = 0; readingtree->SetBranchAddress("Gen_energy",&rGen_energy,&b_rGen_energy);
-  vector<double>* rGen_charge; rGen_charge = 0; TBranch* b_rGen_charge = 0; readingtree->SetBranchAddress("Gen_charge",&rGen_charge,&b_rGen_charge);
-  vector<double>* rGen_pdg_id; rGen_pdg_id = 0; TBranch* b_rGen_pdg_id = 0; readingtree->SetBranchAddress("Gen_pdg_id",&rGen_pdg_id,&b_rGen_pdg_id);
-  vector<double>* rGen_motherpdg_id; rGen_motherpdg_id = 0; TBranch* b_rGen_motherpdg_id = 0; readingtree->SetBranchAddress("Gen_motherpdg_id",&rGen_motherpdg_id,&b_rGen_motherpdg_id);
-  vector<double>* rGen_numDaught; rGen_numDaught = 0; TBranch* b_rGen_numDaught = 0; readingtree->SetBranchAddress("Gen_numDaught",&rGen_numDaught,&b_rGen_numDaught);
-  vector<double>* rGen_numMother; rGen_numMother = 0; TBranch* b_rGen_numMother = 0; readingtree->SetBranchAddress("Gen_numMother",&rGen_numMother,&b_rGen_numMother);
 
   //PU and systematics
   double rPUWeight; rPUWeight = 0; TBranch* b_rPUWeight = 0; readingtree->SetBranchAddress("PUWeight",&rPUWeight,&b_rPUWeight);
@@ -280,17 +277,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    int HLT_OldMu100; newtree->Branch("HLT_OldMu100",&HLT_OldMu100);
    int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
 
- //Gen variables
-  vector<double>* Gen_pt = new std::vector<double>; newtree->Branch("Gen_pt",&Gen_pt);
-  vector<double>* Gen_eta = new std::vector<double>; newtree->Branch("Gen_eta",&Gen_eta);
-  vector<double>* Gen_phi = new std::vector<double>; newtree->Branch("Gen_phi",&Gen_phi);
-  vector<double>* Gen_charge = new std::vector<double>; newtree->Branch("Gen_charge",&Gen_charge);
-  vector<double>* Gen_energy = new std::vector<double>; newtree->Branch("Gen_energy",&Gen_energy);
-  vector<double>* Gen_pdg_id = new std::vector<double>; newtree->Branch("Gen_pdg_id",&Gen_pdg_id);
-  vector<double>* Gen_motherpdg_id = new std::vector<double>; newtree->Branch("Gen_motherpdg_id",&Gen_motherpdg_id);
-  vector<double>* Gen_numDaught = new std::vector<double>; newtree->Branch("Gen_numDaught",&Gen_numDaught);
-  vector<double>* Gen_numMother = new std::vector<double>; newtree->Branch("Gen_numMother",&Gen_numMother);
-
    //Muons:
    vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
    vector<double>* Muon_pt_corr = new std::vector<double>; newtree->Branch("Muon_pt_corr",&Muon_pt_corr);
@@ -373,6 +359,15 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* JesSFdown = new std::vector<double>; newtree->Branch("JesSFdown",&JesSFdown);
    vector<double>* JerSFup = new std::vector<double>; newtree->Branch("JerSFup",&JerSFup);
    vector<double>* JerSFdown = new std::vector<double>; newtree->Branch("JerSFdown",&JerSFdown);
+
+   //PDF syst
+  int  EVENT_PDFv4_lhaid; newtree->Branch("EVENT_PDFv4_lhaid",&EVENT_PDFv4_lhaid);
+  double EVENT_PDFv4WeightUp; newtree->Branch("EVENT_PDFv4WeightUp",&EVENT_PDFv4WeightUp);
+  double EVENT_PDFv4WeightDown; newtree->Branch("EVENT_PDFv4WeightDown",&EVENT_PDFv4WeightDown);
+  double EVENT_PDFv4WeightCentral; newtree->Branch("EVENT_PDFv4WeightCentral",&EVENT_PDFv4WeightCentral);
+  double EVENT_PDFv4WeightMean; newtree->Branch("EVENT_PDFv4WeightMean",&EVENT_PDFv4WeightMean);
+  double EVENT_PDFv4WeightStdDev; newtree->Branch("EVENT_PDFv4WeightStdDev",&EVENT_PDFv4WeightStdDev);
+
    
    //PU:
    double PileupWeight; newtree->Branch("PileupWeight",&PileupWeight);
@@ -558,24 +553,21 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rHLT_OldMu100->GetEntry(en);
     b_rHLT_TkMu100->GetEntry(en);
 
+    //PDF syst
+       b_rEVENT_PDFv4_lhaid->GetEntry(en);
+    b_rEVENT_PDFv4WeightUp->GetEntry(en);
+    b_rEVENT_PDFv4WeightCentral->GetEntry(en);
+    b_rEVENT_PDFv4WeightDown->GetEntry(en);
+    b_rEVENT_PDFv4WeightMean->GetEntry(en);
+    b_rEVENT_PDFv4WeightStdDev->GetEntry(en);
+
+
     //PU:
     b_rPUWeight->GetEntry(en);
     b_rMinBiasUpWeight->GetEntry(en);
     b_rMinBiasDownWeight->GetEntry(en);
     b_rnBestVtx->GetEntry(en);
     b_rtrueInteractions->GetEntry(en);
-
-    //Gen variables
-    b_rGen_pt->GetEntry(en);
-    b_rGen_eta->GetEntry(en);
-    b_rGen_phi->GetEntry(en);
-    b_rGen_charge->GetEntry(en);
-    b_rGen_energy->GetEntry(en);
-    b_rGen_pdg_id->GetEntry(en);
-    b_rGen_motherpdg_id->GetEntry(en);
-    b_rGen_numDaught->GetEntry(en);
-    b_rGen_numMother->GetEntry(en);
-
     //Muons
     //Kinematics:
     b_rMuon_pt->GetEntry(en);
@@ -678,17 +670,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //MET
     b_rMet_type1PF_pt->GetEntry(en);
 
-    //Gen variables to be written
-    Gen_pt->clear();    
-    Gen_eta->clear();    
-    Gen_phi->clear();    
-    Gen_charge->clear();    
-    Gen_energy->clear();    
-    Gen_pdg_id->clear();    
-    Gen_motherpdg_id->clear();    
-    Gen_numDaught->clear();    
-    Gen_numMother->clear();    
-
     //New var clear (vectors):
     Muon_pt->clear();
     Muon_pt_corr->clear();
@@ -776,6 +757,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     HLT_TkMu100 = -999;
     HLT_OldMu100 = -999;
 
+    //PDF syst
+    EVENT_PDFv4WeightStdDev = -999; EVENT_PDFv4WeightCentral=-999; EVENT_PDFv4WeightMean=-999; EVENT_PDFv4WeightDown=-999; EVENT_PDFv4WeightUp=-999; EVENT_PDFv4_lhaid=-999;
+
+
     PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999;
     Met_type1PF_pt = -999;
 
@@ -819,6 +804,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    HLT_TkMu50 = rHLT_TkMu50;
    HLT_OldMu100 = rHLT_OldMu100;
    HLT_TkMu100 = rHLT_TkMu100;
+   
+   //PDF syst
+    EVENT_PDFv4WeightStdDev = rEVENT_PDFv4WeightStdDev; EVENT_PDFv4WeightMean = rEVENT_PDFv4WeightMean; EVENT_PDFv4WeightCentral=rEVENT_PDFv4WeightCentral; EVENT_PDFv4WeightUp=rEVENT_PDFv4WeightUp; EVENT_PDFv4WeightDown=rEVENT_PDFv4WeightDown; EVENT_PDFv4_lhaid=rEVENT_PDFv4_lhaid;
+
 
     PUWeight = rPUWeight;
     MinBiasUpWeight = rMinBiasUpWeight;
@@ -829,19 +818,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     PileupWeight = CalculatePileupWeight(trueInteractions);
     lumi_wgt = get_wgtlumi(Input);
    
-    for(uint gen_en = 0; gen_en<rGen_pt->size(); gen_en++){
-      //Gen variables (writing)
-      Gen_pt->push_back(rGen_pt->at(gen_en));
-      Gen_eta->push_back(rGen_eta->at(gen_en));
-      Gen_phi->push_back(rGen_phi->at(gen_en));
-      Gen_charge->push_back(rGen_charge->at(gen_en));
-      Gen_energy->push_back(rGen_energy->at(gen_en));
-      Gen_pdg_id->push_back(rGen_pdg_id->at(gen_en));
-      Gen_motherpdg_id->push_back(rGen_motherpdg_id->at(gen_en));
-      Gen_numDaught->push_back(rGen_numDaught->at(gen_en));
-      Gen_numMother->push_back(rGen_numMother->at(gen_en));
-    }
-    
+   
    int num = 0;
    for(uint mu_en = 0; mu_en<rMuon_pt->size(); mu_en++){
     if( rMuon_pt->at(mu_en)>20 && fabs(rMuon_eta->at(mu_en))<2.4){
@@ -1405,8 +1382,8 @@ double CalculatePileupWeight(int trueInteractions){
 
 std::tuple<double, double, double>  elesf(double eta, double pt){
  double elesf=0, elesf_d=0, elesf_u=0;
- if(fabs(eta) < 1.4442){ elesf = 0.989; elesf_d = 0.975; elesf_u = 1.003; }// stat 0.001 // syst 0.014
- if(fabs(eta) >= 1.566 && fabs(eta) < 2.5){elesf = 0.982; elesf_d = 0.968; elesf_u = 0.996; }// stat 0.001 syst 0.014
+ if(fabs(eta) < 1.4442){ elesf = 0.989; elesf_d = 0.975; elesf_u = 1.003;} // stat 0.001 // syst 0.014
+ if(fabs(eta) >= 1.566 && fabs(eta) < 2.5){elesf = 0.982; elesf_d = 0.968; elesf_u = 0.996;} // stat 0.001 syst 0.014
 
  return std::make_tuple(elesf, elesf_d, elesf_u);
  
@@ -1618,7 +1595,7 @@ double get_wgtlumi(string FileName){
  // CHECKED OK!! 
  
  if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
- //if(FileName.find("DY") != std::string::npos) wgt=6077./100194597;
+ if(FileName.find("DY") != std::string::npos) wgt=6077./100194597;
  if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
  if(FileName.find("_SaT_") != std::string::npos) wgt=32.7/7623000; 
  if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
@@ -1649,24 +1626,6 @@ double get_wgtlumi(string FileName){
  if((FileName.find("eejj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
  if((FileName.find("eejj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
-	
- // DY NLO FxFx samples
- if(FileName.find("DY_FxFx") != std::string::npos) wgt=6077.22/997561; 
-
-// DY HT binned LO samples
-/* if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.5/10019684;
- if(FileName.find("DY_HT100to200") != std::string::npos) wgt=160.7/11530510;
- if(FileName.find("DY_HT200to400") != std::string::npos) wgt=48.63/11225887;
- if(FileName.find("DY_HT400to600") != std::string::npos) wgt=6.993/9358053;
- if(FileName.find("DY_HT600to800") != std::string::npos) wgt=1.761/8862104;
- if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=0.8021/3138129;
- if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=0.1937/536416;
- if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=0.003514/427051;
-*/
-
-
-
-
  return wgt;
  }
 

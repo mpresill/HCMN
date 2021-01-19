@@ -58,12 +58,12 @@ THStack *hs = new THStack("hs","");
 //REPLACE HERE 1  - to choose the path 
 //===================================================
 //file for 2016 
-TFile *f00_ = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_DY_2016.root");
-TFile *f01_ = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_TTtW_2016.root");
-TFile *f02_ = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_Other_2016.root");
+TFile *f00_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_DY_2016.root");
+TFile *f01_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_TTtW_2016.root");
+TFile *f02_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_Other_2016.root");
  
-TFile *f00 = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_data_ele_2016.root");
-////TFile *f00 = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_data_mu_2016.root");
+TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_data_ele_2016.root");
+////TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_data_mu_2016.root");
 //====================================================
 //files for 2017 
 //TFile *f00_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_DY_2017.root");
@@ -86,7 +86,7 @@ TFile *f00 = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_data_e
 //REPLACE HERE 2 - to change the binning 
 int bin=1; //good for M(llj)
 
-TString name="M_eeJ";   //this is to check the effect of the new weight on the DY MC
+TString name="M_eeJ_Z";   //this is to check the effect of the new weight on the DY MC
 //TString name="M_mumuJ";   //this is to check the effect of the new weight on the DY MC
 
 TString nameTop="TTtW_ll";
@@ -130,7 +130,7 @@ d->Rebin(bin);
 //REPLACE HERE 4 -- to change the maximum (if needed) 
 //============================================
 //d->SetMaximum(4500); 
-d->GetYaxis()->SetRangeUser(0,5000); //for 2016 Meej
+d->GetYaxis()->SetRangeUser(0,1.8*(d->GetBinContent(d->GetMaximumBin()))); //for 2016 Meej
 d->SetMinimum(0.5);
 canv->cd();
 
@@ -222,7 +222,7 @@ for(int j=0; j<v; j++){
 TGraphErrors *dataSUmc = new TGraphErrors(v, dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
 //===========================================
 //HERE TOO REPLACE ????? - not clear how it works
-dataSUmc->GetXaxis()->SetLimits(0,5000); //this is for the MeeJ
+dataSUmc->GetXaxis()->SetLimits(0,10000); //this is for the MeeJ
 
 dataSUmc->Draw("APZ");
 dataSUmc->SetTitle(0);
@@ -246,7 +246,7 @@ dataSUmc->GetYaxis()->SetTitleOffset(1.5);
 //REPLACE HERE FOR THE LINE
 dataSUmc->SetMinimum(0.4);  //0.5
 dataSUmc->SetMaximum(1.6);  //1.5
-TLine* line = new TLine(0,1,5000,1);     //per Pt(ll) larghezza linea rossa (specificare x1, x2)
+TLine* line = new TLine(0,1,10000,1);     //per Pt(ll) larghezza linea rossa (specificare x1, x2)
 line->SetLineColor(kRed);
 line->SetLineWidth(2);
 line->Draw("same");

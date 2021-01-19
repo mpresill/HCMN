@@ -1983,7 +1983,7 @@ double get_wgtlumi(string FileName){
  if(FileName.find("DY_FxFx") != std::string::npos) wgt=5941.0/120777245; //ok
 
  //DY HT binned 
- if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.7/9691660; //check xsec
+/* if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.7/9691660; //check xsec
  if(FileName.find("DY_HT100to200") != std::string::npos) wgt=147.4/( (2751187*2/20) + 8265899);//ok 
  if(FileName.find("DY_HT200to400") != std::string::npos) wgt=41.04/(962195+8646942); //ok
  if(FileName.find("DY_HT400to600") != std::string::npos) wgt=5.674/(1070454+(8655207*25/76));//ok
@@ -1991,7 +1991,7 @@ double get_wgtlumi(string FileName){
  if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=0.6229/2673066; //ok
  if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=0.1512/596079; //ok
  if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=0.003659/(399492*3/4); //ok
-
+*/
 
 
 

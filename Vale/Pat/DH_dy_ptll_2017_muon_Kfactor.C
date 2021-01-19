@@ -5,7 +5,7 @@
 
 
 TCanvas* c1(int iPeriod, int iPos);
-void DH_dy_Mllj_2017_muon()
+void DH_dy_ptll_2017_muon_Kfactor()
 {
  setTDRStyle();
 
@@ -15,7 +15,7 @@ void DH_dy_Mllj_2017_muon()
 //========================================
 //REPLACE HERE 0 to choose the period 
 //========================================
- int iPeriod = 5; //periodo 4=2017, periodo 5=2017, periodo 6=2018
+ int iPeriod = 5; //periodo 4=2016, periodo 5=2017, periodo 6=2018
  c1( iPeriod, 11 );
 }
 
@@ -48,7 +48,8 @@ TCanvas* c1(int iPeriod, int iPos){
 
  TPad *c1_2 = new TPad("c1_2", "newpad",0.01,0.32,0.99,0.99);
  TPad *c1_1 = new TPad("c1_1", "newpad",0.01,0.01,0.99,0.32);
- 
+
+
 { 
 int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
 
@@ -57,21 +58,22 @@ THStack *hs = new THStack("hs","");
 
 //REPLACE HERE 1  - to choose the path 
 //===================================================
-//file for 2017 
-TFile *f00_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_DY_2017.root");
+//file for 2016 
+//TFile *f00_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_DY_2016.root");
+//TFile *f01_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_TTtW_2016.root");
+//TFile *f02_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_Other_2016.root");
+ 
+//TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_data_ele_2016.root");
+////TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_data_mu_2016.root");
+//====================================================
+//files for 2017 
+//TFile *f00_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_DY_k_qcdewk_2017.root");
+TFile *f00_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_DY_Kewkqcd_2017.root");
 TFile *f01_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_TTtW_2017.root");
 TFile *f02_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_Other_2017.root");
  
+//TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_data_ele_2017.root");
 TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_data_mu_2017.root");
-////TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_data_mu_2017.root");
-//====================================================
-//files for 2017 
-//TFile *f00_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_DY_2017.root");
-//TFile *f01_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_TTtW_2017.root");
-//TFile *f02_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_Other_2017.root");
- 
-//TFile *f00 = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_data_ele_2017.root");
-//TFile *f00 = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_data_mu_2017.root");
 //=============================
 //files for 2018 
 //TFile *f00_ = new TFile("DY/CR_DY_DY_2018.root");
@@ -82,12 +84,12 @@ TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SY
 //TFile *f00 = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_data_ele_2018.root");
 //TFile *f00 = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_data_mu_2018.root");
 
+
 //==================================================
 //REPLACE HERE 2 - to change the binning 
-int bin=1; //good for M(llj)
-
-TString name="M_mumuJ_Z";   //this is to check the effect of the new weight on the DY MC
-//TString name="M_mumuJ";   //this is to check the effect of the new weight on the DY MC
+int bin=4;  //rebinning for ptee -->>> Need to fix ratio below
+//TString name="pt_ee";   // this is to check the effect of the new weight on the DY MC
+TString name="pt_mumu_Z";   // this is to check the effect of the new weight on the DY MC
 
 TString nameTop="TTtW_ll";
 TString nameDY="DY_ll";
@@ -106,10 +108,12 @@ TH1F *d=(TH1F*) da->Clone();
 
 int nbin = d->GetNbinsX();
 
+//d->SetFillColor(color2);
 d_->SetFillColor(color2);
 d_->SetLineColor(color2);
 d_->Rebin(bin);
 hs->Add(d_);
+//d1->SetFillColor(color3);
 d1_->SetFillColor(color3);
 d1_->SetLineColor(color3);
 d1_->Rebin(bin);
@@ -129,9 +133,9 @@ d->Rebin(bin);
 //============================================
 //REPLACE HERE 4 -- to change the maximum (if needed) 
 //============================================
-//d->SetMaximum(4500); 
-//d->GetYaxis()->SetRangeUser(0,5000); //for 2017 Meej
-d->GetYaxis()->SetRangeUser(0,1.8*(d->GetBinContent(d->GetMaximumBin()))); 
+d->SetMaximum(4000); 
+//d->GetYaxis()->SetRangeUser(0,5000); //for 2018
+d->GetYaxis()->SetRangeUser(0,1.8*(d->GetBinContent(d->GetMaximumBin())));
 d->SetMinimum(0.5);
 canv->cd();
 
@@ -189,6 +193,7 @@ d->GetXaxis()->SetTitleSize(30);
 d->GetXaxis()->SetTitleFont(43);
 d->GetXaxis()->SetTitleOffset(1.);
 
+
 d->Draw("PE");
 hs->Draw("histosame");
 hs_err->Draw("E2same");
@@ -200,6 +205,7 @@ c1_1->SetBottomMargin(0.27);
 c1_1->SetRightMargin(0.1);
 c1_1->Draw();
 c1_1->cd();
+
 
 double rd = 0, mc = 0, rd_e = 0, mc_e = 0;
 double dataSUmc_x[v]; double dataSUmc_y[v]; double dataSUmc_xerr[v]; double dataSUmc_yerr[v];
@@ -222,15 +228,15 @@ for(int j=0; j<v; j++){
 
 TGraphErrors *dataSUmc = new TGraphErrors(v, dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
 //===========================================
-//HERE TOO REPLACE ????? - not clear how it works
-dataSUmc->GetXaxis()->SetLimits(0,10000); //this is for the MeeJ
+
+dataSUmc->GetXaxis()->SetLimits(0,1000); //this is for the PT(ll)
 
 dataSUmc->Draw("APZ");
 dataSUmc->SetTitle(0);
 dataSUmc->SetMarkerStyle(8); 
 dataSUmc->GetYaxis()->SetNdivisions(5,5,1);
 
-dataSUmc->GetXaxis()->SetTitle("M(#mu#muJ) [GeV]");
+dataSUmc->GetXaxis()->SetTitle("Pt(#mu #mu) [GeV]");
 dataSUmc->GetXaxis()->SetLabelSize(25);
 dataSUmc->GetXaxis()->SetLabelFont(43);
 dataSUmc->GetXaxis()->SetTitleSize(30);
@@ -247,7 +253,7 @@ dataSUmc->GetYaxis()->SetTitleOffset(1.5);
 //REPLACE HERE FOR THE LINE
 dataSUmc->SetMinimum(0.4);  //0.5
 dataSUmc->SetMaximum(1.6);  //1.5
-TLine* line = new TLine(0,1,10000,1);     //per Pt(ll) larghezza linea rossa (specificare x1, x2)
+TLine* line = new TLine(0,1,1000,1);     //per Pt(ll) larghezza linea rossa (specificare x1, x2)
 line->SetLineColor(kRed);
 line->SetLineWidth(2);
 line->Draw("same");
@@ -344,15 +350,15 @@ line->Draw("same");
 //===========================================
 //HERE REPLACE 5 
 //==========================================
+//2016 
+ //canv->Print("Pat/"+canvName+"_2016.png");
+ // canv->Print("Pat/"+canvName+"_2016.pdf");
 //2017 
-  canv->Print("/eos/user/m/mpresill/www/HN/DY/"+canvName+"_2017.png");
-  canv->Print("/eos/user/m/mpresill/www/HN/DY/"+canvName+"_2017.pdf");
-//2017 
-  //canv->Print("Pat/"+canvName+"_2017.png");
-  //canv->Print("Pat/"+canvName+"_2017.pdf");
+  canv->Print("/eos/user/m/mpresill/www/HN/DY/"+canvName+"_2017_Kewkqcd.png");
+  canv->Print("/eos/user/m/mpresill/www/HN/DY/"+canvName+"_2017_Kewkqcd.pdf");
 //2018 
-//  canv->Print("Pat/"+canvName+"_2018.png");
-//  canv->Print("Pat/"+canvName+"_2018.pdf");
+ // canv->Print("Pat/"+canvName+"_2018.png");
+  //canv->Print("Pat/"+canvName+"_2018.pdf");
  return canv;
 
 }

@@ -59,12 +59,12 @@ THStack *hs = new THStack("hs","");
 //REPLACE HERE 1  - to choose the path 
 //===================================================
 //file for 2016 
-TFile *f00_ = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_DY_Kewkqcd_2016.root");
-TFile *f01_ = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_TTtW_2016.root");
-TFile *f02_ = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_Other_2016.root");
+TFile *f00_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_DY_Kewkqcd_2016.root");
+TFile *f01_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_TTtW_2016.root");
+TFile *f02_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_Other_2016.root");
  
-TFile *f00 = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_data_ele_2016.root");
-////TFile *f00 = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_data_mu_2016.root");
+TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_data_ele_2016.root");
+////TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_data_mu_2016.root");
 //====================================================
 //files for 2017 
 //TFile *f00_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_DY_2017.root");
@@ -87,7 +87,7 @@ TFile *f00 = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_data_e
 //==================================================
 //REPLACE HERE 2 - to change the binning 
 int bin=4;  //rebinning for ptee -->>> Need to fix ratio below
-TString name="pt_ee";   // this is to check the effect of the new weight on the DY MC
+TString name="pt_ee_Z";   // this is to check the effect of the new weight on the DY MC
 //TString name="pt_mumu";   // this is to check the effect of the new weight on the DY MC
 
 TString nameTop="TTtW_ll";
@@ -134,6 +134,7 @@ d->Rebin(bin);
 //============================================
 //d->SetMaximum(4500); 
 //d->GetYaxis()->SetRangeUser(0,5000); //for 2018
+d->GetYaxis()->SetRangeUser(0,1.8*(d->GetBinContent(d->GetMaximumBin())));
 d->SetMinimum(0.5);
 canv->cd();
 
@@ -234,7 +235,7 @@ dataSUmc->SetTitle(0);
 dataSUmc->SetMarkerStyle(8); 
 dataSUmc->GetYaxis()->SetNdivisions(5,5,1);
 
-dataSUmc->GetXaxis()->SetTitle("Pt(ll) [GeV]");
+dataSUmc->GetXaxis()->SetTitle("Pt(ee) [GeV]");
 dataSUmc->GetXaxis()->SetLabelSize(25);
 dataSUmc->GetXaxis()->SetLabelFont(43);
 dataSUmc->GetXaxis()->SetTitleSize(30);
