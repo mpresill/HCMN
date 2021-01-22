@@ -223,6 +223,7 @@ for(int j=0; j<v; j++){
 TGraphErrors *dataSUmc = new TGraphErrors(v, dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
 //===========================================
 //HERE TOO REPLACE ????? - not clear how it works
+gPad->SetLogx(); 
 dataSUmc->GetXaxis()->SetLimits(0,10000); //this is for the MeeJ
 
 dataSUmc->Draw("APZ");
