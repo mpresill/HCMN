@@ -5,7 +5,7 @@
 
 
 TCanvas* c1(int iPeriod, int iPos);
-void DH_dy_Mllj_2017_Kfactor()
+void DH_dy_Mllj_CR_2018_Kfactor()
 {
  setTDRStyle();
 
@@ -15,7 +15,7 @@ void DH_dy_Mllj_2017_Kfactor()
 //========================================
 //REPLACE HERE 0 to choose the period 
 //========================================
- int iPeriod = 5; //periodo 4=2017, periodo 5=2017, periodo 6=2018
+ int iPeriod = 6; //periodo 4=2018, periodo 5=2018, periodo 6=2018
  c1( iPeriod, 11 );
 }
 
@@ -57,45 +57,28 @@ THStack *hs = new THStack("hs","");
 
 //REPLACE HERE 1  - to choose the path 
 //===================================================
-//file for 2017 
-TFile *f00_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_DY_Kewkqcd_2017.root");
-TFile *f01_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_TTtW_2017.root");
-TFile *f02_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_Other_2017.root");
+//file for 2018 
+TFile *f00_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/SR_syst_DY_Kewkqcd_2018.root");
+TFile *f01_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/SR_syst_TTtW_2018.root");
+TFile *f02_ = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/SR_syst_Other_2018.root");
  
-TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_data_ele_2017.root");
-////TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/CR_DY_data_mu_2017.root");
-//====================================================
-//files for 2017 
-//TFile *f00_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_DY_2017.root");
-//TFile *f01_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_TTtW_2017.root");
-//TFile *f02_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_Other_2017.root");
- 
-//TFile *f00 = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_data_ele_2017.root");
-//TFile *f00 = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_data_mu_2017.root");
-//=============================
-//files for 2018 
-//TFile *f00_ = new TFile("DY/CR_DY_DY_2018.root");
-//TFile *f00_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_DY_2018.root");
-//TFile *f01_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_TTtW_2018.root");
-//TFile *f02_ = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_Other_2018.root");
-//here change mu or ele 
-//TFile *f00 = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_data_ele_2018.root");
-//TFile *f00 = new TFile("/Users/patriziaazzi/Work/CMS/HCMN/newhistos/CR_DY_data_mu_2018.root");
+TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/CR_DY_data_ele_2018.root");
+////TFile *f00 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/CR_DY_data_mu_2018.root");
 
 //==================================================
 //REPLACE HERE 2 - to change the binning 
 int bin=1; //good for M(llj)
 
-TString name="M_eeJ_Z";   //this is to check the effect of the new weight on the DY MC
+TString name="M_eeJ";   //this is to check the effect of the new weight on the DY MC
 //TString name="M_mumuJ";   //this is to check the effect of the new weight on the DY MC
 
-TString nameTop="TTtW_ll";
-TString nameDY="DY_ll";
-TString nameOther="Other_ll";
+TString nameTop="TTtW_DYcr_eejj";
+TString nameDY="DY_DYcr_eejj_2018_AlphaRatio";
+TString nameOther="Other_DYcr_eejj";
 canvName = name;
-TH1F *da_= (TH1F*) f00_->Get(name);
-TH1F *da1_= (TH1F*) f01_->Get(name);
-TH1F *da2_= (TH1F*) f02_->Get(name);
+TH1F *da_= (TH1F*) f00_->Get(nameDY);
+TH1F *da1_= (TH1F*) f01_->Get(nameTop);
+TH1F *da2_= (TH1F*) f02_->Get(nameOther);
 TH1F *da= (TH1F*) f00->Get(name);
 
 TH1F *d_=(TH1F*) da_->Clone();
@@ -130,7 +113,7 @@ d->Rebin(bin);
 //REPLACE HERE 4 -- to change the maximum (if needed) 
 //============================================
 //d->SetMaximum(4500); 
-//d->GetYaxis()->SetRangeUser(0,4000); //for 2017 Meej
+//d->GetYaxis()->SetRangeUser(0,8000); //for 2018 Meej
 d->GetYaxis()->SetRangeUser(0,1.8*(d->GetBinContent(d->GetMaximumBin()))); 
 d->SetMinimum(0.5);
 canv->cd();
@@ -155,14 +138,14 @@ d->GetYaxis()->SetTitleFont(43);
 
 gPad->SetLogy();
 gPad->RedrawAxis();
-//gPad->SetLogx();
+gPad->SetLogx();
 
 c1_2->SetBottomMargin(0.);//(0.1);//(0.);
 c1_2->SetTopMargin(0.07);
 c1_2->SetRightMargin(0.1);
 c1_2->Draw();
 c1_2->cd();
-gPad->SetLogy();
+//gPad->SetLogy();
 //gPad->RedrawAxis();
 gPad->SetLogx();
 
@@ -344,12 +327,14 @@ line->Draw("same");
 //===========================================
 //HERE REPLACE 5 
 //==========================================
-//2017 
-  canv->Print("/eos/user/m/mpresill/www/HN/DY/"+canvName+"_2017_Kewkqcd.png");
-  canv->Print("/eos/user/m/mpresill/www/HN/DY/"+canvName+"_2017_Kewkqcd.pdf");
-//2017 
-  //canv->Print("Pat/"+canvName+"_2017.png");
-  //canv->Print("Pat/"+canvName+"_2017.pdf");
+//2018 
+
+  canv->Print("/eos/user/m/mpresill/www/HN/DY/CR150-300/"+canvName+"_2018_Kewkqcd_CR150-300GeV_AlphaRBinned.png");
+  canv->Print("/eos/user/m/mpresill/www/HN/DY/CR150-300/"+canvName+"_2018_Kewkqcd_CR150-300GeV_AlphaRBinned.pdf");
+
+//2018 
+  //canv->Print("Pat/"+canvName+"_2018.png");
+  //canv->Print("Pat/"+canvName+"_2018.pdf");
 //2018 
 //  canv->Print("Pat/"+canvName+"_2018.png");
 //  canv->Print("Pat/"+canvName+"_2018.pdf");
