@@ -3,7 +3,7 @@ if __name__ == '__main__':
  ##   Multicrab configuration
  #####
  import sys
- from CRABClient.UserUtilities import config, getUsernameFromSiteDB
+ from CRABClient.UserUtilities import config
  config = config()
  from CRABAPI.RawCommand import crabCommand
  from CRABClient.ClientExceptions import ClientException
@@ -39,11 +39,36 @@ if __name__ == '__main__':
 #'Autumn18_WJetsHT2500ToInf',
 #'Autumn18_WJets_',
 #'Autumn18_DY',
+#'Autumn18_DY_HT70To100',
+#'Autumn18_DY_HT100To200',
+#'Autumn18_DY_HT200To400',
+#'Autumn18_DY_HT400To600',
+#'Autumn18_DY_HT400To600_1',
+#'Autumn18_DY_HT400To600_2',
+#'Autumn18_DY_HT400To600_3',
+#'Autumn18_DY_HT400To600_ext',
+#'Autumn18_DY_HT600To800',
+#'Autumn18_DY_HT800To1200',
+#'Autumn18_DY_HT1200To2500',
+#'Autumn18_DY_HT2500ToInf',
+#'Autumn18_DY_FxFx',
+#'Autumn18_DY_FxFx_ext',
+'Autumn18_QCD_HT50To100',
+'Autumn18_QCD_HT100To200',
+'Autumn18_QCD_HT200To300',
+'Autumn18_QCD_HT300To500',
+'Autumn18_QCD_HT500To700',
+'Autumn18_QCD_HT700To1000',
+'Autumn18_QCD_HT1000To1500',
+'Autumn18_QCD_HT1500To2000',
+'Autumn18_QCD_HT2000ToInf',
+'Autumn18_ttWJets',
+'Autumn18_ttZJets',
 
 #Signal mumu
-'mumujj_18_L13_M500',
-'mumujj_18_L13_M1000',
-'mumujj_18_L13_M2000',
+#'mumujj_18_L13_M500',
+#'mumujj_18_L13_M1000',
+#'mumujj_18_L13_M2000',
 #'mumujj_18_L13_M5000',
 #'mumujj_18_L13_M8000',
 
@@ -72,11 +97,36 @@ if __name__ == '__main__':
 #'/WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
 #'/WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM',
 #'/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-70to100_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-200to400_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v3/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v4/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v7/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15_ext2-v3/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-600to800_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-800to1200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM',
+#'/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM',
+#'/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+#'/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15_ext2-v1/MINIAODSIM',
+'/QCD_HT50to100_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+'/QCD_HT100to200_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+'/QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+'/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+'/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+'/QCD_HT700to1000_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+'/QCD_HT1000to1500_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+'/QCD_HT1500to2000_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+'/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+'/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15_ext1-v2/MINIAODSIM',
+'/ttZJets_TuneCP5_13TeV_madgraphMLM_pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15_ext1-v2/MINIAODSIM',
 
 #signal mumu
-'/HeavyCompositeMajoranaNeutrino_L13000_M500_mumujj_CalcHep/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
-'/HeavyCompositeMajoranaNeutrino_L13000_M1000_mumujj_CalcHep/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
-'/HeavyCompositeMajoranaNeutrino_L13000_M2000_mumujj_CalcHep/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+#'/HeavyCompositeMajoranaNeutrino_L13000_M500_mumujj_CalcHep/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+#'/HeavyCompositeMajoranaNeutrino_L13000_M1000_mumujj_CalcHep/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
+#'/HeavyCompositeMajoranaNeutrino_L13000_M2000_mumujj_CalcHep/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
 #'/HeavyCompositeMajoranaNeutrino_L13000_M5000_mumujj_CalcHep/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
 #'/HeavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM',
 
@@ -127,6 +177,6 @@ for d in range(0,len(datasetnames)):
     #config.Data.publication = True
 
     config.section_('Site')
-    config.Site.storageSite    = 'T2_IT_Bari'#'T2_CH_CERN' # Site to which output is permenantly copied by crab3
+    config.Site.storageSite    = 'T2_IT_Legnaro'#'T2_CH_CERN' # Site to which output is permenantly copied by crab3
     print 'multicrab.py: Submitting Jobs'
     submit(config)
