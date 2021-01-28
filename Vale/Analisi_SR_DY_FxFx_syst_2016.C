@@ -39,13 +39,13 @@ double deltaPhi(double phi1, double phi2) {
 
 
 //void filename_()
-void Analisi_SR_DY_syst_2016(){
+void Analisi_SR_DY_FxFx_syst_2016(){
 
 TChain *a_ = new TChain("BOOM");
 
-//a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/DY_2016.root");
-a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2016_syst/DY_2016.root");
-//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2016_syst/DY_FxFx_2016.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/DY_FxFx_2016.root");
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2016_syst/DY_2016.root");
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2016_syst/DY_FxFx_test_13Jan/DY_FxFx_2016.root");
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_TkMu50;
 double muejj_l, emujj_l;
@@ -285,6 +285,41 @@ TH1D *DY_eejj_2016_energyScaleDown = new TH1D ("DY_eejj_2016_energyScaleDown", "
 TH1D *DY_eejj_2016_energySigmaUp = new TH1D ("DY_eejj_2016_energySigmaUp", "DY_eejj_2016_energySigmaUp", 9, asymbins);
 TH1D *DY_eejj_2016_energySigmaDown = new TH1D ("DY_eejj_2016_energySigmaDown", "DY_eejj_2016_energySigmaDown", 9, asymbins);
 
+//DY CR (mll in 150-300 GeV)
+TH1D *DY_DYcr_mumujj = new TH1D ("DY_DYcr_mumujj", "DY_DYcr_mumujj", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_AlphaRatio = new TH1D ("DY_DYcr_mumujj_2016_AlphaRatio", "DY_DYcr_mumujj_2016_AlphaRatio", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_AlphaRatioUp = new TH1D ("DY_DYcr_mumujj_2016_AlphaRatioUp", "DY_DYcr_mumujj_2016_AlphaRatioUp", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_AlphaRatioDown = new TH1D ("DY_DYcr_mumujj_2016_AlphaRatioDown", "DY_DYcr_mumujj_2016_AlphaRatioDown", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_SFUp = new TH1D ("DY_DYcr_mumujj_2016_SFUp", "DY_DYcr_mumujj_2016_SFUp", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_SFDown = new TH1D ("DY_DYcr_mumujj_2016_SFDown", "DY_DYcr_mumujj_2016_SFDown", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_PUUp = new TH1D ("DY_DYcr_mumujj_2016_PUUp", "DY_DYcr_mumujj_2016_PUUp", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_PUDown = new TH1D ("DY_DYcr_mumujj_2016_PUDown", "DY_DYcr_mumujj_2016_PUDown", 9, asymbins);
+TH1D *DY_DYcr_mumujj_centralJesJer = new TH1D ("DY_DYcr_mumujj_centralJesJer", "DY_DYcr_mumujj_centralJesJer", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_JesSFUp = new TH1D ("DY_DYcr_mumujj_2016_JesSFUp", "DY_DYcr_mumujj_2016_JesSFUp", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_JesSFDown = new TH1D ("DY_DYcr_mumujj_2016_JesSFDown", "DY_DYcr_mumujj_2016_JesSFDown", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_JerSFUp = new TH1D ("DY_DYcr_mumujj_2016_JerSFUp", "DY_DYcr_mumujj_2016_JerSFUp", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_JerSFDown = new TH1D ("DY_DYcr_mumujj_2016_JerSFDown", "DY_DYcr_mumujj_2016_JerSFDown", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_PtCorrUp = new TH1D ("DY_DYcr_mumujj_2016_PtCorrUp", "DY_DYcr_mumujj_2016_PtCorrUp", 9, asymbins);
+TH1D *DY_DYcr_mumujj_2016_PtCorrDown = new TH1D ("DY_DYcr_mumujj_2016_PtCorrDown", "DY_DYcr_mumujj_2016_PtCorrDown", 9, asymbins);
+TH1D *DY_DYcr_eejj = new TH1D ("DY_DYcr_eejj", "DY_DYcr_eejj", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_AlphaRatio = new TH1D ("DY_DYcr_eejj_2016_AlphaRatio", "DY_DYcr_eejj_2016_AlphaRatio", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_AlphaRatioUp = new TH1D ("DY_DYcr_eejj_2016_AlphaRatioUp", "DY_DYcr_eejj_2016_AlphaRatioUp", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_AlphaRatioDown = new TH1D ("DY_DYcr_eejj_2016_AlphaRatioDown", "DY_DYcr_eejj_2016_AlphaRatioDown", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_SFUp = new TH1D ("DY_DYcr_eejj_2016_SFUp", "DY_DYcr_eejj_2016_SFUp", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_SFDown = new TH1D ("DY_DYcr_eejj_2016_SFDown", "DY_DYcr_eejj_2016_SFDown", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_PUUp = new TH1D ("DY_DYcr_eejj_2016_PUUp", "DY_DYcr_eejj_2016_PUUp", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_PUDown = new TH1D ("DY_DYcr_eejj_2016_PUDown", "DY_DYcr_eejj_2016_PUDown", 9, asymbins);
+TH1D *DY_DYcr_eejj_centralJesJer = new TH1D ("DY_DYcr_eejj_centralJesJer", "DY_DYcr_eejj_centralJesJer", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_JesSFUp = new TH1D ("DY_DYcr_eejj_2016_JesSFUp", "DY_DYcr_eejj_2016_JesSFUp", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_JesSFDown = new TH1D ("DY_DYcr_eejj_2016_JesSFDown", "DY_DYcr_eejj_2016_JesSFDown", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_JerSFUp = new TH1D ("DY_DYcr_eejj_2016_JerSFUp", "DY_DYcr_eejj_2016_JerSFUp", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_JerSFDown = new TH1D ("DY_DYcr_eejj_2016_JerSFDown", "DY_DYcr_eejj_2016_JerSFDown", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_energyScaleUp = new TH1D ("DY_DYcr_eejj_2016_energyScaleUp", "DY_DYcr_eejj_2016_energyScaleUp", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_energyScaleDown = new TH1D ("DY_DYcr_eejj_2016_energyScaleDown", "DY_DYcr_eejj_2016_energyScaleDown", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_energySigmaUp = new TH1D ("DY_DYcr_eejj_2016_energySigmaUp", "DY_DYcr_eejj_2016_energySigmaUp", 9, asymbins);
+TH1D *DY_DYcr_eejj_2016_energySigmaDown = new TH1D ("DY_DYcr_eejj_2016_energySigmaDown", "DY_DYcr_eejj_2016_energySigmaDown", 9, asymbins);
+
+
 cout << a_->GetEntries() << endl;
 int tot=0, muejj = 0;
 double wg = 0, wg_2016_SFUp = 0, wg_2016_SFDown = 0, wg_2016_PUUp = 0, wg_2016_PUDown = 0;
@@ -367,8 +402,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   }
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
-
-k_ewk=1, k_qcd=1;//uncomment for LO DY samples
+  k_ewk=1, k_qcd=1;//uncomment for LO DY samples
  
  
  wg = lumi * lumi_wgt * lepsf_evt * PUWeight*k_ewk*k_qcd;
@@ -466,6 +500,33 @@ k_ewk=1, k_qcd=1;//uncomment for LO DY samples
    if(JerSFup->at(3)==1)DY_mumujj_2016_JerSFUp->Fill((Muon1+Muon2+BoostJet_JERup).M(), wg);
    if(JerSFdown->at(4)==1)DY_mumujj_2016_JerSFDown->Fill((Muon1+Muon2+BoostJet_JERdown).M(), wg);  
   }
+
+  //DY cr Mll in 150-300 GeV
+  if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1+Muon2).M() > 150 && (Muon1+Muon2).M() < 300 ){
+  BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
+  BoostJet_JESup.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1),BoostedJet_energy->at(1));
+  BoostJet_JESdown.SetPtEtaPhiE(BoostedJet_pt->at(2), BoostedJet_eta->at(2), BoostedJet_phi->at(2),BoostedJet_energy->at(2));
+  BoostJet_JERup.SetPtEtaPhiE(BoostedJet_pt->at(3), BoostedJet_eta->at(3), BoostedJet_phi->at(3),BoostedJet_energy->at(3));
+  BoostJet_JERdown.SetPtEtaPhiE(BoostedJet_pt->at(4), BoostedJet_eta->at(4), BoostedJet_phi->at(4),BoostedJet_energy->at(4));
+  Muon1_ptCorr.SetPtEtaPhiE(Muon_pt_corr->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+  Muon2_ptCorr.SetPtEtaPhiE(Muon_pt_corr->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+  DY_DYcr_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
+  DY_DYcr_mumujj_2016_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg);
+  DY_DYcr_mumujj_2016_AlphaRatioUp->Fill((Muon1+Muon2+BoostJet).M(), wg);
+  DY_DYcr_mumujj_2016_AlphaRatioDown->Fill((Muon1+Muon2+BoostJet).M(), wg);
+  DY_DYcr_mumujj_2016_SFUp->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_SFUp);
+  DY_DYcr_mumujj_2016_SFDown->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_SFDown);
+  DY_DYcr_mumujj_2016_PUUp->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_PUUp);
+  DY_DYcr_mumujj_2016_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_PUDown);
+  DY_DYcr_mumujj_2016_PtCorrUp->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg);
+  DY_DYcr_mumujj_2016_PtCorrDown->Fill((Muon1_ptCorr+Muon2_ptCorr+BoostJet).M(), wg);
+  if(centralJesJer->at(0)==1)DY_DYcr_mumujj_centralJesJer->Fill((Muon1+Muon2+BoostJet).M(), wg);
+  if(JesSFup->at(1)==1)DY_DYcr_mumujj_2016_JesSFUp->Fill((Muon1+Muon2+BoostJet_JESup).M(), wg);
+  if(JesSFdown->at(2)==1)DY_DYcr_mumujj_2016_JesSFDown->Fill((Muon1+Muon2+BoostJet_JESdown).M(), wg);
+  if(JerSFup->at(3)==1)DY_DYcr_mumujj_2016_JerSFUp->Fill((Muon1+Muon2+BoostJet_JERup).M(), wg);
+  if(JerSFdown->at(4)==1)DY_DYcr_mumujj_2016_JerSFDown->Fill((Muon1+Muon2+BoostJet_JERdown).M(), wg);  
+  }
+
  }
  
  if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
@@ -507,50 +568,62 @@ k_ewk=1, k_qcd=1;//uncomment for LO DY samples
    if(JesSFdown->at(2)==1)DY_eejj_2016_JesSFDown->Fill((Electron1+Electron2+BoostJet_JESdown).M(), wg);
    if(JerSFup->at(3)==1)DY_eejj_2016_JerSFUp->Fill((Electron1+Electron2+BoostJet_JERup).M(), wg);
    if(JerSFdown->at(4)==1)DY_eejj_2016_JerSFDown->Fill((Electron1+Electron2+BoostJet_JERdown).M(), wg); 
+
+   cout<< "lepsf_evt"<<lepsf_evt<<endl;
+   cout <<"lepsf_evt_u" << lepsf_evt_u <<endl;
+   cout <<"lepsf_evt_d" << lepsf_evt_d <<endl;
+   cout<< "========"<<endl;
+
   }
+
+  //DY cr 150-300 GeV
+  if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190 && (Electron1+Electron2).M() >150 && (Electron1+Electron2).M() < 300){
+   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));  
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
+   BoostJet_JESup.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1),BoostedJet_energy->at(1));
+   BoostJet_JESdown.SetPtEtaPhiE(BoostedJet_pt->at(2), BoostedJet_eta->at(2), BoostedJet_phi->at(2),BoostedJet_energy->at(2));
+   BoostJet_JERup.SetPtEtaPhiE(BoostedJet_pt->at(3), BoostedJet_eta->at(3), BoostedJet_phi->at(3),BoostedJet_energy->at(3));
+   BoostJet_JERdown.SetPtEtaPhiE(BoostedJet_pt->at(4), BoostedJet_eta->at(4), BoostedJet_phi->at(4),BoostedJet_energy->at(4));
+   Ele1_ScaleUp.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energyScaleUp->at(0));
+   Ele1_ScaleDown.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energyScaleDown->at(0));
+   Ele2_ScaleUp.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energyScaleUp->at(1));
+   Ele2_ScaleDown.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energyScaleDown->at(1));
+   Ele1_SigmaUp.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energySigmaUp->at(0));
+   Ele1_SigmaDown.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energySigmaDown->at(0));
+   Ele2_SigmaUp.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energySigmaUp->at(1));
+   Ele2_SigmaDown.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energySigmaDown->at(1));
+   DY_DYcr_eejj->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   DY_DYcr_eejj_2016_AlphaRatio->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   DY_DYcr_eejj_2016_AlphaRatioUp->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   DY_DYcr_eejj_2016_AlphaRatioDown->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   DY_DYcr_eejj_2016_SFUp->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_SFUp);
+   DY_DYcr_eejj_2016_SFDown->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_SFDown);
+   DY_DYcr_eejj_2016_PUUp->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_PUUp);
+   DY_DYcr_eejj_2016_PUDown->Fill((Electron1+Electron2+BoostJet).M(), wg_2016_PUDown);
+   DY_DYcr_eejj_2016_energyScaleUp->Fill((Ele1_ScaleUp+Ele2_ScaleUp+BoostJet).M(), wg);
+   DY_DYcr_eejj_2016_energyScaleDown->Fill((Ele1_ScaleDown+Ele2_ScaleDown+BoostJet).M(), wg);
+   DY_DYcr_eejj_2016_energySigmaUp->Fill((Ele1_SigmaUp+Ele2_SigmaUp+BoostJet).M(), wg);
+   DY_DYcr_eejj_2016_energySigmaDown->Fill((Ele1_SigmaDown+Ele2_SigmaDown+BoostJet).M(), wg);
+   if(centralJesJer->at(0)==1)DY_DYcr_eejj_centralJesJer->Fill((Electron1+Electron2+BoostJet).M(), wg);
+   if(JesSFup->at(1)==1)DY_DYcr_eejj_2016_JesSFUp->Fill((Electron1+Electron2+BoostJet_JESup).M(), wg);
+   if(JesSFdown->at(2)==1)DY_DYcr_eejj_2016_JesSFDown->Fill((Electron1+Electron2+BoostJet_JESdown).M(), wg);
+   if(JerSFup->at(3)==1)DY_DYcr_eejj_2016_JerSFUp->Fill((Electron1+Electron2+BoostJet_JERup).M(), wg);
+   if(JerSFdown->at(4)==1)DY_DYcr_eejj_2016_JerSFDown->Fill((Electron1+Electron2+BoostJet_JERdown).M(), wg); 
+  }
+
+
  } 
  
 }
 
 
 
-/**** adding the Alpha ratio and it's uncertainty*******/
-/* alpha ratio and it's statistical error, bin per bin*/
-const double Alpha_ele[10] = {1,1,1, 1.03, 1, 1.03, 1.07, 1.09, 1};
-const double dAlpha_ele[10] ={0,0,0.08, 0.04, 0.04, 0.05, 0.11, 0.27, 0};
-
-const double Alpha_mu[10] = {1,1,1, 1.03, 1, 1.03, 1.07, 1.09, 1};
-const double dAlpha_mu[10] ={0,0,0.08, 0.04, 0.04, 0.05, 0.11, 0.27, 0};
-
-
-for (Int_t j=1;j<=9;j++) {
-    double alpha_mu=Alpha_mu[j-1];
-    DY_mumujj_2016_AlphaRatio->SetBinContent(j, DY_mumujj_2016_AlphaRatio->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_AlphaRatioUp->SetBinContent(j, DY_mumujj_2016_AlphaRatioUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_AlphaRatioDown->SetBinContent(j, DY_mumujj_2016_AlphaRatioDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_SFUp->SetBinContent(j, DY_mumujj_2016_SFUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_SFDown->SetBinContent(j, DY_mumujj_2016_SFDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_PUUp->SetBinContent(j, DY_mumujj_2016_PUUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_PUDown->SetBinContent(j, DY_mumujj_2016_PUDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_PtCorrUp->SetBinContent(j, DY_mumujj_2016_PtCorrUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2016_PtCorrDown->SetBinContent(j, DY_mumujj_2016_PtCorrDown->GetBinContent(j) * alpha_mu);
-    DY_eejj_centralJesJer->SetBinContent(j, DY_eejj_centralJesJer->GetBinContent(j) * alpha_mu);
-    DY_eejj_2016_JesSFUp->SetBinContent(j, DY_eejj_2016_JesSFUp->GetBinContent(j) * alpha_mu);
-    DY_eejj_2016_JesSFDown->SetBinContent(j, DY_eejj_2016_JesSFDown->GetBinContent(j) * alpha_mu);
-    DY_eejj_2016_JerSFUp->SetBinContent(j, DY_eejj_2016_JerSFUp->GetBinContent(j) * alpha_mu);
-    DY_eejj_2016_JerSFDown->SetBinContent(j, DY_eejj_2016_JerSFDown->GetBinContent(j) * alpha_mu);
-
-  /* debugging */
-  cout<< DY_mumujj_2016_AlphaRatio->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
-
-
-}
 
 
 
-
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR_syst_DY_Kewkqcd_2016-TEST.root", "RECREATE");
-//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR_syst_DY_FxFx_2016.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR//_syst_DY_Kewkqcd_2016.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR_syst_DY_FxFx_2016.root", "RECREATE");
 //TFile *f2 = new TFile("SR_syst_DY_2016.root", "RECREATE");
 deltaRmu1FJ1->Write();
 deltaRmu2FJ1->Write();
@@ -604,6 +677,42 @@ DY_mumujj_2016_JerSFUp->Write();
 DY_mumujj_2016_JerSFDown->Write();
 DY_mumujj_2016_PtCorrDown->Write();
 DY_mumujj_2016_PtCorrUp->Write();
+
+//DYcr 
+DY_DYcr_eejj->Write();
+DY_DYcr_eejj_2016_AlphaRatio->Write();
+DY_DYcr_eejj_2016_AlphaRatioUp->Write();
+DY_DYcr_eejj_2016_AlphaRatioDown->Write();
+DY_DYcr_eejj_2016_SFUp->Write();
+DY_DYcr_eejj_2016_SFDown->Write();
+DY_DYcr_eejj_2016_PUUp->Write();
+DY_DYcr_eejj_2016_PUDown->Write();
+DY_DYcr_eejj_centralJesJer->Write();
+DY_DYcr_eejj_2016_JesSFUp->Write();
+DY_DYcr_eejj_2016_JesSFDown->Write();
+DY_DYcr_eejj_2016_JerSFUp->Write();
+DY_DYcr_eejj_2016_JerSFDown->Write();
+DY_DYcr_eejj_2016_energyScaleUp->Write();
+DY_DYcr_eejj_2016_energyScaleDown->Write();
+DY_DYcr_eejj_2016_energySigmaUp->Write();
+DY_DYcr_eejj_2016_energySigmaDown->Write();
+DY_DYcr_mumujj->Write();
+DY_DYcr_mumujj_2016_AlphaRatio->Write();
+DY_DYcr_mumujj_2016_AlphaRatioUp->Write();
+DY_DYcr_mumujj_2016_AlphaRatioDown->Write();
+DY_DYcr_mumujj_2016_SFUp->Write();
+DY_DYcr_mumujj_2016_SFDown->Write();
+DY_DYcr_mumujj_2016_PUUp->Write();
+DY_DYcr_mumujj_2016_PUDown->Write();
+DY_DYcr_mumujj_centralJesJer->Write();
+DY_DYcr_mumujj_2016_JesSFUp->Write();
+DY_DYcr_mumujj_2016_JesSFDown->Write();
+DY_DYcr_mumujj_2016_JerSFUp->Write();
+DY_DYcr_mumujj_2016_JerSFDown->Write();
+DY_DYcr_mumujj_2016_PtCorrDown->Write();
+DY_DYcr_mumujj_2016_PtCorrUp->Write(); 
+
+
 f->Write();
 f->Close();
 

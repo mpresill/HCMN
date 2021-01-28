@@ -29,14 +29,13 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_SR_DY_syst_2018(){
+void Analisi_SR_DY_FxFx_syst_2018(){
 
 TChain *a_ = new TChain("BOOM");
 
 //a_->Add("/eos/user/v/vmariani/NTuples/HN_2018/Syst_ALL_newMuonSF/DY_2018.root");
 
-a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2018_syst/DY_2018.root");
-//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2018_syst/DY_FxFx_2018.root");
+a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2018_syst/DY_FxFx_test_13Jan/DY_FxFx_2018.root");
 
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
@@ -371,7 +370,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   }
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
-  //k_ewk=1, k_qcd=1; //comment if using LO samples
+  k_ewk=1, k_qcd=1; //comment if using LO samples
 
  wg = lumi * lumi_wgt * lepsf_evt * PUWeight*k_qcd*k_ewk;
  wg_SFu = lumi * lumi_wgt * lepsf_evt_u * PUWeight*k_qcd*k_ewk;  
@@ -575,107 +574,13 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 }
 
 
-/**** adding the Alpha ratio and it's uncertainty*******/
-/* alpha ratio and it's statistical error, bin per bin*/
-const double Alpha_ele[9] = {1,1,0.77, 0.76, 0.78, 0.71, 0.93, 0.82, 1};
-const double dAlpha_ele[9] ={0,0,0.06, 0.03, 0.03, 0.03, 0.10, 0.20, 0};
-const double Alpha_mu[9] = {1,1,0.91, 0.77, 0.73, 0.77, 0.71, 0.84, 1}; //last bin is actually 0.54
-const double dAlpha_mu[9] ={0,0,0.07, 0.02, 0.02, 0.03, 0.05, 0.14, 0}; //last bin error is actually 0.66
-for (Int_t j=1;j<=9;j++) {
-/*electron channel histograms*/
-    double alpha_ele=Alpha_ele[j-1];
-    double dalpha_ele=dAlpha_ele[j-1];
-    DY_eejj_2018_AlphaRatio->SetBinContent(j, DY_eejj_2018_AlphaRatio->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_AlphaRatioUp->SetBinContent(j, DY_eejj_2018_AlphaRatioUp->GetBinContent(j) * (alpha_ele+dalpha_ele));
-    DY_eejj_2018_AlphaRatioDown->SetBinContent(j, DY_eejj_2018_AlphaRatioDown->GetBinContent(j) * (alpha_ele-dalpha_ele));
-    DY_eejj_2018_SFUp->SetBinContent(j, DY_eejj_2018_SFUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_SFDown->SetBinContent(j, DY_eejj_2018_SFDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_PUUp->SetBinContent(j, DY_eejj_2018_PUUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_PUDown->SetBinContent(j, DY_eejj_2018_PUDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_energyScaleUp->SetBinContent(j, DY_eejj_2018_energyScaleUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_energyScaleDown->SetBinContent(j, DY_eejj_2018_energyScaleDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_energySigmaUp->SetBinContent(j, DY_eejj_2018_energySigmaUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_energySigmaDown->SetBinContent(j, DY_eejj_2018_energySigmaDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_centralJesJer->SetBinContent(j, DY_eejj_2018_centralJesJer->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_JesSFUp->SetBinContent(j, DY_eejj_2018_JesSFUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_JesSFDown->SetBinContent(j, DY_eejj_2018_JesSFDown->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_JerSFUp->SetBinContent(j, DY_eejj_2018_JerSFUp->GetBinContent(j) * alpha_ele);
-    DY_eejj_2018_JerSFDown->SetBinContent(j, DY_eejj_2018_JerSFDown->GetBinContent(j) * alpha_ele);
-  /* debugging ele*/
- // cout<< DY_eejj_2018_AlphaRatio->GetBinContenttent(j)/DY_eejj->GetBinContent(j) <<endl;
- // cout<< DY_eejj_2018_AlphaRatioDown->GetBinContent(j)/DY_eejj->GetBinContent(j) <<endl;
- // cout<<"================"<<endl; 
-     //DY CR 150-300 GeV
-    DY_DYcr_eejj_2018_AlphaRatio->SetBinContent(j, DY_DYcr_eejj_2018_AlphaRatio->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_AlphaRatioUp->SetBinContent(j, DY_DYcr_eejj_2018_AlphaRatioUp->GetBinContent(j) * (alpha_ele+dalpha_ele));
-    DY_DYcr_eejj_2018_AlphaRatioDown->SetBinContent(j, DY_DYcr_eejj_2018_AlphaRatioDown->GetBinContent(j) * (alpha_ele-dalpha_ele));
-    DY_DYcr_eejj_2018_SFUp->SetBinContent(j, DY_DYcr_eejj_2018_SFUp->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_SFDown->SetBinContent(j, DY_DYcr_eejj_2018_SFDown->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_PUUp->SetBinContent(j, DY_DYcr_eejj_2018_PUUp->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_PUDown->SetBinContent(j, DY_DYcr_eejj_2018_PUDown->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_energyScaleUp->SetBinContent(j, DY_DYcr_eejj_2018_energyScaleUp->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_energyScaleDown->SetBinContent(j, DY_DYcr_eejj_2018_energyScaleDown->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_energySigmaUp->SetBinContent(j, DY_DYcr_eejj_2018_energySigmaUp->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_energySigmaDown->SetBinContent(j, DY_DYcr_eejj_2018_energySigmaDown->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_centralJesJer->SetBinContent(j, DY_DYcr_eejj_centralJesJer->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_JesSFUp->SetBinContent(j, DY_DYcr_eejj_2018_JesSFUp->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_JesSFDown->SetBinContent(j, DY_DYcr_eejj_2018_JesSFDown->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_JerSFUp->SetBinContent(j, DY_DYcr_eejj_2018_JerSFUp->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2018_JerSFDown->SetBinContent(j, DY_DYcr_eejj_2018_JerSFDown->GetBinContent(j) * alpha_ele);
-
-/* muon channel histograms*/
-    double alpha_mu=Alpha_mu[j-1];
-    double dalpha_mu=dAlpha_mu[j-1];
-    DY_mumujj_2018_AlphaRatio->SetBinContent(j, DY_mumujj_2018_AlphaRatio->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_AlphaRatioUp->SetBinContent(j, DY_mumujj_2018_AlphaRatioUp->GetBinContent(j) * (alpha_mu+dalpha_mu));
-    DY_mumujj_2018_AlphaRatioDown->SetBinContent(j, DY_mumujj_2018_AlphaRatioDown->GetBinContent(j) * (alpha_mu-dalpha_mu));
-    DY_mumujj_2018_SFUp->SetBinContent(j, DY_mumujj_2018_SFUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_SFDown->SetBinContent(j, DY_mumujj_2018_SFDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_PUUp->SetBinContent(j, DY_mumujj_2018_PUUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_PUDown->SetBinContent(j, DY_mumujj_2018_PUDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_PtResoUp->SetBinContent(j, DY_mumujj_2018_PtResoUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_PtResoDown->SetBinContent(j, DY_mumujj_2018_PtResoDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_PtCorr->SetBinContent(j, DY_mumujj_2018_PtCorr->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_PtCorrUp->SetBinContent(j, DY_mumujj_2018_PtCorrUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_PtCorrDown->SetBinContent(j, DY_mumujj_2018_PtCorrDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_centralJesJer->SetBinContent(j, DY_mumujj_2018_centralJesJer->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_JesSFUp->SetBinContent(j, DY_mumujj_2018_JesSFUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_JesSFDown->SetBinContent(j, DY_mumujj_2018_JesSFDown->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_JerSFUp->SetBinContent(j, DY_mumujj_2018_JerSFUp->GetBinContent(j) * alpha_mu);
-    DY_mumujj_2018_JerSFDown->SetBinContent(j, DY_mumujj_2018_JerSFDown->GetBinContent(j) * alpha_mu);
-  /* debugging muons*/
- //cout<< DY_mumujj_2018_AlphaRatio->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
- // cout<< DY_mumujj_2018_AlphaRatioUp->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
- // cout<< DY_mumujj_2018_AlphaRatioDown->GetBinContent(j)/DY_mumujj->GetBinContent(j) <<endl;
- // cout<<"================"<<endl; 
- // cout<<"================"<<endl; 
-     //DY CR 150-300 GeV
-    DY_DYcr_mumujj_2018_AlphaRatio->SetBinContent(j, DY_DYcr_mumujj_2018_AlphaRatio->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_AlphaRatioUp->SetBinContent(j, DY_DYcr_mumujj_2018_AlphaRatioUp->GetBinContent(j) * (alpha_mu+dalpha_mu));
-    DY_DYcr_mumujj_2018_AlphaRatioDown->SetBinContent(j, DY_DYcr_mumujj_2018_AlphaRatioDown->GetBinContent(j) * (alpha_mu-dalpha_mu));
-    DY_DYcr_mumujj_2018_SFUp->SetBinContent(j, DY_DYcr_mumujj_2018_SFUp->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_SFDown->SetBinContent(j, DY_DYcr_mumujj_2018_SFDown->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_PUUp->SetBinContent(j, DY_DYcr_mumujj_2018_PUUp->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_PUDown->SetBinContent(j, DY_DYcr_mumujj_2018_PUDown->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_PtResoUp->SetBinContent(j, DY_DYcr_mumujj_2018_PtResoUp->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_PtResoDown->SetBinContent(j, DY_DYcr_mumujj_2018_PtResoDown->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_PtCorrUp->SetBinContent(j, DY_DYcr_mumujj_2018_PtCorrUp->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_PtCorrDown->SetBinContent(j, DY_DYcr_mumujj_2018_PtCorrDown->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_centralJesJer->SetBinContent(j, DY_DYcr_mumujj_centralJesJer->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_JesSFUp->SetBinContent(j, DY_DYcr_mumujj_2018_JesSFUp->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_JesSFDown->SetBinContent(j, DY_DYcr_mumujj_2018_JesSFDown->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_JerSFUp->SetBinContent(j, DY_DYcr_mumujj_2018_JerSFUp->GetBinContent(j) * alpha_mu);
-    DY_DYcr_mumujj_2018_JerSFDown->SetBinContent(j, DY_DYcr_mumujj_2018_JerSFDown->GetBinContent(j) * alpha_mu);
-
-}
-/********/
 
 
 
 
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/SR_syst_DY_Kewkqcd_2018.root", "RECREATE");
-//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/SR_syst_DY_FxFx_2018.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/SR_syst_DY_Kewkqcd_2018.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/SR_syst_DY_FxFx_2018.root", "RECREATE");
 //TFile *f2 = new TFile("plot/SR_syst_DY_2018.root", "RECREATE");
 DY_eejj->Write();
 DY_eejj_2018_AlphaRatio->Write();

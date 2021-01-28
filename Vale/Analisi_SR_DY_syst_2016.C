@@ -568,6 +568,12 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    if(JesSFdown->at(2)==1)DY_eejj_2016_JesSFDown->Fill((Electron1+Electron2+BoostJet_JESdown).M(), wg);
    if(JerSFup->at(3)==1)DY_eejj_2016_JerSFUp->Fill((Electron1+Electron2+BoostJet_JERup).M(), wg);
    if(JerSFdown->at(4)==1)DY_eejj_2016_JerSFDown->Fill((Electron1+Electron2+BoostJet_JERdown).M(), wg); 
+
+   cout<< "lepsf_evt"<<lepsf_evt<<endl;
+   cout <<"lepsf_evt_u" << lepsf_evt_u <<endl;
+   cout <<"lepsf_evt_d" << lepsf_evt_d <<endl;
+   cout<< "========"<<endl;
+
   }
 
   //DY cr 150-300 GeV
