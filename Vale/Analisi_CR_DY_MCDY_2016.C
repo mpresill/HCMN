@@ -34,7 +34,8 @@ void Analisi_CR_DY_MCDY_2016(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/DY_2016.root");
+//a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/DY_2016.root");
+a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2016_syst/DY_2016.root");
 //inputFile
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_TkMu50, HLT_OldMu100, HLT_TkMu100;
@@ -57,6 +58,17 @@ vector<double>*BoostedJet_energy; BoostedJet_energy=0;
 double numOfHighptEle, numOfVetoEle, numOfHighptMu, numOfLooseMu, numOfBoostedJets;
 double lepsf_evt, lumi_wgt, trueInteractions, PUWeight;
 int nBestVtx;
+
+/* gen particles*/
+vector<double>*Gen_pt; Gen_pt = 0;
+vector<double>*Gen_eta; Gen_eta = 0;
+vector<double>*Gen_phi; Gen_phi = 0;
+vector<double>*Gen_charge; Gen_charge = 0;
+vector<double>*Gen_energy; Gen_energy = 0;
+vector<double>*Gen_pdg_id; Gen_pdg_id = 0;
+vector<double>*Gen_motherpdg_id; Gen_motherpdg_id = 0;
+vector<double>*Gen_numDaught; Gen_numDaught = 0;
+vector<double>*Gen_numMother; Gen_numMother = 0;
 
 double puw[100]={0.366077 , 0.893925 , 1.19772 , 0.962699 , 1.12098 , 1.16486 , 0.795599 , 0.495824 , 0.742182 , 0.878856 , 0.964232 , 1.0725 , 1.12534 , 1.17603 , 1.20208 , 1.20764 , 1.20018 , 1.18268 , 1.144 , 1.09663 , 1.0656 , 1.05117 , 1.0516 , 1.05063 , 1.04986 , 1.05817 , 1.07216 , 1.08303 , 1.09569 , 1.10787 , 1.09462 , 1.08262 , 1.04125 , 0.985752 , 0.910807 , 0.820922 , 0.716787 , 0.610013 , 0.503118 , 0.404841 , 0.309195 , 0.22792 , 0.16369 , 0.11318 , 0.0773005 , 0.0509221 , 0.0318936 , 0.0200936 , 0.0122631 , 0.00742646 , 0.00438028 , 0.00260777 , 0.00156599 , 0.000971358 , 0.000729206 , 0.000672709 , 0.000730459 , 0.000948791 , 0.00135533 , 0.00189419 , 0.00308244 , 0.00409665 , 0.00487449 , 0.00525606 , 0.00578498 , 0.00551468 , 0.00500046 , 0.00440983 , 0.00401224 , 0.00354754 , 0.00310751 , 0.00270211 , 0.00233691 , 0.00202529 , 0.00172328 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0};
 
@@ -101,6 +113,26 @@ TBranch *a_numOfLooseMu=a_->GetBranch("numOfLooseMu");
 TBranch *a_numOfBoostedJets=a_->GetBranch("numOfBoostedJets");
 TBranch *a_numOfVetoEle=a_->GetBranch("numOfVetoEle");
 
+/*gen particles*/
+TBranch *a_Gen_pt=a_->GetBranch("Gen_pt");
+TBranch *a_Gen_eta=a_->GetBranch("Gen_eta");
+TBranch *a_Gen_phi=a_->GetBranch("Gen_phi");
+TBranch *a_Gen_charge=a_->GetBranch("Gen_charge");
+TBranch *a_Gen_energy=a_->GetBranch("Gen_energy");
+TBranch *a_Gen_pdg_id=a_->GetBranch("Gen_pdg_id");
+TBranch *a_Gen_motherpdg_id=a_->GetBranch("Gen_motherpdg_id");
+TBranch *a_Gen_numDaught=a_->GetBranch("Gen_numDaught");
+TBranch *a_Gen_numMother=a_->GetBranch("Gen_numMother");
+a_Gen_pt->SetAddress(&Gen_pt);
+a_Gen_eta->SetAddress(&Gen_eta);
+a_Gen_phi->SetAddress(&Gen_phi);
+a_Gen_charge->SetAddress(&Gen_charge);
+a_Gen_energy->SetAddress(&Gen_energy);
+a_Gen_pdg_id->SetAddress(&Gen_pdg_id);
+a_Gen_motherpdg_id->SetAddress(&Gen_motherpdg_id);
+a_Gen_numDaught->SetAddress(&Gen_numDaught);
+a_Gen_numMother->SetAddress(&Gen_numMother);
+
 a_HLT_Ele115_CaloIdVT_GsfTrkIdT->SetAddress(&HLT_Ele);
 a_HLT_Mu50->SetAddress(&HLT_Mu50);
 a_HLT_TkMu50->SetAddress(&HLT_TkMu50);
@@ -141,7 +173,8 @@ a_numOfLooseMu->SetAddress(&numOfLooseMu);
 a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
-const double asymbins[10] = {0, 100, 200, 300, 500, 700, 1000, 1500, 3000, 5000};
+
+const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
 
 TH1D *n_best_Vtx_bef = new TH1D ("n_best_Vtx_bef", "n_best_Vtx_bef", 100,0, 100);
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
@@ -161,12 +194,22 @@ TH1D *pt_ee_Z = new TH1D ("pt_ee_Z", "pt_ee_Z", 100, 0, 1000);
 TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 10, 80, 100);
 TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 10, 80, 100);
 
+/*****************************************/
+TH1D *M_eeJ_CR = new TH1D ("M_eeJ_CR", "M_eeJ_CR", 9, asymbins);
+TH1D *M_mumuJ_CR = new TH1D ("M_mumuJ_CR", "M_mumuJ_CR", 9, asymbins);
+/*****************************************/
+
 TLorentzVector Muon1;
 TLorentzVector Muon2;
 TLorentzVector Electron1;
 TLorentzVector Electron2;
 TLorentzVector BoostJet;
 
+/*gen particles k-factors ewk nlo, qcd nlo*/
+double Z_gen_pt=0;
+double binCenter_ewk=0;
+double binCenter_qcd=0;
+double k_ewk=0, k_qcd=0;
 
 cout << a_->GetEntries() << endl;
 int tot=0, muejj = 0;
@@ -193,6 +236,46 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
   }
  }
 
+
+
+
+  /************************************************************/
+  /*implementation of k-factors from monojet analysis*/
+  /*here we read the histograms with the corrections */
+  TFile k_qcd_file("monojetDYk/kfac_dy_filter.root");  /*this is the histo with qcd weights*/
+  TH1F *k_qcd_histo = (TH1F*)k_qcd_file.Get("kfac_dy_filter");
+  TFile k_ewk_file("monojetDYk/merged_kfactors_zjets.root");  /*this is the histo with ewk weights*/
+  TH1F *k_ewk_histo = (TH1F*)k_ewk_file.Get("kfactor_monojet_ewk");
+  /* here we read from all the gen particles the Z boson ones */
+  /*if more than on Z boson...quit the for - this is not the most clean procedure, but how many Z are we expecting in each DY Region?!*/
+  for (int l = 0; l<Gen_pt->size(); l++){
+   if (fabs(Gen_pdg_id->at(l)) == 23  ){
+    Z_gen_pt = Gen_pt->at(l);
+    break;
+   }
+  }
+  /* here we write the k_qcd */
+  k_qcd=1;
+  for (int ji=1; ji<= 47; ji++){
+    binCenter_qcd= k_qcd_histo->GetXaxis()->GetBinCenter(ji);
+    if(Z_gen_pt >(binCenter_qcd - 20) && Z_gen_pt < (binCenter_qcd + 20) ){
+      k_qcd = k_qcd_histo->GetBinContent(ji);
+    }
+  }
+
+  /* here we write the k_ewk */
+  k_ewk =1;
+    for (int jj=1; jj<= 24; jj++){
+    binCenter_ewk= k_ewk_histo->GetXaxis()->GetBinCenter(jj);
+    if(Z_gen_pt >(binCenter_ewk - 10) && Z_gen_pt < (binCenter_ewk +10) ){
+      k_ewk = k_ewk_histo->GetBinContent(jj);
+    }
+  }
+  /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
+  /************************************************************/
+  k_qcd=1, k_ewk=1;
+
+
  if (Muon_pt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
   if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
    Muon1.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
@@ -200,28 +283,28 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
 
    mmumu= (Muon1+Muon2).M();
-  // k = 1.067 - 0.000112*mmumu + 3.176*exp(1) - 8*pow(mmumu,2) - 4.068*exp(1) - 12*pow(mmumu,3);
-   k = 1.067 - 0.000112*mmumu + 3.176e-8*pow(mmumu,2) - 4.068e-12*pow(mmumu,3);
-   wg = lumi*lumi_wgt*lepsf_evt*k; 
+  // k = 1.067 - 0.000112*mmumu + 3.176*exp(1) - 8*pow(mmumu,2) - 4.068*exp(1) - 12*pow(mmumu,3);  //k factor implemented by Kerstin
+  
+   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd*pu_w; 
+
    if(mmumu > 100 && mmumu < 300){
-    M_mumu_100300->Fill(mmumu,wg*pu_w);
+    M_mumu_100300->Fill(mmumu,wg);
    }
    if(mmumu >50 && mmumu < 130){
     n_best_Vtx->Fill(nBestVtx, wg);
-    n_best_Vtx_w->Fill(nBestVtx, wg*pu_w);
-    M_mumu_Z_50130->Fill(mmumu,wg*pu_w);
+    n_best_Vtx_w->Fill(nBestVtx, wg);
+    M_mumu_Z_50130->Fill(mmumu,wg);
    }
-
-   if(mmumu >= 80 && mmumu <= 100) M_mumu_Zpeak->Fill((Muon1+Muon2).M(), wg*pu_w);
- 
-   if (mmumu < 300){
-    M_mumuJ->Fill((Muon1+Muon2+BoostJet).M(),wg*pu_w);  
-    pt_mumu->Fill(Muon1.Pt() + Muon2.Pt(), wg*pu_w);
-    if (mmumu > 80 && mmumu < 100){
-     M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M(),wg*pu_w);
-     pt_mumu_Z->Fill(Muon1.Pt() + Muon2.Pt(), wg*pu_w);
+   if (mmumu >=150 && mmumu <= 300){
+    M_mumuJ->Fill((Muon1+Muon2+BoostJet).M(),wg);  
+    pt_mumu->Fill(Muon1.Pt() + Muon2.Pt(), wg);
+   }
+    if (mmumu >= 60 && mmumu <= 120){
+     M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M(),wg);
+     pt_mumu_Z->Fill(Muon1.Pt() + Muon2.Pt(), wg);
+     M_mumu_Zpeak->Fill((Muon1+Muon2).M(), wg);
     }
-   }
+   
   }
  }
  if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
@@ -232,34 +315,34 @@ for (Int_t i=0;i<a_->GetEntries();i++) {//a_->GetEntries()
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
 
     mee = (Electron1+Electron2).M();
-    //k = 1.067 - 0.000112*mee + 3.176*exp(1) - 8*pow(mee,2) - 4.068*exp(1) - 12*pow(mee,3);
-    k = 1.067 - 0.000112*mee + 3.176e-8*pow(mee,2) - 4.068e-12*pow(mee,3);
-    wg = lumi*lumi_wgt*lepsf_evt*k;
-    if(mee > 100 && mee < 300){
-     M_ee_100300->Fill(mee,wg*pu_w);
+    //k = 1.067 - 0.000112*mee + 3.176*exp(1) - 8*pow(mee,2) - 4.068*exp(1) - 12*pow(mee,3); //k factor implemented by Kerstin
+
+    wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd*pu_w;
+
+    if(mee >= 100 && mee <= 300){
+     M_ee_100300->Fill(mee,wg);
     }
     if(mee > 50 && mee < 130){
-    M_ee_Z_50130->Fill(mee,wg*pu_w);
+    M_ee_Z_50130->Fill(mee,wg);
    } 
- 
-   if(mee >= 80 && mee <= 100) M_ee_Zpeak->Fill((Electron1+Electron2).M(), wg*pu_w);
-   
-   if (mee < 300){
-    M_eeJ->Fill((Electron1+Electron2+BoostJet).M(),wg*pu_w);
-    pt_ee ->Fill(Electron1.Pt() + Electron2.Pt(), wg*pu_w);
-    if (mee > 80 && mee < 100){
-     M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M(),wg*pu_w);
-     pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt(), wg*pu_w);
-    }
+   if (mee>=150 && mee <= 300){
+    M_eeJ->Fill((Electron1+Electron2+BoostJet).M(),wg);
+    pt_ee ->Fill(Electron1.Pt() + Electron2.Pt(), wg);
    }
+   if (mee >= 60 && mee <= 120){
+     M_ee_Zpeak->Fill((Electron1+Electron2).M(), wg);
+     M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M(),wg);
+     pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt(), wg);
+    } 
+
    
   }
  } 
  
 }
 
-TFile *f = new TFile("plot/CR_DY_DY_2016.root", "RECREATE");
-n_best_Vtx->Write();
+//TFile *f = new TFile("/afs/cern.ch/work/m/mpresill/public/DY_test/CR_DY_DY_Kewkqcd_2016.root", "RECREATE"); 
+TFile *f2 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_DY_DY_2016.root", "RECREATE"); 
 n_best_Vtx_w->Write();
 n_best_Vtx_bef->Write();
 M_mumu_100300->Write();
@@ -277,8 +360,12 @@ pt_mumu_Z->Write();
 M_mumu_Zpeak->Write();
 M_ee_Zpeak->Write();
 
-f->Write();
-f->Close();
+M_eeJ_CR->Write();
+M_mumuJ_CR->Write();
 
+//f->Write();
+//f->Close();
+f2->Write();
+f2->Close();
 }
  

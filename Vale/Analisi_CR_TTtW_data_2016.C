@@ -141,6 +141,8 @@ TH1D *Mu_eta = new TH1D ("Mu_eta", "Mu_eta", 200, -4, 4);
 TH1D *data_obs = new TH1D ("data_obs", "data_obs", 6, asymbins);
 TH1D *M_leplepJ = new TH1D ("M_leplepJ", "M_leplepJ", 9, asymbins2);
 
+TH1D *pt_J = new TH1D ("pt_J", "pt_J", 100, 200, 1000);
+
 TLorentzVector Muon;
 TLorentzVector Electron;
 TLorentzVector BoostJet;
@@ -197,16 +199,19 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    Mu_phi->Fill(Muon_phi->at(0));
    data_obs->Fill((LeadLep+SubLeadLep).M());
    M_leplepJ->Fill((LeadLep+SubLeadLep+BoostJet).M());
+   pt_J->Fill(LeadLep.Pt()+SubLeadLep.Pt() + BoostedJet_pt->at(0));
    }
   }
  }
 }
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_TTtW_data_ele_2016.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/CR_TTtW_data_ele_2016.root", "RECREATE");
+TFile *f = new TFile("plots/CR_TTtW_data_ele_2016.root", "RECREATE");
 
 n_best_Vtx->Write();
 true_interactions->Write();
 M_leplepJ->Write();
+pt_J->Write();
 Ele_pt->Write();
 Mu_pt->Write();
 Ele_eta->Write();
