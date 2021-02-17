@@ -721,9 +721,9 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 
  } //TTtW CR
 }
-TFile *f = new TFile("SR_syst_mumujj_L13_M1000_2016.root", "RECREATE");
+//TFile *f = new TFile("SR_syst_mumujj_L13_M1000_2016.root", "RECREATE");
 
-//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016_fixMuon/SR_syst_mumujj_L13_M1000_2016.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016_fixMuon/SR_syst_mumujj_L13_M1000_2016.root", "RECREATE");
 //TFile *f2 = new TFile("SR_syst_mumujj_L13_M1000_oldbin_2016.root", "RECREATE");
 deltaRmu1FJ1->Write();
 deltaRmu2FJ1->Write();

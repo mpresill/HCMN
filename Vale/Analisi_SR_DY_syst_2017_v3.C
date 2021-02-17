@@ -29,7 +29,7 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_SR_DY_syst_2017(){
+void Analisi_SR_DY_syst_2017_v3(){
 
 TChain *a_ = new TChain("BOOM");
 
@@ -328,6 +328,30 @@ TH1D *DY_DYcr_eejj_2017_energyScaleUp = new TH1D ("DY_DYcr_eejj_2017_energyScale
 TH1D *DY_DYcr_eejj_2017_energyScaleDown = new TH1D ("DY_DYcr_eejj_2017_energyScaleDown", "DY_DYcr_eejj_2017_energyScaleDown", 9, asymbins);
 TH1D *DY_DYcr_eejj_2017_energySigmaUp = new TH1D ("DY_DYcr_eejj_2017_energySigmaUp", "DY_DYcr_eejj_2017_energySigmaUp", 9, asymbins);
 TH1D *DY_DYcr_eejj_2017_energySigmaDown = new TH1D ("DY_DYcr_eejj_2017_energySigmaDown", "DY_DYcr_eejj_2017_energySigmaDown", 9, asymbins);
+
+//TTcr
+const double asymbins2[7] = {300,350,400,450,500,700,2000};
+TH1D *M_leplepJ_TTtWcr = new TH1D ("M_leplepJ_TTtWcr", "M_leplepJ_TTtWcr", 9, asymbins);
+
+TH1D *DY_TTtWcr_ll = new TH1D ("DY_TTtWcr_ll", "DY_TTtWcr_ll", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_AlphaRatio = new TH1D ("DY_TTtWcr_ll_2017_AlphaRatio", "DY_TTtWcr_ll_2017_AlphaRatio", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_AlphaRatioUp = new TH1D ("DY_TTtWcr_ll_2017_AlphaRatioUp", "DY_TTtWcr_ll_2017_AlphaRatioUp", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_AlphaRatioDown = new TH1D ("DY_TTtWcr_ll_2017_AlphaRatioDown", "DY_TTtWcr_ll_2017_AlphaRatioDown", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_SFUp = new TH1D ("DY_TTtWcr_ll_2017_SFUp", "DY_TTtWcr_ll_2017_SFUp", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_SFDown = new TH1D ("DY_TTtWcr_ll_2017_SFDown", "DY_TTtWcr_ll_2017_SFDown", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_PUUp = new TH1D ("DY_TTtWcr_ll_2017_PUUp", "DY_TTtWcr_ll_2017_PUUp", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_PUDown = new TH1D ("DY_TTtWcr_ll_2017_PUDown", "DY_TTtWcr_ll_2017_PUDown", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_energyScaleUp = new TH1D ("DY_TTtWcr_ll_2017_energyScaleUp", "DY_TTtWcr_ll_2017_energyScaleUp", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_energyScaleDown = new TH1D ("DY_TTtWcr_ll_2017_energyScaleDown", "DY_TTtWcr_ll_2017_energyScaleDown", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_energySigmaUp = new TH1D ("DY_TTtWcr_ll_2017_energySigmaUp", "DY_TTtWcr_ll_2017_energySigmaUp", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_energySigmaDown = new TH1D ("DY_TTtWcr_ll_2017_energySigmaDown", "DY_TTtWcr_ll_2017_energySigmaDown", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_centralJesJer = new TH1D ("DY_TTtWcr_ll_centralJesJer", "DY_TTtWcr_ll_centralJesJer", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_JesSFUp = new TH1D ("DY_TTtWcr_ll_2017_JesSFUp", "DY_TTtWcr_ll_2017_JesSFUp", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_JesSFDown = new TH1D ("DY_TTtWcr_ll_2017_JesSFDown", "DY_TTtWcr_ll_2017_JesSFDown", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_JerSFUp = new TH1D ("DY_TTtWcr_ll_2017_JerSFUp", "DY_TTtWcr_ll_2017_JerSFUp", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_JerSFDown = new TH1D ("DY_TTtWcr_ll_2017_JerSFDown", "DY_TTtWcr_ll_2017_JerSFDown", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_PtResoUp = new TH1D("DY_TTtWcr_ll_2017_PtResoUp", "DY_TTtWcr_ll_2017_PtResoUp", 6, asymbins2);
+TH1D *DY_TTtWcr_ll_2017_PtResoDown = new TH1D("DY_TTtWcr_ll_2017_PtResoDown", "DY_TTtWcr_ll_2017_PtResoDown", 6, asymbins2);
 
 cout << a_->GetEntries() << endl;
 int tot=0, muejj = 0;
@@ -647,6 +671,123 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   }
   
  }  
+ //TTcr
+ TLorentzVector LeadLep;
+TLorentzVector SubLeadLep;
+TLorentzVector Ele_ScaleUp;
+TLorentzVector Ele_ScaleDown;
+TLorentzVector Ele_SigmaUp;
+TLorentzVector Ele_SigmaDown;
+TLorentzVector Muon_PtResoUp;
+TLorentzVector Muon_PtResoDown;
+
+double deltaEta = 0, deltaPhi = 0, deltaR = 0;
+
+ if (Muon_pt->size() > 0 && patElectron_pt->size() > 0 && numOfHighptMu==1 && numOfHighptEle == 1 && numOfBoostedJets>=1){
+
+  BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
+   BoostJet_JESup.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1),BoostedJet_energy->at(1));
+   BoostJet_JESdown.SetPtEtaPhiE(BoostedJet_pt->at(2), BoostedJet_eta->at(2), BoostedJet_phi->at(2),BoostedJet_energy->at(2));
+   BoostJet_JERup.SetPtEtaPhiE(BoostedJet_pt->at(3), BoostedJet_eta->at(3), BoostedJet_phi->at(3),BoostedJet_energy->at(3));
+   BoostJet_JERdown.SetPtEtaPhiE(BoostedJet_pt->at(4), BoostedJet_eta->at(4), BoostedJet_phi->at(4),BoostedJet_energy->at(4));
+   Ele_ScaleUp.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energyScaleUp->at(0));
+   Ele_ScaleDown.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energyScaleDown->at(0));
+   Ele_SigmaUp.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energySigmaUp->at(0));
+   Ele_SigmaDown.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energySigmaDown->at(0));
+   Muon_PtResoUp.SetPtEtaPhiM((Muon_pt->at(0)+0.1*Muon_pt->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
+   Muon_PtResoDown.SetPtEtaPhiM((Muon_pt->at(0)-0.1*Muon_pt->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
+
+   if (Muon_pt->at(0) >= patElectron_pt->at(0)){
+   LeadLep.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+   SubLeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+
+   if (HLT_Mu == 1 && LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4
+     && BoostedJet_pt->at(0) > 190 && (LeadLep+SubLeadLep).M() > 300 ){
+   veto_ele = false;
+   for(int j = 0; j < Muon_pt->size(); j++){
+    if (Muon_pt->at(j) > 5){
+     deltaEta=fabs(Muon_eta->at(j) - patElectron_eta->at(0));
+     deltaPhi = Muon_phi->at(j) - patElectron_phi->at(0);
+     if(deltaPhi > M_PI) deltaPhi -= 2*M_PI;
+     else if(deltaPhi <= -M_PI) deltaPhi +=2*M_PI;
+     deltaR=sqrt(pow(deltaEta,2) + pow(deltaPhi,2));
+     if (deltaR < 0.1) veto_ele = true;
+    }
+   }
+   if (veto_ele == false){
+    DY_TTtWcr_ll->Fill((LeadLep+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_AlphaRatio->Fill((LeadLep+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_AlphaRatioUp->Fill((LeadLep+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_AlphaRatioDown->Fill((LeadLep+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_SFUp->Fill((LeadLep+SubLeadLep).M(),wg_SFu);
+    DY_TTtWcr_ll_2017_SFDown->Fill((LeadLep+SubLeadLep).M(),wg_SFd);
+    DY_TTtWcr_ll_2017_PUUp->Fill((LeadLep+SubLeadLep).M(),wg_PUu);
+    DY_TTtWcr_ll_2017_PUDown->Fill((LeadLep+SubLeadLep).M(),wg_PUd);
+
+     DY_TTtWcr_ll_2017_energyScaleUp->Fill((Ele_ScaleUp+LeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_energyScaleDown->Fill((Ele_ScaleDown+LeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_energySigmaUp->Fill((Ele_SigmaUp+LeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_energySigmaDown->Fill((Ele_SigmaDown+LeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_PtResoUp->Fill((Muon_PtResoUp+SubLeadLep).M(), wg);
+    DY_TTtWcr_ll_2017_PtResoDown->Fill((Muon_PtResoDown+SubLeadLep).M(), wg);
+    M_leplepJ_TTtWcr->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg);
+    if(centralJesJer->at(0)==1)DY_TTtWcr_ll_centralJesJer->Fill((LeadLep+SubLeadLep).M(), wg);
+    if(JesSFup->at(1)==1)DY_TTtWcr_ll_2017_JesSFUp->Fill((LeadLep+SubLeadLep).M(), wg);
+    if(JesSFdown->at(2)==1)DY_TTtWcr_ll_2017_JesSFDown->Fill((LeadLep+SubLeadLep).M(), wg);
+    if(JerSFup->at(3)==1)DY_TTtWcr_ll_2017_JerSFUp->Fill((LeadLep+SubLeadLep).M(), wg);
+    if(JerSFdown->at(4)==1)DY_TTtWcr_ll_2017_JerSFDown->Fill((LeadLep+SubLeadLep).M(), wg);
+
+   }
+  }
+ }
+
+ else {
+
+   LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   SubLeadLep.SetPtEtaPhiE(Muon_pt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+
+   if (HLT_Ele == 1 & LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190 && (LeadLep+SubLeadLep).M() > 300){
+
+     veto_ele = false;
+   for(int j = 0; j < Muon_pt->size(); j++){
+    if (Muon_pt->at(j) > 5){
+     deltaEta=fabs(Muon_eta->at(j) - patElectron_eta->at(0));
+     deltaPhi = Muon_phi->at(j) - patElectron_phi->at(0);
+     if(deltaPhi > M_PI) deltaPhi -= 2*M_PI;
+     else if(deltaPhi <= -M_PI) deltaPhi +=2*M_PI;
+     deltaR=sqrt(pow(deltaEta,2) + pow(deltaPhi,2));
+     if (deltaR < 0.1) veto_ele = true;
+    }
+   }
+   if (veto_ele == false){
+   DY_TTtWcr_ll->Fill((LeadLep+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_AlphaRatio->Fill((LeadLep+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_AlphaRatioUp->Fill((LeadLep+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_AlphaRatioDown->Fill((LeadLep+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_SFUp->Fill((LeadLep+SubLeadLep).M(),wg_SFu);
+    DY_TTtWcr_ll_2017_SFDown->Fill((LeadLep+SubLeadLep).M(),wg_SFd);
+    DY_TTtWcr_ll_2017_PUUp->Fill((LeadLep+SubLeadLep).M(),wg_PUu);
+    DY_TTtWcr_ll_2017_PUDown->Fill((LeadLep+SubLeadLep).M(),wg_PUd);
+
+    DY_TTtWcr_ll_2017_energyScaleUp->Fill((Ele_ScaleUp+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_energyScaleDown->Fill((Ele_ScaleDown+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_energySigmaUp->Fill((Ele_SigmaUp+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_energySigmaDown->Fill((Ele_SigmaDown+SubLeadLep).M(),wg);
+    DY_TTtWcr_ll_2017_PtResoUp->Fill((Muon_PtResoUp+LeadLep).M(), wg);
+    DY_TTtWcr_ll_2017_PtResoDown->Fill((Muon_PtResoDown+LeadLep).M(), wg);
+    M_leplepJ_TTtWcr->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg);
+
+    if(centralJesJer->at(0)==1)DY_TTtWcr_ll_centralJesJer->Fill((LeadLep+SubLeadLep).M(), wg);
+    if(JesSFup->at(1)==1)DY_TTtWcr_ll_2017_JesSFUp->Fill((LeadLep+SubLeadLep).M(), wg);
+    if(JesSFdown->at(2)==1)DY_TTtWcr_ll_2017_JesSFDown->Fill((LeadLep+SubLeadLep).M(), wg);
+    if(JerSFup->at(3)==1)DY_TTtWcr_ll_2017_JerSFUp->Fill((LeadLep+SubLeadLep).M(), wg);
+    if(JerSFdown->at(4)==1)DY_TTtWcr_ll_2017_JerSFDown->Fill((LeadLep+SubLeadLep).M(), wg);
+    }
+   }
+  }
+
+
+ } //TTtW CR 
   
 }
 
@@ -754,8 +895,8 @@ for (Int_t j=1;j<=9;j++) {
 /********/
 
 
-
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017_fixMuon/SR_syst_DY_Kewkqcd_2017.root", "RECREATE");
+TFile *f = new TFile("SR_syst_DY_Kewkqcd_2017.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017_fixMuon/SR_syst_DY_Kewkqcd_2017.root", "RECREATE");
 //TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/SR_syst_DY_FxFx_2017.root", "RECREATE");
 //TFile *f2 = new TFile("SR_syst_DY_2017.root", "RECREATE");
 
@@ -863,6 +1004,27 @@ DY_DYcr_mumujj_2017_JerSFDown->Write();
 DY_DYcr_mumujj_2017_PtResoUp->Write();
 DY_DYcr_mumujj_2017_PtResoDown->Write();
 
+//TTtW cr
+M_leplepJ_TTtWcr->Write();
+DY_TTtWcr_ll->Write();
+DY_TTtWcr_ll_2017_AlphaRatio->Write();
+DY_TTtWcr_ll_2017_AlphaRatioUp->Write();
+DY_TTtWcr_ll_2017_AlphaRatioDown->Write();
+DY_TTtWcr_ll_2017_SFUp->Write();
+DY_TTtWcr_ll_2017_SFDown->Write();
+DY_TTtWcr_ll_2017_PUUp->Write();
+DY_TTtWcr_ll_2017_PUDown->Write();
+DY_TTtWcr_ll_2017_energyScaleUp->Write();
+DY_TTtWcr_ll_2017_energyScaleDown->Write();
+DY_TTtWcr_ll_2017_energySigmaUp->Write();
+DY_TTtWcr_ll_2017_energySigmaDown->Write();
+DY_TTtWcr_ll_2017_PtResoUp->Write();
+DY_TTtWcr_ll_2017_PtResoDown->Write();
+DY_TTtWcr_ll_centralJesJer->Write();
+DY_TTtWcr_ll_2017_JesSFUp->Write();
+DY_TTtWcr_ll_2017_JesSFDown->Write();
+DY_TTtWcr_ll_2017_JerSFUp->Write();
+DY_TTtWcr_ll_2017_JerSFDown->Write();
 
 f->Write();
 f->Close();
