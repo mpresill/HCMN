@@ -335,12 +335,12 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     TTtW_llJ_2016_SFDown->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg_SFdown);
     TTtW_llJ_2016_PUUp->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg_PUup);
     TTtW_llJ_2016_PUDown->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg_PUdown);  
-    TTtW_llJ_2016_PtCorrUp->Fill((Muon_ptCorr+LeadLep).M(),wg);
-    TTtW_llJ_2016_PtCorrDown->Fill((Muon_ptCorr+LeadLep).M(),wg);
-    TTtW_llJ_2016_energyScaleUp->Fill((Ele_ScaleUp+SubLeadLep+BoostJet).M(),wg);
-    TTtW_llJ_2016_energyScaleDown->Fill((Ele_ScaleDown+SubLeadLep+BoostJet).M(),wg);
-    TTtW_llJ_2016_energySigmaUp->Fill((Ele_SigmaUp+SubLeadLep+BoostJet).M(),wg);
-    TTtW_llJ_2016_energySigmaDown->Fill((Ele_SigmaDown+SubLeadLep+BoostJet).M(),wg);
+    TTtW_llJ_2016_PtCorrUp->Fill((Muon_ptCorr+SubLeadLep).M(),wg);
+    TTtW_llJ_2016_PtCorrDown->Fill((Muon_ptCorr+SubLeadLep).M(),wg);
+    TTtW_llJ_2016_energyScaleUp->Fill((Ele_ScaleUp+LeadLep+BoostJet).M(),wg);
+    TTtW_llJ_2016_energyScaleDown->Fill((Ele_ScaleDown+LeadLep+BoostJet).M(),wg);
+    TTtW_llJ_2016_energySigmaUp->Fill((Ele_SigmaUp+LeadLep+BoostJet).M(),wg);
+    TTtW_llJ_2016_energySigmaDown->Fill((Ele_SigmaDown+LeadLep+BoostJet).M(),wg);
     if(centralJesJer->at(0)==1)TTtW_llJ_centralJesJer->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
     if(JesSFup->at(1)==1)TTtW_llJ_2016_JesSFUp->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
     if(JesSFdown->at(2)==1)TTtW_llJ_2016_JesSFDown->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
