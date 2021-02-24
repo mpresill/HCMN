@@ -52,8 +52,8 @@ int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
 TH1F * gHisto ;
 
  
-   TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/eejj_L13000_M1000_sr_Rebinned/eejj_L13000_M1000_sr_YearsCombination_Rebinned_PostFit_histograms.root");
-   TString name = "eejj_FullRun2_M1000postfit_Rebinned"; //nome del file salvato
+   TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/eejj_L13000_M1000_sr/eejj_L13000_M1000_sr_YearsCombination_PostFit_histograms.root");
+   TString name = "eejj_FullRun2_M1000postfit"; //nome del file salvato
 
    TString dir2016 = "SR_Y2016combined_signal_region_postfit/";
    TString dir2017 = "SR_Y2017combined_signal_region_postfit/";
@@ -104,13 +104,13 @@ canvName = name;
 //   TH1F *h6_c= (TH1F*) f1->Get(dir+"TotalBkg");
 
   //set the correct asymmetric binning
-//  const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
-  const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
-  TH1F *h1 = new TH1F ("", "", 8, asymbins);    
-  TH1F *h2 = new TH1F ("", "", 8, asymbins);    
-  TH1F *h2b= new TH1F ("", "", 8, asymbins);    
-  TH1F *h4 = new TH1F ("", "", 8, asymbins);    
-  TH1F *h5 = new TH1F ("", "", 8, asymbins);    
+  const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+  //const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
+  TH1F *h1 = new TH1F ("", "", 9, asymbins);    
+  TH1F *h2 = new TH1F ("", "", 9, asymbins);    
+  TH1F *h2b= new TH1F ("", "", 9, asymbins);    
+  TH1F *h4 = new TH1F ("", "", 9, asymbins);    
+  TH1F *h5 = new TH1F ("", "", 9, asymbins);    
   for(int i=1;i<10;i++){
     h1->SetBinContent(i,h1_c->GetBinContent(i));    h1->SetBinError(i,h1_c->GetBinError(i));
     h2->SetBinContent(i,h2_c->GetBinContent(i));    h2->SetBinError(i,h2_c->GetBinError(i));
@@ -318,7 +318,7 @@ canv->cd();
 
 canv->Print(name+".png");
 canv->Print(name+".pdf");
-canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".png");
-canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".pdf");   
+canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".png");
+canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".pdf");   
   return canv;
 }

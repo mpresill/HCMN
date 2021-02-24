@@ -103,13 +103,13 @@ TH1F * gHisto ;
 
   //set the correct asymmetric binning
   const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
-//  const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
+  //const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
   TH1F *h1 = new TH1F ("", "", 9, asymbins);    
   TH1F *h2 = new TH1F ("", "", 9, asymbins);    
   TH1F *h2b= new TH1F ("", "", 9, asymbins);    
   TH1F *h4 = new TH1F ("", "", 9, asymbins);    
   TH1F *h5 = new TH1F ("", "", 9, asymbins);    
-  for(int i=1;i<9;i++){
+  for(int i=1;i<10;i++){
     h1->SetBinContent(i,h1_c->GetBinContent(i));    h1->SetBinError(i,h1_c->GetBinError(i));
     h2->SetBinContent(i,h2_c->GetBinContent(i));    h2->SetBinError(i,h2_c->GetBinError(i));
     h2b->SetBinContent(i,h2b_c->GetBinContent(i));  h2b->SetBinError(i,h2b_c->GetBinError(i));
@@ -310,7 +310,7 @@ canv->cd();
 
 canv->Print(name+".png");
 canv->Print(name+".pdf");
-canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".png");
-canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".pdf");
+canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".png");
+canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".pdf");
   return canv;
 }

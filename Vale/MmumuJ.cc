@@ -52,14 +52,14 @@ int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
 TH1F * gHisto ; 
 
    TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/mumujj_L13000_M1000_sr/mumujj_L13000_M1000_sr_YearsCombination_PostFit_histograms.root");
-   TString name = "mumujj_FullRun2_M1000prefit_19Feb"; //nome del file salvato
+   TString name = "mumujj_FullRun2_M1000postfit"; //nome del file salvato
 
-/*   TString dir2016 = "Y2016combined_signal_region_prefit/";
-   TString dir2017 = "Y2017combined_signal_region_prefit/";
-   TString dir2018 = "Y2018combined_signal_region_prefit/";*/
-   TString dir2016 = "SR_Y2016combined_signal_region_prefit/";
-   TString dir2017 = "SR_Y2017combined_signal_region_prefit/";
-   TString dir2018 = "SR_Y2018combined_signal_region_prefit/";
+/*   TString dir2016 = "Y2016combined_signal_region_postfit/";
+   TString dir2017 = "Y2017combined_signal_region_postfit/";
+   TString dir2018 = "Y2018combined_signal_region_postfit/";*/
+   TString dir2016 = "SR_Y2016combined_signal_region_postfit/";
+   TString dir2017 = "SR_Y2017combined_signal_region_postfit/";
+   TString dir2018 = "SR_Y2018combined_signal_region_postfit/";
 
 
 
@@ -190,7 +190,7 @@ for(int i=7;i<10;i++){
  double all_bkg_totErr_yerr[9];  
   
   for(int m=1;m<10;m++){
-    ///statistic e systematic error are togheter in the prefit histos
+    ///statistic e systematic error are togheter in the postfit histos
     all_bkg_statErr_yerr[m-1]=sqrt( (h1->GetBinError(m))*(h1->GetBinError(m)) + (h2->GetBinError(m))*(h2->GetBinError(m)) + (h2b->GetBinError(m))*(h2b->GetBinError(m)) );
     ///systematics
       all_bkg_sistErr_yerr[m-1]=0;   
@@ -263,7 +263,7 @@ dataSUmc->SetTitle(0);
 dataSUmc->SetMarkerStyle(8);
 dataSUmc->GetYaxis()->SetNdivisions(5,5,1);
 
-dataSUmc->GetXaxis()->SetTitle("M(e,e,J) (GeV)");
+dataSUmc->GetXaxis()->SetTitle("M(#mu,#mu,J) (GeV)");
 dataSUmc->GetXaxis()->SetLabelSize(25);
 dataSUmc->GetXaxis()->SetLabelFont(43);
 dataSUmc->GetXaxis()->SetTitleSize(30);
@@ -313,8 +313,8 @@ canv->cd();
 
 canv->Print(name+".png");
 canv->Print(name+".pdf");
-canv->Print("/eos/user/v/vmariani/www/HN/prefit/"+name+".png");
-canv->Print("/eos/user/v/vmariani/www/HN/prefit/"+name+".pdf");
+canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".png");
+canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".pdf");
   return canv;
 
 }
