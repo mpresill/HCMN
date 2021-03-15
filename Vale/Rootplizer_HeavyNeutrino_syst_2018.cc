@@ -105,6 +105,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
  
   /////
   //   Variables to read
+double rEVENT_genHT; rEVENT_genHT=0; TBranch* b_rEVENT_genHT = 0; readingtree->SetBranchAddress("EVENT_genHT",&rEVENT_genHT,&b_rEVENT_genHT);
+  double rEVENT_genPt; rEVENT_genPt=0; TBranch* b_rEVENT_genPt = 0; readingtree->SetBranchAddress("EVENT_genPt",&rEVENT_genPt,&b_rEVENT_genPt);
+  
   /////
   //Trigger
   int rHLT_Ele115_CaloIdVT_GsfTrkIdT; rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; TBranch* b_rHLT_Ele115_CaloIdVT_GsfTrkIdT = 0; readingtree->SetBranchAddress("HLT_Ele115_CaloIdVT_GsfTrkIdT",&rHLT_Ele115_CaloIdVT_GsfTrkIdT,&b_rHLT_Ele115_CaloIdVT_GsfTrkIdT);
@@ -116,6 +119,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
 
 //Gen variables:
+ vector<double>* rGen_status; rGen_status = 0; TBranch* b_rGen_status = 0; readingtree->SetBranchAddress("Gen_status",&rGen_status,&b_rGen_status);
   vector<double>* rGen_pt; rGen_pt = 0; TBranch* b_rGen_pt = 0; readingtree->SetBranchAddress("Gen_pt",&rGen_pt,&b_rGen_pt);
   vector<double>* rGen_eta; rGen_eta = 0; TBranch* b_rGen_eta = 0; readingtree->SetBranchAddress("Gen_eta",&rGen_eta,&b_rGen_eta);
   vector<double>* rGen_phi; rGen_phi = 0; TBranch* b_rGen_phi = 0; readingtree->SetBranchAddress("Gen_phi",&rGen_phi,&b_rGen_phi);
@@ -271,6 +275,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    /////
    //   New variables
    /////
+   double EVENT_genHT; newtree->Branch("EVENT_genHT", &EVENT_genHT);
+   double EVENT_genPt; newtree->Branch("EVENT_genPt", &EVENT_genPt);
    //Trigger:
    int HLT_Ele115_CaloIdVT_GsfTrkIdT; newtree->Branch("HLT_Ele115_CaloIdVT_GsfTrkIdT",&HLT_Ele115_CaloIdVT_GsfTrkIdT);
    int HLT_Ele32_WPTight_Gsf; newtree->Branch("HLT_Ele32_WPTight_Gsf",&HLT_Ele32_WPTight_Gsf);
@@ -281,6 +287,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
 
  //Gen variables
+  vector<double>* Gen_status = new std::vector<double>; newtree->Branch("Gen_status",&Gen_status);
   vector<double>* Gen_pt = new std::vector<double>; newtree->Branch("Gen_pt",&Gen_pt);
   vector<double>* Gen_eta = new std::vector<double>; newtree->Branch("Gen_eta",&Gen_eta);
   vector<double>* Gen_phi = new std::vector<double>; newtree->Branch("Gen_phi",&Gen_phi);
@@ -531,8 +538,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    double TRmu; newtree->Branch("TRmu",&TRmu);
    double DYRe; newtree->Branch("DYRe",&DYRe);
    double DYRmu; newtree->Branch("DYRmu",&DYRmu);
-    
- 
+
+
    //reco 4-vectors:
    TLorentzVector Ele1(0,0,0,0);
    TLorentzVector Ele2(0,0,0,0);
@@ -540,277 +547,284 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    TLorentzVector Muon2(0,0,0,0);
    TLorentzVector BoostedJet1(0,0,0,0);
    TLorentzVector BoostedJet2(0,0,0,0);
-  
+
    int nen = nentries;
    if(nentries==-1) nen = readingtree->GetEntries();
    cout << nen << endl;
    for(int en=0; en<nen; en++){
-    //Read branches
-    //Trigger:
-    
-    //b_rHLT_Ele27_eta2p1_WPLoose_Gsf->GetEntry(en);
-    //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
-    b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
-    b_rHLT_Ele32_WPTight_Gsf->GetEntry(en);
-    b_rHLT_Photon200->GetEntry(en);
-    b_rHLT_Mu50->GetEntry(en);
-    b_rHLT_TkMu50->GetEntry(en);   
-    b_rHLT_OldMu100->GetEntry(en);
-    b_rHLT_TkMu100->GetEntry(en);
+       //Read branches
+       b_rEVENT_genHT->GetEntry(en);
+       b_rEVENT_genPt->GetEntry(en);
+       //Trigger:
 
-    //PU:
-    b_rPUWeight->GetEntry(en);
-    b_rMinBiasUpWeight->GetEntry(en);
-    b_rMinBiasDownWeight->GetEntry(en);
-    b_rnBestVtx->GetEntry(en);
-    b_rtrueInteractions->GetEntry(en);
+       //b_rHLT_Ele27_eta2p1_WPLoose_Gsf->GetEntry(en);
+       //b_rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL->GetEntry(en);
+       b_rHLT_Ele115_CaloIdVT_GsfTrkIdT->GetEntry(en);
+       b_rHLT_Ele32_WPTight_Gsf->GetEntry(en);
+       b_rHLT_Photon200->GetEntry(en);
+       b_rHLT_Mu50->GetEntry(en);
+       b_rHLT_TkMu50->GetEntry(en);   
+       b_rHLT_OldMu100->GetEntry(en);
+       b_rHLT_TkMu100->GetEntry(en);
 
-    //Gen variables
-    b_rGen_pt->GetEntry(en);
-    b_rGen_eta->GetEntry(en);
-    b_rGen_phi->GetEntry(en);
-    b_rGen_charge->GetEntry(en);
-    b_rGen_energy->GetEntry(en);
-    b_rGen_pdg_id->GetEntry(en);
-    b_rGen_motherpdg_id->GetEntry(en);
-    b_rGen_numDaught->GetEntry(en);
-    b_rGen_numMother->GetEntry(en);
+       //PU:
+       b_rPUWeight->GetEntry(en);
+       b_rMinBiasUpWeight->GetEntry(en);
+       b_rMinBiasDownWeight->GetEntry(en);
+       b_rnBestVtx->GetEntry(en);
+       b_rtrueInteractions->GetEntry(en);
 
-    //Muons
-    //Kinematics:
-    b_rMuon_pt->GetEntry(en);
-    b_rMuon_eta->GetEntry(en);
-    b_rMuon_phi->GetEntry(en);
-    b_rMuon_energy->GetEntry(en);
-    b_rMuon_p->GetEntry(en);
-    b_rMuon_px->GetEntry(en);
-    b_rMuon_py->GetEntry(en);
-    b_rMuon_pz->GetEntry(en);
-    b_rMuon_TLayers->GetEntry(en);
-    b_rMuon_charge->GetEntry(en);
-    //Isolation
-    b_rMuon_trackIso->GetEntry(en);
-    b_rMuon_TrackerIso->GetEntry(en);
-    b_rMuon_relIsoDeltaBetaR03->GetEntry(en);
-    b_rMuon_relIsoDeltaBetaR04->GetEntry(en);
-    //ID
-    b_rMuon_soft->GetEntry(en);
-    b_rMuon_loose->GetEntry(en);
-    b_rMuon_medium->GetEntry(en);
-    b_rMuon_tight->GetEntry(en);
-    b_rMuon_isHighPt->GetEntry(en);
-    b_rMuon_loose->GetEntry(en);
-    b_rMuon_medium->GetEntry(en);
-    b_rMuon_tight->GetEntry(en);
-    //Electrons
-    //kinematics:
-    b_rpatElectron_pt->GetEntry(en);
-    b_rpatElectron_eta->GetEntry(en);
-    b_rpatElectron_phi->GetEntry(en);
-    b_rpatElectron_p->GetEntry(en);
-    b_rpatElectron_px->GetEntry(en);
-    b_rpatElectron_py->GetEntry(en);
-    b_rpatElectron_pz->GetEntry(en);
-    b_rpatElectron_energy->GetEntry(en);
-    b_rpatElectron_energyScaleUp->GetEntry(en);
-    b_rpatElectron_energyScaleDown->GetEntry(en);
-    b_rpatElectron_energySigmaUp->GetEntry(en);
-    b_rpatElectron_energySigmaDown->GetEntry(en);
-    b_rpatElectron_charge->GetEntry(en);
-    //ID:
-    b_rpatElectron_isPassVeto->GetEntry(en);
-    b_rpatElectron_isPassLoose->GetEntry(en);
-    b_rpatElectron_isPassMedium->GetEntry(en);
-    b_rpatElectron_isPassTight->GetEntry(en);
-    b_rpatElectron_isPassHEEPId->GetEntry(en);
-    //Jets
-    //kinematics:
-    b_rJet_pt->GetEntry(en);
-    b_rJet_eta->GetEntry(en);
-    b_rJet_phi->GetEntry(en);
-    b_rJet_energy->GetEntry(en);
-    b_rJet_px->GetEntry(en);
-    b_rJet_py->GetEntry(en);
-    b_rJet_pz->GetEntry(en);
-    b_rJet_mass->GetEntry(en);
-    //ID variables:
-    b_rJet_neutralHadEnergyFraction->GetEntry(en);
-    b_rJet_neutralEmEnergyFraction->GetEntry(en);
-    b_rJet_chargedHadronEnergyFraction->GetEntry(en);
-    b_rJet_chargedEmEnergyFraction->GetEntry(en);
-    b_rJet_muonEnergyFraction->GetEntry(en);
-    b_rJet_numberOfConstituents->GetEntry(en);
-    b_rJet_chargedMultiplicity->GetEntry(en);
-    //corrections:
-    b_rJet_Uncorr_pt->GetEntry(en);
-    b_rJet_JesSF->GetEntry(en);
-    b_rJet_JerSF->GetEntry(en);
-    //b-tagging:
-    b_rJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);
-    b_rJet_pfCombinedMVAV2BJetTags->GetEntry(en);
-    //Boosted jets
-    //kinematics:
-    b_rBoostedJet_pt->GetEntry(en);
-    b_rBoostedJet_eta->GetEntry(en);
-    b_rBoostedJet_phi->GetEntry(en);
-    b_rBoostedJet_energy->GetEntry(en);
-    b_rBoostedJet_mass->GetEntry(en);
-    //ID variables:
-    b_rBoostedJet_neutralHadEnergyFraction->GetEntry(en);
-    b_rBoostedJet_neutralEmEmEnergyFraction->GetEntry(en);
-    b_rBoostedJet_chargedHadronEnergyFraction->GetEntry(en);
-    b_rBoostedJet_chargedEmEnergyFraction->GetEntry(en);
-    b_rBoostedJet_muonEnergyFraction->GetEntry(en);
-    b_rBoostedJet_numberOfConstituents->GetEntry(en);
-    b_rBoostedJet_chargedMultiplicity->GetEntry(en);
-    //corrections
-    b_rBoostedJet_Uncorr_pt->GetEntry(en);
-    b_rBoostedJet_JesSF->GetEntry(en);
-     b_rBoostedJet_JerSF->GetEntry(en);
-    //systematics Jes
-    b_rBoostedJet_JesSFup->GetEntry(en);
-    b_rBoostedJet_JesSFdown->GetEntry(en);
-    //systematics Jer
-    b_rBoostedJet_JerSFup->GetEntry(en);
-    b_rBoostedJet_JerSFdown->GetEntry(en);
-    //b-tagging:
-    b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);    
-    //MET
-    b_rMet_type1PF_pt->GetEntry(en);
+       //Gen variables
+       b_rGen_status->GetEntry(en);
+       b_rGen_pt->GetEntry(en);
+       b_rGen_eta->GetEntry(en);
+       b_rGen_phi->GetEntry(en);
+       b_rGen_charge->GetEntry(en);
+       b_rGen_energy->GetEntry(en);
+       b_rGen_pdg_id->GetEntry(en);
+       b_rGen_motherpdg_id->GetEntry(en);
+       b_rGen_numDaught->GetEntry(en);
+       b_rGen_numMother->GetEntry(en);
 
-    //Gen variables to be written
-    Gen_pt->clear();    
-    Gen_eta->clear();    
-    Gen_phi->clear();    
-    Gen_charge->clear();    
-    Gen_energy->clear();    
-    Gen_pdg_id->clear();    
-    Gen_motherpdg_id->clear();    
-    Gen_numDaught->clear();    
-    Gen_numMother->clear();    
+       //Muons
+       //Kinematics:
+       b_rMuon_pt->GetEntry(en);
+       b_rMuon_eta->GetEntry(en);
+       b_rMuon_phi->GetEntry(en);
+       b_rMuon_energy->GetEntry(en);
+       b_rMuon_p->GetEntry(en);
+       b_rMuon_px->GetEntry(en);
+       b_rMuon_py->GetEntry(en);
+       b_rMuon_pz->GetEntry(en);
+       b_rMuon_TLayers->GetEntry(en);
+       b_rMuon_charge->GetEntry(en);
+       //Isolation
+       b_rMuon_trackIso->GetEntry(en);
+       b_rMuon_TrackerIso->GetEntry(en);
+       b_rMuon_relIsoDeltaBetaR03->GetEntry(en);
+       b_rMuon_relIsoDeltaBetaR04->GetEntry(en);
+       //ID
+       b_rMuon_soft->GetEntry(en);
+       b_rMuon_loose->GetEntry(en);
+       b_rMuon_medium->GetEntry(en);
+       b_rMuon_tight->GetEntry(en);
+       b_rMuon_isHighPt->GetEntry(en);
+       b_rMuon_loose->GetEntry(en);
+       b_rMuon_medium->GetEntry(en);
+       b_rMuon_tight->GetEntry(en);
+       //Electrons
+       //kinematics:
+       b_rpatElectron_pt->GetEntry(en);
+       b_rpatElectron_eta->GetEntry(en);
+       b_rpatElectron_phi->GetEntry(en);
+       b_rpatElectron_p->GetEntry(en);
+       b_rpatElectron_px->GetEntry(en);
+       b_rpatElectron_py->GetEntry(en);
+       b_rpatElectron_pz->GetEntry(en);
+       b_rpatElectron_energy->GetEntry(en);
+       b_rpatElectron_energyScaleUp->GetEntry(en);
+       b_rpatElectron_energyScaleDown->GetEntry(en);
+       b_rpatElectron_energySigmaUp->GetEntry(en);
+       b_rpatElectron_energySigmaDown->GetEntry(en);
+       b_rpatElectron_charge->GetEntry(en);
+       //ID:
+       b_rpatElectron_isPassVeto->GetEntry(en);
+       b_rpatElectron_isPassLoose->GetEntry(en);
+       b_rpatElectron_isPassMedium->GetEntry(en);
+       b_rpatElectron_isPassTight->GetEntry(en);
+       b_rpatElectron_isPassHEEPId->GetEntry(en);
+       //Jets
+       //kinematics:
+       b_rJet_pt->GetEntry(en);
+       b_rJet_eta->GetEntry(en);
+       b_rJet_phi->GetEntry(en);
+       b_rJet_energy->GetEntry(en);
+       b_rJet_px->GetEntry(en);
+       b_rJet_py->GetEntry(en);
+       b_rJet_pz->GetEntry(en);
+       b_rJet_mass->GetEntry(en);
+       //ID variables:
+       b_rJet_neutralHadEnergyFraction->GetEntry(en);
+       b_rJet_neutralEmEnergyFraction->GetEntry(en);
+       b_rJet_chargedHadronEnergyFraction->GetEntry(en);
+       b_rJet_chargedEmEnergyFraction->GetEntry(en);
+       b_rJet_muonEnergyFraction->GetEntry(en);
+       b_rJet_numberOfConstituents->GetEntry(en);
+       b_rJet_chargedMultiplicity->GetEntry(en);
+       //corrections:
+       b_rJet_Uncorr_pt->GetEntry(en);
+       b_rJet_JesSF->GetEntry(en);
+       b_rJet_JerSF->GetEntry(en);
+       //b-tagging:
+       b_rJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);
+       b_rJet_pfCombinedMVAV2BJetTags->GetEntry(en);
+       //Boosted jets
+       //kinematics:
+       b_rBoostedJet_pt->GetEntry(en);
+       b_rBoostedJet_eta->GetEntry(en);
+       b_rBoostedJet_phi->GetEntry(en);
+       b_rBoostedJet_energy->GetEntry(en);
+       b_rBoostedJet_mass->GetEntry(en);
+       //ID variables:
+       b_rBoostedJet_neutralHadEnergyFraction->GetEntry(en);
+       b_rBoostedJet_neutralEmEmEnergyFraction->GetEntry(en);
+       b_rBoostedJet_chargedHadronEnergyFraction->GetEntry(en);
+       b_rBoostedJet_chargedEmEnergyFraction->GetEntry(en);
+       b_rBoostedJet_muonEnergyFraction->GetEntry(en);
+       b_rBoostedJet_numberOfConstituents->GetEntry(en);
+       b_rBoostedJet_chargedMultiplicity->GetEntry(en);
+       //corrections
+       b_rBoostedJet_Uncorr_pt->GetEntry(en);
+       b_rBoostedJet_JesSF->GetEntry(en);
+       b_rBoostedJet_JerSF->GetEntry(en);
+       //systematics Jes
+       b_rBoostedJet_JesSFup->GetEntry(en);
+       b_rBoostedJet_JesSFdown->GetEntry(en);
+       //systematics Jer
+       b_rBoostedJet_JerSFup->GetEntry(en);
+       b_rBoostedJet_JerSFdown->GetEntry(en);
+       //b-tagging:
+       b_rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->GetEntry(en);    
+       //MET
+       b_rMet_type1PF_pt->GetEntry(en);
 
-    //New var clear (vectors):
-    Muon_pt->clear();
-    Muon_pt_corr->clear();
-    Muon_eta->clear();
-    Muon_phi->clear();
-    Muon_p->clear();
-    Muon_px->clear();
-    Muon_py->clear();
-    Muon_pz->clear();
-    Muon_energy->clear();
-    Muon_charge->clear();
-    Muon_trackIso->clear();
-    Muon_TrackerIso->clear();
-    Muon_relIsoDeltaBetaR03->clear();
-    Muon_relIsoDeltaBetaR04->clear();
-    Muon_isHighPt->clear();
-    Muon_loose->clear();
-    Muon_medium->clear();
-    Muon_tight->clear();
+       //Gen variables to be written
+       Gen_status->clear();
+       Gen_pt->clear();    
+       Gen_eta->clear();    
+       Gen_phi->clear();    
+       Gen_charge->clear();    
+       Gen_energy->clear();    
+       Gen_pdg_id->clear();    
+       Gen_motherpdg_id->clear();    
+       Gen_numDaught->clear();    
+       Gen_numMother->clear();    
 
-    patElectron_pt->clear();
-    patElectron_eta->clear();
-    patElectron_phi->clear();
-    patElectron_energy->clear();
-    patElectron_energyScaleUp->clear();
-    patElectron_energyScaleDown->clear();
-    patElectron_energySigmaUp->clear();
-    patElectron_energySigmaDown->clear();
-    patElectron_p->clear();
-    patElectron_px->clear();
-    patElectron_py->clear();
-    patElectron_pz->clear();
-    patElectron_charge->clear();
-    patElectron_isPassVeto->clear();
-    patElectron_isPassLoose->clear();
-    patElectron_isPassMedium->clear();
-    patElectron_isPassTight->clear();
-    patElectron_isPassHEEPId->clear();
-    patElectron_isPassMvatrig->clear();
+       //New var clear (vectors):
+       Muon_pt->clear();
+       Muon_pt_corr->clear();
+       Muon_eta->clear();
+       Muon_phi->clear();
+       Muon_p->clear();
+       Muon_px->clear();
+       Muon_py->clear();
+       Muon_pz->clear();
+       Muon_energy->clear();
+       Muon_charge->clear();
+       Muon_trackIso->clear();
+       Muon_TrackerIso->clear();
+       Muon_relIsoDeltaBetaR03->clear();
+       Muon_relIsoDeltaBetaR04->clear();
+       Muon_isHighPt->clear();
+       Muon_loose->clear();
+       Muon_medium->clear();
+       Muon_tight->clear();
 
-    Jet_pt->clear();
-    Jet_eta->clear();
-    Jet_phi->clear();
-    Jet_px->clear();
-    Jet_py->clear();
-    Jet_pz->clear();
-    Jet_energy->clear();
-    Jet_mass->clear();
-    Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->clear();
-    Jet_pfCombinedMVAV2BJetTags->clear();
-    Jet_M->clear();
-    Jet_nBoostedJets->clear();
-    Jet_nBoostedJetsM->clear();
-    Jet_L->clear();
-    Jet_T->clear();
-    Jet_TLV->clear();
+       patElectron_pt->clear();
+       patElectron_eta->clear();
+       patElectron_phi->clear();
+       patElectron_energy->clear();
+       patElectron_energyScaleUp->clear();
+       patElectron_energyScaleDown->clear();
+       patElectron_energySigmaUp->clear();
+       patElectron_energySigmaDown->clear();
+       patElectron_p->clear();
+       patElectron_px->clear();
+       patElectron_py->clear();
+       patElectron_pz->clear();
+       patElectron_charge->clear();
+       patElectron_isPassVeto->clear();
+       patElectron_isPassLoose->clear();
+       patElectron_isPassMedium->clear();
+       patElectron_isPassTight->clear();
+       patElectron_isPassHEEPId->clear();
+       patElectron_isPassMvatrig->clear();
 
-    BoostedJet_pt->clear();
-    BoostedJet_eta->clear();
-    BoostedJet_phi->clear();
-    BoostedJet_energy->clear();
-    BoostedJet_mass->clear();
-    BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->clear();
-    BoostedJet_M->clear();
-    BoostedJet_nJets->clear();
-    BoostedJet_nJetsM->clear();
-    BoostedJet_L->clear();
-    BoostedJet_T->clear();
-    BoostedJet_TLV->clear();
-    //evt type systematics
-    centralJesJer ->clear();
-    JesSFup ->clear();
-    JesSFdown ->clear();
-    JerSFup ->clear();
-    JerSFdown ->clear();
+       Jet_pt->clear();
+       Jet_eta->clear();
+       Jet_phi->clear();
+       Jet_px->clear();
+       Jet_py->clear();
+       Jet_pz->clear();
+       Jet_energy->clear();
+       Jet_mass->clear();
+       Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->clear();
+       Jet_pfCombinedMVAV2BJetTags->clear();
+       Jet_M->clear();
+       Jet_nBoostedJets->clear();
+       Jet_nBoostedJetsM->clear();
+       Jet_L->clear();
+       Jet_T->clear();
+       Jet_TLV->clear();
 
-    //new var inizialize (scalars):
-    //HLT_Ele27_eta2p1_WPLoose_Gsf = -999;
-    //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = -999;
-    HLT_Ele115_CaloIdVT_GsfTrkIdT = -999;
-    HLT_Ele32_WPTight_Gsf = -999;
-    HLT_Photon200 = -999;
-    HLT_TkMu50 = -999;
-    HLT_Mu50 = -999;
-    HLT_TkMu100 = -999;
-    HLT_OldMu100 = -999;
+       BoostedJet_pt->clear();
+       BoostedJet_eta->clear();
+       BoostedJet_phi->clear();
+       BoostedJet_energy->clear();
+       BoostedJet_mass->clear();
+       BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->clear();
+       BoostedJet_M->clear();
+       BoostedJet_nJets->clear();
+       BoostedJet_nJetsM->clear();
+       BoostedJet_L->clear();
+       BoostedJet_T->clear();
+       BoostedJet_TLV->clear();
+       //evt type systematics
+       centralJesJer ->clear();
+       JesSFup ->clear();
+       JesSFdown ->clear();
+       JerSFup ->clear();
+       JerSFdown ->clear();
 
-    PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999;
-    Met_type1PF_pt = -999;
+       //new var inizialize (scalars):
+       EVENT_genHT = -999;
+       EVENT_genPt = -999;
+       //HLT_Ele27_eta2p1_WPLoose_Gsf = -999;
+       //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = -999;
+       HLT_Ele115_CaloIdVT_GsfTrkIdT = -999;
+       HLT_Ele32_WPTight_Gsf = -999;
+       HLT_Photon200 = -999;
+       HLT_TkMu50 = -999;
+       HLT_Mu50 = -999;
+       HLT_TkMu100 = -999;
+       HLT_OldMu100 = -999;
 
-    numOfHighptMu=0; numOfLooseMu=0; numOfMediumMu=0; numOfTightMu=0;
+       PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999;
+       Met_type1PF_pt = -999;
 
-    numOfHighptEle=0; numOfLooseEle=0; numOfMediumEle=0; numOfTightEle=0; numOfVetoEle=0;
+       numOfHighptMu=0; numOfLooseMu=0; numOfMediumMu=0; numOfTightMu=0;
 
-
-    numOfJets_L=0; numOfJets_T=0; numOfJets_TLV=0;
-    numOfBoostedJets_L=0; numOfBoostedJets_T=0; numOfBoostedJets_TLV=0; 
-
-    Ele1_pt=-999;  Ele1_eta=-999; Ele1_phi=-999; Ele1_energy=-999; Ele1_p=-999; Ele1_px=-999; Ele1_py=-999; Ele1_pz=-999;
-    Ele2_pt=-999; Ele2_eta=-999; Ele2_phi=-999; Ele2_energy=-999; Ele2_p=-999; Ele2_px=-999; Ele2_py=-999; Ele2_pz=-999;
-    Muon1_pt=-999;  Muon1_eta=-999; Muon1_phi=-999; Muon1_energy=-999; Muon1_p=-999; Muon1_px=-999; Muon1_py=-999; Muon1_pz=-999;
-    Muon2_pt=-999;  Muon2_eta=-999; Muon2_phi=-999; Muon2_energy=-999; Muon2_p=-999; Muon2_px=-999; Muon2_py=-999; Muon2_pz=-999;
-    BoostedJet1_pt=-999; BoostedJet1_eta=-999; BoostedJet1_phi=-999; BoostedJet1_energy=-999;
-    BoostedJet1_nJets=-999;
-    BoostedJet2_pt=-999; BoostedJet2_eta=-999; BoostedJet2_phi=-999; BoostedJet2_energy=-999;
-    BoostedJet2_nJets=-999;
+       numOfHighptEle=0; numOfLooseEle=0; numOfMediumEle=0; numOfTightEle=0; numOfVetoEle=0;
 
 
-      
-    M_ele1ele2Bjet1 = -999;  
-    M_ele1ele2 = -999; M_elemu = -999; M_elemuBjet1 = -999; M_mu1mu2 = -999; M_mu1mu2Bjet1 = -999;
-    S_T_BJ = -999; S_T_jj = -999;
-    M_leplep = -999; M_leplepBjet = -999; M_leplepBjetBjet = -999;
-    M_lep2Bjet = -999;
+       numOfJets_L=0; numOfJets_T=0; numOfJets_TLV=0;
+       numOfBoostedJets_L=0; numOfBoostedJets_T=0; numOfBoostedJets_TLV=0; 
 
-    //evt_type = -999;
-    eejj_l = 0; emujj_l = 0; mumujj_l = 0; muejj_l = 0;
-    SRe = 0; TRe = 0; SRmu = 0; TRmu = 0; DYRe = 0; DYRmu = 0;
+       Ele1_pt=-999;  Ele1_eta=-999; Ele1_phi=-999; Ele1_energy=-999; Ele1_p=-999; Ele1_px=-999; Ele1_py=-999; Ele1_pz=-999;
+       Ele2_pt=-999; Ele2_eta=-999; Ele2_phi=-999; Ele2_energy=-999; Ele2_p=-999; Ele2_px=-999; Ele2_py=-999; Ele2_pz=-999;
+       Muon1_pt=-999;  Muon1_eta=-999; Muon1_phi=-999; Muon1_energy=-999; Muon1_p=-999; Muon1_px=-999; Muon1_py=-999; Muon1_pz=-999;
+       Muon2_pt=-999;  Muon2_eta=-999; Muon2_phi=-999; Muon2_energy=-999; Muon2_p=-999; Muon2_px=-999; Muon2_py=-999; Muon2_pz=-999;
+       BoostedJet1_pt=-999; BoostedJet1_eta=-999; BoostedJet1_phi=-999; BoostedJet1_energy=-999;
+       BoostedJet1_nJets=-999;
+       BoostedJet2_pt=-999; BoostedJet2_eta=-999; BoostedJet2_phi=-999; BoostedJet2_energy=-999;
+       BoostedJet2_nJets=-999;
 
 
-    
-   //HLT_Ele27_eta2p1_WPLoose_Gsf = rHLT_Ele27_eta2p1_WPLoose_Gsf;
+
+       M_ele1ele2Bjet1 = -999;  
+       M_ele1ele2 = -999; M_elemu = -999; M_elemuBjet1 = -999; M_mu1mu2 = -999; M_mu1mu2Bjet1 = -999;
+       S_T_BJ = -999; S_T_jj = -999;
+       M_leplep = -999; M_leplepBjet = -999; M_leplepBjetBjet = -999;
+       M_lep2Bjet = -999;
+
+       //evt_type = -999;
+       eejj_l = 0; emujj_l = 0; mumujj_l = 0; muejj_l = 0;
+       SRe = 0; TRe = 0; SRmu = 0; TRmu = 0; DYRe = 0; DYRmu = 0;
+
+
+  EVENT_genHT = rEVENT_genHT;
+   EVENT_genPt = rEVENT_genPt;
+       //HLT_Ele27_eta2p1_WPLoose_Gsf = rHLT_Ele27_eta2p1_WPLoose_Gsf;
    //HLT_DoubleEle33_CaloIdL_GsfTrkIdVL = rHLT_DoubleEle33_CaloIdL_GsfTrkIdVL;
    HLT_Ele115_CaloIdVT_GsfTrkIdT = rHLT_Ele115_CaloIdVT_GsfTrkIdT;
    HLT_Ele32_WPTight_Gsf = rHLT_Ele32_WPTight_Gsf;
@@ -831,6 +845,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    
     for(uint gen_en = 0; gen_en<rGen_pt->size(); gen_en++){
       //Gen variables (writing)
+      Gen_status->push_back(rGen_status->at(gen_en));
       Gen_pt->push_back(rGen_pt->at(gen_en));
       Gen_eta->push_back(rGen_eta->at(gen_en));
       Gen_phi->push_back(rGen_phi->at(gen_en));
@@ -1649,21 +1664,36 @@ double get_wgtlumi(string FileName){
  if((FileName.find("eejj_18_L13_M5000") != std::string::npos)) wgt=0.014250e-03/100900;
  if((FileName.find("eejj_18_L13_M8000") != std::string::npos)) wgt=0.000091350e-03/90273;
  
-	
+    
  // DY NLO FxFx samples
  if(FileName.find("DY_FxFx") != std::string::npos) wgt=6077.22/997561; 
 
 // DY HT binned LO samples
-/* if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.5/10019684;
- if(FileName.find("DY_HT100to200") != std::string::npos) wgt=160.7/11530510;
- if(FileName.find("DY_HT200to400") != std::string::npos) wgt=48.63/11225887;
- if(FileName.find("DY_HT400to600") != std::string::npos) wgt=6.993/9358053;
- if(FileName.find("DY_HT600to800") != std::string::npos) wgt=1.761/8862104;
- if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=0.8021/3138129;
- if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=0.1937/536416;
- if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=0.003514/427051;
-*/
+ if(FileName.find("DY_HT70to100") != std::string::npos) wgt=208.977/10019684; //check xsec
+ if(FileName.find("DY_HT100to200") != std::string::npos) wgt=181.3/11530510;//ok 
+ if(FileName.find("DY_HT200to400") != std::string::npos) wgt=(50.42*0.999)/11225887; //ok
+ if(FileName.find("DY_HT400to600") != std::string::npos) wgt=(6.9839*0.99)/(9643184+9840466+7718938+9697098+9358053);//ok
+ if(FileName.find("DY_HT600to800") != std::string::npos) wgt=(1.68141*0.975)/8862104; //ok
+ if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=(0.7754*0.907)/3138129; //ok
+ if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=(0.1862*0.833)/536416; //ok
+ if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=(0.00438495*1.015)/427051; //ok
 
+ //QCD
+
+ if(FileName.find("QCD_HT50to100") != std::string::npos) wgt=185300000.0/38754230;
+ if(FileName.find("QCD_HT100to200") != std::string::npos) wgt=23700000.0/93972378;
+ if(FileName.find("QCD_HT200to300") != std::string::npos) wgt=1547000.0/54289442;
+ if(FileName.find("QCD_HT300to500") != std::string::npos) wgt=322600.0/54661579;
+ if(FileName.find("QCD_HT500to700") != std::string::npos) wgt=29980.0/55152960;
+ if(FileName.find("QCD_HT700to1000") != std::string::npos) wgt=6334.0/48158738;
+ if(FileName.find("QCD_HT100to1500") != std::string::npos) wgt=1092.0/15466225;
+ if(FileName.find("QCD_HT1500to2000") != std::string::npos) wgt=99.76/10955087;
+ if(FileName.find("QCD_HT2000toInf") != std::string::npos) wgt=20.35/5475677;
+
+ // TTW+jets
+ if(FileName.find("TTWJetsToLNu") != std::string::npos) wgt= 0.4611/(12816567 - 12816567*(1./581));
+ // TTZ+jets
+ if(FileName.find("TTZJets") != std::string::npos) wgt=0.5407/22646257;
 
 
 

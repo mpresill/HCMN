@@ -105,6 +105,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //   Variables to read
   /////
   //EVENT variables (PDF syst)
+   double rEVENT_genHT; rEVENT_genHT=0; TBranch* b_rEVENT_genHT = 0; readingtree->SetBranchAddress("EVENT_genHT",&rEVENT_genHT,&b_rEVENT_genHT);
+  double rEVENT_genPt; rEVENT_genPt=0; TBranch* b_rEVENT_genPt = 0; readingtree->SetBranchAddress("EVENT_genPt",&rEVENT_genPt,&b_rEVENT_genPt);
   int rEVENT_PDFv4_lhaid; rEVENT_PDFv4_lhaid = 0; TBranch* b_rEVENT_PDFv4_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv4_lhaid",&rEVENT_PDFv4_lhaid,&b_rEVENT_PDFv4_lhaid);
   double rEVENT_PDFv4WeightUp; rEVENT_PDFv4WeightUp = 0; TBranch* b_rEVENT_PDFv4WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightUp",&rEVENT_PDFv4WeightUp,&b_rEVENT_PDFv4WeightUp);
   double rEVENT_PDFv4WeightDown; rEVENT_PDFv4WeightDown = 0; TBranch* b_rEVENT_PDFv4WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightDown",&rEVENT_PDFv4WeightDown,&b_rEVENT_PDFv4WeightDown);
@@ -123,6 +125,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   int rHLT_TkMu100; rHLT_TkMu100 = 0; TBranch* b_rHLT_TkMu100 = 0; readingtree->SetBranchAddress("HLT_TkMu100",&rHLT_TkMu100,&b_rHLT_TkMu100);
 
  //Gen variables:
+ vector<double>* rGen_status; rGen_status = 0; TBranch* b_rGen_status = 0; readingtree->SetBranchAddress("Gen_status",&rGen_status,&b_rGen_status);
   vector<double>* rGen_pt; rGen_pt = 0; TBranch* b_rGen_pt = 0; readingtree->SetBranchAddress("Gen_pt",&rGen_pt,&b_rGen_pt);
   vector<double>* rGen_eta; rGen_eta = 0; TBranch* b_rGen_eta = 0; readingtree->SetBranchAddress("Gen_eta",&rGen_eta,&b_rGen_eta);
   vector<double>* rGen_phi; rGen_phi = 0; TBranch* b_rGen_phi = 0; readingtree->SetBranchAddress("Gen_phi",&rGen_phi,&b_rGen_phi);
@@ -278,6 +281,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    newtree->SetMaxTreeSize(99000000000);
    /////
    //   New variables
+   double EVENT_genHT; newtree->Branch("EVENT_genHT", &EVENT_genHT);
+   double EVENT_genPt; newtree->Branch("EVENT_genPt", &EVENT_genPt);
    /////
    //Trigger:
    int HLT_Photon200; newtree->Branch("HLT_Photon200",&HLT_Photon200);
@@ -289,6 +294,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    int HLT_TkMu100; newtree->Branch("HLT_TkMu100",&HLT_TkMu100);
 
   //Gen variables
+  vector<double>* Gen_status = new std::vector<double>; newtree->Branch("Gen_status",&Gen_status);
   vector<double>* Gen_pt = new std::vector<double>; newtree->Branch("Gen_pt",&Gen_pt);
   vector<double>* Gen_eta = new std::vector<double>; newtree->Branch("Gen_eta",&Gen_eta);
   vector<double>* Gen_phi = new std::vector<double>; newtree->Branch("Gen_phi",&Gen_phi);
@@ -507,6 +513,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rHLT_TkMu100->GetEntry(en);   
  
     //EVENT (PDF syst)
+    b_rEVENT_genHT->GetEntry(en);
+    b_rEVENT_genPt->GetEntry(en);
+
     b_rEVENT_PDFv4_lhaid->GetEntry(en);
     b_rEVENT_PDFv4WeightUp->GetEntry(en);
     b_rEVENT_PDFv4WeightCentral->GetEntry(en);
@@ -522,6 +531,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rtrueInteractions->GetEntry(en);
 
     //Gen variables
+    b_rGen_status->GetEntry(en);
     b_rGen_pt->GetEntry(en);
     b_rGen_eta->GetEntry(en);
     b_rGen_phi->GetEntry(en);
@@ -637,6 +647,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rMet_type1PF_pt->GetEntry(en);
 
     //Gen variables to be written
+    Gen_status->clear();
     Gen_pt->clear();    
     Gen_eta->clear();    
     Gen_phi->clear();    
@@ -732,6 +743,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     HLT_TkMu100 = -999;
     HLT_OldMu100 = -999;
 
+    EVENT_genHT = -999;
+    EVENT_genPt = -999;
     EVENT_PDFv4WeightStdDev = -999; EVENT_PDFv4WeightCentral=-999; EVENT_PDFv4WeightMean=-999; EVENT_PDFv4WeightDown=-999; EVENT_PDFv4WeightUp=-999; EVENT_PDFv4_lhaid=-999;
 
     PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999; 
@@ -759,6 +772,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    HLT_TkMu100 = rHLT_TkMu100;
 
   //EVENT (PDF syst)
+  EVENT_genHT = rEVENT_genHT;
+   EVENT_genPt = rEVENT_genPt;
   EVENT_PDFv4WeightStdDev = rEVENT_PDFv4WeightStdDev; EVENT_PDFv4WeightMean = rEVENT_PDFv4WeightMean; EVENT_PDFv4WeightCentral=rEVENT_PDFv4WeightCentral; EVENT_PDFv4WeightUp=rEVENT_PDFv4WeightUp; EVENT_PDFv4WeightDown=rEVENT_PDFv4WeightDown; EVENT_PDFv4_lhaid=rEVENT_PDFv4_lhaid;
 
    PUWeight = rPUWeight;
@@ -772,6 +787,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
   for(uint gen_en = 0; gen_en<rGen_pt->size(); gen_en++){
     //Gen variables (writing)
+    Gen_status->push_back(rGen_status->at(gen_en));
     Gen_pt->push_back(rGen_pt->at(gen_en));
     Gen_eta->push_back(rGen_eta->at(gen_en));
     Gen_phi->push_back(rGen_phi->at(gen_en));
@@ -1598,14 +1614,30 @@ double get_wgtlumi(string FileName){
  
 
  // DY HT binned LO samples
- /*if(FileName.find("DY_HT70to100") != std::string::npos) wgt=146.7/9344037;//ok
- if(FileName.find("DY_HT100to200") != std::string::npos) wgt=161.1/3950339;//ok
- if(FileName.find("DY_HT200to400") != std::string::npos) wgt=48.66/(10298412 + (10728447*11/485) + 1200863);//ok
- if(FileName.find("DY_HT400to600") != std::string::npos) wgt=6.968/((9533635*3/631)+1124294);//ok
- if(FileName.find("DY_HT600to800") != std::string::npos) wgt=1.743/(8153358*4/390); //ok
- if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=0.8052/(3089861*2/175); //ok
- if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=0.1933/(625517*6/77); //ok
- //if(FileName.find("DY_HT2500toInf") != std::string::npos) wgt=/; //marked with "submit failed"*/
+ if(FileName.find("DY_HT70to100") != std::string::npos) wgt=208.977/9344037; //check xsec
+ if(FileName.find("DY_HT100to200") != std::string::npos) wgt=181.3/3950339;//ok 
+ if(FileName.find("DY_HT200to400") != std::string::npos) wgt=(50.42*0.999)/(10298412+(10728447 - 10728447*(11./485)) + 1200863); //ok
+ if(FileName.find("DY_HT400to600") != std::string::npos) wgt=(6.9839*0.99)/(1124294 + (9533635 - 9533635*(3./631)) );//ok
+ if(FileName.find("DY_HT600to800") != std::string::npos) wgt=(1.68141*0.975)/(8153358 - 8153358*(4./390)); //ok
+ if(FileName.find("DY_HT800to1200") != std::string::npos) wgt=(0.7754*0.907)/(3089861 - 3089861*(2. / 175)); //ok
+ if(FileName.find("DY_HT1200to2500") != std::string::npos) wgt=(0.1862*0.833)/(625517 - (625517*6./77)); //ok
+
+ //QCD
+
+ if(FileName.find("QCD_HT50to100") != std::string::npos) wgt=185300000.0/40456172;
+ if(FileName.find("QCD_HT100to200") != std::string::npos) wgt=23700000.0/(93231801+78644885);
+ if(FileName.find("QCD_HT200to300") != std::string::npos) wgt=1547000.0/58689666;
+ if(FileName.find("QCD_HT300to500") != std::string::npos) wgt=322600.0/60316577;
+ if(FileName.find("QCD_HT500to700") != std::string::npos) wgt=29980.0/56207744;
+ if(FileName.find("QCD_HT700to1000") != std::string::npos) wgt=6334.0/47724800;
+ if(FileName.find("QCD_HT100to1500") != std::string::npos) wgt=1088.0/16595628;
+ if(FileName.find("QCD_HT1500to2000") != std::string::npos) wgt=99.11/11634434;
+ if(FileName.find("QCD_HT2000toInf") != std::string::npos) wgt=20.23/5941306;
+
+ // TTW+jets
+ if(FileName.find("TTWJetsToLNu") != std::string::npos) wgt= 0.4611/(6415920+9425384);
+ // TTZ+jets
+ if(FileName.find("TTZJets") != std::string::npos) wgt=0.5407/(9698473+ 8536618);
 
  return wgt;
  }
