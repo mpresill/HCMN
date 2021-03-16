@@ -158,7 +158,7 @@ for(int i=7;i<10;i++){
  all_bkg_statErr->SetFillColor(kGray+3);
  
    hs->Draw("hist");
-   h4->Draw("histsame");
+   //h4->Draw("histsame");
    h5->Draw("ALPEsame");    /// data unblind
    all_bkg_statErr->Draw("E2same");
 
@@ -258,7 +258,7 @@ TLegend *leg = new TLegend(0.6, 0.68, 0.90, 0.88);   //x2=0.59 per 0 PU, x2=0.65
     leg->AddEntry(h2, "DY", "f");
     leg->AddEntry(h2b, "Other", "f");   
 //  leg->AddEntry(h6b, "All bkds", "l");
-    leg->AddEntry(h4, "#scale[0.8]{#Lambda = 13, M(N_{e}) = 1 TeV}",  "l"); 
+ //   leg->AddEntry(h4, "#scale[0.8]{#Lambda = 13, M(N_{e}) = 1 TeV}",  "l"); 
     leg->AddEntry(all_bkg_statErr,"#scale[0.7]{Bkg stat. and syst.uncert.}","F");// and syst. 
    leg->AddEntry(h5, "Data", "l");
 
@@ -270,8 +270,8 @@ canv->cd();
 
 canv->SaveAs(name+".png");
 canv->SaveAs(name+".pdf");
-canv->Print("/eos/user/v/vmariani/www/HN/prefit/"+name+".png");
-canv->Print("/eos/user/v/vmariani/www/HN/prefit/"+name+".pdf");
+canv->Print("/eos/user/v/vmariani/www/HN/prefit_nosign/"+name+".png");
+canv->Print("/eos/user/v/vmariani/www/HN/prefit_nosign/"+name+".pdf");
   return canv;
 
 }

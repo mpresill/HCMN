@@ -6,7 +6,7 @@
 
 TCanvas* c1(int iPeriod, int iPos);
  
-void MeeJ_2016()
+void MeeJ_2016_Rebinned()
 {
  setTDRStyle();
  
@@ -53,9 +53,9 @@ int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
 TH1F * gHisto ;
 
  
-   TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/eejj_L13000_M1000_sr/eejj_L13000_M1000_sr_YearsCombination_PostFit_histograms.root");
-   TString dir = "SR_Y2016combined_signal_region_prefit/";
-   TString name = "eejj_2016_M1000prefit"; //nome del file salvato
+   TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/eejj_L13000_M1000_sr_Rebinned/eejj_L13000_M1000_sr_YearsCombination_Rebinned_PostFit_histograms.root");
+   TString dir = "SR_Y2016combined_signal_region_postfit/";
+   TString name = "eejj_2016_M1000postfit_Rebinned"; //nome del file salvato
 
    canvName = name;   
 /////input files
@@ -66,12 +66,13 @@ TH1F * gHisto ;
    TH1F *h5_c= (TH1F*) f1->Get(dir+"data_obs");
 
   //adjust the plot binning 
-  const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
-  TH1F *h1 = new TH1F ("", "", 9, asymbins);    
-  TH1F *h2 = new TH1F ("", "", 9, asymbins);    
-  TH1F *h2b= new TH1F ("", "", 9, asymbins);    
-  TH1F *h4 = new TH1F ("", "", 9, asymbins);    
-  TH1F *h5 = new TH1F ("", "", 9, asymbins);    
+  //const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+  const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000}; 
+  TH1F *h1 = new TH1F ("", "", 8, asymbins);    
+  TH1F *h2 = new TH1F ("", "", 8, asymbins);    
+  TH1F *h2b= new TH1F ("", "", 8, asymbins);    
+  TH1F *h4 = new TH1F ("", "", 8, asymbins);    
+  TH1F *h5 = new TH1F ("", "", 8, asymbins);    
   for(int i=1;i<10;i++){
     h1->SetBinContent(i,h1_c->GetBinContent(i));    h1->SetBinError(i,h1_c->GetBinError(i));
     h2->SetBinContent(i,h2_c->GetBinContent(i));    h2->SetBinError(i,h2_c->GetBinError(i));
@@ -146,7 +147,7 @@ for(int i=7;i<10;i++){
   //    all_bkg_statErr_xerr[m]=h1->GetBinWidth(m) / 2 ;
   
   
-    ///statistic e systematic error are togheter in the prefit histos
+    ///statistic e systematic error are togheter in the postfit histos
     all_bkg_statErr_yerr[m-1]=sqrt( (h1->GetBinError(m))*(h1->GetBinError(m)) + (h2->GetBinError(m))*(h2->GetBinError(m)) + (h2b->GetBinError(m))*(h2b->GetBinError(m)) );
     ///systematics
     all_bkg_sistErr_yerr[m-1]=0;   
@@ -160,7 +161,7 @@ for(int i=7;i<10;i++){
  all_bkg_statErr->SetFillColor(kGray+3);
  
    hs->Draw("hist");
-   //h4->Draw("histsame");
+//   h4->Draw("histsame");
    h5->Draw("ALPEsame");    /// data unblind
    all_bkg_statErr->Draw("E2same");
 
@@ -274,7 +275,7 @@ canv->cd();
 
 canv->SaveAs(name+".png");
 canv->SaveAs(name+".pdf");
-canv->Print("/eos/user/v/vmariani/www/HN/prefit_nosign/"+name+".png");
-canv->Print("/eos/user/v/vmariani/www/HN/prefit_nosign/"+name+".pdf");   
+canv->Print("/eos/user/v/vmariani/www/HN/postfit_nosign/"+name+".png");
+canv->Print("/eos/user/v/vmariani/www/HN/postfit_nosign/"+name+".pdf");   
   return canv;
 }

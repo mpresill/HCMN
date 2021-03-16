@@ -6,14 +6,15 @@
 
 TCanvas* c1(int iPeriod, int iPos);
  
-void MeeJ_2016()
+void MeeJ_2017_Rebinned()
+
 {
  setTDRStyle();
  
  writeExtraText = true;       // if extra text
  extraText  = "Preliminary";
  //lumi_sqrtS = "13 TeV";
- int iPeriod = 16;
+ int iPeriod = 17;
  c1( iPeriod, 11 );
 }
 
@@ -46,18 +47,17 @@ TCanvas* c1(int iPeriod, int iPos){
 
  TPad *c1_1 = new TPad("c1_1", "newpad",0.01,0.32,0.99,0.99);
  TPad *c1_2 = new TPad("c1_2", "newpad",0.01,0.01,0.99,0.32);
-
-
-int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
+ 
+ int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
 
 TH1F * gHisto ;
 
- 
-   TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/eejj_L13000_M1000_sr/eejj_L13000_M1000_sr_YearsCombination_PostFit_histograms.root");
-   TString dir = "SR_Y2016combined_signal_region_prefit/";
-   TString name = "eejj_2016_M1000prefit"; //nome del file salvato
+   TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/eejj_L13000_M1000_sr_Rebinned/eejj_L13000_M1000_sr_YearsCombination_Rebinned_PostFit_histograms.root");
+   TString dir = "SR_Y2017combined_signal_region_postfit/";
+   TString name = "eejj_2017_M1000postfit_Rebinned"; //nome del file salvato
+   
+    canvName=name;
 
-   canvName = name;   
 /////input files
    TH1F *h1_c= (TH1F*) f1->Get(dir+"TTtW");
    TH1F *h2_c= (TH1F*) f1->Get(dir+"DY");
@@ -66,12 +66,13 @@ TH1F * gHisto ;
    TH1F *h5_c= (TH1F*) f1->Get(dir+"data_obs");
 
   //adjust the plot binning 
-  const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
-  TH1F *h1 = new TH1F ("", "", 9, asymbins);    
-  TH1F *h2 = new TH1F ("", "", 9, asymbins);    
-  TH1F *h2b= new TH1F ("", "", 9, asymbins);    
-  TH1F *h4 = new TH1F ("", "", 9, asymbins);    
-  TH1F *h5 = new TH1F ("", "", 9, asymbins);    
+ //  const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+  const double asymbins[9]= {0,200,400,600,800,1000,1400,2000,10000};
+  TH1F *h1 = new TH1F ("", "", 8, asymbins);    
+  TH1F *h2 = new TH1F ("", "", 8, asymbins);    
+  TH1F *h2b= new TH1F ("", "", 8, asymbins);    
+  TH1F *h4 = new TH1F ("", "", 8, asymbins);    
+  TH1F *h5 = new TH1F ("", "", 8, asymbins);    
   for(int i=1;i<10;i++){
     h1->SetBinContent(i,h1_c->GetBinContent(i));    h1->SetBinError(i,h1_c->GetBinError(i));
     h2->SetBinContent(i,h2_c->GetBinContent(i));    h2->SetBinError(i,h2_c->GetBinError(i));
@@ -131,8 +132,6 @@ for(int i=7;i<10;i++){
    Ndata =Ndata+ h5->GetBinContent(i);  
 }
 
-
-
  double all_bkg_Err_x[9]={h1->GetBinCenter(1),h1->GetBinCenter(2),h1->GetBinCenter(3),h1->GetBinCenter(4),h1->GetBinCenter(5),h1->GetBinCenter(6),h1->GetBinCenter(7),h1->GetBinCenter(8),h1->GetBinCenter(9)};
  double all_bkg_Err_y[9]={h1->GetBinContent(1) + h2b->GetBinContent(1) + h2->GetBinContent(1),  h1->GetBinContent(2) + h2b->GetBinContent(2) + h2->GetBinContent(2)    ,h1->GetBinContent(3) + h2b->GetBinContent(3) + h2->GetBinContent(3)   ,h1->GetBinContent(4) + h2b->GetBinContent(4) + h2->GetBinContent(4)     ,h1->GetBinContent(5) + h2b->GetBinContent(5) + h2->GetBinContent(5)     ,h1->GetBinContent(6) + h2b->GetBinContent(6) + h2->GetBinContent(6)   ,h1->GetBinContent(7) + h2b->GetBinContent(7) + h2->GetBinContent(7)    ,h1->GetBinContent(8) + h2b->GetBinContent(8) + h2->GetBinContent(8),  h1->GetBinContent(9) + h2b->GetBinContent(9) + h2->GetBinContent(9)}; 
  double all_bkg_Err_xerr[9]={h1->GetBinWidth(1)/2  ,h1->GetBinWidth(2)/2   ,h1->GetBinWidth(3)/2   ,h1->GetBinWidth(4)/2  ,h1->GetBinWidth(5)/2  ,h1->GetBinWidth(6)/2  ,h1->GetBinWidth(7)/2  ,h1->GetBinWidth(8)/2  ,h1->GetBinWidth(9)/2  };
@@ -146,7 +145,7 @@ for(int i=7;i<10;i++){
   //    all_bkg_statErr_xerr[m]=h1->GetBinWidth(m) / 2 ;
   
   
-    ///statistic e systematic error are togheter in the prefit histos
+    ///statistic e systematic error are togheter in the postfit histos
     all_bkg_statErr_yerr[m-1]=sqrt( (h1->GetBinError(m))*(h1->GetBinError(m)) + (h2->GetBinError(m))*(h2->GetBinError(m)) + (h2b->GetBinError(m))*(h2b->GetBinError(m)) );
     ///systematics
     all_bkg_sistErr_yerr[m-1]=0;   
@@ -237,7 +236,7 @@ dataSUmc->GetYaxis()->SetTitleFont(43);
 dataSUmc->GetYaxis()->SetTitleOffset(1.5);
 
 dataSUmc->SetMinimum(0.4);  //0.5
-dataSUmc->SetMaximum(1.6);  //1.5
+dataSUmc->SetMaximum(2);  //1.5
 TLine* line = new TLine(0,1,10000,1);
 line->SetLineColor(kRed);
 line->SetLineWidth(2);
@@ -250,8 +249,6 @@ gPad->RedrawAxis();
 c1_1->cd();
 
 
-//qui inizia la leggenda, quelli commentati sono esempi di titoli "ufficiali", 
-//il primo per i dati e il secondo per le simulazioni
 // poi disegni la legenda  
 TLegend *leg = new TLegend(0.6, 0.68, 0.90, 0.88);   //x2=0.59 per 0 PU, x2=0.65 per 200PU linear, x2=0.59 per 200PU log
     leg->SetShadowColor(0);
@@ -262,7 +259,7 @@ TLegend *leg = new TLegend(0.6, 0.68, 0.90, 0.88);   //x2=0.59 per 0 PU, x2=0.65
     leg->AddEntry(h2, "DY", "f");
     leg->AddEntry(h2b, "Other", "f");   
 //  leg->AddEntry(h6b, "All bkds", "l");
-//    leg->AddEntry(h4, "#scale[0.8]{#Lambda = 13, M(N_{e}) = 1 TeV}",  "l"); 
+   // leg->AddEntry(h4, "#scale[0.8]{#Lambda = 13, M(N_{e}) = 1 TeV}",  "l"); 
     leg->AddEntry(all_bkg_statErr,"#scale[0.7]{Bkg stat. and syst.uncert.}","F");// and syst. 
    leg->AddEntry(h5, "Data", "l");
 
@@ -274,7 +271,8 @@ canv->cd();
 
 canv->SaveAs(name+".png");
 canv->SaveAs(name+".pdf");
-canv->Print("/eos/user/v/vmariani/www/HN/prefit_nosign/"+name+".png");
-canv->Print("/eos/user/v/vmariani/www/HN/prefit_nosign/"+name+".pdf");   
+canv->Print("/eos/user/v/vmariani/www/HN/postfit_nosign/"+name+".png");
+canv->Print("/eos/user/v/vmariani/www/HN/postfit_nosign/"+name+".pdf");
   return canv;
+
 }

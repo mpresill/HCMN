@@ -101,7 +101,6 @@ TH1F * gHisto ;
 
   //set the correct asymmetric binning
   const double asymbins[10] = {0,200,400,600,800,1000,1400,2000,3500,10000};
- 
   TH1F *h1 = new TH1F ("", "", 9, asymbins);    
   TH1F *h2 = new TH1F ("", "", 9, asymbins);    
   TH1F *h2b= new TH1F ("", "", 9, asymbins);    
@@ -308,8 +307,8 @@ canv->cd();
 
 canv->Print(name+".png");
 canv->Print(name+".pdf");
-canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".png");
-canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".pdf");
+canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".png");
+canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".pdf");
   return canv;
 
 }

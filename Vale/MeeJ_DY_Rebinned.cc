@@ -52,12 +52,12 @@ TH1F * gHisto ;
  
 
    TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/eejj_L13000_M1000_sr_Rebinned/eejj_L13000_M1000_sr_YearsCombination_Rebinned_PostFit_histograms.root");
-   TString name = "eejj_FullRun2_M1000postfit_DYcr_Rebinned"; //nome del file salvato
+   TString name = "eejj_FullRun2_M1000prefit_DYcr_Rebinned"; //nome del file salvato
 
-   TString dir2016 = "DYcr_Y2016_DYcr_postfit/";
-   TString dir2017 = "DYcr_Y2017_DYcr_postfit/";
-   TString dir2018 = "DYcr_Y2018_DYcr_postfit/";
-   //TString dir     = "postfit/";
+   TString dir2016 = "DYcr_Y2016_DYcr_prefit/";
+   TString dir2017 = "DYcr_Y2017_DYcr_prefit/";
+   TString dir2018 = "DYcr_Y2018_DYcr_prefit/";
+   //TString dir     = "prefit/";
 
 
 /////input files
@@ -187,7 +187,7 @@ for(int i=1;i<10;i++){
  double all_bkg_totErr_yerr[9];  
   
   for(int m=1;m<10;m++){
-    ///statistic e systematic error are togheter in the postfit histos
+    ///statistic e systematic error are togheter in the prefit histos
     all_bkg_statErr_yerr[m-1]=sqrt( (h1->GetBinError(m))*(h1->GetBinError(m)) + (h2->GetBinError(m))*(h2->GetBinError(m)) + (h2b->GetBinError(m))*(h2b->GetBinError(m)) );
     ///systematics
       all_bkg_sistErr_yerr[m-1]=0;   
@@ -310,7 +310,7 @@ canv->cd();
 
 canv->Print(name+".png");
 canv->Print(name+".pdf");
-canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".png");
-canv->Print("/eos/user/m/mpresill/www/HN/postfit/"+name+".pdf");
+canv->Print("/eos/user/v/vmariani/www/HN/prefit/"+name+".png");
+canv->Print("/eos/user/v/vmariani/www/HN/prefit/"+name+".pdf");
   return canv;
 }

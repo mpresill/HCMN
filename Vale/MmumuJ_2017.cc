@@ -54,8 +54,8 @@ TH1F * gHisto ;
 
 
    TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/mumujj_L13000_M1000_sr/mumujj_L13000_M1000_sr_YearsCombination_PostFit_histograms.root");
-   TString dir = "SR_Y2017combined_signal_region_postfit/";
-   TString name = "mumujj_2017_M1000postfit"; //nome del file salvato
+   TString dir = "SR_Y2017combined_signal_region_prefit/";
+   TString name = "mumujj_2017_M1000prefit"; //nome del file salvato
    
 /////input files
    TH1F *h1_c= (TH1F*) f1->Get(dir+"TTtW");
@@ -144,7 +144,7 @@ for(int i=7;i<10;i++){
   //    all_bkg_statErr_xerr[m]=h1->GetBinWidth(m) / 2 ;
   
   
-    ///statistic e systematic error are togheter in the postfit histos
+    ///statistic e systematic error are togheter in the prefit histos
     all_bkg_statErr_yerr[m-1]=sqrt( (h1->GetBinError(m))*(h1->GetBinError(m)) + (h2->GetBinError(m))*(h2->GetBinError(m)) + (h2b->GetBinError(m))*(h2b->GetBinError(m)) );
     ///systematics
     all_bkg_sistErr_yerr[m-1]=0;   
@@ -158,7 +158,7 @@ for(int i=7;i<10;i++){
  all_bkg_statErr->SetFillColor(kGray+3);
  
    hs->Draw("hist");
-   h4->Draw("histsame");
+   //h4->Draw("histsame");
    h5->Draw("ALPEsame");    /// data unblind
    all_bkg_statErr->Draw("E2same");
 
@@ -220,7 +220,7 @@ dataSUmc->SetTitle(0);
 dataSUmc->SetMarkerStyle(8);
 dataSUmc->GetYaxis()->SetNdivisions(5,5,1);
 
-dataSUmc->GetXaxis()->SetTitle("M(e,e,J) (GeV)");
+dataSUmc->GetXaxis()->SetTitle("M(#mu,#mu,J) (GeV)");
 dataSUmc->GetXaxis()->SetLabelSize(25);
 dataSUmc->GetXaxis()->SetLabelFont(43);
 dataSUmc->GetXaxis()->SetTitleSize(30);
@@ -257,7 +257,7 @@ TLegend *leg = new TLegend(0.6, 0.68, 0.90, 0.88);   //x2=0.59 per 0 PU, x2=0.65
     leg->AddEntry(h2, "DY", "f");
     leg->AddEntry(h2b, "Other", "f");   
 //  leg->AddEntry(h6b, "All bkds", "l");
-    leg->AddEntry(h4, "#scale[0.8]{#Lambda = 13, M(N_{#mu}) = 1 TeV}",  "l");   
+//    leg->AddEntry(h4, "#scale[0.8]{#Lambda = 13, M(N_{#mu}) = 1 TeV}",  "l");   
     leg->AddEntry(all_bkg_statErr,"#scale[0.7]{Bkg stat. and syst.uncert.}","F");// and syst. 
    leg->AddEntry(h5, "Data", "l");
 
@@ -269,8 +269,8 @@ canv->cd();
 
 canv->SaveAs(name+".png");
 canv->SaveAs(name+".pdf");
-canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".png");
-canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".pdf");
+canv->Print("/eos/user/v/vmariani/www/HN/prefit_nosign/"+name+".png");
+canv->Print("/eos/user/v/vmariani/www/HN/prefit_nosign/"+name+".pdf");
 
 return canv;
 }
