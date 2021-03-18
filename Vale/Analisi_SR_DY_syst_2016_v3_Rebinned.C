@@ -43,7 +43,12 @@ void Analisi_SR_DY_syst_2016_v3_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/DY_2016.root"); //samples to be used //DY_HT100Inf_2016.root
+//new list of samples Mar2021:
+//a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/DY_HT100Inf_2016.root"); //samples to be used //DY_HT100Inf_2016.root
+a_->Add("../BkgEstimation/DY_HTincl_2016.root");
+
+
+//old samples, both FxFx and inclusive 
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2016_syst/DY_2016.root"); 
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2016_syst/DY_FxFx_2016.root");
 
@@ -903,14 +908,24 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 
 /**** adding the Alpha ratio and it's uncertainty*******/
 /* alpha ratio and it's statistical error, bin per bin*/
+
+/* alpha ratio DY HTbinned+inclusive samples*/
+const double Alpha_ele[9] =  {1,1,1.08,1.04,1.10,1.15,1.17,1.42 };
+const double dAlpha_ele[9] = {0,0,0.06,0.02,0.03,0.04,0.08,0.21 };
+
+const double Alpha_mu[9] =   {1,1,1.06,1.04,1.06,1.15,1.23,1.54}; 
+const double dAlpha_mu[9] =  {0,0,0.05,0.02,0.02,0.03,0.06,0.17 }; 
+
+
+/* alpha ratio with status==62, DY inclusive samples
 const double Alpha_ele[9] = {1,1, 1.03, 1.07, 1.04, 1.08, 1.14, 1.25,0};
 const double dAlpha_ele[9] ={0,0, 0.09, 0.04, 0.04, 0.05, 0.12, 0.3,0};
 
 const double Alpha_mu[9] = {1,1,1.04, 1.02, 1.06, 1.11, 1.08, 1.05,0}; 
-const double dAlpha_mu[9] ={0,0,0.08, 0.03, 0.04, 0.04, 0.08, 0.17,0}; 
+const double dAlpha_mu[9] ={0,0,0.08, 0.03, 0.04, 0.04, 0.08, 0.17,0}; */
 
 
-/* old alpha ratios
+/* old alpha ratios DY inclusive
 const double Alpha_ele[9] = {1,1,1, 1.03, 1, 1.03, 1.07, 1.16, 1};
 const double dAlpha_ele[9] ={0,0,0.08, 0.04, 0.04, 0.05, 0.11, 0.28, 0};
 const double Alpha_mu[9] = {1,1,1.01, 0.99, 1.01, 1.06, 1.02, 1.00, 1}; 
@@ -1005,7 +1020,7 @@ for (Int_t j=1;j<=8;j++) {
 
 
 //TFile *f = new TFile("SR_syst_DY_Kewkqcd_2016.root", "RECREATE");
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016/SR_syst_DY_Kewkqcd_2016.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016/SR_syst_DY_HTincl_Kewkqcd_2016.root", "RECREATE");
 //TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016-OldBinning/SR_syst_DY_FxFx_2016.root", "RECREATE");
 //TFile *f2 = new TFile("SR_syst_DY_2016.root", "RECREATE");
 deltaRmu1FJ1->Write();

@@ -33,7 +33,8 @@ void Analisi_SR_DY_syst_2018_v4_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2018/Syst_ALL_newMuonSF/DY_2018.root");
+a_->Add("../BkgEstimation/DY_HTincl_2018.root");
+//a_->Add("/eos/user/v/vmariani/NTuples/HN_2018/Syst_ALL_newMuonSF/DY_2018.root");
 
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2018_syst/DY_2018.root");
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2018_syst/DY_FxFx_2018.root");
@@ -868,11 +869,20 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 
 /**** adding the Alpha ratio and it's uncertainty*******/
 /* alpha ratio and it's statistical error, bin per bin*/
+
+/* DY HT binned +inclusive  */
+const double Alpha_ele[9] = {1,1,0.97,0.91,0.95,0.89,0.93,1.03};
+const double dAlpha_ele[9] ={0,0,0.04,0.02,0.02,0.02,0.05,0.12};
+
+const double Alpha_mu[9] = {1,1,0.92,0.90,0.91,0.91,0.91,1.01}; 
+const double dAlpha_mu[9] ={0,0,0.03,0.01,0.02,0.02,0.04,0.09};
+
+/* old DY inclusive
 const double Alpha_ele[9] = {1,1,0.83, 0.81, 0.82, 0.76, 1.02, 0.87, 0};
 const double dAlpha_ele[9] ={0,0,0.07, 0.03, 0.03, 0.03, 0.01, 0.2, 0};
 
 const double Alpha_mu[9] = {1,1,0.94, 0.80, 0.76, 0.80, 0.77, 0.89,0 }; 
-const double dAlpha_mu[9] ={0,0,0.07, 0.02, 0.03, 0.03, 0.06, 0.14,0 };
+const double dAlpha_mu[9] ={0,0,0.07, 0.02, 0.03, 0.03, 0.06, 0.14,0 };*/
 
 
 for (Int_t j=1;j<=8;j++) {
@@ -961,7 +971,7 @@ for (Int_t j=1;j<=8;j++) {
 
 
 //TFile *f = new TFile("SR_syst_DY_Kewkqcd_2018.root", "RECREATE");
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018_v4/SR_syst_DY_Kewkqcd_2018.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018_v4/SR_syst_DY_HTincl_Kewkqcd_2018.root", "RECREATE");
 //TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2018-OldBinning/SR_syst_DY_FxFx_2018.root", "RECREATE");
 //TFile *f2 = new TFile("plot/SR_syst_DY_2018.root", "RECREATE");
 DY_eejj->Write();

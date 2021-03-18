@@ -35,7 +35,9 @@ TChain *a_ = new TChain("BOOM");
 
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/DY_2017.root");
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/DY_HTincl_2017.root"); //this is the sample obtained mixing HT binned and inclusive DY samples
-a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/Vale_HT_processing/DY_2017.root");  //DY_HT100Inf_2017.root");
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/Vale_HT_processing/DY_2017.root");  //DY_HT100Inf_2017.root");
+a_->Add("../BkgEstimation/DY_HTincl_2017.root");
+//a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/Syst_ALL_newMuonSF/DY_HT100Inf_2017.root"); 
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/DY_FxFx_2017.root"); //uncomment line 335 
 //inputFile
 
@@ -989,7 +991,7 @@ for (Int_t j=1;j<=8;j++) {
 
 
 //TFile *f = new TFile("SR_syst_DY_Kewkqcd_2017.root", "RECREATE");
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017/SR_syst_DY_Kewkqcd_2017.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017/SR_syst_DY_HTincl_Kewkqcd_2017.root", "RECREATE");
 //TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/SR_syst_DY_FxFx_2017.root", "RECREATE");
 //TFile *f2 = new TFile("SR_syst_DY_2017.root", "RECREATE");
 

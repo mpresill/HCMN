@@ -33,11 +33,11 @@ void Analisi_SR_DY_syst_2017_v4_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/Vale_HT_processing/DY_2017.root");  //DY_HT100Inf_2017.root");
-//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/DY_FxFx_2017.root"); //uncomment line 335 
-//inputFile
-//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/DY_FxFx_2017.root"); //uncomment line 335 
-//inputFile
+a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/DY_HTincl_2017.root");
+//a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/Syst_ALL_newMuonSF/DY_HT100Inf_2017.root"); 
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/Vale_HT_processing/DY_2017.root");  //DY_HT100Inf_2017.root");
+
+
 
 int HLT_Ele, HLT_Photon200, HLT_Ele115, HLT_Ele35, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
 double muejj_l, emujj_l;
@@ -456,7 +456,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
     if( Z_gen_pt>150 && Z_gen_pt >=(binCenter_qcd - (0.5*binWidth_qcd)) && Z_gen_pt < (binCenter_qcd + (0.5*binWidth_qcd))  ){
       k_qcd = k_qcd_histo->GetBinContent(ji);
-      cout << "k_qcd = "<<k_qcd << ",  bin number = "<< ji << ", bin center = "<< k_qcd_histo->GetXaxis()->GetBinCenter(ji)<<", bin content = "<< k_qcd_histo->GetBinContent(ji) << "Gen_stat = " << Gen_stat << endl;
+      //cout << "k_qcd = "<<k_qcd << ",  bin number = "<< ji << ", bin center = "<< k_qcd_histo->GetXaxis()->GetBinCenter(ji)<<", bin content = "<< k_qcd_histo->GetBinContent(ji) << "Gen_stat = " << Gen_stat << endl;
     }
   }
   /* here we write the k_ewk */
@@ -469,11 +469,11 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
     if(Z_gen_pt >=(binCenter_ewk - (0.5*binWidth_ewk)) && Z_gen_pt < (binCenter_ewk + (0.5*binWidth_ewk)) ){
       k_ewk = k_ewk_histo->GetBinContent(jj);
-      cout << "k_ewk = "<<k_ewk << ",  bin number = "<< jj << ", bin center = "<< k_ewk_histo->GetXaxis()->GetBinCenter(jj)<<", bin content = "<< k_ewk_histo->GetBinContent(jj) << "Gen_stat = " << Gen_stat <<endl;
+      //cout << "k_ewk = "<<k_ewk << ",  bin number = "<< jj << ", bin center = "<< k_ewk_histo->GetXaxis()->GetBinCenter(jj)<<", bin content = "<< k_ewk_histo->GetBinContent(jj) << "Gen_stat = " << Gen_stat <<endl;
     }
   }
  //cout<< k_ewk*k_qcd<<endl;
-  cout << "====" <<endl;
+  //cout << "====" <<endl;
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
  
@@ -1035,7 +1035,7 @@ for (Int_t j=1;j<=8;j++) {
 
 
 //TFile *f = new TFile("SR_syst_DY_Kewkqcd_2017.root", "RECREATE");
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017_v4/SR_syst_DY_Kewkqcd_2017.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017_v4/SR_syst_DY_HTincl_Kewkqcd_2017.root", "RECREATE");
 //TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2017-OldBinning/SR_syst_DY_FxFx_2017.root", "RECREATE");
 //TFile *f2 = new TFile("SR_syst_DY_2017.root", "RECREATE");
 
