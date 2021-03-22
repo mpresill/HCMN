@@ -34,7 +34,7 @@ void Analisi_SR_DY_syst_2018_v4_Rebinned(){
 TChain *a_ = new TChain("BOOM");
 
 a_->Add("../BkgEstimation/DY_HTincl_2018.root");
-//a_->Add("/eos/user/v/vmariani/NTuples/HN_2018/Syst_ALL_newMuonSF/DY_2018.root");
+//a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/Syst_ALL_newMuonSF/DY_HT100Inf_2017.root");
 
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2018_syst/DY_2018.root");
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2018_syst/DY_FxFx_2018.root");

@@ -33,9 +33,9 @@ void Analisi_SR_DY_syst_2017_v4_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/DY_HTincl_2017.root");
+a_->Add("../BkgEstimation/DY_HTincl_2017.root");
 //a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/Syst_ALL_newMuonSF/DY_HT100Inf_2017.root"); 
-//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/Vale_HT_processing/DY_2017.root");  //DY_HT100Inf_2017.root");
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/Vale_HT_processing/DY_HT100inf_2017.root");  //DY_HT100Inf_2017.root");
 
 
 
@@ -427,6 +427,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  tot = a_->GetEntries();
  if (i%100000 == 0) cout << i << " eventi analizzati su " << tot << endl;
 
+// if (PUWeight > 1000 ) continue;
 
 /************************************************************/
   /*implementation of k-factors from monojet analysis*/
@@ -479,6 +480,13 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  
 
  wg = lumi * lumi_wgt * lepsf_evt * PUWeight *k_ewk*k_qcd;
+ if (wg > 10000 ) {
+   cout << "WARNING "<<endl;  
+   cout<< "wg = "<< wg <<"// lumi_wgt = "<<lumi_wgt<<"// lepsf_evt = "<<lepsf_evt<<"// PUWeight ="<<PUWeight<<"// k_ewk*k_qcd = "<<k_ewk*k_qcd <<endl;
+   continue;
+   }
+// cout<< "wg = "<< wg <<"// lumi_wgt = "<<lumi_wgt<<"// lepsf_evt = "<<lepsf_evt<<"// PUWeight ="<<PUWeight<<"// k_ewk*k_qcd = "<<k_ewk*k_qcd <<endl;
+
  wg_SFu = lumi * lumi_wgt * lepsf_evt_u * PUWeight*k_ewk*k_qcd;
  wg_SFd = lumi * lumi_wgt * lepsf_evt_d * PUWeight*k_ewk*k_qcd;
  wg_2017_PUu = lumi * lumi_wgt * lepsf_evt * MinBiasUpWeight*k_ewk*k_qcd;
@@ -498,7 +506,9 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     Muon2_PtResoUp.SetPtEtaPhiM((Muon_pt->at(1)+0.1*Muon_pt->at(1)), Muon_eta->at(1), Muon_phi->at(1),0.1056583745 );
     Muon1_PtResoDown.SetPtEtaPhiM((Muon_pt->at(0)-0.1*Muon_pt->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
     Muon2_PtResoDown.SetPtEtaPhiM((Muon_pt->at(1)-0.1*Muon_pt->at(1)), Muon_eta->at(1), Muon_phi->at(1),0.1056583745 );
-    
+
+//    cout<<(Muon1+Muon2).M()<<endl;
+
 
    if (HLT_Mu == 1 && Muon_pt->at(0) > 150 && Muon_pt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1+Muon2).M()  > 300 ){
 
@@ -527,7 +537,6 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 //  cout<<"===="<<endl;
 
    DY_mumujj->Fill(MmumuJ, wg);
-   //cout << "wg " << wg << " lumi " << lumi << " lumi_wgt " << lumi_wgt << " lepsf_evt " << lepsf_evt << " PUWeight " << PUWeight << endl;
    DY_mumujj_2017_AlphaRatio->Fill(MmumuJ, wg);
    DY_mumujj_2017_AlphaRatioUp->Fill(MmumuJ, wg);
    DY_mumujj_2017_AlphaRatioDown->Fill(MmumuJ, wg);
@@ -553,6 +562,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   BoostJet_JERup.SetPtEtaPhiE(BoostedJet_pt->at(3), BoostedJet_eta->at(3), BoostedJet_phi->at(3),BoostedJet_energy->at(3));
   BoostJet_JERdown.SetPtEtaPhiE(BoostedJet_pt->at(4), BoostedJet_eta->at(4), BoostedJet_phi->at(4),BoostedJet_energy->at(4));
 
+//  cout << "wg " << wg << " lumi " << lumi << " lumi_wgt " << lumi_wgt << " lepsf_evt " << lepsf_evt << " PUWeight " << PUWeight << endl;
 
  /*muon resolution smearing*/
   MmumuJ= (Muon1+Muon2+BoostJet).M(); 
@@ -569,9 +579,15 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   MmumuJ_JERdown = gRandom->Gaus(MmumuJ_JERdown,0.15);
   //cout<< "MmumuJ smeared "<< MmumuJ<<endl;
   }
+  
+/*if ((Muon1+Muon2).M() * wg > 100000 ){
+cout << "WARNING "<<endl; 
+cout<< "wg = "<< wg <<"// lumi_wgt = "<<lumi_wgt<<"// lepsf_evt = "<<lepsf_evt<<"// PUWeight ="<<PUWeight<<"// k_ewk*k_qcd = "<<k_ewk*k_qcd <<endl;
+}*/
 
   DY_ZpeakMll_mumujj->Fill((Muon1+Muon2).M(), wg); 
   DY_Zpeak_mumujj->Fill(MmumuJ, wg); 
+//  cout <<"wg = "<<wg<<endl;
   DY_Zpeak_mumujj_2017_AlphaRatio->Fill(MmumuJ, wg);
   DY_Zpeak_mumujj_2017_AlphaRatioUp->Fill(MmumuJ, wg);
   DY_Zpeak_mumujj_2017_AlphaRatioDown->Fill(MmumuJ, wg);
@@ -596,6 +612,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   BoostJet_JERup.SetPtEtaPhiE(BoostedJet_pt->at(3), BoostedJet_eta->at(3), BoostedJet_phi->at(3),BoostedJet_energy->at(3));
   BoostJet_JERdown.SetPtEtaPhiE(BoostedJet_pt->at(4), BoostedJet_eta->at(4), BoostedJet_phi->at(4),BoostedJet_energy->at(4));
 
+//  cout << "wg " << wg << " lumi " << lumi << " lumi_wgt " << lumi_wgt << " lepsf_evt " << lepsf_evt << " PUWeight " << PUWeight << endl;
+
  /*muon resolution smearing*/
   MmumuJ= (Muon1+Muon2+BoostJet).M(); 
   MmumuJ_JESup= (Muon1+Muon2+BoostJet_JESup).M(); 
@@ -611,6 +629,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   MmumuJ_JERdown = gRandom->Gaus(MmumuJ_JERdown,0.15);
   //cout<< "MmumuJ smeared "<< MmumuJ<<endl;
   }
+
+//  cout<< "MmumuJ 150-300 "<< MmumuJ<<endl;
 
   DY_DYcr_mumujj->Fill(MmumuJ, wg); 
   DY_DYcr_mumujj_2017_AlphaRatio->Fill(MmumuJ, wg);
@@ -931,11 +951,11 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 
 /**** adding the Alpha ratio and it's uncertainty*******/
 /* alpha ratio and it's statistical error, bin per bin*/
-const double Alpha_ele[9] = {1,1,0.88, 0.76, 0.74, 0.73, 0.92, 0.85,0};
-const double dAlpha_ele[9] ={0,0,0.07, 0.03, 0.03, 0.03, 0.10, 0.20,0};
+const double Alpha_ele[9] = {1,1,0.94,0.83,0.87,0.87,0.80,0.98};
+const double dAlpha_ele[9] ={0,0,0.04,0.02,0.02,0.02,0.05,0.13};
 
-const double Alpha_mu[9] = {1,1,0.92, 0.80, 0.72, 0.76, 0.78, 0.78,0}; 
-const double dAlpha_mu[9] ={0,0,0.07, 0.03, 0.03, 0.03, 0.06, 0.14,0}; 
+const double Alpha_mu[9] = {1,1,0.89,0.93,0.91,0.91,0.94,0.95}; 
+const double dAlpha_mu[9] ={0,0,0.04,0.02,0.02,0.02,0.04,0.10}; 
 
 for (Int_t j=1;j<=8;j++) {
 /*electron channel histograms*/
