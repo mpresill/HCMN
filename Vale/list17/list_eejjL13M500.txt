@@ -1,0 +1,6 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M500_eejj_CalcHep\/eejj_17_L13_M500\/191106_102748\/0000\/eejj_17_L13_M500_1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M500_eejj_CalcHep\/eejj_17_L13_M500\/191106_102748\/0000\/eejj_17_L13_M500_2.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M500_eejj_CalcHep\/eejj_17_L13_M500\/191106_102748\/0000\/eejj_17_L13_M500_3.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M500_eejj_CalcHep\/eejj_17_L13_M500\/191106_102748\/0000\/eejj_17_L13_M500_4.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M500_eejj_CalcHep\/eejj_17_L13_M500\/191106_102748\/0000\/eejj_17_L13_M500_5.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M500_eejj_CalcHep\/eejj_17_L13_M500\/191106_102748\/0000\/log

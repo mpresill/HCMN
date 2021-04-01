@@ -1,0 +1,12 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/log
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_10.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_11.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_2.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_3.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_4.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_5.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_6.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_7.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_8.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_17_L13_M8000\/191023_105135\/0000\/mumujj_17_L13_M8000_9.root
