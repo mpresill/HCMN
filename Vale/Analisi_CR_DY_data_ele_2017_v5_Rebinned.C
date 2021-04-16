@@ -263,15 +263,17 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
      M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M());
      M_eeJ_Z_correction->Fill((Electron1*energy_corr0+Electron2*energy_corr1+BoostJet).M());
-     M_eeJ_Z_ecal->Fill((Electron1_ECAL+Electron2_ECAL+BoostJet).M());
-
-
+ 
      cout<< "M_eeJ_Z  OLD = "<< (Electron1+Electron2+BoostJet).M() <<endl;
      cout<< "M_eeJ_Z  CORRECTED ENERGYECAL/OLD = "<< (Electron1*energy_corr0 +Electron2*energy_corr1+BoostJet).M()<<endl;
-     cout<< "M_eeJ_Z  ENERGYECAL = "<< (Electron1_ECAL+Electron2_ECAL+BoostJet).M() <<endl;
-
+    
 
      pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt());
+    }
+
+    if ( (Electron1_ECAL+Electron2_ECAL).M() >= 60 && (Electron1_ECAL+Electron2_ECAL).M() <= 120){
+      M_eeJ_Z_ecal->Fill((Electron1_ECAL+Electron2_ECAL+BoostJet).M());
+      cout<< "M_eeJ_Z  ENERGYECAL = "<< (Electron1_ECAL+Electron2_ECAL+BoostJet).M() <<endl;
     }
 
   }
