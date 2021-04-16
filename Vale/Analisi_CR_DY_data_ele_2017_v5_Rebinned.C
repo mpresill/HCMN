@@ -29,7 +29,7 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_CR_DY_data_ele_2017_Rebinned(){
+void Analisi_CR_DY_data_ele_2017_v5_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
@@ -45,6 +45,7 @@ double M_leplep;
 std:vector<double>* patElectron_pt; patElectron_pt=0;
 vector<double>* patElectron_eta; patElectron_eta=0;
 vector<double>* patElectron_phi; patElectron_phi=0;
+vector<double>* patElectron_energy; patElectron_energy=0;
 vector<double>* patElectron_ecalTrkEnergyPostCorr; patElectron_ecalTrkEnergyPostCorr=0;
 vector<int>* patElectron_charge; patElectron_charge=0;
 vector<double>* Muon_pt_tunePbt; Muon_pt_tunePbt=0;
@@ -71,6 +72,7 @@ TBranch *a_HLT_TkMu100=a_->GetBranch("HLT_TkMu100");
 TBranch *a_patElectron_pt=a_->GetBranch("patElectron_pt");
 TBranch *a_patElectron_eta=a_->GetBranch("patElectron_eta");
 TBranch *a_patElectron_phi=a_->GetBranch("patElectron_phi");
+TBranch *a_patElectron_energy=a_->GetBranch("patElectron_energy");
 TBranch *a_patElectron_ecalTrkEnergyPostCorr=a_->GetBranch("patElectron_ecalTrkEnergyPostCorr");
 TBranch *a_patElectron_charge=a_->GetBranch("patElectron_charge");
 
@@ -113,6 +115,7 @@ a_HLT_TkMu100->SetAddress(&HLT_TkMu100);
 a_patElectron_pt->SetAddress(&patElectron_pt);
 a_patElectron_eta->SetAddress(&patElectron_eta);
 a_patElectron_phi->SetAddress(&patElectron_phi);
+a_patElectron_energy->SetAddress(&patElectron_energy);
 a_patElectron_ecalTrkEnergyPostCorr->SetAddress(&patElectron_ecalTrkEnergyPostCorr);
 a_patElectron_charge->SetAddress(&patElectron_charge);
 
@@ -153,8 +156,25 @@ TH1D *data_obs_ee_Z = new TH1D ("data_obs_ee_Z", "data_obs_ee_Z", 80, 50, 130);
 const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
 
 TH1D *data_obs = new TH1D ("data_obs", "data_obs", 8, asymbins);
+
+TH1D *M_mumu_100300 = new TH1D ("M_mumu_100300", "M_mumu_100300", 200, 100, 300);
+TH1D *M_ee_100300 = new TH1D ("M_ee_100300", "M_ee_100300", 200, 100, 300);
+TH1D *M_mumu_Z_50130 = new TH1D ("M_mumu_Z_50130", "M_mumu_Z_50130", 80, 50, 130);
+TH1D *M_ee_Z_50130 = new TH1D ("M_ee_Z_50130", "M_ee_Z_50130", 80, 50, 130);
+
+TH1D *M_mumuJ = new TH1D ("M_mumuJ", "M_mumuJ", 8, asymbins);
+TH1D *pt_mumu = new TH1D ("pt_mumu", "pt_mumu", 100, 0, 1000);
+TH1D *M_eeJ = new TH1D ("M_eeJ", "M_eeJ", 8, asymbins);
+TH1D *pt_ee = new TH1D ("pt_ee", "pt_ee", 100, 0, 1000);
+
 TH1D *M_mumuJ_Z = new TH1D ("M_mumuJ_Z", "M_mumuJ_Z", 8, asymbins);
+TH1D *pt_mumu_Z = new TH1D ("pt_mumu_Z", "pt_mumu_Z", 100, 0, 1000);
 TH1D *M_eeJ_Z = new TH1D ("M_eeJ_Z", "M_eeJ_Z", 8, asymbins);
+TH1D *M_eeJ_Z_correction = new TH1D ("M_eeJ_Z_correction", "M_eeJ_Z_correction", 8, asymbins);
+TH1D *M_eeJ_Z_ecal = new TH1D ("M_eeJ_Z_ecal", "M_eeJ_Z_ecal", 8, asymbins);
+TH1D *pt_ee_Z = new TH1D ("pt_ee_Z", "pt_ee_Z", 100, 0, 1000);
+TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 60,60,120);
+TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 60,60,120);
 
 
 TLorentzVector Muon1;
@@ -162,7 +182,11 @@ TLorentzVector Muon2;
 TLorentzVector Electron1;
 TLorentzVector Electron2;
 TLorentzVector BoostJet;
+TLorentzVector Electron1_ECAL;
+TLorentzVector Electron2_ECAL;
 
+double energy_corr0;
+double energy_corr1;
 
 cout << a_->GetEntries() << endl;
 int tot=0, muejj = 0;
@@ -197,30 +221,91 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   }
  }
 
+
  if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
    if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190){
-   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));	
-   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
-   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_ecalTrkEnergyPostCorr->at(1));
 
-    mee = (Electron1+Electron2).M();
-    if(mee > 60 && mee < 120){
-     M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M());
+
+//tentative of correction factors
+     cout << "===================================================================="<<endl;
+     cout << "patElectron_energy->at(0))   =   " <<patElectron_energy->at(0)<<endl;
+     cout << "patElectron_ecalTrkEnergyPostCorr->at(0))   =   " <<patElectron_ecalTrkEnergyPostCorr->at(0)<<endl;
+     energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+     energy_corr1= patElectron_ecalTrkEnergyPostCorr->at(1) / patElectron_energy->at(1) ;
+
+
+//standard energy from miniAOD
+   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));
+
+
+//energy with ECAL trk correction
+   Electron1_ECAL.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
+   Electron2_ECAL.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_ecalTrkEnergyPostCorr->at(1));
+
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
+
+   
+   mee = (Electron1+Electron2).M();
+    if(mee >= 100 && mee <= 300){
+     M_ee_100300->Fill(mee);
     }
-    if(mee > 150 && mee < 300){
-     data_obs->Fill((Electron1+Electron2+BoostJet).M());
+    if(mee > 50 && mee < 130){
+        M_ee_Z_50130->Fill(mee);
+    } 
+    if (mee>=150 && mee <= 300){
+        M_eeJ->Fill((Electron1+Electron2+BoostJet).M());
+        pt_ee ->Fill(Electron1.Pt() + Electron2.Pt());
+    }
+    if (mee >= 60 && mee <= 120){
+     M_ee_Zpeak->Fill((Electron1+Electron2).M());
+
+
+     M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M());
+     M_eeJ_Z_correction->Fill((Electron1*energy_corr0+Electron2*energy_corr1+BoostJet).M());
+     M_eeJ_Z_ecal->Fill((Electron1_ECAL+Electron2_ECAL+BoostJet).M());
+
+
+     cout<< "M_eeJ_Z  OLD = "<< (Electron1+Electron2+BoostJet).M() <<endl;
+     cout<< "M_eeJ_Z  CORRECTED ENERGYECAL/OLD = "<< (Electron1*energy_corr0 +Electron2*energy_corr1+BoostJet).M()<<endl;
+     cout<< "M_eeJ_Z  ENERGYECAL = "<< (Electron1_ECAL+Electron2_ECAL+BoostJet).M() <<endl;
+
+
+     pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt());
     }
 
   }
  }
- 
+
+
+
+
+
+
+
 }
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/CR_DY_data_ele_2017.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/CR_DY_data_ele_2017_test.root", "RECREATE");
 
 data_obs->Write();
 M_eeJ_Z->Write();
 M_mumuJ_Z->Write();
+n_best_Vtx->Write();
+M_mumu_100300->Write();
+M_mumu_Z_50130->Write();
+M_ee_100300->Write();
+M_ee_Z_50130->Write();
+M_mumuJ->Write();
+pt_mumu->Write();
+M_eeJ->Write();
+pt_ee->Write();
+M_mumuJ_Z->Write();
+pt_mumu_Z->Write();
+M_eeJ_Z_correction->Write();
+M_eeJ_Z_ecal->Write();
+pt_ee_Z->Write();
+M_mumu_Zpeak->Write();
+M_ee_Zpeak->Write();
 
 f->Write();
 f->Close();
