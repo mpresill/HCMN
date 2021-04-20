@@ -47,6 +47,7 @@ vector<double>* patElectron_eta; patElectron_eta=0;
 vector<double>* patElectron_phi; patElectron_phi=0;
 vector<double>* patElectron_energy; patElectron_energy=0;
 vector<double>* patElectron_ecalTrkEnergyPostCorr; patElectron_ecalTrkEnergyPostCorr=0;
+vector<double>* patElectron_energy; patElectron_energy=0;
 vector<int>* patElectron_charge; patElectron_charge=0;
 vector<double>* Muon_pt_tunePbt; Muon_pt_tunePbt=0;
 vector<double>* Muon_eta; Muon_eta=0;
@@ -74,6 +75,7 @@ TBranch *a_patElectron_eta=a_->GetBranch("patElectron_eta");
 TBranch *a_patElectron_phi=a_->GetBranch("patElectron_phi");
 TBranch *a_patElectron_energy=a_->GetBranch("patElectron_energy");
 TBranch *a_patElectron_ecalTrkEnergyPostCorr=a_->GetBranch("patElectron_ecalTrkEnergyPostCorr");
+TBranch *a_patElectron_energy=a_->GetBranch("patElectron_energy");
 TBranch *a_patElectron_charge=a_->GetBranch("patElectron_charge");
 
 TBranch *a_Muon_pt_tunePbt=a_->GetBranch("Muon_pt_tunePbt");
@@ -117,6 +119,7 @@ a_patElectron_eta->SetAddress(&patElectron_eta);
 a_patElectron_phi->SetAddress(&patElectron_phi);
 a_patElectron_energy->SetAddress(&patElectron_energy);
 a_patElectron_ecalTrkEnergyPostCorr->SetAddress(&patElectron_ecalTrkEnergyPostCorr);
+a_patElectron_energy->SetAddress(&patElectron_energy);
 a_patElectron_charge->SetAddress(&patElectron_charge);
 
 a_Muon_pt_tunePbt->SetAddress(&Muon_pt_tunePbt);
@@ -148,11 +151,20 @@ a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
+TH1D *Mee_Zpeak = new TH1D ("Mee_Zpeak", "Mee_Zpeak", 60,60,120);
 TH1D *data_obs_mumu = new TH1D ("data_obs_mumu", "data_obs_mumu", 220, 80, 300);
 TH1D *data_obs_ee = new TH1D ("data_obs_ee", "data_obs_ee", 220, 80, 300);
 TH1D *data_obs_mumu_Z = new TH1D ("data_obs_mumu_Z", "data_obs_mumu_Z", 80, 50, 130);
 TH1D *data_obs_ee_Z = new TH1D ("data_obs_ee_Z", "data_obs_ee_Z", 80, 50, 130);
+TH1D *data_Zpeak_ele1_ecalTrkEnergyPostCorr = new TH1D ("data_Zpeak_ele1_ecalTrkEnergyPostCorr", "data_Zpeak_ele1_ecalTrkEnergyPostCorr", 100, 0, 1000);
+TH1D *data_Zpeak_ele2_ecalTrkEnergyPostCorr = new TH1D ("data_Zpeak_ele2_ecalTrkEnergyPostCorr", "data_Zpeak_ele2_ecalTrkEnergyPostCorr", 100, 0, 1000);
+TH1D *data_Zpeak_ele1_energy = new TH1D ("data_Zpeak_ele1_energy", "data_Zpeak_ele1_energy", 100, 0, 1000);
+TH1D *data_Zpeak_ele2_energy = new TH1D ("data_Zpeak_ele2_energy", "data_Zpeak_ele2_energy", 100, 0, 1000);
 
+TH1D *data_DYcr_ele1_ecalTrkEnergyPostCorr = new TH1D ("data_DYcr_ele1_ecalTrkEnergyPostCorr", "data_DYcr_ele1_ecalTrkEnergyPostCorr", 100, 0, 1000);
+TH1D *data_DYcr_ele2_ecalTrkEnergyPostCorr = new TH1D ("data_DYcr_ele2_ecalTrkEnergyPostCorr", "data_DYcr_ele2_ecalTrkEnergyPostCorr", 100, 0, 1000);
+TH1D *data_DYcr_ele1_energy = new TH1D ("data_DYcr_ele1_energy", "data_DYcr_ele1_energy", 100, 0, 1000);
+TH1D *data_DYcr_ele2_energy = new TH1D ("data_DYcr_ele2_energy", "data_DYcr_ele2_energy", 100, 0, 1000);
 const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
 
 TH1D *data_obs = new TH1D ("data_obs", "data_obs", 8, asymbins);
@@ -194,6 +206,7 @@ double wg = 0;
 int lumi = 41529;//2018: 58873 //2017: 41529 //2016: 35542
 bool veto_ele = false;
 double mee = 0, mmumu = 0;
+double energy_corr0 = 0, energy_corr1 = 0;
 
 for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
@@ -224,56 +237,32 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
  if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
    if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190){
-
-
-//tentative of correction factors
-     cout << "===================================================================="<<endl;
-     cout << "patElectron_energy->at(0))   =   " <<patElectron_energy->at(0)<<endl;
-     cout << "patElectron_ecalTrkEnergyPostCorr->at(0))   =   " <<patElectron_ecalTrkEnergyPostCorr->at(0)<<endl;
-     energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
-     energy_corr1= patElectron_ecalTrkEnergyPostCorr->at(1) / patElectron_energy->at(1) ;
-
-
-//standard energy from miniAOD
+   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));	
    Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
    Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));
 
+   // energy correction  
 
-//energy with ECAL trk correction
-   Electron1_ECAL.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
-   Electron2_ECAL.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_ecalTrkEnergyPostCorr->at(1));
+   energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+   energy_corr1= patElectron_ecalTrkEnergyPostCorr->at(1) / patElectron_energy->at(1) ;
+   Electron1 = Electron1 * energy_corr0;
+   Electron2 = Electron2 * energy_corr1;
 
-   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
-
-   
-   mee = (Electron1+Electron2).M();
-    if(mee >= 100 && mee <= 300){
-     M_ee_100300->Fill(mee);
-    }
-    if(mee > 50 && mee < 130){
-        M_ee_Z_50130->Fill(mee);
-    } 
-    if (mee>=150 && mee <= 300){
-        M_eeJ->Fill((Electron1+Electron2+BoostJet).M());
-        pt_ee ->Fill(Electron1.Pt() + Electron2.Pt());
-    }
-    if (mee >= 60 && mee <= 120){
-     M_ee_Zpeak->Fill((Electron1+Electron2).M());
-
-
+    mee = (Electron1+Electron2).M();
+    if(mee > 60 && mee < 120){
+     Mee_Zpeak->Fill(mee);
      M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M());
-     M_eeJ_Z_correction->Fill((Electron1*energy_corr0+Electron2*energy_corr1+BoostJet).M());
- 
-     cout<< "M_eeJ_Z  OLD = "<< (Electron1+Electron2+BoostJet).M() <<endl;
-     cout<< "M_eeJ_Z  CORRECTED ENERGYECAL/OLD = "<< (Electron1*energy_corr0 +Electron2*energy_corr1+BoostJet).M()<<endl;
-    
-
-     pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt());
+     data_Zpeak_ele1_ecalTrkEnergyPostCorr->Fill(patElectron_ecalTrkEnergyPostCorr->at(0));
+     data_Zpeak_ele2_ecalTrkEnergyPostCorr->Fill(patElectron_ecalTrkEnergyPostCorr->at(1));
+     data_Zpeak_ele1_energy->Fill(patElectron_energy->at(0));
+     data_Zpeak_ele2_energy->Fill(patElectron_energy->at(1));
     }
-
-    if ( (Electron1_ECAL+Electron2_ECAL).M() >= 60 && (Electron1_ECAL+Electron2_ECAL).M() <= 120){
-      M_eeJ_Z_ecal->Fill((Electron1_ECAL+Electron2_ECAL+BoostJet).M());
-      cout<< "M_eeJ_Z  ENERGYECAL = "<< (Electron1_ECAL+Electron2_ECAL+BoostJet).M() <<endl;
+    if(mee > 150 && mee < 300){
+     data_obs->Fill((Electron1+Electron2+BoostJet).M());
+     data_DYcr_ele1_ecalTrkEnergyPostCorr->Fill(patElectron_ecalTrkEnergyPostCorr->at(0));
+     data_DYcr_ele2_ecalTrkEnergyPostCorr->Fill(patElectron_ecalTrkEnergyPostCorr->at(1));
+     data_DYcr_ele1_energy->Fill(patElectron_energy->at(0));
+     data_DYcr_ele2_energy->Fill(patElectron_energy->at(1));
     }
 
   }
@@ -289,6 +278,15 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
 TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/CR_DY_data_ele_2017_test.root", "RECREATE");
 
+Mee_Zpeak->Write();
+data_Zpeak_ele1_ecalTrkEnergyPostCorr->Write();
+data_Zpeak_ele2_ecalTrkEnergyPostCorr->Write();
+data_Zpeak_ele1_energy->Write();
+data_Zpeak_ele2_energy->Write();
+data_DYcr_ele1_ecalTrkEnergyPostCorr->Write();
+data_DYcr_ele2_ecalTrkEnergyPostCorr->Write();
+data_DYcr_ele1_energy->Write();
+data_DYcr_ele2_energy->Write();
 data_obs->Write();
 M_eeJ_Z->Write();
 M_mumuJ_Z->Write();

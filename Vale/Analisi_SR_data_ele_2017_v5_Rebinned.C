@@ -29,7 +29,7 @@ Need to specify
 using namespace std;
 
 //void filename_()
-void Analisi_SR_data_ele_2017_Rebinned(){
+void Analisi_SR_data_ele_2017_v5_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
@@ -46,6 +46,7 @@ std:vector<double>* patElectron_pt; patElectron_pt=0;
 vector<double>* patElectron_eta; patElectron_eta=0;
 vector<double>* patElectron_phi; patElectron_phi=0;
 vector<double>* patElectron_ecalTrkEnergyPostCorr; patElectron_ecalTrkEnergyPostCorr=0;
+vector<double>* patElectron_energy; patElectron_energy=0;
 vector<int>* patElectron_charge; patElectron_charge=0;
 vector<double>* Muon_pt_tunePbt; Muon_pt_tunePbt=0;
 vector<double>* Muon_eta; Muon_eta=0;
@@ -72,6 +73,7 @@ TBranch *a_patElectron_pt=a_->GetBranch("patElectron_pt");
 TBranch *a_patElectron_eta=a_->GetBranch("patElectron_eta");
 TBranch *a_patElectron_phi=a_->GetBranch("patElectron_phi");
 TBranch *a_patElectron_ecalTrkEnergyPostCorr=a_->GetBranch("patElectron_ecalTrkEnergyPostCorr");
+TBranch *a_patElectron_energy=a_->GetBranch("patElectron_energy");
 TBranch *a_patElectron_charge=a_->GetBranch("patElectron_charge");
 
 TBranch *a_Muon_pt_tunePbt=a_->GetBranch("Muon_pt_tunePbt");
@@ -114,6 +116,7 @@ a_patElectron_pt->SetAddress(&patElectron_pt);
 a_patElectron_eta->SetAddress(&patElectron_eta);
 a_patElectron_phi->SetAddress(&patElectron_phi);
 a_patElectron_ecalTrkEnergyPostCorr->SetAddress(&patElectron_ecalTrkEnergyPostCorr);
+a_patElectron_energy->SetAddress(&patElectron_energy);
 a_patElectron_charge->SetAddress(&patElectron_charge);
 
 a_Muon_pt_tunePbt->SetAddress(&Muon_pt_tunePbt);
@@ -149,6 +152,10 @@ TH1D *data_obs_mumu = new TH1D ("data_obs_mumu", "data_obs_mumu", 220, 80, 300);
 TH1D *data_obs_ee = new TH1D ("data_obs_ee", "data_obs_ee", 220, 80, 300);
 TH1D *data_obs_mumu_Z = new TH1D ("data_obs_mumu_Z", "data_obs_mumu_Z", 80, 50, 130);
 TH1D *data_obs_ee_Z = new TH1D ("data_obs_ee_Z", "data_obs_ee_Z", 80, 50, 130);
+TH1D *data_ele1_ecalTrkEnergyPostCorr = new TH1D ("data_ele1_ecalTrkEnergyPostCorr", "data_ele1_ecalTrkEnergyPostCorr", 100, 0, 1000);
+TH1D *data_ele2_ecalTrkEnergyPostCorr = new TH1D ("data_ele2_ecalTrkEnergyPostCorr", "data_ele2_ecalTrkEnergyPostCorr", 100, 0, 1000);
+TH1D *data_ele1_energy = new TH1D ("data_ele1_energy", "data_ele1_energy", 100, 0, 1000);
+TH1D *data_ele2_energy = new TH1D ("data_ele2_energy", "data_ele2_energy", 100, 0, 1000);
 
 const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
 
@@ -168,6 +175,7 @@ double wg = 0;
 int lumi = 41529;//2018: 58873 //2017: 41529 //2016: 35542
 bool veto_ele = false;
 double mee = 0, mmumu = 0;
+double energy_corr0 = 0, energy_corr1 = 0;
 
 for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
@@ -196,20 +204,34 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
    if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190){
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));	
-   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
-   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_ecalTrkEnergyPostCorr->at(1));
+   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));
+   // energy correction  
+
+   energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+   energy_corr1= patElectron_ecalTrkEnergyPostCorr->at(1) / patElectron_energy->at(1) ;
+   Electron1 = Electron1*energy_corr0;
+   Electron2 = Electron2*energy_corr1;
 
     mee = (Electron1+Electron2).M();
     if(mee > 300){
      data_obs->Fill((Electron1+Electron2+BoostJet).M());
+     data_ele1_ecalTrkEnergyPostCorr->Fill(patElectron_ecalTrkEnergyPostCorr->at(0));
+     data_ele2_ecalTrkEnergyPostCorr->Fill(patElectron_ecalTrkEnergyPostCorr->at(1));
+     data_ele1_energy->Fill(patElectron_energy->at(0));
+     data_ele2_energy->Fill(patElectron_energy->at(1));
     }
   }
  }
  
 }
 
+//TFile *f = new TFile("SR_data_ele_2017.root", "RECREATE");
 TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/SR_data_ele_2017.root", "RECREATE");
-
+data_ele1_ecalTrkEnergyPostCorr->Write();
+data_ele2_ecalTrkEnergyPostCorr->Write();
+data_ele1_energy->Write();
+data_ele2_energy->Write();
 data_obs->Write();
 f->Write();
 f->Close();

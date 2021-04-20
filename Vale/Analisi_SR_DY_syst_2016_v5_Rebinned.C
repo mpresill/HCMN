@@ -39,7 +39,7 @@ double deltaPhi(double phi1, double phi2) {
 
 
 //void filename_()
-void Analisi_SR_DY_syst_2016_v3_Rebinned(){
+void Analisi_SR_DY_syst_2016_v5_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
@@ -58,6 +58,7 @@ std:vector<double>* patElectron_pt; patElectron_pt=0;
 vector<double>* patElectron_eta; patElectron_eta=0;
 vector<double>* patElectron_phi; patElectron_phi=0;
 vector<double>* patElectron_ecalTrkEnergyPostCorr; patElectron_ecalTrkEnergyPostCorr=0;
+vector<double>* patElectron_energy; patElectron_energy=0;
 vector<double>* patElectron_energyScaleUp; patElectron_energyScaleUp=0;
 vector<double>* patElectron_energyScaleDown; patElectron_energyScaleDown=0;
 vector<double>* patElectron_energySigmaUp; patElectron_energySigmaUp=0;
@@ -108,6 +109,7 @@ TBranch *a_patElectron_pt=a_->GetBranch("patElectron_pt");
 TBranch *a_patElectron_eta=a_->GetBranch("patElectron_eta");
 TBranch *a_patElectron_phi=a_->GetBranch("patElectron_phi");
 TBranch *a_patElectron_ecalTrkEnergyPostCorr=a_->GetBranch("patElectron_ecalTrkEnergyPostCorr");
+TBranch *a_patElectron_energy=a_->GetBranch("patElectron_energy");
 TBranch *a_patElectron_energyScaleUp=a_->GetBranch("patElectron_energyScaleUp");
 TBranch *a_patElectron_energyScaleDown=a_->GetBranch("patElectron_energyScaleDown");
 TBranch *a_patElectron_energySigmaUp=a_->GetBranch("patElectron_energySigmaUp");
@@ -188,6 +190,7 @@ a_patElectron_pt->SetAddress(&patElectron_pt);
 a_patElectron_eta->SetAddress(&patElectron_eta);
 a_patElectron_phi->SetAddress(&patElectron_phi);
 a_patElectron_ecalTrkEnergyPostCorr->SetAddress(&patElectron_ecalTrkEnergyPostCorr);
+a_patElectron_energy->SetAddress(&patElectron_energy);
 a_patElectron_energyScaleUp->SetAddress(&patElectron_energyScaleUp);
 a_patElectron_energyScaleDown->SetAddress(&patElectron_energyScaleDown);
 a_patElectron_energySigmaUp->SetAddress(&patElectron_energySigmaUp);
@@ -391,6 +394,7 @@ double Gen_stat=0;
 double binCenter_ewk=0;
 double binCenter_qcd=0;
 double k_ewk=0, k_qcd=0;
+double energy_corr0 = 0, energy_corr1 = 0;
 
 TLorentzVector Muon1;
 TLorentzVector Muon2;
@@ -655,11 +659,21 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  }
  
  if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
-  Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
-  Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_ecalTrkEnergyPostCorr->at(1));
+  Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+  Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));
+  energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+   energy_corr1= patElectron_ecalTrkEnergyPostCorr->at(1) / patElectron_energy->at(1) ;
+   Electron1 = Electron1*energy_corr0;
+   Electron2 = Electron2*energy_corr1;
+
   if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190 && (Electron1+Electron2).M() > 300){
-   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
-   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_ecalTrkEnergyPostCorr->at(1));  
+   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));  
+   energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+   energy_corr1= patElectron_ecalTrkEnergyPostCorr->at(1) / patElectron_energy->at(1) ;
+   Electron1 = Electron1*energy_corr0;
+   Electron2 = Electron2*energy_corr1;
+
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
    BoostJet_JESup.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1),BoostedJet_energy->at(1));
    BoostJet_JESdown.SetPtEtaPhiE(BoostedJet_pt->at(2), BoostedJet_eta->at(2), BoostedJet_phi->at(2),BoostedJet_energy->at(2));
@@ -695,8 +709,13 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
   //Zpeak DY cr 60-120 GeV
   if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190 && (Electron1+Electron2).M() >60 && (Electron1+Electron2).M() < 120){
-   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
-   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_ecalTrkEnergyPostCorr->at(1));  
+   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));  
+   energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+   energy_corr1= patElectron_ecalTrkEnergyPostCorr->at(1) / patElectron_energy->at(1) ;
+   Electron1 = Electron1*energy_corr0;
+   Electron2 = Electron2*energy_corr1;
+
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
    DY_ZpeakMll_eejj->Fill((Electron1+Electron2).M(), wg);
    DY_Zpeak_eejj->Fill((Electron1+Electron2+BoostJet).M(), wg);
@@ -704,8 +723,12 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
   //DY cr 150-300 GeV
   if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190 && (Electron1+Electron2).M() >150 && (Electron1+Electron2).M() < 300){
-   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
-   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_ecalTrkEnergyPostCorr->at(1));  
+   Electron1.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   Electron2.SetPtEtaPhiE(patElectron_pt->at(1), patElectron_eta->at(1), patElectron_phi->at(1),patElectron_energy->at(1));  
+   energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+   energy_corr1= patElectron_ecalTrkEnergyPostCorr->at(1) / patElectron_energy->at(1) ;
+   Electron1 = Electron1*energy_corr0;
+   Electron2 = Electron2*energy_corr1;
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
    BoostJet_JESup.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1),BoostedJet_energy->at(1));
    BoostJet_JESdown.SetPtEtaPhiE(BoostedJet_pt->at(2), BoostedJet_eta->at(2), BoostedJet_phi->at(2),BoostedJet_energy->at(2));
@@ -769,7 +792,9 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 
   if (Muon_pt_tunePbt->at(0) >= patElectron_pt->at(0)){
    LeadLep.SetPtEtaPhiE(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
-   SubLeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
+   SubLeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+   SubLeadLep = SubLeadLep*energy_corr0;
 
    if (HLT_Mu == 1 && LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4
      && BoostedJet_pt->at(0) > 190 && (LeadLep+SubLeadLep).M() > 300 ){
@@ -834,8 +859,10 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 
  else {
 
-   LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
+   LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
    SubLeadLep.SetPtEtaPhiE(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+   energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+   LeadLep = LeadLep*energy_corr0;   
 
    if (HLT_Ele == 1 & LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190 && (LeadLep+SubLeadLep).M() > 300){
 
@@ -910,8 +937,8 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 /* alpha ratio and it's statistical error, bin per bin*/
 
 /* alpha ratio DY HTbinned+inclusive samples*/
-const double Alpha_ele[9] =  {1,1,1.09,1.14,1.28,1.35,1.18,1.92 };
-const double dAlpha_ele[9] = {0,0,0.06,0.03,0.04,0.06,0.12,0.52 };
+const double Alpha_ele[9] =  {1,1,1.08,1.05,1.10,1.15,1.13,1.45 };
+const double dAlpha_ele[9] = {0,0,0.06,0.03,0.03,0.04,0.08,0.21 };
 
 const double Alpha_mu[9] =   {1,1,1.06,1.04,1.06,1.15,1.23,1.54}; 
 const double dAlpha_mu[9] =  {0,0,0.05,0.02,0.02,0.03,0.06,0.17 }; 

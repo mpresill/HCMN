@@ -39,11 +39,11 @@ double deltaPhi(double phi1, double phi2) {
 }
 
 //void filename_()
-void Analisi_CR_TTtW_data_2017_Rebinned(){
+void Analisi_CR_TTtW_data_2017_v5_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/Syst_ALL_HOPE/data_ele_2017.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/Syst_ALL_HOPE/data_mu_2017.root");
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/data_mu_2017.root");
 
 //inputFile
@@ -54,6 +54,7 @@ double M_leplep;
 std:vector<double>* patElectron_pt; patElectron_pt=0;
 vector<double>* patElectron_eta; patElectron_eta=0;
 vector<double>* patElectron_phi; patElectron_phi=0;
+vector<double>* patElectron_energy; patElectron_energy = 0;
 vector<double>* patElectron_ecalTrkEnergyPostCorr; patElectron_ecalTrkEnergyPostCorr=0;
 vector<double>* Muon_pt_tunePbt; Muon_pt_tunePbt=0;
 vector<double>* Muon_eta; Muon_eta=0;
@@ -78,6 +79,7 @@ TBranch *a_patElectron_pt=a_->GetBranch("patElectron_pt");
 TBranch *a_patElectron_eta=a_->GetBranch("patElectron_eta");
 TBranch *a_patElectron_phi=a_->GetBranch("patElectron_phi");
 TBranch *a_patElectron_ecalTrkEnergyPostCorr=a_->GetBranch("patElectron_ecalTrkEnergyPostCorr");
+TBranch *a_patElectron_energy=a_->GetBranch("patElectron_energy");
 
 TBranch *a_Muon_pt_tunePbt=a_->GetBranch("Muon_pt_tunePbt");
 TBranch *a_Muon_eta=a_->GetBranch("Muon_eta");
@@ -118,6 +120,7 @@ a_patElectron_pt->SetAddress(&patElectron_pt);
 a_patElectron_eta->SetAddress(&patElectron_eta);
 a_patElectron_phi->SetAddress(&patElectron_phi);
 a_patElectron_ecalTrkEnergyPostCorr->SetAddress(&patElectron_ecalTrkEnergyPostCorr);
+a_patElectron_energy->SetAddress(&patElectron_energy);
 
 a_Muon_pt_tunePbt->SetAddress(&Muon_pt_tunePbt);
 a_Muon_eta->SetAddress(&Muon_eta);
@@ -175,6 +178,7 @@ int tot=0, muejj = 0;
 double wg = 0;
 bool veto_ele = false;
 double deltaEta = 0, deltaPhi = 0, deltaR = 0;
+double energy_corr0 = 0;
 
 for (Int_t i=0;i<a_->GetEntries();i++) {
  HLT_Ele = 0;
@@ -188,15 +192,22 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  
  if (emujj_l == 1 || muejj_l == 1) muejj = 1; 
 
+
  if (Muon_pt_tunePbt->size() > 0 && patElectron_pt->size() > 0 && numOfHighptMu==1 && numOfHighptEle == 1 && numOfBoostedJets>=1){
+  // energy correction  
+  energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
+
   if (Muon_pt_tunePbt->at(0) >= patElectron_pt->at(0)){
    LeadLep.SetPtEtaPhiE(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
-   SubLeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
+   SubLeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
+   SubLeadLep = SubLeadLep*energy_corr0;
   }
 
   else {
-   LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_ecalTrkEnergyPostCorr->at(0));
+   LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
    SubLeadLep.SetPtEtaPhiE(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+   LeadLep = LeadLep*energy_corr0;
+
   }
   if (HLT_Mu == 1  && LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4
      && BoostedJet_pt->at(0) > 190 && (LeadLep+SubLeadLep).M() > 300 ){
@@ -233,8 +244,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
 }
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/CR_TTtW_data_ele_2017.root", "RECREATE");
-//TFile *f = new TFile("plots/CR_TTtW_data_ele_2017.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/CR_TTtW_data_mu_2017.root", "RECREATE");
+//TFile *f = new TFile("plots/CR_TTtW_data_mu_2017.root", "RECREATE");
 
 n_best_Vtx->Write();
 true_interactions->Write();
