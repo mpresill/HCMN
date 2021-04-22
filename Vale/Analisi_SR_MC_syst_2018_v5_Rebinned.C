@@ -28,6 +28,20 @@ Need to specify
 
 using namespace std;
 
+float extraSmearingSigma(float eta, float p) {
+  if     (p <   50.) return (fabs(eta) < 0.9 ? 0.0046 : 0.0087);
+  else if(p <  100.) return (fabs(eta) < 0.9 ? 0.0060 : 0.0096);
+  else if(p <  200.) return (fabs(eta) < 0.9 ? 0.0078 : 0.0110);
+  else if(p <  300.) return (fabs(eta) < 0.9 ? 0.0105 : 0.0124);
+  else if(p <  400.) return (fabs(eta) < 0.9 ? 0.0124 : 0.0147);
+  else if(p <  500.) return (fabs(eta) < 0.9 ? 0.0147 : 0.0165);
+  else if(p <  700.) return (fabs(eta) < 0.9 ? 0.0174 : 0.0192);
+  else if(p < 1000.) return (fabs(eta) < 0.9 ? 0.0197 : 0.0234);
+  else if(p < 1500.) return (fabs(eta) < 0.9 ? 0.0229 : 0.0293);
+  else if(p < 2000.) return (fabs(eta) < 0.9 ? 0.0252 : 0.0357);
+  else               return (fabs(eta) < 0.9 ? 0.0266 : 0.0399);
+}
+
 //void filename_()
 void Analisi_SR_MC_syst_2018_v5_Rebinned(){
 
@@ -48,8 +62,9 @@ vector<double>* patElectron_energyScaleDown; patElectron_energyScaleDown=0;
 vector<double>* patElectron_energySigmaUp; patElectron_energySigmaUp=0;
 vector<double>* patElectron_energySigmaDown; patElectron_energySigmaDown=0;
 vector<int>* patElectron_charge; patElectron_charge=0;
-vector<double>* Muon_pt_tunePbt; Muon_pt_tunePbt=0;
-vector<double>* Muon_pt_tunePbt_corr; Muon_pt_tunePbt_corr=0;
+//vector<double>* Muon_pt_tunePbt_Roc; Muon_pt_tunePbt_Roc=0;
+//vector<double>* Muon_pt_tunePbt_Roc_corr; Muon_pt_tunePbt_Roc_corr=0;
+vector<double>* Muon_pt_tunePbt_Roc; Muon_pt_tunePbt_Roc=0;
 vector<double>* Muon_eta; Muon_eta=0;
 vector<double>* Muon_phi; Muon_phi=0;
 vector<double>* Muon_energy; Muon_energy=0;
@@ -86,8 +101,9 @@ TBranch *a_patElectron_energySigmaUp=a_->GetBranch("patElectron_energySigmaUp");
 TBranch *a_patElectron_energySigmaDown=a_->GetBranch("patElectron_energySigmaDown");
 TBranch *a_patElectron_charge=a_->GetBranch("patElectron_charge");
 
-TBranch *a_Muon_pt_tunePbt=a_->GetBranch("Muon_pt_tunePbt");
-TBranch *a_Muon_pt_tunePbt_corr=a_->GetBranch("Muon_pt_tunePbt_corr");
+//TBranch *a_Muon_pt_tunePbt_Roc=a_->GetBranch("Muon_pt_tunePbt_Roc");
+//TBranch *a_Muon_pt_tunePbt_Roc_corr=a_->GetBranch("Muon_pt_tunePbt_Roc_corr");
+TBranch *a_Muon_pt_tunePbt_Roc=a_->GetBranch("Muon_pt_tunePbt_Roc");
 TBranch *a_Muon_eta=a_->GetBranch("Muon_eta");
 TBranch *a_Muon_phi=a_->GetBranch("Muon_phi");
 TBranch *a_Muon_energy=a_->GetBranch("Muon_energy");
@@ -141,8 +157,9 @@ a_patElectron_energySigmaUp->SetAddress(&patElectron_energySigmaUp);
 a_patElectron_energySigmaDown->SetAddress(&patElectron_energySigmaDown);
 a_patElectron_charge->SetAddress(&patElectron_charge);
 
-a_Muon_pt_tunePbt->SetAddress(&Muon_pt_tunePbt);
-a_Muon_pt_tunePbt_corr->SetAddress(&Muon_pt_tunePbt_corr);
+//a_Muon_pt_tunePbt_Roc->SetAddress(&Muon_pt_tunePbt_Roc);
+//a_Muon_pt_tunePbt_Roc_corr->SetAddress(&Muon_pt_tunePbt_Roc_corr);
+a_Muon_pt_tunePbt_Roc->SetAddress(&Muon_pt_tunePbt_Roc);
 a_Muon_eta->SetAddress(&Muon_eta);
 a_Muon_phi->SetAddress(&Muon_phi);
 a_Muon_energy->SetAddress(&Muon_energy);
@@ -189,6 +206,7 @@ const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
 TH1D *NumFatJet = new TH1D ("NumFatJet", "NumFatJet", 20, 0, 20);
 TH1D *NumFatJet_mu = new TH1D ("NumFatJet_mu", "NumFatJet_mu", 20, 0, 20);
 
+TH1D *eejj_L13_M1000_mumujj_Roc = new TH1D ("eejj_L13_M1000_mumujj_Roc", "eejj_L13_M1000_mumujj_Roc", 8, asymbins );
 TH1D *eejj_L13_M1000_mumujj = new TH1D ("eejj_L13_M1000_mumujj", "eejj_L13_M1000_mumujj", 8, asymbins);
 TH1D *eejj_L13_M1000_mumujj_2018_AlphaRatio = new TH1D ("eejj_L13_M1000_mumujj_2018_AlphaRatio", "eejj_L13_M1000_2018_mumujj_AlphaRatio", 8, asymbins);
 TH1D *eejj_L13_M1000_mumujj_2018_AlphaRatioDown = new TH1D ("eejj_L13_M1000_mumujj_2018_AlphaRatioDown", "eejj_L13_M1000_mumujj_2018_AlphaRatioDown", 8, asymbins);
@@ -358,6 +376,14 @@ TLorentzVector Muon1_PtResoUp;
 TLorentzVector Muon1_PtResoDown;
 TLorentzVector Muon2_PtResoUp;
 TLorentzVector Muon2_PtResoDown;
+TLorentzVector Muon1_Roc;
+TLorentzVector Muon2_Roc;
+TVector3 P1_smear;
+TVector3 P2_smear;
+
+double Muon1_px_smearing = 0, Muon1_py_smearing = 0, Muon1_pz_smearing = 0;
+double Muon2_px_smearing = 0, Muon2_py_smearing = 0, Muon2_pz_smearing = 0;
+double extra_smearing_1 =0, extra_smearing_2 = 0;
 
 for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
@@ -373,125 +399,93 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
           
  if (HLT_Mu50==1 || HLT_TkMu100==1 || HLT_OldMu100==1 ) HLT_Mu = 1;
  
- if (Muon_pt_tunePbt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
-  Muon1.SetPtEtaPhiE(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
-  Muon2.SetPtEtaPhiE(Muon_pt_tunePbt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+ if (Muon_pt_tunePbt_Roc->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
+  Muon1.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+  Muon2.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
     /* BE CAREFUL ON THE WAY TO COMPUTE THE INVARIANT MASS!*/
-  Muon1_PtResoUp.SetPtEtaPhiM((Muon_pt_tunePbt->at(0)+0.1*Muon_pt_tunePbt->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
-  Muon2_PtResoUp.SetPtEtaPhiM((Muon_pt_tunePbt->at(1)+0.1*Muon_pt_tunePbt->at(1)), Muon_eta->at(1), Muon_phi->at(1),0.1056583745 );
-  Muon1_PtResoDown.SetPtEtaPhiM((Muon_pt_tunePbt->at(0)-0.1*Muon_pt_tunePbt->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
-  Muon2_PtResoDown.SetPtEtaPhiM((Muon_pt_tunePbt->at(1)-0.1*Muon_pt_tunePbt->at(1)), Muon_eta->at(1), Muon_phi->at(1),0.1056583745 );
+  Muon1_Roc.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+   Muon2_Roc.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
 
-  if (HLT_Mu == 1 && Muon_pt_tunePbt->at(0) > 150 && Muon_pt_tunePbt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1+Muon2).M()  > 300 ){
+   extra_smearing_1 = extraSmearingSigma(Muon1.Eta(), Muon1.P());
+   extra_smearing_2 = extraSmearingSigma(Muon2.Eta(), Muon2.P());
+
+   Muon1_px_smearing=Muon1.Px()*gRandom->Gaus(1,extra_smearing_1);
+   Muon1_py_smearing=Muon1.Py()*gRandom->Gaus(1,extra_smearing_1);
+   Muon1_pz_smearing=Muon1.Pz()*gRandom->Gaus(1,extra_smearing_1);
+
+   Muon2_px_smearing=Muon2.Px()*gRandom->Gaus(1,extra_smearing_2);
+   Muon2_py_smearing=Muon2.Py()*gRandom->Gaus(1,extra_smearing_2);
+   Muon2_pz_smearing=Muon2.Pz()*gRandom->Gaus(1,extra_smearing_2);
+
+   P1_smear.SetXYZ(Muon1_px_smearing, Muon1_py_smearing, Muon1_pz_smearing);
+   P2_smear.SetXYZ(Muon2_px_smearing, Muon2_py_smearing, Muon2_pz_smearing);
+
+   Muon1_PtResoUp.SetPtEtaPhiM(P1_smear.Pt(), P1_smear.Eta(), P1_smear.Phi(),0.1056583745 );
+   Muon2_PtResoUp.SetPtEtaPhiM(P2_smear.Pt(), P2_smear.Eta(), P2_smear.Phi(),0.1056583745 );
+   Muon1_PtResoDown.SetPtEtaPhiM(P1_smear.Pt(), P1_smear.Eta(), P1_smear.Phi(),0.1056583745 );
+   Muon2_PtResoDown.SetPtEtaPhiM(P2_smear.Pt(), P2_smear.Eta(), P2_smear.Phi(),0.1056583745 );
+
+  if (HLT_Mu == 1 && Muon_pt_tunePbt_Roc->at(0) > 150 && Muon_pt_tunePbt_Roc->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1+Muon2).M()  > 300 ){
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
    BoostJet_JESup.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1),BoostedJet_energy->at(1));
    BoostJet_JESdown.SetPtEtaPhiE(BoostedJet_pt->at(2), BoostedJet_eta->at(2), BoostedJet_phi->at(2),BoostedJet_energy->at(2));
    BoostJet_JERup.SetPtEtaPhiE(BoostedJet_pt->at(3), BoostedJet_eta->at(3), BoostedJet_phi->at(3),BoostedJet_energy->at(3));
    BoostJet_JERdown.SetPtEtaPhiE(BoostedJet_pt->at(4), BoostedJet_eta->at(4), BoostedJet_phi->at(4),BoostedJet_energy->at(4));
  
-    /*muon resolution smearing*/
-    MmumuJ= (Muon1+Muon2+BoostJet).M(); 
-    MmumuJ_JESup= (Muon1+Muon2+BoostJet_JESup).M(); 
-    MmumuJ_JESdown= (Muon1+Muon2+BoostJet_JESdown).M(); 
-    MmumuJ_JERup= (Muon1+Muon2+BoostJet_JERup).M(); 
-    MmumuJ_JERdown= (Muon1+Muon2+BoostJet_JERdown).M(); 
-    if( fabs(Muon_eta->at(0)) > 1.2  || fabs(Muon_eta->at(1)) > 1.2){
-          //cout<< "MmumuJ non smeared "<< MmumuJ<<endl;
-    MmumuJ = gRandom->Gaus(MmumuJ,0.15);
-    MmumuJ_JESup = gRandom->Gaus(MmumuJ_JESup,0.15);
-    MmumuJ_JESdown = gRandom->Gaus(MmumuJ_JESdown,0.15);
-    MmumuJ_JERup = gRandom->Gaus(MmumuJ_JERup,0.15);
-    MmumuJ_JERdown = gRandom->Gaus(MmumuJ_JERdown,0.15);
-          //cout<< "MmumuJ smeared "<< MmumuJ<<endl;
-        //  cout<< "MmumuJ_JESdown smeared "<< MmumuJ_JESdown<<endl;
-        //  cout<< "MmumuJ_JESup smeared "<< MmumuJ_JESup <<endl;
-        //  cout<< "MmumuJ_JERdown smeared "<< MmumuJ_JERdown<<endl;
-       //   cout<< "MmumuJ_JERup smeared "<< MmumuJ_JERup <<endl;
-    }
-         //cout<<"===="<<endl;
-    /**/
-
    NumFatJet_mu->Fill(numOfBoostedJets,wg); 
 
-   eejj_L13_M1000_mumujj->Fill(MmumuJ, wg); 
-   eejj_L13_M1000_mumujj_2018_AlphaRatio->Fill(MmumuJ, wg*0.85);
-   eejj_L13_M1000_mumujj_2018_AlphaRatioUp->Fill(MmumuJ, wg*0.87);
-   eejj_L13_M1000_mumujj_2018_AlphaRatioDown->Fill(MmumuJ, wg*0.83);
-   eejj_L13_M1000_mumujj_2018_SFUp->Fill(MmumuJ, wg_SFu);
-   eejj_L13_M1000_mumujj_2018_SFDown->Fill(MmumuJ, wg_SFd);
-   eejj_L13_M1000_mumujj_2018_PUUp->Fill(MmumuJ, wg_PUu);
-   eejj_L13_M1000_mumujj_2018_PUDown->Fill(MmumuJ, wg_PUd);
+   eejj_L13_M1000_mumujj_Roc->Fill((Muon1_Roc+Muon2_Roc+BoostJet).M(), wg ) ;
+   eejj_L13_M1000_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
+   eejj_L13_M1000_mumujj_2018_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg*0.85);
+   eejj_L13_M1000_mumujj_2018_AlphaRatioUp->Fill((Muon1+Muon2+BoostJet).M(), wg*0.87);
+   eejj_L13_M1000_mumujj_2018_AlphaRatioDown->Fill((Muon1+Muon2+BoostJet).M(), wg*0.83);
+   eejj_L13_M1000_mumujj_2018_SFUp->Fill((Muon1+Muon2+BoostJet).M(), wg_SFu);
+   eejj_L13_M1000_mumujj_2018_SFDown->Fill((Muon1+Muon2+BoostJet).M(), wg_SFd);
+   eejj_L13_M1000_mumujj_2018_PUUp->Fill((Muon1+Muon2+BoostJet).M(), wg_PUu);
+   eejj_L13_M1000_mumujj_2018_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_PUd);
    eejj_L13_M1000_mumujj_2018_PtResoUp->Fill((Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M(), wg);
    eejj_L13_M1000_mumujj_2018_PtResoDown->Fill((Muon1_PtResoDown+Muon2_PtResoDown+BoostJet).M(), wg);
-   if(centralJesJer->at(0)==1)eejj_L13_M1000_mumujj_2018_centralJesJer->Fill(MmumuJ, wg);
-   if(JesSFup->at(1)==1)eejj_L13_M1000_mumujj_2018_JesSFUp->Fill(MmumuJ_JESup, wg);
-   if(JesSFdown->at(2)==1)eejj_L13_M1000_mumujj_2018_JesSFDown->Fill(MmumuJ_JESdown, wg);
-   if(JerSFup->at(3)==1)eejj_L13_M1000_mumujj_2018_JerSFUp->Fill(MmumuJ_JERup, wg);
-   if(JerSFdown->at(4)==1)eejj_L13_M1000_mumujj_2018_JerSFDown->Fill(MmumuJ_JERdown, wg);  
+   if(centralJesJer->at(0)==1)eejj_L13_M1000_mumujj_2018_centralJesJer->Fill((Muon1+Muon2+BoostJet).M(), wg);
+   if(JesSFup->at(1)==1)eejj_L13_M1000_mumujj_2018_JesSFUp->Fill((Muon1+Muon2+BoostJet_JESup).M(), wg);
+   if(JesSFdown->at(2)==1)eejj_L13_M1000_mumujj_2018_JesSFDown->Fill((Muon1+Muon2+BoostJet_JESdown).M(), wg);
+   if(JerSFup->at(3)==1)eejj_L13_M1000_mumujj_2018_JerSFUp->Fill((Muon1+Muon2+BoostJet_JERup).M(), wg);
+   if(JerSFdown->at(4)==1)eejj_L13_M1000_mumujj_2018_JerSFDown->Fill((Muon1+Muon2+BoostJet_JERdown).M(), wg);  
   
-  eejj_L13_M1000_mumujj_PDFUp->Fill(MmumuJ, wg*1.7);      //comment for bkgs                 
-  eejj_L13_M1000_mumujj_PDFDown->Fill(MmumuJ, wg*0.3);  //comment for bkgs
+  eejj_L13_M1000_mumujj_PDFUp->Fill((Muon1+Muon2+BoostJet).M(), wg*1.7);      //comment for bkgs                 
+  eejj_L13_M1000_mumujj_PDFDown->Fill((Muon1+Muon2+BoostJet).M(), wg*0.3);  //comment for bkgs
 
   }
 
   //Zpeak DY cr Mll in 60-120 GeV
-  if (HLT_Mu == 1 && Muon_pt_tunePbt->at(0) > 150 && Muon_pt_tunePbt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1+Muon2).M() > 60 && (Muon1+Muon2).M() < 120 ){
+  if (HLT_Mu == 1 && Muon_pt_tunePbt_Roc->at(0) > 150 && Muon_pt_tunePbt_Roc->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1+Muon2).M() > 60 && (Muon1+Muon2).M() < 120 ){
   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
   eejj_L13_M1000_ZpeakMll_mumujj->Fill((Muon1+Muon2).M(), wg); 
-   /*muon resolution smearing*/
-    MmumuJ= (Muon1+Muon2+BoostJet).M(); 
-    MmumuJ_JESup= (Muon1+Muon2+BoostJet_JESup).M(); 
-    MmumuJ_JESdown= (Muon1+Muon2+BoostJet_JESdown).M(); 
-    MmumuJ_JERup= (Muon1+Muon2+BoostJet_JERup).M(); 
-    MmumuJ_JERdown= (Muon1+Muon2+BoostJet_JERdown).M(); 
-    if( fabs(Muon_eta->at(0)) > 1.2  || fabs(Muon_eta->at(1)) > 1.2){
-    MmumuJ = gRandom->Gaus(MmumuJ,0.15);
-    MmumuJ_JESup = gRandom->Gaus(MmumuJ_JESup,0.15);
-    MmumuJ_JESdown = gRandom->Gaus(MmumuJ_JESdown,0.15);
-    MmumuJ_JERup = gRandom->Gaus(MmumuJ_JERup,0.15);
-    MmumuJ_JERdown = gRandom->Gaus(MmumuJ_JERdown,0.15);
-    }
-    /**/
-  eejj_L13_M1000_Zpeak_mumujj->Fill(MmumuJ, wg); 
+  eejj_L13_M1000_Zpeak_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
   }
 
 
   //DY cr Mll in 150-300 GeV
-    if (HLT_Mu == 1 && Muon_pt_tunePbt->at(0) > 150 && Muon_pt_tunePbt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1+Muon2).M() > 150 && (Muon1+Muon2).M() < 300 ){
+    if (HLT_Mu == 1 && Muon_pt_tunePbt_Roc->at(0) > 150 && Muon_pt_tunePbt_Roc->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1+Muon2).M() > 150 && (Muon1+Muon2).M() < 300 ){
     BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
     BoostJet_JESup.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1),BoostedJet_energy->at(1));
     BoostJet_JESdown.SetPtEtaPhiE(BoostedJet_pt->at(2), BoostedJet_eta->at(2), BoostedJet_phi->at(2),BoostedJet_energy->at(2));
     BoostJet_JERup.SetPtEtaPhiE(BoostedJet_pt->at(3), BoostedJet_eta->at(3), BoostedJet_phi->at(3),BoostedJet_energy->at(3));
     BoostJet_JERdown.SetPtEtaPhiE(BoostedJet_pt->at(4), BoostedJet_eta->at(4), BoostedJet_phi->at(4),BoostedJet_energy->at(4));
-        /*muon resolution smearing*/
-    MmumuJ= (Muon1+Muon2+BoostJet).M(); 
-    MmumuJ_JESup= (Muon1+Muon2+BoostJet_JESup).M(); 
-    MmumuJ_JESdown= (Muon1+Muon2+BoostJet_JESdown).M(); 
-    MmumuJ_JERup= (Muon1+Muon2+BoostJet_JERup).M(); 
-    MmumuJ_JERdown= (Muon1+Muon2+BoostJet_JERdown).M(); 
-    if( fabs(Muon_eta->at(0)) > 1.2  || fabs(Muon_eta->at(1)) > 1.2){
-    MmumuJ = gRandom->Gaus(MmumuJ,0.15);
-    MmumuJ_JESup = gRandom->Gaus(MmumuJ_JESup,0.15);
-    MmumuJ_JESdown = gRandom->Gaus(MmumuJ_JESdown,0.15);
-    MmumuJ_JERup = gRandom->Gaus(MmumuJ_JERup,0.15);
-    MmumuJ_JERdown = gRandom->Gaus(MmumuJ_JERdown,0.15);
-    }
-    /**/
-    eejj_L13_M1000_DYcr_mumujj->Fill(MmumuJ, wg); 
-    eejj_L13_M1000_DYcr_mumujj_2018_AlphaRatio->Fill(MmumuJ, wg);
-    eejj_L13_M1000_DYcr_mumujj_2018_AlphaRatioUp->Fill(MmumuJ, wg);
-    eejj_L13_M1000_DYcr_mumujj_2018_AlphaRatioDown->Fill(MmumuJ, wg);
-    eejj_L13_M1000_DYcr_mumujj_2018_SFUp->Fill(MmumuJ, wg_SFu);
-    eejj_L13_M1000_DYcr_mumujj_2018_SFDown->Fill(MmumuJ, wg_SFd);
-    eejj_L13_M1000_DYcr_mumujj_2018_PUUp->Fill(MmumuJ, wg_PUu);
-    eejj_L13_M1000_DYcr_mumujj_2018_PUDown->Fill(MmumuJ, wg_PUd);
+    eejj_L13_M1000_DYcr_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
+    eejj_L13_M1000_DYcr_mumujj_2018_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg);
+    eejj_L13_M1000_DYcr_mumujj_2018_AlphaRatioUp->Fill((Muon1+Muon2+BoostJet).M(), wg);
+    eejj_L13_M1000_DYcr_mumujj_2018_AlphaRatioDown->Fill((Muon1+Muon2+BoostJet).M(), wg);
+    eejj_L13_M1000_DYcr_mumujj_2018_SFUp->Fill((Muon1+Muon2+BoostJet).M(), wg_SFu);
+    eejj_L13_M1000_DYcr_mumujj_2018_SFDown->Fill((Muon1+Muon2+BoostJet).M(), wg_SFd);
+    eejj_L13_M1000_DYcr_mumujj_2018_PUUp->Fill((Muon1+Muon2+BoostJet).M(), wg_PUu);
+    eejj_L13_M1000_DYcr_mumujj_2018_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_PUd);
     eejj_L13_M1000_DYcr_mumujj_2018_PtResoUp->Fill((Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M(), wg);
     eejj_L13_M1000_DYcr_mumujj_2018_PtResoDown->Fill((Muon1_PtResoDown+Muon2_PtResoDown+BoostJet).M(), wg);
-    if(centralJesJer->at(0)==1)eejj_L13_M1000_DYcr_mumujj_centralJesJer->Fill(MmumuJ, wg);
-    if(JesSFup->at(1)==1)eejj_L13_M1000_DYcr_mumujj_2018_JesSFUp->Fill(MmumuJ_JESup, wg);
-    if(JesSFdown->at(2)==1)eejj_L13_M1000_DYcr_mumujj_2018_JesSFDown->Fill(MmumuJ_JESdown, wg);
-    if(JerSFup->at(3)==1)eejj_L13_M1000_DYcr_mumujj_2018_JerSFUp->Fill(MmumuJ_JERup, wg);
-    if(JerSFdown->at(4)==1)eejj_L13_M1000_DYcr_mumujj_2018_JerSFDown->Fill(MmumuJ_JERdown, wg);  
+    if(centralJesJer->at(0)==1)eejj_L13_M1000_DYcr_mumujj_centralJesJer->Fill((Muon1+Muon2+BoostJet).M(), wg);
+    if(JesSFup->at(1)==1)eejj_L13_M1000_DYcr_mumujj_2018_JesSFUp->Fill((Muon1+Muon2+BoostJet_JESup).M(), wg);
+    if(JesSFdown->at(2)==1)eejj_L13_M1000_DYcr_mumujj_2018_JesSFDown->Fill((Muon1+Muon2+BoostJet_JESdown).M(), wg);
+    if(JerSFup->at(3)==1)eejj_L13_M1000_DYcr_mumujj_2018_JerSFUp->Fill((Muon1+Muon2+BoostJet_JERup).M(), wg);
+    if(JerSFdown->at(4)==1)eejj_L13_M1000_DYcr_mumujj_2018_JerSFDown->Fill((Muon1+Muon2+BoostJet_JERdown).M(), wg);  
     }
 
  }
@@ -632,7 +626,7 @@ TLorentzVector Muon_PtResoDown;
 
 double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 
- if (Muon_pt_tunePbt->size() > 0 && patElectron_pt->size() > 0 && numOfHighptMu==1 && numOfHighptEle == 1 && numOfBoostedJets>=1){
+ if (Muon_pt_tunePbt_Roc->size() > 0 && patElectron_pt->size() > 0 && numOfHighptMu==1 && numOfHighptEle == 1 && numOfBoostedJets>=1){
 
   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
    BoostJet_JESup.SetPtEtaPhiE(BoostedJet_pt->at(1), BoostedJet_eta->at(1), BoostedJet_phi->at(1),BoostedJet_energy->at(1));
@@ -643,20 +637,28 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
    Ele_ScaleDown.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energyScaleDown->at(0));
    Ele_SigmaUp.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energySigmaUp->at(0));
    Ele_SigmaDown.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energySigmaDown->at(0));
-   Muon_PtResoUp.SetPtEtaPhiM((Muon_pt_tunePbt->at(0)+0.1*Muon_pt_tunePbt->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
-   Muon_PtResoDown.SetPtEtaPhiM((Muon_pt_tunePbt->at(0)-0.1*Muon_pt_tunePbt->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
 
-  if (Muon_pt_tunePbt->at(0) >= patElectron_pt->at(0)){
-   LeadLep.SetPtEtaPhiE(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+  if (Muon_pt_tunePbt_Roc->at(0) >= patElectron_pt->at(0)){
+   LeadLep.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
    SubLeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
    energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
    SubLeadLep = SubLeadLep*energy_corr0;
 
+   extra_smearing_1 = extraSmearingSigma(LeadLep.Eta(), LeadLep.P());
+
+   Muon1_px_smearing=LeadLep.Px()*gRandom->Gaus(1,extra_smearing_1);
+   Muon1_py_smearing=LeadLep.Py()*gRandom->Gaus(1,extra_smearing_1);
+   Muon1_pz_smearing=LeadLep.Pz()*gRandom->Gaus(1,extra_smearing_1);
+
+   P1_smear.SetXYZ(Muon1_px_smearing, Muon1_py_smearing, Muon1_pz_smearing);
+   Muon_PtResoUp.SetPtEtaPhiM(P1_smear.Pt(), P1_smear.Eta(), P1_smear.Phi(),0.1056583745 );
+   Muon_PtResoDown.SetPtEtaPhiM(P1_smear.Pt(), P1_smear.Eta(), P1_smear.Phi(),0.1056583745 );
+
   if (HLT_Mu == 1 && LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4
      && BoostedJet_pt->at(0) > 190 && (LeadLep+SubLeadLep).M() > 300 ){
    veto_ele = false;
-   for(int j = 0; j < Muon_pt_tunePbt->size(); j++){
-    if (Muon_pt_tunePbt->at(j) > 5){
+   for(int j = 0; j < Muon_pt_tunePbt_Roc->size(); j++){
+    if (Muon_pt_tunePbt_Roc->at(j) > 5){
      deltaEta=fabs(Muon_eta->at(j) - patElectron_eta->at(0));
      deltaPhi = Muon_phi->at(j) - patElectron_phi->at(0);
      if(deltaPhi > M_PI) deltaPhi -= 2*M_PI;
@@ -704,10 +706,10 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
     eejj_L13_M1000_TTtWcr_llJ_2018_energySigmaUp->Fill((Ele_SigmaUp+LeadLep+BoostJet).M(),wg);
     eejj_L13_M1000_TTtWcr_llJ_2018_energySigmaDown->Fill((Ele_SigmaDown+LeadLep+BoostJet).M(),wg);
     if(centralJesJer->at(0)==1)eejj_L13_M1000_TTtWcr_llJ_centralJesJer->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
-    if(JesSFup->at(1)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JesSFUp->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
-    if(JesSFdown->at(2)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JesSFDown->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
-    if(JerSFup->at(3)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JerSFUp->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
-    if(JerSFdown->at(4)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JerSFDown->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
+    if(JesSFup->at(1)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JesSFUp->Fill((LeadLep+SubLeadLep+BoostJet_JESup).M(), wg);
+    if(JesSFdown->at(2)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JesSFDown->Fill((LeadLep+SubLeadLep+BoostJet_JESdown).M(), wg);
+    if(JerSFup->at(3)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JerSFUp->Fill((LeadLep+SubLeadLep+BoostJet_JERup).M(), wg);
+    if(JerSFdown->at(4)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JerSFDown->Fill((LeadLep+SubLeadLep+BoostJet_JESdown).M(), wg);
 
    }
   }
@@ -716,15 +718,24 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
  else {
 
    LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
-   SubLeadLep.SetPtEtaPhiE(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+   SubLeadLep.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
    energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;
    LeadLep = LeadLep*energy_corr0;
+
+   extra_smearing_1 = extraSmearingSigma(SubLeadLep.Eta(), SubLeadLep.P());
+   Muon1_px_smearing=SubLeadLep.Px()*gRandom->Gaus(1,extra_smearing_1);
+   Muon1_py_smearing=SubLeadLep.Py()*gRandom->Gaus(1,extra_smearing_1);
+   Muon1_pz_smearing=SubLeadLep.Pz()*gRandom->Gaus(1,extra_smearing_1);
+
+   P1_smear.SetXYZ(Muon1_px_smearing, Muon1_py_smearing, Muon1_pz_smearing);
+   Muon_PtResoUp.SetPtEtaPhiM(P1_smear.Pt(), P1_smear.Eta(), P1_smear.Phi(),0.1056583745 );
+   Muon_PtResoDown.SetPtEtaPhiM(P1_smear.Pt(), P1_smear.Eta(), P1_smear.Phi(),0.1056583745 );
 
    if (HLT_Ele == 1 & LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190 && (LeadLep+SubLeadLep).M() > 300){
 
     veto_ele = false;
-   for(int j = 0; j < Muon_pt_tunePbt->size(); j++){
-    if (Muon_pt_tunePbt->at(j) > 5){
+   for(int j = 0; j < Muon_pt_tunePbt_Roc->size(); j++){
+    if (Muon_pt_tunePbt_Roc->at(j) > 5){
      deltaEta=fabs(Muon_eta->at(j) - patElectron_eta->at(0));
      deltaPhi = Muon_phi->at(j) - patElectron_phi->at(0);
      if(deltaPhi > M_PI) deltaPhi -= 2*M_PI;
@@ -773,10 +784,10 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
     eejj_L13_M1000_TTtWcr_llJ_2018_energySigmaUp->Fill((Ele_SigmaUp+SubLeadLep+BoostJet).M(),wg);
     eejj_L13_M1000_TTtWcr_llJ_2018_energySigmaDown->Fill((Ele_SigmaDown+SubLeadLep+BoostJet).M(),wg);
     if(centralJesJer->at(0)==1)eejj_L13_M1000_TTtWcr_llJ_centralJesJer->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
-    if(JesSFup->at(1)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JesSFUp->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
-    if(JesSFdown->at(2)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JesSFDown->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
-    if(JerSFup->at(3)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JerSFUp->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
-    if(JerSFdown->at(4)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JerSFDown->Fill((LeadLep+SubLeadLep+BoostJet).M(), wg);
+    if(JesSFup->at(1)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JesSFUp->Fill((LeadLep+SubLeadLep+BoostJet_JESup).M(), wg);
+    if(JesSFdown->at(2)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JesSFDown->Fill((LeadLep+SubLeadLep+BoostJet_JESdown).M(), wg);
+    if(JerSFup->at(3)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JerSFUp->Fill((LeadLep+SubLeadLep+BoostJet_JERup).M(), wg);
+    if(JerSFdown->at(4)==1)eejj_L13_M1000_TTtWcr_llJ_2018_JerSFDown->Fill((LeadLep+SubLeadLep+BoostJet_JERdown).M(), wg);
     }
    }
   }
@@ -805,6 +816,8 @@ eejj_L13_M1000_eejj_energyScaleUp->Write();
 eejj_L13_M1000_eejj_energyScaleDown->Write();
 eejj_L13_M1000_eejj_2018_energySigmaUp->Write();
 eejj_L13_M1000_eejj_2018_energySigmaDown->Write();
+
+eejj_L13_M1000_mumujj_Roc->Write();
 eejj_L13_M1000_mumujj->Write();
 eejj_L13_M1000_mumujj_2018_AlphaRatio->Write();
 eejj_L13_M1000_mumujj_2018_AlphaRatioUp->Write();
