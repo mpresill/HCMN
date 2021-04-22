@@ -540,13 +540,9 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
   if (Muon_pt_tunePbt_Roc->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
 
-   Muon1.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
-   Muon2.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+   Muon1.SetPtEtaPhiM(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
+   Muon2.SetPtEtaPhiM(Muon_pt_tunePbt_Roc->at(1), Muon_eta->at(1), Muon_phi->at(1),0.1056583745 );
        /* BE CAREFUL ON THE WAY TO COMPUTE THE INVARIANT MASS!*/
-    Muon1_PtResoUp.SetPtEtaPhiM((Muon_pt_tunePbt_Roc->at(0)+0.1*Muon_pt_tunePbt_Roc->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
-    Muon2_PtResoUp.SetPtEtaPhiM((Muon_pt_tunePbt_Roc->at(1)+0.1*Muon_pt_tunePbt_Roc->at(1)), Muon_eta->at(1), Muon_phi->at(1),0.1056583745 );
-    Muon1_PtResoDown.SetPtEtaPhiM((Muon_pt_tunePbt_Roc->at(0)-0.1*Muon_pt_tunePbt_Roc->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
-    Muon2_PtResoDown.SetPtEtaPhiM((Muon_pt_tunePbt_Roc->at(1)-0.1*Muon_pt_tunePbt_Roc->at(1)), Muon_eta->at(1), Muon_phi->at(1),0.1056583745 );
 
 //    cout<<(Muon1+Muon2).M()<<endl;
    Muon1_Roc.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
@@ -858,7 +854,7 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
    Muon_PtResoDown.SetPtEtaPhiM((Muon_pt_tunePbt_Roc->at(0)-0.1*Muon_pt_tunePbt_Roc->at(0)), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
 
    if (Muon_pt_tunePbt_Roc->at(0) >= patElectron_pt->at(0)){
-   LeadLep.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+   LeadLep.SetPtEtaPhiM(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
    SubLeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
 
    SubLeadLep = SubLeadLep*energy_corr0;
@@ -937,7 +933,7 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
  else {
 
    LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
-   SubLeadLep.SetPtEtaPhiE(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
+   SubLeadLep.SetPtEtaPhiM(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
 
    LeadLep= LeadLep*energy_corr0; 
 
