@@ -172,8 +172,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  if (Muon_pt_tunePbt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
   if (HLT_Mu == 1 && Muon_pt_tunePbt->at(0) > 150 && Muon_pt_tunePbt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
-   Muon1.SetPtEtaPhiE(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
-   Muon2.SetPtEtaPhiE(Muon_pt_tunePbt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+   Muon1.SetPtEtaPhiM(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
+   Muon2.SetPtEtaPhiM(Muon_pt_tunePbt->at(1), Muon_eta->at(1), Muon_phi->at(1),0.1056583745 );
    mmumu= (Muon1+Muon2).M();
    if(mmumu > 300){
     data_obs->Fill((Muon1+Muon2+BoostJet).M());
