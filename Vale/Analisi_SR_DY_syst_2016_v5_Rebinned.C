@@ -545,11 +545,24 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    BoostJet_JESdown.SetPtEtaPhiE(BoostedJet_pt->at(2), BoostedJet_eta->at(2), BoostedJet_phi->at(2),BoostedJet_energy->at(2));
    BoostJet_JERup.SetPtEtaPhiE(BoostedJet_pt->at(3), BoostedJet_eta->at(3), BoostedJet_phi->at(3),BoostedJet_energy->at(3));
    BoostJet_JERdown.SetPtEtaPhiE(BoostedJet_pt->at(4), BoostedJet_eta->at(4), BoostedJet_phi->at(4),BoostedJet_energy->at(4));
+
    
    DY_mumujj_preRoc->Fill((Muon1_preRoc+Muon2_preRoc+BoostJet).M(), wg);
+
+   if ((Muon1+Muon2+BoostJet).M() > 400 && (Muon1+Muon2+BoostJet).M() < 600 ){
+    cout << "PRESMEAR: ptmu1 " << Muon1.Pt() << " ptmu2 " << Muon2.Pt() << " ptjet " << BoostJet.Pt() << " Mll " << (Muon1+Muon2).M() << " MllJ " << (Muon1+Muon2+BoostJet).M() << endl;
+   }
+//run/event/ptmu1/ptmu2/ptjet/mll/mllj 
+
    DY_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
+
+
    //cout << "wg " << wg << " lumi " << lumi << " lumi_wgt " << lumi_wgt << " lepsf_evt " << lepsf_evt << " PUWeight " << PUWeight << endl;
    deltaMllJ_pre_post_smear->Fill(((Muon1+Muon2+BoostJet).M() - (Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M()), wg );
+
+
+   //if ((Muon1+Muon2+BoostJet).M() > 10000) cout << " pre smear " << (Muon1+Muon2+BoostJet).M() << " post smear " << (Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M() ;
+   //if ((Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M() > 10000) cout << " pre smear " << (Muon1+Muon2+BoostJet).M() << " post smear " << (Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M() ;
 
    DY_mumujj_2016_AlphaRatio->Fill((Muon1+Muon2+BoostJet).M(), wg); 
    DY_mumujj_2016_AlphaRatioUp->Fill((Muon1+Muon2+BoostJet).M(), wg);
@@ -558,6 +571,10 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    DY_mumujj_2016_SFDown->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_SFDown);
    DY_mumujj_2016_PUUp->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_PUUp);
    DY_mumujj_2016_PUDown->Fill((Muon1+Muon2+BoostJet).M(), wg_2016_PUDown);
+   if ((Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M() > 400 && (Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M() < 600 ){
+    cout << "POSTSMEAR: ptmu1 " << Muon1_PtResoUp.Pt() << " ptmu2 " << Muon2_PtResoUp.Pt() << " ptjet " << BoostJet.Pt() << " Mll " << (Muon1_PtResoUp+Muon2_PtResoUp).M() << " MllJ " << (Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M() << endl;
+    cout << "====" << endl;
+   }
    DY_mumujj_2016_PtResoUp->Fill((Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M(), wg);
    DY_mumujj_2016_PtResoDown->Fill((Muon1+Muon2+BoostJet).M(), wg);
 
