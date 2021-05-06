@@ -713,7 +713,7 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
     TTtW_TTtWcr_llJ_2016_PUUp->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg_2016_PUUp);
     TTtW_TTtWcr_llJ_2016_PUDown->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg_2016_PUDown); 
     if ((Muon_PtResoUp+SubLeadLep).M() >300) TTtW_TTtWcr_llJ_2016_PtResoUp->Fill((Muon_PtResoUp+SubLeadLep+BoostJet).M(),wg);
-    TTtW_TTtWcr_llJ_2016_PtResoDown->Fill((LeadLep+SubLeadLep).M(),wg);
+    TTtW_TTtWcr_llJ_2016_PtResoDown->Fill((LeadLep+SubLeadLep+BoostJet).M(),wg);
     TTtW_TTtWcr_llJ_energyScaleUp->Fill((Ele_ScaleUp+LeadLep+BoostJet).M(),wg);
     TTtW_TTtWcr_llJ_energyScaleDown->Fill((Ele_ScaleDown+LeadLep+BoostJet).M(),wg);
     TTtW_TTtWcr_llJ_2016_energySigmaUp->Fill((Ele_SigmaUp+LeadLep+BoostJet).M(),wg);
