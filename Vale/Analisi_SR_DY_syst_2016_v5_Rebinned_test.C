@@ -943,7 +943,7 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 const double Alpha_ele[9] =  {1,1,1.08,1.05,1.10,1.15,1.13,1.45 };
 const double dAlpha_ele[9] = {0,0,0.06,0.03,0.03,0.04,0.08,0.21 };
 
-const double Alpha_mu[9] =   {1,1,1.06,1.04,1.06,1.15,1.23,1.54}; 
+const double Alpha_mu[9] =   {1,1,1.08,1.06,1.07,1.16,1.24,1.54}; 
 const double dAlpha_mu[9] =  {0,0,0.05,0.02,0.02,0.03,0.06,0.17 }; 
 
 
