@@ -858,7 +858,7 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
    if (Muon_pt_tunePbt_Roc->at(0) >= patElectron_pt->at(0)){
    LeadLep.SetPtEtaPhiM(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
    SubLeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
-
+   energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;  
    SubLeadLep = SubLeadLep*energy_corr0;
 
    extra_smearing_1 = extraSmearingSigma(LeadLep.Eta(), LeadLep.P());
@@ -938,7 +938,7 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 
    LeadLep.SetPtEtaPhiE(patElectron_pt->at(0), patElectron_eta->at(0), patElectron_phi->at(0),patElectron_energy->at(0));
    SubLeadLep.SetPtEtaPhiM(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),0.1056583745 );
-
+   energy_corr0= patElectron_ecalTrkEnergyPostCorr->at(0) / patElectron_energy->at(0) ;  
    LeadLep= LeadLep*energy_corr0; 
 
    extra_smearing_1 = extraSmearingSigma(SubLeadLep.Eta(), SubLeadLep.P());
