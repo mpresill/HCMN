@@ -564,6 +564,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   if (HLT_Mu == 1 && Muon1_PtResoUp.Pt() > 150 && Muon2_PtResoUp.Pt() > 100 && fabs(Muon1_PtResoUp.Eta())<2.4 && fabs(Muon2_PtResoUp.Eta())<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1_PtResoUp+Muon2_PtResoUp).M() > 150 && (Muon1_PtResoUp+Muon2_PtResoUp).M() < 300){
    DY_DYcr_mumujj_2017_PtReso2Up->Fill((Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M(), wg);
   }
+
   if (HLT_Mu == 1 && Muon1.Pt() > 150 && Muon2.Pt() > 100 && fabs(Muon1.Eta())<2.4 && fabs(Muon2.Eta())<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1+Muon2).M() > 150 && (Muon1+Muon2).M() < 300){
 
   BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
@@ -841,8 +842,6 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
    Muon_PtResoUp.SetPtEtaPhiM(P1_smear.Pt(), P1_smear.Eta(), P1_smear.Phi(),0.1056583745 );
    Muon_PtResoDown.SetPtEtaPhiM(P1_smear.Pt(), P1_smear.Eta(), P1_smear.Phi(),0.1056583745 );
 
-   LeadLep2.SetPtEtaPhiM(Muon_PtResoUp.Pt(), Muon_PtResoUp.Eta(), Muon_PtResoUp.Phi(), 0.1056583745);
-
    if (HLT_Mu == 1 && LeadLep.Pt() > 150 && SubLeadLep.Pt() > 100 && fabs(LeadLep.Eta())<2.4 && fabs(SubLeadLep.Eta())<2.4 && BoostedJet_pt->at(0) > 190 && (LeadLep+SubLeadLep).M() > 300 ){
    veto_ele = false;
    for(int j = 0; j < Muon_pt_tunePbt_Roc->size(); j++){
@@ -1025,6 +1024,8 @@ for (Int_t j=1;j<=8;j++) {
     DY_mumujj_2017_PUDown->SetBinContent(j, DY_mumujj_2017_PUDown->GetBinContent(j) * alpha_mu);
     DY_mumujj_2017_PtResoUp->SetBinContent(j, DY_mumujj_2017_PtResoUp->GetBinContent(j) * alpha_mu);
     DY_mumujj_2017_PtResoDown->SetBinContent(j, DY_mumujj_2017_PtResoDown->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_PtReso2Up->SetBinContent(j, DY_mumujj_2017_PtReso2Up->GetBinContent(j) * alpha_mu);
+    DY_mumujj_2017_PtReso2Down->SetBinContent(j, DY_mumujj_2017_PtReso2Down->GetBinContent(j) * alpha_mu);
     DY_mumujj_2017_centralJesJer->SetBinContent(j, DY_mumujj_2017_centralJesJer->GetBinContent(j) * alpha_mu);
     DY_mumujj_2017_JesSFUp->SetBinContent(j, DY_mumujj_2017_JesSFUp->GetBinContent(j) * alpha_mu);
     DY_mumujj_2017_JesSFDown->SetBinContent(j, DY_mumujj_2017_JesSFDown->GetBinContent(j) * alpha_mu);
@@ -1047,6 +1048,8 @@ for (Int_t j=1;j<=8;j++) {
     DY_DYcr_mumujj_2017_PUDown->SetBinContent(j, DY_DYcr_mumujj_2017_PUDown->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2017_PtResoUp->SetBinContent(j, DY_DYcr_mumujj_2017_PtResoUp->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2017_PtResoDown->SetBinContent(j, DY_DYcr_mumujj_2017_PtResoDown->GetBinContent(j) * alpha_mu);
+    DY_DYcr_mumujj_2017_PtReso2Up->SetBinContent(j, DY_DYcr_mumujj_2017_PtReso2Up->GetBinContent(j) * alpha_mu);
+    DY_DYcr_mumujj_2017_PtReso2Down->SetBinContent(j, DY_DYcr_mumujj_2017_PtReso2Down->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_centralJesJer->SetBinContent(j, DY_DYcr_mumujj_centralJesJer->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2017_JesSFUp->SetBinContent(j, DY_DYcr_mumujj_2017_JesSFUp->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2017_JesSFDown->SetBinContent(j, DY_DYcr_mumujj_2017_JesSFDown->GetBinContent(j) * alpha_mu);
@@ -1153,24 +1156,6 @@ DY_DYcr_mumujj_2017_PtReso2Down->Write();
 //TTtW cr
 M_leplepJ_TTtWcr->Write();
 DY_TTtWcr_ll->Write();
-DY_TTtWcr_ll_2017_AlphaRatio->Write();
-DY_TTtWcr_ll_2017_AlphaRatioUp->Write();
-DY_TTtWcr_ll_2017_AlphaRatioDown->Write();
-DY_TTtWcr_ll_2017_SFUp->Write();
-DY_TTtWcr_ll_2017_SFDown->Write();
-DY_TTtWcr_ll_2017_PUUp->Write();
-DY_TTtWcr_ll_2017_PUDown->Write();
-DY_TTtWcr_ll_energyScaleUp->Write();
-DY_TTtWcr_ll_energyScaleDown->Write();
-DY_TTtWcr_ll_2017_energySigmaUp->Write();
-DY_TTtWcr_ll_2017_energySigmaDown->Write();
-DY_TTtWcr_ll_2017_PtResoUp->Write();
-DY_TTtWcr_ll_2017_PtResoDown->Write();
-DY_TTtWcr_ll_centralJesJer->Write();
-DY_TTtWcr_ll_2017_JesSFUp->Write();
-DY_TTtWcr_ll_2017_JesSFDown->Write();
-DY_TTtWcr_ll_2017_JerSFUp->Write();
-DY_TTtWcr_ll_2017_JerSFDown->Write();
 
 DY_TTtWcr_llJ->Write();
 DY_TTtWcr_llJ_2017_AlphaRatio->Write();
