@@ -149,10 +149,7 @@ a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
 TH1D *Mee_Zpeak = new TH1D ("Mee_Zpeak", "Mee_Zpeak", 60,60,120);
-TH1D *data_obs_mumu = new TH1D ("data_obs_mumu", "data_obs_mumu", 220, 80, 300);
-TH1D *data_obs_ee = new TH1D ("data_obs_ee", "data_obs_ee", 220, 80, 300);
-TH1D *data_obs_mumu_Z = new TH1D ("data_obs_mumu_Z", "data_obs_mumu_Z", 80, 50, 130);
-TH1D *data_obs_ee_Z = new TH1D ("data_obs_ee_Z", "data_obs_ee_Z", 80, 50, 130);
+TH1D *Mee_DYcr = new TH1D ("Mee_DYcr", "Mee_DYcr", 50,150,300);
 TH1D *data_Zpeak_ele1_ecalTrkEnergyPostCorr = new TH1D ("data_Zpeak_ele1_ecalTrkEnergyPostCorr", "data_Zpeak_ele1_ecalTrkEnergyPostCorr", 100, 0, 1000);
 TH1D *data_Zpeak_ele2_ecalTrkEnergyPostCorr = new TH1D ("data_Zpeak_ele2_ecalTrkEnergyPostCorr", "data_Zpeak_ele2_ecalTrkEnergyPostCorr", 100, 0, 1000);
 TH1D *data_Zpeak_ele1_energy = new TH1D ("data_Zpeak_ele1_energy", "data_Zpeak_ele1_energy", 100, 0, 1000);
@@ -233,6 +230,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
      data_Zpeak_ele2_energy->Fill(patElectron_energy->at(1));
     }
     if(mee > 150 && mee < 300){
+     Mee_DYcr->Fill((Electron1+Electron2).M());
      data_obs->Fill((Electron1+Electron2+BoostJet).M());
      data_DYcr_ele1_ecalTrkEnergyPostCorr->Fill(patElectron_ecalTrkEnergyPostCorr->at(0));
      data_DYcr_ele2_ecalTrkEnergyPostCorr->Fill(patElectron_ecalTrkEnergyPostCorr->at(1));
@@ -247,6 +245,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
 TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/CR_DY_data_ele_2017.root", "RECREATE");
 
+Mee_DYcr->Write();
 Mee_Zpeak->Write();
 data_Zpeak_ele1_ecalTrkEnergyPostCorr->Write();
 data_Zpeak_ele2_ecalTrkEnergyPostCorr->Write();

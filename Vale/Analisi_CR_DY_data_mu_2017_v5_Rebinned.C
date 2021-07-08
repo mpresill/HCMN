@@ -160,12 +160,13 @@ TH1D *pt_mumu = new TH1D ("pt_mumu", "pt_mumu", 100, 0, 1000);
 TH1D *M_eeJ = new TH1D ("M_eeJ", "M_eeJ", 8, asymbins);
 TH1D *pt_ee = new TH1D ("pt_ee", "pt_ee", 100, 0, 1000);
 
+TH1D *Mmumu_DYcr = new TH1D ("Mmumu_DYcr", "Mmumu_DYcr", 50, 150, 300);
 TH1D *M_mumuJ_Z = new TH1D ("M_mumuJ_Z", "M_mumuJ_Z", 8, asymbins);
 TH1D *pt_mumu_Z = new TH1D ("pt_mumu_Z", "pt_mumu_Z", 100, 0, 1000);
 TH1D *M_eeJ_Z = new TH1D ("M_eeJ_Z", "M_eeJ_Z", 8, asymbins);
 TH1D *pt_ee_Z = new TH1D ("pt_ee_Z", "pt_ee_Z", 100, 0, 1000);
-TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 10, 80, 100);
-TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 10, 80, 100);
+TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 60, 60, 120);
+TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 60, 60, 120);
 
 TLorentzVector Muon1;
 TLorentzVector Muon2;
@@ -208,6 +209,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
      M_mumu_Z_50130->Fill(mmumu);
    }
    if (mmumu >=150 && mmumu <= 300){
+    Mmumu_DYcr->Fill((Muon1+Muon2).M());
     M_mumuJ->Fill((Muon1+Muon2+BoostJet).M());  
     pt_mumu->Fill(Muon1.Pt() + Muon2.Pt());
    }
@@ -259,6 +261,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 //TFile *f = new TFile("plots/CR_DY_data_ele_2017.root", "RECREATE");
 TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/CR_DY_data_mu_2017.root", "RECREATE");
 
+Mmumu_DYcr->Write();
 n_best_Vtx->Write();
 M_mumu_100300->Write();
 M_mumu_Z_50130->Write();

@@ -162,8 +162,10 @@ TH1D *pt_mumu_Z = new TH1D ("pt_mumu_Z", "pt_mumu_Z", 100, 0, 1000);
 TH1D *M_eeJ_Z = new TH1D ("M_eeJ_Z", "M_eeJ_Z", 8, asymbins);
 TH1D *pt_ee_Z = new TH1D ("pt_ee_Z", "pt_ee_Z", 100, 0, 1000);
 
-TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 10, 80, 100);
-TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 10, 80, 100);
+TH1D *Mmumu_DYcr = new TH1D ("Mmumu_DYcr", "Mmumu_DYcr", 50, 150, 300);
+TH1D *Mee_DYcr = new TH1D ("Mee_DYcr", "Mee_DYcr", 50, 150, 300);
+TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 60, 60, 120);
+TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 60, 60, 120);
 
 TLorentzVector Muon1;
 TLorentzVector Muon2;
@@ -206,6 +208,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
    if (mmumu >=150 && mmumu <= 300){
     M_mumuJ->Fill((Muon1+Muon2+BoostJet).M());  
     pt_mumu->Fill(Muon1.Pt() + Muon2.Pt());
+    Mmumu_DYcr->Fill((Muon1+Muon2).M());
    }
     if (mmumu >= 60 && mmumu <= 120){
      M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M());
@@ -237,6 +240,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
         M_ee_Z_50130->Fill(mee);
     } 
     if (mee>=150 && mee <= 300){
+        Mee_DYcr->Fill((Electron1+Electron2).M());
         M_eeJ->Fill((Electron1+Electron2+BoostJet).M());
         pt_ee ->Fill(Electron1.Pt() + Electron2.Pt());
     }
@@ -269,6 +273,8 @@ M_eeJ_Z->Write();
 pt_ee_Z->Write();
 M_mumu_Zpeak->Write();
 M_ee_Zpeak->Write();
+Mmumu_DYcr->Write();
+Mee_DYcr->Write();
 
 NumFatJet->Write();
 NumFatJet_mu->Write();

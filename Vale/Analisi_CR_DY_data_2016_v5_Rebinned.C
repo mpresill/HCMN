@@ -148,17 +148,19 @@ TH1D *M_ee_100300 = new TH1D ("M_ee_100300", "M_ee_100300", 200, 100, 300);
 TH1D *M_mumu_Z_50130 = new TH1D ("M_mumu_Z_50130", "M_mumu_Z_50130", 80, 50, 130);
 TH1D *M_ee_Z_50130 = new TH1D ("M_ee_Z_50130", "M_ee_Z_50130", 80, 50, 130);
 
+TH1D *M_mumu = new TH1D ("M_mumu", "M_mumu", 50, 150, 300);
 TH1D *M_mumuJ = new TH1D ("M_mumuJ", "M_mumuJ", 8, asymbins);
 TH1D *pt_mumu = new TH1D ("pt_mumu", "pt_mumu", 100, 0, 1000);
 TH1D *M_eeJ = new TH1D ("M_eeJ", "M_eeJ", 8, asymbins);
 TH1D *pt_ee = new TH1D ("pt_ee", "pt_ee", 100, 0, 1000);
+TH1D *M_ee = new TH1D ("M_ee", "M_ee", 50, 150, 300);
 
 TH1D *M_mumuJ_Z = new TH1D ("M_mumuJ_Z", "M_mumuJ_Z", 8, asymbins);
 TH1D *pt_mumu_Z = new TH1D ("pt_mumu_Z", "pt_mumu_Z", 100, 0, 1000);
 TH1D *M_eeJ_Z = new TH1D ("M_eeJ_Z", "M_eeJ_Z", 8, asymbins);
 TH1D *pt_ee_Z = new TH1D ("pt_ee_Z", "pt_ee_Z", 100, 0, 1000);
-TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 10, 80, 100);
-TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 10, 80, 100);
+TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 60, 60, 120);
+TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 60, 60, 120);
 
 
 
@@ -200,6 +202,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
       M_mumu_Z_50130->Fill(mmumu);
    }
    if (mmumu >=150 && mmumu <= 300){
+    M_mumu->Fill((Muon1+Muon2).M());
     M_mumuJ->Fill((Muon1+Muon2+BoostJet).M());  
     pt_mumu->Fill(Muon1.Pt() + Muon2.Pt());
    }
@@ -236,6 +239,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
         M_ee_Z_50130->Fill(mee);
     } 
     if (mee>=150 && mee <= 300){
+        M_ee->Fill((Electron1+Electron2).M());
         M_eeJ->Fill((Electron1+Electron2+BoostJet).M());
         pt_ee ->Fill(Electron1.Pt() + Electron2.Pt());
     }
@@ -250,7 +254,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 }
 
 TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/CR_DY_data_mu_2016.root", "RECREATE");
-
+M_ee->Write();
+M_mumu->Write();
 n_best_Vtx->Write();
 M_mumu_100300->Write();
 M_mumu_Z_50130->Write();
