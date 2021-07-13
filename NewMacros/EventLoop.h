@@ -4,6 +4,7 @@
 #include <vector>
 #include <TString.h>
 #include <TChain.h>
+#include "Data.h"
 
 class EventLoop {
  public: 
@@ -38,6 +39,11 @@ class EventLoop {
  * @brief Instance of the TChain class used to read the data 
  */
  TChain* m_chain = 0;
+
+  /**
+  * @brief Instance of the data-access class
+  */
+  Data* m_data = 0;
 
 };
 
