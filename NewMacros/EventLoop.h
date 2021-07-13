@@ -5,6 +5,7 @@
 #include <TString.h>
 #include <TChain.h>
 #include "Data.h"
+#include "Algorithm.h"
 
 class EventLoop {
  public: 
@@ -32,6 +33,15 @@ class EventLoop {
  * @brief Name of the TTree instance. Must be same in all files
  */
  TString treeName;
+
+  /**
+  * @brief List of algorithms to be executed in the event loop
+  */
+  std::vector<Algorithm*> algorithms;
+
+
+
+
 
  protected:
 

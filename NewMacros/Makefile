@@ -4,9 +4,11 @@ PROGRAM = Analysis
 
 HDRS = EventLoop.h\
 	Data.h\
+	Algorithm.h\
  
 OBJS = EventLoop.o\
 	Data.o\
+	Algorithm.o\
         dict_$(PROGRAM).o
 
 #-----------------------------------------------------------------------------

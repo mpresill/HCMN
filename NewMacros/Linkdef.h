@@ -6,6 +6,7 @@
 // includes all headrefiles
 #include "EventLoop.h"
 #include "Data.h"
+#include "Algorithm.h"
 
 // All classes
 #pragma link C++ class EventLoop+;

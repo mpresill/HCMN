@@ -19,6 +19,11 @@ void EventLoop::initialize() {
  // create an instance of the Data class. Here the variables
  // are linked with the tree using the SetBranchAddress method
  m_data = new Data(m_chain);
+
+  // initialise the algorithms
+ for(auto algorithm : algorithms) {
+  algorithm->initialize(m_data);
+ }
 }
 
 void EventLoop::execute() {
@@ -38,10 +43,14 @@ void EventLoop::execute() {
    m_chain->GetEntry(i);
 
 
-    // now we can work with the variables. Let's for example print electron mass 
-   // but only for every 1000th event
-   if(i%1000==0) {
-    std::cout << "pt electron = " << m_data->patElectron_pt->at(0) << std::endl;
+  //  // now we can work with the variables. Let's for example print electron mass 
+  // // but only for every 1000th event
+  // if(i%1000==0) {
+  //  std::cout << "pt electron = " << m_data->patElectron_pt->at(0) << std::endl;
+  //}
+  // execute all the algorithms attached to this event loop
+  for(auto algorithm : algorithms) {
+    algorithm->execute();
   }
 
  }

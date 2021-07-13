@@ -39,6 +39,7 @@ namespace std {} using namespace std;
 // Header files passed as explicit arguments
 #include "EventLoop.h"
 #include "Data.h"
+#include "Algorithm.h"
 
 // Header files passed via #pragma extra_include
 
@@ -98,7 +99,7 @@ namespace ROOT {
       ::EventLoop *ptr = 0;
       static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(::EventLoop));
       static ::ROOT::TGenericClassInfo 
-         instance("EventLoop", "EventLoop.h", 9,
+         instance("EventLoop", "EventLoop.h", 10,
                   typeid(::EventLoop), ::ROOT::Internal::DefineBehavior(ptr, ptr),
                   &EventLoop_Dictionary, isa_proxy, 4,
                   sizeof(::EventLoop) );
@@ -289,11 +290,75 @@ namespace ROOT {
    }
 } // end of namespace ROOT for class vector<TString>
 
+namespace ROOT {
+   static TClass *vectorlEAlgorithmmUgR_Dictionary();
+   static void vectorlEAlgorithmmUgR_TClassManip(TClass*);
+   static void *new_vectorlEAlgorithmmUgR(void *p = 0);
+   static void *newArray_vectorlEAlgorithmmUgR(Long_t size, void *p);
+   static void delete_vectorlEAlgorithmmUgR(void *p);
+   static void deleteArray_vectorlEAlgorithmmUgR(void *p);
+   static void destruct_vectorlEAlgorithmmUgR(void *p);
+
+   // Function generating the singleton type initializer
+   static TGenericClassInfo *GenerateInitInstanceLocal(const vector<Algorithm*>*)
+   {
+      vector<Algorithm*> *ptr = 0;
+      static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(vector<Algorithm*>));
+      static ::ROOT::TGenericClassInfo 
+         instance("vector<Algorithm*>", -2, "vector", 339,
+                  typeid(vector<Algorithm*>), ::ROOT::Internal::DefineBehavior(ptr, ptr),
+                  &vectorlEAlgorithmmUgR_Dictionary, isa_proxy, 0,
+                  sizeof(vector<Algorithm*>) );
+      instance.SetNew(&new_vectorlEAlgorithmmUgR);
+      instance.SetNewArray(&newArray_vectorlEAlgorithmmUgR);
+      instance.SetDelete(&delete_vectorlEAlgorithmmUgR);
+      instance.SetDeleteArray(&deleteArray_vectorlEAlgorithmmUgR);
+      instance.SetDestructor(&destruct_vectorlEAlgorithmmUgR);
+      instance.AdoptCollectionProxyInfo(TCollectionProxyInfo::Generate(TCollectionProxyInfo::Pushback< vector<Algorithm*> >()));
+      return &instance;
+   }
+   // Static variable to force the class initialization
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const vector<Algorithm*>*)0x0); R__UseDummy(_R__UNIQUE_DICT_(Init));
+
+   // Dictionary for non-ClassDef classes
+   static TClass *vectorlEAlgorithmmUgR_Dictionary() {
+      TClass* theClass =::ROOT::GenerateInitInstanceLocal((const vector<Algorithm*>*)0x0)->GetClass();
+      vectorlEAlgorithmmUgR_TClassManip(theClass);
+   return theClass;
+   }
+
+   static void vectorlEAlgorithmmUgR_TClassManip(TClass* ){
+   }
+
+} // end of namespace ROOT
+
+namespace ROOT {
+   // Wrappers around operator new
+   static void *new_vectorlEAlgorithmmUgR(void *p) {
+      return  p ? ::new((::ROOT::Internal::TOperatorNewHelper*)p) vector<Algorithm*> : new vector<Algorithm*>;
+   }
+   static void *newArray_vectorlEAlgorithmmUgR(Long_t nElements, void *p) {
+      return p ? ::new((::ROOT::Internal::TOperatorNewHelper*)p) vector<Algorithm*>[nElements] : new vector<Algorithm*>[nElements];
+   }
+   // Wrapper around operator delete
+   static void delete_vectorlEAlgorithmmUgR(void *p) {
+      delete ((vector<Algorithm*>*)p);
+   }
+   static void deleteArray_vectorlEAlgorithmmUgR(void *p) {
+      delete [] ((vector<Algorithm*>*)p);
+   }
+   static void destruct_vectorlEAlgorithmmUgR(void *p) {
+      typedef vector<Algorithm*> current_t;
+      ((current_t*)p)->~current_t();
+   }
+} // end of namespace ROOT for class vector<Algorithm*>
+
 namespace {
   void TriggerDictionaryInitialization_dict_Analysis_Impl() {
     static const char* headers[] = {
 "EventLoop.h",
 "Data.h",
+"Algorithm.h",
 0
     };
     static const char* includePaths[] = {
@@ -320,6 +385,7 @@ class __attribute__((annotate("$clingAutoload$EventLoop.h")))  EventLoop;
 #define _BACKWARD_BACKWARD_WARNING_H
 #include "EventLoop.h"
 #include "Data.h"
+#include "Algorithm.h"
 
 #undef  _BACKWARD_BACKWARD_WARNING_H
 )DICTPAYLOAD";
