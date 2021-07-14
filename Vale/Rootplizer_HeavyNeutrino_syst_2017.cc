@@ -107,13 +107,53 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //EVENT variables (PDF syst)
    double rEVENT_genHT; rEVENT_genHT=0; TBranch* b_rEVENT_genHT = 0; readingtree->SetBranchAddress("EVENT_genHT",&rEVENT_genHT,&b_rEVENT_genHT);
   double rEVENT_genPt; rEVENT_genPt=0; TBranch* b_rEVENT_genPt = 0; readingtree->SetBranchAddress("EVENT_genPt",&rEVENT_genPt,&b_rEVENT_genPt);
+  double rEVENT_prefireWeight; rEVENT_prefireWeight=0; TBranch* b_rEVENT_prefireWeight = 0; readingtree->SetBranchAddress("EVENT_prefireWeight", &rEVENT_prefireWeight, &b_rEVENT_prefireWeight);
+ double rEVENT_prefireWeightUp; rEVENT_prefireWeightUp=0; TBranch* b_rEVENT_prefireWeightUp = 0; readingtree->SetBranchAddress("EVENT_prefireWeightUp", &rEVENT_prefireWeightUp, &b_rEVENT_prefireWeightUp);
+ double rEVENT_prefireWeightDown; rEVENT_prefireWeightDown=0; TBranch* b_rEVENT_prefireWeightDown = 0; readingtree->SetBranchAddress("EVENT_prefireWeightDown", &rEVENT_prefireWeightDown, &b_rEVENT_prefireWeightDown);
+  /////
+  //PDF
+  //v1
+  int rEVENT_PDFv1_lhaid; rEVENT_PDFv1_lhaid = 0; TBranch* b_rEVENT_PDFv1_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv1_lhaid",&rEVENT_PDFv1_lhaid,&b_rEVENT_PDFv1_lhaid);
+  double rEVENT_PDFv1WeightUp; rEVENT_PDFv1WeightUp = 0; TBranch* b_rEVENT_PDFv1WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv1WeightUp",&rEVENT_PDFv1WeightUp,&b_rEVENT_PDFv1WeightUp);
+  double rEVENT_PDFv1WeightDown; rEVENT_PDFv1WeightDown = 0; TBranch* b_rEVENT_PDFv1WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv1WeightDown",&rEVENT_PDFv1WeightDown,&b_rEVENT_PDFv1WeightDown);
+  double rEVENT_PDFv1WeightCentral; rEVENT_PDFv1WeightCentral = 0; TBranch* b_rEVENT_PDFv1WeightCentral = 0; readingtree->SetBranchAddress("EVENT_PDFv1WeightCentral",&rEVENT_PDFv1WeightCentral,&b_rEVENT_PDFv1WeightCentral);
+  double rEVENT_PDFv1WeightMean; rEVENT_PDFv1WeightMean = 0; TBranch* b_rEVENT_PDFv1WeightMean = 0; readingtree->SetBranchAddress("EVENT_PDFv1WeightMean",&rEVENT_PDFv1WeightMean,&b_rEVENT_PDFv1WeightMean);
+  double rEVENT_PDFv1WeightStdDev; rEVENT_PDFv1WeightStdDev = 0; TBranch* b_rEVENT_PDFv1WeightStdDev = 0; readingtree->SetBranchAddress("EVENT_PDFv1WeightStdDev",&rEVENT_PDFv1WeightStdDev,&b_rEVENT_PDFv1WeightStdDev);
+  //v2
+  int rEVENT_PDFv2_lhaid; rEVENT_PDFv2_lhaid = 0; TBranch* b_rEVENT_PDFv2_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv2_lhaid",&rEVENT_PDFv2_lhaid,&b_rEVENT_PDFv2_lhaid);
+  double rEVENT_PDFv2WeightUp; rEVENT_PDFv2WeightUp = 0; TBranch* b_rEVENT_PDFv2WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv2WeightUp",&rEVENT_PDFv2WeightUp,&b_rEVENT_PDFv2WeightUp);
+  double rEVENT_PDFv2WeightDown; rEVENT_PDFv2WeightDown = 0; TBranch* b_rEVENT_PDFv2WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv2WeightDown",&rEVENT_PDFv2WeightDown,&b_rEVENT_PDFv2WeightDown);
+  double rEVENT_PDFv2WeightCentral; rEVENT_PDFv2WeightCentral = 0; TBranch* b_rEVENT_PDFv2WeightCentral = 0; readingtree->SetBranchAddress("EVENT_PDFv2WeightCentral",&rEVENT_PDFv2WeightCentral,&b_rEVENT_PDFv2WeightCentral);
+  double rEVENT_PDFv2WeightMean; rEVENT_PDFv2WeightMean = 0; TBranch* b_rEVENT_PDFv2WeightMean = 0; readingtree->SetBranchAddress("EVENT_PDFv2WeightMean",&rEVENT_PDFv2WeightMean,&b_rEVENT_PDFv2WeightMean);
+  double rEVENT_PDFv2WeightStdDev; rEVENT_PDFv2WeightStdDev = 0; TBranch* b_rEVENT_PDFv2WeightStdDev = 0; readingtree->SetBranchAddress("EVENT_PDFv2WeightStdDev",&rEVENT_PDFv2WeightStdDev,&b_rEVENT_PDFv2WeightStdDev);
+  //v3
+  int rEVENT_PDFv3_lhaid; rEVENT_PDFv3_lhaid = 0; TBranch* b_rEVENT_PDFv3_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv3_lhaid",&rEVENT_PDFv3_lhaid,&b_rEVENT_PDFv3_lhaid);
+  double rEVENT_PDFv3WeightUp; rEVENT_PDFv3WeightUp = 0; TBranch* b_rEVENT_PDFv3WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv3WeightUp",&rEVENT_PDFv3WeightUp,&b_rEVENT_PDFv3WeightUp);
+  double rEVENT_PDFv3WeightDown; rEVENT_PDFv3WeightDown = 0; TBranch* b_rEVENT_PDFv3WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv3WeightDown",&rEVENT_PDFv3WeightDown,&b_rEVENT_PDFv3WeightDown);
+  double rEVENT_PDFv3WeightCentral; rEVENT_PDFv3WeightCentral = 0; TBranch* b_rEVENT_PDFv3WeightCentral = 0; readingtree->SetBranchAddress("EVENT_PDFv3WeightCentral",&rEVENT_PDFv3WeightCentral,&b_rEVENT_PDFv3WeightCentral);
+  double rEVENT_PDFv3WeightMean; rEVENT_PDFv3WeightMean = 0; TBranch* b_rEVENT_PDFv3WeightMean = 0; readingtree->SetBranchAddress("EVENT_PDFv3WeightMean",&rEVENT_PDFv3WeightMean,&b_rEVENT_PDFv3WeightMean);
+  double rEVENT_PDFv3WeightStdDev; rEVENT_PDFv3WeightStdDev = 0; TBranch* b_rEVENT_PDFv3WeightStdDev = 0; readingtree->SetBranchAddress("EVENT_PDFv3WeightStdDev",&rEVENT_PDFv3WeightStdDev,&b_rEVENT_PDFv3WeightStdDev);
+  //v4
   int rEVENT_PDFv4_lhaid; rEVENT_PDFv4_lhaid = 0; TBranch* b_rEVENT_PDFv4_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv4_lhaid",&rEVENT_PDFv4_lhaid,&b_rEVENT_PDFv4_lhaid);
   double rEVENT_PDFv4WeightUp; rEVENT_PDFv4WeightUp = 0; TBranch* b_rEVENT_PDFv4WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightUp",&rEVENT_PDFv4WeightUp,&b_rEVENT_PDFv4WeightUp);
   double rEVENT_PDFv4WeightDown; rEVENT_PDFv4WeightDown = 0; TBranch* b_rEVENT_PDFv4WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightDown",&rEVENT_PDFv4WeightDown,&b_rEVENT_PDFv4WeightDown);
   double rEVENT_PDFv4WeightCentral; rEVENT_PDFv4WeightCentral = 0; TBranch* b_rEVENT_PDFv4WeightCentral = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightCentral",&rEVENT_PDFv4WeightCentral,&b_rEVENT_PDFv4WeightCentral);
   double rEVENT_PDFv4WeightMean; rEVENT_PDFv4WeightMean = 0; TBranch* b_rEVENT_PDFv4WeightMean = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightMean",&rEVENT_PDFv4WeightMean,&b_rEVENT_PDFv4WeightMean);
   double rEVENT_PDFv4WeightStdDev; rEVENT_PDFv4WeightStdDev = 0; TBranch* b_rEVENT_PDFv4WeightStdDev = 0; readingtree->SetBranchAddress("EVENT_PDFv4WeightStdDev",&rEVENT_PDFv4WeightStdDev,&b_rEVENT_PDFv4WeightStdDev);
-
+ //v5
+ int rEVENT_PDFv5_lhaid; rEVENT_PDFv5_lhaid = 0; TBranch* b_rEVENT_PDFv5_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv5_lhaid",&rEVENT_PDFv5_lhaid,&b_rEVENT_PDFv5_lhaid);
+  double rEVENT_PDFv5WeightUp; rEVENT_PDFv5WeightUp = 0; TBranch* b_rEVENT_PDFv5WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv5WeightUp",&rEVENT_PDFv5WeightUp,&b_rEVENT_PDFv5WeightUp);
+  double rEVENT_PDFv5WeightDown; rEVENT_PDFv5WeightDown = 0; TBranch* b_rEVENT_PDFv5WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv5WeightDown",&rEVENT_PDFv5WeightDown,&b_rEVENT_PDFv5WeightDown);
+  double rEVENT_PDFv5WeightCentral; rEVENT_PDFv5WeightCentral = 0; TBranch* b_rEVENT_PDFv5WeightCentral = 0; readingtree->SetBranchAddress("EVENT_PDFv5WeightCentral",&rEVENT_PDFv5WeightCentral,&b_rEVENT_PDFv5WeightCentral);
+  double rEVENT_PDFv5WeightMean; rEVENT_PDFv5WeightMean = 0; TBranch* b_rEVENT_PDFv5WeightMean = 0; readingtree->SetBranchAddress("EVENT_PDFv5WeightMean",&rEVENT_PDFv5WeightMean,&b_rEVENT_PDFv5WeightMean);
+  double rEVENT_PDFv5WeightStdDev; rEVENT_PDFv5WeightStdDev = 0; TBranch* b_rEVENT_PDFv5WeightStdDev = 0; readingtree->SetBranchAddress("EVENT_PDFv5WeightStdDev",&rEVENT_PDFv5WeightStdDev,&b_rEVENT_PDFv5WeightStdDev);
+ //v6
+ int rEVENT_PDFv6_lhaid; rEVENT_PDFv6_lhaid = 0; TBranch* b_rEVENT_PDFv6_lhaid = 0; readingtree->SetBranchAddress("EVENT_PDFv6_lhaid",&rEVENT_PDFv6_lhaid,&b_rEVENT_PDFv6_lhaid);
+  double rEVENT_PDFv6WeightUp; rEVENT_PDFv6WeightUp = 0; TBranch* b_rEVENT_PDFv6WeightUp = 0; readingtree->SetBranchAddress("EVENT_PDFv6WeightUp",&rEVENT_PDFv6WeightUp,&b_rEVENT_PDFv6WeightUp);
+  double rEVENT_PDFv6WeightDown; rEVENT_PDFv6WeightDown = 0; TBranch* b_rEVENT_PDFv6WeightDown = 0; readingtree->SetBranchAddress("EVENT_PDFv6WeightDown",&rEVENT_PDFv6WeightDown,&b_rEVENT_PDFv6WeightDown);
+  double rEVENT_PDFv6WeightCentral; rEVENT_PDFv6WeightCentral = 0; TBranch* b_rEVENT_PDFv6WeightCentral = 0; readingtree->SetBranchAddress("EVENT_PDFv6WeightCentral",&rEVENT_PDFv6WeightCentral,&b_rEVENT_PDFv6WeightCentral);
+  double rEVENT_PDFv6WeightMean; rEVENT_PDFv6WeightMean = 0; TBranch* b_rEVENT_PDFv6WeightMean = 0; readingtree->SetBranchAddress("EVENT_PDFv6WeightMean",&rEVENT_PDFv6WeightMean,&b_rEVENT_PDFv6WeightMean);
+  double rEVENT_PDFv6WeightStdDev; rEVENT_PDFv6WeightStdDev = 0; TBranch* b_rEVENT_PDFv6WeightStdDev = 0; readingtree->SetBranchAddress("EVENT_PDFv6WeightStdDev",&rEVENT_PDFv6WeightStdDev,&b_rEVENT_PDFv6WeightStdDev);
 
   //Trigger
   int rHLT_Photon200; rHLT_Photon200 = 0; TBranch* b_rHLT_Photon200 = 0; readingtree->SetBranchAddress("HLT_Photon200",&rHLT_Photon200,&b_rHLT_Photon200);
@@ -149,7 +189,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   readingtree->SetBranchAddress("Met_type1PF_pt",&rMet_type1PF_pt,&b_rMet_type1PF_pt);
   //Muons
   //Kinematics:
-  vector<double>* rMuon_pt; rMuon_pt = 0; TBranch* b_rMuon_pt = 0; readingtree->SetBranchAddress("Muon_pt",&rMuon_pt,&b_rMuon_pt);
+  vector<double>* rMuon_pt_tunePbt; rMuon_pt_tunePbt = 0; TBranch* b_rMuon_pt_tunePbt = 0; readingtree->SetBranchAddress("Muon_pt_tunePbt",&rMuon_pt_tunePbt,&b_rMuon_pt_tunePbt);
   vector<double>* rMuon_eta; rMuon_eta = 0; TBranch* b_rMuon_eta = 0; readingtree->SetBranchAddress("Muon_eta",&rMuon_eta,&b_rMuon_eta);
   vector<double>* rMuon_phi; rMuon_phi = 0; TBranch* b_rMuon_phi = 0; readingtree->SetBranchAddress("Muon_phi",&rMuon_phi,&b_rMuon_phi);
   vector<double>* rMuon_energy; rMuon_energy = 0; TBranch* b_rMuon_energy = 0;
@@ -193,6 +233,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<int>* rpatElectron_py; rpatElectron_py = 0; TBranch* b_rpatElectron_py = 0; readingtree->SetBranchAddress("patElectron_py",&rpatElectron_py,&b_rpatElectron_py);
   vector<int>* rpatElectron_pz; rpatElectron_pz = 0; TBranch* b_rpatElectron_pz = 0; readingtree->SetBranchAddress("patElectron_pz",&rpatElectron_pz,&b_rpatElectron_pz);
   vector<double>* rpatElectron_energy; rpatElectron_energy = 0; TBranch* b_rpatElectron_energy = 0; readingtree->SetBranchAddress("patElectron_energy",&rpatElectron_energy,&b_rpatElectron_energy);
+  vector<double>* rpatElectron_ecalTrkEnergyPostCorr; rpatElectron_ecalTrkEnergyPostCorr = 0; TBranch* b_rpatElectron_ecalTrkEnergyPostCorr = 0; readingtree->SetBranchAddress("patElectron_ecalTrkEnergyPostCorr",&rpatElectron_ecalTrkEnergyPostCorr,&b_rpatElectron_ecalTrkEnergyPostCorr);
   vector<double>* rpatElectron_energyScaleUp; rpatElectron_energyScaleUp = 0; TBranch* b_rpatElectron_energyScaleUp = 0; readingtree->SetBranchAddress("patElectron_energyScaleUp",&rpatElectron_energyScaleUp, &b_rpatElectron_energyScaleUp);
   vector<double>* rpatElectron_energyScaleDown; rpatElectron_energyScaleDown = 0; TBranch* b_rpatElectron_energyScaleDown = 0; readingtree->SetBranchAddress("patElectron_energyScaleDown",&rpatElectron_energyScaleDown, &b_rpatElectron_energyScaleDown);
   vector<double>* rpatElectron_energySigmaUp; rpatElectron_energySigmaUp = 0; TBranch* b_rpatElectron_energySigmaUp = 0; readingtree->SetBranchAddress("patElectron_energySigmaUp",&rpatElectron_energySigmaUp, &b_rpatElectron_energySigmaUp);
@@ -252,6 +293,8 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   readingtree->SetBranchAddress("BoostedJet_energy",&rBoostedJet_energy,&b_rBoostedJet_energy);
   vector<double>* rBoostedJet_mass; rBoostedJet_mass = 0; TBranch* b_rBoostedJet_mass = 0;
   readingtree->SetBranchAddress("BoostedJet_mass",&rBoostedJet_mass,&b_rBoostedJet_mass); 
+  vector<double>* rBoostedJet_softdrop_mass; rBoostedJet_softdrop_mass = 0; TBranch* b_rBoostedJet_softdrop_mass = 0;
+  readingtree->SetBranchAddress("BoostedJet_softdrop_mass",&rBoostedJet_softdrop_mass,&b_rBoostedJet_softdrop_mass);
   //ID selection:
   vector<double>* rBoostedJet_neutralHadEnergyFraction; rBoostedJet_neutralHadEnergyFraction = 0; TBranch* b_rBoostedJet_neutralHadEnergyFraction = 0; readingtree->SetBranchAddress("BoostedJet_neutralHadEnergyFraction",&rBoostedJet_neutralHadEnergyFraction,&b_rBoostedJet_neutralHadEnergyFraction);
   vector<double>* rBoostedJet_neutralEmEmEnergyFraction; rBoostedJet_neutralEmEmEnergyFraction = 0; TBranch* b_rBoostedJet_neutralEmEmEnergyFraction = 0; readingtree->SetBranchAddress("BoostedJet_neutralEmEmEnergyFraction",&rBoostedJet_neutralEmEmEnergyFraction,&b_rBoostedJet_neutralEmEmEnergyFraction);
@@ -283,6 +326,55 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    //   New variables
    double EVENT_genHT; newtree->Branch("EVENT_genHT", &EVENT_genHT);
    double EVENT_genPt; newtree->Branch("EVENT_genPt", &EVENT_genPt);
+   double EVENT_prefireWeight; newtree->Branch("EVENT_prefireWeight", &EVENT_prefireWeight);
+   double EVENT_prefireWeightUp; newtree->Branch("EVENT_prefireWeightUp", &EVENT_prefireWeightUp);
+   double EVENT_prefireWeightDown; newtree->Branch("EVENT_prefireWeightDown", &EVENT_prefireWeightDown);
+   //PDF
+   //v1
+   int EVENT_PDFv1_lhaid; newtree->Branch("EVENT_PDFv1_lhaid",&EVENT_PDFv1_lhaid);
+   double EVENT_PDFv1WeightUp; newtree->Branch("EVENT_PDFv1WeightUp",&EVENT_PDFv1WeightUp);
+   double EVENT_PDFv1WeightDown; newtree->Branch("EVENT_PDFv1WeightDown",&EVENT_PDFv1WeightDown);
+   double EVENT_PDFv1WeightCentral; newtree->Branch("EVENT_PDFv1WeightCentral",&EVENT_PDFv1WeightCentral);
+   double EVENT_PDFv1WeightMean; newtree->Branch("EVENT_PDFv1WeightMean",&EVENT_PDFv1WeightMean);
+   double EVENT_PDFv1WeightStdDev; newtree->Branch("EVENT_PDFv1WeightStdDev",&EVENT_PDFv1WeightStdDev);
+   //v2
+   int EVENT_PDFv2_lhaid; newtree->Branch("EVENT_PDFv2_lhaid",&EVENT_PDFv2_lhaid);
+   double EVENT_PDFv2WeightUp; newtree->Branch("EVENT_PDFv2WeightUp",&EVENT_PDFv2WeightUp);
+   double EVENT_PDFv2WeightDown; newtree->Branch("EVENT_PDFv2WeightDown",&EVENT_PDFv2WeightDown);
+   double EVENT_PDFv2WeightCentral; newtree->Branch("EVENT_PDFv2WeightCentral",&EVENT_PDFv2WeightCentral);
+   double EVENT_PDFv2WeightMean; newtree->Branch("EVENT_PDFv2WeightMean",&EVENT_PDFv2WeightMean);
+   double EVENT_PDFv2WeightStdDev; newtree->Branch("EVENT_PDFv2WeightStdDev",&EVENT_PDFv2WeightStdDev);
+   //v3
+   int EVENT_PDFv3_lhaid; newtree->Branch("EVENT_PDFv3_lhaid",&EVENT_PDFv3_lhaid);
+   double EVENT_PDFv3WeightUp; newtree->Branch("EVENT_PDFv3WeightUp",&EVENT_PDFv3WeightUp);
+   double EVENT_PDFv3WeightDown; newtree->Branch("EVENT_PDFv3WeightDown",&EVENT_PDFv3WeightDown);
+   double EVENT_PDFv3WeightCentral; newtree->Branch("EVENT_PDFv3WeightCentral",&EVENT_PDFv3WeightCentral);
+   double EVENT_PDFv3WeightMean; newtree->Branch("EVENT_PDFv3WeightMean",&EVENT_PDFv3WeightMean);
+   double EVENT_PDFv3WeightStdDev; newtree->Branch("EVENT_PDFv3WeightStdDev",&EVENT_PDFv3WeightStdDev);
+  //v4
+   int EVENT_PDFv4_lhaid; newtree->Branch("EVENT_PDFv4_lhaid",&EVENT_PDFv4_lhaid);
+   double EVENT_PDFv4WeightUp; newtree->Branch("EVENT_PDFv4WeightUp",&EVENT_PDFv4WeightUp);
+   double EVENT_PDFv4WeightDown; newtree->Branch("EVENT_PDFv4WeightDown",&EVENT_PDFv4WeightDown);
+   double EVENT_PDFv4WeightCentral; newtree->Branch("EVENT_PDFv4WeightCentral",&EVENT_PDFv4WeightCentral);
+   double EVENT_PDFv4WeightMean; newtree->Branch("EVENT_PDFv4WeightMean",&EVENT_PDFv4WeightMean);
+   double EVENT_PDFv4WeightStdDev; newtree->Branch("EVENT_PDFv4WeightStdDev",&EVENT_PDFv4WeightStdDev);
+   //v5
+   int EVENT_PDFv5_lhaid; newtree->Branch("EVENT_PDFv5_lhaid",&EVENT_PDFv5_lhaid);
+   double EVENT_PDFv5WeightUp; newtree->Branch("EVENT_PDFv5WeightUp",&EVENT_PDFv5WeightUp);
+   double EVENT_PDFv5WeightDown; newtree->Branch("EVENT_PDFv5WeightDown",&EVENT_PDFv5WeightDown);
+   double EVENT_PDFv5WeightCentral; newtree->Branch("EVENT_PDFv5WeightCentral",&EVENT_PDFv5WeightCentral);
+   double EVENT_PDFv5WeightMean; newtree->Branch("EVENT_PDFv5WeightMean",&EVENT_PDFv5WeightMean);
+   double EVENT_PDFv5WeightStdDev; newtree->Branch("EVENT_PDFv5WeightStdDev",&EVENT_PDFv5WeightStdDev);
+   //v6
+   int EVENT_PDFv6_lhaid; newtree->Branch("EVENT_PDFv6_lhaid",&EVENT_PDFv6_lhaid);
+   double EVENT_PDFv6WeightUp; newtree->Branch("EVENT_PDFv6WeightUp",&EVENT_PDFv6WeightUp);
+   double EVENT_PDFv6WeightDown; newtree->Branch("EVENT_PDFv6WeightDown",&EVENT_PDFv6WeightDown);
+   double EVENT_PDFv6WeightCentral; newtree->Branch("EVENT_PDFv6WeightCentral",&EVENT_PDFv6WeightCentral);
+   double EVENT_PDFv6WeightMean; newtree->Branch("EVENT_PDFv6WeightMean",&EVENT_PDFv6WeightMean);
+   double EVENT_PDFv6WeightStdDev; newtree->Branch("EVENT_PDFv6WeightStdDev",&EVENT_PDFv6WeightStdDev);
+
+
+
    /////
    //Trigger:
    int HLT_Photon200; newtree->Branch("HLT_Photon200",&HLT_Photon200);
@@ -306,8 +398,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<double>* Gen_numMother = new std::vector<double>; newtree->Branch("Gen_numMother",&Gen_numMother);
 
    //Muons:
-   vector<double>* Muon_pt = new std::vector<double>; newtree->Branch("Muon_pt",&Muon_pt);
-   vector<double>* Muon_pt_corr = new std::vector<double>; newtree->Branch("Muon_pt_corr",&Muon_pt_corr);
+   vector<double>* Muon_pt_tunePbt = new std::vector<double>; newtree->Branch("Muon_pt_tunePbt",&Muon_pt_tunePbt);
+   vector<double>* Muon_pt_tunePbt_corr = new std::vector<double>; newtree->Branch("Muon_pt_tunePbt_corr",&Muon_pt_tunePbt_corr);
+   vector<double>* Muon_pt_tunePbt_Roc = new std::vector<double>; newtree->Branch("Muon_pt_tunePbt_Roc",&Muon_pt_tunePbt_Roc);
    vector<double>* Muon_eta = new std::vector<double>; newtree->Branch("Muon_eta",&Muon_eta);
    vector<double>* Muon_phi = new std::vector<double>; newtree->Branch("Muon_phi",&Muon_phi);
    vector<double>* Muon_p = new std::vector<double>; newtree->Branch("Muon_p",&Muon_p);
@@ -321,6 +414,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* Muon_relIsoDeltaBetaR03 = new std::vector<double>; newtree->Branch("Muon_relIsoDeltaBetaR03",&Muon_relIsoDeltaBetaR03);
    vector<double>* Muon_relIsoDeltaBetaR04 = new std::vector<double>; newtree->Branch("Muon_relIsoDeltaBetaR04",&Muon_relIsoDeltaBetaR04);
    vector<double>* Muon_isHighPt = new std::vector<double>; newtree->Branch("Muon_isHighPt",&Muon_isHighPt);
+   vector<int>* Muon_TLayers = new std::vector<int>; newtree->Branch("Muon_TLayers", &Muon_TLayers);
    vector<int>* Muon_loose = new std::vector<int>; newtree->Branch("Muon_loose",&Muon_loose);
    vector<int>* Muon_medium = new std::vector<int>; newtree->Branch("Muon_medium",&Muon_medium);
    vector<int>* Muon_tight = new std::vector<int>; newtree->Branch("Muon_tight",&Muon_tight);
@@ -330,6 +424,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   vector<double>* patElectron_eta = new std::vector<double>; newtree->Branch("patElectron_eta",&patElectron_eta);
   vector<double>* patElectron_phi = new std::vector<double>; newtree->Branch("patElectron_phi",&patElectron_phi);
   vector<double>* patElectron_energy = new std::vector<double>; newtree->Branch("patElectron_energy",&patElectron_energy);
+  vector<double>* patElectron_ecalTrkEnergyPostCorr = new std::vector<double>; newtree->Branch("patElectron_ecalTrkEnergyPostCorr",&patElectron_ecalTrkEnergyPostCorr);
   vector<double>* patElectron_energyScaleUp = new std::vector<double>; newtree->Branch("patElectron_energyScaleUp",&patElectron_energyScaleUp);
   vector<double>* patElectron_energyScaleDown = new std::vector<double>; newtree->Branch("patElectron_energyScaleDown",&patElectron_energyScaleDown);
   vector<double>* patElectron_energySigmaUp = new std::vector<double>; newtree->Branch("patElectron_energySigmaUp",&patElectron_energySigmaUp);
@@ -372,6 +467,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* BoostedJet_phi = new std::vector<double>; newtree->Branch("BoostedJet_phi",&BoostedJet_phi);
    vector<double>* BoostedJet_energy = new std::vector<double>; newtree->Branch("BoostedJet_energy",&BoostedJet_energy);
    vector<double>* BoostedJet_mass = new std::vector<double>; newtree->Branch("BoostedJet_mass",&BoostedJet_mass);
+   vector<double>* BoostedJet_softdrop_mass = new std::vector<double>; newtree->Branch("BoostedJet_softdrop_mass",&BoostedJet_softdrop_mass);
    vector<double>* BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags = new std::vector<double>; newtree->Branch("BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags",&BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags);
    vector<bool>* BoostedJet_M = new std::vector<bool>; newtree->Branch("BoostedJet_M",&BoostedJet_M);
    vector<double>* BoostedJet_nJets = new std::vector<double>; newtree->Branch("BoostedJet_nJets",&BoostedJet_nJets);
@@ -388,15 +484,6 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    vector<double>* JerSFup = new std::vector<double>; newtree->Branch("JerSFup",&JerSFup);
    vector<double>* JerSFdown = new std::vector<double>; newtree->Branch("JerSFdown",&JerSFdown);
 
-   
-
-  // EVENT (PDF syst)
-  double EVENT_PDFv4_lhaid; newtree->Branch("EVENT_PDFv4_lhaid",&EVENT_PDFv4_lhaid);
-  double EVENT_PDFv4WeightUp; newtree->Branch("EVENT_PDFv4WeightUp",&EVENT_PDFv4WeightUp);
-  double EVENT_PDFv4WeightDown; newtree->Branch("EVENT_PDFv4WeightDown",&EVENT_PDFv4WeightDown);
-  double EVENT_PDFv4WeightCentral; newtree->Branch("EVENT_PDFv4WeightCentral",&EVENT_PDFv4WeightCentral);
-  double EVENT_PDFv4WeightMean; newtree->Branch("EVENT_PDFv4WeightMean",&EVENT_PDFv4WeightMean);
-  double EVENT_PDFv4WeightStdDev; newtree->Branch("EVENT_PDFv4WeightStdDev",&EVENT_PDFv4WeightStdDev);
 
    //PU:
    double PileupWeight; newtree->Branch("PileupWeight",&PileupWeight);
@@ -515,13 +602,52 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     //EVENT (PDF syst)
     b_rEVENT_genHT->GetEntry(en);
     b_rEVENT_genPt->GetEntry(en);
-
+    b_rEVENT_prefireWeight->GetEntry(en);
+    b_rEVENT_prefireWeightUp->GetEntry(en);
+    b_rEVENT_prefireWeightDown->GetEntry(en);
+    //PDF
+    //v1
+    b_rEVENT_PDFv1_lhaid->GetEntry(en);
+    b_rEVENT_PDFv1WeightUp->GetEntry(en);
+    b_rEVENT_PDFv1WeightCentral->GetEntry(en);
+    b_rEVENT_PDFv1WeightDown->GetEntry(en);
+    b_rEVENT_PDFv1WeightMean->GetEntry(en);
+    b_rEVENT_PDFv1WeightStdDev->GetEntry(en);
+    //v2
+    b_rEVENT_PDFv2_lhaid->GetEntry(en);
+    b_rEVENT_PDFv2WeightUp->GetEntry(en);
+    b_rEVENT_PDFv2WeightCentral->GetEntry(en);
+    b_rEVENT_PDFv2WeightDown->GetEntry(en);
+    b_rEVENT_PDFv2WeightMean->GetEntry(en);
+    b_rEVENT_PDFv2WeightStdDev->GetEntry(en);
+    //v3
+    b_rEVENT_PDFv3_lhaid->GetEntry(en);
+    b_rEVENT_PDFv3WeightUp->GetEntry(en);
+    b_rEVENT_PDFv3WeightCentral->GetEntry(en);
+    b_rEVENT_PDFv3WeightDown->GetEntry(en);
+    b_rEVENT_PDFv3WeightMean->GetEntry(en);
+    b_rEVENT_PDFv3WeightStdDev->GetEntry(en);
+    //v4
     b_rEVENT_PDFv4_lhaid->GetEntry(en);
     b_rEVENT_PDFv4WeightUp->GetEntry(en);
     b_rEVENT_PDFv4WeightCentral->GetEntry(en);
     b_rEVENT_PDFv4WeightDown->GetEntry(en);
     b_rEVENT_PDFv4WeightMean->GetEntry(en);
     b_rEVENT_PDFv4WeightStdDev->GetEntry(en);
+    //v5
+    b_rEVENT_PDFv5_lhaid->GetEntry(en);
+    b_rEVENT_PDFv5WeightUp->GetEntry(en);
+    b_rEVENT_PDFv5WeightCentral->GetEntry(en);
+    b_rEVENT_PDFv5WeightDown->GetEntry(en);
+    b_rEVENT_PDFv5WeightMean->GetEntry(en);
+    b_rEVENT_PDFv5WeightStdDev->GetEntry(en);
+    //v6
+    b_rEVENT_PDFv6_lhaid->GetEntry(en);
+    b_rEVENT_PDFv6WeightUp->GetEntry(en);
+    b_rEVENT_PDFv6WeightCentral->GetEntry(en);
+    b_rEVENT_PDFv6WeightDown->GetEntry(en);
+    b_rEVENT_PDFv6WeightMean->GetEntry(en);
+    b_rEVENT_PDFv6WeightStdDev->GetEntry(en); 
 
     //PU:
     b_rPUWeight->GetEntry(en);
@@ -544,7 +670,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
     //Muons
     //Kinematics:
-    b_rMuon_pt->GetEntry(en);
+    b_rMuon_pt_tunePbt->GetEntry(en);
     b_rMuon_eta->GetEntry(en);
     b_rMuon_phi->GetEntry(en);
     b_rMuon_energy->GetEntry(en);
@@ -578,6 +704,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rpatElectron_px->GetEntry(en);
     b_rpatElectron_py->GetEntry(en);
     b_rpatElectron_pz->GetEntry(en);
+    b_rpatElectron_ecalTrkEnergyPostCorr->GetEntry(en);
     b_rpatElectron_energy->GetEntry(en);
     b_rpatElectron_energyScaleUp->GetEntry(en);
     b_rpatElectron_energyScaleDown->GetEntry(en);
@@ -622,6 +749,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     b_rBoostedJet_phi->GetEntry(en);
     b_rBoostedJet_energy->GetEntry(en);
     b_rBoostedJet_mass->GetEntry(en);
+    b_rBoostedJet_softdrop_mass->GetEntry(en);
     //ID variables:
     b_rBoostedJet_neutralHadEnergyFraction->GetEntry(en);
     b_rBoostedJet_neutralEmEmEnergyFraction->GetEntry(en);
@@ -659,8 +787,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     Gen_numMother->clear(); 
 
     //New var clear (vectors):
-    Muon_pt->clear();
-    Muon_pt_corr->clear();
+    Muon_pt_tunePbt->clear();
+    Muon_pt_tunePbt_corr->clear();
+    Muon_pt_tunePbt_Roc->clear(); 
     Muon_eta->clear();
     Muon_phi->clear();
     Muon_p->clear();
@@ -677,11 +806,13 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     Muon_loose->clear();
     Muon_medium->clear();
     Muon_tight->clear();
+    Muon_TLayers->clear();
 
     patElectron_pt->clear();
     patElectron_eta->clear();
     patElectron_phi->clear();
     patElectron_energy->clear();
+    patElectron_ecalTrkEnergyPostCorr->clear();
     patElectron_energyScaleUp->clear();
     patElectron_energyScaleDown->clear();
     patElectron_energySigmaUp->clear();
@@ -720,6 +851,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
     BoostedJet_phi->clear();
     BoostedJet_energy->clear();
     BoostedJet_mass->clear();
+    BoostedJet_softdrop_mass->clear();
     BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->clear();
     BoostedJet_M->clear();
     BoostedJet_nJets->clear();
@@ -745,7 +877,15 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
     EVENT_genHT = -999;
     EVENT_genPt = -999;
+    EVENT_prefireWeight = -999;
+    EVENT_prefireWeightUp = -999;
+    EVENT_prefireWeightDown = -999;
+    EVENT_PDFv1WeightStdDev = -999; EVENT_PDFv1WeightCentral=-999; EVENT_PDFv1WeightMean=-999; EVENT_PDFv1WeightDown=-999; EVENT_PDFv1WeightUp=-999; EVENT_PDFv1_lhaid=-999;
+    EVENT_PDFv2WeightStdDev = -999; EVENT_PDFv2WeightCentral=-999; EVENT_PDFv2WeightMean=-999; EVENT_PDFv2WeightDown=-999; EVENT_PDFv2WeightUp=-999; EVENT_PDFv2_lhaid=-999;
+    EVENT_PDFv3WeightStdDev = -999; EVENT_PDFv3WeightCentral=-999; EVENT_PDFv3WeightMean=-999; EVENT_PDFv3WeightDown=-999; EVENT_PDFv3WeightUp=-999; EVENT_PDFv3_lhaid=-999;
     EVENT_PDFv4WeightStdDev = -999; EVENT_PDFv4WeightCentral=-999; EVENT_PDFv4WeightMean=-999; EVENT_PDFv4WeightDown=-999; EVENT_PDFv4WeightUp=-999; EVENT_PDFv4_lhaid=-999;
+    EVENT_PDFv5WeightStdDev = -999; EVENT_PDFv5WeightCentral=-999; EVENT_PDFv5WeightMean=-999; EVENT_PDFv5WeightDown=-999; EVENT_PDFv5WeightUp=-999; EVENT_PDFv5_lhaid=-999;
+    EVENT_PDFv6WeightStdDev = -999; EVENT_PDFv6WeightCentral=-999; EVENT_PDFv6WeightMean=-999; EVENT_PDFv6WeightDown=-999; EVENT_PDFv6WeightUp=-999; EVENT_PDFv6_lhaid=-999;
 
     PUWeight = -999; MinBiasUpWeight = -999; MinBiasDownWeight = -999; nBestVtx = -999; trueInteractions = -999; lumi_wgt = -999; 
     Met_type1PF_pt = -999;
@@ -774,7 +914,15 @@ void  filename_(const char*  Input = "", const char*  Output =""){
   //EVENT (PDF syst)
   EVENT_genHT = rEVENT_genHT;
    EVENT_genPt = rEVENT_genPt;
-  EVENT_PDFv4WeightStdDev = rEVENT_PDFv4WeightStdDev; EVENT_PDFv4WeightMean = rEVENT_PDFv4WeightMean; EVENT_PDFv4WeightCentral=rEVENT_PDFv4WeightCentral; EVENT_PDFv4WeightUp=rEVENT_PDFv4WeightUp; EVENT_PDFv4WeightDown=rEVENT_PDFv4WeightDown; EVENT_PDFv4_lhaid=rEVENT_PDFv4_lhaid;
+  EVENT_prefireWeight = rEVENT_prefireWeight;
+   EVENT_prefireWeightUp = rEVENT_prefireWeightUp;
+   EVENT_prefireWeightDown = rEVENT_prefireWeightDown;
+  EVENT_PDFv1WeightStdDev = rEVENT_PDFv1WeightStdDev; EVENT_PDFv1WeightMean = rEVENT_PDFv1WeightMean; EVENT_PDFv1WeightCentral=rEVENT_PDFv1WeightCentral; EVENT_PDFv1WeightUp=rEVENT_PDFv1WeightUp; EVENT_PDFv1WeightDown=rEVENT_PDFv1WeightDown; EVENT_PDFv1_lhaid=rEVENT_PDFv1_lhaid;
+   EVENT_PDFv2WeightStdDev = rEVENT_PDFv2WeightStdDev; EVENT_PDFv2WeightMean = rEVENT_PDFv2WeightMean; EVENT_PDFv2WeightCentral=rEVENT_PDFv2WeightCentral; EVENT_PDFv2WeightUp=rEVENT_PDFv2WeightUp; EVENT_PDFv2WeightDown=rEVENT_PDFv2WeightDown; EVENT_PDFv2_lhaid=rEVENT_PDFv2_lhaid;
+   EVENT_PDFv3WeightStdDev = rEVENT_PDFv3WeightStdDev; EVENT_PDFv3WeightMean = rEVENT_PDFv3WeightMean; EVENT_PDFv3WeightCentral=rEVENT_PDFv3WeightCentral; EVENT_PDFv3WeightUp=rEVENT_PDFv3WeightUp; EVENT_PDFv3WeightDown=rEVENT_PDFv3WeightDown; EVENT_PDFv3_lhaid=rEVENT_PDFv3_lhaid;
+   EVENT_PDFv4WeightStdDev = rEVENT_PDFv4WeightStdDev; EVENT_PDFv4WeightMean = rEVENT_PDFv4WeightMean; EVENT_PDFv4WeightCentral=rEVENT_PDFv4WeightCentral; EVENT_PDFv4WeightUp=rEVENT_PDFv4WeightUp; EVENT_PDFv4WeightDown=rEVENT_PDFv4WeightDown; EVENT_PDFv4_lhaid=rEVENT_PDFv4_lhaid;
+   EVENT_PDFv5WeightStdDev = rEVENT_PDFv5WeightStdDev; EVENT_PDFv5WeightMean = rEVENT_PDFv5WeightMean; EVENT_PDFv5WeightCentral=rEVENT_PDFv5WeightCentral; EVENT_PDFv5WeightUp=rEVENT_PDFv5WeightUp; EVENT_PDFv5WeightDown=rEVENT_PDFv5WeightDown; EVENT_PDFv5_lhaid=rEVENT_PDFv5_lhaid;
+   EVENT_PDFv6WeightStdDev = rEVENT_PDFv6WeightStdDev; EVENT_PDFv6WeightMean = rEVENT_PDFv6WeightMean; EVENT_PDFv6WeightCentral=rEVENT_PDFv6WeightCentral; EVENT_PDFv6WeightUp=rEVENT_PDFv6WeightUp; EVENT_PDFv6WeightDown=rEVENT_PDFv6WeightDown; EVENT_PDFv6_lhaid=rEVENT_PDFv6_lhaid;
 
    PUWeight = rPUWeight;
    MinBiasUpWeight = rMinBiasUpWeight;
@@ -800,24 +948,27 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    } 
    
    int num = 0;
-   for(uint mu_en = 0; mu_en<rMuon_pt->size(); mu_en++){
-    if( rMuon_pt->at(mu_en)>20 && fabs(rMuon_eta->at(mu_en))<2.4){
+   for(uint mu_en = 0; mu_en<rMuon_pt_tunePbt->size(); mu_en++){
+    if( rMuon_pt_tunePbt->at(mu_en)>20 && fabs(rMuon_eta->at(mu_en))<2.4){
      if(rMuon_loose->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1) numOfLooseMu++;
      if(rMuon_medium->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1) numOfMediumMu++;
      if(rMuon_tight->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1) numOfTightMu++;
      if(rMuon_isHighPt->at(mu_en)==1 && rMuon_TrackerIso->at(mu_en)<0.1){
       numOfHighptMu++;
-      Muon_pt->push_back(rMuon_pt->at(mu_en));
+      Muon_pt_tunePbt->push_back(rMuon_pt_tunePbt->at(mu_en));
       
-      if(rMuon_pt->at(mu_en) < 200 ){
-       double mcSF = rc.kSmearMC(rMuon_charge->at(mu_en), rMuon_pt->at(mu_en), rMuon_eta->at(mu_en), rMuon_phi->at(mu_en), rMuon_TLayers->at(mu_en), gRandom->Rndm(), 0, 0);
-       Muon_pt_corr->push_back(rMuon_pt->at(mu_en)*mcSF);
+      if(rMuon_pt_tunePbt->at(mu_en) < 200 ){
+       double mcSF = rc.kSmearMC(rMuon_charge->at(mu_en), rMuon_pt_tunePbt->at(mu_en), rMuon_eta->at(mu_en), rMuon_phi->at(mu_en), rMuon_TLayers->at(mu_en), gRandom->Rndm(), 0, 0);
+       Muon_pt_tunePbt_corr->push_back(rMuon_pt_tunePbt->at(mu_en)*mcSF);
       }
       else{
        num = 49 * gRandom->Rndm();
-       float pt_corr = GE->GEScaleCorrPt(170000+(int)num, (float) rMuon_pt->at(mu_en), (float) rMuon_eta->at(mu_en),(float) rMuon_phi->at(mu_en), (int) rMuon_charge->at(mu_en), false);
-       Muon_pt_corr->push_back((double) pt_corr);
+       float pt_corr = GE->GEScaleCorrPt(170000+(int)num, (float) rMuon_pt_tunePbt->at(mu_en), (float) rMuon_eta->at(mu_en),(float) rMuon_phi->at(mu_en), (int) rMuon_charge->at(mu_en), false);
+       Muon_pt_tunePbt_corr->push_back((double) pt_corr);
       }
+
+      double mcSF2 = rc.kSmearMC(rMuon_charge->at(mu_en), rMuon_pt_tunePbt->at(mu_en), rMuon_eta->at(mu_en), rMuon_phi->at(mu_en), rMuon_TLayers->at(mu_en), gRandom->Rndm(), 0, 0);
+      Muon_pt_tunePbt_Roc->push_back(rMuon_pt_tunePbt->at(mu_en)*mcSF2);
 
       Muon_eta->push_back(rMuon_eta->at(mu_en));
       Muon_phi->push_back(rMuon_phi->at(mu_en));
@@ -831,6 +982,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       Muon_TrackerIso->push_back(rMuon_TrackerIso->at(mu_en));
       Muon_relIsoDeltaBetaR03->push_back(rMuon_relIsoDeltaBetaR03->at(mu_en));
       Muon_relIsoDeltaBetaR04->push_back(rMuon_relIsoDeltaBetaR04->at(mu_en));
+      Muon_TLayers->push_back(rMuon_TLayers->at(mu_en));
       Muon_isHighPt->push_back(rMuon_isHighPt->at(mu_en));
       Muon_loose->push_back(rMuon_loose->at(mu_en));
       Muon_medium->push_back(rMuon_medium->at(mu_en));
@@ -858,6 +1010,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       patElectron_pz->push_back(rpatElectron_pz->at(ele_en));
       patElectron_charge->push_back(rpatElectron_charge->at(ele_en));
       patElectron_energy->push_back(rpatElectron_energy->at(ele_en));
+      patElectron_ecalTrkEnergyPostCorr->push_back(rpatElectron_ecalTrkEnergyPostCorr->at(ele_en));
       patElectron_energyScaleUp->push_back(rpatElectron_energyScaleUp->at(ele_en));
       patElectron_energyScaleDown->push_back(rpatElectron_energyScaleDown->at(ele_en));
       patElectron_energySigmaUp->push_back(rpatElectron_energySigmaUp->at(ele_en));
@@ -876,9 +1029,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    Met_type1PF_pt = rMet_type1PF_pt;
 
    if(numOfHighptEle==2 && patElectron_pt->at(0)>150 && patElectron_pt->at(1)>100 && numOfLooseMu==0) eejj_l=1;
-   if(numOfHighptEle==1 && patElectron_pt->at(0)>150 && numOfHighptMu==1 &&  Muon_pt->at(0)>100) emujj_l=1;
-   if(numOfHighptEle==1 && patElectron_pt->at(0)>100 && numOfHighptMu==1 &&  Muon_pt->at(0)>150) muejj_l=1;
-   if(numOfHighptMu==2 && Muon_pt->at(0)>150 && Muon_pt->at(1)>100 && numOfVetoEle==0) mumujj_l=1;
+   if(numOfHighptEle==1 && patElectron_pt->at(0)>150 && numOfHighptMu==1 &&  Muon_pt_tunePbt->at(0)>100) emujj_l=1;
+   if(numOfHighptEle==1 && patElectron_pt->at(0)>100 && numOfHighptMu==1 &&  Muon_pt_tunePbt->at(0)>150) muejj_l=1;
+   if(numOfHighptMu==2 && Muon_pt_tunePbt->at(0)>150 && Muon_pt_tunePbt->at(1)>100 && numOfVetoEle==0) mumujj_l=1;
    
    if(!((eejj_l==1 || emujj_l==1 || muejj_l==1 || mumujj_l==1))) continue;
 
@@ -963,9 +1116,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
     }
-     for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+     for(uint mu_en = 0; mu_en<Muon_pt_tunePbt->size(); mu_en++){
       double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+      double relPt = fabs(Muon_pt_tunePbt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
      }
      if(count == 0 && fabs(JetCorr.Eta())<2.4){
@@ -1105,9 +1258,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
      }
-     for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+     for(uint mu_en = 0; mu_en<Muon_pt_tunePbt->size(); mu_en++){
       double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+      double relPt = fabs(Muon_pt_tunePbt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
      }
      if(count==0){
@@ -1123,9 +1276,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
      }
-     for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+     for(uint mu_en = 0; mu_en<Muon_pt_tunePbt->size(); mu_en++){
       double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+      double relPt = fabs(Muon_pt_tunePbt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
      }
      if(count==0){
@@ -1141,9 +1294,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
      }
-     for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+     for(uint mu_en = 0; mu_en<Muon_pt_tunePbt->size(); mu_en++){
       double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+      double relPt = fabs(Muon_pt_tunePbt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
      }
      if(count==0){
@@ -1162,9 +1315,9 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       double relPt = fabs(patElectron_pt->at(ele_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetele<0.5 && patElectron_isPassHEEPId->at(ele_en)==1) count++;
      }
-     for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+     for(uint mu_en = 0; mu_en<Muon_pt_tunePbt->size(); mu_en++){
       double DR_jetmu = sqrt(pow(deltaPhi(Muon_phi->at(mu_en),JetCorr.Phi()),2)+pow(Muon_eta->at(mu_en)-JetCorr.Eta(),2) );
-      double relPt = fabs(Muon_pt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
+      double relPt = fabs(Muon_pt_tunePbt->at(mu_en) - JetCorr.Pt())/JetCorr.Pt();
       if(DR_jetmu<0.5 && Muon_isHighPt->at(mu_en)==1) count++;
      }
      if(count == 0 && fabs(JetCorr.Eta())<2.4){
@@ -1177,6 +1330,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
       BoostedJet_phi->push_back(JetCorr.Phi());
       BoostedJet_energy->push_back(rBoostedJet_energy->at(jet_en));
       BoostedJet_mass->push_back(rBoostedJet_mass->at(jet_en));
+      BoostedJet_softdrop_mass->push_back(rBoostedJet_softdrop_mass->at(jet_en));
       BoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->push_back(rBoostedJet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(jet_en));      
      ///syst event flag
       centralJesJer->push_back(centr_JJ);
@@ -1201,7 +1355,7 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
    //Iso muon counting
     IsoTracker_L=0; IsoTracker_T=0; IsoTrack_L=0; IsoTrack_T=0; IsoPF_L=0; IsoPF_T=0;
-    for(uint mu_en = 0; mu_en<Muon_pt->size(); mu_en++){
+    for(uint mu_en = 0; mu_en<Muon_pt_tunePbt->size(); mu_en++){
      if(Muon_TrackerIso->at(mu_en)<0.10) IsoTracker_L++;
      if(Muon_TrackerIso->at(mu_en)<0.05) IsoTracker_T++;
      if(Muon_trackIso->at(mu_en)<0.10) IsoTrack_L++; 
@@ -1245,10 +1399,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
    }
    if(emujj_l==1){
     std::tie(elesf_ele1, elesf_ele1_d, elesf_ele1_u)=elesf(patElectron_eta->at(0), patElectron_pt->at(0));
-    //musf_trigger_mu1=musf_trigger(Muon_eta->at(0),Muon_pt->at(0));
-    //std::tie(musf_ID_mu1, musf_ID_mu1_d, musf_ID_mu1_u)=musf_ID(Muon_eta->at(0),Muon_pt->at(0));
-    //std::tie(musf_iso_mu1, musf_iso_mu1_d, musf_iso_mu1_u)=musf_iso(Muon_eta->at(0),Muon_pt->at(0));
-    std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt->at(0));
+    //musf_trigger_mu1=musf_trigger(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
+    //std::tie(musf_ID_mu1, musf_ID_mu1_d, musf_ID_mu1_u)=musf_ID(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
+    //std::tie(musf_iso_mu1, musf_iso_mu1_d, musf_iso_mu1_u)=musf_iso(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
+    std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
     //musf_tot_mu1=musf_trigger_mu1*musf_ID_mu1*musf_iso_mu1;
     musf_tot_mu1=musf_reco_mu1; //musf_ID_mu1*musf_iso_mu1;
     musf_tot_mu1_d=musf_reco_mu1_d; //musf_ID_mu1_d*musf_iso_mu1_d;
@@ -1261,10 +1415,10 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
    if(muejj_l==1){
     std::tie(elesf_ele1, elesf_ele1_d, elesf_ele1_u)=elesf(patElectron_eta->at(0), patElectron_pt->at(0));
-    std::tie(musf_trigger_mu1, musf_trigger_mu1_d, musf_trigger_mu1_u)=musf_trigger(Muon_eta->at(0),Muon_pt->at(0));
-    //std::tie(musf_ID_mu1, musf_ID_mu1_d, musf_ID_mu1_u)=musf_ID(Muon_eta->at(0),Muon_pt->at(0));
-    //std::tie(musf_iso_mu1, musf_iso_mu1_d, musf_iso_mu1_u)=musf_iso(Muon_eta->at(0),Muon_pt->at(0));
-    std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt->at(0));
+    std::tie(musf_trigger_mu1, musf_trigger_mu1_d, musf_trigger_mu1_u)=musf_trigger(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
+    //std::tie(musf_ID_mu1, musf_ID_mu1_d, musf_ID_mu1_u)=musf_ID(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
+    //std::tie(musf_iso_mu1, musf_iso_mu1_d, musf_iso_mu1_u)=musf_iso(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
+    std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
     musf_tot_mu1=musf_trigger_mu1*musf_reco_mu1;  //*musf_ID_mu1*musf_iso_mu1;
     musf_tot_mu1_d=musf_trigger_mu1_d*musf_reco_mu1_d;  //*musf_ID_mu1_d*musf_iso_mu1_d;
     musf_tot_mu1_u=musf_trigger_mu1_u*musf_reco_mu1_u;  //*musf_ID_mu1_u*musf_iso_mu1_u;
@@ -1274,19 +1428,19 @@ void  filename_(const char*  Input = "", const char*  Output =""){
 
    }
    if(mumujj_l==1){
-    std::tie(musf_trigger_mu1, musf_trigger_mu1_d, musf_trigger_mu1_u)=musf_trigger(Muon_eta->at(0),Muon_pt->at(0));
-    //std::tie(musf_ID_mu1, musf_ID_mu1_d, musf_ID_mu1_u)=musf_ID(Muon_eta->at(0),Muon_pt->at(0));
-    //std::tie(musf_iso_mu1, musf_iso_mu1_d, musf_iso_mu1_u)=musf_iso(Muon_eta->at(0),Muon_pt->at(0));
-    std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt->at(0));
+    std::tie(musf_trigger_mu1, musf_trigger_mu1_d, musf_trigger_mu1_u)=musf_trigger(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
+    //std::tie(musf_ID_mu1, musf_ID_mu1_d, musf_ID_mu1_u)=musf_ID(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
+    //std::tie(musf_iso_mu1, musf_iso_mu1_d, musf_iso_mu1_u)=musf_iso(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
+    std::tie(musf_reco_mu1, musf_reco_mu1_d, musf_reco_mu1_u)=musf_reco(Muon_eta->at(0),Muon_pt_tunePbt->at(0));
     musf_tot_mu1=musf_trigger_mu1*musf_reco_mu1; //*musf_ID_mu1*musf_iso_mu1;
     musf_tot_mu1_d=musf_trigger_mu1_d*musf_reco_mu1_d; //*musf_ID_mu1_d*musf_iso_mu1_d;
     musf_tot_mu1_u=musf_trigger_mu1_u*musf_reco_mu1_u; //*musf_ID_mu1_u*musf_iso_mu1_u;
 
-    //musf_trigger_mu2=musf_trigger(Muon_eta->at(1),Muon_pt->at(1));
-    //std::tie(musf_ID_mu2, musf_ID_mu2_d, musf_ID_mu2_u)=musf_ID(Muon_eta->at(1),Muon_pt->at(1));
-    //std::tie(musf_iso_mu2, musf_iso_mu2_d, musf_iso_mu2_u)=musf_iso(Muon_eta->at(1),Muon_pt->at(1));
+    //musf_trigger_mu2=musf_trigger(Muon_eta->at(1),Muon_pt_tunePbt->at(1));
+    //std::tie(musf_ID_mu2, musf_ID_mu2_d, musf_ID_mu2_u)=musf_ID(Muon_eta->at(1),Muon_pt_tunePbt->at(1));
+    //std::tie(musf_iso_mu2, musf_iso_mu2_d, musf_iso_mu2_u)=musf_iso(Muon_eta->at(1),Muon_pt_tunePbt->at(1));
     //musf_tot_mu2=musf_trigger_mu2*musf_ID_mu2*musf_iso_mu2;
-    std::tie(musf_reco_mu2, musf_reco_mu2_d, musf_reco_mu2_u)=musf_reco(Muon_eta->at(1),Muon_pt->at(1));
+    std::tie(musf_reco_mu2, musf_reco_mu2_d, musf_reco_mu2_u)=musf_reco(Muon_eta->at(1),Muon_pt_tunePbt->at(1));
     musf_tot_mu2=musf_reco_mu2; //musf_ID_mu2*musf_iso_mu2;
     musf_tot_mu2_d=musf_reco_mu2_d; //musf_ID_mu2_d*musf_iso_mu2_d;
     musf_tot_mu2_u=musf_reco_mu2_u; //musf_ID_mu2_u*musf_iso_mu2_u;
@@ -1577,13 +1731,14 @@ double get_wgtlumi(string FileName){
  
  //wgt = xsec_in_pb / number_of_events_from_DAS
  if(FileName.find("TT") != std::string::npos) wgt=88.29/8705576; //wgt=88.29/64310000;  
- //if(FileName.find("DY") != std::string::npos) wgt=6077.0/97373487; //wgt=6077/100194597;
+ if(FileName.find("DY1") != std::string::npos) wgt=6077.0/97373487; //wgt=6077/100194597;
+ if(FileName.find("DY2") != std::string::npos) wgt=6077.0/97373487;
  if(FileName.find("_ST_") != std::string::npos) wgt=32.64/7581624; //wgt=32.64/9598000; 
  if(FileName.find("_SaT_") != std::string::npos) wgt=32.70/7780870; //wgt=32.70/7623000; 
  if(FileName.find("WW") != std::string::npos) wgt=118.7/7791498; ///wgt=118.7/7850000; 
  if(FileName.find("WZ") != std::string::npos) wgt=47.13/3050057; //wgt=47.13/3885000; 
  if(FileName.find("ZZ") != std::string::npos) wgt=16.523/1949768; //wgt=16.532/1979000;
- //if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/28084244;
+ if(FileName.find("WJetsHT70To100") != std::string::npos) wgt=1637.13/28084244;
  if(FileName.find("WJetsHT100To200") != std::string::npos) wgt=1687.95/35862893; //wgt=1687.95/29521158;
  if(FileName.find("WJetsHT200To400") != std::string::npos) wgt=493.559/21144264; //wgt=493.559/25468933;
  if(FileName.find("WJetsHT400To600") != std::string::npos) wgt=69.55/14267690; //wgt=69.55/5932701; 
@@ -1611,7 +1766,19 @@ double get_wgtlumi(string FileName){
  
  // DY NLO FxFx samples
  if(FileName.find("DY_FxFx") != std::string::npos) wgt=6077.22/208332373.7; //ok: la cross section non è da XDBS, ma quella dei coreani (stessa del LO, ma corretta con kfactor)
- 
+
+ //DY mass bins
+ if(FileName.find("DY_M10To50") != std::string::npos) wgt=15810.0/(39521230+39536839);
+ if(FileName.find("DY_M100To200") != std::string::npos) wgt=247.8/13787181;
+ if(FileName.find("DY_M200To400") != std::string::npos) wgt=8.502/2893179;
+ if(FileName.find("DY_M400To500") != std::string::npos) wgt=0.4514/504582;
+ if(FileName.find("DY_M500To700") != std::string::npos) wgt=0.2558/478062;
+ if(FileName.find("DY_M700To800") != std::string::npos) wgt=0.04023/503757;
+ if(FileName.find("DY_M800To1000") != std::string::npos) wgt=0.03406/540993;
+ if(FileName.find("DY_M1000To1500") != std::string::npos) wgt=0.01828/444230;
+ if(FileName.find("DY_M1500To2000") != std::string::npos) wgt=0.002367/458896;
+ if(FileName.find("DY_M2000To3000") != std::string::npos) wgt=0.0005409/502544;
+ if(FileName.find("DY_M3000ToInf") != std::string::npos) wgt=0.00003048/498600;  
 
  // DY HT binned LO samples
  if(FileName.find("DY_HT70To100") != std::string::npos) wgt=208.977/9344037; //check xsec
@@ -1622,6 +1789,18 @@ double get_wgtlumi(string FileName){
  if(FileName.find("DY_HT800To1200") != std::string::npos) wgt=(0.7754*0.907)/(3089861 - 3089861*(2. / 175)); //ok
  if(FileName.find("DY_HT1200To2500") != std::string::npos) wgt=(0.1862*0.833)/(625517 - (625517*6./77)); //ok
 
+ //ZMuMu m binned
+ if(FileName.find("ZMuMu_M50To120") != std::string::npos) wgt=2112.904/2961000;
+ if(FileName.find("ZMuMu_M120To200") != std::string::npos) wgt=20.553/100000;
+ if(FileName.find("ZMuMu_M200To400") != std::string::npos) wgt=2.886/100000;
+ if(FileName.find("ZMuMu_M400To800") != std::string::npos) wgt=0.2517/100000;
+ if(FileName.find("ZMuMu_M800To1400") != std::string::npos) wgt=0.01707/100000;
+ if(FileName.find("ZMuMu_M1400To2300") != std::string::npos) wgt=0.001366/100000;
+ if(FileName.find("ZMuMu_M23000To3500") != std::string::npos) wgt=0.00008178/100000;
+ if(FileName.find("ZMuMu_M3500To4500") != std::string::npos) wgt=0.000003191/100000;
+ if(FileName.find("ZMuMu_M4500To6000") != std::string::npos) wgt=0.0000002787/100000;
+ if(FileName.find("ZMuMu_M6000ToInf") != std::string::npos) wgt=0.000000009569/100000;
+ 
  //QCD
 
  if(FileName.find("QCD_HT50to100") != std::string::npos) wgt=185300000.0/40456172;
