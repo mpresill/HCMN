@@ -1,0 +1,7 @@
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/HeavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_16_L13_M8000\/191031_091815\/0000\/mumujj_16_L13_M8000_1.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/HeavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_16_L13_M8000\/191031_091815\/0000\/mumujj_16_L13_M8000_2.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/HeavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_16_L13_M8000\/191031_091815\/0000\/mumujj_16_L13_M8000_3.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/HeavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_16_L13_M8000\/191031_091815\/0000\/mumujj_16_L13_M8000_4.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/HeavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_16_L13_M8000\/191031_091815\/0000\/mumujj_16_L13_M8000_5.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/HeavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_16_L13_M8000\/191031_091815\/0000\/mumujj_16_L13_M8000_6.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/HeavyCompositeMajoranaNeutrino_L13000_M8000_mumujj_CalcHep\/mumujj_16_L13_M8000\/191031_091815\/0000\/mumujj_16_L13_M8000_7.root

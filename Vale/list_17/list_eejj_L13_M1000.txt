@@ -1,0 +1,4 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M1000_eejj_CalcHep\/eejj_17_L13_M1000\/191023_103145\/0000\/eejj_17_L13_M1000_1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M1000_eejj_CalcHep\/eejj_17_L13_M1000\/191023_103145\/0000\/eejj_17_L13_M1000_2.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M1000_eejj_CalcHep\/eejj_17_L13_M1000\/191023_103145\/0000\/eejj_17_L13_M1000_3.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/mpresill\/HavyCompositeMajoranaNeutrino_L13000_M1000_eejj_CalcHep\/eejj_17_L13_M1000\/191023_103145\/0000\/eejj_17_L13_M1000_4.root
