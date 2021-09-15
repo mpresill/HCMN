@@ -1,0 +1,4 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToEE_NNPDF31_TuneCP5_13TeV-powheg_M_4500_6000\/Autumn18_ZEE_M4500To6000\/210726_133613\/0000\/Autumn18_ZEE_M4500To6000_1-1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToEE_NNPDF31_TuneCP5_13TeV-powheg_M_4500_6000\/Autumn18_ZEE_M4500To6000\/210726_133613\/0000\/Autumn18_ZEE_M4500To6000_1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToEE_NNPDF31_TuneCP5_13TeV-powheg_M_4500_6000\/Autumn18_ZEE_M4500To6000\/210726_133613\/0000\/Autumn18_ZEE_M4500To6000_2.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToEE_NNPDF31_TuneCP5_13TeV-powheg_M_4500_6000\/Autumn18_ZEE_M4500To6000\/210726_133613\/0000\/Autumn18_ZEE_M4500To6000_3.root

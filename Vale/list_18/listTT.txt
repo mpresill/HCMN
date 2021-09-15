@@ -1828,6 +1828,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0000\/Autumn18_TT_9.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0000\/Autumn18_TT_902.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0000\/Autumn18_TT_983.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0001\/Autumn18_TT_1-1000.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0001\/Autumn18_TT_1-1001.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0001\/Autumn18_TT_1-1002.root
@@ -3506,6 +3507,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0001\/Autumn18_TT_1836.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0001\/Autumn18_TT_1837.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0001\/Autumn18_TT_1838.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0001\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0002\/Autumn18_TT_1-2000.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0002\/Autumn18_TT_1-2001.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0002\/Autumn18_TT_1-2002.root
@@ -4506,6 +4508,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0002\/Autumn18_TT_1-2997.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0002\/Autumn18_TT_1-2998.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0002\/Autumn18_TT_1-2999.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0002\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0003\/Autumn18_TT_1-3000.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0003\/Autumn18_TT_1-3001.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0003\/Autumn18_TT_1-3002.root
@@ -4625,3 +4628,4 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0003\/Autumn18_TT_1-3116.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0003\/Autumn18_TT_1-3117.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0003\/Autumn18_TT_1-3118.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8\/Autumn18_TT\/191018_130500\/0003\/log

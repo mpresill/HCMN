@@ -1,0 +1,3 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_120_200\/Autumn18_ZMuMu_M120To200\/210705_144834\/0000\/Autumn18_ZMuMu_M120To200_1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_120_200\/Autumn18_ZMuMu_M120To200\/210705_144834\/0000\/Autumn18_ZMuMu_M120To200_2.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_120_200\/Autumn18_ZMuMu_M120To200\/210705_144834\/0000\/log

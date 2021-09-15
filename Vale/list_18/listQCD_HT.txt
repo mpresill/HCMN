@@ -1429,7 +1429,6 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT100to200_Tun
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT100to200_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT100To200\/210112_103243\/0000\/Autumn18_QCD_HT100To200_97.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT100to200_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT100To200\/210112_103243\/0000\/Autumn18_QCD_HT100To200_98.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT100to200_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT100To200\/210112_103243\/0000\/Autumn18_QCD_HT100To200_99.root
-root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT100to200_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT100To200\/210112_103243\/0000\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT200To300\/210112_103653\/0000\/Autumn18_QCD_HT200To300_1.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT200To300\/210112_103653\/0000\/Autumn18_QCD_HT200To300_10.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT200To300\/210112_103653\/0000\/Autumn18_QCD_HT200To300_100.root
@@ -2330,7 +2329,6 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT200to300_Tun
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT200To300\/210112_103653\/0000\/Autumn18_QCD_HT200To300_97.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT200To300\/210112_103653\/0000\/Autumn18_QCD_HT200To300_98.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT200To300\/210112_103653\/0000\/Autumn18_QCD_HT200To300_99.root
-root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT200To300\/210112_103653\/0000\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0000\/Autumn18_QCD_HT300To500_1-1.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0000\/Autumn18_QCD_HT300To500_1-10.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0000\/Autumn18_QCD_HT300To500_1-11.root
@@ -3378,7 +3376,6 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_Tun
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0000\/Autumn18_QCD_HT300To500_997.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0000\/Autumn18_QCD_HT300To500_998.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0000\/Autumn18_QCD_HT300To500_999.root
-root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0000\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0001\/Autumn18_QCD_HT300To500_1000.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0001\/Autumn18_QCD_HT300To500_1001.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0001\/Autumn18_QCD_HT300To500_1002.root
@@ -3645,7 +3642,6 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_Tun
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0001\/Autumn18_QCD_HT300To500_1268.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0001\/Autumn18_QCD_HT300To500_1269.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0001\/Autumn18_QCD_HT300To500_1270.root
-root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT300To500\/210112_110645\/0001\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0000\/Autumn18_QCD_HT500To700_1-1.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0000\/Autumn18_QCD_HT500To700_1-10.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0000\/Autumn18_QCD_HT500To700_1-11.root
@@ -4687,7 +4683,6 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_Tun
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0000\/Autumn18_QCD_HT500To700_997.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0000\/Autumn18_QCD_HT500To700_998.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0000\/Autumn18_QCD_HT500To700_999.root
-root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0000\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0001\/Autumn18_QCD_HT500To700_1000.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0001\/Autumn18_QCD_HT500To700_1001.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0001\/Autumn18_QCD_HT500To700_1002.root
@@ -5671,7 +5666,6 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_Tun
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0001\/Autumn18_QCD_HT500To700_1997.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0001\/Autumn18_QCD_HT500To700_1998.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0001\/Autumn18_QCD_HT500To700_1999.root
-root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0001\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0002\/Autumn18_QCD_HT500To700_2000.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0002\/Autumn18_QCD_HT500To700_2001.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0002\/Autumn18_QCD_HT500To700_2002.root
@@ -6523,7 +6517,6 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_Tun
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0002\/Autumn18_QCD_HT500To700_2852.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0002\/Autumn18_QCD_HT500To700_2853.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0002\/Autumn18_QCD_HT500To700_2854.root
-root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT500To700\/210112_164954\/0002\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT700to1000_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT700To1000\/210112_165258\/0000\/Autumn18_QCD_HT700To1000_1-1.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT700to1000_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT700To1000\/210112_165258\/0000\/Autumn18_QCD_HT700To1000_1-10.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT700to1000_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT700To1000\/210112_165258\/0000\/Autumn18_QCD_HT700To1000_1-100.root
@@ -10058,7 +10051,6 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT1500to2000_T
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT1500to2000_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT1500To2000\/210112_170230\/0000\/Autumn18_QCD_HT1500To2000_97.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT1500to2000_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT1500To2000\/210112_170230\/0000\/Autumn18_QCD_HT1500To2000_98.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT1500to2000_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT1500To2000\/210112_170230\/0000\/Autumn18_QCD_HT1500To2000_99.root
-root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT1500to2000_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT1500To2000\/210112_170230\/0000\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT2000ToInf\/210112_170727\/0000\/Autumn18_QCD_HT2000ToInf_1-1.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT2000ToInf\/210112_170727\/0000\/Autumn18_QCD_HT2000ToInf_1-10.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT2000ToInf\/210112_170727\/0000\/Autumn18_QCD_HT2000ToInf_1-11.root
@@ -10453,4 +10445,3 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT2000toInf_Tu
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT2000ToInf\/210112_170727\/0000\/Autumn18_QCD_HT2000ToInf_97.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT2000ToInf\/210112_170727\/0000\/Autumn18_QCD_HT2000ToInf_98.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT2000ToInf\/210112_170727\/0000\/Autumn18_QCD_HT2000ToInf_99.root
-root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8\/Autumn18_QCD_HT2000ToInf\/210112_170727\/0000\/log

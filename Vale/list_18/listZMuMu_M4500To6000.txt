@@ -1,0 +1,9 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_4500_6000\/Autumn18_ZMuMu_M4500To6000\/210705_150832\/0000\/Autumn18_ZMuMu_M4500To6000_1-1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_4500_6000\/Autumn18_ZMuMu_M4500To6000\/210705_150832\/0000\/Autumn18_ZMuMu_M4500To6000_1-2.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_4500_6000\/Autumn18_ZMuMu_M4500To6000\/210705_150832\/0000\/Autumn18_ZMuMu_M4500To6000_1-3.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_4500_6000\/Autumn18_ZMuMu_M4500To6000\/210705_150832\/0000\/Autumn18_ZMuMu_M4500To6000_1-4.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_4500_6000\/Autumn18_ZMuMu_M4500To6000\/210705_150832\/0000\/Autumn18_ZMuMu_M4500To6000_1-5.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_4500_6000\/Autumn18_ZMuMu_M4500To6000\/210705_150832\/0000\/Autumn18_ZMuMu_M4500To6000_1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_4500_6000\/Autumn18_ZMuMu_M4500To6000\/210705_150832\/0000\/Autumn18_ZMuMu_M4500To6000_2.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_4500_6000\/Autumn18_ZMuMu_M4500To6000\/210705_150832\/0000\/Autumn18_ZMuMu_M4500To6000_3.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_4500_6000\/Autumn18_ZMuMu_M4500To6000\/210705_150832\/0000\/log
