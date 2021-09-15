@@ -2141,7 +2141,8 @@ double get_wgtlumi(string FileName){
  //xsec in pb
  // checked, OK!
  if(FileName.find("TT") != std::string::npos) wgt=730.6/76915549;  
- if(FileName.find("DY") != std::string::npos) wgt=6077./146280395;
+// if(FileName.find("DY") != std::string::npos) wgt=6077./146280395; //xsec NNLO
+ if(FileName.find("DY") != std::string::npos) wgt=4963.0/146280395;  //xsec LO
  if(FileName.find("_ST_") != std::string::npos)  wgt=35.61/6952830; 
  if(FileName.find("_SaT_") != std::string::npos) wgt=35.59/6933094; 
  if(FileName.find("WW") != std::string::npos) wgt=118.7/7982180; 
@@ -2195,7 +2196,7 @@ double get_wgtlumi(string FileName){
  if(FileName.find("ZMuMu_M400To800") != std::string::npos) wgt=0.241/98400;
  if(FileName.find("ZMuMu_M800To1400") != std::string::npos) wgt=0.0168/100000;
  if(FileName.find("ZMuMu_M1400To2300") != std::string::npos) wgt=0.00139/95106;
- if(FileName.find("ZMuMu_M23000To3500") != std::string::npos) wgt=0.0000895/100000;
+ if(FileName.find("ZMuMu_M2300To3500") != std::string::npos) wgt=0.0000895/100000;
  if(FileName.find("ZMuMu_M3500To4500") != std::string::npos) wgt=0.00000414/100000;
  if(FileName.find("ZMuMu_M4500To6000") != std::string::npos) wgt=0.000000456/100000;
  if(FileName.find("ZMuMu_M6000ToInf") != std::string::npos) wgt=0.0000000206/100000;
@@ -2217,7 +2218,7 @@ double get_wgtlumi(string FileName){
  if(FileName.find("QCD_HT300to500") != std::string::npos) wgt=347500.0/(17035891+37516961);
  if(FileName.find("QCD_HT500to700") != std::string::npos) wgt=32060.0/(18560541+44061488);
  if(FileName.find("QCD_HT700to1000") != std::string::npos) wgt=6829.0/(15629253+21604533);
- if(FileName.find("QCD_HT100to1500") != std::string::npos) wgt=1207.0/(4850746+10360193);
+ if(FileName.find("QCD_HT1000to1500") != std::string::npos) wgt=1207.0/(4850746+10360193);
  if(FileName.find("QCD_HT1500to2000") != std::string::npos) wgt=120.0/(3970819+7868538);
  if(FileName.find("QCD_HT2000toInf") != std::string::npos) wgt=25.25/((1991645 - 1991645*(3./22)) + (4027896 - 4027896*(4./36)) );
 

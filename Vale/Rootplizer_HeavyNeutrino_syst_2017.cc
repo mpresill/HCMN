@@ -1731,8 +1731,10 @@ double get_wgtlumi(string FileName){
  
  //wgt = xsec_in_pb / number_of_events_from_DAS
  if(FileName.find("TT") != std::string::npos) wgt=88.29/8705576; //wgt=88.29/64310000;  
- if(FileName.find("DY1") != std::string::npos) wgt=6077.0/97373487; //wgt=6077/100194597;
- if(FileName.find("DY2") != std::string::npos) wgt=6077.0/97373487;
+ //if(FileName.find("DY1") != std::string::npos) wgt=6077.0/97373487; //wgt=6077/100194597; //NNLO
+ //if(FileName.find("DY2") != std::string::npos) wgt=6077.0/97373487; //NNLO
+ if(FileName.find("DY1") != std::string::npos) wgt=5343.0/97373487; //LO
+ if(FileName.find("DY2") != std::string::npos) wgt=5343.0/97373487; //LO
  if(FileName.find("_ST_") != std::string::npos) wgt=32.64/7581624; //wgt=32.64/9598000; 
  if(FileName.find("_SaT_") != std::string::npos) wgt=32.70/7780870; //wgt=32.70/7623000; 
  if(FileName.find("WW") != std::string::npos) wgt=118.7/7791498; ///wgt=118.7/7850000; 
@@ -1746,7 +1748,7 @@ double get_wgtlumi(string FileName){
  if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49/20348815; //wgt=6.49/8402687; 
  if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.30/20258624; //wgt=1.30/7633949;
  if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968/21495421; //wgt=0.00968/3273980;
- if(FileName.find("WJets_") != std::string::npos) wgt=64057.4/77654763; //wgt=64057.4/71026861;
+ if(FileName.find("_WJets_") != std::string::npos) wgt=52940.0/77700506;//64057.4/77654763; //52940.0/77700506
  
  //muons
  
@@ -1796,7 +1798,7 @@ double get_wgtlumi(string FileName){
  if(FileName.find("ZMuMu_M400To800") != std::string::npos) wgt=0.2517/100000;
  if(FileName.find("ZMuMu_M800To1400") != std::string::npos) wgt=0.01707/100000;
  if(FileName.find("ZMuMu_M1400To2300") != std::string::npos) wgt=0.001366/100000;
- if(FileName.find("ZMuMu_M23000To3500") != std::string::npos) wgt=0.00008178/100000;
+ if(FileName.find("ZMuMu_M2300To3500") != std::string::npos) wgt=0.00008178/100000;
  if(FileName.find("ZMuMu_M3500To4500") != std::string::npos) wgt=0.000003191/100000;
  if(FileName.find("ZMuMu_M4500To6000") != std::string::npos) wgt=0.0000002787/100000;
  if(FileName.find("ZMuMu_M6000ToInf") != std::string::npos) wgt=0.000000009569/100000;
@@ -1809,14 +1811,14 @@ double get_wgtlumi(string FileName){
  if(FileName.find("QCD_HT300to500") != std::string::npos) wgt=322600.0/60316577;
  if(FileName.find("QCD_HT500to700") != std::string::npos) wgt=29980.0/56207744;
  if(FileName.find("QCD_HT700to1000") != std::string::npos) wgt=6334.0/47724800;
- if(FileName.find("QCD_HT100to1500") != std::string::npos) wgt=1088.0/16595628;
+ if(FileName.find("QCD_HT1000to1500") != std::string::npos) wgt=1088.0/16595628;
  if(FileName.find("QCD_HT1500to2000") != std::string::npos) wgt=99.11/11634434;
  if(FileName.find("QCD_HT2000toInf") != std::string::npos) wgt=20.23/5941306;
 
  // TTW+jets
- if(FileName.find("TTWJetsToLNu") != std::string::npos) wgt= 0.4611/(6415920+9425384);
+ if(FileName.find("ttWJets") != std::string::npos) wgt= 0.4611/(6415920+9425384);
  // TTZ+jets
- if(FileName.find("TTZJets") != std::string::npos) wgt=0.5407/(9698473+ 8536618);
+ if(FileName.find("ttZJets") != std::string::npos) wgt=0.5407/(9698473+ 8536618);
 
  return wgt;
  }

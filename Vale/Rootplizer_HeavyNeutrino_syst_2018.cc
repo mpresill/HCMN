@@ -1,5 +1,5 @@
 /**
-This Macro 
+This Macro
 1. Prepares the rootplas to be used in the analysis, reading as input the nutplas 
 
 Need to specify
@@ -1798,7 +1798,8 @@ double get_wgtlumi(string FileName){
  // CHECKED OK!! 
  
  if(FileName.find("TT") != std::string::npos) wgt=88.29/64310000;  
- if(FileName.find("DY") != std::string::npos) wgt=6077./100194597;
+// if(FileName.find("DY") != std::string::npos) wgt=6077./100194597; //NNLO
+ if(FileName.find("DY") != std::string::npos) wgt=5343.0/100194597; //LO
  if(FileName.find("_ST_") != std::string::npos)  wgt=32.64/9598000; 
  if(FileName.find("_SaT_") != std::string::npos) wgt=32.7/7623000; 
  if(FileName.find("WW") != std::string::npos) wgt=118.7/7850000; 
@@ -1812,7 +1813,7 @@ double get_wgtlumi(string FileName){
  if(FileName.find("WJetsHT800To1200") != std::string::npos) wgt=6.49286/8402687; 
  if(FileName.find("WJetsHT1200To2500") != std::string::npos) wgt=1.29954/7633949;
  if(FileName.find("WJetsHT2500ToInf") != std::string::npos) wgt=0.00968121/3273980;
- if(FileName.find("WJets_") != std::string::npos) wgt=63948.5/71026861;
+ if(FileName.find("_WJets_") != std::string::npos) wgt=63948.5/71026861; 
  
  //muons
  
@@ -1843,16 +1844,28 @@ double get_wgtlumi(string FileName){
  if(FileName.find("DY_M3000ToInf") != std::string::npos) wgt=0.00003048/496959; 
 
  //ZMuMu m binned
- if(FileName.find("ZMuMu_M50To120") != std::string::npos) wgt=2112.904/2982000;
- if(FileName.find("ZMuMu_M120To200") != std::string::npos) wgt=20.553/100000;
- if(FileName.find("ZMuMu_M200To400") != std::string::npos) wgt=2.886/100000;
- if(FileName.find("ZMuMu_M400To800") != std::string::npos) wgt=0.2517/100000;
- if(FileName.find("ZMuMu_M800To1400") != std::string::npos) wgt=0.01707/100000;
- if(FileName.find("ZMuMu_M1400To2300") != std::string::npos) wgt=0.001366/100000;
- if(FileName.find("ZMuMu_M23000To3500") != std::string::npos) wgt=0.00008178/100000;
- if(FileName.find("ZMuMu_M3500To4500") != std::string::npos) wgt=0.000003191/100000;
- if(FileName.find("ZMuMu_M4500To6000") != std::string::npos) wgt=0.0000002787/100000;
- if(FileName.find("ZMuMu_M6000ToInf") != std::string::npos) wgt=0.000000009569/100000;
+ if(FileName.find("ZMuMu_M50To120") != std::string::npos)     wgt=2112.904/2982000;
+ if(FileName.find("ZMuMu_M120To200") != std::string::npos)    wgt=20.553/100000;
+ if(FileName.find("ZMuMu_M200To400") != std::string::npos)    wgt=2.886/100000;
+ if(FileName.find("ZMuMu_M400To800") != std::string::npos)    wgt=0.2517/100000;
+ if(FileName.find("ZMuMu_M800To1400") != std::string::npos)   wgt=0.01707/100000;
+ if(FileName.find("ZMuMu_M1400To2300") != std::string::npos)  wgt=0.001366/100000;
+ if(FileName.find("ZMuMu_M2300To3500") != std::string::npos) wgt=0.00008178/100000;
+ if(FileName.find("ZMuMu_M3500To4500") != std::string::npos)  wgt=0.000003191/100000;
+ if(FileName.find("ZMuMu_M4500To6000") != std::string::npos)  wgt=0.0000002787/100000;
+ if(FileName.find("ZMuMu_M6000ToInf") != std::string::npos)   wgt=0.000000009569/100000;
+
+ //ZEE m binned
+ if(FileName.find("ZEE_M50To120") != std::string::npos)     wgt=2113/2940000;
+ if(FileName.find("ZEE_M120To200") != std::string::npos)    wgt=20.55/100000;
+ if(FileName.find("ZEE_M200To400") != std::string::npos)    wgt=2.886/100000;
+ if(FileName.find("ZEE_M400To800") != std::string::npos)    wgt=0.2513/100000;
+ if(FileName.find("ZEE_M800To1400") != std::string::npos)   wgt=0.01707/100000;
+ if(FileName.find("ZEE_M1400To2300") != std::string::npos)  wgt=0.001366/100000;
+ if(FileName.find("ZEE_M2300To3500") != std::string::npos) wgt=0.00008178/98000;
+ if(FileName.find("ZEE_M3500To4500") != std::string::npos)  wgt=0.000003191/100000;
+ if(FileName.find("ZEE_M4500To6000") != std::string::npos)  wgt=0.0000002787/100000;
+ if(FileName.find("ZEE_M6000ToInf") != std::string::npos)   wgt=0.000000009569/100000;
     
  // DY NLO FxFx samples
  if(FileName.find("DY_FxFx") != std::string::npos) wgt=6077.22/997561; 
@@ -1875,14 +1888,14 @@ double get_wgtlumi(string FileName){
  if(FileName.find("QCD_HT300to500") != std::string::npos) wgt=322600.0/54661579;
  if(FileName.find("QCD_HT500to700") != std::string::npos) wgt=29980.0/55152960;
  if(FileName.find("QCD_HT700to1000") != std::string::npos) wgt=6334.0/48158738;
- if(FileName.find("QCD_HT100to1500") != std::string::npos) wgt=1092.0/15466225;
+ if(FileName.find("QCD_HT1000to1500") != std::string::npos) wgt=1092.0/15466225;
  if(FileName.find("QCD_HT1500to2000") != std::string::npos) wgt=99.76/10955087;
  if(FileName.find("QCD_HT2000toInf") != std::string::npos) wgt=20.35/5475677;
 
  // TTW+jets
- if(FileName.find("TTWJetsToLNu") != std::string::npos) wgt= 0.4611/(12816567 - 12816567*(1./581));
+ if(FileName.find("ttWJets") != std::string::npos) wgt= 0.4611/(12816567 - 12816567*(1./581));
  // TTZ+jets
- if(FileName.find("TTZJets") != std::string::npos) wgt=0.5407/22646257;
+ if(FileName.find("ttZJets") != std::string::npos) wgt=0.5407/22646257;
 
 
 
