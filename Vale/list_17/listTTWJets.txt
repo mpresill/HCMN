@@ -385,6 +385,7 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets\/210121_151635\/0000\/Fall17V2_ttWJets_97.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets\/210121_151635\/0000\/Fall17V2_ttWJets_98.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets\/210121_151635\/0000\/Fall17V2_ttWJets_99.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets\/210121_151635\/0000\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets_ext\/210121_152022\/0000\/Fall17V2_ttWJets_ext_1-1.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets_ext\/210121_152022\/0000\/Fall17V2_ttWJets_ext_1-10.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets_ext\/210121_152022\/0000\/Fall17V2_ttWJets_ext_1-100.root
@@ -1061,3 +1062,4 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets_ext\/210121_152022\/0000\/Fall17V2_ttWJets_ext_97.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets_ext\/210121_152022\/0000\/Fall17V2_ttWJets_ext_98.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets_ext\/210121_152022\/0000\/Fall17V2_ttWJets_ext_99.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8\/Fall17V2_ttWJets_ext\/210121_152022\/0000\/log

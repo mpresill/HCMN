@@ -1,0 +1,4 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_800_1400\/Fall17V2_ZMuMu_M800To1400\/210702_210816\/0000\/Fall17V2_ZMuMu_M800To1400_1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_800_1400\/Fall17V2_ZMuMu_M800To1400\/210702_210816\/0000\/Fall17V2_ZMuMu_M800To1400_2.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_800_1400\/Fall17V2_ZMuMu_M800To1400\/210702_210816\/0000\/Fall17V2_ZMuMu_M800To1400_3.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF31_13TeV-powheg_M_800_1400\/Fall17V2_ZMuMu_M800To1400\/210702_210816\/0000\/Fall17V2_ZMuMu_M800To1400_4.root
