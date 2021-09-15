@@ -79,6 +79,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-70T
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-70To100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT70To100\/191023_122829\/0000\/Summer16V3_WJetsHT70To100_80.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-70To100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT70To100\/191023_122829\/0000\/Summer16V3_WJetsHT70To100_81.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-70To100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT70To100\/191023_122829\/0000\/Summer16V3_WJetsHT70To100_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-70To100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT70To100\/191023_122829\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_1\/191018_072548\/0000\/Summer16V3_WJetsHT100To200_1_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_1\/191018_072548\/0000\/Summer16V3_WJetsHT100To200_1_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_1\/191018_072548\/0000\/Summer16V3_WJetsHT100To200_1_11.root
@@ -151,6 +152,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_1\/191018_072548\/0000\/Summer16V3_WJetsHT100To200_1_72.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_1\/191018_072548\/0000\/Summer16V3_WJetsHT100To200_1_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_1\/191018_072548\/0000\/Summer16V3_WJetsHT100To200_1_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_1\/191018_072548\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_2\/191018_072803\/0000\/Summer16V3_WJetsHT100To200_2_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_2\/191018_072803\/0000\/Summer16V3_WJetsHT100To200_2_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_2\/191018_072803\/0000\/Summer16V3_WJetsHT100To200_2_100.root
@@ -434,6 +436,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_2\/191018_072803\/0000\/Summer16V3_WJetsHT100To200_2_97.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_2\/191018_072803\/0000\/Summer16V3_WJetsHT100To200_2_98.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_2\/191018_072803\/0000\/Summer16V3_WJetsHT100To200_2_99.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_2\/191018_072803\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_3\/191018_073037\/0000\/Summer16V3_WJetsHT100To200_3_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_3\/191018_073037\/0000\/Summer16V3_WJetsHT100To200_3_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_3\/191018_073037\/0000\/Summer16V3_WJetsHT100To200_3_100.root
@@ -660,6 +663,8 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_3\/191018_073037\/0000\/Summer16V3_WJetsHT100To200_3_97.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_3\/191018_073037\/0000\/Summer16V3_WJetsHT100To200_3_98.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_3\/191018_073037\/0000\/Summer16V3_WJetsHT100To200_3_99.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_3\/191018_073037\/0000\/failed
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT100To200_3\/191018_073037\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_1\/191018_073315\/0000\/Summer16V3_WJetsHT200To400_1_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_1\/191018_073315\/0000\/Summer16V3_WJetsHT200To400_1_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_1\/191018_073315\/0000\/Summer16V3_WJetsHT200To400_1_11.root
@@ -702,6 +707,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_1\/191018_073315\/0000\/Summer16V3_WJetsHT200To400_1_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_1\/191018_073315\/0000\/Summer16V3_WJetsHT200To400_1_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_1\/191018_073315\/0000\/Summer16V3_WJetsHT200To400_1_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_1\/191018_073315\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_2\/191018_073539\/0000\/Summer16V3_WJetsHT200To400_2_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_2\/191018_073539\/0000\/Summer16V3_WJetsHT200To400_2_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_2\/191018_073539\/0000\/Summer16V3_WJetsHT200To400_2_100.root
@@ -813,6 +819,8 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_2\/191018_073539\/0000\/Summer16V3_WJetsHT200To400_2_97.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_2\/191018_073539\/0000\/Summer16V3_WJetsHT200To400_2_98.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_2\/191018_073539\/0000\/Summer16V3_WJetsHT200To400_2_99.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_2\/191018_073539\/0000\/failed
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_2\/191018_073539\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_3\/191018_073802\/0000\/Summer16V3_WJetsHT200To400_3_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_3\/191018_073802\/0000\/Summer16V3_WJetsHT200To400_3_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_3\/191018_073802\/0000\/Summer16V3_WJetsHT200To400_3_100.root
@@ -968,6 +976,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_3\/191018_073802\/0000\/Summer16V3_WJetsHT200To400_3_97.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_3\/191018_073802\/0000\/Summer16V3_WJetsHT200To400_3_98.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_3\/191018_073802\/0000\/Summer16V3_WJetsHT200To400_3_99.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT200To400_3\/191018_073802\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_1\/191018_074029\/0000\/Summer16V3_WJetsHT400To600_1_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_1\/191018_074029\/0000\/Summer16V3_WJetsHT400To600_1_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_1\/191018_074029\/0000\/Summer16V3_WJetsHT400To600_1_11.root
@@ -987,6 +996,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_1\/191018_074029\/0000\/Summer16V3_WJetsHT400To600_1_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_1\/191018_074029\/0000\/Summer16V3_WJetsHT400To600_1_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_1\/191018_074029\/0000\/Summer16V3_WJetsHT400To600_1_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_1\/191018_074029\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_2\/191018_074250\/0000\/Summer16V3_WJetsHT400To600_2_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_2\/191018_074250\/0000\/Summer16V3_WJetsHT400To600_2_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_2\/191018_074250\/0000\/Summer16V3_WJetsHT400To600_2_11.root
@@ -1038,6 +1048,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_2\/191018_074250\/0000\/Summer16V3_WJetsHT400To600_2_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_2\/191018_074250\/0000\/Summer16V3_WJetsHT400To600_2_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_2\/191018_074250\/0000\/Summer16V3_WJetsHT400To600_2_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT400To600_2\/191018_074250\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_1\/191018_074527\/0000\/Summer16V3_WJetsHT600To800_1_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_1\/191018_074527\/0000\/Summer16V3_WJetsHT600To800_1_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_1\/191018_074527\/0000\/Summer16V3_WJetsHT600To800_1_11.root
@@ -1071,6 +1082,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_1\/191018_074527\/0000\/Summer16V3_WJetsHT600To800_1_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_1\/191018_074527\/0000\/Summer16V3_WJetsHT600To800_1_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_1\/191018_074527\/0000\/Summer16V3_WJetsHT600To800_1_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_1\/191018_074527\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_2\/191018_074752\/0000\/Summer16V3_WJetsHT600To800_2_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_2\/191018_074752\/0000\/Summer16V3_WJetsHT600To800_2_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_2\/191018_074752\/0000\/Summer16V3_WJetsHT600To800_2_100.root
@@ -1195,6 +1207,8 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_2\/191018_074752\/0000\/Summer16V3_WJetsHT600To800_2_97.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_2\/191018_074752\/0000\/Summer16V3_WJetsHT600To800_2_98.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_2\/191018_074752\/0000\/Summer16V3_WJetsHT600To800_2_99.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_2\/191018_074752\/0000\/failed
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT600To800_2\/191018_074752\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_1\/191018_075020\/0000\/Summer16V3_WJetsHT800To1200_1_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_1\/191018_075020\/0000\/Summer16V3_WJetsHT800To1200_1_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_1\/191018_075020\/0000\/Summer16V3_WJetsHT800To1200_1_11.root
@@ -1211,6 +1225,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_1\/191018_075020\/0000\/Summer16V3_WJetsHT800To1200_1_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_1\/191018_075020\/0000\/Summer16V3_WJetsHT800To1200_1_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_1\/191018_075020\/0000\/Summer16V3_WJetsHT800To1200_1_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_1\/191018_075020\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_2\/191018_075245\/0000\/Summer16V3_WJetsHT800To1200_2_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_2\/191018_075245\/0000\/Summer16V3_WJetsHT800To1200_2_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_2\/191018_075245\/0000\/Summer16V3_WJetsHT800To1200_2_11.root
@@ -1271,9 +1286,12 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_2\/191018_075245\/0000\/Summer16V3_WJetsHT800To1200_2_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_2\/191018_075245\/0000\/Summer16V3_WJetsHT800To1200_2_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_2\/191018_075245\/0000\/Summer16V3_WJetsHT800To1200_2_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT800To1200_2\/191018_075245\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_1\/191018_075507\/0000\/Summer16V3_WJetsHT1200To2500_1_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_1\/191018_075507\/0000\/Summer16V3_WJetsHT1200To2500_1_2.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_1\/191018_075507\/0000\/Summer16V3_WJetsHT1200To2500_1_3.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_1\/191018_075507\/0000\/failed
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_1\/191018_075507\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_2\/191102_150105\/0000\/Summer16V3_WJetsHT1200To2500_2_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_2\/191102_150105\/0000\/Summer16V3_WJetsHT1200To2500_2_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_2\/191102_150105\/0000\/Summer16V3_WJetsHT1200To2500_2_11.root
@@ -1341,11 +1359,13 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-120
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_2\/191102_150105\/0000\/Summer16V3_WJetsHT1200To2500_2_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_2\/191102_150105\/0000\/Summer16V3_WJetsHT1200To2500_2_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_2\/191102_150105\/0000\/Summer16V3_WJetsHT1200To2500_2_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT1200To2500_2\/191102_150105\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_1\/191022_122410\/0000\/Summer16V3_WJetsHT2500ToInf_1_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_1\/191022_122410\/0000\/Summer16V3_WJetsHT2500ToInf_1_2.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_1\/191022_122410\/0000\/Summer16V3_WJetsHT2500ToInf_1_3.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_1\/191022_122410\/0000\/Summer16V3_WJetsHT2500ToInf_1_4.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_1\/191022_122410\/0000\/Summer16V3_WJetsHT2500ToInf_1_5.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_1\/191022_122410\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_2_\/191104_185355\/0000\/Summer16V3_WJetsHT2500ToInf_2__11.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_2_\/191104_185355\/0000\/Summer16V3_WJetsHT2500ToInf_2__15.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_2_\/191104_185355\/0000\/Summer16V3_WJetsHT2500ToInf_2__17.root
@@ -1358,6 +1378,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-250
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_2_\/191104_185355\/0000\/Summer16V3_WJetsHT2500ToInf_2__6.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_2_\/191104_185355\/0000\/Summer16V3_WJetsHT2500ToInf_2__7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_2_\/191104_185355\/0000\/Summer16V3_WJetsHT2500ToInf_2__8.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJetsHT2500ToInf_2_\/191104_185355\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_1\/191018_092355\/0000\/Summer16V3_WJets_1_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_1\/191018_092355\/0000\/Summer16V3_WJets_1_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_1\/191018_092355\/0000\/Summer16V3_WJets_1_100.root
@@ -1573,6 +1594,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCU
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_1\/191018_092355\/0000\/Summer16V3_WJets_1_97.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_1\/191018_092355\/0000\/Summer16V3_WJets_1_98.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_1\/191018_092355\/0000\/Summer16V3_WJets_1_99.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_1\/191018_092355\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_2\/191018_092559\/0000\/Summer16V3_WJets_2_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_2\/191018_092559\/0000\/Summer16V3_WJets_2_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_2\/191018_092559\/0000\/Summer16V3_WJets_2_100.root
@@ -1983,3 +2005,4 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCU
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_2\/191018_092559\/0000\/Summer16V3_WJets_2_97.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_2\/191018_092559\/0000\/Summer16V3_WJets_2_98.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_2\/191018_092559\/0000\/Summer16V3_WJets_2_99.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8\/Summer16V3_WJets_2\/191018_092559\/0000\/log

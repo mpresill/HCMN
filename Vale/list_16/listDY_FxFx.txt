@@ -869,3 +869,4 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/DYJetsToLL_M-50_Tu
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8\/Summer16V3_DY_FxFx\/210126_150609\/0000\/Summer16V3_DY_FxFx_97.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8\/Summer16V3_DY_FxFx\/210126_150609\/0000\/Summer16V3_DY_FxFx_98.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8\/Summer16V3_DY_FxFx\/210126_150609\/0000\/Summer16V3_DY_FxFx_99.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8\/Summer16V3_DY_FxFx\/210126_150609\/0000\/log

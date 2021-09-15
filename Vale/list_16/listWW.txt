@@ -5,6 +5,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_1
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_1\/191018_071848\/0000\/Summer16V3_WW_1_5.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_1\/191018_071848\/0000\/Summer16V3_WW_1_6.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_1\/191018_071848\/0000\/Summer16V3_WW_1_7.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_1\/191018_071848\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_2\/191018_072108\/0000\/Summer16V3_WW_2_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_2\/191018_072108\/0000\/Summer16V3_WW_2_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_2\/191018_072108\/0000\/Summer16V3_WW_2_11.root
@@ -58,3 +59,4 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_1
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_2\/191018_072108\/0000\/Summer16V3_WW_2_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_2\/191018_072108\/0000\/Summer16V3_WW_2_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_2\/191018_072108\/0000\/Summer16V3_WW_2_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/WW_TuneCUETP8M1_13TeV-pythia8\/Summer16V3_WW_2\/191018_072108\/0000\/log

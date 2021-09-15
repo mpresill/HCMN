@@ -575,3 +575,4 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TT_TuneCUETP8M2T4
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8\/Summer16V3_TT\/191018_070258\/0000\/Summer16V3_TT_97.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8\/Summer16V3_TT\/191018_070258\/0000\/Summer16V3_TT_98.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8\/Summer16V3_TT\/191018_070258\/0000\/Summer16V3_TT_99.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8\/Summer16V3_TT\/191018_070258\/0000\/log

@@ -1,0 +1,1 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF30_13TeV-powheg_M_400_800\/Summer16V3_ZMuMu_M400To800\/210702_181524\/0000\/Summer16V3_ZMuMu_M400To800_1.root

@@ -78,3 +78,4 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttZJets_13TeV_madg
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttZJets_13TeV_madgraphMLM-pythia8\/Summer16V3_TTZJets\/210115_114028\/0000\/Summer16V3_TTZJets_8.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttZJets_13TeV_madgraphMLM-pythia8\/Summer16V3_TTZJets\/210115_114028\/0000\/Summer16V3_TTZJets_80.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttZJets_13TeV_madgraphMLM-pythia8\/Summer16V3_TTZJets\/210115_114028\/0000\/Summer16V3_TTZJets_9.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ttZJets_13TeV_madgraphMLM-pythia8\/Summer16V3_TTZJets\/210115_114028\/0000\/log

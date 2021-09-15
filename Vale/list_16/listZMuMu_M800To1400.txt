@@ -1,0 +1,2 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF30_13TeV-powheg_M_800_1400\/Summer16V3_ZMuMu_M800To1400\/210702_182748\/0000\/Summer16V3_ZMuMu_M800To1400_1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF30_13TeV-powheg_M_800_1400\/Summer16V3_ZMuMu_M800To1400\/210702_182748\/0000\/Summer16V3_ZMuMu_M800To1400_2.root

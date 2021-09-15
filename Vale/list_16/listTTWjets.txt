@@ -14,6 +14,7 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneC
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext1\/210115_112434\/0000\/Summer16V3_TTWJets_ext1_7.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext1\/210115_112434\/0000\/Summer16V3_TTWJets_ext1_8.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext1\/210115_112434\/0000\/Summer16V3_TTWJets_ext1_9.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext1\/210115_112434\/0000\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext2\/210115_113008\/0000\/Summer16V3_TTWJets_ext2_1.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext2\/210115_113008\/0000\/Summer16V3_TTWJets_ext2_10.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext2\/210115_113008\/0000\/Summer16V3_TTWJets_ext2_11.root
@@ -45,6 +46,7 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneC
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext2\/210115_113008\/0000\/Summer16V3_TTWJets_ext2_7.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext2\/210115_113008\/0000\/Summer16V3_TTWJets_ext2_8.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext2\/210115_113008\/0000\/Summer16V3_TTWJets_ext2_9.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJets_ext2\/210115_113008\/0000\/log
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToQQ_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJetsToQQ\/210115_113706\/0000\/Summer16V3_TTWJetsToQQ_1.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToQQ_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJetsToQQ\/210115_113706\/0000\/Summer16V3_TTWJetsToQQ_2.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToQQ_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJetsToQQ\/210115_113706\/0000\/Summer16V3_TTWJetsToQQ_3.root
@@ -52,3 +54,4 @@ root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToQQ_TuneCU
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToQQ_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJetsToQQ\/210115_113706\/0000\/Summer16V3_TTWJetsToQQ_5.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToQQ_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJetsToQQ\/210115_113706\/0000\/Summer16V3_TTWJetsToQQ_6.root
 root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToQQ_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJetsToQQ\/210115_113706\/0000\/Summer16V3_TTWJetsToQQ_7.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/TTWJetsToQQ_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8\/Summer16V3_TTWJetsToQQ\/210115_113706\/0000\/log

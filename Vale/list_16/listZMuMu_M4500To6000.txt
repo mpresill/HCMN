@@ -1,0 +1,3 @@
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF30_13TeV-powheg_M_4500_6000\/Summer16V3_ZMuMu_M4500To6000\/210702_203537\/0000\/Summer16V3_ZMuMu_M4500To6000_1.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF30_13TeV-powheg_M_4500_6000\/Summer16V3_ZMuMu_M4500To6000\/210702_203537\/0000\/Summer16V3_ZMuMu_M4500To6000_2.root
+root:\/\/t2-xrdcms.lnl.infn.it:7070\/\/store\/user\/vmariani\/ZToMuMu_NNPDF30_13TeV-powheg_M_4500_6000\/Summer16V3_ZMuMu_M4500To6000\/210702_203537\/0000\/Summer16V3_ZMuMu_M4500To6000_3.root

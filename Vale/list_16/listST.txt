@@ -58,6 +58,7 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_top_5f_incl
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_ST\/191018_070514\/0000\/Summer16V3_ST_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_ST\/191018_070514\/0000\/Summer16V3_ST_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_ST\/191018_070514\/0000\/Summer16V3_ST_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_ST\/191018_070514\/0000\/log
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_SaT\/191018_070728\/0000\/Summer16V3_SaT_1.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_SaT\/191018_070728\/0000\/Summer16V3_SaT_10.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_SaT\/191018_070728\/0000\/Summer16V3_SaT_11.root
@@ -116,3 +117,5 @@ root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_antitop_5f_
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_SaT\/191018_070728\/0000\/Summer16V3_SaT_7.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_SaT\/191018_070728\/0000\/Summer16V3_SaT_8.root
 root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_SaT\/191018_070728\/0000\/Summer16V3_SaT_9.root
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_SaT\/191018_070728\/0000\/failed
+root:\/\/ss-03.recas.ba.infn.it:8080\/\/store\/user\/vmariani\/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1\/Summer16V3_SaT\/191018_070728\/0000\/log
