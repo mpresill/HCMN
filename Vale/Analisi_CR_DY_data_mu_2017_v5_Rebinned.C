@@ -35,8 +35,8 @@ TChain *a_ = new TChain("BOOM");
 
 
 //if ELECTRON CHANNEL: restore electron and photon triggers
-//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/TriggerUpdate_0505/data_ele_2017.root");
-a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/Syst_ALL_HOPE/data_mu_2017.root");
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017/TriggerUpdate_0505/data_mu_2017.root");
+a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/25062021/data_mu_2017.root");
 //inputFile
 
 int HLT_Ele, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100, HLT_Photon200, HLT_Ele115, HLT_Ele35;
@@ -48,7 +48,7 @@ vector<double>* patElectron_phi; patElectron_phi=0;
 vector<double>* patElectron_ecalTrkEnergyPostCorr; patElectron_ecalTrkEnergyPostCorr=0;
 vector<double>* patElectron_energy; patElectron_energy=0;
 vector<int>* patElectron_charge; patElectron_charge=0;
-vector<double>* Muon_pt_tunePbt; Muon_pt_tunePbt=0;
+vector<double>* Muon_pt_tunePbt_Roc; Muon_pt_tunePbt_Roc=0;
 vector<double>* Muon_eta; Muon_eta=0;
 vector<double>* Muon_phi; Muon_phi=0;
 vector<double>* Muon_energy; Muon_energy=0;
@@ -76,7 +76,7 @@ TBranch *a_patElectron_ecalTrkEnergyPostCorr=a_->GetBranch("patElectron_ecalTrkE
 TBranch *a_patElectron_energy=a_->GetBranch("patElectron_energy");
 TBranch *a_patElectron_charge=a_->GetBranch("patElectron_charge");
 
-TBranch *a_Muon_pt_tunePbt=a_->GetBranch("Muon_pt_tunePbt");
+TBranch *a_Muon_pt_tunePbt_Roc=a_->GetBranch("Muon_pt_tunePbt_Roc");
 TBranch *a_Muon_eta=a_->GetBranch("Muon_eta");
 TBranch *a_Muon_phi=a_->GetBranch("Muon_phi");
 TBranch *a_Muon_energy=a_->GetBranch("Muon_energy");
@@ -119,7 +119,7 @@ a_patElectron_ecalTrkEnergyPostCorr->SetAddress(&patElectron_ecalTrkEnergyPostCo
 a_patElectron_energy->SetAddress(&patElectron_energy);
 a_patElectron_charge->SetAddress(&patElectron_charge);
 
-a_Muon_pt_tunePbt->SetAddress(&Muon_pt_tunePbt);
+a_Muon_pt_tunePbt_Roc->SetAddress(&Muon_pt_tunePbt_Roc);
 a_Muon_eta->SetAddress(&Muon_eta);
 a_Muon_phi->SetAddress(&Muon_phi);
 a_Muon_energy->SetAddress(&Muon_energy);
@@ -148,25 +148,87 @@ a_numOfBoostedJets->SetAddress(&numOfBoostedJets);
 a_numOfVetoEle->SetAddress(&numOfVetoEle);
 
 const double asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
+const double asymbinspt[5] = {250, 300, 350, 500, 10000};
+
+TH1D *M_eeJ_SS = new TH1D ("M_eeJ_SS", "M_eeJ_SS", 8, asymbins);
+TH1D *M_eeJ_OS = new TH1D ("M_eeJ_OS", "M_eeJ_OS", 8, asymbins);
+TH1D *M_mumuJ_SS = new TH1D ("M_mumuJ_SS", "M_mumuJ_SS", 8, asymbins);
+TH1D *M_mumuJ_OS = new TH1D ("M_mumuJ_OS", "M_mumuJ_OS", 8, asymbins);
+TH1D *M_eeJ_Z_SS = new TH1D ("M_eeJ_Z_SS", "M_eeJ_Z_SS", 8, asymbins);
+TH1D *M_eeJ_Z_OS = new TH1D ("M_eeJ_Z_OS", "M_eeJ_Z_OS", 8, asymbins);
+TH1D *M_mumuJ_Z_SS = new TH1D ("M_mumuJ_Z_SS", "M_mumuJ_Z_SS", 8, asymbins);
+TH1D *M_mumuJ_Z_OS = new TH1D ("M_mumuJ_Z_OS", "M_mumuJ_Z_OS", 8, asymbins);
 
 TH1D *n_best_Vtx = new TH1D ("n_best_Vtx", "n_best_Vtx", 100,0, 100);
 TH1D *M_mumu_100300 = new TH1D ("M_mumu_100300", "M_mumu_100300", 200, 100, 300);
+TH1D *M_mumu_100300_BB = new TH1D ("M_mumu_100300_BB", "M_mumu_100300_BB", 200, 100, 300);
+TH1D *M_mumu_100300_BE = new TH1D ("M_mumu_100300_BE", "M_mumu_100300_BE", 200, 100, 300);
+TH1D *M_mumu_100300_EE = new TH1D ("M_mumu_100300_EE", "M_mumu_100300_EE", 200, 100, 300);
 TH1D *M_ee_100300 = new TH1D ("M_ee_100300", "M_ee_100300", 200, 100, 300);
+TH1D *M_ee_100300_BB = new TH1D ("M_ee_100300_BB", "M_ee_100300_BB", 200, 100, 300);
+TH1D *M_ee_100300_BE = new TH1D ("M_ee_100300_BE", "M_ee_100300_BE", 200, 100, 300);
+TH1D *M_ee_100300_EE = new TH1D ("M_ee_100300_EE", "M_ee_100300_EE", 200, 100, 300);
 TH1D *M_mumu_Z_50130 = new TH1D ("M_mumu_Z_50130", "M_mumu_Z_50130", 80, 50, 130);
+TH1D *M_mumu_Z_50130_EE = new TH1D ("M_mumu_Z_50130_EE", "M_mumu_Z_50130_EE", 80, 50, 130);
+TH1D *M_mumu_Z_50130_BE = new TH1D ("M_mumu_Z_50130_BE", "M_mumu_Z_50130_BE", 80, 50, 130);
+TH1D *M_mumu_Z_50130_BB = new TH1D ("M_mumu_Z_50130_BB", "M_mumu_Z_50130_BB", 80, 50, 130);
 TH1D *M_ee_Z_50130 = new TH1D ("M_ee_Z_50130", "M_ee_Z_50130", 80, 50, 130);
+TH1D *M_ee_Z_50130_EE = new TH1D ("M_ee_Z_50130_EE", "M_ee_Z_50130_EE", 80, 50, 130);
+TH1D *M_ee_Z_50130_BE = new TH1D ("M_ee_Z_50130_BE", "M_ee_Z_50130_BE", 80, 50, 130);
+TH1D *M_ee_Z_50130_BB = new TH1D ("M_ee_Z_50130_BB", "M_ee_Z_50130_BB", 80, 50, 130);
 
+TH1D *M_mumu = new TH1D ("M_mumu", "M_mumu", 50, 150, 300);
+TH1D *M_mumu_BB = new TH1D ("M_mumu_BB", "M_mumu_BB", 50, 150, 300);
+TH1D *M_mumu_BE = new TH1D ("M_mumu_BE", "M_mumu_BE", 50, 150, 300);
+TH1D *M_mumu_EE = new TH1D ("M_mumu_EE", "M_mumu_EE", 50, 150, 300);
 TH1D *M_mumuJ = new TH1D ("M_mumuJ", "M_mumuJ", 8, asymbins);
+TH1D *M_mumuJ_BB = new TH1D ("M_mumuJ_BB", "M_mumuJ_BB", 8, asymbins);
+TH1D *M_mumuJ_BE = new TH1D ("M_mumuJ_BE", "M_mumuJ_BE", 8, asymbins);
+TH1D *M_mumuJ_EE = new TH1D ("M_mumuJ_EE", "M_mumuJ_EE", 8, asymbins);
 TH1D *pt_mumu = new TH1D ("pt_mumu", "pt_mumu", 100, 0, 1000);
+TH1D *pt_mumu_BB = new TH1D ("pt_mumu_BB", "pt_mumu_BB", 100, 0, 1000);
+TH1D *pt_mumu_BE = new TH1D ("pt_mumu_BE", "pt_mumu_BE", 100, 0, 1000);
+TH1D *pt_mumu_EE = new TH1D ("pt_mumu_EE", "pt_mumu_EE", 100, 0, 1000);
+
 TH1D *M_eeJ = new TH1D ("M_eeJ", "M_eeJ", 8, asymbins);
+TH1D *M_eeJ_BB = new TH1D ("M_eeJ_BB", "M_eeJ_BB", 8, asymbins);
+TH1D *M_eeJ_BE = new TH1D ("M_eeJ_BE", "M_eeJ_BE", 8, asymbins);
+TH1D *M_eeJ_EE = new TH1D ("M_eeJ_EE", "M_eeJ_EE", 8, asymbins);
 TH1D *pt_ee = new TH1D ("pt_ee", "pt_ee", 100, 0, 1000);
+TH1D *pt_ee_BB = new TH1D ("pt_ee_BB", "pt_ee_BB", 100, 0, 1000);
+TH1D *pt_ee_BE = new TH1D ("pt_ee_BE", "pt_ee_BE", 100, 0, 1000);
+TH1D *pt_ee_EE = new TH1D ("pt_ee_EE", "pt_ee_EE", 100, 0, 1000);
+TH1D *M_ee = new TH1D ("M_ee", "M_ee", 50, 150, 300);
+TH1D *M_ee_BB = new TH1D ("M_ee_BB", "M_ee_BB", 50, 150, 300);
+TH1D *M_ee_BE = new TH1D ("M_ee_BE", "M_ee_BE", 50, 150, 300);
+TH1D *M_ee_EE = new TH1D ("M_ee_EE", "M_ee_EE", 50, 150, 300);
 
 TH1D *Mmumu_DYcr = new TH1D ("Mmumu_DYcr", "Mmumu_DYcr", 50, 150, 300);
 TH1D *M_mumuJ_Z = new TH1D ("M_mumuJ_Z", "M_mumuJ_Z", 8, asymbins);
-TH1D *pt_mumu_Z = new TH1D ("pt_mumu_Z", "pt_mumu_Z", 100, 0, 1000);
+TH1D *M_mumuJ_Z_BB = new TH1D ("M_mumuJ_Z_BB", "M_mumuJ_Z_BB", 8, asymbins);
+TH1D *M_mumuJ_Z_BE = new TH1D ("M_mumuJ_Z_BE", "M_mumuJ_Z_BE", 8, asymbins);
+TH1D *M_mumuJ_Z_EE = new TH1D ("M_mumuJ_Z_EE", "M_mumuJ_Z_EE", 8, asymbins);
+TH1D *pt_mumu_Z = new TH1D ("pt_mumu_Z", "pt_mumu_Z", 4, asymbinspt);
+TH1D *pt_mumu_Z_BB = new TH1D ("pt_mumu_Z_BB", "pt_mumu_Z_BB", 4, asymbinspt);
+TH1D *pt_mumu_Z_BE = new TH1D ("pt_mumu_Z_BE", "pt_mumu_Z_BE", 4, asymbinspt);
+TH1D *pt_mumu_Z_EE = new TH1D ("pt_mumu_Z_EE", "pt_mumu_Z_EE", 4, asymbinspt);
 TH1D *M_eeJ_Z = new TH1D ("M_eeJ_Z", "M_eeJ_Z", 8, asymbins);
-TH1D *pt_ee_Z = new TH1D ("pt_ee_Z", "pt_ee_Z", 100, 0, 1000);
+TH1D *M_eeJ_Z_BB = new TH1D ("M_eeJ_Z_BB", "M_eeJ_Z_BB", 8, asymbins);
+TH1D *M_eeJ_Z_BE = new TH1D ("M_eeJ_Z_BE", "M_eeJ_Z_BE", 8, asymbins);
+TH1D *M_eeJ_Z_EE = new TH1D ("M_eeJ_Z_EE", "M_eeJ_Z_EE", 8, asymbins);
+TH1D *pt_ee_Z = new TH1D ("pt_ee_Z", "pt_ee_Z", 4, asymbinspt);
+TH1D *pt_ee_Z_BB = new TH1D ("pt_ee_Z_BB", "pt_ee_Z_BB", 4, asymbinspt);
+TH1D *pt_ee_Z_BE = new TH1D ("pt_ee_Z_BE", "pt_ee_Z_BE", 4, asymbinspt);
+TH1D *pt_ee_Z_EE = new TH1D ("pt_ee_Z_EE", "pt_ee_Z_EE", 4, asymbinspt);
 TH1D *M_mumu_Zpeak = new TH1D ("M_mumu_Zpeak", "M_mumu_Zpeak", 60, 60, 120);
+TH1D *M_mumu_Zpeak_BB = new TH1D ("M_mumu_Zpeak_BB", "M_mumu_Zpeak_BB", 60, 60, 120);
+TH1D *M_mumu_Zpeak_BE = new TH1D ("M_mumu_Zpeak_BE", "M_mumu_Zpeak_BE", 60, 60, 120);
+TH1D *M_mumu_Zpeak_EE = new TH1D ("M_mumu_Zpeak_EE", "M_mumu_Zpeak_EE", 60, 60, 120);
 TH1D *M_ee_Zpeak = new TH1D ("M_ee_Zpeak", "M_ee_Zpeak", 60, 60, 120);
+TH1D *M_ee_Zpeak_BB = new TH1D ("M_ee_Zpeak_BB", "M_ee_Zpeak_BB", 60, 60, 120);
+TH1D *M_ee_Zpeak_BE = new TH1D ("M_ee_Zpeak_BE", "M_ee_Zpeak_BE", 60, 60, 120);
+TH1D *M_ee_Zpeak_EE = new TH1D ("M_ee_Zpeak_EE", "M_ee_Zpeak_EE", 60, 60, 120);
+
 
 TLorentzVector Muon1;
 TLorentzVector Muon2;
@@ -194,29 +256,71 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  if (HLT_Ele115==1 || HLT_Photon200 ==1 || HLT_Ele35 ==1) HLT_Ele=1;
 
 
- if (Muon_pt_tunePbt->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
-  if (HLT_Mu == 1 && Muon_pt_tunePbt->at(0) > 150 && Muon_pt_tunePbt->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
-   Muon1.SetPtEtaPhiE(Muon_pt_tunePbt->at(0), Muon_eta->at(0), Muon_phi->at(0),Muon_energy->at(0));
-   Muon2.SetPtEtaPhiE(Muon_pt_tunePbt->at(1), Muon_eta->at(1), Muon_phi->at(1),Muon_energy->at(1));
+ if (Muon_pt_tunePbt_Roc->size() > 1 && numOfHighptMu==2 && numOfVetoEle == 0 && numOfBoostedJets>=1){
+  if (HLT_Mu == 1 && Muon_pt_tunePbt_Roc->at(0) > 150 && Muon_pt_tunePbt_Roc->at(1) > 100 && fabs(Muon_eta->at(0))<2.4 && fabs(Muon_eta->at(1))<2.4 && BoostedJet_pt->at(0) > 190 ){
+   Muon1.SetPtEtaPhiM(Muon_pt_tunePbt_Roc->at(0), Muon_eta->at(0), Muon_phi->at(0),0.1056583745);
+   Muon2.SetPtEtaPhiM(Muon_pt_tunePbt_Roc->at(1), Muon_eta->at(1), Muon_phi->at(1),0.1056583745);
    BoostJet.SetPtEtaPhiE(BoostedJet_pt->at(0), BoostedJet_eta->at(0), BoostedJet_phi->at(0),BoostedJet_energy->at(0));
 
 
    mmumu= (Muon1+Muon2).M();
     if(mmumu > 100 && mmumu < 300){
         M_mumu_100300->Fill(mmumu);
+     if(fabs(Muon_eta->at(1))<0.8 && fabs(Muon_eta->at(0))<0.8)M_mumu_100300_BB->Fill(mmumu);
+   if((fabs(Muon_eta->at(1))<0.8 && fabs(Muon_eta->at(0))>0.8) || (fabs(Muon_eta->at(1))>0.8 && fabs(Muon_eta->at(0))<0.8))M_mumu_100300_BE->Fill(mmumu);
+   if(fabs(Muon_eta->at(1))>0.8 && fabs(Muon_eta->at(0))>0.8)M_mumu_100300_EE->Fill(mmumu);
     }
     if(mmumu >50 && mmumu < 130){
      M_mumu_Z_50130->Fill(mmumu);
+     if(fabs(Muon_eta->at(1))<0.8 && fabs(Muon_eta->at(0))<0.8)M_mumu_Z_50130_BB->Fill(mmumu);
+   if((fabs(Muon_eta->at(1))<0.8 && fabs(Muon_eta->at(0))>0.8) || (fabs(Muon_eta->at(1))>0.8 && fabs(Muon_eta->at(0))<0.8))M_mumu_Z_50130_BE->Fill(mmumu);
+   if(fabs(Muon_eta->at(1))>0.8 && fabs(Muon_eta->at(0))>0.8)M_mumu_Z_50130_EE->Fill(mmumu);
    }
    if (mmumu >=150 && mmumu <= 300){
     Mmumu_DYcr->Fill((Muon1+Muon2).M());
     M_mumuJ->Fill((Muon1+Muon2+BoostJet).M());  
     pt_mumu->Fill(Muon1.Pt() + Muon2.Pt());
+    M_mumu->Fill((Muon1+Muon2).M());
+    if (Muon_charge->at(0)*Muon_charge->at(1) == 1) M_mumuJ_Z_SS->Fill((Muon1+Muon2+BoostJet).M());
+     if (Muon_charge->at(0)*Muon_charge->at(1) == -1) M_mumuJ_Z_OS->Fill((Muon1+Muon2+BoostJet).M());
+    if(fabs(Muon_eta->at(1))<0.8 && fabs(Muon_eta->at(0))<0.8){
+     M_mumu_BB->Fill((Muon1+Muon2).M());
+     M_mumuJ_BB->Fill((Muon1+Muon2+BoostJet).M());
+     pt_mumu_BB->Fill(Muon1.Pt() + Muon2.Pt());
+    }
+    if((fabs(Muon_eta->at(1))<0.8 && fabs(Muon_eta->at(0))>0.8) || (fabs(Muon_eta->at(1))>0.8 && fabs(Muon_eta->at(0))<0.8)){
+     M_mumu_BE->Fill((Muon1+Muon2).M());
+     M_mumuJ_BE->Fill((Muon1+Muon2+BoostJet).M());
+     pt_mumu_BE->Fill(Muon1.Pt() + Muon2.Pt());
+    }
+    if(fabs(Muon_eta->at(1))>0.8 && fabs(Muon_eta->at(0))>0.8){
+     M_mumu_EE->Fill((Muon1+Muon2).M());
+     M_mumuJ_EE->Fill((Muon1+Muon2+BoostJet).M());
+     pt_mumu_EE->Fill(Muon1.Pt() + Muon2.Pt());
+    }
    }
     if (mmumu >= 60 && mmumu <= 120){
      M_mumuJ_Z->Fill((Muon1+Muon2+BoostJet).M());
      pt_mumu_Z->Fill(Muon1.Pt() + Muon2.Pt());
      M_mumu_Zpeak->Fill((Muon1+Muon2).M());
+     if (Muon_charge->at(0)*Muon_charge->at(1) == 1) M_mumuJ_Z_SS->Fill((Muon1+Muon2+BoostJet).M());
+     if (Muon_charge->at(0)*Muon_charge->at(1) == -1) M_mumuJ_Z_OS->Fill((Muon1+Muon2+BoostJet).M());
+     if(fabs(Muon_eta->at(1))<0.8 && fabs(Muon_eta->at(0))<0.8){
+     M_mumuJ_Z_BB->Fill((Muon1+Muon2+BoostJet).M());
+     pt_mumu_Z_BB->Fill(Muon1.Pt() + Muon2.Pt());
+     M_mumu_Zpeak_BB->Fill((Muon1+Muon2).M());
+    }
+    if((fabs(Muon_eta->at(1))<0.8 && fabs(Muon_eta->at(0))>0.8) || (fabs(Muon_eta->at(1))>0.8 && fabs(Muon_eta->at(0))<0.8)){
+     M_mumuJ_Z_BE->Fill((Muon1+Muon2+BoostJet).M());
+     pt_mumu_Z_BE->Fill(Muon1.Pt() + Muon2.Pt());
+     M_mumu_Zpeak_BE->Fill((Muon1+Muon2).M());
+    }
+    if(fabs(Muon_eta->at(1))>0.8 && fabs(Muon_eta->at(0))>0.8){
+     M_mumuJ_Z_EE->Fill((Muon1+Muon2+BoostJet).M());
+     pt_mumu_Z_EE->Fill(Muon1.Pt() + Muon2.Pt());
+     M_mumu_Zpeak_EE->Fill((Muon1+Muon2).M());
+    }
+
     }
 
 
@@ -239,18 +343,60 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
     mee = (Electron1+Electron2).M();
     if(mee >= 100 && mee <= 300){
      M_ee_100300->Fill(mee);
+     if(fabs(patElectron_eta->at(0))<0.8 && fabs(patElectron_eta->at(1))<0.8)M_ee_100300_BB->Fill(mee);
+     if((fabs(patElectron_eta->at(0))<0.8 && fabs(patElectron_eta->at(1))>0.8) || (fabs(patElectron_eta->at(0))>0.8 && fabs(patElectron_eta->at(1))<0.8))M_ee_100300_BE->Fill(mee);
+     if(fabs(patElectron_eta->at(0))>0.8 && fabs(patElectron_eta->at(1))>0.8)M_ee_100300_EE->Fill(mee);
     }
     if(mee > 50 && mee < 130){
         M_ee_Z_50130->Fill(mee);
+     if(fabs(patElectron_eta->at(0))<0.8 && fabs(patElectron_eta->at(1))<0.8)M_ee_Z_50130_BB->Fill(mee);
+     if((fabs(patElectron_eta->at(0))<0.8 && fabs(patElectron_eta->at(1))>0.8) || (fabs(patElectron_eta->at(0))>0.8 && fabs(patElectron_eta->at(1))<0.8))M_ee_Z_50130_BE->Fill(mee);
+     if(fabs(patElectron_eta->at(0))>0.8 && fabs(patElectron_eta->at(1))>0.8)M_ee_Z_50130_EE->Fill(mee);
     } 
     if (mee>=150 && mee <= 300){
+     if (patElectron_charge->at(0)*patElectron_charge->at(1) == 1)M_eeJ_SS->Fill((Electron1+Electron2+BoostJet).M());
+     if (patElectron_charge->at(0)*patElectron_charge->at(1) == -1)M_eeJ_OS->Fill((Electron1+Electron2+BoostJet).M());
         M_eeJ->Fill((Electron1+Electron2+BoostJet).M());
         pt_ee ->Fill(Electron1.Pt() + Electron2.Pt());
+      M_ee->Fill((Electron1+Electron2).M());
+      if(fabs(patElectron_eta->at(0))<0.8 && fabs(patElectron_eta->at(1))<0.8){
+      M_ee_BB->Fill((Electron1+Electron2).M());
+      M_eeJ_BB->Fill((Electron1+Electron2+BoostJet).M());
+      pt_ee_BB->Fill(Electron1.Pt() + Electron2.Pt());
+     }
+     if((fabs(patElectron_eta->at(0))<0.8 && fabs(patElectron_eta->at(1))>0.8) || (fabs(patElectron_eta->at(0))>0.8 && fabs(patElectron_eta->at(1))<0.8)){
+      M_ee_BE->Fill((Electron1+Electron2).M());
+      M_eeJ_BE->Fill((Electron1+Electron2+BoostJet).M());
+      pt_ee_BE->Fill(Electron1.Pt() + Electron2.Pt());
+     }
+     if(fabs(patElectron_eta->at(0))>0.8 && fabs(patElectron_eta->at(1))>0.8){
+      M_ee_EE->Fill((Electron1+Electron2).M());
+      M_eeJ_EE->Fill((Electron1+Electron2+BoostJet).M());
+      pt_ee_EE->Fill(Electron1.Pt() + Electron2.Pt());
+    }
+ 
     }
     if (mee >= 60 && mee <= 120){
      M_ee_Zpeak->Fill((Electron1+Electron2).M());
      M_eeJ_Z->Fill((Electron1+Electron2+BoostJet).M());
      pt_ee_Z->Fill(Electron1.Pt() + Electron2.Pt());
+     if (patElectron_charge->at(0)*patElectron_charge->at(1) == 1)M_eeJ_Z_SS->Fill((Electron1+Electron2+BoostJet).M());
+     if (patElectron_charge->at(0)*patElectron_charge->at(1) == -1)M_eeJ_Z_OS->Fill((Electron1+Electron2+BoostJet).M()); 
+     if(fabs(patElectron_eta->at(0))<0.8 && fabs(patElectron_eta->at(1))<0.8){
+      M_ee_Zpeak_BB->Fill((Electron1+Electron2).M());
+      M_eeJ_Z_BB->Fill((Electron1+Electron2+BoostJet).M());
+      pt_ee_Z_BB->Fill(Electron1.Pt() + Electron2.Pt());
+     }
+     if((fabs(patElectron_eta->at(0))<0.8 && fabs(patElectron_eta->at(1))>0.8) || (fabs(patElectron_eta->at(0))>0.8 && fabs(patElectron_eta->at(1))<0.8)){
+      M_ee_Zpeak_BE->Fill((Electron1+Electron2).M());
+      M_eeJ_Z_BE->Fill((Electron1+Electron2+BoostJet).M());
+      pt_ee_Z_BE->Fill(Electron1.Pt() + Electron2.Pt());
+     }
+     if(fabs(patElectron_eta->at(0))>0.8 && fabs(patElectron_eta->at(1))>0.8){
+      M_ee_Zpeak_EE->Fill((Electron1+Electron2).M());
+      M_eeJ_Z_EE->Fill((Electron1+Electron2+BoostJet).M());
+      pt_ee_Z_EE->Fill(Electron1.Pt() + Electron2.Pt());
+     }
     }
   
   }
@@ -258,25 +404,82 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
 }
 
-//TFile *f = new TFile("plots/CR_DY_data_ele_2017.root", "RECREATE");
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/CR_DY_data_mu_2017.root", "RECREATE");
-
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/25062021/CR_DY_data_mu_2017.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/CR_DY_data_mu_2017.root", "RECREATE");
+M_eeJ_Z_SS->Write();
+M_eeJ_Z_OS->Write();
+M_eeJ_SS->Write();
+M_eeJ_OS->Write();
+M_mumuJ_Z_SS->Write();
+M_mumuJ_Z_OS->Write();
+M_mumuJ_SS->Write();
+M_mumuJ_OS->Write();
+M_ee->Write();
+M_ee_BB->Write();
+M_ee_BE->Write();
+M_ee_EE->Write();
+M_mumu->Write();
+M_mumu_BB->Write();
+M_mumu_BE->Write();
+M_mumu_EE->Write();
 Mmumu_DYcr->Write();
 n_best_Vtx->Write();
 M_mumu_100300->Write();
+M_mumu_100300_BB->Write();
+M_mumu_100300_BE->Write();
+M_mumu_100300_EE->Write();
 M_mumu_Z_50130->Write();
+M_mumu_Z_50130_BB->Write();
+M_mumu_Z_50130_BE->Write();
+M_mumu_Z_50130_EE->Write();
 M_ee_100300->Write();
+M_ee_100300_BB->Write();
+M_ee_100300_BE->Write();
+M_ee_100300_EE->Write();
 M_ee_Z_50130->Write();
+M_ee_Z_50130_BB->Write();
+M_ee_Z_50130_BE->Write();
+M_ee_Z_50130_EE->Write();
 M_mumuJ->Write();
+M_mumuJ_BB->Write();
+M_mumuJ_BE->Write();
+M_mumuJ_EE->Write();
 pt_mumu->Write();
+pt_mumu_BB->Write();
+pt_mumu_BE->Write();
+pt_mumu_EE->Write();
 M_eeJ->Write();
+M_eeJ_BB->Write();
+M_eeJ_BE->Write();
+M_eeJ_EE->Write();
 pt_ee->Write();
+pt_ee_BB->Write();
+pt_ee_BE->Write();
+pt_ee_EE->Write();
 M_mumuJ_Z->Write();
+M_mumuJ_Z_BB->Write();
+M_mumuJ_Z_BE->Write();
+M_mumuJ_Z_EE->Write();
 pt_mumu_Z->Write();
+pt_mumu_Z_BB->Write();
+pt_mumu_Z_BE->Write();
+pt_mumu_Z_EE->Write();
 M_eeJ_Z->Write();
+M_eeJ_Z_BB->Write();
+M_eeJ_Z_BE->Write();
+M_eeJ_Z_EE->Write();
 pt_ee_Z->Write();
+pt_ee_Z_BB->Write();
+pt_ee_Z_BE->Write();
+pt_ee_Z_EE->Write();
 M_mumu_Zpeak->Write();
+M_mumu_Zpeak_BB->Write();
+M_mumu_Zpeak_BE->Write();
+M_mumu_Zpeak_EE->Write();
 M_ee_Zpeak->Write();
+M_ee_Zpeak_BB->Write();
+M_ee_Zpeak_BE->Write();
+M_ee_Zpeak_EE->Write();
 
 f->Write();
 f->Close();
