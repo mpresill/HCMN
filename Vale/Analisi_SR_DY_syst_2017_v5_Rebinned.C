@@ -47,10 +47,8 @@ void Analisi_SR_DY_syst_2017_v5_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
-a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/25062021/DY_HTincl_LO_2017.root");
-//a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/Syst_ALL_newMuonSF/DY_HT100Inf_2017.root"); 
-//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2017_syst/Vale_HT_processing/DY_HT100inf_2017.root");  //DY_HT100Inf_2017.root");
-
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/25062021/DY_HTincl_LO_2017.root");
+a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/25062021/DYbins/DY_HTincl_LO_2017.root");
 
 
 int HLT_Ele, HLT_Photon200, HLT_Ele115, HLT_Ele35, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
@@ -356,41 +354,41 @@ TH1D *DY_Zpeak_eejj = new TH1D ("DY_Zpeak_eejj", "DY_Zpeak_eejj", 8, asymbins);
 TH1D *DY_Zpeak_eejj_BB = new TH1D ("DY_Zpeak_eejj_BB", "DY_Zpeak_eejj_BB", 8, asymbins);
 TH1D *DY_Zpeak_eejj_BE = new TH1D ("DY_Zpeak_eejj_BE", "DY_Zpeak_eejj_BE", 8, asymbins);
 TH1D *DY_Zpeak_eejj_EE = new TH1D ("DY_Zpeak_eejj_EE", "DY_Zpeak_eejj_EE", 8, asymbins);
-TH1D *DY_Zpeak_mumu_pt = new TH1D ("DY_Zpeak_mumu_pt", "DY_Zpeak_mumu_pt", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_BB = new TH1D ("DY_Zpeak_mumu_pt_BB", "DY_Zpeak_mumu_pt_BB", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_BE = new TH1D ("DY_Zpeak_mumu_pt_BE", "DY_Zpeak_mumu_pt_BE", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_EE = new TH1D ("DY_Zpeak_mumu_pt_EE", "DY_Zpeak_mumu_pt_EE", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt = new TH1D ("DY_Zpeak_ee_pt", "DY_Zpeak_ee_pt", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_BB = new TH1D ("DY_Zpeak_ee_pt_BB", "DY_Zpeak_ee_pt_BB", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_BE = new TH1D ("DY_Zpeak_ee_pt_BE", "DY_Zpeak_ee_pt_BE", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_EE = new TH1D ("DY_Zpeak_ee_pt_EE", "DY_Zpeak_ee_pt_EE", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017 = new TH1D ("DY_Zpeak_mumu_pt_2017", "DY_Zpeak_mumu_pt_2017", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_BB = new TH1D ("DY_Zpeak_mumu_pt_2017_BB", "DY_Zpeak_mumu_pt_2017_BB", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_BE = new TH1D ("DY_Zpeak_mumu_pt_2017_BE", "DY_Zpeak_mumu_pt_2017_BE", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_EE = new TH1D ("DY_Zpeak_mumu_pt_2017_EE", "DY_Zpeak_mumu_pt_2017_EE", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017 = new TH1D ("DY_Zpeak_ee_pt_2017", "DY_Zpeak_ee_pt_2017", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_BB = new TH1D ("DY_Zpeak_ee_pt_2017_BB", "DY_Zpeak_ee_pt_2017_BB", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_BE = new TH1D ("DY_Zpeak_ee_pt_2017_BE", "DY_Zpeak_ee_pt_2017_BE", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_EE = new TH1D ("DY_Zpeak_ee_pt_2017_EE", "DY_Zpeak_ee_pt_2017_EE", 4, asymbinspt);
 
-TH1D *DY_Zpeak_mumu_pt_SFUp = new TH1D ("DY_Zpeak_mumu_pt_SFUp", "DY_Zpeak_mumu_pt_SFUp", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_SFDown = new TH1D ("DY_Zpeak_mumu_pt_SFDown", "DY_Zpeak_mumu_pt_SFDown", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_PUUp = new TH1D ("DY_Zpeak_mumu_pt_PUUp", "DY_Zpeak_mumu_pt_PUUp", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_PUDown = new TH1D ("DY_Zpeak_mumu_pt_PUDown", "DY_Zpeak_mumu_pt_PUDown", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_PtResoUp = new TH1D ("DY_Zpeak_mumu_pt_PtResoUp", "DY_Zpeak_mumu_pt_PtResoUp", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_PtResoDown = new TH1D ("DY_Zpeak_mumu_pt_PtResoDown", "DY_Zpeak_mumu_pt_PtResoDown", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_PtReso2Down = new TH1D ("DY_Zpeak_mumu_pt_PtReso2Down", "DY_Zpeak_mumu_pt_PtReso2Down", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_centralJesJer = new TH1D ("DY_Zpeak_mumu_pt_centralJesJer", "DY_Zpeak_mumu_pt_centralJesJer", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_JesSFUp = new TH1D ("DY_Zpeak_mumu_pt_JesSFUp", "DY_Zpeak_mumu_pt_JesSFUp", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_JesSFDown = new TH1D ("DY_Zpeak_mumu_pt_JesSFDown", "DY_Zpeak_mumu_pt_JesSFDown", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_JerSFUp = new TH1D ("DY_Zpeak_mumu_pt_JerSFUp", "DY_Zpeak_mumu_pt_JerSFUp", 4, asymbinspt);
-TH1D *DY_Zpeak_mumu_pt_JerSFDown = new TH1D ("DY_Zpeak_mumu_pt_JerSFDown", "DY_Zpeak_mumu_pt_JerSFDown", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_SFUp = new TH1D ("DY_Zpeak_mumu_pt_2017_SFUp", "DY_Zpeak_mumu_pt_2017_SFUp", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_SFDown = new TH1D ("DY_Zpeak_mumu_pt_2017_SFDown", "DY_Zpeak_mumu_pt_2017_SFDown", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_PUUp = new TH1D ("DY_Zpeak_mumu_pt_2017_PUUp", "DY_Zpeak_mumu_pt_2017_PUUp", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_PUDown = new TH1D ("DY_Zpeak_mumu_pt_2017_PUDown", "DY_Zpeak_mumu_pt_2017_PUDown", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_PtResoUp = new TH1D ("DY_Zpeak_mumu_pt_2017_PtResoUp", "DY_Zpeak_mumu_pt_2017_PtResoUp", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_PtResoDown = new TH1D ("DY_Zpeak_mumu_pt_2017_PtResoDown", "DY_Zpeak_mumu_pt_2017_PtResoDown", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_PtReso2Down = new TH1D ("DY_Zpeak_mumu_pt_2017_PtReso2Down", "DY_Zpeak_mumu_pt_2017_PtReso2Down", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_centralJesJer = new TH1D ("DY_Zpeak_mumu_pt_2017_centralJesJer", "DY_Zpeak_mumu_pt_2017_centralJesJer", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_JesSFUp = new TH1D ("DY_Zpeak_mumu_pt_2017_JesSFUp", "DY_Zpeak_mumu_pt_2017_JesSFUp", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_JesSFDown = new TH1D ("DY_Zpeak_mumu_pt_2017_JesSFDown", "DY_Zpeak_mumu_pt_2017_JesSFDown", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_JerSFUp = new TH1D ("DY_Zpeak_mumu_pt_2017_JerSFUp", "DY_Zpeak_mumu_pt_2017_JerSFUp", 4, asymbinspt);
+TH1D *DY_Zpeak_mumu_pt_2017_JerSFDown = new TH1D ("DY_Zpeak_mumu_pt_2017_JerSFDown", "DY_Zpeak_mumu_pt_2017_JerSFDown", 4, asymbinspt);
 
-TH1D *DY_Zpeak_ee_pt_SFUp = new TH1D ("DY_Zpeak_ee_pt_SFUp", "DY_Zpeak_ee_pt_SFUp", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_SFDown = new TH1D ("DY_Zpeak_ee_pt_SFDown", "DY_Zpeak_ee_pt_SFDown", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_PUUp = new TH1D ("DY_Zpeak_ee_pt_PUUp", "DY_Zpeak_ee_pt_PUUp", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_PUDown = new TH1D ("DY_Zpeak_ee_pt_PUDown", "DY_Zpeak_ee_pt_PUDown", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_ScaleUp = new TH1D ("DY_Zpeak_ee_pt_ScaleUp", "DY_Zpeak_ee_pt_ScaleUp", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_ScaleDown = new TH1D ("DY_Zpeak_ee_pt_ScaleDown", "DY_Zpeak_ee_pt_ScaleDown", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_SigmaUp = new TH1D ("DY_Zpeak_ee_pt_SigmaUp", "DY_Zpeak_ee_pt_SigmaUp", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_SigmaDown = new TH1D ("DY_Zpeak_ee_pt_SigmaDown", "DY_Zpeak_ee_pt_SigmaDown", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_centralJesJer = new TH1D ("DY_Zpeak_ee_pt_centralJesJer", "DY_Zpeak_ee_pt_centralJesJer", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_JesSFUp = new TH1D ("DY_Zpeak_ee_pt_JesSFUp", "DY_Zpeak_ee_pt_JesSFUp", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_JesSFDown = new TH1D ("DY_Zpeak_ee_pt_JesSFDown", "DY_Zpeak_ee_pt_JesSFDown", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_JerSFUp = new TH1D ("DY_Zpeak_ee_pt_JerSFUp", "DY_Zpeak_ee_pt_JerSFUp", 4, asymbinspt);
-TH1D *DY_Zpeak_ee_pt_JerSFDown = new TH1D ("DY_Zpeak_ee_pt_JerSFDown", "DY_Zpeak_ee_pt_JerSFDown", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_SFUp = new TH1D ("DY_Zpeak_ee_pt_2017_SFUp", "DY_Zpeak_ee_pt_2017_SFUp", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_SFDown = new TH1D ("DY_Zpeak_ee_pt_2017_SFDown", "DY_Zpeak_ee_pt_2017_SFDown", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_PUUp = new TH1D ("DY_Zpeak_ee_pt_2017_PUUp", "DY_Zpeak_ee_pt_2017_PUUp", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_PUDown = new TH1D ("DY_Zpeak_ee_pt_2017_PUDown", "DY_Zpeak_ee_pt_2017_PUDown", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_energyScaleUp = new TH1D ("DY_Zpeak_ee_pt_energyScaleUp", "DY_Zpeak_ee_pt_energyScaleUp", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_energyScaleDown = new TH1D ("DY_Zpeak_ee_pt_energyScaleDown", "DY_Zpeak_ee_pt_energyScaleDown", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_energySigmaUp = new TH1D ("DY_Zpeak_ee_pt_2017_energySigmaUp", "DY_Zpeak_ee_pt_2017_energySigmaUp", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_energySigmaDown = new TH1D ("DY_Zpeak_ee_pt_2017_energySigmaDown", "DY_Zpeak_ee_pt_2017_energySigmaDown", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_centralJesJer = new TH1D ("DY_Zpeak_ee_pt_2017_centralJesJer", "DY_Zpeak_ee_pt_2017_centralJesJer", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_JesSFUp = new TH1D ("DY_Zpeak_ee_pt_2017_JesSFUp", "DY_Zpeak_ee_pt_2017_JesSFUp", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_JesSFDown = new TH1D ("DY_Zpeak_ee_pt_2017_JesSFDown", "DY_Zpeak_ee_pt_2017_JesSFDown", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_JerSFUp = new TH1D ("DY_Zpeak_ee_pt_2017_JerSFUp", "DY_Zpeak_ee_pt_2017_JerSFUp", 4, asymbinspt);
+TH1D *DY_Zpeak_ee_pt_2017_JerSFDown = new TH1D ("DY_Zpeak_ee_pt_2017_JerSFDown", "DY_Zpeak_ee_pt_2017_JerSFDown", 4, asymbinspt);
 
 //DY CR (mll in 150-300 GeV)
 TH1D *Mmumu_DYcr = new TH1D ("Mmumu_DYcr", "Mmumu_DYcr", 50, 150, 300);
@@ -552,7 +550,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 /************************************************************/
   /*implementation of k-factors from monojet analysis*/
   /*here we read the histograms with the corrections */
-  TFile k_qcd_file("monojetDYk/kfac_dy_filter.root");  /*this is the histo with qcd weights*/
+  TFile k_qcd_file("monojetDYk/Kfactor_NLO_HTincl_LO_2017.root");  /*this is the histo with qcd weights*/
+  //TFile k_qcd_file("monojetDYk/kfac_dy_filter.root");
   TH1F *k_qcd_histo = (TH1F*)k_qcd_file.Get("kfac_dy_filter");
   TFile k_ewk_file("monojetDYk/merged_kfactors_zjets.root");  /*this is the histo with ewk weights*/
   TH1F *k_ewk_histo = (TH1F*)k_ewk_file.Get("kfactor_monojet_ewk");
@@ -567,25 +566,27 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   /* here we write the k_qcd */
   k_qcd=1;
   int Nbins_qcd = k_qcd_histo ->GetNbinsX(); double binWidth_qcd=0;
-/*  for (int ji=1; ji<= Nbins_qcd; ji++){
+  for (int ji=1; ji<= Nbins_qcd; ji++){
     binCenter_qcd= k_qcd_histo->GetXaxis()->GetBinCenter(ji);
     binWidth_qcd= k_qcd_histo->GetXaxis()->GetBinWidth(ji);
+
+    if(k_qcd_histo->GetBinContent(ji) ==0){continue;}
 
     if( Z_gen_pt>150 && Z_gen_pt >=(binCenter_qcd - (0.5*binWidth_qcd)) && Z_gen_pt < (binCenter_qcd + (0.5*binWidth_qcd))  ){
       k_qcd = k_qcd_histo->GetBinContent(ji);
     }
-  }*/
+  }
   /* here we write the k_ewk */
   k_ewk =1;
   int Nbins_ewk = k_ewk_histo ->GetNbinsX(); double binWidth_ewk=0;
-/*  for (int jj=1; jj<= Nbins_ewk; jj++){
+  for (int jj=1; jj<= Nbins_ewk; jj++){
     binCenter_ewk= k_ewk_histo->GetXaxis()->GetBinCenter(jj);
     binWidth_ewk= k_ewk_histo->GetXaxis()->GetBinWidth(jj);
 
     if(Z_gen_pt >=(binCenter_ewk - (0.5*binWidth_ewk)) && Z_gen_pt < (binCenter_ewk + (0.5*binWidth_ewk)) ){
       k_ewk = k_ewk_histo->GetBinContent(jj);
     }
-  }*/
+  }
 
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
@@ -658,7 +659,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   ptmumu_bin = false;
    if ((Muon1+Muon2).Pt() > 250 && (Muon1+Muon2).Pt() < 300 ) ptmumu_bin = true;
 
-    if (ptmumu_bin == true){
+    //if (ptmumu_bin == true){
 
    if (HLT_Mu == 1 && Muon1_PtResoUp.Pt() > 150 && Muon2_PtResoUp.Pt() > 100 && fabs(Muon1_PtResoUp.Eta())<2.4 && fabs(Muon2_PtResoUp.Eta())<2.4 && BoostedJet_pt->at(0) > 190 && (Muon1_PtResoUp+Muon2_PtResoUp).M() > 300){ 
     DY_mumujj_2017_PtReso2Up->Fill((Muon1_PtResoUp+Muon2_PtResoUp+BoostJet).M(), wg);
@@ -729,19 +730,19 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
   DY_ZpeakMll_mumujj->Fill((Muon1+Muon2).M(), wg); 
   DY_Zpeak_mumujj->Fill((Muon1+Muon2+BoostJet).M(), wg); 
-  DY_Zpeak_mumu_pt->Fill((Muon1+Muon2).Pt(), wg);
-  DY_Zpeak_mumu_pt_SFUp->Fill((Muon1+Muon2).Pt(), wg_SFu);
-  DY_Zpeak_mumu_pt_SFDown->Fill((Muon1+Muon2).Pt(), wg_SFd);
-  DY_Zpeak_mumu_pt_PUUp->Fill((Muon1+Muon2).Pt(), wg_2017_PUu);
-  DY_Zpeak_mumu_pt_PUDown->Fill((Muon1+Muon2).Pt(), wg_2017_PUd);
-  DY_Zpeak_mumu_pt_PtResoUp->Fill((Muon1_PtResoUp+Muon2_PtResoUp).Pt(), wg);
-  DY_Zpeak_mumu_pt_PtResoDown->Fill((Muon1+Muon2).Pt(), wg);
-  DY_Zpeak_mumu_pt_PtReso2Down->Fill((Muon1+Muon2).Pt(), wg);
-  if(centralJesJer->at(0)==1)DY_Zpeak_mumu_pt_centralJesJer->Fill((Muon1+Muon2).Pt(), wg);
-  if(JesSFup->at(1)==1)DY_Zpeak_mumu_pt_JesSFUp->Fill((Muon1+Muon2).Pt(), wg);
-  if(JesSFdown->at(2)==1)DY_Zpeak_mumu_pt_JesSFDown->Fill((Muon1+Muon2).Pt(), wg);
-  if(JerSFup->at(3)==1)DY_Zpeak_mumu_pt_JerSFUp->Fill((Muon1+Muon2).Pt(), wg);
-  if(JerSFdown->at(4)==1)DY_Zpeak_mumu_pt_JerSFDown->Fill((Muon1+Muon2).Pt(), wg);
+  DY_Zpeak_mumu_pt_2017->Fill((Muon1+Muon2).Pt(), wg);
+  DY_Zpeak_mumu_pt_2017_SFUp->Fill((Muon1+Muon2).Pt(), wg_SFu);
+  DY_Zpeak_mumu_pt_2017_SFDown->Fill((Muon1+Muon2).Pt(), wg_SFd);
+  DY_Zpeak_mumu_pt_2017_PUUp->Fill((Muon1+Muon2).Pt(), wg_2017_PUu);
+  DY_Zpeak_mumu_pt_2017_PUDown->Fill((Muon1+Muon2).Pt(), wg_2017_PUd);
+  DY_Zpeak_mumu_pt_2017_PtResoUp->Fill((Muon1_PtResoUp+Muon2_PtResoUp).Pt(), wg);
+  DY_Zpeak_mumu_pt_2017_PtResoDown->Fill((Muon1+Muon2).Pt(), wg);
+  DY_Zpeak_mumu_pt_2017_PtReso2Down->Fill((Muon1+Muon2).Pt(), wg);
+  if(centralJesJer->at(0)==1)DY_Zpeak_mumu_pt_2017_centralJesJer->Fill((Muon1+Muon2).Pt(), wg);
+  if(JesSFup->at(1)==1)DY_Zpeak_mumu_pt_2017_JesSFUp->Fill((Muon1+Muon2).Pt(), wg);
+  if(JesSFdown->at(2)==1)DY_Zpeak_mumu_pt_2017_JesSFDown->Fill((Muon1+Muon2).Pt(), wg);
+  if(JerSFup->at(3)==1)DY_Zpeak_mumu_pt_2017_JerSFUp->Fill((Muon1+Muon2).Pt(), wg);
+  if(JerSFdown->at(4)==1)DY_Zpeak_mumu_pt_2017_JerSFDown->Fill((Muon1+Muon2).Pt(), wg);
 
   if (Muon_charge->at(0)*Muon_charge->at(1) == 1) DY_Zpeak_mumujj_SS->Fill((Muon1+Muon2+BoostJet).M(), wg);
    if (Muon_charge->at(0)*Muon_charge->at(1) == -1) DY_Zpeak_mumujj_OS->Fill((Muon1+Muon2+BoostJet).M(), wg);
@@ -749,17 +750,17 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   if (fabs(Muon1.Eta())< 0.8 && fabs(Muon2.Eta())<0.8){
     DY_ZpeakMll_mumujj_BB->Fill((Muon1+Muon2).M(), wg);
     DY_Zpeak_mumujj_BB->Fill((Muon1+Muon2+BoostJet).M(), wg);
-    DY_Zpeak_mumu_pt_BB->Fill((Muon1+Muon2).Pt(), wg);
+    DY_Zpeak_mumu_pt_2017_BB->Fill((Muon1+Muon2).Pt(), wg);
    }
    if((fabs(Muon1.Eta())< 0.8 && fabs(Muon2.Eta())>0.8) || (fabs(Muon1.Eta())> 0.8 && fabs(Muon2.Eta())<0.8)){
     DY_ZpeakMll_mumujj_BE->Fill((Muon1+Muon2).M(), wg);
     DY_Zpeak_mumujj_BE->Fill((Muon1+Muon2+BoostJet).M(), wg);
-    DY_Zpeak_mumu_pt_BE->Fill((Muon1+Muon2).Pt(), wg);
+    DY_Zpeak_mumu_pt_2017_BE->Fill((Muon1+Muon2).Pt(), wg);
    }
    if(fabs(Muon1.Eta())> 0.8 && fabs(Muon2.Eta())>0.8){
     DY_ZpeakMll_mumujj_EE->Fill((Muon1+Muon2).M(), wg);
     DY_Zpeak_mumujj_EE->Fill((Muon1+Muon2+BoostJet).M(), wg);
-    DY_Zpeak_mumu_pt_EE->Fill((Muon1+Muon2).Pt(), wg);
+    DY_Zpeak_mumu_pt_2017_EE->Fill((Muon1+Muon2).Pt(), wg);
    }
   }
 
@@ -809,7 +810,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 
 
   }
- }//pt bin
+ //}//pt bin
  } // 2 muons
 
   if (patElectron_pt->size() > 1 && numOfHighptEle==2 && numOfLooseMu==0 && numOfBoostedJets>=1){
@@ -863,7 +864,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   ptee_bin = false;
   if ((Electron1+Electron2).Pt() > 250 && (Electron1+Electron2).Pt() < 300 ) ptee_bin= true;
 
-   if (ptee_bin == true){
+   //if (ptee_bin == true){
 
   if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190 && (Electron1+Electron2).M() > 300){
 
@@ -931,37 +932,37 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   if (HLT_Ele == 1 && patElectron_pt->at(0) > 150 && patElectron_pt->at(1) > 100 && fabs(patElectron_eta->at(1))<2.4 && fabs(patElectron_eta->at(0))<2.4 && BoostedJet_pt->at(0) > 190 && (Electron1+Electron2).M() >60 && (Electron1+Electron2).M() < 120){
    DY_ZpeakMll_eejj->Fill((Electron1+Electron2).M(), wg);
    DY_Zpeak_eejj->Fill((Electron1+Electron2+BoostJet).M(), wg);
-   DY_Zpeak_ee_pt->Fill((Electron1+Electron2).Pt(), wg);
-   DY_Zpeak_ee_pt_SFUp->Fill((Electron1+Electron2).Pt(), wg_SFu);
-   DY_Zpeak_ee_pt_SFDown->Fill((Electron1+Electron2).Pt(), wg_SFd);
-   DY_Zpeak_ee_pt_PUUp->Fill((Electron1+Electron2).Pt(), wg_2017_PUu);
-   DY_Zpeak_ee_pt_PUDown->Fill((Electron1+Electron2).Pt(), wg_2017_PUd);
+   DY_Zpeak_ee_pt_2017->Fill((Electron1+Electron2).Pt(), wg);
+   DY_Zpeak_ee_pt_2017_SFUp->Fill((Electron1+Electron2).Pt(), wg_SFu);
+   DY_Zpeak_ee_pt_2017_SFDown->Fill((Electron1+Electron2).Pt(), wg_SFd);
+   DY_Zpeak_ee_pt_2017_PUUp->Fill((Electron1+Electron2).Pt(), wg_2017_PUu);
+   DY_Zpeak_ee_pt_2017_PUDown->Fill((Electron1+Electron2).Pt(), wg_2017_PUd);
    DY_Zpeak_ee_pt_energyScaleUp->Fill((Ele1_ScaleUp+Ele2_ScaleUp).Pt(), wg);
    DY_Zpeak_ee_pt_energyScaleDown->Fill((Ele1_ScaleDown+Ele2_ScaleDown).Pt(), wg);
-   DY_Zpeak_ee_pt_energySigmaUp->Fill((Ele1_SigmaUp+Ele2_SigmaUp).Pt(), wg);
-   DY_Zpeak_ee_pt_energySigmaDown->Fill((Ele1_SigmaDown+Ele2_SigmaDown).Pt(), wg);
-   DY_Zpeak_ee_pt_centralJesJer->Fill((Electron1+Electron2).Pt(), wg);
-   DY_Zpeak_ee_pt_JesSFUp->Fill((Electron1+Electron2).Pt(), wg);
-   DY_Zpeak_ee_pt_JesSFDown->Fill((Electron1+Electron2).Pt(), wg);
-   DY_Zpeak_ee_pt_JerSFUp->Fill((Electron1+Electron2).Pt(), wg);
-   DY_Zpeak_ee_pt_JerSFDown->Fill((Electron1+Electron2).Pt(), wg); 
+   DY_Zpeak_ee_pt_2017_energySigmaUp->Fill((Ele1_SigmaUp+Ele2_SigmaUp).Pt(), wg);
+   DY_Zpeak_ee_pt_2017_energySigmaDown->Fill((Ele1_SigmaDown+Ele2_SigmaDown).Pt(), wg);
+   DY_Zpeak_ee_pt_2017_centralJesJer->Fill((Electron1+Electron2).Pt(), wg);
+   DY_Zpeak_ee_pt_2017_JesSFUp->Fill((Electron1+Electron2).Pt(), wg);
+   DY_Zpeak_ee_pt_2017_JesSFDown->Fill((Electron1+Electron2).Pt(), wg);
+   DY_Zpeak_ee_pt_2017_JerSFUp->Fill((Electron1+Electron2).Pt(), wg);
+   DY_Zpeak_ee_pt_2017_JerSFDown->Fill((Electron1+Electron2).Pt(), wg); 
 
    if (patElectron_charge->at(0)*patElectron_charge->at(1) == 1) DY_Zpeak_eejj_SS->Fill((Electron1+Electron2+BoostJet).M(), wg);
    if (patElectron_charge->at(0)*patElectron_charge->at(1) == -1) DY_Zpeak_eejj_OS->Fill((Electron1+Electron2+BoostJet).M(), wg);
    if (fabs(patElectron_eta->at(1))< 0.8 && fabs(patElectron_eta->at(0))<0.8){
      DY_ZpeakMll_eejj_BB->Fill((Electron1+Electron2).M(), wg);
      DY_Zpeak_eejj_BB->Fill((Electron1+Electron2+BoostJet).M(), wg);
-     DY_Zpeak_ee_pt_BB->Fill((Electron1+Electron2).Pt(), wg);
+     DY_Zpeak_ee_pt_2017_BB->Fill((Electron1+Electron2).Pt(), wg);
     }
     if((fabs(patElectron_eta->at(1))< 0.8 && fabs(patElectron_eta->at(0))>0.8) ||(fabs(patElectron_eta->at(1))>0.8 && fabs(patElectron_eta->at(0))<0.8) ){
      DY_ZpeakMll_eejj_BE->Fill((Electron1+Electron2).M(), wg);
      DY_Zpeak_eejj_BE->Fill((Electron1+Electron2+BoostJet).M(), wg);
-     DY_Zpeak_ee_pt_BE->Fill((Electron1+Electron2).Pt(), wg);
+     DY_Zpeak_ee_pt_2017_BE->Fill((Electron1+Electron2).Pt(), wg);
     }
     if (fabs(patElectron_eta->at(1))> 0.8 && fabs(patElectron_eta->at(0))>0.8){
      DY_ZpeakMll_eejj_EE->Fill((Electron1+Electron2).M(), wg);
      DY_Zpeak_eejj_EE->Fill((Electron1+Electron2+BoostJet).M(), wg);
-     DY_Zpeak_ee_pt_EE->Fill((Electron1+Electron2).Pt(), wg);
+     DY_Zpeak_ee_pt_2017_EE->Fill((Electron1+Electron2).Pt(), wg);
     }
   }
 
@@ -1010,7 +1011,7 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
  
 
   }
-  }//pt bin
+  //}//pt bin
  }// 2 ele  
  //TTcr
 TLorentzVector LeadLep;
@@ -1381,7 +1382,7 @@ for (Int_t j=1;j<=8;j++) {
 /********/
 
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/25062021/SR_syst_DY_HTincl_LO_2017.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/25062021/SR_syst_DY_HTincl_LO_Kfactor_NLO_HTincl_LO_2017.root", "RECREATE");
 
 DY_eejj_SS->Write();
 DY_eejj_OS->Write();
@@ -1484,41 +1485,41 @@ DY_Zpeak_mumujj->Write();
 DY_Zpeak_mumujj_BE->Write();
 DY_Zpeak_mumujj_BB->Write();
 DY_Zpeak_mumujj_EE->Write();
-DY_Zpeak_ee_pt->Write();
-DY_Zpeak_ee_pt_BB->Write();
-DY_Zpeak_ee_pt_BE->Write();
-DY_Zpeak_ee_pt_EE->Write();
-DY_Zpeak_mumu_pt->Write();
-DY_Zpeak_mumu_pt_BB->Write();
-DY_Zpeak_mumu_pt_BE->Write();
-DY_Zpeak_mumu_pt_EE->Write();
+DY_Zpeak_ee_pt_2017->Write();
+DY_Zpeak_ee_pt_2017_BB->Write();
+DY_Zpeak_ee_pt_2017_BE->Write();
+DY_Zpeak_ee_pt_2017_EE->Write();
+DY_Zpeak_mumu_pt_2017->Write();
+DY_Zpeak_mumu_pt_2017_BB->Write();
+DY_Zpeak_mumu_pt_2017_BE->Write();
+DY_Zpeak_mumu_pt_2017_EE->Write();
 
-DY_Zpeak_mumu_pt_SFUp->Write();
-DY_Zpeak_mumu_pt_SFDown->Write();
-DY_Zpeak_mumu_pt_PUUp->Write();
-DY_Zpeak_mumu_pt_PUDown->Write();
-DY_Zpeak_mumu_pt_PtResoUp->Write();
-DY_Zpeak_mumu_pt_PtResoDown->Write();
-DY_Zpeak_mumu_pt_PtReso2Down->Write();
-DY_Zpeak_mumu_pt_centralJesJer->Write();
-DY_Zpeak_mumu_pt_JesSFUp->Write();
-DY_Zpeak_mumu_pt_JesSFDown->Write();
-DY_Zpeak_mumu_pt_JerSFUp->Write();
-DY_Zpeak_mumu_pt_JerSFDown->Write();
+DY_Zpeak_mumu_pt_2017_SFUp->Write();
+DY_Zpeak_mumu_pt_2017_SFDown->Write();
+DY_Zpeak_mumu_pt_2017_PUUp->Write();
+DY_Zpeak_mumu_pt_2017_PUDown->Write();
+DY_Zpeak_mumu_pt_2017_PtResoUp->Write();
+DY_Zpeak_mumu_pt_2017_PtResoDown->Write();
+DY_Zpeak_mumu_pt_2017_PtReso2Down->Write();
+DY_Zpeak_mumu_pt_2017_centralJesJer->Write();
+DY_Zpeak_mumu_pt_2017_JesSFUp->Write();
+DY_Zpeak_mumu_pt_2017_JesSFDown->Write();
+DY_Zpeak_mumu_pt_2017_JerSFUp->Write();
+DY_Zpeak_mumu_pt_2017_JerSFDown->Write();
 
-DY_Zpeak_ee_pt_SFUp->Write();
-DY_Zpeak_ee_pt_SFDown->Write();
-DY_Zpeak_ee_pt_PUUp->Write();
-DY_Zpeak_ee_pt_PUDown->Write();
-DY_Zpeak_ee_pt_ScaleUp->Write();
-DY_Zpeak_ee_pt_ScaleDown->Write();
-DY_Zpeak_ee_pt_SigmaUp->Write();
-DY_Zpeak_ee_pt_SigmaDown->Write();
-DY_Zpeak_ee_pt_centralJesJer->Write();
-DY_Zpeak_ee_pt_JesSFUp->Write();
-DY_Zpeak_ee_pt_JesSFDown->Write();
-DY_Zpeak_ee_pt_JerSFUp->Write();
-DY_Zpeak_ee_pt_JerSFDown->Write();
+DY_Zpeak_ee_pt_2017_SFUp->Write();
+DY_Zpeak_ee_pt_2017_SFDown->Write();
+DY_Zpeak_ee_pt_2017_PUUp->Write();
+DY_Zpeak_ee_pt_2017_PUDown->Write();
+DY_Zpeak_ee_pt_energyScaleUp->Write();
+DY_Zpeak_ee_pt_energyScaleDown->Write();
+DY_Zpeak_ee_pt_2017_energySigmaUp->Write();
+DY_Zpeak_ee_pt_2017_energySigmaDown->Write();
+DY_Zpeak_ee_pt_2017_centralJesJer->Write();
+DY_Zpeak_ee_pt_2017_JesSFUp->Write();
+DY_Zpeak_ee_pt_2017_JesSFDown->Write();
+DY_Zpeak_ee_pt_2017_JerSFUp->Write();
+DY_Zpeak_ee_pt_2017_JerSFDown->Write();
 
 //DYcr 
 DY_DYcr_eejj_ele1_ecalTrkEnergyPostCorr->Write();
