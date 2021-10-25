@@ -529,8 +529,8 @@ double Muon1_px_smearing = 0, Muon1_py_smearing = 0, Muon1_pz_smearing = 0;
 double Muon2_px_smearing = 0, Muon2_py_smearing = 0, Muon2_pz_smearing = 0;
 double extra_smearing_1 =0, extra_smearing_2 = 0;
 double muon_tot_pt = 0, ele_tot_pt = 0, jet_tot_pt = 0, HTevent=0;
-const double Alpha_ele_[9] =  {1,1,1.09,1.06,1.12,1.19,1.20,1.57};
-const double Alpha_mu_[9] =   {1,1,1.08,1.06,1.09,1.19,1.30,1.65};
+const double Alpha_ele_[9] =  {1,1,1.34,1.22,1.22,1.21,1.15,1.52};
+const double Alpha_mu_[9] =   {1,1,1.34,1.23,1.19,1.20,1.21,1.56};
 
 for (Int_t i=0;i<a_->GetEntries();i++){
  a_->GetEntry(i);
@@ -1180,13 +1180,21 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 /**** adding the Alpha ratio and it's uncertainty*******/
 /* alpha ratio and it's statistical error, bin per bin*/
 
+//alpha ratio with new Kqcd and LO sample
+const double Alpha_ele[9] =  {1,1,1.34,1.22,1.22,1.21,1.15,1.52};
+const double dAlpha_ele[9] = {0,0,0.07,0.03,0.03,0.04,0.08,0.22};
+
+const double Alpha_mu[9] =   {1,1,1.34,1.23,1.19,1.20,1.21,1.56}; 
+const double dAlpha_mu[9] =  {0,0,0.07,0.03,0.03,0.03,0.06,0.17}; 
+
 /* alpha ratio DY HTbinned+inclusive samples*/
+/*
 const double Alpha_ele[9] =  {1,1,1.09,1.06,1.12,1.19,1.20,1.57};
 const double dAlpha_ele[9] = {0,0,0.06,0.03,0.03,0.04,0.08,0.23};
 
 const double Alpha_mu[9] =   {1,1,1.08,1.06,1.09,1.19,1.30,1.65}; 
 const double dAlpha_mu[9] =  {0,0,0.05,0.02,0.03,0.03,0.07,0.18}; 
-
+*/
 
 /* alpha ratio with status==62, DY inclusive samples
 const double Alpha_ele[9] = {1,1, 1.03, 1.07, 1.04, 1.08, 1.14, 1.25,0};
@@ -1204,11 +1212,13 @@ const double dAlpha_mu[9] ={0,0,0.08, 0.04, 0.04, 0.04, 0.08, 0.16, 0}; */
 
 //asymbins[9] = {0,200,400,600,800,1000,1400,2000,10000};
 
-/*
+
 for (Int_t j=1;j<=8;j++) {
 //electron channel histograms//
     double alpha_ele=Alpha_ele[j-1];
     double dalpha_ele=dAlpha_ele[j-1];
+    DY_eejj_SS->SetBinContent(j, DY_eejj_SS->GetBinContent(j) * alpha_ele);
+    DY_eejj_OS->SetBinContent(j, DY_eejj_OS->GetBinContent(j) * alpha_ele);
     DY_eejj_2016_AlphaRatio->SetBinContent(j, DY_eejj_2016_AlphaRatio->GetBinContent(j) * alpha_ele);
     DY_eejj_2016_AlphaRatio_BB->SetBinContent(j, DY_eejj_2016_AlphaRatio_BB->GetBinContent(j) * alpha_ele);
     DY_eejj_2016_AlphaRatio_BE->SetBinContent(j, DY_eejj_2016_AlphaRatio_BE->GetBinContent(j) * alpha_ele);
@@ -1234,18 +1244,13 @@ for (Int_t j=1;j<=8;j++) {
  // cout<< DY_eejj_2016_AlphaRatioDown->GetBinContent(j)/DY_eejj->GetBinContent(j) <<endl;
  // cout<<"================"<<endl; 
     //DY CR 150-300 GeV
+    DY_DYcr_eejj_SS->SetBinContent(j, DY_DYcr_eejj_SS->GetBinContent(j) * alpha_ele);
+    DY_DYcr_eejj_OS->SetBinContent(j, DY_DYcr_eejj_OS->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2016_AlphaRatio->SetBinContent(j, DY_DYcr_eejj_2016_AlphaRatio->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2016_AlphaRatio_BB->SetBinContent(j, DY_DYcr_eejj_2016_AlphaRatio_BB->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2016_AlphaRatio_BE->SetBinContent(j, DY_DYcr_eejj_2016_AlphaRatio_BE->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2016_AlphaRatio_EE->SetBinContent(j, DY_DYcr_eejj_2016_AlphaRatio_EE->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2016_AlphaRatioUp->SetBinContent(j, DY_DYcr_eejj_2016_AlphaRatioUp->GetBinContent(j) * (alpha_ele+dalpha_ele));
-    DY_DYcr_eejj_2016_AlphaRatioDown->SetBinContent(j, DY_DYcr_eejj_2016_AlphaRatioDown->GetBinContent(j) * (alpha_ele-dalpha_ele));
-    DY_DYcr_eejj_2016_SFUp->SetBinContent(j, DY_DYcr_eejj_2016_SFUp->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2016_SFDown->SetBinContent(j, DY_DYcr_eejj_2016_SFDown->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2016_PUUp->SetBinContent(j, DY_DYcr_eejj_2016_PUUp->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_2016_PUDown->SetBinContent(j, DY_DYcr_eejj_2016_PUDown->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_energyScaleUp->SetBinContent(j, DY_DYcr_eejj_energyScaleUp->GetBinContent(j) * alpha_ele);
-    DY_DYcr_eejj_energyScaleDown->SetBinContent(j, DY_DYcr_eejj_energyScaleDown->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2016_AlphaRatioDown->SetBinContent(j, DY_DYcr_eejj_2016_AlphaRatioDown->GetBinContent(j) * (alpha_ele-dalpha_ele));
     DY_DYcr_eejj_2016_SFUp->SetBinContent(j, DY_DYcr_eejj_2016_SFUp->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2016_SFDown->SetBinContent(j, DY_DYcr_eejj_2016_SFDown->GetBinContent(j) * alpha_ele);
@@ -1266,6 +1271,8 @@ for (Int_t j=1;j<=8;j++) {
 // muon channel histograms//
     double alpha_mu=Alpha_mu[j-1];
     double dalpha_mu=dAlpha_mu[j-1];
+    DY_mumujj_SS->SetBinContent(j, DY_mumujj_SS->GetBinContent(j) * alpha_mu);
+    DY_mumujj_OS->SetBinContent(j, DY_mumujj_OS->GetBinContent(j) * alpha_mu); 
     DY_mumujj_2016_AlphaRatio->SetBinContent(j, DY_mumujj_2016_AlphaRatio->GetBinContent(j) * alpha_mu);
     DY_mumujj_2016_AlphaRatio_BB->SetBinContent(j, DY_mumujj_2016_AlphaRatio_BB->GetBinContent(j) * alpha_mu);
     DY_mumujj_2016_AlphaRatio_BE->SetBinContent(j, DY_mumujj_2016_AlphaRatio_BE->GetBinContent(j) * alpha_mu);
@@ -1293,6 +1300,8 @@ for (Int_t j=1;j<=8;j++) {
  // cout<<"================"<<endl; 
 
     //DY CR 150-300 GeV
+    DY_DYcr_mumujj_SS->SetBinContent(j, DY_DYcr_mumujj_SS->GetBinContent(j) * alpha_mu);
+    DY_DYcr_mumujj_OS->SetBinContent(j, DY_DYcr_mumujj_OS->GetBinContent(j) * alpha_mu); 
     DY_DYcr_mumujj_2016_AlphaRatio->SetBinContent(j, DY_DYcr_mumujj_2016_AlphaRatio->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2016_AlphaRatio_BB->SetBinContent(j, DY_DYcr_mumujj_2016_AlphaRatio_BB->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2016_AlphaRatio_BE->SetBinContent(j, DY_DYcr_mumujj_2016_AlphaRatio_BE->GetBinContent(j) * alpha_mu);
@@ -1313,11 +1322,11 @@ for (Int_t j=1;j<=8;j++) {
     DY_DYcr_mumujj_2016_JerSFUp->SetBinContent(j, DY_DYcr_mumujj_2016_JerSFUp->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2016_JerSFDown->SetBinContent(j, DY_DYcr_mumujj_2016_JerSFDown->GetBinContent(j) * alpha_mu);
 
-}*/
+}
 /********/
 
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/25062021/SR_syst_DY_HTincl_LO_Kqcdnew_2016.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/18102021/SR_syst_DY_HTincl_LO_Kfactor_new_2016.root", "RECREATE");
 
 DY_eejj_SS->Write();
 DY_eejj_OS->Write();

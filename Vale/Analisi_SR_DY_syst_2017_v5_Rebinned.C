@@ -538,8 +538,8 @@ double Muon1_px_smearing = 0, Muon1_py_smearing = 0, Muon1_pz_smearing = 0;
 double Muon2_px_smearing = 0, Muon2_py_smearing = 0, Muon2_pz_smearing = 0;
 double extra_smearing_1 =0, extra_smearing_2 = 0;
 double muon_tot_pt = 0, ele_tot_pt = 0, jet_tot_pt = 0, HTevent=0;
-const double Alpha_ele_[9] =  {1,1,0.95,0.83,0.87,0.86,0.81,0.96};
-const double Alpha_mu_[9] = {1,1,0.90,0.94,0.93,0.95,1.00,1.08};
+const double Alpha_ele_[9] = {1,1,1.07,0.92,0.95,0.93,0.87,1.04};
+const double Alpha_mu_[9] = {1,1,1.0,1.04,1.03,1.02,1.07,1.16};
 
 for (Int_t i=0;i<a_->GetEntries();i++) {
  a_->GetEntry(i);
@@ -1264,13 +1264,13 @@ double deltaEta = 0, deltaPhi = 0, deltaR = 0;
 }
 
 /**** adding the Alpha ratio and it's uncertainty*******/
-/* alpha ratio and it's statistical error, bin per bin*/
-const double Alpha_ele[9] = {1,1,0.96,0.83,0.87,0.86,0.81,0.96};
-const double dAlpha_ele[9] ={0,0,0.04,0.02,0.02,0.02,0.05,0.13};
+/* t double Alpha_elelpha ratio and it's statistical error, bin per bin*/
+const double Alpha_ele[9] = {1,1,1.07,0.92,0.95,0.93,0.87,1.04};
+const double dAlpha_ele[9] ={0,0,0.05,0.02,0.02,0.03,0.05,0.14};
 
-const double Alpha_mu[9] = {1,1,0.90,0.94,0.93,0.95,1.00,1.08}; 
+const double Alpha_mu[9] = {1,1,1.0,1.04,1.03,1.02,1.07,1.16}; 
 const double dAlpha_mu[9] ={0,0,0.04,0.02,0.02,0.02,0.05,0.12}; 
-/*
+
 for (Int_t j=1;j<=8;j++) {
 //    cout<< DY_eejj_2017_SFUp->GetBinContent(j) <<endl;
 //    cout<< DY_eejj_2017_AlphaRatio->GetBinContent(j) <<endl;
@@ -1280,6 +1280,8 @@ for (Int_t j=1;j<=8;j++) {
 
     double alpha_ele=Alpha_ele[j-1];
     double dalpha_ele=dAlpha_ele[j-1];
+    DY_eejj_SS->SetBinContent(j, DY_eejj_SS->GetBinContent(j) * alpha_ele);
+    DY_eejj_OS->SetBinContent(j, DY_eejj_OS->GetBinContent(j) * alpha_ele);
     DY_eejj_2017_AlphaRatio->SetBinContent(j, DY_eejj_2017_AlphaRatio->GetBinContent(j) * alpha_ele);
     DY_eejj_2017_AlphaRatio_BB->SetBinContent(j, DY_eejj_2017_AlphaRatio_BB->GetBinContent(j) * alpha_ele);
     DY_eejj_2017_AlphaRatio_BE->SetBinContent(j, DY_eejj_2017_AlphaRatio_BE->GetBinContent(j) * alpha_ele);
@@ -1308,6 +1310,8 @@ for (Int_t j=1;j<=8;j++) {
  // cout<< DY_eejj_2017_AlphaRatioDown->GetBinContent(j)/DY_eejj->GetBinContent(j) <<endl;
  // cout<<"================"<<endl; 
     //DY CR 150-300 GeV
+    DY_DYcr_eejj_SS->SetBinContent(j, DY_DYcr_eejj_SS->GetBinContent(j) * alpha_ele);
+    DY_DYcr_eejj_OS->SetBinContent(j, DY_DYcr_eejj_OS->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2017_AlphaRatio->SetBinContent(j, DY_DYcr_eejj_2017_AlphaRatio->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2017_AlphaRatio_BB->SetBinContent(j, DY_DYcr_eejj_2017_AlphaRatio_BB->GetBinContent(j) * alpha_ele);
     DY_DYcr_eejj_2017_AlphaRatio_BE->SetBinContent(j, DY_DYcr_eejj_2017_AlphaRatio_BE->GetBinContent(j) * alpha_ele);
@@ -1331,6 +1335,8 @@ for (Int_t j=1;j<=8;j++) {
 // muon channel histograms
     double alpha_mu=Alpha_mu[j-1];
     double dalpha_mu=dAlpha_mu[j-1];
+    DY_mumujj_SS->SetBinContent(j, DY_mumujj_SS->GetBinContent(j) * alpha_mu);
+    DY_mumujj_OS->SetBinContent(j, DY_mumujj_OS->GetBinContent(j) * alpha_mu);
     DY_mumujj_2017_AlphaRatio->SetBinContent(j, DY_mumujj_2017_AlphaRatio->GetBinContent(j) * alpha_mu);
     DY_mumujj_2017_AlphaRatio_BB->SetBinContent(j, DY_mumujj_2017_AlphaRatio_BB->GetBinContent(j) * alpha_mu);
     DY_mumujj_2017_AlphaRatio_BE->SetBinContent(j, DY_mumujj_2017_AlphaRatio_BE->GetBinContent(j) * alpha_mu);
@@ -1357,6 +1363,8 @@ for (Int_t j=1;j<=8;j++) {
  // cout<<"================"<<endl; 
 
      //DY CR 150-300 GeV
+    DY_DYcr_mumujj_SS->SetBinContent(j, DY_DYcr_mumujj_SS->GetBinContent(j) * alpha_mu);
+    DY_DYcr_mumujj_OS->SetBinContent(j, DY_DYcr_mumujj_OS->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2017_AlphaRatio->SetBinContent(j, DY_DYcr_mumujj_2017_AlphaRatio->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2017_AlphaRatio_BB->SetBinContent(j, DY_DYcr_mumujj_2017_AlphaRatio_BB->GetBinContent(j) * alpha_mu);
     DY_DYcr_mumujj_2017_AlphaRatio_BE->SetBinContent(j, DY_DYcr_mumujj_2017_AlphaRatio_BE->GetBinContent(j) * alpha_mu);
@@ -1378,11 +1386,11 @@ for (Int_t j=1;j<=8;j++) {
     DY_DYcr_mumujj_2017_JerSFDown->SetBinContent(j, DY_DYcr_mumujj_2017_JerSFDown->GetBinContent(j) * alpha_mu);
 
 }
-*/
+
 /********/
 
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/25062021/SR_syst_DY_HTincl_LO_Kfactor_NLO_HTincl_LO_2017.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/18102021/SR_syst_DY_HTincl_LO_Kfactor_new_2017.root", "RECREATE");
 
 DY_eejj_SS->Write();
 DY_eejj_OS->Write();
