@@ -30,30 +30,34 @@ using namespace std;
 //   Declare constants
 /////
 //Path - samples 
-const string path         = "/eos/user/v/vmariani/NTuples/HN_2017/25062021/";
+const string path         = "/eos/user/v/vmariani/NTuples/HN_2016/25062021/";
 //It is important you respect the orther: bkg, data_obs, sig
 //For the moment: all bkg are taken from MC; data_obs = sum of all bkg; 
 //const char *ParamPoints[] = {"L5000_M500", "L5000_M1500", "L5000_M2500", "L5000_M3500", "L5000_M4500", 
                             // "L15000_M500", "L15000_M1500", "L15000_M2500", "L15000_M3500", "L15000_M4500"       
                            // };
-const char *samples[]     = {"DY_LO","DY_FxFx"}; 
-const string selection    = "_2017";  
+const char *samples[]     = {"DY_HTincl_LO","DY_FxFx"}; 
+const string selection    = "_2016";  
 //Plots option
 const string varplot    = "Gen_pt";//EVENT_genPt //Gen_pt
 const double fixcut     = 0; //Save only events for which varplot>fixcut
 const string objsf      = "lepsf_evt";//"lepsf_evt";
 const string PUw        = "PUWeight";//"PileupWeight";
-const double Luminosity = 35542; //pb^-1    //2018: 58873 //2017: 41529 //2016: 35542
+const double Luminosity = 35542; //pb^-1    //20'18: 58873 //20'17: 41529 //20'16: 35542
 const bool noLumiNorm   = false;
 const bool noPUcorr     = true;
 const bool noobjsf      = true;  
 const double normalize  = false;
 //Binning
-const int    bin             = 90; //For symmetric or asymmetric bins
 const double inRange         = 150;
 const double endRange        = 2000;
-const bool   asymbin         = false;
-const double asymbins[bin+1] = {0,200,400,600,800,1000,1400,2000,3500,10000};
+const bool   asymbin         = true;
+
+const int    bin             = 12; //For symmetric or asymmetric bins: this is for year16
+const double asymbins[bin+1] = {150,250,300,325,350,375,400,425,450,475,500,550,2000}; //this is year16 range
+
+//const int    bin             = 19; //For symmetric or asymmetric bins: this is for year17
+//const double asymbins[bin+1] = {150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,2000}; //this is y17 range
 
 
 const int posvtcr          = 0;
@@ -84,26 +88,26 @@ void DY_Kfactor_Estimation(){
   
   //Evaluate TH1F outside the scope of the new file 
   //Declare histos
-  TH1F *DY_LO; TH1F *DY_FxFx; TH1F *TT; TH1F *tW; TH1F *TTtW; TH1F *Other; TH1F *Kfactor; TH1F *data_obs; //TH1F *data_sub; TH1F *sig;
+  TH1F *DY_HTincl_LO; TH1F *DY_FxFx; TH1F *TT; TH1F *tW; TH1F *TTtW; TH1F *Other; TH1F *Kfactor; TH1F *data_obs; //TH1F *data_sub; TH1F *sig;
   if(!asymbin){
-   DY_LO    = new TH1F("","",bin,inRange,endRange);
+   DY_HTincl_LO    = new TH1F("","",bin,inRange,endRange);
    DY_FxFx  = new TH1F("","",bin,inRange,endRange);
    //TT    = new TH1F("","",bin,inRange,endRange);
    //tW    = new TH1F("","",bin,inRange,endRange);
    //Other = new TH1F("","",bin,inRange,endRange);
    //data_obs  = new TH1F("data_obs","data_obs",bin,inRange,endRange);
-   Kfactor = new TH1F("Kfactor","Kfactor",bin,inRange,endRange);
+   Kfactor = new TH1F("kfac_dy_filter","kfac_dy_filter",bin,inRange,endRange);
    //data_read = new TH1F("","",bin,inRange,endRange);
    //sig   = new TH1F("","",bin,inRange,endRange);
    //TTtW  = new TH1F("","",bin,inRange,endRange);
   }else{
-   DY_LO    = new TH1F("","",bin,asymbins);
+   DY_HTincl_LO    = new TH1F("","",bin,asymbins);
    DY_FxFx  = new TH1F("","",bin,asymbins);
    //TT    = new TH1F("","",bin,asymbins);
    //tW    = new TH1F("","",bin,asymbins);
    //Other = new TH1F("","",bin,asymbins);
    //data_obs  = new TH1F("data_obs","data_obs",bin,asymbins);
-   Kfactor = new TH1F("Kfactor","Kfactor",bin,asymbins);
+   Kfactor = new TH1F("kfac_dy_filter","kfac_dy_filter",bin,asymbins);
    //data_read = new TH1F("","",bin,asymbins);
    //sig   = new TH1F("","",bin,asymbins);
    //TTtW  = new TH1F("","",bin,asymbins);
@@ -113,8 +117,10 @@ void DY_Kfactor_Estimation(){
   for(uint i=0; i<rootplas.size(); i++){
    //Take DY and TT as for the other bkg, but it will change later
    //if(rootplas[i]=="DY") DY = Call_hist(rootplas[i]);
-   if(rootplas[i]=="DY_LO") DY_LO     = get_treehist(rootplas[i],i);
+   if(rootplas[i]=="DY_HTincl_LO") DY_HTincl_LO     = get_treehist(rootplas[i],i);
+   DY_HTincl_LO->Scale(1/ (DY_HTincl_LO->Integral() ) );
    if(rootplas[i]=="DY_FxFx") DY_FxFx = get_treehist(rootplas[i],i);
+   DY_FxFx->Scale(1/(DY_FxFx->Integral()) );
    //if(rootplas[i]=="TT") TT = get_treehist(rootplas[i],i);
    //if(rootplas[i]=="tW") tW = get_treehist(rootplas[i],i); 
    //if(rootplas[i]=="Other") Other = get_treehist(rootplas[i],i);
@@ -124,9 +130,13 @@ void DY_Kfactor_Estimation(){
   
 
   for(int i=1; i<=bin; i++){
-      if( DY_LO->GetBinContent(i)>0 && DY_FxFx->GetBinContent(i)>0  ){      
-          Kfactor->SetBinContent(i, (DY_FxFx->GetBinContent(i)/ DY_LO->GetBinContent(i)));
-          cout<<"Bin Kfactor "<<i<<"="<<Kfactor->GetBinContent(i)<<endl;
+      if( DY_HTincl_LO->GetBinContent(i)>0 && DY_FxFx->GetBinContent(i)>0  ){      
+          Kfactor->SetBinContent(i, (DY_FxFx->GetBinContent(i)/ DY_HTincl_LO->GetBinContent(i)));
+
+          Kfactor->SetBinError(i,   ( (DY_FxFx->GetBinError(i)/DY_FxFx->GetBinContent(i) ) +   (DY_HTincl_LO->GetBinError(i)/DY_HTincl_LO->GetBinContent(i))  ) * (DY_FxFx->GetBinContent(i)/ DY_HTincl_LO->GetBinContent(i))   );
+
+          cout<<"Bin Kfactor "<<i<<"="<<Kfactor->GetBinContent(i)<< " +- "<<  Kfactor->GetBinError(i) <<", error in percentage -> " << (Kfactor->GetBinError(i) / Kfactor->GetBinContent(i))*100 <<endl;
+
       }
       else Kfactor->SetBinContent(i,0);
 
@@ -135,7 +145,7 @@ void DY_Kfactor_Estimation(){
 
   //Create new file
   string norm; //if(normalize) norm = "_norm";
-  string newfilename = "Kfactor_NLO_LO"+selection+".root";
+  string newfilename = "/afs/cern.ch/work/m/mpresill/public/Vale/Kfactor_NLO_HTincl_LO"+selection+".root";
   TFile *newfile = new TFile(newfilename.c_str(),"recreate");
   Kfactor->Write();  delete Kfactor;
   //DY->Write();    delete DY;
@@ -187,8 +197,8 @@ TH1F* get_treehist(string rootpla, int idx){
     //New TH1F
     TH1F *hist;
     string namehist;
-    if(rootpla=="DY_LO")         namehist = "DY_LO";
-    else                         namehist = "DY_FxFx";//rootpla;
+    if(rootpla=="DY_HTincl_LO")         namehist = "DY_HTincl_LO";
+    else                                namehist = "DY_FxFx";//rootpla;
     if(!asymbin) hist = new TH1F(namehist.c_str(),namehist.c_str(),bin,inRange,endRange);
     else         hist = new TH1F(rootpla.c_str(),rootpla.c_str(),bin,asymbins);
    
