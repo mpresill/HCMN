@@ -1768,8 +1768,28 @@ double get_wgtlumi(string FileName){
  
  // DY NLO FxFx samples
  if(FileName.find("DY_FxFx") != std::string::npos) wgt=6077.22/208332373.7; //ok: la cross section non è da XDBS, ma quella dei coreani (stessa del LO, ma corretta con kfactor)
+  if(FileName.find("DY_FxFx_M100To200" ) != std::string::npos) wgt=247.8/13787181;
+ if(FileName.find("DY_FxFx_M200To400" ) != std::string::npos) wgt=8.502/2893179;
+ if(FileName.find("DY_FxFx_M400To500" ) != std::string::npos) wgt=0.4514/504582;
+ if(FileName.find("DY_FxFx_M500To700" ) != std::string::npos) wgt=0.2558/478062;
+ if(FileName.find("DY_FxFx_M700To800" ) != std::string::npos) wgt=0.04023/503757;
+ if(FileName.find("DY_FxFx_M800To1000" ) != std::string::npos) wgt=0.03406/540993;
+ if(FileName.find("DY_FxFx_M1000To1500" ) != std::string::npos) wgt=0.01828/444230;
+ if(FileName.find("DY_FxFx_M1500To2000" ) != std::string::npos) wgt=0.002367/458896;
+ if(FileName.find("DY_FxFx_M2000To3000" ) != std::string::npos) wgt=0.0005409/502544;
+ if(FileName.find("DY_FxFx_M3000ToInf" ) != std::string::npos) wgt=3.05e-05/498600;
+
+ if(FileName.find("DY_FxFx_Pt50To100" ) != std::string::npos) wgt=407.9/110987320;
+ if(FileName.find("DY_FxFx_Pt100To250" ) != std::string::npos) wgt=96.8/70469464;
+ if(FileName.find("DY_FxFx_Pt250To400" ) != std::string::npos) wgt=3.774/20970944;
+ if(FileName.find("DY_FxFx_Pt650ToInf" ) != std::string::npos) wgt=0.04796/1885153;
+  
+ if(FileName.find("DY_FxFx_0J") != std::string::npos) wgt=5313.0/88230653 ;
+ if(FileName.find("DY_FxFx_1J") != std::string::npos) wgt=955.8/95629091 ;
+ if(FileName.find("DY_FxFx_1J") != std::string::npos) wgt=360.4/54592285 ;
 
  //DY mass bins
+
  if(FileName.find("DY_M10To50") != std::string::npos) wgt=15810.0/(39521230+39536839);
  if(FileName.find("DY_M100To200") != std::string::npos) wgt=247.8/13787181;
  if(FileName.find("DY_M200To400") != std::string::npos) wgt=8.502/2893179;

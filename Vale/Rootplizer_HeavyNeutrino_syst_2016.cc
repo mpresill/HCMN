@@ -2176,6 +2176,21 @@ double get_wgtlumi(string FileName){
  
  // DY FxFx binned
  if(FileName.find("DY_FxFx") != std::string::npos) wgt=5941.0/120777245; //ok
+ if(FileName.find("DY_FxFx_M100To200" ) != std::string::npos) wgt=226.6/16141342;
+ if(FileName.find("DY_FxFx_M200To400" ) != std::string::npos) wgt=7.77/298679;
+ if(FileName.find("DY_FxFx_M400To500" ) != std::string::npos) wgt=0.4065/287262;
+ if(FileName.find("DY_FxFx_M500To700" ) != std::string::npos) wgt=0.2334/280940;
+ if(FileName.find("DY_FxFx_M700To800" ) != std::string::npos) wgt=0.03614/276235;
+ if(FileName.find("DY_FxFx_M800To1000" ) != std::string::npos) wgt=0.03047/271768;
+ if(FileName.find("DY_FxFx_M1000To1500" ) != std::string::npos) wgt=0.01636/258620;
+ if(FileName.find("DY_FxFx_M1500To2000" ) != std::string::npos) wgt=0.00218/258625;
+ if(FileName.find("DY_FxFx_M2000To3000" ) != std::string::npos) wgt=0.0005156/255342;
+ 
+ if(FileName.find("DY_FxFx_Pt50To100" ) != std::string::npos) wgt=354.8/21847075;
+ if(FileName.find("DY_FxFx_Pt100To250" ) != std::string::npos) wgt=81.22/7844748;
+ if(FileName.find("DY_FxFx_Pt250To400" ) != std::string::npos) wgt=2.991/21176899;
+ if(FileName.find("DY_FxFx_Pt400To650" ) != std::string::npos) wgt=0.3882/1625936;
+ if(FileName.find("DY_FxFx_Pt650ToInf" ) != std::string::npos) wgt=0.03737/1627882;
 
  //DY mass bins
  if(FileName.find("DY_M10To50") != std::string::npos) wgt=18810.0/(67981236+30792978+40364234);

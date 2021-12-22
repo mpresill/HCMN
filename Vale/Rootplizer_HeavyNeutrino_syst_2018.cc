@@ -1856,7 +1856,7 @@ double get_wgtlumi(string FileName){
  if(FileName.find("ZMuMu_M6000ToInf") != std::string::npos)   wgt=0.000000009569/100000;
 
  //ZEE m binned
- if(FileName.find("ZEE_M50To120") != std::string::npos)     wgt=2113/2940000;
+ if(FileName.find("ZEE_M50To120") != std::string::npos)     wgt=2113./2940000;
  if(FileName.find("ZEE_M120To200") != std::string::npos)    wgt=20.55/100000;
  if(FileName.find("ZEE_M200To400") != std::string::npos)    wgt=2.886/100000;
  if(FileName.find("ZEE_M400To800") != std::string::npos)    wgt=0.2513/100000;
@@ -1869,6 +1869,27 @@ double get_wgtlumi(string FileName){
     
  // DY NLO FxFx samples
  if(FileName.find("DY_FxFx") != std::string::npos) wgt=6077.22/997561; 
+  if(FileName.find("DY_FxFx_M100To200" ) != std::string::npos) wgt=247.8/14255862;
+ if(FileName.find("DY_FxFx_M200To400" ) != std::string::npos) wgt=8.502/2587941;
+ if(FileName.find("DY_FxFx_M400To500" ) != std::string::npos) wgt=0.4514/487372;
+ if(FileName.find("DY_FxFx_M500To700" ) != std::string::npos) wgt=0.2558/481980;
+ if(FileName.find("DY_FxFx_M700To800" ) != std::string::npos) wgt=0.04023/446493;
+ if(FileName.find("DY_FxFx_M800To1000" ) != std::string::npos) wgt=0.03406/504407;
+ if(FileName.find("DY_FxFx_M1000To1500" ) != std::string::npos) wgt=0.01828/492743;
+ if(FileName.find("DY_FxFx_M1500To2000" ) != std::string::npos) wgt=0.002367/541461;
+ if(FileName.find("DY_FxFx_M2000To3000" ) != std::string::npos) wgt=0.0005409/489512;
+ if(FileName.find("DY_FxFx_M3000ToInf" ) != std::string::npos) wgt=3.05e-05/496959;
+
+ if(FileName.find("DY_FxFx_Pt0To50" ) != std::string::npos) wgt=106300.0/100746866;
+ if(FileName.find("DY_FxFx_Pt50To100" ) != std::string::npos) wgt=407.9/120435658;
+ if(FileName.find("DY_FxFx_Pt100To250" ) != std::string::npos) wgt=96.8/81687671;
+ if(FileName.find("DY_FxFx_Pt250To400" ) != std::string::npos) wgt=3.774/20146620;
+ if(FileName.find("DY_FxFx_Pt400To650" ) != std::string::npos) wgt=0.5164/1863809;
+ if(FileName.find("DY_FxFx_Pt650ToInf" ) != std::string::npos) wgt=0.04796/1895998;
+
+ if(FileName.find("DY_FxFx_0J") != std::string::npos) wgt=5313.0/93979507 ;
+ if(FileName.find("DY_FxFx_1J") != std::string::npos) wgt=955.8/96675498;
+ if(FileName.find("DY_FxFx_1J") != std::string::npos) wgt=360.4/61848731 ;
 
 // DY HT binned LO samples
  if(FileName.find("DY_HT70To100") != std::string::npos) wgt=208.977/10019684; //check xsec
