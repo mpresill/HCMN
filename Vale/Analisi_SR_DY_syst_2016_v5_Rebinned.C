@@ -55,9 +55,9 @@ void Analisi_SR_DY_syst_2016_v5_Rebinned(){
 TChain *a_ = new TChain("BOOM");
 
 //new list of samples Mar2021:
-//a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/Syst_ALL_newMuonSF/DY_HT100Inf_2016.root"); //samples to be used //DY_HT100Inf_2016.root
-a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/25062021/DY_HTincl_LO_2016.root");
-
+//a_->Add("/eos/user/v/vmariani/NTuples/HN_2016/25062021/DY_FxFx_PTbins_2016.root"); //samples to be used //DY_HT100Inf_2016.root
+//a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/25062021/DY_FxFx_PTbins_2016.root");
+a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/26012022/DY_HTincl_LO_2016.root");
 
 //old samples, both FxFx and inclusive 
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/rootplized_samples_2016_syst/DY_2016.root"); 
@@ -563,7 +563,8 @@ for (Int_t i=0;i<a_->GetEntries();i++){
  /************************************************************/
   /*implementation of k-factors from monojet analysis*/
   /*here we read the histograms with the corrections */
-  TFile k_qcd_file("monojetDYk/Kfactor_NLO_HTincl_LO_2016.root");  /*this is the histo with qcd weights*/
+  TFile k_qcd_file("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/Kfactors/Kfactor_DY_FxFx_HTincl_LO_2016.root");  
+/*this is the histo with qcd weights*/
   TH1F *k_qcd_histo = (TH1F*)k_qcd_file.Get("kfac_dy_filter");
   TFile k_ewk_file("monojetDYk/merged_kfactors_zjets.root");  /*this is the histo with ewk weights*/
   TH1F *k_ewk_histo = (TH1F*)k_ewk_file.Get("kfactor_monojet_ewk");
@@ -578,27 +579,29 @@ for (Int_t i=0;i<a_->GetEntries();i++){
   /* here we write the k_qcd */
   k_qcd=1;
   int Nbins_qcd = k_qcd_histo ->GetNbinsX(); double binWidth_qcd=0;
-/*  for (int ji=1; ji<= Nbins_qcd; ji++){
+  for (int ji=1; ji<= Nbins_qcd; ji++){
     binCenter_qcd= k_qcd_histo->GetXaxis()->GetBinCenter(ji);
     binWidth_qcd= k_qcd_histo->GetXaxis()->GetBinWidth(ji);
 
-    if( Z_gen_pt>250 && Z_gen_pt >=(binCenter_qcd - (0.5*binWidth_qcd)) && Z_gen_pt < (binCenter_qcd + (0.5*binWidth_qcd))  ){
+    if( Z_gen_pt>200 && Z_gen_pt >=(binCenter_qcd - (0.5*binWidth_qcd)) && Z_gen_pt < (binCenter_qcd + (0.5*binWidth_qcd))  ){
       k_qcd = k_qcd_histo->GetBinContent(ji);
-      k_qcd_up = k_qcd + 0.05*k_qcd;
-      k_qcd_down = k_qcd - 0.05*k_qcd;
+   //   k_qcd_up = k_qcd + 0.05*k_qcd;
+   //   k_qcd_down = k_qcd - 0.05*k_qcd;
+      k_qcd_up = k_qcd + k_qcd_histo->GetBinError(ji);
+      k_qcd_down = k_qcd - k_qcd_histo->GetBinError(ji);
     }
-  }*/
+  }
   /* here we write the k_ewk */
   k_ewk =1;
   int Nbins_ewk = k_ewk_histo ->GetNbinsX(); double binWidth_ewk=0;
-/*  for (int jj=1; jj<= Nbins_ewk; jj++){
+  for (int jj=1; jj<= Nbins_ewk; jj++){
     binCenter_ewk= k_ewk_histo->GetXaxis()->GetBinCenter(jj);
     binWidth_ewk= k_ewk_histo->GetXaxis()->GetBinWidth(jj);
 
     if(Z_gen_pt >=(binCenter_ewk - (0.5*binWidth_ewk)) && Z_gen_pt < (binCenter_ewk + (0.5*binWidth_ewk)) ){
       k_ewk = k_ewk_histo->GetBinContent(jj);
     }
-  }*/
+  }
 
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
@@ -613,7 +616,7 @@ for (Int_t i=0;i<a_->GetEntries();i++){
  wg_2016_PrefDown = lumi * lumi_wgt * lepsf_evt * PUWeight * k_ewk*k_qcd * EVENT_prefireWeightDown; 
  wg_2016_KqcdUp = lumi * lumi_wgt * lepsf_evt * PUWeight * k_ewk*k_qcd_up * EVENT_prefireWeight;
  wg_2016_KqcdDown = lumi * lumi_wgt * lepsf_evt * PUWeight * k_ewk*k_qcd_down * EVENT_prefireWeight;
-        
+
  if (HLT_Mu50==1 || HLT_TkMu50==1 ) HLT_Mu = 1;
 
  muon_tot_pt = 0; ele_tot_pt = 0; jet_tot_pt = 0; HTevent = 0;
@@ -1391,8 +1394,8 @@ for (Int_t j=1;j<=8;j++) {
 }
 /********/
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/18102021/SR_syst_DY_HTincl_LO_noKfactor_2016.root", "RECREATE");
-//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/18102021/SR_syst_DY_HTincl_LO_Kfactor_new_2016.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/18102021/SR_syst_DY_FxFx_PTbins_noKfactor_noAlpha_2016.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/18102021/SR_syst_DY_HTincl_LO_Kfactor_new_2016_260122.root", "RECREATE");
 
 DY_eejj_SS->Write();
 DY_eejj_OS->Write();

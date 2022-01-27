@@ -47,8 +47,9 @@ void Analisi_SR_DY_syst_2017_v5_Rebinned(){
 
 TChain *a_ = new TChain("BOOM");
 
+a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/26012022/DY_HTincl_LO_2017.root");
 //a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/25062021/DY_HTincl_LO_2017.root");
-a_->Add("/eos/user/m/mpresill/CMS/HN_Reload/DY_HTsplitted/25062021/DYbins/DY_HTincl_LO_2017.root");
+//a_->Add("/eos/user/v/vmariani/NTuples/HN_2017/25062021/DY_FxFx_JETbins_2017.root");
 
 
 int HLT_Ele, HLT_Photon200, HLT_Ele115, HLT_Ele35, HLT_Mu, HLT_Mu50, HLT_OldMu100, HLT_TkMu50, HLT_TkMu100;
@@ -572,7 +573,8 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
 /************************************************************/
   /*implementation of k-factors from monojet analysis*/
   /*here we read the histograms with the corrections */
-  TFile k_qcd_file("monojetDYk/Kfactor_NLO_HTincl_LO_2017.root");  /*this is the histo with qcd weights*/
+  TFile k_qcd_file("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/Kfactors/Kfactor_DY_FxFx_HTincl_LO_2017.root");
+  //TFile k_qcd_file("monojetDYk/Kfactor_NLO_HTincl_LO_2017.root");  /*this is the histo with qcd weights*/
   //TFile k_qcd_file("monojetDYk/kfac_dy_filter.root");
   TH1F *k_qcd_histo = (TH1F*)k_qcd_file.Get("kfac_dy_filter");
   TFile k_ewk_file("monojetDYk/merged_kfactors_zjets.root");  /*this is the histo with ewk weights*/
@@ -588,29 +590,31 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   /* here we write the k_qcd */
   k_qcd=1;
   int Nbins_qcd = k_qcd_histo ->GetNbinsX(); double binWidth_qcd=0;
-/*  for (int ji=1; ji<= Nbins_qcd; ji++){
+  for (int ji=1; ji<= Nbins_qcd; ji++){
     binCenter_qcd= k_qcd_histo->GetXaxis()->GetBinCenter(ji);
     binWidth_qcd= k_qcd_histo->GetXaxis()->GetBinWidth(ji);
 
     if(k_qcd_histo->GetBinContent(ji) ==0){continue;}
 
-    if( Z_gen_pt>150 && Z_gen_pt >=(binCenter_qcd - (0.5*binWidth_qcd)) && Z_gen_pt < (binCenter_qcd + (0.5*binWidth_qcd))  ){
+    if( Z_gen_pt>200 && Z_gen_pt >=(binCenter_qcd - (0.5*binWidth_qcd)) && Z_gen_pt < (binCenter_qcd + (0.5*binWidth_qcd))  ){
       k_qcd = k_qcd_histo->GetBinContent(ji);
-      k_qcd_up = k_qcd + 0.05*k_qcd;
-      k_qcd_down = k_qcd - 0.05*k_qcd;
+      k_qcd_up = k_qcd + k_qcd_histo->GetBinError(ji);
+      k_qcd_down = k_qcd - k_qcd_histo->GetBinError(ji);   
+   //   k_qcd_up = k_qcd + 0.05*k_qcd;
+   //   k_qcd_down = k_qcd - 0.05*k_qcd;
     }
-  }*/
+  }
   /* here we write the k_ewk */
   k_ewk =1;
   int Nbins_ewk = k_ewk_histo ->GetNbinsX(); double binWidth_ewk=0;
-/*  for (int jj=1; jj<= Nbins_ewk; jj++){
+  for (int jj=1; jj<= Nbins_ewk; jj++){
     binCenter_ewk= k_ewk_histo->GetXaxis()->GetBinCenter(jj);
     binWidth_ewk= k_ewk_histo->GetXaxis()->GetBinWidth(jj);
 
     if(Z_gen_pt >=(binCenter_ewk - (0.5*binWidth_ewk)) && Z_gen_pt < (binCenter_ewk + (0.5*binWidth_ewk)) ){
       k_ewk = k_ewk_histo->GetBinContent(jj);
     }
-  }*/
+  }
 
   /*end implementation of k-factor. The k-factors are then put in the weights for each event:   wg = lumi*lumi_wgt*lepsf_evt*k_ewk*k_qcd;*/
   /************************************************************/
@@ -891,9 +895,18 @@ for (Int_t i=0;i<a_->GetEntries();i++) {
   lepsf_evt=elesf1*elesf2;
   lepsf_evt_u=elesf_u1*elesf_u2;
   lepsf_evt_d=elesf_d1*elesf_d2;
-  wg = lumi * lumi_wgt * lepsf_evt * PUWeight*k_qcd*k_ewk;  
-  wg_SFu = lumi * lumi_wgt * lepsf_evt_u * PUWeight*k_qcd*k_ewk;  
-  wg_SFd = lumi * lumi_wgt * lepsf_evt_d * PUWeight*k_qcd*k_ewk; 
+  wg = lumi * lumi_wgt * lepsf_evt * PUWeight*k_qcd*k_ewk * EVENT_prefireWeight;  
+  wg_SFu = lumi * lumi_wgt * lepsf_evt_u * PUWeight*k_ewk*k_qcd* EVENT_prefireWeight;
+ wg_SFd = lumi * lumi_wgt * lepsf_evt_d * PUWeight*k_ewk*k_qcd* EVENT_prefireWeight;
+ wg_2017_PUu = lumi * lumi_wgt * lepsf_evt * MinBiasUpWeight*k_ewk*k_qcd* EVENT_prefireWeight;
+ wg_2017_PUd = lumi * lumi_wgt * lepsf_evt * MinBiasDownWeight*k_ewk*k_qcd* EVENT_prefireWeight;
+ wg_PrefUp = lumi * lumi_wgt * lepsf_evt * PUWeight*k_ewk*k_qcd*EVENT_prefireWeightUp;
+ wg_PrefDown = lumi * lumi_wgt * lepsf_evt * PUWeight*k_ewk*k_qcd*EVENT_prefireWeightDown;
+ wg_2017_KqcdUp = lumi * lumi_wgt * lepsf_evt * PUWeight * k_ewk*k_qcd_up * EVENT_prefireWeight;
+ wg_2017_KqcdDown = lumi * lumi_wgt * lepsf_evt * PUWeight * k_ewk*k_qcd_down * EVENT_prefireWeight;
+
+ //cout << "wg= " << wg << " lumi= " << lumi_wgt << " PUWeight= " << PUWeight << " EVENT_prefireWeight= " << EVENT_prefireWeight << endl; 
+
   if( wg >1000) continue;
   /*bug fixing part end*/
   
@@ -1458,8 +1471,8 @@ for (Int_t j=1;j<=8;j++) {
 
 /********/
 
-TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/18102021/SR_syst_DY_HTincl_LO_noKfactor_2017.root", "RECREATE");
-//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/18102021/SR_syst_DY_HTincl_LO_Kfactor_new_2017.root", "RECREATE");
+//TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/18102021/SR_syst_DY_FxFx_JETbins_noKfactor_noAlpha_2017.root", "RECREATE");
+TFile *f = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2017_ALL_HOPE/18102021/SR_syst_DY_HTincl_LO_Kfactor_new_2017_260122.root", "RECREATE");
 n_best_Vtx->Write();
 DY_eejj_SS->Write();
 DY_eejj_OS->Write();
