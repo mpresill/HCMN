@@ -9,7 +9,7 @@ void MeeJ_Rebinned()
 {
  setTDRStyle();
  
- writeExtraText = true;       // if extra text
+ writeExtraText = false;       // if extra text
  extraText  = "Preliminary";
  //lumi_sqrtS = "13 TeV";
  int iPeriod = 5;
@@ -52,13 +52,13 @@ int color2 = kGreen+1, color3 = kRed-7, color4 = kAzure-4, color5 = kOrange;
 TH1F * gHisto ;
 
  
-   TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/eejj_L13000_M1000_sr_Rebinned/eejj_L13000_M1000_sr_YearsCombination_Rebinned_PostFit_histograms.root");
-   TString name = "eejj_FullRun2_M1000postfit_Rebinned"; //nome del file salvato
+   TFile *f1 = new TFile("/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/PostFit/histograms/260122/eejj_L13000_M1000_sr_YearsCombination_Rebinned_PostFit_histograms_JETkfactor2017.root");
+   TString name = "eejj_FullRun2_M1000prefit_Rebinned"; //nome del file salvato
 
-   TString dir2016 = "SR_Y2016combined_signal_region_postfit/";
-   TString dir2017 = "SR_Y2017combined_signal_region_postfit/";
-   TString dir2018 = "SR_Y2018combined_signal_region_postfit/";
-   //TString dir     = "postfit/";
+   TString dir2016 = "SR_Y2016combined_signal_region_prefit/";
+   TString dir2017 = "SR_Y2017combined_signal_region_prefit/";
+   TString dir2018 = "SR_Y2018combined_signal_region_prefit/";
+   //TString dir     = "prefit/";
 
 canvName = name;
 
@@ -177,6 +177,12 @@ for(int i=7;i<10;i++){
   //cout <<h5->GetBinContent(i)<<endl;
 }
 
+cout << "DY: " << Ndy << " #pm " << sqrt(Ndy_err2) << endl;
+cout << "Top: " << NTOP << " #pm " << sqrt(NTOP_err2) << endl;
+cout << "Other: " << Nother << " #pm " << sqrt(Nother_err2) << endl;
+cout << "TOT: " << NTOP+Ndy+Nother << " #pm " << sqrt(NTOP_err2+Ndy_err2+Nother_err2) << endl;
+cout << "Data: " << Ndata << endl;
+
  Ntot_combine=NTOP+Ndy+Nother;
  Ntot_combine_err=sqrt(NTOP_err2+Ndy_err2+Nother_err2);
 
@@ -189,7 +195,7 @@ for(int i=7;i<10;i++){
  double all_bkg_totErr_yerr[9];  
   
   for(int m=1;m<10;m++){
-    ///statistic e systematic error are togheter in the postfit histos
+    ///statistic e systematic error are togheter in the prefit histos
     all_bkg_statErr_yerr[m-1]=sqrt( (h1->GetBinError(m))*(h1->GetBinError(m)) + (h2->GetBinError(m))*(h2->GetBinError(m)) + (h2b->GetBinError(m))*(h2b->GetBinError(m)) );
     ///systematics
       all_bkg_sistErr_yerr[m-1]=0;   
@@ -203,7 +209,7 @@ for(int i=7;i<10;i++){
  all_bkg_statErr->SetFillColor(kGray+3);
 
    hs->Draw("hist");
-//   h4->Draw("histsame");
+   //h4->Draw("histsame");
    h5->Draw("ALPEsame");    /// data unblind
    all_bkg_statErr->Draw("E2same");
 
@@ -251,8 +257,8 @@ for(int j=1; j<v; j++){
   rd = h5_c->GetBinContent(j);
   mc = mc_tot[j];
   rd_e = h5_c->GetBinError(j);
-  mc_e = mc_err[j];
-  dataSUmc_y[j] = rd/mc;
+mc_e = all_bkg_totErr_yerr[j];  
+dataSUmc_y[j] = rd/mc;
   dataSUmc_yerr[j] = (1./mc)*sqrt(pow(rd_e,2)+(pow(rd,2)/pow(mc,2))*pow(mc_e,2));
  }
  cout << "x " << dataSUmc_x[j] << " ratio " << dataSUmc_y[j] << endl;
@@ -273,7 +279,7 @@ dataSUmc->GetXaxis()->SetTitleSize(30);
 dataSUmc->GetXaxis()->SetTitleFont(43);
 dataSUmc->GetXaxis()->SetTitleOffset(3);
 
-dataSUmc->GetYaxis()->SetTitle("Data/MC");
+dataSUmc->GetYaxis()->SetTitle("Data/Pred.");
 dataSUmc->GetYaxis()->SetLabelSize(25);
 dataSUmc->GetYaxis()->SetLabelFont(43);
 dataSUmc->GetYaxis()->SetTitleSize(30);
@@ -302,12 +308,12 @@ TLegend *leg = new TLegend(0.6, 0.68, 0.90, 0.88);   //x2=0.59 per 0 PU, x2=0.65
     leg->SetBorderSize(0);
     leg->SetTextSize(0.04);
     leg->SetFillColor(0);
-    leg->AddEntry(h1, "TTtW",  "f");
+    leg->AddEntry(h1, "t#bar{t}+tW",  "f");
     leg->AddEntry(h2, "DY", "f");
     leg->AddEntry(h2b, "Other", "f");
 //  leg->AddEntry(h6b, "All bkds", "l");
 //    leg->AddEntry(h4, "#scale[0.8]{#Lambda = 13, M(N_{#mu}) = 1 TeV}",  "l");
-    leg->AddEntry(all_bkg_statErr,"#scale[0.7]{Bkg stat. and syst.uncert.}","F");// and syst. 
+    leg->AddEntry(all_bkg_statErr,"Uncertainty","F");// and syst. 
     leg->AddEntry(h5, "Data", "pl");
 
 // metti la descrizione che vuoi appaia e poi con PL intendi che prende come riferimento i point e la line style dell'histo
@@ -316,9 +322,7 @@ leg->Draw();
 canv->cd();
   CMS_lumi( c1_1, iPeriod, iPos, 1.3 );
 
-canv->Print(name+".png");
-canv->Print(name+".pdf");
-canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".png");
-canv->Print("/eos/user/v/vmariani/www/HN/postfit/"+name+".pdf");   
+canv->Print("/eos/user/v/vmariani/www/HN/paper_plot/"+name+"_JETkfactor2017.png");
+canv->Print("/eos/user/v/vmariani/www/HN/paper_plot/"+name+"_JETkfactor2017.pdf");   
   return canv;
 }
