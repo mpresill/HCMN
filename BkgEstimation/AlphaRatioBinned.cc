@@ -6,7 +6,7 @@ Need to specify
 1. See Declare Constants
 */
 /////
-//   To run: root -l CountingEvt.cc+  
+//   To run: root -l AlphaRatioBinned.cc+  
 /////
 /////
 //   Prepare Root and Roofit
@@ -28,26 +28,29 @@ using namespace std;
 //   Declare constants
 /////
 //Path and root files
-const string path           = "/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/18102021/"; 
-///eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/25062021/
-//const string path           = "/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/SYST_2016_v4/"; 
-                              //SR_syst_DY_HTincl_LO_Kfactor_new
-                              //SR_syst_DY_HTincl_Kewkqcd
+const string path           = "/eos/user/m/mpresill/CMS/HN_Reload/combine_histograms/2016_ALL_HOPE/18102021/"; /////STEP0: change path 
+
+
 const char *samples[]       = {
-                              "SR_syst_TTtW","SR_syst_Other","SR_syst_DY_HTincl_LO_Kfactor_new",
-                              //"DY",
-                             "CR_DY_data_ele"                  /////STEP1: change DATA channel (uncommenting the right one)
-                             // "CR_DY_data_mu"
+                              "SR_syst_TTtW","SR_syst_Other","SR_syst_DY_HTincl_LO_Kfactor_new",                /////STEP1: set the right DY sample name (hint: this depends on the year)
+                           
+                             "CR_DY_data_ele"    /* "CR_DY_data_mu" */                                          /////STEP2: change DATA channel (uncommenting the right one)
+                             
 };
-const string selection      = "_2016";                   ////STEP 2: change year 
+const string selection      = "_2016";                                                                          ////STEP 3: change year 
 
 
-                  /////STEP 3: change channel (uncommenting the right one)
+                                                                                                               /////STEP 4: change channel (uncommenting the right one)
 TString VarName_data="M_eeJ_Z";                          
 
 TString VarName_dy="DY_Zpeak_eejj";
 TString VarName_other="Other_Zpeak_eejj";
 TString VarName_top="TTtW_Zpeak_eejj";
+
+
+
+
+
 
 
 const string channel        = "";
